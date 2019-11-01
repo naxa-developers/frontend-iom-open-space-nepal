@@ -1,0 +1,144 @@
+footer {
+    background-position: 50% 0% !important;
+    .footer-top{
+        text-align: center;
+        
+        button{
+            text-transform: uppercase;
+            margin-top:3rem;
+        }
+    }
+    .footer-bottom{
+        padding-bottom: 2rem;
+        .footer-widget{
+            h5{
+                color:$color-blue;
+                font-weight: 700;
+                font-size:2rem;
+                margin-bottom: 3rem;
+            }
+            &.about-widget{
+                padding-right: 1.5rem;
+                .footer-logos{
+                    @include flexBetween;
+                    align-items: center;
+                    margin:3rem 0;
+                    figure{
+                        margin:0;
+                        max-width: 75px;
+                        cursor: pointer;
+                        &:nth-child(2){
+                            margin:0 1rem;
+                        }
+                    }
+                }
+                .copyright{
+                    p{
+                        color:$primary-light;
+                        margin:0;
+                        font-size:.875rem;
+                        a{
+                            color:$primary-light;
+                            font-size:.875rem;
+                        }
+                    }
+                }
+            }
+            &.contact-widget{
+                
+                ul{
+                    li{
+                        position: relative;
+                        @include flexStart;
+                        margin-bottom: 1rem;
+                        i{
+                            color:$color-green;
+                            margin-right: 1rem;
+                            margin-top:.5rem;
+                            &::before{
+                                color:$color-green; 
+                            }
+                            &.material-icons{
+                                font-size:1rem;
+                                margin-top:.3rem;
+                            }
+                        }
+                        span{
+                            color:$primary-light;
+                        }
+                        &:last-child{
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+            &.app-widget{
+                .apps{
+                    figure{
+                        cursor: pointer;
+                        &:last-child{
+                            margin-left: 1rem;
+                        }
+                    }
+                }
+                ul{
+                    margin-top:1rem;
+                    li{
+                        margin-bottom:.5rem;
+                        a{
+                            color:$color-blue;
+                            text-transform: uppercase;
+                            font-weight: 600;
+                        }
+                        &:last-child{
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:$lg-tab){
+    footer {
+        .footer-top{
+            
+            button{
+                margin-top:2rem;
+            }
+        }
+        .footer-bottom{
+            margin-top:5rem;
+            .footer-widget{
+                h5{
+                    color:$color-blue;
+                    font-size:1.5rem;
+                    margin-bottom: 2rem;
+                }
+                &.about-widget{
+                    padding-right: 1rem;
+                    .footer-logos{
+                        margin:2rem 0;
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width:$mb-xl){
+    footer {
+        .footer-bottom{
+            margin-top:3rem;
+            .footer-widget{
+                margin-top:1.5rem;
+                &.about-widget{
+                    padding-right:0;
+                    .footer-logos{
+                        margin:1rem 0;
+                    }
+                }
+            }
+        }
+    }
+}
