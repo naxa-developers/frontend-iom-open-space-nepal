@@ -1,0 +1,545 @@
+.site-header {
+    @include easein_out($easein_out:all 0.5s ease-in-out);
+
+    .headerWrap {
+        @include flexjust;
+        flex-wrap: nowrap;
+        padding: 1rem 0;
+
+        .headLeft {
+            @include flexjust;
+            justify-content: flex-start;
+            align-items: center;
+
+            .logo {
+                margin-right: 15px;
+                max-width: 190px;
+            }
+
+            p {
+                margin: 0;
+            }
+        }
+
+        .headRight {
+
+            .country-logos {
+                align-items: center;
+                margin-bottom: 1.5rem;
+
+                a {
+                    width: 30px;
+                    height: 30px;
+                    @include radius(50%);
+                    border: 2px solid $green-light;
+
+                    img {
+                        width: 28px;
+                        height: 28px;
+                        @include radius(50%);
+                    }
+
+                    &:last-child {
+                        margin-left: 1rem;
+                    }
+
+                    &.active {
+                        border-color: $color-green;
+                    }
+                }
+            }
+
+            ul {
+                li {
+                    display: inline-block;
+
+                    a {
+                        display: block;
+                        padding: 1rem 1.5rem;
+                        font-size: 1rem;
+                        text-transform: uppercase;
+                        position: relative;
+                        font-weight: 700;
+                        @include easein_out($easein_out:all 0.5s ease-in-out);
+
+                        &:hover {
+                            color: $color-blue;
+                        }
+
+                    }
+
+                    &.menu-item-has-children {
+                        position: relative;
+
+                        ul {
+                            position: absolute;
+                            left: auto;
+                            right: 0;
+                            top: 130%;
+                            width: 200px;
+                            padding: 0 15px;
+                            opacity: 0;
+                            visibility: hidden;
+                            transform: translateY(0);
+                            border: none;
+                            background-color: $color-white;
+                            z-index: 99;
+                            display: inherit;
+                            text-align: left;
+
+                            li {
+                                display: block;
+                                position: relative;
+
+                                a {
+                                    border-right: none;
+                                    padding: 8px 0;
+                                    display: block;
+                                    border-bottom: 1px solid $color-grey;
+                                    color: $color-primary;
+                                    text-transform: capitalize;
+
+                                    &::after {
+                                        display: none;
+                                    }
+
+                                    &:hover {
+                                        color: $color-secondary;
+                                    }
+
+                                }
+
+                                &:last-child {
+                                    text-align: left;
+
+                                    a {
+                                        border-bottom: none;
+                                    }
+
+                                }
+
+                                ul {
+                                    left: 105%;
+                                    right: unset;
+                                    top: 130%;
+                                    opacity: 0;
+                                    visibility: hidden;
+                                    transform: translateY(0);
+                                    border: none;
+                                    background-color: $color-white;
+                                    z-index: 99;
+                                    display: inherit;
+                                    text-align: left;
+
+                                    li {
+                                        &::after {
+                                            display: none;
+                                        }
+
+                                        &:last-child a {
+                                            border-bottom: none;
+                                        }
+                                    }
+                                }
+
+                                &:hover {
+                                    ul {
+                                        opacity: 1;
+                                        visibility: visible;
+                                        transform: translateY(1);
+                                        @include easein_out($easein_out:all 0.5s ease-in-out);
+                                        top: 0;
+                                    }
+                                }
+
+                                &.menu-item-has-children {
+                                    a {
+                                        &::after {
+                                            content: "\f105";
+                                            font-family: 'FontAweosome';
+                                            display: block;
+                                            float: right;
+                                        }
+                                    }
+
+                                    ul li a::after {
+                                        display: none;
+                                    }
+
+                                }
+
+                            }
+
+                            &:hover {
+                                ul {
+                                    opacity: 1;
+                                    visibility: visible;
+                                    transform: translateY(1);
+                                    @include easein_out($easein_out:all 0.5s ease-in-out);
+                                    top: 100%;
+                                }
+                            }
+
+                        }
+
+                        &:hover {
+                            ul {
+                                opacity: 1;
+                                visibility: visible;
+                                transform: translateY(1);
+                                @include easein_out($easein_out:all 0.5s ease-in-out);
+                                top: 100%;
+
+                                ul {
+                                    opacity: 0;
+                                    visibility: hidden;
+                                }
+                            }
+                        }
+
+                        a {
+                            &::after {
+                                content: "\f107";
+                                font-family: "FontAwesome";
+                                display: inline-block;
+                                padding-left: 5px;
+                                font-size: 1.2rem;
+                            }
+                        }
+                    }
+
+                    &:last-child {
+                        text-align: right;
+                    }
+
+                    &.menu-item-has-current,
+                    &:hover {
+
+                        a {
+                            color: $color-white;
+                            background-color: $color-blue;
+                        }
+                    }
+                }
+            }
+
+            .header-btns {
+                margin-left: 2rem;
+                position: relative;
+
+
+                .ysewa-button {
+                    text-transform: initial;
+                    font-size: .875rem;
+                    font-family: $montserrat;
+                    display: flex;
+                    align-items: center;
+
+                    i {
+                        font-family: 'Material Icons';
+                        display: inline-flex;
+                        margin-right: .5rem;
+                    }
+
+                    &:last-child {
+                        margin-left: .5rem;
+                    }
+                }
+
+                .dropdown {
+                    margin-left: 1rem;
+                    border: 0;
+
+                    .dropdown-menu {
+                        padding: 0;
+                    }
+
+                    a.dropdown-item {
+                        display: block;
+                        color: $color-bg-text;
+                        font-size: 0.88rem;
+                        padding: 0.625rem 1.25rem;
+                        border-bottom: 1px solid $color-border;
+                        text-transform: capitalize;
+
+                        &:hover {
+                            color: $color-secondary;
+                        }
+                    }
+                }
+            }
+
+        }
+
+        .toggle-button {
+            position: relative;
+            width: 30px;
+            height: 30px;
+            @include easein_out($easein_out:all 0.5s ease-in-out);
+            float: right;
+            display: none;
+            margin-top: 10px;
+
+            span {
+                position: absolute;
+                height: 4px;
+                border-radius: 4px;
+                width: 100%;
+                background-color: $color-blue;
+                top: 0;
+                transition: transform .2s ease-in-out, opacity .2s ease-in-out;
+                z-index: 1101;
+
+                &:nth-child(1) {
+                    top: 0;
+                }
+
+                &:nth-child(2),
+                &:nth-child(3) {
+                    top: 10px;
+                }
+
+                &:nth-child(4) {
+                    top: 20px;
+                }
+            }
+
+            &.active {
+                position: absolute;
+                top: 15px;
+                right: 15px;
+                z-index: 1000;
+
+                span {
+
+                    &:nth-child(1),
+                    &:nth-child(4) {
+                        opacity: 0;
+                    }
+
+                    &:nth-child(2) {
+                        transform: rotate(45deg);
+                        background-color: $color-white;
+                    }
+
+                    &:nth-child(3) {
+                        transform: rotate(-45deg);
+                        background-color: $color-white;
+                    }
+                }
+            }
+        }
+
+    }
+
+    &.affix {
+        background-color: $color-secondary;
+        border-top: 1px solid rgba($color-bg, 0.4);
+
+        .headerWrap {
+            .headRight {
+                ul {
+
+                    li {
+                        a {
+                            color: $color-white;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+}
+
+
+
+@media screen and (max-width:$mb-xl) {
+    .site-header {
+        .headerWrap {
+            .headLeft {
+                .logo{
+                    max-width: 120px;
+                }
+                p {
+                    color: $color-white;
+                }
+            }
+
+            .headRight {
+                .toggle-button {
+                    display: block;
+                }
+
+                .menu-primary-container {
+                    position: fixed;
+                    height: 100%;
+                    max-width: 280px;
+                    padding: 15px;
+                    width: 100%;
+                    background-color: rgba($color-blue, 0.9);
+                    z-index: 999;
+                    top: 0;
+                    right: -100%;
+                    left: auto;
+                    bottom: 0;
+
+                    ul {
+                        text-align: left;
+                        transform: none;
+                        transition: none;
+
+                        li {
+                            display: block;
+                            width: 100%;
+
+                            a {
+                                display: block;
+                                padding: 1rem;
+                                text-transform: uppercase;
+                                position: relative;
+                                color: $color-white;
+
+                            }
+
+                            &.menu-item-has-children {
+                                position: relative;
+
+                                a {
+                                    &::after {
+                                        display: none;
+                                    }
+                                }
+
+                                ul {
+                                    position: inherit;
+                                    width: 100%;
+                                    padding: 0 15px;
+                                    border: none;
+                                    z-index: 99;
+                                    display: inherit;
+                                    text-align: left;
+                                    background-color: transparent;
+                                    visibility: visible;
+                                    opacity: 1;
+                                    transform: none;
+                                    display: none;
+
+                                    li {
+                                        display: block;
+                                        position: relative;
+
+                                        a {
+                                            border-right: none;
+                                            padding: 8px 0;
+                                            display: block;
+                                            border-bottom: 1px solid rgba($color-white, 0.4);
+                                            text-transform: capitalize;
+                                            color: $color-white;
+                                        }
+
+                                        &.menu-item-has-children {
+                                            a {
+                                                &::after {
+                                                    display: none;
+                                                }
+                                            }
+
+                                            ul {
+                                                position: inherit;
+                                                width: 100%;
+                                                padding: 0 15px;
+                                                border: none;
+                                                z-index: 99;
+                                                display: inherit;
+                                                background-color: transparent;
+                                                visibility: visible;
+                                                opacity: 1;
+                                                transform: none;
+                                                top: unset;
+                                                right: unset;
+                                                left: unset;
+                                            }
+                                        }
+
+                                        &:last-child {
+                                            text-align: left;
+
+                                            a {
+                                                border-bottom: none;
+                                            }
+
+                                        }
+
+                                        ul {
+                                            li {
+                                                &::after {
+                                                    display: none;
+                                                }
+
+                                                &:last-child a {
+                                                    border-bottom: none;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                span.fa-angle-down {
+                                    width: 20px;
+                                    color: $color-white;
+                                    height: 20px;
+                                    line-height: 18px;
+                                    text-align: center;
+                                    border: 1px solid rgba($color-white, 0.8);
+                                    cursor: pointer;
+                                    float: right;
+                                    position: relative;
+                                    z-index: 1000;
+                                    margin-top: 10px;
+                                    @include radius(5px);
+
+                                    &:hover {
+                                        border-color: $color-white;
+                                    }
+                                }
+
+                                &:hover {
+                                    transform: none;
+                                    transition: none;
+                                }
+                            }
+
+                            &:last-child {
+                                text-align: left;
+                            }
+
+                            &.menu-item-has-current {
+                                a {
+                                    color: $color-white;
+                                }
+                            }
+
+                        }
+                    }
+                }
+
+            }
+
+        }
+
+    }
+
+    .Is-toggle {
+        .site-header {
+            .headerWrap {
+                .menu-primary-container {
+                    right: 0;
+                }
+            }
+
+
+        }
+    }
+}
