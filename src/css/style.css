@@ -2887,7 +2887,7 @@ footer .footer-bottom .footer-widget.app-widget ul li:last-child {
   margin-top: -100px;
 }
 .slick-slider .slick-prev::before {
-  content: "keyboard_backspace";
+ 
   font-family: "Material Icons";
   color: #757575;
   line-height: 1.5;
@@ -2901,7 +2901,6 @@ footer .footer-bottom .footer-widget.app-widget ul li:last-child {
   margin-top: -100px;
 }
 .slick-slider .slick-next::before {
-  content: "keyboard_backspace";
   font-family: "Material Icons";
   color: #757575;
   line-height: 1.5;
