@@ -7,6 +7,7 @@ import slider2 from '../../img/slider-2.jpg';
 
  class ImageSlider extends Component {
     render() {
+        // Use responsive slick here after calculating breakpoints
         const settings = {
             dots: true,
             infinite: true,
@@ -16,51 +17,32 @@ import slider2 from '../../img/slider-2.jpg';
           };
 
         return (
-           
-            <section class="home-slider">
-                <div class="slider-wrap">
-                    <div class="container">
-                       <h1>Space for Slider</h1>
-                   </div>
+            <section className="home-slider">
+            <div className="slider-wrap">
+                <div className="container">
+                    <div className="intro-slider">
+                    <Slider {...settings}> 
+                        <div className="intro-item">
+                           
+                            <div className="figure" style={{backgroundImage: `url(${slider1})`}}>
+
+                            </div>
+                            <h3>Interaction with Locals and Finalization of Open Spaces</h3>
+                        </div>
+                        <div className="intro-item">
+                            <div className="figure" style={{backgroundImage: `url(${slider2})`}}>
+
+                            </div>
+                            <h3>Temporary Settlement Camps</h3>
+                        </div>
+                        </Slider>
+                    </div>
+                    
                 </div>
-            </section>
-        
-        
-        /* // <Slider {...settings}>
-        // <div>
-        //     <h1>ghgfjhs</h1>
-        //     <h2>fhjshgf</h2>
-        // </div>
-        // <div>
-        //     <h1>wwwww</h1>
-        //     <h2>fhjshgf</h2>
-        // </div> */
-        //   {/* <div>
-        //     <h3>1st item</h3>
-        //     <img src={slider1} className ="sliderImage"></img>
-        //   </div>
-        //   <div>
-        //     <h3>2nd item</h3>
-        //     <img src={slider2} className ="sliderImage"></img>
-        //   </div>
-        //   <div>
-        //     <h3>3rd item</h3>
-        //     <img src={slider1} className ="sliderImage"></img>
-        //   </div>
-        //   <div>
-        //     <h3>4th item</h3>
-        //     <img src={slider2} className ="sliderImage"></img>
-        //   </div>
-        //   <div>
-        //     <h3>5th item </h3>
-        //     <img src={slider1} className ="sliderImage"></img>
-        //   </div>
-        //   <div>
-        //     <h3>6th item </h3>
-        //     <img src={slider2} className ="sliderImage"></img>
-        //   </div> */}
-        // </Slider>
-                 
+            </div>
+        </section>
+     
+          
               
             
         )
