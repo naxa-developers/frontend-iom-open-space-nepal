@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {connect } from 'react-redux';
+
 import gov from '../../img/gov.png';
 import iom from '../../img/iom.png';
 import ccm from '../../img/ccm.png';
@@ -24,11 +26,10 @@ import ccm from '../../img/ccm.png';
                     </div>
                     <div className="col-lg-10 col-md-9">
                         <div className="intro">
-                            <h1>Open Space Portal for Humanitarian Assistance</h1>
-                            <p>Welcome to the portal developed by the International Organization for Migration (IOM)
-                                under the leadership of Ministry of Home Affairs (MoHA) and technical support of Naxa
+                            <h1>{this.props.language == '0' ? `Open Space Portal for Humanitarian Assistance` : "मानवीय खुल्ला क्षेत्र  पोर्टलमा स्वागत छ "}</h1>
+                            <p> {this.props.language=='0'? `Welcome to the portal developed by the International Organization for Migration, IOM under the leadership of Ministry of Home Affairs (MoHA) and technical support of Naxa
                                 Pvt. Ltd. with the objective of identifying open spaces and reducing the losses in times
-                                of disaster.</p>
+                                of disaster.`: "अन्तरास्ट्रिय आप्रवासन संगठन (IOM) ले गृह मन्त्रालयको समन्वय तथा नक्सा प्रा. लि. को प्राविधिक सहकार्यमा, खुल्ला स्थान पहिचान गरि विपद्को समयमा हानि कम गर्ने उद्देश्यका साथ, निर्माण गरिएको यस पोर्टलमा  स्वागत छ  ।"}</p>
                         </div>
                     </div>
                 </div>
@@ -37,4 +38,12 @@ import ccm from '../../img/ccm.png';
         )
     }
 }
-export default Banner;
+
+const mapStateToProps = (state) => {
+    return {
+         language: state.language
+     }
+  }
+
+  
+export default connect(mapStateToProps)(Banner);

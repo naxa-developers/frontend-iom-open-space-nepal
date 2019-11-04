@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import CountUp from 'react-countup';
+
 import countershape from '../../img/counter-shape.png'
 
 
@@ -10,10 +12,11 @@ class Glimpse extends Component {
             <div className="glimps-wrapper">
                 <div className="container">
                     <h3 className="openspace-title">Glimpse of Open Spaces in Nepal</h3>
+                    
                     <div className="row">
                         <div className="col-md-3 col-space-5">
                             <div className="glimps-count">
-                                <h4>141</h4>
+                                <h4><CountUp end={141} delay={0} /></h4>
                                 <h6>open spaces</h6>
                             </div>
                         </div>
