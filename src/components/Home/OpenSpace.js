@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import video from '../../img/video.jpg';
 import play from '../../img/play.png'
+import { connect } from 'react-redux';
 
 class OpenSpace extends Component {
     render() {
@@ -16,10 +17,11 @@ class OpenSpace extends Component {
                     </div>
                     <div className="col-lg-4 col-md-4">
                         <div className="video-content flexvr">
-                            <h3 className="openspace-title">What is open space ?</h3>
-                            <p>In the event of disasters, when the house is demolished or is unsafe to live, the
+                            <h3 className="openspace-title"> { this.props.language =="0" ? `What is open space ?`: `खुल्ला क्षेत्र के हो?`}</h3>
+                            <p> { this.props.language =="0" ? `In the event of disasters, when the house is demolished or is unsafe to live, the
                                 population
-                                and communities affected by the disaster use the open space for emergency shelter.</p>
+                                and communities affected by the disaster use the open space for emergency shelter.` : 'कुनै पनि विपद्को समयमा घर भत्किएको या बस्न सुरक्षित नभएको अवस्थामा, विपद् बाट प्रभावित जनसंख्या र समुदायले आक्समिक आश्रयकालागि खुल्ला क्षेत्रको प्रयोग गर्छन् । विपद्को समयमा खुल्ला क्षेत्र आश्रयकालागि मात्र नभई आक्समिक खानेपानी, सरसफाई तथा स्वच्छता प्रर्बधन, स्वास्थय सेवा, बाल,युवा तथा महिला मैत्री स्थान, राहत वितरणका लागी पनि खुल्ला क्षेत्र आवश्यक पर्दछ । यसैले आक्समिक विपद् पुर्वतयारी गर्दा नै खुल्ला क्षेत्रको पहिचान र संरक्षण अपरिहार्य छ । '}
+</p>
                         </div>
                     </div>
                 </div>
@@ -28,4 +30,9 @@ class OpenSpace extends Component {
         )
     }
 }
-export default OpenSpace;
+const mapStateToProps = (state) => {
+    return {
+         language: state.language
+     }
+  }
+export default connect(mapStateToProps)(OpenSpace);

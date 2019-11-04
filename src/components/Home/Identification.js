@@ -6,6 +6,9 @@ import post4 from '../../img/post-4.jpg'
 import post5 from '../../img/post-1.jpg'
 
 class Identification extends Component {
+    componentDidMount() {
+        console.log('123');
+    }
     render() {
         return (
 
@@ -29,7 +32,6 @@ class Identification extends Component {
                         flexBasis: '80%',
                         height: '100vh', 
                         overflow: 'auto'
-
                     }}>
                         <div className="process-content">
                             <div className="post-meta">
