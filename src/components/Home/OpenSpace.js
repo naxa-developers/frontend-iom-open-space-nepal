@@ -2,18 +2,39 @@ import React, { Component } from 'react';
 import video from '../../img/video.jpg';
 import play from '../../img/play.png'
 import { connect } from 'react-redux';
-
+import YouTube from 'react-youtube';
 class OpenSpace extends Component {
+    VideoonReady(event) {
+        // access to player in all event handlers via event.target
+        event.target.pauseVideo();
+      }
+
     render() {
+        const opts = {
+            playersVars : {
+                autoplay: 1
+            }
+        };
+        const {videoId} = this.props
         return (
             <section className="video-section ptb-150">
             <div className="container">
                 <div className="row">
+               
                     <div className="col-lg-8 col-md-8">
-                        <div className="video" style={{backgroundImage: `url(${video})`}}>
-                            <div className="overlay"></div>
-                            {/* <a className="material-icons" href="play_circle_filled" > <img src={play} /></a> */}
-                        </div>
+                   
+                         <div className="video">
+                         <YouTube
+                                videoId="PmOxlYsM8tk"
+                                opts = {opts}
+                                onReady = {this.videoOnReady}
+                               
+                                />
+
+                                
+                            {/* <div className="overlay"></div> */}
+                          
+                        </div> 
                     </div>
                     <div className="col-lg-4 col-md-4">
                         <div className="video-content flexvr">
@@ -29,7 +50,9 @@ class OpenSpace extends Component {
         </section>
         )
     }
+  
 }
+
 const mapStateToProps = (state) => {
     return {
          language: state.language
