@@ -23,6 +23,7 @@
     "react-router-dom": "^5.1.2",
     "react-slick": "^0.25.2",
     "react-translate": "^7.0.1",
+    "react-youtube": "^7.9.0",
     "redux": "^4.0.4",
     "slick-carousel": "^1.8.1",
     "webpack": "^4.41.2",
