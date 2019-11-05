@@ -4,10 +4,13 @@ import {connect } from 'react-redux';
 import gov from '../../img/gov.png';
 import iom from '../../img/iom.png';
 import ccm from '../../img/ccm.png';
+import Background from "../../img/banner-shape.png";
 
  class Banner extends Component {
     render() {
         return (
+            // style={{backgroundImage: `url(${Background})`}}
+            <section className="banner">  
          <div className="banner-content">
             <div className="container">
                 <div className="row">
@@ -35,6 +38,7 @@ import ccm from '../../img/ccm.png';
                 </div>
             </div>
         </div>
+        </section>
         )
     }
 }

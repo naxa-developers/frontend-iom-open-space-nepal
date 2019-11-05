@@ -15,7 +15,7 @@ class OpenSpace extends Component {
                 autoplay: 1
             }
         };
-        const {videoId} = this.props
+        // const {videoId} = this.props
         return (
             <section className="video-section ptb-150">
             <div className="container">
