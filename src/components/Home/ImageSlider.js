@@ -11,9 +11,11 @@ import slider2 from '../../img/slider-2.jpg';
     render() {
         // Use responsive slick here after calculating breakpoints
         const settings = {
+            arrows: false,
+            autoplay: true,
             dots: true,
             infinite: true,
-            speed: 500,
+            speed: 1000,
             slidesToShow: 1,
             slidesToScroll: 1
           };

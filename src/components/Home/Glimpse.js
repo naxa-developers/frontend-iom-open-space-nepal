@@ -1,11 +1,24 @@
 import React, { Component } from 'react';
-import CountUp from 'react-countup';
+import Odometer from 'react-odometerjs';
+import 'odometer/themes/odometer-theme-default.css';
 
 import countershape from '../../img/counter-shape.png'
 
 
 class Glimpse extends Component {
+    constructor(props) {
+        super(props)
+    
+        this.state = {
+             odometerValue: 0
+        };
+    }
+    componentDidMount() {
+        this.setState({  odometerValue:600   })
+    }
+    
     render() {
+        const {odometerValue} = this.state;
         return (
             <section className="glimps-counter" style={{backgroundImage: `url(${countershape})`}}>
             <div className="overlay"></div>
@@ -16,7 +29,11 @@ class Glimpse extends Component {
                     <div className="row">
                         <div className="col-md-3 col-space-5">
                             <div className="glimps-count">
-                                <h4><CountUp end={141} delay={0} /></h4>
+                                <h4><Odometer
+                                    format= "d"
+                                    duration= {500}
+                                    value = {odometerValue}
+                                /></h4>
                                 <h6>open spaces</h6>
                             </div>
                         </div>
