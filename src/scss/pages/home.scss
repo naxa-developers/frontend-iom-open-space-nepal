@@ -71,6 +71,7 @@
         margin-top: -100px;
 
         &::before {
+            content: 'keyboard_backspace';
             font-family: 'Material Icons';
             color: $primary-light;
             line-height: 1.5;
@@ -84,6 +85,7 @@
         margin-top: -100px;
 
         &::before {
+            content: 'keyboard_backspace';
             font-family: 'Material Icons';
             color: $primary-light;
             line-height: 1.5;

@@ -1,17 +1,23 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import MaterialIcon, {colorPalette} from 'material-icons-react';
+
+import '../../scss/pages/resources.scss';
+import '../../css/bootstrap.min.css';
+
+
 
 class SearchFilter extends Component {
     render() {
         return (
             <div>
-                  <div className="col-12 col-md-3 col-xl-4">
                             <div className="form-section">
                                 {/* <!-- form-search-bar --> */}
                                 <form className="form-search">
                                     <div className="form-wrap">
                                         <button className="btn btn-search" type="submit">
-                                            <i className="humanitarian-icon-Search search-icon" aria-hidden="true"></i>
+                                            <i className="material-icons" aria-hidden="true">search</i>
                                         </button>
+                                        <MaterialIcon />
                                         <input className="form-control" type="text" placeholder="Search resources by keyword"
                                         aria-label="Search" />
                                     </div>
@@ -39,7 +45,7 @@ class SearchFilter extends Component {
                             </div>
                         </div>
                 
-            </div>
+        
         )
     }
 }
