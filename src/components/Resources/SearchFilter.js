@@ -1,52 +1,62 @@
-import React, { Component } from 'react';
-import MaterialIcon, {colorPalette} from 'material-icons-react';
+import React, { Component } from "react";
+import MaterialIcon, { colorPalette } from "material-icons-react";
+import Select from "react-select";
+// React.Bootstrap = require("react-bootstrap");
+// import Select from "react-bootstrap-select";
 
-import '../../scss/pages/resources.scss';
-import '../../css/bootstrap.min.css';
+const options = [
+  { value: "1", label: "Plans & Policies" },
+  { value: "2", label: "Research" },
+  { value: "3", label: "Multimedia" }
+];
+
+const options1 = [
+    { value: "1", label: "Document types" },
+    { value: "2", label: "Publication" },
+    { value: "3", label: "Video" },
+    { value: "3", label: "Audio" }
 
 
+]
 
 class SearchFilter extends Component {
-    render() {
-        return (
-            <div>
-                            <div className="form-section">
-                                {/* <!-- form-search-bar --> */}
-                                <form className="form-search">
-                                    <div className="form-wrap">
-                                        <button className="btn btn-search" type="submit">
-                                            <i className="material-icons" aria-hidden="true">search</i>
-                                        </button>
-                                        <MaterialIcon />
-                                        <input className="form-control" type="text" placeholder="Search resources by keyword"
-                                        aria-label="Search" />
-                                    </div>
-                                </form>
+  render() {
+    return (
+      <div>
+          <div className="form-section">
+          {/* <!-- form-search-bar --> */}
+          <form className="form-search">
+            <div className="form-wrap">
+              <button className="btn btn-search" type="submit">
+                <i className="material-icons" aria-hidden="true">
+                  search
+                </i>
+              </button>
+              <MaterialIcon />
+              <input
+                className="form-control"
+                type="text"
+                placeholder="Search resources by keyword"
+                aria-label="Search"
+              />
+            </div>
+          </form>
+          </div>
+          <br />
+          <br />
+          <br />
 
-                                <div className="dropdown-select">
-                                    <div className="categories-dropdown">   
-                                        <select className="selectpicker">
-                                            <option selected>Categories</option>
-                                            <option value="1">Plans & Policies</option>
-                                            <option value="2">Research</option>
-                                            <option value="3">Multimedia</option>
-                                        </select>
-                                    </div>
-
-                                    <div className="document-types-dropdown">
-                                        <select className="selectpicker">
-                                            <option>Document types</option>
-                                            <option>Publication</option>
-                                            <option>Video</option>
-                                            <option>Audio</option>
-                                        </select>  
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                
-        
-        )
-    }
+        <div className="dropdown-select">
+          <div className="categories-dropdown">
+            <Select options={options} />
+          </div>
+        </div>
+        <br />
+        <div className="document-types-dropdown">
+            <Select options={options1} />
+            </div>
+      </div>
+    );
+  }
 }
 export default SearchFilter;

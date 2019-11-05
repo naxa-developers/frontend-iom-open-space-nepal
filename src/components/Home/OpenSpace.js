@@ -12,6 +12,7 @@ class OpenSpace extends Component {
     render() {
         const opts = {
             playersVars : {
+                
                 autoplay: 1
             }
         };
@@ -25,7 +26,7 @@ class OpenSpace extends Component {
                    
                          <div className="video">
                          <YouTube
-                                videoId="PmOxlYsM8tk"
+                                videoId="iMm9NxKgU6c"
                                 opts = {opts}
                                 onReady = {this.videoOnReady}
                                
