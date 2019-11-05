@@ -83,12 +83,12 @@ class Navbar extends Component {
                         </Link>
                       </li>
                       <li className="menu-item ">
-                        <a href="#">
+                        <Link to="aboutapp">
                           {" "}
                           {this.props.language == "0"
                             ? "about app"
                             : "हाम्रो बारे"}
-                        </a>
+                        </Link>
                       </li>
                     </ul>
                   </div>

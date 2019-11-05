@@ -6,7 +6,8 @@ module.exports = {
     entry: './src/index.js',
     output: {
         path: path.join(__dirname, '/dist'),
-        filename: 'index_bundle.js'
+        filename: 'index_bundle.js',
+        publicPath: '/'
     },
     module : {
         rules: [
@@ -31,6 +32,12 @@ module.exports = {
                 },
               },
         ]
+    },
+    devServer: {
+        contentBase: path.join(__dirname, "public"),
+        watchContentBase: true,
+        publicPath: "/dist/",
+        historyApiFallback: true,
     },
   
     plugins: [

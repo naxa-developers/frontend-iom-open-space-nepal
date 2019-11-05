@@ -1,0 +1,286 @@
+@import '../partials/variable.scss';
+@import '../partials/mixin.scss'; 
+
+.page-wrap{
+    button{
+        background: none;
+        border: none;
+        padding: 0px;
+        &:focus{
+            box-shadow: none;
+        }
+    }
+    .main-content{
+        .row-wrap{
+            /* form-section */
+            .form-section{
+                padding-right: 20px;
+                .form-search{
+                    border-bottom: 1px solid $color-border;
+                    .form-wrap{
+                        @include flex;
+                        padding-bottom: 10px;
+                        .btn-search{
+                            .search-icon{
+                                vertical-align: middle;
+                                &::before{
+                                    color: $green-highlight;
+                                    font-size: 20px;
+                                }
+                            }
+                        }
+                        .form-control{
+                            font-size: 0.875rem !important;
+                            border: none;
+                            @include radius(0px);
+                            overflow: hidden;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                            &::placeholder{
+                                color: $primary-light;
+                            }
+                            &:focus{
+                                box-shadow: none;
+                                &::placeholder{
+                                    color: $color-bg-text;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .dropdown-select{
+    
+                    margin-top: 100px;  
+                    .categories-dropdown, .document-types-dropdown{
+                        margin-bottom: 20px;
+                        .bootstrap-select{
+                            width: 100% !important;
+                            @include border(1px, solid, $grey-light);
+                        }
+                        .dropdown-toggle{
+                            padding: 5px 10px;
+                            &:hover{
+                                @include radius(0px);
+                            }
+                            .filter-option-inner-inner{
+                                color: $primary-light;
+                                font-weight: 600;
+                                font-size: 0.875rem;
+                            }
+                            &::after{
+                                color: $grey-light;
+                                &:hover{
+                                    color: $primary-light;
+                                }
+                            }
+                        
+                        }
+                    }
+                }
+            }
+
+            /* content-section */
+            .content-section{
+                .row-section-wrap{
+                    margin-bottom: 80px;
+                    &:nth-child(3){
+                        margin-bottom: 0px;
+                    }
+                    .content-wrapper{
+                        @include flex;
+                        .image-section{
+                            @include flexCenter;
+                            figure{
+                                img{
+                                    width: 150px;
+                                }
+                            }
+                        }
+                        .content-col-wrap{
+                            flex: 1;
+                            @include flexCenter;
+                            padding-left: 20px; 
+                            .content-element-wrap{
+                                .h3-title{
+                                    font-size: 1.375rem;
+                                    font-weight: 700;
+                                    margin-bottom: 10px;
+                                }
+                                span{
+                                    font-size: 0.875rem;
+                                    font-weight: 600;
+                                    display: block;
+                                    color: $primary-light;
+                                    padding-bottom: 20px;
+                                }
+                                p{
+                                    text-align: justify;
+                                    font-size: 1rem;
+                                    font-weight: 400;
+                                }
+                            }
+                        }
+                    }
+
+                    .download-section{
+                        .icon-wrap-section{
+                            margin-bottom: 50px;
+                            .btn{
+                                &:hover{
+                                    i{
+                                        background: lighten($color-bg-text, 20%);
+                                        border-radius: 50%;
+                                        
+                                    }
+                                }
+                            }
+                            .btn-share{
+                                margin-right: 10px;
+                            }
+                            i{
+                                padding: 10px;
+                                vertical-align: middle;
+                                font-size: 20px;
+                            }
+                            
+                        }
+                        .para-wrap-section{
+                            padding-left: 10px;
+                            .para-details-block{
+                                margin-bottom: 20px;
+                                &:nth-child(2){
+                                    margin-bottom: 0px;
+                                }
+                                .title{
+                                    font-size: 0.875rem;
+                                    font-weight: 600;
+                                    color: $primary-light;
+                                    padding-bottom: 5px;
+                                    display: block;
+                                }
+                                .subtitle{
+                                    font-size: 0.813rem;
+                                    font-weight: 700;
+                                    display: block;
+                                    text-transform: uppercase;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* less than 991px; */
+@media only screen and (max-width: $lg-tab){
+    .page-wrap {
+        .main-content{
+            .row-wrap {
+                .form-section{
+                    padding-right: 0px;
+                    .dropdown-select{ 
+                        .categories-dropdown, .document-types-dropdown{
+                            .dropdown-toggle{
+                                padding: 2px 8px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+/* less than 768px; */
+@media only screen and (max-width: $pt-tab){
+    .mt-150{
+        margin-top: 100px !important;
+    }
+    .page-wrap {
+        .main-content{
+            .row-wrap {
+                .form-section{
+                    padding-right: 0px;
+                    .form-search{
+                        .form-wrap{
+                            padding-bottom: 5px;
+                        }
+                    }
+                }
+
+                .content-section{
+                    .row-section-wrap {
+                        .content-wrapper {
+                            .content-col-wrap{
+                                .content-element-wrap{
+                                    .h3-title{
+                                        font-size: 1.25rem;
+                                        margin-bottom: 5px;
+                                    }
+                                    .datetime{
+                                        padding-bottom: 10px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* less than 767px; */
+@media only screen and (max-width: $mb-xl){
+    .mt-150{
+        margin-top: 50px !important;
+    }
+    .page-wrap {
+        .main-content{ 
+            .row-wrap {
+                .form-section {
+                    margin-bottom: 60px;
+                    .dropdown-select{
+                        margin-top: 50px;
+                    }
+                }
+                .content-section{
+                    .row-section-wrap{
+                        .content-wrapper {
+                           @include flexvr;
+                           .image-section{
+                               padding-bottom: 10px;
+                            }
+                            .content-col-wrap{
+                                margin-bottom: 10px;
+                                .content-element-wrap{
+                                    max-width: 400px;
+                                    .h3-title{
+                                        text-align: justify;
+                                    }
+                                    p{
+                                        text-align: justify;
+                                    }
+                                }
+                            }
+                        }
+                        .download-section {
+                            @include flexvr;
+                            .icon-wrap-section{
+                                margin-bottom: 15px;
+                            }
+                            .para-wrap-section {
+                                text-align: center;
+                                .para-details-block{
+                                    margin-bottom: 10px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

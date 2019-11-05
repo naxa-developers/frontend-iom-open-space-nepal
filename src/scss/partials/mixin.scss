@@ -7,8 +7,6 @@
   }
 }
 
-
-
 @mixin radius($radius) {
   -webkit-border-radius: $radius;
   -moz-border-radius: $radius;
@@ -454,3 +452,8 @@ $breakpoints: (
   backface-visibility: $backface;
 }
 
+@mixin border($width, $style, $color){
+  border-width: $width;
+  border-style: $style;
+  border-color: $color;
+}
