@@ -39,6 +39,8 @@ class OpenSpace extends Component {
       }
 
     render() {
+         const videoUrl = this.state.loader && this.state.Opendata[0].video;
+        
         const opts = {
             playersVars : {
                 
@@ -55,7 +57,7 @@ class OpenSpace extends Component {
                    
                          <div className="video">
                          <YouTube
-                                videoId= "iMm9NxKgU6c"
+                                videoId= {videoUrl}
                                 opts = {opts}
                                 onReady = {this.videoOnReady}
                                
