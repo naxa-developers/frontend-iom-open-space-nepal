@@ -23,7 +23,6 @@ class Identification extends Component {
         axios.get(`http://139.59.67.104:8011/api/v1/identify_open_space/`)
         .then( res => {
             const steps = res.data;
-            console.log(res.data);
             this.setState({ steps });
             
         })
