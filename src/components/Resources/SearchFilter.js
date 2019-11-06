@@ -28,9 +28,10 @@ class SearchFilter extends Component {
           <form className="form-search">
             <div className="form-wrap">
               <button className="btn btn-search" type="submit">
-                <i className="material-icons" aria-hidden="true">
+              <i class="humanitarian-icon-Search search-icon" aria-hidden="true"></i>
+                {/* <i className="material-icons" aria-hidden="true">
                   search
-                </i>
+                </i> */}
               </button>
               <MaterialIcon />
               <input
