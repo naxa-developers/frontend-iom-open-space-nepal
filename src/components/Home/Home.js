@@ -24,6 +24,7 @@ import bannerShape from "../../img/banner-shape.png";
         <ImageSlider />
         <OpenSpace />
         <Glimpse />
+        
         <Identification />
         
       </main>
