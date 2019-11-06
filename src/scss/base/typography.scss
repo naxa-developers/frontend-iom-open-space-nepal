@@ -123,13 +123,13 @@
      top: -.5em
  }
  
- a {
+ Link {
      color: $color-primary;
      text-decoration: none;
-     background-color: transparent
+     background-color: transparent;
  }
  
- a:hover {
+ Link:hover {
      color: $color-primary;
      text-decoration: none;
  }

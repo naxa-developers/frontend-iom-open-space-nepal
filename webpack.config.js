@@ -31,6 +31,18 @@ module.exports = {
                   loader: 'url-loader',
                 },
               },
+                   {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'fonts/'
+            }
+          }
+        ]
+      }
         ]
     },
     // devServer: {
@@ -53,7 +65,7 @@ module.exports = {
                 
             // new MiniCssExtractPlugin({
             //          filename: isDevelopment ? '[name].css' : '[name].[hash].css',
-            //       chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css'
+            //       chunkFilename: isDevelop1ment ? '[id].css' : '[id].[hash].css'
             //         })
     ]
 }
