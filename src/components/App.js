@@ -1,4 +1,11 @@
 import React, { Component } from "react";
+import { Switch, Route, HashRouter as Router } from "react-router-dom";
+
+import "../scss/style.scss";
+import 'bootstrap/dist/css/bootstrap.css';
+import '../css/slick.css';
+import '../css/humanitarian-fonts.css';
+import '../css/slick-theme.css'
 
 import Home from "./Home/Home";
 import Resources from "./Resources/Resources";
@@ -6,12 +13,11 @@ import Report from "./Report/Report";
 import OpenSpace from "./OpenSpace/OpenSpace";
 import AboutApp from "./AboutApp/AboutApp";
 
-import { Switch, Route, HashRouter as Router } from "react-router-dom";
 
 // import {Provider } from 'react-redux';
 // import store from '../store';
 
-import "../scss/style.scss";
+
 
 class App extends Component {
   render() {

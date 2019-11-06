@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import '../../css/style.css';
 
 import logo from "../../img/logo.png";
 import nepal from "../../img/nepal.png";
 import uk from "../../img/uk.png";
 import $ from "jquery";
 
+// do by react
 function toggle_button() {
   $(".headRight .toggle-button").on("click", function() {
     $(this).toggleClass("active");

@@ -13,7 +13,7 @@ import slider2 from '../../img/slider-2.jpg';
         const settings = {
             arrows: false,
             autoplay: true,
-            dots: true,
+            dots: false,
             infinite: true,
             speed: 1000,
             slidesToShow: 1,
