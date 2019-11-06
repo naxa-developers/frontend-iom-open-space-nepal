@@ -12,7 +12,6 @@ import { Switch, Route, HashRouter as Router } from "react-router-dom";
 // import store from '../store';
 
 import "../scss/style.scss";
-import "../css/style.css";
 
 class App extends Component {
   render() {
