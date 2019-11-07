@@ -100,7 +100,7 @@
 }
 
 .video-section {
-    background-color: rgba($color-green, 8%);
+    background-color: $green-highlight;
 
     .video {
         min-height: 470px;
@@ -169,7 +169,7 @@
             /* Will override color (regardless of order) */
             -webkit-text-stroke-width: 1px;
             -webkit-text-stroke-color: $color-white;
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 800;
         }
 
@@ -339,9 +339,10 @@
 
             .intro {
                 max-width: 750px;
-                padding-left:0;
+                padding-left:4rem;
                 h1 {
                     font-size: 2.8rem;
+                    line-height: 3.5rem;
                 }
 
                 p {
@@ -357,9 +358,9 @@
         min-height: 650px;
         .banner-content {
             .intro {
+                padding-left:0;
                 h1 {
                     font-size: 2.5rem;
-                    line-height: 3.5rem;
                 }
 
                 p {
