@@ -20,6 +20,15 @@ module.exports = {
                 exclude: /node-modules/,
                 use: 'babel-loader' 
             },
+            // {
+            //   test: /\.js$/,
+            //   loader: 'babel-loader',
+            //   exclude: /node_modules/,
+            //   query: {
+            //     presets: ['react', 'es2015', 'react-hmre'],
+            //     plugins: ['transform-class-properties']
+            //   }
+            // },
             {
             test:/\.(s*)css$/,
             use:['style-loader','css-loader', 'sass-loader']
@@ -55,7 +64,8 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
                 template:'./src/index.html'
-            })
+            }),
+            // "@babel/plugin-proposal-class-properties"
        
                 
             // "@babel/plugin-proposal-class-properties",
