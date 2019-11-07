@@ -65,6 +65,17 @@ module.exports = {
         new HtmlWebpackPlugin({
                 template:'./src/index.html'
             }),
-     
+
+       
+                
+            // "@babel/plugin-proposal-class-properties",
+            // {
+            //    "loose": true
+            //  }
+                
+            // new MiniCssExtractPlugin({
+            //          filename: isDevelopment ? '[name].css' : '[name].[hash].css',
+            //       chunkFilename: isDevelop1ment ? '[id].css' : '[id].[hash].css'
+            //         })
     ]
 }
