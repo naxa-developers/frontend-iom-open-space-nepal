@@ -165,6 +165,27 @@ $breakpoints: (
   // transition: all 0.3s linear;
 }
 
+@mixin animate {
+  -webkit-transition: all 0.4s ease-in;
+  -ms-transition: all 0.4s ease-in;
+  -moz-transition: all 0.4s ease-in;
+  -o-transition: all 0.4s ease-in;
+  transition: all 0.4s ease-in;
+}
+
+@mixin button($color, $background) {
+  color: $color;
+  background: $background;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  @include animate;
+  &:hover {
+      background: darken($background, 5%);
+      box-shadow: 0px 1px 5px darken($background, 5%) ;
+  }
+}
+
 @mixin transform_scale($transform_scale){
   -moz-transform: $transform_scale;
   -ms-transform: $transform_scale;
@@ -457,3 +478,4 @@ $breakpoints: (
   border-style: $style;
   border-color: $color;
 }
+

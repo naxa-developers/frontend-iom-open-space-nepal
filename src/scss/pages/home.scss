@@ -9,6 +9,7 @@
         .logos {
             @include flexvr;
             align-items: flex-start;
+            padding-right: 2rem;
 
             figure {
                 margin-top: 2rem;
@@ -18,20 +19,22 @@
 
         .intro {
             margin-top: 2rem;
-            padding-left: 3rem;
+            padding-left: 5rem;
+            max-width: 950px;
 
             h1 {
                 font-weight: 800;
                 font-size: 3.5rem;
                 text-transform: uppercase;
-                letter-spacing: .2rem;
+                line-height: 5rem;
             }
 
             p {
                 margin: 2rem 0 0 0;
-                font-size: 1.4rem;
+                font-size: 1.2rem;
                 font-weight: 600;
                 color: $primary-light;
+                line-height: 2.3rem;
             }
         }
     }
@@ -151,7 +154,10 @@
         .openspace-title {
             position: relative;
             color: $color-white;
-            margin-bottom: 8rem;
+            max-width: 524px;
+            margin:0 auto 8rem auto;
+            
+
         }
 
     }
@@ -216,6 +222,9 @@
 
 .process {
     .process-left {
+        .openspace-title{
+            padding-right: 3rem;
+        }
         p {
             margin-top: 2rem;
         }
@@ -246,59 +255,150 @@
         }
     }
 }
-
-@media screen and (max-width:$desktop) {
-    .banner {
-
-        .banner-content {
-            margin-top: 5rem;
-
-            .logos {
-
-                figure {
-                    margin-top: 2rem;
+.app-section{
+    background-color:$color-blue;
+    .openspace-title,.sub-title{
+        color:$color-white;
+    }
+    .sub-title{
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size:1.5rem;
+    }
+    .app-figure{
+        margin:0;
+        max-width: 400px;
+    }
+    .app-content{
+        .app-icons-content{
+            margin-top:3rem;
+            h4{
+                color:$color-white;
+                font-size:1.2rem;
+                font-weight: 700;
+            }
+            .app-icon{
+                margin-top:1rem;
+                figure:first-child{
+                    margin-right: 1rem;
                 }
             }
-
-            .intro {
-                h1 {
-                    font-size: 3rem;
-                }
-
-                p {
-                    font-size: 1.2rem;
-                }
+            a.openspace-button{
+                background-color:lighten($color-blue, 8%);
+                clear:both;
+                margin-bottom: 2rem;
             }
+            
         }
-
     }
 }
 
-@media screen and (max-width:$lg-tab) {
+
+
+
+
+
+@media screen and (max-width:1540px) {
     .banner {
         min-height: 700px;
-
         .banner-content {
             margin-top: 3rem;
 
             .logos {
 
                 figure {
-                    margin-top: 2rem;
+                    margin-top: 1.5rem;
                 }
             }
 
             .intro {
-                margin-top: 2rem;
-                padding-left: 2rem;
+                h1 {
+                    font-size: 3rem;
+                    line-height: 4rem;
+                }
 
+                p {
+                    font-size: 1.1rem;
+                }
+            }
+        }
+
+    }
+}
+@media screen and (max-width:1366px) {
+    .banner {
+        .banner-content {
+            margin-top: 3rem;
+
+            .logos {
+
+                figure {
+                    margin-top: 1.5rem;
+                }
+            }
+
+            .intro {
+                max-width: 750px;
+                padding-left:0;
+                h1 {
+                    font-size: 2.8rem;
+                }
+
+                p {
+                    font-size: 1.1rem;
+                }
+            }
+        }
+
+    }
+}
+@media screen and (max-width:$ls-tab){
+    .banner {
+        min-height: 650px;
+        .banner-content {
+            .intro {
                 h1 {
                     font-size: 2.5rem;
+                    line-height: 3.5rem;
                 }
 
                 p {
                     font-size: 1rem;
+                    line-height: 1.6rem;
                 }
+            }
+        }
+
+    }
+    .slick-slider {
+        .slick-prev {
+            margin-top: -100px;
+            left:1rem;
+    
+            &::before {
+                color: $color-blue;
+    
+            }
+        }
+    
+        .slick-next {
+            right:1rem;
+            &::before {
+                color: $color-blue;
+    
+            }
+        }
+    
+    }
+}
+@media screen and (max-width:$lg-tab) {
+    .banner {
+        min-height: 600px;
+        .banner-content {
+            margin-top: 2rem;
+
+            .intro {
+                margin-top: 0;
             }
         }
 
@@ -376,33 +476,43 @@
             }
         }
     }
+    .app-section{
+        padding-top:4rem;
+        margin-bottom: 0;
+    }
 }
-
 @media screen and (max-width:$mb-xl) {
     .banner {
         .banner-content {
-            margin-top: 3rem;
+            margin-top: 1rem;
 
             .logos {
                 flex-direction: row;
                 flex-wrap: nowrap;
+                justify-content: space-around;
+                align-items: center;
 
                 figure {
                     margin-top: 0;
+                    max-width: 100px;
 
                     &:nth-child(2) {
-                        margin: 0 .5rem;
+                        margin: 0 1rem;
                     }
                 }
             }
 
             .intro {
-                margin-top: 2rem;
+                margin-top: 1rem;
                 padding-left: 0;
 
                 h1 {
-                    font-size: 1.8rem;
-                    letter-spacing: .5px;
+                    font-size: 1.5rem;
+                    line-height: 2.2rem;
+                }
+                p{
+                    font-size: .875rem;
+                    margin-top:1rem;
                 }
             }
         }
@@ -410,6 +520,7 @@
     }
 
     .home-slider {
+         margin-top: 2rem;
         .intro-slider {
             .intro-item {
 
@@ -419,6 +530,7 @@
 
                 h3 {
                     margin-top: 2rem;
+                    font-size: 1.2rem;
                 }
             }
 
@@ -445,7 +557,8 @@
 
         .glimps-wrapper {
             .openspace-title {
-                margin-bottom: 3rem;
+                margin-bottom: 2rem;
+                max-width: 300px;
             }
 
         }
@@ -471,5 +584,41 @@
                 }
             }
         }
+    }
+    .app-section{
+        .sub-title{
+            font-size:1rem;
+        }
+        .app-figure{
+            margin-bottom:3rem;
+        }
+        .app-content{
+            .app-icons-content{
+                margin-top:2rem;
+                h4{
+                    font-size:1rem;
+                }
+                .app-icon{
+                    figure:first-child{
+                        margin-right: 0;
+                    }
+                }
+                
+            }
+        }
+    }
+}
+@media screen and (max-width:$mb-md){
+    .banner {
+        padding-bottom: 3rem;
+        .banner-content {
+            .logos {
+                figure {
+                    margin-top: 0;
+                    max-width: 80px;
+                }
+            }
+        }
+
     }
 }

@@ -1,0 +1,173 @@
+.app-page{
+   
+
+    /* .main-content */
+    .main-content{
+        .row-wrap{
+            margin-bottom: 100px;
+            &:nth-child(2){
+                .content-image{
+                    figure{
+                        @include flex;
+                        justify-content: center;
+                    }
+                }
+            }
+            
+            /* col-text */
+            .content-text{
+                @include flexCenter;
+                .content-center{
+                    figure{
+                        img{
+                            width: 70px;
+                        }
+                    }
+                    .content-title{
+                        margin-top: 40px;
+                        .content-para{
+                            max-width: 420px;
+                            font-size: 1rem;
+                            font-weight: 400;
+                            color: $color-primary;
+                            padding-top: 30px;
+                        }
+                    } 
+                }
+            }
+
+            /* col-image */
+            .content-image{
+                figure{/* 
+                    display: flex;
+                    justify-content: center; */
+                    img{
+                        width: 200px;
+                    }
+                }
+            }
+        }
+    }
+}
+/* less than 991px; */
+@media only screen and (max-width: $lg-tab){
+    .app-page{
+        .banner{
+            .banner-content{
+                .row-wrap{
+                    .banner-text{
+                        .banner-center{
+                            .banner-span{
+                                font-size: 1.125rem;
+                            }
+                            .download-wrap{
+                                margin-top: 40px;
+                                span.download{
+                                    font-size: 1rem;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* less than 767px; */
+@media only screen and (max-width: $mb-xl){
+    .app-page{
+        .banner{
+            .banner-content{
+                .row-wrap{
+                    .banner-text{
+                        padding-bottom: 50px;
+                        margin-top: 30px;
+                        .banner-center{
+                            text-align: center;
+                            .banner-span{
+                                font-size: 1.063rem;
+                            }
+                            .download-wrap{
+                                .download-imagewrap{
+                                    figure{
+                                        &:nth-child(1){
+                                            margin-right: 10px;
+                                            img{
+                                                width: 100px;
+                                            }
+                                        }
+                                        &:nth-child(2){
+                                            img{
+                                                width: 110px;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .main-content{
+            margin-top: 150px;
+            .row-wrap{
+                .content-text{
+                    .content-center{
+                        text-align: center;
+                        .content-title{
+                            margin-top: 25px;
+                            .content-para{
+                                padding-top: 15px;
+                            }
+                        }
+                    }
+                }
+                .content-image{
+                    margin-top: 20px;
+                    @include flexCenter;
+                }
+            }
+        }
+    }
+}
+
+/* less than 480px; */
+@media only screen and (max-width: $mb-md){
+    .app-page{
+        .banner{
+            .banner-content{
+                .row-wrap{
+                    .banner-text{
+                        .banner-center{
+                            .banner-span{
+                                font-size: 1rem;
+                            }
+                            .download-wrap{
+                                margin-top: 40px;
+                                span.download{
+                                    font-size: 0.875rem;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .main-content{
+            .row-wrap{
+                .content-text{
+                    .content-center{
+                        figure{
+                            img{
+                                width: 60px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}

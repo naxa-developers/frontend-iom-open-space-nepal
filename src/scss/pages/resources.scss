@@ -1,6 +1,3 @@
-@import '../partials/variable.scss';
-@import '../partials/mixin.scss'; 
-
 .page-wrap{
     button{
         background: none;
@@ -21,6 +18,14 @@
                         @include flex;
                         padding-bottom: 10px;
                         .btn-search{
+                            &:hover{
+                                i{
+                                    &::before{
+                                    color: rgba($green-highlight, 0.40);
+                                    }
+                                }
+                            }
+                            
                             .search-icon{
                                 vertical-align: middle;
                                 &::before{
@@ -50,7 +55,6 @@
                 }
 
                 .dropdown-select{
-    
                     margin-top: 100px;  
                     .categories-dropdown, .document-types-dropdown{
                         margin-bottom: 20px;
@@ -130,7 +134,7 @@
                                 &:hover{
                                     i{
                                         background: lighten($color-bg-text, 20%);
-                                        border-radius: 50%;
+                                        @include boxshadow($boxshadow:0 1px 2px rgba($color-bg-text, 0.40));
                                         
                                     }
                                 }
@@ -139,9 +143,11 @@
                                 margin-right: 10px;
                             }
                             i{
+                                @include animate;
                                 padding: 10px;
                                 vertical-align: middle;
                                 font-size: 20px;
+                                border-radius: 50%;
                             }
                             
                         }

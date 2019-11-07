@@ -17,34 +17,6 @@
     margin:0 !important;
 }
 
-@media screen and (min-width:$mb-sm) {
-    .highlight-card {
-        -ms-flex: 0 0 100%;
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
-}
-@media screen and (min-width:$mb-md) {
-    .highlight-card {
-        -ms-flex: 0 0 50%;
-        flex: 0 0 50%;
-        max-width: 50%;
-    }
-}
-@media screen and (min-width:$pt-tab) {
-    .highlight-card {
-        -ms-flex: 0 0 33.333333%;
-        flex: 0 0 33.333333%;
-        max-width: 33.333333%;
-    }
-}
-@media screen and (min-width:$desktop) {
-    .highlight-card {
-        -ms-flex: 0 0 16.6667%;
-        flex: 0 0 16.6667%;
-        max-width: 16.6667%;
-    }
-}
 
 
 .p-l-0,
@@ -77,9 +49,10 @@
 
 h3.openspace-title {
     text-transform: uppercase;
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 800;
     color:$color-blue;
+    line-height: 3.5rem;
 }
 .flex{
     @include flex;
@@ -105,7 +78,6 @@ h3.openspace-title {
     text-align: center;
     text-transform: uppercase;;
     font-size:.875rem;
-    font-family: $montserrat;
     font-weight: 600;
     padding:0.25rem 1rem;
     &.yellow{
@@ -144,21 +116,20 @@ section{
         padding: 20px;
     }
 }
-
-main.dfid-main {
-    @include animate_all(all .5s);
-    position: relative;
-    padding: 0 1rem;
+.pending{
+    color:$color-error;
+}
+.success{
+    color:$color-green;
+}
+.unsuccess{
+    color:$color-secondary;
 }
 
-.page-wrapper {
-    @include animate_all(all 0.5s);
-    position: relative;
-    margin-left: 260px;
-}
-@media screen and (max-width:$desktop){
+@media screen and (max-width:1540px){
     h3.openspace-title {
-        font-size: 2.5rem;
+        font-size: 2.3rem;
+        line-height: 3rem;
     }
 }
 @media screen and (max-width:$lg-tab){
@@ -168,6 +139,8 @@ main.dfid-main {
 }
 @media screen and (max-width:$mb-xl){
     h3.openspace-title {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
+        line-height: 2rem;
     }
+    
 }

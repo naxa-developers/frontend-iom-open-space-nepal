@@ -1,0 +1,491 @@
+.openSpace_map {
+    padding: 0 !important;
+
+    .container-fluid {
+        max-width: 100%;
+        padding:0;
+    }
+        .map-wrapper {
+            position: relative;
+
+            .leaflet-right.leaflet-top {
+                bottom: 1rem;
+                top: auto;
+            }
+
+            .leaflet-popup-content-wrapper {
+                font-size: 16px;
+                line-height: 24px;
+
+                .leaflet-popup-content {
+                    width: 300px !important;
+                    overflow: auto;
+
+                    a {
+                        color: $color-white;
+                        text-transform: capitalize;
+                        padding: 0.275rem 0.5rem;
+                        font-size: 0.775rem;
+                    }
+
+                    .bind-header {
+                        margin-bottom: 0.5rem;
+
+                        h5 {
+                            font-size: 0.745rem;
+                            color: $color-blue;
+                            text-transform: capitalize;
+                            margin-bottom: 0.2rem;
+                        }
+
+                        p {
+                            margin: 0;
+                            font-size: 0.675rem;
+                            line-height: 1;
+
+                            span,
+                            i {
+                                font-weight: 600;
+                                margin-right: 0.25rem;
+                                color: $color-blue
+                            }
+                        }
+
+                        em {
+                            font-size: 0.675rem;
+                            line-height: 0.875;
+
+                            span {
+                                font-weight: 600;
+                                margin-right: 0.25rem;
+                                color: $color-blue
+                            }
+                        }
+                    }
+                }
+            }
+
+            .leaflet-popup-tip-container {
+                .leaflet-popup-tip {
+                    background-color: $color-blue;
+                }
+            }
+
+            .leaflet-popup-close-button {
+                color: $color-secondary;
+            }
+
+            #map {
+                z-index: 1;
+            }
+
+            .map-sidebar {
+                position: absolute;
+                right: 0;
+                top: 1rem;
+                z-index: 2;
+
+                .sidebar-toggle {
+                    position: absolute;
+                    width: 40px;
+                    height: 40px;
+                    @include flexvr;
+                    background-color:$color-blue;
+                    color: $color-white;
+                    top: 0;
+                    left: -40px;
+                    z-index: 3;
+                    cursor: pointer;
+                    i{
+                        font-size: 2rem;
+                        font-weight: 700;
+                    }
+
+                    &.rotated {
+                        i {
+                            transform: rotate(180deg);
+                        }
+                    }
+
+                    &:hover {
+                        background-color: $color-secondary;
+                        color: $color-white;
+                    }
+                }
+
+                .sidebar-wrapper {
+                    background-color: $color-white;
+                    min-height: 100vh;
+                    @include boxshadow(0 5px 15px rgba(0, 0 ,0 ,0.16));
+                    width: 700px;
+                    padding:2rem;
+                    .card {
+                        overflow: initial;
+                        .view_summary {
+                            display: flex;
+                            flex-wrap: wrap;
+                            margin:0 5px;
+                            justify-content: center;
+                            align-items: stretch;
+                            .data_item{
+                                -ms-flex:0 0 50%;
+                                flex:0 0 50%;
+                                max-width: 50%;
+                                padding:0 5px;
+                                .data_summary {
+                                    padding: 0.5rem;
+                                    @include flex_start;
+                                    align-items: center;
+                                    flex-wrap: nowrap;
+                                    margin-bottom: 0.5rem;
+                                    
+            
+                                    .data_icon {
+                                        flex: 0 0 30px;
+                                        max-width: 30px;
+                                        margin-right: 0.6125rem;
+            
+                                        figure {
+                                            @include flexvr;
+                                            width: 30px;
+                                            height: 30px;
+                                            max-width: 30px;
+                                            @include radius(50%);
+                                            background-color: $color-blue;
+                                            img{
+                                                max-width: 20px;
+                                            }
+                                        }
+                                    }
+            
+                                    .content {
+                                        h4 {
+                                            font-size: 1rem;
+                                            line-height: 1.2;
+                                            margin-bottom: 0;
+                                            color: $color-secondary;
+                                            font-weight: 700;
+                                        }
+            
+                                        h5 {
+                                            font-size: 0.775rem;
+                                            text-transform: capitalize;
+                                            margin: 0;
+                                        }
+                                    }
+            
+                                }
+                                &:nth-child(3), &:nth-child(4){
+                                    .data_summary{
+                                        margin-bottom: 0;
+                                    }
+                                }
+                            }
+                            
+        
+                        }
+                    }
+
+                    .form-group {
+                        width: 100%;
+                        margin-right: 0;
+
+                        label {
+                            font-size: 0.875rem;
+                        }
+                    }
+                    .map-filter{
+                        
+                        .filter-option{
+                            display: flex;
+                            text-align: center;
+                            flex-wrap: nowrap;
+                            .dropdown.bootstrap-select{
+                                &:nth-child(2){
+                                    margin:0 1rem;
+                                }
+                            }
+                        }
+                        .reset-btns{
+                            @include flexEnd;
+                            align-items: center;
+                            margin-top:1rem;
+                            .openspace-button{
+                                padding:.5rem 1rem;
+                            }
+                            .reset{
+                                @include flexStart;
+                                margin-right: 1rem;
+                                color:$primary-light;
+                                text-transform: capitalize;
+                                cursor: pointer;
+                                i{
+                                    margin-right: .5rem;
+                                }
+                            }
+                        }
+                    }
+                    
+                    
+                }
+                .report-count{
+                    h5{
+                        color:$primary-light;
+                        font-size: 1.5rem;
+                        span{
+                            color:$color-blue;
+                            font-weight: 700;
+                        }
+                    }
+                }
+                .report-list{
+                    .input-group{
+                        border-bottom: 1px solid $color-border;
+                        margin:2rem 0 1rem 0;
+                        .input-group-prepend{
+                            .input-group-text{
+                                background-color: transparent;
+                                border:0;
+                                i{
+                                    color:$color-green;
+                                }
+                            }
+                        }
+                        input.form-control{
+                            border:0;
+                            -webkit-outline:none;
+                                outline: none;
+                            &:focus{
+                                -webkit-outline:none;
+                                outline: none;
+                                box-shadow: none;
+                            }
+                        }
+                        .input-group-append{
+                            .input-group-text{
+                                background-color: $green-light;
+                                border:0;
+                                border-radius: 0;
+                                cursor: pointer;
+                                i{
+                                    color:$color-green;
+                                    transform:rotate(180deg);
+                                }
+                            }
+                        }
+                    }
+                    
+                    ul{
+                        li{
+                            @include flexBetween;
+                            margin:1.5rem 0 0 0;
+                            cursor: pointer;
+                            .report-content{
+                                h5{
+                                    font-size:1.2rem;
+                                    font-weight: 700;
+                                    @include flexStart;
+                                    align-items: center;
+                                    margin-bottom: .25rem;
+                                    i{
+                                        margin-left:.5rem;
+                                    }
+                                }
+                                .loc-time{
+                                    font-size:.875rem;
+                                    a{
+                                        color:$color-blue;
+                                        font-weight: 600;
+                                        text-transform: capitalize;
+                                        &::after{
+                                            content:'|';
+                                            color:$primary-light;
+                                            margin:0 .5rem;
+                                            display: inline-block;
+                                        }
+                                    }
+                                    time{
+                                        color:$primary-light;
+                                        font-size:.845rem
+                                        
+                                    }
+                                }
+                            }
+                            .report-status{
+                                text-transform: capitalize;
+                                label{
+                                    display: block;
+                                    margin:0;
+                                    font-size: .875rem;
+                                }
+                                span{
+                                    color:$primary-light;
+                                    font-size:.845rem
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .general-info {
+                    figure {
+                        margin-top: 0.875rem;
+                    }
+
+                    .general-content {
+                        margin-top: 0.6125rem;
+
+                        .general-header {
+                            margin-bottom: 0.5rem;
+
+                            h5 {
+                                font-size: 0.745rem;
+                                color: $color-blue;
+                                margin: 0;
+                            }
+                            h3{
+                                font-size: 1.2rem;
+                                color: $color-blue;
+                                font-weight: 600;
+                                margin: 1rem 0 0 0; 
+                                line-height: 1
+                            }
+
+                            time,span {
+                                font-size: 0.745rem;
+                                text-transform: capitalize;
+                                line-height: 1;
+                                color:rgba($color-primary,0.6);
+
+                                i {
+                                    margin-right: 0.25rem;
+                                    color:$color-secondary;
+                                }
+                            }
+                        }
+                        .chart{
+                            max-width: 200px;
+                            margin:0 auto;
+                            svg{
+                                width:200px;
+                                height: 200px;
+                            }
+                        }
+                        .details_widget{
+                            padding:0.6125rem;
+                            // margin:0 0.25rem;
+                            margin:1rem 0.25rem;
+                            ul{
+                                li{
+                                    @include flex_start;
+                                    align-items: center;
+                                    font-size:0.775rem;
+                                    flex-wrap: nowrap;
+                                    span{
+                                        color:rgba($color-primary,0.6);
+                                        i{
+                                            color:$color-green;
+                                            margin-right: 0.25rem;
+                                            min-width: 1rem;
+                                            img{
+                                                max-width: 14px;
+                                                height: 16px;
+                                                fill:$color-secondary;
+                                            }
+                                        }
+                                    }
+                                    em{
+                                        flex:0 0 50px;
+                                        max-width: 50px;
+                                        color:rgba($color-primary,0.6);
+                                    }
+                                }
+                            }
+                        }
+
+                        p {
+                            font-size: 0.675rem;
+                            margin: 0;
+
+                            label {
+                                margin: 0;
+                                font-weight: 500;
+                                margin-right: 0.5rem;
+                            }
+                        }
+                    }
+                }
+                &.details-sidebar{
+                    top:0;
+                    .sidebar-wrapper{
+                        // width:280px;
+                        .card{
+                            .card-body{
+                                padding:0.6125rem;
+                                .view_summary {
+                                    display: flex;
+                                    flex-wrap: wrap;
+                                    margin:0 0;
+                                    justify-content: center;
+                                    align-items: stretch;
+                                    .data_item{
+                                        // -ms-flex:0 0 100%;
+                                        // flex:0 0 100%;
+                                        // max-width: 100%;
+                                        padding:0 2px;
+                                        &:nth-child(3), &:nth-child(4){
+                                            .data_summary{
+                                                margin-bottom: 0;
+                                            }
+                                        }
+                                        .data_icon{
+                                            figure{
+                                                
+                                                margin:0;
+                                                
+                                                &.no-bg{
+                                                    background-color: transparent;
+                                                    padding: 0;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    
+                
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &.hide {
+
+            .map_sidebar {
+                display: none;
+                opacity: 0;
+            }
+
+            .map-wrapper {
+                width: 100%;
+                float: left;
+                -webkit-transition: all .3s ease-in-out;
+                transition: all .3s ease-in-out;
+            }
+
+            .expand-icon {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+}
+.dropdown.bootstrap-select{
+    .dropdown-toggle{
+        background-color:transparent;
+        border:1px solid $color-border;
+        color:$primary-light;
+        font-size:1rem;
+        border-radius: 0;
+    }
+}
