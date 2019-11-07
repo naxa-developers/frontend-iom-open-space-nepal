@@ -5,7 +5,7 @@ import "../scss/style.scss";
 import 'bootstrap/dist/css/bootstrap.css';
 import '../css/slick.css';
 import '../css/humanitarian-fonts.css';
-// import '../css/slick-theme.css'
+
 
 import Home from "./Home/Home";
 import Resources from "./Resources/Resources";

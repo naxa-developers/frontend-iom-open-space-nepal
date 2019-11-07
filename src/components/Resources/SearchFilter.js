@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import MaterialIcon, { colorPalette } from "material-icons-react";
+import MaterialIcon from "material-icons-react";
 import Select from "react-select";
 // React.Bootstrap = require("react-bootstrap");
 // import Select from "react-bootstrap-select";

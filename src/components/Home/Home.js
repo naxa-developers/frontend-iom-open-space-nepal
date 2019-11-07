@@ -14,8 +14,8 @@ import bannerShape from "../../img/banner-shape.png";
  class Home extends Component {
     render() {
         return (
-         <>
         
+        < div className="">
          <section className="banner" style={{ backgroundImage: `url(${Background})` }}>
           <Navbar />
           <Banner />
@@ -34,7 +34,7 @@ import bannerShape from "../../img/banner-shape.png";
         >
           <Footer />
         </footer>
-         </>       
+        </div>       
             
         )
     }
