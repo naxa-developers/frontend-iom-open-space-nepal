@@ -3,6 +3,7 @@ import Navbar from '../Home/Navbar';
 import Footer from '../Home/Footer';
 
 import bannerShape from '../../img/banner-shape.png';
+import MapLocation from '../../img/map-pin-locations.svg'
 
  class AboutApp extends Component {
     render() {
@@ -48,7 +49,7 @@ import bannerShape from '../../img/banner-shape.png';
                             <div class="content-text">
                                 <div class="content-center">
                                     <figure>
-                                        <img src={require('../../img/map-pin-locations.svg')} alt="location" />
+                                        <img src={MapLocation} alt="location" />
                                     </figure>
                                     <div class="content-title">
                                         <h3 class="openspace-title">Find open spaces</h3>

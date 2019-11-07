@@ -54,9 +54,9 @@ import googleplay from '../../img/googleplay.png'
                                         7/1 Thirbaum Road, Baluwatar-1
                                         P.O. Box: 25503, Kathmandu, Nepal</span></li>
                                        
-                                <li><i className="material-icons">fax</i><span>+977 1 442 62 50</span></li>
+                                <li><i className="humanitarian-icon-Fax"></i><span>+977 1 442 62 50</span></li>
                                 <li><i className="material-icons">call</i><span>+977 1 442 62 50</span></li>
-                                <li><i className="material-icons">email</i><span>iomnepal@iom.int</span></li>
+                                <li><i className="humanitarian-icon-E-mail"></i><span>iomnepal@iom.int</span></li>
                                 <MaterialIcon />
                             </ul>
                         </div>
