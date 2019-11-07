@@ -11,10 +11,10 @@ module.exports = {
     },
     module : {
         rules: [
-            {
-                test: /\.svg$/,
-                loader: 'svg-inline-loader'
-            },
+            // {
+            //     test: /\.svg$/,
+            //     loader: 'svg-inline-loader'
+            // },
             {
                 test: /\.js$/,
                 exclude: /node-modules/,
