@@ -42,8 +42,7 @@ import Axios from 'axios';
         
      
         return (
-            // style={{backgroundImage: `url(${Background})`}}
-            <section className="banner">  
+           
          <div className="banner-content">
             <div className="container">
                 <div className="row">
@@ -73,7 +72,6 @@ import Axios from 'axios';
                 </div>
             </div>
         </div>
-        </section>
         )
     }
 }

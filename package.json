@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot --host 0.0.0.0 --port 8081 --disable-host-check",
     "build": "webpack --model production",
-    "watch":""
+    "watch": ""
   },
   "author": "",
   "license": "ISC",
