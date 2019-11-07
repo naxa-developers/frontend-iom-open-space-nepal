@@ -65,7 +65,7 @@ module.exports = {
         new HtmlWebpackPlugin({
                 template:'./src/index.html'
             }),
-            // "@babel/plugin-proposal-class-properties"
+
        
                 
             // "@babel/plugin-proposal-class-properties",

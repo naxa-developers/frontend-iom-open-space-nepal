@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import MaterialIcon, {colorPalette} from 'material-icons-react';
+import MaterialIcon from 'material-icons-react';
 
 import logo from '../../img/logo.png';
 import gov from '../../img/gov.png';

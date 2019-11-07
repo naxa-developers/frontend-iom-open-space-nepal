@@ -37,7 +37,7 @@ import slider2 from '../../img/slider-2.jpg';
                             <div className="figure" style={{backgroundImage: `url(${slider2})`}}>
 
                             </div>
-                            <h3>Temporary Settlement Camps</h3>
+                            <h3>{this.props.language =="0" ? `Temporary Settlement Camps` : `अस्थायी आवास शिविर` }</h3>
                         </div>
                         </Slider>
                     </div>

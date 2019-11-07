@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import '../../css/style.css';
 
 import logo from "../../img/logo.png";
 import nepal from "../../img/nepal.png";
@@ -37,14 +36,14 @@ class Navbar extends Component {
 
               <div className="headRight">
                 <div className="country-logos flex-end">
-                  <a className="active" href="#">
+                  <a className="active" >
                     <img
                       src={uk}
                       alt="uk"
                       onClick={() => this.props.dispatch({ type: "english" })}
                     />
                   </a>
-                  <a href="#">
+                  <a >
                     <img
                       src={nepal}
                       alt="Nepal"
@@ -72,12 +71,12 @@ class Navbar extends Component {
                             : "स्रोतहरु"}
                         </Link>
                       </li>
-                      <li className="menu-item ">
+                      <li className="menu-item ">  
                         <Link to="report">
                           {this.props.language == "0" ? "Reports" : "रिपोर्ट"}
                           </Link>
                       </li>
-                      <li className="menu-item menu-item-has-current">
+                      <li className="menu-item menu-item">
                         <Link to="openspace">
                           {this.props.language == "0"
                             ? "Find Open Space "
@@ -88,8 +87,8 @@ class Navbar extends Component {
                         <Link to="aboutapp">
                           {" "}
                           {this.props.language == "0"
-                            ? "about app"
-                            : "हाम्रो बारे"}
+                            ? "mobile app"
+                            : "मोबाईल एप  "}
                         </Link>
                       </li>
                     </ul>
