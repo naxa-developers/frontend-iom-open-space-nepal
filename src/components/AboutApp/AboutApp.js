@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import Navbar from '../Home/Navbar';
 import Footer from '../Home/Footer';
 
+import bannerShape from '../../img/banner-shape.png';
+import MapLocation from '../../img/map-pin-locations.svg'
+
  class AboutApp extends Component {
     render() {
         return (
@@ -46,7 +49,7 @@ import Footer from '../Home/Footer';
                             <div class="content-text">
                                 <div class="content-center">
                                     <figure>
-                                        <img src={require('../../img/map-pin-locations.svg')} alt="" />
+                                        <img src={MapLocation} alt="location" />
                                     </figure>
                                     <div class="content-title">
                                         <h3 class="openspace-title">Find open spaces</h3>
@@ -119,7 +122,13 @@ import Footer from '../Home/Footer';
             </div>
             
         </main> 
-        <Footer />
+        <footer
+          className="site-footer pt-150"
+          style={{ backgroundImage: `url(${bannerShape})` }}
+        >
+            <Footer />
+            </footer>
+        
             </div>
         )
     }
