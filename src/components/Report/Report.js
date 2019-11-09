@@ -7,8 +7,8 @@ class Report extends Component {
     render() {
         return (
             <>
-                <Navbar />
-                <main class="main-content">
+            <Navbar />
+            <main class="main-content">
           <section class="openSpace-map">
             <div class="container-fluid">
               <div class="map-wrapper">
