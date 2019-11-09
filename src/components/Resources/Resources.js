@@ -110,7 +110,7 @@ Axios("http://139.59.67.104:8011/api/v1/resource/",
                                     <div className="col-12 col-md-9 col-xl-8">
                                         <div className="content-section">
                                             
-                                            {this.state.loaded&&this.state.slicedResources[this.state.resouceindex].map((e)=><Resorcecard title={e.title} description={e.description} image={e.image} date={e.date} categories={e.categories} document_type={e.document_type} />)}
+                                            {this.state.loaded&&this.state.slicedResources[this.state.resouceindex].map((e)=><Resourcecard title={e.title} description={e.description} image={e.image} date={e.date} categories={e.categories} document_type={e.document_type} />)}
                                            
                                         </div>
                                         
