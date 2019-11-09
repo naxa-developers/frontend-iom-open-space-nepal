@@ -5,8 +5,12 @@ import Navbar from "../Home/Navbar";
 import SearchFilter from "./SearchFilter";
 import MainContent from "./MainContent";
 import RightSidebar from "./RightSidebar";
-import Resorcecard from "./Resorcecard";
+import Resourcecard from "./Resourcecard";
+// import TestDownload from './TestDownload';
+
 import Axios from 'axios'
+
+var fileDownload = require('js-file-download');
 
 
 
@@ -43,9 +47,26 @@ class Resources extends Component {
         }
 
 
-     
+
 
     }
+
+fileDownload =() => {
+    console.log("clicked");
+    
+Axios("http://139.59.67.104:8011/api/v1/resource/",
+        { 
+            method: "POST",
+            headers: { "Content-Type": "application/json",'Authorization': 'Bearer ' + window.localStorage["Access_Token"]}
+           
+        }).then(response => response.blob()).then(data => 
+            console.log("success!"),
+            fileDownload(this.state.resources[1].image, 'download_1.png'),
+            
+        )
+       
+        }
+
 
     componentDidMount(){
         Axios.get('http://139.59.67.104:8011/api/v1/resource/')
@@ -75,19 +96,23 @@ class Resources extends Component {
                                     {/* <!-- form-section --> */}
                                     <div className="col-12 col-md-3 col-xl-4">
                                         <SearchFilter />
+                                        {/* <TestDownload /> */}
+                        
                                     </div>
 
                                     {/* <!--  content-section --> */}
                                     <div className="col-12 col-md-9 col-xl-8">
                                         <div className="content-section">
                                             
-                                            {this.state.loaded&&this.state.slicedResources[this.state.resouceindex].map((e)=><Resorcecard title={e.title} description={e.description} date={e.date} categories={e.categories} document_type={e.document_type} />)}
+                                            {this.state.loaded&&this.state.slicedResources[this.state.resouceindex].map((e)=><Resourcecard title={e.title} description={e.description} date={e.date} categories={e.categories} document_type={e.document_type} />)}
                                            
                                         </div>
+                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
+                      
                     </main>
 
                     {/* <!-- pagination --> */}
