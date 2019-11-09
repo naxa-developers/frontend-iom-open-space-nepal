@@ -10,7 +10,7 @@ class Resorcecard extends Component {
                             <div className="content-wrapper">
                                 <div className="image-section">
                                     <figure>
-                                        <img src={require('../../img/resources-img1.png')} alt="" />
+                                        <img src={this.props.image} alt="" />
                                     </figure>
                                 </div>
                                 <div className="content-col-wrap">
