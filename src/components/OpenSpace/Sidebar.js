@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Select from "react-select";
 
+
 import MaterialIcon from "material-icons-react";
 
 const options = [
@@ -17,16 +18,44 @@ const options = [
  
   ];
 
+// DO USING REACT LATER
+//   function sidebarToggle() {
+//     $('.map-sidebar .sidebar-toggle').on('click', function () {
+//         $(this).toggleClass('rotated');
+//         $(this).closest('.map-sidebar').find('.sidebar-wrapper').animate({
+//             width: "toggle"
+//         });
+//     });
+// }
+// sidebarToggle();
+class Sidebar extends Component {
+  constructor(props) {
+    super(props)
+    this.sidebarToggle = this.sidebarToggle.bind(this)
+    this.state = {
+      showContent: true
+    }
+  }
+  
+  sidebarToggle(event) {
+      event.preventDefault();
+      this.setState({
+        showContent: !this.state.showContent
+      })
+  
+  }
 
   
-class Sidebar extends Component {
   render() {
+    // var toggleClass = this.props.isClick ? 'rotated' : 'sidebar-toggle';
+    const {showContent} = this.state;
     return (
       <div className="map-sidebar">
-        <span className="sidebar-toggle">
-          <i className="material-icons">keyboard_arrow_right</i>
-          <MaterialIcon />
+        <span className= {` ${showContent == true ? 'sidebar-toggle': 'sidebar-toggle rotated' }`}>
+          <i className="material-icons" onClick={this.sidebarToggle}>keyboard_arrow_right</i>
+          
         </span>
+        <MaterialIcon ></MaterialIcon>
         <div className="sidebar-wrapper">
           <div className="card">
             <div className="card-body">

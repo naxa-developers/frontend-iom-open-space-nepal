@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
+// require('../../js/map')
 
  class Map extends Component {
     render() {
         return (
-            <div>
-                <h1>Map section</h1>
-            </div>
+
+                <div id="map" class="map">
+                   
+                </div>
+            
         )
     }
 }

@@ -7,10 +7,11 @@ import '../css/slick.css';
 import '../css/humanitarian-fonts.css';
 
 
+
 import Home from "./Home/Home";
 import Resources from "./Resources/Resources";
 import Report from "./Report/Report";
-import OpenSpace from "./OpenSpace/OpenSpace";
+import OpenSpace from "../components/OpenSpace/Openspace"
 import AboutApp from "./AboutApp/AboutApp";
 
 

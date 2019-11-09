@@ -1,6 +1,34 @@
 import React, { Component } from 'react';
+import Axios from 'axios';
 
-class Resorcecard extends Component {
+
+class Resourcecard extends Component {
+
+    constructor(props) {
+        super(props)
+    
+        this.state = {
+             files: []
+        }
+    }
+    
+
+    // componentDidMount(){
+    //     Axios({
+    //         url: 'http://139.59.67.104:8011/api/v1/resource/',
+    //         method: 'GET',
+    //         responseType: 'blob',
+    //     })
+    //     .then(response=>{
+    //         console.log('api', response.data);
+            
+    //         this.setState({files:response.data})
+    //         console.log("download", this.state.files);
+            
+    //     })
+
+    // }
+    
     render() {
         return (
             <>
@@ -26,8 +54,8 @@ class Resorcecard extends Component {
                         <div className="col-12 col-md-3">
                             <div className="download-section">
                                 <div className="icon-wrap-section">
-                                    <button className="btn btn-share"><i className="humanitarian-icon-Share"></i></button>
-                                    <button className="btn btn-download"><i className="humanitarian-icon-Download"></i></button>
+                                   <button className="btn btn-share"><i className="humanitarian-icon-Share"></i></button> 
+                                   <a href="http://139.59.67.104:8011/media/video/1._Welcome_To_The_Course.mp4" download>  <button className="btn btn-download"><i className="humanitarian-icon-Download"></i></button></a>
                                 </div>
                                 <div className="para-wrap-section">
                                     <p className="para-details-block">
@@ -49,4 +77,4 @@ class Resorcecard extends Component {
     }
 }
 
-export default Resorcecard;
+export default Resourcecard;
