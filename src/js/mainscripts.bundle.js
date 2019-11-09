@@ -1,6 +1,25 @@
 
 (function ($) {
     "use strict";
+    // $('.sidebar_wrapper').perfectScrollbar();
+
+    var winH = $(window).innerHeight();
+    var HdHeight = $('.site-header').innerHeight();
+    var FtHeight = $('.site-footer').height();
+    var mapHeight = winH - HdHeight;
+    $('.map ,.sidebar-wrapper').css({ 'height': mapHeight });
+
+
+    function sidebarToggle() {
+        $('.map-sidebar .sidebar-toggle').on('click', function () {
+            $(this).toggleClass('rotated');
+            $(this).closest('.map-sidebar').find('.sidebar-wrapper').animate({
+                width: "toggle"
+            });
+        });
+    }
+    sidebarToggle();
+
 
     $('.intro-slider').slick({
         autoplay: true,
@@ -18,7 +37,7 @@
 
 
 
-   
+
     function toggle_button() {
         $('.headRight .toggle-button').on('click', function () {
             $(this).toggleClass('active');
@@ -39,6 +58,10 @@
     minHeight();
     //tooltip
     $('[data-toggle="tooltip"]').tooltip();
+
+    $('select').selectpicker();
+
+
 
 })(jQuery);
 

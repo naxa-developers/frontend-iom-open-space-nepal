@@ -8,7 +8,7 @@ import MapLocation from '../../img/map-pin-locations.svg'
  class AboutApp extends Component {
     render() {
         return (
-            <div>
+            <div className="app-page">
                 <Navbar />
                 <div class="app-section mb-150 pt-150">
                     <div class="container">
