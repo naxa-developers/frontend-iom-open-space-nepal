@@ -60,11 +60,11 @@ class Resourcecard extends Component {
                                 <div className="para-wrap-section">
                                     <p className="para-details-block">
                                         <span className="title">Type</span>
-                                        <span className="subtitle">{this.props.document_type}</span>
+                                        <span className="subtitle">{this.props.document_type==0?"Publication":this.props.document_type==1?"Video":this.props.document_type==2?"Audio":''}</span>
                                     </p>
                                     <p className="para-details-block">
                                         <span className="title">Category</span>
-                                        <span className="subtitle">{this.props.categories}</span>
+                                        <span className="subtitle">{this.props.categories==0?"Plans & Policies":this.props.categories==1?"Research":this.props.categories==2?"Multimedia":' '}</span>
                                     </p>
                                 </div>
                             </div>
