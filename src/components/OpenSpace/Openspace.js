@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Navbar from "../Home/Navbar";
 import OpenspaceMap from './OpenspaceMap';
 import Sidebar from './Sidebar';
+import './OpenSpaceCSS.css';
 
 class Report extends Component {
 
@@ -14,7 +15,7 @@ class Report extends Component {
             <div class="container-fluid">
               <div class="map-wrapper">
                 <OpenspaceMap />
-                <Sidebar/>
+                <Sidebar  />
               </div>
               
             </div>

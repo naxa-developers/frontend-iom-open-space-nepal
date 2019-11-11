@@ -17,6 +17,7 @@
     "html-webpack-plugin": "^3.2.0",
     "jquery": "^3.4.1",
     "js-file-download": "^0.4.8",
+    "leaflet": "^1.5.1",
     "material-icons-react": "^1.0.4",
     "mdbreact": "^4.22.0",
     "react": "^16.11.0",

@@ -62,9 +62,9 @@ class Sidebar extends Component {
               <div className="map-filter">
                 <div className="filter-option">
                  
-                  <Select options={options} />
-                  <Select options={options1} />
-                  <Select options={options2} />
+                  <Select options={options} placeholder="Province" />
+                  <Select options={options1} placeholder="District" />
+                  <Select options={options2} placeholder="Municipality" />
                   {/* <select className="selectpicker">
                     <option>status</option>
                   </select> */}
@@ -82,7 +82,7 @@ class Sidebar extends Component {
 
               <div className="nearme-btn">
                 <a href="#" className="openspace-button">
-                  <i className="material-icons">near_me</i>Nearby me
+                  <i className="material-icons" style={{textDecoration:'none'}}>near_me</i>Nearby me
                 </a>
               </div>
               <div className="report-count">
