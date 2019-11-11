@@ -1,4 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component,createRef } from 'react'
+import {
+    Map as LeafletMap,
+    GeoJSON,
+    Marker,
+    Popup,
+    TileLayer,
+    LayersControl,
+    BaseLayer
+} from "react-leaflet";
 
 
 // require('../../js/map')
@@ -18,7 +27,7 @@ class Map extends Component {
     render() {
         return (
             <>
-                {/* <LeafletMap
+                <LeafletMap
                     center={[27, 85]}
                     zoom={1.4}
                     maxZoom={15}
@@ -30,12 +39,12 @@ class Map extends Component {
                     animate={true}
                     easeLinearity={0.35}
                     ref={this.mapRef}
-                    style={{ height: height, width: '99.8vw', marginLeft: -22, overflow: 'hidden', }}
+                    style={{ height: 500, width: '99.8vw', marginLeft: -22, overflow: 'hidden', }}
 
                     // onClick={this.handleClick}
                 >
                     <LayersControl position="topright">
-                        <BaseLayer checked={this.state.baselayer ? true : false} ref={this.baseLayer} name="OpenStreetMap">
+                        <BaseLayer  name="OpenStreetMap">
                             <TileLayer
                                 attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -81,7 +90,7 @@ class Map extends Component {
         
 
 
-                </LeafletMap> */}
+                </LeafletMap>
             </>
 
         )
