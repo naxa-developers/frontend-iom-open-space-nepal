@@ -53,7 +53,7 @@ class Resources extends Component {
 
     }
     onApply=()=>{
-        let Filtered=this.state.resources.filter((i)=>i.title.includes(this.state.keywords))
+        let Filtered=this.state.resources.filter((i)=>i.title.toUpperCase().includes(this.state.keywords.toUpperCase()))
         !Filtered.length==0?this.chunkArray(Filtered,3):alert("Not Found")
 
     }
