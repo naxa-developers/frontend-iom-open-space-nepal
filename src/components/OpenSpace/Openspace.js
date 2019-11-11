@@ -1,10 +1,18 @@
-import React, { Component } from "react";
+import React, { Component,createRef } from "react";
 import Navbar from "../Home/Navbar";
 import OpenspaceMap from './OpenspaceMap';
 import Sidebar from './Sidebar';
 import './OpenSpaceCSS.css';
 
-class Report extends Component {
+class OpenSpace extends Component {
+  constructor(props) {
+    super(props)
+    this.mapRefs=createRef();
+    this.state = {
+       
+    };
+  };
+  
 
   render() {
     return (
@@ -25,4 +33,4 @@ class Report extends Component {
     );
   }
 }
-export default Report;
+export default OpenSpace;
