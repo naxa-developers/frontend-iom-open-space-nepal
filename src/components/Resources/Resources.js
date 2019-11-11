@@ -54,6 +54,7 @@ class Resources extends Component {
     }
     onApply=()=>{
         let Filtered=this.state.resources.filter((i)=>i.title.toUpperCase().includes(this.state.keywords.toUpperCase()))
+        this.setState({resouceindex:0})
         !Filtered.length==0?this.chunkArray(Filtered,3):alert("Not Found")
 
     }
@@ -81,7 +82,6 @@ class Resources extends Component {
            var a=state==0?i.category:i.document_type
            return a== e.value
     })
-    console.log(Filtered,"FILT");
     
        !Filtered.length==0&&this.chunkArray(Filtered,3)
 
