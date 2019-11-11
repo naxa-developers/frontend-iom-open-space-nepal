@@ -69,6 +69,9 @@ h3.openspace-title {
 .flexvr{
     @include flexvr;
 }
+.flex-between{
+    @include flexBetween;
+}
 .overlay{
     @include overlay;
 }

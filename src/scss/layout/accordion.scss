@@ -10,4 +10,51 @@
             }
         }
     }
+    &.map-accordion{
+        .card{
+            .card-header{
+                a{
+                    &.card-link,.bln-link{
+                        color:$color-primary;
+                        font-size:1rem;
+                        font-weight: 700;
+                        text-decoration: none;
+                        display: block;
+                        position: relative;
+                        i{
+                            margin-right: .6125rem;
+                            &::before{
+                                color:$color-green;
+                            }
+                        }
+                        &:after {
+                            content: "add"; /* fa-chevron-down */
+                            font-family: 'Material Icons';
+                            @include translatey;
+                            right: 0;
+                            color:$color-dim;
+                          }
+                    }
+                }
+                a[aria-expanded="true"] {
+                    &.card-link,.btn-link{
+                        color:$color-green;
+                        
+                        &::after{
+                            content: "remove";
+                            color:$color-green;
+                        }
+                        i{
+                            &::before{
+                                color:$color-green;
+                            }
+                        }
+                    }
+                    
+                  }
+            }
+            border-bottom: 1px solid $color-border;
+        }
+        
+    }
 }

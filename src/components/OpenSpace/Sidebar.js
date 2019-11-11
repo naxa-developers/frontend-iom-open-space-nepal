@@ -158,7 +158,7 @@ class Sidebar extends Component {
 
 
                 <ul>
-                  <PerfectScrollbar>
+                  {/* <PerfectScrollbar> */}
 
                   {this.state.Allos&&this.state.Allos.map((e)=>{
                     // L.marker([])
@@ -179,7 +179,7 @@ class Sidebar extends Component {
                     <OpenSpaceCard />
                     <OpenSpaceCard />
                     <OpenSpaceCard /> */}
-                  </PerfectScrollbar>
+                  {/* </PerfectScrollbar> */}
 
                 </ul>
 

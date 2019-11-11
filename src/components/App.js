@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Switch, Route, HashRouter as Router } from "react-router-dom";
 
-import "../scss/style.scss";
 import 'bootstrap/dist/css/bootstrap.css';
 import '../css/slick.css';
+
+import "../scss/style.scss";
 // import '../css/humanitarian-fonts.css';
 
 
