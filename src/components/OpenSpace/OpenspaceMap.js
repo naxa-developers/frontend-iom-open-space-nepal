@@ -25,6 +25,7 @@ class Map extends Component {
     };
     
     render() {
+        
         console.log("OS")
         return (
           
