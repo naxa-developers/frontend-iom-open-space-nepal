@@ -31,13 +31,13 @@ import slider2 from '../../img/slider-2.jpg';
                             <div className="figure" style={{backgroundImage: `url(${slider1})`}}>
 
                             </div>
-                            <h3> {this.props.language =="0" ? `Interaction with Locals and Finalization of Open Spaces` : `स्थानीयहरूसँगको अभिमुखीकरण तथा अन्तरक्रियाद्वारा खुल्ला क्षेत्र निर्धारण` }</h3>
+                            <h3> {this.props.language =="0" ? `Temporary Settlement Camps` : `अस्थायी आवास शिविर`  }</h3>     
                         </div>
                         <div className="intro-item">
                             <div className="figure" style={{backgroundImage: `url(${slider2})`}}>
 
                             </div>
-                            <h3>{this.props.language =="0" ? `Temporary Settlement Camps` : `अस्थायी आवास शिविर` }</h3>
+                            <h3>{this.props.language =="0" ? `Interaction with Locals and Finalization of Open Spaces` : `स्थानीयहरूसँगको अभिमुखीकरण तथा अन्तरक्रियाद्वारा खुल्ला क्षेत्र निर्धारण` }</h3>
                         </div>
                         </Slider>
                     </div>

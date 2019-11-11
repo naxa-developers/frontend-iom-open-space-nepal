@@ -38,7 +38,7 @@ const { BaseLayer } = LayersControl;
                     easeLinearity={0.35}
                     // bounds={this.bounds}
                     // ref={this.mapRef}
-                    style={{ height: '80vh', width: '99vw',overflow: 'hidden', }}
+                    style={{ height: '80vh', width: '100vw',overflow: 'hidden', }}
                     >
                         <LayersControl position="topright">
                         <BaseLayer checked  name="OpenStreetMap">

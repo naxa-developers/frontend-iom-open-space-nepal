@@ -38,6 +38,7 @@ class Sidebar extends Component {
       province: null,
       district: null,
       municipality: null,
+      Allos:[]
 
 
     }
@@ -132,7 +133,7 @@ class Sidebar extends Component {
               </div>
               <div className="report-count">
                 <h5>
-                  Open spaces: <span>150</span>
+                Open spaces: <span>{this.state.Allos.length}</span>
                 </h5>
               </div>
               <div className="space-list">

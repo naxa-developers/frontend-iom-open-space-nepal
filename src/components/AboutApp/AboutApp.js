@@ -24,7 +24,7 @@ import MapLocation from '../../img/map-pin-locations.svg'
                                     <h3 class="openspace-title">OPEN SPACES App</h3>
                                     
                                     <div class="app-icons-content">
-                                        <a href="#" class="openspace-button">Learn more</a>
+                                        {/* <a href="#" class="openspace-button">Learn more</a> */}
                                         <h4>Download now</h4>
                                         <div class="app-icon flex-start">
                                             <figure>
