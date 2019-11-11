@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "../Home/Navbar";
-import Map from './Map';
+import OpenspaceMap from './OpenspaceMap';
 import Sidebar from './Sidebar';
 
 class Report extends Component {
@@ -13,7 +13,7 @@ class Report extends Component {
           <section class="openSpace-map">
             <div class="container-fluid">
               <div class="map-wrapper">
-                <Map />
+                <OpenspaceMap />
                 <Sidebar/>
               </div>
               
