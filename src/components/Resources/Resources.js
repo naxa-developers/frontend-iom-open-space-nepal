@@ -9,6 +9,7 @@ import Resourcecard from "./Resourcecard";
 // import TestDownload from './TestDownload';
 
 import Axios from 'axios'
+import { Button } from 'react-bootstrap';
 
 var fileDownload = require('js-file-download');
 
@@ -19,74 +20,88 @@ class Resources extends Component {
 
 
     constructor(props) {
-      super(props)
-    
-      this.state = {
-          loaded:false,
-          resources:[],
-          slicedResources:[],
-          resouceindex:0
-         
-      };
-       this.first=0
-       this.second=3
+        super(props)
+
+        this.state = {
+            loaded: false,
+            resources: [],
+            slicedResources: [],
+            resouceindex: 0,
+            keywords:''
+
+        };
+        this.first = 0
+        this.second = 3
     };
 
-    slicing=()=>{
-        var length=this.state.resources.length;
-      
-        console.log(this.second<length,this.state.resources)
-        var array=this.state.resources.slice(this.first,this.second<length?this.second:length)
-        this.state.slicedResources.push(array)
-        console.log(this.state.slicedResources,"SLICED",array);
-        
-        this.first=this.first+3
-        this.second=this.second+3
-        if(this.second<=length){
-            this.slicing()
-        
-        }
-        else{
-            this.setState({loaded:true})
 
+    chunkArray = (myArray, chunk_size) => {
+        var index = 0;
+        var arrayLength = myArray.length;
+        var tempArray = [];
+
+        for (index = 0; index < arrayLength; index += chunk_size) {
+            var myChunk = myArray.slice(index, index + chunk_size);
+            tempArray.push(myChunk);
         }
 
-
+        this.setState({ slicedResources: tempArray, loaded: true })
+    }
+    setKeywords=(e)=>{
+        this.setState({keywords:e})
 
 
     }
+    onApply=()=>{
+        let Filtered=this.state.resources.filter((i)=>i.title.includes(this.state.keywords))
+        !Filtered.length==0?this.chunkArray(Filtered,3):alert("Not Found")
 
-fileDownload =() => {
-    console.log("clicked");
+    }
+
+
+    // fileDownload =() => {
+    //     console.log("clicked");
+
+    // Axios("http://139.59.67.104:8011/api/v1/resource/",
+    //         { 
+    //             method: "POST",
+    //             headers: { "Content-Type": "application/json",'Authorization': 'Bearer ' + window.localStorage["Access_Token"]}
+
+    //         }).then(response => response.blob()).then(data => 
+    //             console.log("success!"),
+    //             fileDownload(this.state.resources[1].image, 'download_1.png'),
+
+    //         )
+
+    //         }
+
+    selectFilter=(state,e)=>{
+        console.log(e)
+       var Filtered= this.state.resources.filter((i)=>{
+           var a=state==0?i.category:i.document_type
+           return a== e.value
+    })
+    console.log(Filtered,"FILT");
     
-Axios("http://139.59.67.104:8011/api/v1/resource/",
-        { 
-            method: "POST",
-            headers: { "Content-Type": "application/json",'Authorization': 'Bearer ' + window.localStorage["Access_Token"]}
-           
-        }).then(response => response.blob()).then(data => 
-            console.log("success!"),
-            fileDownload(this.state.resources[1].image, 'download_1.png'),
-            
-        )
-       
-        }
+       !Filtered.length==0&&this.chunkArray(Filtered,3)
 
+    }
 
-    componentDidMount(){
+    componentDidMount() {
         Axios.get('http://139.59.67.104:8011/api/v1/resource/')
-        .then(response=>{
-            this.setState({resources:response.data})
+            .then(response => {
+                this.setState({ resources: response.data })
 
-            this.slicing()
-            console.log(this.state.resources,'khm....khv')
+                this.chunkArray(this.state.resources, 3)
+                console.log(this.state.slicedResources)
 
-        })
+
+            })
 
 
     }
 
-    
+
 
     render() {
 
@@ -101,24 +116,25 @@ Axios("http://139.59.67.104:8011/api/v1/resource/",
                                 <div className="row">
                                     {/* <!-- form-section --> */}
                                     <div className="col-12 col-md-3 col-xl-4">
-                                        <SearchFilter />
+                                        <SearchFilter selectFilter={this.selectFilter} setKeywords={this.setKeywords} />
                                         {/* <TestDownload /> */}
-                        
+                                        <Button onClick={()=>this.onApply()}>Apply</Button>
+
                                     </div>
 
                                     {/* <!--  content-section --> */}
                                     <div className="col-12 col-md-9 col-xl-8">
                                         <div className="content-section">
-                                            
-                                            {this.state.loaded&&this.state.slicedResources[this.state.resouceindex].map((e)=><Resourcecard title={e.title} description={e.description} image={e.image} date={e.date} categories={e.categories} document_type={e.document_type} />)}
-                                           
+
+                                            {this.state.loaded && this.state.slicedResources[this.state.resouceindex].map((e) => <Resourcecard title={e.title} description={e.description} image={e.image} date={e.date} categories={e.category} document_type={e.document_type} />)}
+
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
                         </div>
-                      
+
                     </main>
 
                     {/* <!-- pagination --> */}
@@ -126,10 +142,12 @@ Axios("http://139.59.67.104:8011/api/v1/resource/",
                         <div className="container">
                             <div className="pagination-link-wrap">
                                 <div className="pagination-center">
-                                    <a >&laquo;</a>
-                                    <a  className={this.state.resouceindex==0?"active":""} onClick={()=>this.setState({resouceindex:0})}>1</a>
-                                    <a className={this.state.resouceindex==1?"active":""} onClick={()=>this.setState({resouceindex:1})}>2</a>
-                                    <a >&raquo;</a>
+                                    <a   onClick={() => { this.setState({ resouceindex: this.state.resouceindex - 1 }) }}  >&laquo;</a>
+                                    {this.state.slicedResources.map((e, i) => {
+                                        return <a className={this.state.resouceindex == i ? "active" : ""} onClick={() => this.setState({ resouceindex: i })}>{i+1}</a>
+                                    })}
+                                    {/* <a className={this.state.resouceindex == 1 ? "active" : ""} onClick={() => this.setState({ resouceindex: 1 })}>2</a> */}
+                                    <a style={{}} onClick={() => { this.setState({ resouceindex: this.state.resouceindex + 1 }) }} >&raquo;</a>
                                 </div>
                             </div>
                         </div>

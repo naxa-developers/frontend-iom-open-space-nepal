@@ -5,16 +5,15 @@ import Select from "react-select";
 // import Select from "react-bootstrap-select";
 
 const options = [
-  { value: "1", label: "Plans & Policies" },
-  { value: "2", label: "Research" },
-  { value: "3", label: "Multimedia" }
+  { value: 0, label: "Plans & Policies" },
+  { value: 1, label: "Research" },
+  { value: 2, label: "Multimedia" }
 ];
 
 const options1 = [
-    { value: "1", label: "Document types" },
-    { value: "2", label: "Publication" },
-    { value: "3", label: "Video" },
-    { value: "3", label: "Audio" }
+    { value: 0, label: "Publication" },
+    { value: 1, label: "Video" },
+    { value: 2, label: "Audio" }
 
 
 ]
@@ -39,6 +38,7 @@ class SearchFilter extends Component {
                 type="text"
                 placeholder="Search resources by keyword"
                 aria-label="Search"
+                onInput={(e)=>this.props.setKeywords(e.target.value)}
               />
             </div>
           </form>
@@ -49,12 +49,12 @@ class SearchFilter extends Component {
 
         <div className="dropdown-select">
           <div className="categories-dropdown">
-            <Select options={options} />
+            <Select options={options} onChange={(e)=>this.props.selectFilter(0,e)} placeholder='Category' />
           </div>
         </div>
         <br />
         <div className="document-types-dropdown">
-            <Select options={options1} />
+            <Select options={options1} onChange={(e)=>this.props.selectFilter(1,e)} placeholder="Document Type" />
             </div>
       </div>
     );
