@@ -127,7 +127,7 @@ class Sidebar extends Component {
 
               <div className="nearme-btn">
                 <a href="#" className="openspace-button">
-                  <i className="material-icons">near_me</i>Nearby me
+                  <i className="material-icons" style={{textDecoration:'none'}}>near_me</i>Nearby me
                 </a>
               </div>
               <div className="report-count">

@@ -20,6 +20,7 @@ const { BaseLayer } = LayersControl;
      
     render() {
         return (
+          
 
             <>
             <LeafletMap
@@ -42,7 +43,7 @@ const { BaseLayer } = LayersControl;
                             <TileLayer
                                 attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                                noWrap={true}
+                                // noWrap={true}
 
 
 
@@ -51,12 +52,12 @@ const { BaseLayer } = LayersControl;
                         </LayersControl>
         </LeafletMap>
             
-            </>
+            </>)}}
                 // <div id="map" class="map">
                    
                 // </div>
             
-        )
-    }
-}
+        
+    
+
 export default OS;

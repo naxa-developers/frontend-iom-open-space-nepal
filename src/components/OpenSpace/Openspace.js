@@ -2,6 +2,7 @@ import React, { Component,createRef } from "react";
 import Navbar from "../Home/Navbar";
 import OpenspaceMap from './OpenspaceMap';
 import Sidebar from './Sidebar';
+import './OpenSpaceCSS.css';
 
 class OpenSpace extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class OpenSpace extends Component {
             <div class="container-fluid">
               <div class="map-wrapper">
                 <OpenspaceMap />
-                <Sidebar/>
+                <Sidebar  />
               </div>
               
             </div>

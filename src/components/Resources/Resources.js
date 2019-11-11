@@ -11,7 +11,7 @@ import Resourcecard from "./Resourcecard";
 import Axios from 'axios'
 import { Button } from 'react-bootstrap';
 
-var fileDownload = require('js-file-download');
+
 
 
 
