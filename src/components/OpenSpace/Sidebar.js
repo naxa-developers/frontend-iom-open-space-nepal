@@ -1,59 +1,104 @@
 import React, { Component } from "react";
 import Select from "react-select";
+import OpenSpaceCard from './OpenSpaceCard'
+import PerfectScrollbar from 'react-perfect-scrollbar'
+import './OpenSpaceCSS.css'
+import 'react-perfect-scrollbar/dist/css/styles.css';
+import L from 'leaflet';
+
+
 
 
 import MaterialIcon from "material-icons-react";
+import Axios from "axios";
 
-const options = [
-    { value: "1", label: "Last 7 days" }
- 
-  ];
-  const options1 = [
-    { value: "1", label: "Status" }
- 
-  ];
+const Province = [
+  { value: "1", label: "Last 7 days" }
 
-  const options2 = [
-    { value: "1", label: "Urgency" }
- 
-  ];
+];
+const District = [
+  { value: "1", label: "Status" }
 
-// DO USING REACT LATER
-//   function sidebarToggle() {
-//     $('.map-sidebar .sidebar-toggle').on('click', function () {
-//         $(this).toggleClass('rotated');
-//         $(this).closest('.map-sidebar').find('.sidebar-wrapper').animate({
-//             width: "toggle"
-//         });
-//     });
-// }
-// sidebarToggle();
+];
+
+const Municipality = [
+  { value: "1", label: "Urgency" }
+
+];
+
+
+
+
 class Sidebar extends Component {
   constructor(props) {
     super(props)
     this.sidebarToggle = this.sidebarToggle.bind(this)
     this.state = {
-      showContent: true
+      showContent: true,
+      province: null,
+      district: null,
+      municipality: null,
+
+
     }
   }
-  
+
   sidebarToggle(event) {
-      event.preventDefault();
-      this.setState({
-        showContent: !this.state.showContent
-      })
-  
+    event.preventDefault();
+    this.setState({
+      showContent: !this.state.showContent
+    })
+
   }
 
-  
+  fetchingForDropdown = (name) => {
+    var key=name=="province"?"province_api":name=="district"?"district_api":name=="municipality"?"municipality_api":''
+    var url=`http://139.59.67.104:8011/api/v1/${key}`
+    console.log(key,"sas",url);
+
+    
+    Axios.get(url)
+      .then(response => {
+        console.log(response.data.data,"A")
+        var array = []
+        response.data.data.map((e) => {
+          let object = { value: e.id, label: e.name }
+          array.push(object)
+        })
+        this.setState({ [name]: array })
+      })
+
+
+  }
+  fetchOS=()=>{
+    Axios.get("http://139.59.67.104:8011/api/v1/open_space_landing")
+    .then(response=>{
+      console.log(response.data.data)
+      this.setState({Allos:response.data.data})
+    
+    }
+    )
+  }
+
+
+  componentDidMount() {
+    this.fetchingForDropdown('province')
+    this.fetchingForDropdown('district')
+    this.fetchingForDropdown('municipality')
+    this.fetchOS()
+
+
+  }
+
+
   render() {
     // var toggleClass = this.props.isClick ? 'rotated' : 'sidebar-toggle';
-    const {showContent} = this.state;
+    const { showContent } = this.state;
     return (
       <div className="map-sidebar">
-        <span className= {` ${showContent == true ? 'sidebar-toggle': 'sidebar-toggle rotated' }`}>
+        <span className={` ${showContent == true ? 'sidebar-toggle' : 'sidebar-toggle rotated'}`}>
           <i className="material-icons" onClick={this.sidebarToggle}>keyboard_arrow_right</i>
-          
+
         </span>
         <MaterialIcon ></MaterialIcon>
         <div className="sidebar-wrapper">
@@ -61,10 +106,10 @@ class Sidebar extends Component {
             <div className="card-body">
               <div className="map-filter">
                 <div className="filter-option">
-                 
-                  <Select options={options} />
-                  <Select options={options1} />
-                  <Select options={options2} />
+
+                  <Select options={this.state.province} placeholder="Province" />
+                  <Select options={this.state.district} placeholder="District" isDisabled />
+                  <Select options={this.state.municipality} placeholder="Municipality" isDisabled />
                   {/* <select className="selectpicker">
                     <option>status</option>
                   </select> */}
@@ -101,7 +146,7 @@ class Sidebar extends Component {
                     type="text"
                     className="form-control"
                     aria-label=""
-                    placeholder="Search reports"
+                    placeholder="Search Open Space"
                   />
                   <div className="input-group-append">
                     <span className="input-group-text">
@@ -110,108 +155,33 @@ class Sidebar extends Component {
                   </div>
                 </div>
 
+
                 <ul>
-                  <li>
-                    <div className="space">
-                      <figure>
-                        <img
-                          src={require("../../img/space-1.jpg")}
-                          alt="space"
-                        />
-                      </figure>
-                      <div className="space-content">
-                        <h5>Ratna Park</h5>
-                        <p>
-                          <span>
-                            <i className="material-icons">room</i>Ratna park,
-                            kathmandu 44600
-                          </span>
-                          <span>
-                            <i className="material-icons">near_me</i>200 m
-                          </span>
-                        </p>
-                      </div>
-                    </div>
-                    <div className="space-direction">
-                      <i className="material-icons">directions</i>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="space">
-                      <figure>
-                        <img
-                          src={require("../../img/space-2.jpg")}
-                          alt="space"
-                        />
-                      </figure>
-                      <div className="space-content">
-                        <h5>National Academy</h5>
-                        <p>
-                          <span>
-                            <i className="material-icons">room</i>Kanti Path,
-                            Kathmandu 44600
-                          </span>
-                          <span>
-                            <i className="material-icons">near_me</i>500 m
-                          </span>
-                        </p>
-                      </div>
-                    </div>
-                    <div className="space-direction">
-                      <i className="material-icons">directions</i>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="space">
-                      <figure>
-                        <img
-                          src={require("../../img/space-3.jpg")}
-                          alt="space"
-                        />
-                      </figure>
-                      <div className="space-content">
-                        <h5>Jawalakhel Football Ground</h5>
-                        <p>
-                          <span>
-                            <i className="material-icons">room</i>Jawalakhel,
-                            Lalitpur 44700
-                          </span>
-                          <span>
-                            <i className="material-icons">near_me</i>750 m
-                          </span>
-                        </p>
-                      </div>
-                    </div>
-                    <div className="space-direction">
-                      <i className="material-icons">directions</i>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="space">
-                      <figure>
-                        <img
-                          src={require("../../img/space-4.jpg")}
-                          alt="space"
-                        />
-                      </figure>
-                      <div className="space-content">
-                        <h5>Lagankhel Football Ground</h5>
-                        <p>
-                          <span>
-                            <i className="material-icons">room</i>Lagankhel,
-                            Lalitpur 44700
-                          </span>
-                          <span>
-                            <i className="material-icons">near_me</i>800 m
-                          </span>
-                        </p>
-                      </div>
-                    </div>
-                    <div className="space-direction">
-                      <i className="material-icons">directions</i>
-                    </div>
-                  </li>
+                  <PerfectScrollbar>
+
+                  {this.state.Allos&&this.state.Allos.map((e)=>{
+                    // L.marker([])
+                    return <OpenSpaceCard name={e.title} address={e.address} image={e.image}/>
+
+                  })}
+
+
+                    {/* <OpenSpaceCard />
+                    <OpenSpaceCard />
+                    <OpenSpaceCard />
+                    <OpenSpaceCard />
+                    <OpenSpaceCard />
+                    <OpenSpaceCard />
+                    <OpenSpaceCard />
+                    <OpenSpaceCard />
+                    <OpenSpaceCard />
+                    <OpenSpaceCard />
+                    <OpenSpaceCard />
+                    <OpenSpaceCard /> */}
+                  </PerfectScrollbar>
+
                 </ul>
+
               </div>
             </div>
           </div>

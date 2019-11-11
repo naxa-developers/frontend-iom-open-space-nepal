@@ -1,15 +1,62 @@
-import React, { Component } from 'react'
-// require('../../js/map')
+import React, { Component ,createRef} from 'react';
+import {
+    Map as LeafletMap,
+     TileLayer,
+    LayersControl
+} from "react-leaflet";
+import 'leaflet/dist/leaflet.css';
+const { BaseLayer } = LayersControl;
 
- class Map extends Component {
+
+
+ class OS extends Component {
+     constructor(props) {
+       super(props)
+          
+       this.state = {
+          
+       };
+     };
+     
     render() {
         return (
 
-                <div id="map" class="map">
+            <>
+            <LeafletMap
+                    center={[27, 85]}
+                    zoom={1.4}
+                    maxZoom={15}
+                    attributionControl={true}
+                    zoomControl={true}
+                    doubleClickZoom={true}
+                    scrollWheelZoom={true}
+                    dragging={true}
+                    animate={true}
+                    easeLinearity={0.35}
+                    // bounds={this.bounds}
+                    // ref={this.mapRef}
+                    style={{ height: '80vh', width: '99vw',overflow: 'hidden', }}
+                    >
+                        <LayersControl position="topright">
+                        <BaseLayer checked  name="OpenStreetMap">
+                            <TileLayer
+                                attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                noWrap={true}
+
+
+
+                            />
+                        </BaseLayer>
+                        </LayersControl>
+        </LeafletMap>
+            
+            </>
+                // <div id="map" class="map">
                    
-                </div>
+                // </div>
             
         )
     }
 }
-export default Map;
+export default OS;

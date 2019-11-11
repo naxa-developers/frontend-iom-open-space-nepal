@@ -1,0 +1,22 @@
+.css-2b097c-container {
+    max-width:  350px;
+    min-width: 150px;
+}
+.openspace-button:hover{
+    text-decoration: none;
+}
+.map-sidebar{
+    z-index: 1500 !important;
+}
+.OpenSpaceScroll{
+    max-width: 50px;
+    overflow-y: 'scroll' ;
+}
+ul .scrollbar-container{
+    height: 350px !important;
+}
+.css-14jk2my-container{
+    max-width:  350px;
+    min-width: 150px;
+
+}

@@ -4,7 +4,7 @@ import { Switch, Route, HashRouter as Router } from "react-router-dom";
 import "../scss/style.scss";
 import 'bootstrap/dist/css/bootstrap.css';
 import '../css/slick.css';
-import '../css/humanitarian-fonts.css';
+// import '../css/humanitarian-fonts.css';
 
 
 
