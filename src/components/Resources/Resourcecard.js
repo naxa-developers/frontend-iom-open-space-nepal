@@ -64,7 +64,7 @@ class Resourcecard extends Component {
                                     </p>
                                     <p className="para-details-block">
                                         <span className="title">Category</span>
-                                        <span className="subtitle">{this.props.categories==0?"Plans & Policies":this.props.categories==1?"Research":this.props.categories==2?"Multimedia":' '}</span>
+                                        <span className="subtitle">{this.props.categories==0?"Plans & Policies":this.props.categories==1?"Research":this.props.categories==2?"Multimedia":'None '}</span>
                                     </p>
                                 </div>
                             </div>

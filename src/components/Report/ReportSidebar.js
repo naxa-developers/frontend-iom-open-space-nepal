@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import MaterialIcon from "material-icons-react";
 
 class ReportSidebar extends Component {
     render() {
@@ -8,6 +9,7 @@ class ReportSidebar extends Component {
                         <span class="sidebar-toggle">
                             <i class="material-icons">keyboard_arrow_right</i>
                         </span>
+                        <MaterialIcon />
                         <div class="sidebar-wrapper">
                             <div class="card">
                                 <div class="card-body">
