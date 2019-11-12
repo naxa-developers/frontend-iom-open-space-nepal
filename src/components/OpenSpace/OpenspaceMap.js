@@ -14,13 +14,30 @@ const { BaseLayer } = LayersControl;
        super(props)
           
        this.state = {
+           height: null
           
        };
      };
+
+     onload = () => {
+        var windowHeight = window.innerHeight;
+        console.log(windowHeight);
+        var navHeight = document.getElementsByClassName('site-header')[0].clientHeight;
+        console.log(navHeight);
+        this.setState({
+        height: windowHeight-navHeight
+        })
+
+     }
      
+     componentDidMount() {
+        this.onload();     
+    }
     render() {
+      
+      
         
-        console.log("OS")
+    
         return (
           
 
@@ -38,7 +55,7 @@ const { BaseLayer } = LayersControl;
                     easeLinearity={0.35}
                     // bounds={this.bounds}
                     // ref={this.mapRef}
-                    // style={{ height: '80vh',overflow: 'hidden', }}  
+                    style={{ height: this.state.height == null ? '80vh': this.state.height,overflow: 'hidden', }}  
                     >
                         <LayersControl position="topright">
                         <BaseLayer checked  name="OpenStreetMap">

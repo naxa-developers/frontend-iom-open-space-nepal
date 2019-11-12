@@ -23,7 +23,7 @@ class Navbar extends Component {
 
     return (
       <>
-        <header className="site-header">
+        <header className="site-header" id="navHeader">
           <div className="container">
             <div className="headerWrap">
               <div className="headLeft">

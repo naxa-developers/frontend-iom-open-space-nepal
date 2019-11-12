@@ -4,6 +4,7 @@ import OpenSpaceCard from './OpenSpaceCard'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import './OpenSpaceCSS.css'
 import 'react-perfect-scrollbar/dist/css/styles.css';
+
 import L from 'leaflet';
 
 
@@ -44,7 +45,9 @@ class Sidebar extends Component {
     }
   }
 
-  sidebarToggle(event) {
+  
+
+  sidebarToggle = (event) => {
     event.preventDefault();
     this.setState({
       showContent: !this.state.showContent
@@ -82,11 +85,24 @@ class Sidebar extends Component {
   }
 
 
+  onload = () => {
+    var windowHeight = window.innerHeight;
+    console.log(windowHeight);
+    var navHeight = document.getElementsByClassName('site-header')[0].clientHeight;
+    console.log(navHeight);
+    document.getElementsByClassName('sidebar-wrapper')[0].style.height= `${windowHeight-navHeight}px`
+   
+
+ }
+ 
+
+   
   componentDidMount() {
     this.fetchingForDropdown('province')
     this.fetchingForDropdown('district')
     this.fetchingForDropdown('municipality')
     this.fetchOS()
+    this.onload(); 
 
 
   }
@@ -96,14 +112,13 @@ class Sidebar extends Component {
     // var toggleClass = this.props.isClick ? 'rotated' : 'sidebar-toggle';
     const { showContent } = this.state;
     return (
+      <>
       <div className="map-sidebar">
-        <span class="sidebar-toggle">
-          <i class="material-icons">keyboard_arrow_right</i>
-      </span>
-        {/* <span className={` ${showContent == true ? 'sidebar-toggle' : 'sidebar-toggle rotated'}`}>
-          <i className="material-icons" onClick={this.sidebarToggle}>keyboard_arrow_right</i>
-        </span> */}
-        <MaterialIcon ></MaterialIcon>
+        <span className={` ${showContent == true ? 'sidebar-toggle' : 'sidebar-toggle rotated'}`}>
+        <MaterialIcon icon="keyboard_arrow_right"  onClick= {() => this.sidebarToggle(event)}/>
+          {/* <i className="material-icons" onClick={this.sidebarToggle}>keyboard_arrow_right</i> */}
+        </span>
+
         <div className="sidebar-wrapper">
           <div className="card">
             <div className="card-body">
@@ -190,6 +205,7 @@ class Sidebar extends Component {
           </div>
         </div>
       </div>
+      </>
     );
   }
 }

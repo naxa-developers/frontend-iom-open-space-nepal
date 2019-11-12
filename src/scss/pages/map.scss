@@ -118,15 +118,17 @@
                 height: 40px;
                 @include flexvr;
                 background-color: $color-blue;
-                color: $color-white;
                 top:0;
                 left: -40px;
                 z-index: 3;
                 cursor: pointer;
 
-                i {
+                i.material-icons {
                     font-size: 2rem;
                     font-weight: 700;
+                    color: $color-white;
+                        background-color: $color-blue;
+                   
                 }
 
                 &.rotated {
@@ -138,6 +140,9 @@
                 &:hover {
                     background-color: $color-green;
                     color: $color-white;
+                    i{
+                        background-color: $color-green;
+                    }
                 }
             }
 

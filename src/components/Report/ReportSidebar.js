@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
-import MaterialIcon from "material-icons-react";
+import MaterialIcon from 'material-icons-react';
 
 class ReportSidebar extends Component {
     render() {
         return (
             <div>
+                
                       <div class="map-sidebar">
                         <span class="sidebar-toggle">
-                            <i class="material-icons">keyboard_arrow_right</i>
+                        <MaterialIcon icon="keyboard_arrow_right" />
                         </span>
-                        <MaterialIcon />
+                        
                         <div class="sidebar-wrapper">
                             <div class="card">
                                 <div class="card-body">
@@ -27,7 +28,8 @@ class ReportSidebar extends Component {
                                         </div>
                                         <div class="reset-btns">
                                             <div class="reset">
-                                                <i class="material-icons">refresh</i>
+                                            <MaterialIcon icon="refresh" />
+                                                
                                                 <span>clear all</span>
                                             </div>
                                             <a href="#" class="openspace-button">Apply</a>
@@ -39,8 +41,7 @@ class ReportSidebar extends Component {
                                     <div class="report-list">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text"><i
-                                                        class="material-icons">search</i></span>
+                                                <span class="input-group-text">  <MaterialIcon icon="search" /></span>
                                             </div>
                                             <input type="text" class="form-control" aria-label="" placeholder="Search reports" />
                                             <div class="input-group-append">
