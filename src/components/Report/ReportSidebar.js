@@ -2,6 +2,19 @@ import React, { Component } from 'react'
 import MaterialIcon from 'material-icons-react';
 
 class ReportSidebar extends Component {
+
+    onload = () => {
+        var windowHeight = window.innerHeight;
+        console.log(windowHeight);
+        var navHeight = document.getElementsByClassName('site-header')[0].clientHeight;
+        console.log(navHeight);
+        document.getElementsByClassName('sidebar-wrapper')[0].style.height= `${windowHeight-navHeight}px`
+       
+    
+     }
+     componentDidMount() {
+         this.onload();
+     }
     render() {
         return (
             <div>
