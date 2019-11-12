@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+
+
 import './OpenSpaceCSS.css'
+import { useHistory } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 
 class OpenSpaceCard extends Component {
     render() {
@@ -15,7 +19,11 @@ class OpenSpaceCard extends Component {
                                 alt="space"
                             />
                         </figure>
-                        <div className="space-content">
+                        <div className="space-content" onClick= {() => {
+                     
+                           this.props.history.push('/OpenSpaceDetails')
+                        }
+                        }>
                             <h5>{this.props.name}</h5>
                             <p>
                                 <span>
@@ -36,4 +44,4 @@ class OpenSpaceCard extends Component {
     }
 }
 
-export default OpenSpaceCard;
+export default withRouter(OpenSpaceCard);

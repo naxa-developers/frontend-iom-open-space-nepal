@@ -58,7 +58,7 @@ class Sidebar extends Component {
   fetchingForDropdown = (name) => {
     var key=name=="province"?"province_api":name=="district"?"district_api":name=="municipality"?"municipality_api":''
     var url=`http://139.59.67.104:8011/api/v1/${key}`
-    console.log(key,"sas",url);
+
 
     
     Axios.get(url)
@@ -179,7 +179,8 @@ class Sidebar extends Component {
 
                   {this.state.Allos&&this.state.Allos.map((e)=>{
                     // L.marker([])
-                    return <OpenSpaceCard name={e.title} address={e.address} image={e.image}/>
+                    // 
+                    return <OpenSpaceCard  name={e.title} address={e.address} image={e.image} />
 
                   })}
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Switch, Route, HashRouter as Router } from "react-router-dom";
-
+import { connect } from "react-redux";
 import 'bootstrap/dist/css/bootstrap.css';
 import '../css/slick.css';
 
@@ -14,6 +14,8 @@ import Resources from "./Resources/Resources";
 import Report from "./Report/Report";
 import OpenSpace from "../components/OpenSpace/Openspace"
 import AboutApp from "./AboutApp/AboutApp";
+import OpenSpaceDetails from "./OpenSpace/OpenSpaceDetails/OpenSpaceDetails";
+
 
 
 // import {Provider } from 'react-redux';
@@ -23,6 +25,7 @@ import AboutApp from "./AboutApp/AboutApp";
 
 class App extends Component {
   render() {
+  console.log(this.props,"Props")
     return (
      
       <Router>
@@ -58,6 +61,13 @@ class App extends Component {
                 <AboutApp {...props}/>
               }
             ></Route>
+            <Route
+              exact
+              path="/OpenSpaceDetails"
+              render={props => 
+                <OpenSpaceDetails {...props}/>
+              }
+            ></Route>
 
           </Switch>
       
@@ -66,4 +76,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect()(App);
