@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import '../css/slick.css';
 
 import "../scss/style.scss";
-// import '../css/humanitarian-fonts.css';
+import '../css/humanitarian-fonts.css';
 
 
 

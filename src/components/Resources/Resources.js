@@ -53,6 +53,8 @@ class Resources extends Component {
 
     }
     onApply=()=>{
+        console.log("filter aba");
+        
         let Filtered=this.state.resources.filter((i)=>i.title.toUpperCase().includes(this.state.keywords.toUpperCase()))
         this.setState({resouceindex:0})
         !Filtered.length==0?this.chunkArray(Filtered,3):alert("Not Found")
@@ -116,9 +118,9 @@ class Resources extends Component {
                                 <div className="row">
                                     {/* <!-- form-section --> */}
                                     <div className="col-12 col-md-3 col-xl-4">
-                                        <SearchFilter selectFilter={this.selectFilter} setKeywords={this.setKeywords} />
+                                        <SearchFilter selectFilter={this.selectFilter} setKeywords={this.setKeywords} onApply={this.onApply}/>
                                         {/* <TestDownload /> */}
-                                        <Button onClick={()=>this.onApply()}>Apply</Button>
+                                        {/* <Button onClick={()=>this.onApply()}>Apply</Button> */}
 
                                     </div>
 

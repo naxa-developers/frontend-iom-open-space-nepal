@@ -19,6 +19,14 @@ const options1 = [
 ]
 
 class SearchFilter extends Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       focused: false
+    }
+  }
+  
   render() {
     return (
       <div>
@@ -28,19 +36,34 @@ class SearchFilter extends Component {
             <div className="form-wrap">
               <button className="btn btn-search" type="submit">
               <i class="humanitarian-icon-Search search-icon" aria-hidden="true"></i>
-                {/* <i className="material-icons" aria-hidden="true">
+             
+                {/* <MaterialIcon className="material-icons" aria-hidden="true">
                   search
-                </i> */}
+                </MaterialIcon> */}
               </button>
-              <MaterialIcon />
+           
               <input
                 className="form-control"
                 type="text"
                 placeholder="Search resources by keyword"
                 aria-label="Search"
                 onInput={(e)=>this.props.setKeywords(e.target.value)}
+                onFocus = {() => this.setState({focused: true})}
+                onBlur = {() => {
+                  setTimeout(()=>this.setState({focused: false}),100)
+                  
+              }}
+              onKeyDown = {(e) => {
+                if(e.key ==='Enter') {
+                  this.props.onApply() 
+                  // this.setState({focused: false})
+                }
+              } } 
+
               />
+  {this.state.focused && <MaterialIcon icon="arrow_right_alt" onClick={() =>this.props.onApply()} ></MaterialIcon> }
             </div>
+            
           </form>
           </div>
           <br />
