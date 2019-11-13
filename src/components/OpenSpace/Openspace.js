@@ -12,6 +12,9 @@ class OpenSpace extends Component {
        
     };
   };
+  componentDidMount(){
+
+  }
   
 
   render() {
@@ -22,8 +25,8 @@ class OpenSpace extends Component {
           <section class="openSpace-map">
             <div class="container-fluid">
               <div class="map-wrapper">
-                <OpenspaceMap />
-                <Sidebar  />
+                <OpenspaceMap mapRefss={this.mapRefs} />
+                <Sidebar mapRefs={this.mapRefs} />
               </div>
               
             </div>

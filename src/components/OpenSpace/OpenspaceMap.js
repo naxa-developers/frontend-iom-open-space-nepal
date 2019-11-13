@@ -44,7 +44,7 @@ const { BaseLayer } = LayersControl;
             <>
             <LeafletMap
                     center={[27, 85]}
-                    zoom={15}
+                    zoom={4}
                     maxZoom={15}
                     attributionControl={true}
                     zoomControl={true}
@@ -54,7 +54,7 @@ const { BaseLayer } = LayersControl;
                     animate={true}
                     easeLinearity={0.35}
                     // bounds={this.bounds}
-                    // ref={this.mapRef}
+                    ref={this.props.mapRefss}
                     style={{ height: this.state.height == null ? '80vh': this.state.height,overflow: 'hidden', }}  
                     >
                         <LayersControl position="topright">
