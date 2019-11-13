@@ -34,6 +34,7 @@
     "react-slick": "^0.25.2",
     "react-translate": "^7.0.1",
     "react-youtube": "^7.9.0",
+    "reactstrap": "^8.1.1",
     "redux": "^4.0.4",
     "slick-carousel": "^1.8.1",
     "webpack-cli": "^2.0.10"
