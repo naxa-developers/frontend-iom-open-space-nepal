@@ -21,9 +21,9 @@ const { BaseLayer } = LayersControl;
 
      onload = () => {
         var windowHeight = window.innerHeight;
-        console.log(windowHeight);
+        
         var navHeight = document.getElementsByClassName('site-header')[0].clientHeight;
-        console.log(navHeight);
+     
         this.setState({
         height: windowHeight-navHeight
         })

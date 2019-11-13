@@ -26,7 +26,8 @@ import googleplay from '../../img/googleplay.png'
                 <div className="row">
                     <div className="col-md-4">
                         <div className="footer-widget about-widget">
-                            <figure className="footer-logo">
+                            <p>This portal contains location based information and attribute details of open spaces from different locations of Nepal. All the open spaces datasets were prepared by IOM in different time in direct coordination and consultation with local governments and relevant line ministries.</p>
+                            {/* <figure className="footer-logo">
                                 <img src={logo} alt="footer-logo" />
                             </figure>
                             <div className="footer-logos">
@@ -39,7 +40,7 @@ import googleplay from '../../img/googleplay.png'
                                 <figure>
                                     <img src={ccm}alt="CCM" />
                                 </figure>
-                            </div>
+                            </div> */}
                             <div className="copyright">
                                 <p>Copyright © 2019. <a href="#">Open Space Nepal</a> All rights reserved.</p>
                             </div>
@@ -50,8 +51,8 @@ import googleplay from '../../img/googleplay.png'
                             <h5>Contact</h5>
                             <ul>
                                 <li><i className="humanitarian-icon-Location"></i><span>International Immigration
-                                        Organization (IOM)
-                                        7/1 Thirbaum Road, Baluwatar-1
+                                        Organization (IOM) <br />
+                                        7/1 Thirbaum Road, Baluwatar-1 <br />
                                         P.O. Box: 25503, Kathmandu, Nepal</span></li>
                                        
                                 <li><i className="humanitarian-icon-Fax"></i><span>+977 1 442 62 50</span></li>

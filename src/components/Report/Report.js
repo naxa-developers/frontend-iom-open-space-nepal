@@ -5,6 +5,7 @@ import ReportSidebar from './ReportSidebar'
 import OpenspaceMap from '../OpenSpace/OpenspaceMap'
 
 class Report extends Component {
+  
     render() {
         return (
             <>

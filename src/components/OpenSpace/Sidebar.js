@@ -77,7 +77,7 @@ class Sidebar extends Component {
   fetchOS=()=>{
     Axios.get("http://139.59.67.104:8011/api/v1/open_space_landing")
     .then(response=>{
-      console.log(response.data.data)
+      
       this.setState({Allos:response.data.data})
     
     }

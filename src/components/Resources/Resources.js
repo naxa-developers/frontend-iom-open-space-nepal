@@ -53,30 +53,12 @@ class Resources extends Component {
 
     }
     onApply=()=>{
-        console.log("filter aba");
         
         let Filtered=this.state.resources.filter((i)=>i.title.toUpperCase().includes(this.state.keywords.toUpperCase()))
         this.setState({resouceindex:0})
         !Filtered.length==0?this.chunkArray(Filtered,3):alert("Not Found")
 
     }
-
-
-    // fileDownload =() => {
-    //     console.log("clicked");
-
-    // Axios("http://139.59.67.104:8011/api/v1/resource/",
-    //         { 
-    //             method: "POST",
-    //             headers: { "Content-Type": "application/json",'Authorization': 'Bearer ' + window.localStorage["Access_Token"]}
-
-    //         }).then(response => response.blob()).then(data => 
-    //             console.log("success!"),
-    //             fileDownload(this.state.resources[1].image, 'download_1.png'),
-
-    //         )
-
-    //         }
 
     selectFilter=(state,e)=>{
         console.log(e)
