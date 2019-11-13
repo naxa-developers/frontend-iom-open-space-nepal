@@ -9,8 +9,9 @@ class ReportSidebar extends Component {
     
         this.state = {
              reports: [],
-             keywords: ''
-        }
+             keywords: '',
+
+             isFocused: false        }
     }
     
 
@@ -35,7 +36,7 @@ class ReportSidebar extends Component {
      }
      setKeywords = (e) => {
          this.setState({keywords: e})
-         console.log(keywords);
+        //  console.log(this.state.keywords);
          
          
      }
@@ -90,10 +91,17 @@ class ReportSidebar extends Component {
                                             </div>
                                             <input type="text" class="form-control" aria-label="" placeholder="Search reports" 
                                             onInput ={(e) => this.setKeywords(e.target.value)}
+                                            onFocus = {() => this.setState({isFocused: true})}
+                                            onBlur = {() => {
+                                                setTimeout(()=>this.setState({isFocused: false}),100)
+                                                
+                                            }}
                                             />
                                             <div class="input-group-append">
-                                                <span class="input-group-text"><i
-                                                        class="material-icons" onClick={() =>this.searchNow()}>keyboard_backspace</i></span>
+                                                <span class="input-group-text">
+                                                    {this.state.isFocused &&<i
+                                                        class="material-icons" onClick={() =>this.searchNow()}>keyboard_backspace</i> }
+                                                   </span>
                                             </div>
                                         </div>
 
