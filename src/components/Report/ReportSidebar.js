@@ -107,7 +107,7 @@ class ReportSidebar extends Component {
 
                                         <ul>
                                             {this.state.reports&&this.state.reports.map( (e) => {
-                                               return   <ReportCard title = {e.title} location = {e.name} urgency= {e.urgency} date = {e.date} />
+                                               return   <ReportCard title = {e.title} location = {e.name} urgency= {e.urgency} date = {e.date} ReportLocation={e.location} />
                                                 
                                                
                                             }) 

@@ -1,15 +1,21 @@
 import React, { Component } from "react";
+import { withRouter } from 'react-router-dom';
 
 class ReportCard extends Component {
   render() {
+    console.log(this.props);
+    
     return (
-      <div>
+    <>
         <li>
-          <div class="report-content">
-            <h5>
-              {this.props.title}
+          <div class="report-content" onClick ={() => {
+              
+              this.props.history.push('/reportdetails')
+            }}>
+            <h5 >
+              {this.props.title} 
               <i
-                class="material-icons pending"
+                className="material-icons pending"
                 data-toggle="tooltip"
                 data-placement="top"
                 title="Pending"
@@ -17,18 +23,18 @@ class ReportCard extends Component {
                 timer
               </i>
             </h5>
-            <div class="loc-time flex-start">
-              <a href="#">{this.props.location}</a>
+             <div className="loc-time flex-start">
+          <a >{this.props.ReportLocation}</a>
               <time>1 week ago</time>
-            </div>
+            </div> 
           </div>
           <div class="report-status">
             <label class="unsuccess">high</label>
             <span>{this.props.urgency}</span>
           </div>
         </li>
-      </div>
+     </>
     );
   }
 }
-export default ReportCard;
+export default withRouter(ReportCard);
