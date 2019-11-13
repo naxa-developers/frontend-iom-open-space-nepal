@@ -39,7 +39,8 @@ class Sidebar extends Component {
       province: null,
       district: null,
       municipality: null,
-      Allos:[]
+      Allos:[],
+      Ospointlayer:L.layerGroup()
 
 
     }
@@ -79,6 +80,12 @@ class Sidebar extends Component {
     .then(response=>{
       
       this.setState({Allos:response.data.data})
+      // this.props.mapRefs.addLayer(this.state.Ospointlayer)
+      this.state.Allos.map((e)=>{
+        console.log(this.props.mapRefs);
+        
+        L.circleMarker([e.latitude,e.longitude]).addTo(this.props.mapRefs.current.leafletElement)
+      })
     
     }
     )
