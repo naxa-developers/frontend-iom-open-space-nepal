@@ -26,7 +26,7 @@ import MaterialIcon from 'material-icons-react';
             <div>
                  <div className="map-sidebar">
                         <span className="sidebar-toggle">
-                            <MaterialIcon className="keyboard_arrow_right"></MaterialIcon>
+                            <MaterialIcon icon="keyboard_arrow_right"></MaterialIcon>
                         </span>
                         <div className="sidebar-wrapper">
                             <span className="sidebar-close material-icons">close</span>
