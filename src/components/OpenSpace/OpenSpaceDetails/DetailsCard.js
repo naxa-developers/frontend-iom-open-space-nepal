@@ -8,12 +8,25 @@ import MaterialIcon from 'material-icons-react';
 
 
  class DetailsCard extends Component {
+    onload = () => {
+        var windowHeight = window.innerHeight;
+        console.log(windowHeight);
+        var navHeight = document.getElementsByClassName('site-header')[0].clientHeight;
+        console.log(navHeight);
+        document.getElementsByClassName('sidebar-wrapper')[0].style.height= `${windowHeight-navHeight}px`
+       
+    
+     }
+     componentDidMount() {
+         this.onload();
+     }
+
     render() {
         return (
             <div>
                  <div className="map-sidebar">
                         <span className="sidebar-toggle">
-                            <MaterialIcon className="material-icons">keyboard_arrow_right</MaterialIcon>
+                            <MaterialIcon className="keyboard_arrow_right"></MaterialIcon>
                         </span>
                         <div className="sidebar-wrapper">
                             <span className="sidebar-close material-icons">close</span>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import AssementList from './AssementList'
 
  class GeneralInfo extends Component {
     render() {
@@ -112,19 +113,7 @@ import React, { Component } from 'react'
                     <a href="#">more</a>
                 </p>
             </div>
-            <div className="assessment-list">
-                <ul>
-                    <li data-toggle="modal" data-target="#assessment-popup">
-                        General Information Assessment
-                        <i className="material-icons">chevron_right</i>
-                    </li>
-                    <li data-toggle="modal" data-target="#assessment-popup">
-                        General Environment Assessment
-                        <i className="material-icons">chevron_right</i>
-                    </li>
-                </ul>
-
-            </div>
+                <AssementList className= "toggleModal"/>
         </div>
         )
     }
