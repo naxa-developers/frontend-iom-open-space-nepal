@@ -25,15 +25,9 @@ const AssementList = (props) => {
                 </ul>
 
             </div>
-<<<<<<< HEAD
       
             <Modal isOpen={modal} toggle={toggle} className={className}  centered ="true">
         <ModalHeader toggle={toggle}>General Information Assessment
-=======
-
-            <Modal isOpen={modal} toggle={toggle} className={className}>
-                <ModalHeader toggle={toggle}>General Information Assessment
->>>>>>> a17dee32adcc6778547c33ca3d51c4b77ef58992
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
