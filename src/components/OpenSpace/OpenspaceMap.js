@@ -25,6 +25,7 @@ const { BaseLayer } = LayersControl;
           
 
             <>
+            <input type='text' ></input>
             <LeafletMap
                     center={[27, 85]}
                     zoom={15}
@@ -38,7 +39,8 @@ const { BaseLayer } = LayersControl;
                     easeLinearity={0.35}
                     // bounds={this.bounds}
                     // ref={this.mapRef}
-                    // style={{ height: '80vh',overflow: 'hidden', }}  
+                    ref={this.props.reff}
+                    style={{ height: '75vh',overflow: 'hidden', }}  
                     >
                         <LayersControl position="topright">
                         <BaseLayer checked  name="OpenStreetMap">

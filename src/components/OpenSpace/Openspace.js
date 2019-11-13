@@ -2,7 +2,9 @@ import React, { Component,createRef } from "react";
 import Navbar from "../Home/Navbar";
 import OpenspaceMap from './OpenspaceMap';
 import Sidebar from './Sidebar';
+import L from 'leaflet';
 import './OpenSpaceCSS.css';
+
 
 class OpenSpace extends Component {
   constructor(props) {
@@ -13,7 +15,14 @@ class OpenSpace extends Component {
     };
   };
   
+  onclick=()=>{
+    console.log(this.mapRefs.current.leafletElement);
+    const map=this.mapRefs.current.leafletElement
+    L.circleMarker([27,86]).addTo(map)
 
+    
+
+  }
   render() {
     return (
     <>
@@ -22,8 +31,9 @@ class OpenSpace extends Component {
           <section class="openSpace-map">
             <div class="container-fluid">
               <div class="map-wrapper">
-                <OpenspaceMap />
+                <OpenspaceMap reff={this.mapRefs} />
                 <Sidebar  />
+                <button onClick={()=>this.onclick()}>Applya</button>
               </div>
               
             </div>
