@@ -110,6 +110,9 @@ class Sidebar extends Component {
     this.fetchingForDropdown('municipality')
     this.fetchOS()
     this.onload(); 
+    window.map=this.props.mapRefs.current.leafletElement
+    // window.map1=this.props.mapRefs.current.leafletElement
+
 
 
   }
