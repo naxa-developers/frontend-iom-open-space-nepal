@@ -12,6 +12,7 @@ import L from 'leaflet';
 
 import MaterialIcon from "material-icons-react";
 import Axios from "axios";
+import { log } from "util";
 
 const Province = [
   { value: "1", label: "Last 7 days" }
@@ -35,12 +36,15 @@ class Sidebar extends Component {
     super(props)
     this.sidebarToggle = this.sidebarToggle.bind(this)
     this.state = {
+      Openspaces:null,
       showContent: true,
       province: null,
       district: null,
       municipality: null,
       Allos:[],
-      Ospointlayer:L.layerGroup()
+      handlingindex:0,
+      focused:false,
+      district_muni:L.featureGroup() 
 
 
     }
@@ -59,6 +63,7 @@ class Sidebar extends Component {
   fetchingForDropdown = (name) => {
     var key=name=="province"?"province_api":name=="district"?"district_api":name=="municipality"?"municipality_api":''
     var url=`http://139.59.67.104:8011/api/v1/${key}`
+    var prvnc_dist=name=="district"?"province":name=="municipality"?"district":''
 
 
     
@@ -66,11 +71,13 @@ class Sidebar extends Component {
       .then(response => {
         console.log(response.data.data,"A")
         var array = []
+        // console.log(response.data.data[0][prvnc_dist.toString()],"..a.a.a.")
         response.data.data.map((e) => {
-          let object = { value: e.id, label: e.name }
+         
+          let object = { value: e.id, label: e.name,[prvnc_dist]:e[prvnc_dist.toString()] }
           array.push(object)
         })
-        this.setState({ [name]: array })
+        this.setState({ [name]: array,[name+'tofilter']:array })
       })
 
 
@@ -79,12 +86,13 @@ class Sidebar extends Component {
     Axios.get("http://139.59.67.104:8011/api/v1/open_space_landing")
     .then(response=>{
       
-      this.setState({Allos:response.data.data})
+      this.setState({Allos:response.data.data,Openspaces:response.data.data})
       // this.props.mapRefs.addLayer(this.state.Ospointlayer)
       this.state.Allos.map((e)=>{
         console.log(this.props.mapRefs);
         
-        L.circleMarker([e.latitude,e.longitude]).addTo(this.props.mapRefs.current.leafletElement)
+        
+    
       })
     
     }
@@ -101,6 +109,69 @@ class Sidebar extends Component {
    
 
  }
+ handleprovince=(e)=>{
+
+
+    let FilteredDistrict=this.state.districttofilter.filter((i)=>{
+    return i.province==e.label
+    })
+    this.setState({district:FilteredDistrict,handlingindex:1})
+   
+
+
+ }
+
+ handledistrict=(e)=>{
+  this.setState({handlingindex:1})
+  window.map=this.props.mapRefs.current.leafletElement
+  this.state.district_muni.eachLayer((e)=>this.state.district_muni.removeLayer(e))
+
+  let FilteredMunicipality=this.state.municipalitytofilter.filter((i)=>{
+  return i.district==e.label
+  })
+  this.setState({municipality:FilteredMunicipality,handlingindex:2})
+  
+  Axios.get(`http://139.59.67.104:8011/api/v1/district_geo_json?id=${e.value}`)
+  .then(response=>{
+    console.log(response,e.value)
+    var district=L.geoJSON(response.data)
+    district.addTo(this.state.district_muni)
+    // this.props.mapRefs.current.leafletElement.fitBounds(this.state.district_muni.getBounds()) 
+    // console.log(this.state.district_muni.getBounds())
+    // var zoom=window.map.getZoom()
+    // console.log(zoom)
+    // window.map.setZoom(zoom-3)
+
+  })
+ }
+ 
+ handlemunicipality=(e)=>{
+  window.map=this.props.mapRefs.current.leafletElement
+  this.state.district_muni.eachLayer((e)=>this.state.district_muni.removeLayer(e))
+
+  Axios.get(`http://139.59.67.104:8011/api/v1/municipality_geo_json?id=${e.value}`)
+  .then(response=>{
+    console.log(response,e.value)
+    var municipality=L.geoJSON(response.data)
+    municipality.addTo(this.state.district_muni)
+    // this.props.mapRefs.current.leafletElement.fitBounds(this.state.district_muni.getBounds()) 
+    console.log(this.state.district_muni.getBounds())
+    var zoom=window.map.getZoom()
+    console.log(zoom)
+    
+
+  })
+
+
+
+ 
+
+
+}
+searchOs=()=>{
+  var Filtered=this.state.Openspaces.filter((e)=>e.title.toUpperCase().includes(this.state.search_keyword.toUpperCase()))
+  console.log(Filtered,"aaa")
+}
  
 
    
@@ -111,6 +182,7 @@ class Sidebar extends Component {
     this.fetchOS()
     this.onload(); 
     window.map=this.props.mapRefs.current.leafletElement
+    window.map.addLayer(this.state.district_muni)
     // window.map1=this.props.mapRefs.current.leafletElement
 
 
@@ -119,6 +191,7 @@ class Sidebar extends Component {
 
 
   render() {
+   
     // var toggleClass = this.props.isClick ? 'rotated' : 'sidebar-toggle';
     const { showContent } = this.state;
     return (
@@ -135,9 +208,9 @@ class Sidebar extends Component {
               <div className="map-filter">
                 <div className="filter-option">
 
-                  <Select options={this.state.province} placeholder="Province" />
-                  <Select options={this.state.district} placeholder="District" isDisabled />
-                  <Select options={this.state.municipality} placeholder="Municipality" isDisabled />
+                  <Select options={this.state.province} placeholder="Province" onChange={(e)=>this.handleprovince(e)} />
+                  <Select options={this.state.district} placeholder="District" onChange={(e)=>this.handledistrict(e)} isDisabled={this.state.handlingindex<1?true:false}/>
+                  <Select options={this.state.municipality} placeholder="Municipality" onChange={(e)=>this.handlemunicipality(e)} isDisabled={this.state.handlingindex<2?true:false} />
                   {/* <select className="selectpicker">
                     <option>status</option>
                   </select> */}
@@ -175,10 +248,16 @@ class Sidebar extends Component {
                     className="form-control"
                     aria-label=""
                     placeholder="Search Open Space"
+                    onInput={(e)=>this.setState({search_keyword:e.target.value})}
+                    onFocus={()=>this.setState({focused:true})}
+                    // onBlur={()=>setTimeout(()=>{
+                    //   this.setState({focused:false})
+
+                    // },300)}
                   />
                   <div className="input-group-append">
-                    <span className="input-group-text">
-                      <i className="material-icons">keyboard_backspace</i>
+                    <span className="input-group-text" >
+                      {this.state.focused&&<i className="material-icons" onClick={()=>this.searchOs()}>keyboard_backspace</i>}
                     </span>
                   </div>
                 </div>
