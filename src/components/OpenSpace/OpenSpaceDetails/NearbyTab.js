@@ -1,7 +1,17 @@
 import React, { Component } from "react";
 
 class NearbyTab extends Component {
+
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       accordian:0
+    }
+  }
+  
   render() {
+    console.log("CLICKED",this.state.accordian)
     return (
       <div>
         <div className="card">
@@ -9,13 +19,15 @@ class NearbyTab extends Component {
             <a
               className="card-link btn-link"
               data-toggle="collapse"
-              href="#collapseOne"
+              // href="#collapseOne"
+              onClick={()=>this.state.accordian!=1?this.setState({accordian:1}):this.setState({accordian:0})}
+
             >
               <i className="humanitarian-icon-Medical-supply"> </i>
               Health facilities
             </a>
           </div>
-          <div id="collapseOne" className="collapse " data-parent="#accordion">
+          <div id="collapseOne" className= {this.state.accordian==1?"collapse show":"collapse"} data-parent="#accordion">
             <div className="card-body">
               <div className="facility-overview flex-between">
                 <div className="overview-item">
@@ -116,13 +128,16 @@ class NearbyTab extends Component {
             <a
               className="collapsed card-link btn-link"
               data-toggle="collapse"
-              href="#collapseTwo"
+              // href="#collapseTwo"
+              onClick={()=>this.state.accordian!=2?this.setState({accordian:2}):this.setState({accordian:0})}
+
+
             >
               <i className="humanitarian-icon-Fire"></i>
               Fire Brigade
             </a>
           </div>
-          <div id="collapseTwo" className="collapse" data-parent="#accordion">
+          <div id="collapseTwo" className= {this.state.accordian==2?"collapse show":"collapse"} data-parent="#accordion">
             <div className="card-body">
               <div className="facility-overview flex-between">
                 <div className="overview-item ">
@@ -223,13 +238,16 @@ class NearbyTab extends Component {
             <a
               className="collapsed card-link btn-link"
               data-toggle="collapse"
-              href="#collapseThree"
+              // href="#collapseThree"
+              onClick={()=>this.state.accordian!=3?this.setState({accordian:3}):this.setState({accordian:0})}
+
+
             >
               <i className="humanitarian-icon-Helipad"></i>
               Helipad (Airport)
             </a>
           </div>
-          <div id="collapseThree" className="collapse" data-parent="#accordion">
+          <div id="collapseThree" className= {this.state.accordian==3?"collapse show":"collapse"} data-parent="#accordion">
             <div className="card-body">
               <div className="facility-overview flex-between">
                 <div className="overview-item">
@@ -329,13 +347,15 @@ class NearbyTab extends Component {
             <a
               className="collapsed card-link btn-link"
               data-toggle="collapse"
-              href="#collapseFour"
+              // href="#collapseFour"
+              onClick={()=>this.state.accordian!=4?this.setState({accordian:4}):this.setState({accordian:0})}
+
             >
               <i className="humanitarian-icon-National-army"></i>
               Security Forces
             </a>
           </div>
-          <div id="collapseFour" className="collapse" data-parent="#accordion">
+          <div id="collapseFour" className= {this.state.accordian==4?"collapse show":"collapse"} data-parent="#accordion">
             <div className="card-body">
               <div className="facility-overview flex-between">
                 <div className="overview-item">
