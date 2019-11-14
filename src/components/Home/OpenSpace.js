@@ -70,8 +70,7 @@ class OpenSpace extends Component {
                     </div>
                     <div className="col-lg-4 col-md-4">
                         <div className="video-content flexvr">
-                            {console.log(this.state.Opendata[0])
-                            }
+                          
                             <h3 className="openspace-title"> {this.props.language == '0' ? this.state.loader && this.state.Opendata[0].title : this.state.loader && this.state.Opendata[0].title_nep  }</h3>
                             <p>{this.props.language == '0' ? this.state.loader && this.state.Opendata[0].description : this.state.loader && this.state.Opendata[0].description_nep  }</p>
                         </div>

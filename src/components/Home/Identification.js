@@ -6,13 +6,14 @@ import post2 from '../../img/post-2.jpg'
 import post3 from '../../img/post-3.jpg'
 import post4 from '../../img/post-4.jpg'
 import post5 from '../../img/post-1.jpg'
+import IdentificationCard from './IdentificationCard';
 
 class Identification extends Component {
     constructor(props) {
         super(props)
     
         this.state = {
-             steps: []
+             steps: null
         }
     }
     
@@ -45,21 +46,16 @@ class Identification extends Component {
                         </div>
                      
                     </div>
-                    <div className="col-md-6" style={{
-                        flexBasis: '80%',
-                        height: '100vh', 
-                        overflow: 'auto'
-                    }}>
+                    <div className="col-md-6">
+                  
 
                         <div className="process-content">
-                        { this.state.steps.map(step => <div> {step.title}<img src={step.image} /> </div>)}
-                            {/* <div className="post-meta">
-                                <figure>
-                                    <img src={post1} alt="post" />
-                                </figure>
-                                <h5><span>1</span>Preparatory Phase & Desk Study</h5>
-                            </div>
-                            <div className="post-meta">
+                         { this.state.steps&&this.state.steps.map( (step) => 
+                       
+                            <IdentificationCard image = {step.image} title = {step.title} />
+                            )} 
+                           
+                           {/*  <div className="post-meta">
                                 <figure>
                                     <img src={post2} alt="post" />
                                 </figure>
