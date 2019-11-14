@@ -7,7 +7,6 @@ import { withRouter } from 'react-router-dom';
 
 class OpenSpaceCard extends Component {
     render() {
-        console.log(this.props.image);
         
         return (
             <>
