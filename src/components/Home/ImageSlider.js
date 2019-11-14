@@ -1,13 +1,36 @@
 import React, { Component } from 'react';
 import Slider from "react-slick";
 import  {connect} from 'react-redux';
+import Axios from 'axios';
 
 
-import slider1 from '../../img/slider-1.jpg';
+
 import slider2 from '../../img/slider-2.jpg';
 
 
+
  class ImageSlider extends Component {
+    constructor(props) {
+        super(props)
+    
+        this.state = {
+             sliderData: null
+        }
+    }
+    
+
+
+    componentDidMount() {
+
+        Axios.get(`http://139.59.67.104:8011/api/v1/slider/`)
+        .then( res => {
+            const Sliderdata = res.data; 
+            this.setState({sliderData: Sliderdata})
+            console.log("slide", this.state.sliderData);
+            
+
+        })
+    }
     render() {
         // Use responsive slick here after calculating breakpoints
         const settings = {
@@ -28,16 +51,16 @@ import slider2 from '../../img/slider-2.jpg';
                     <Slider {...settings}> 
                         <div className="intro-item">
                            
-                            <div className="figure" style={{backgroundImage: `url(${slider1})`}}>
+                            <div className="figure" style={{backgroundImage: `url(http://139.59.67.104:8011/media/slider/slider-1.jpg)`}}>
 
                             </div>
-                            <h3> {this.props.language =="0" ? `Temporary Settlement Camps` : `अस्थायी आवास शिविर`  }</h3>     
+                            <h3> {this.state.sliderData&&this.props.language =="0" ? this.state.sliderData[0].title : this.state.sliderData&&this.state.sliderData[0].title_nep  }</h3>     
                         </div>
                         <div className="intro-item">
-                            <div className="figure" style={{backgroundImage: `url(${slider2})`}}>
+                            <div className="figure" style={{backgroundImage: `url(http://139.59.67.104:8011/media/slider/slider-2.jpg)`}}>
 
                             </div>
-                            <h3>{this.props.language =="0" ? `Interaction with Locals and Finalization of Open Spaces` : `स्थानीयहरूसँगको अभिमुखीकरण तथा अन्तरक्रियाद्वारा खुल्ला क्षेत्र निर्धारण` }</h3>
+                            <h3> {this.state.sliderData&&this.props.language =="0" ? this.state.sliderData[1].title : this.state.sliderData&&this.state.sliderData[1].title_nep  }</h3> 
                         </div>
                         </Slider>
                     </div>
