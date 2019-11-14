@@ -27,20 +27,7 @@ import googleplay from '../../img/googleplay.png'
                     <div className="col-md-4">
                         <div className="footer-widget about-widget">
                             <p>This portal contains location based information and attribute details of open spaces from different locations of Nepal. All the open spaces datasets were prepared by IOM in different time in direct coordination and consultation with local governments and relevant line ministries.</p>
-                            {/* <figure className="footer-logo">
-                                <img src={logo} alt="footer-logo" />
-                            </figure>
-                            <div className="footer-logos">
-                                <figure>
-                                    <img src={gov} alt="government" />
-                                </figure>
-                                <figure>
-                                    <img src={iom} alt="IOM" />
-                                </figure>
-                                <figure>
-                                    <img src={ccm}alt="CCM" />
-                                </figure>
-                            </div> */}
+                         
                             <div className="copyright">
                                 <p>Copyright © 2019. <a href="#">Open Space Nepal</a> All rights reserved.</p>
                             </div>

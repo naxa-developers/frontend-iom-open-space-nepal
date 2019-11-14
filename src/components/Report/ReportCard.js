@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 class ReportCard extends Component {
   render() {
-    console.log(this.props);
+    
     
     return (
     <>
