@@ -9,7 +9,9 @@ class ReportSidebar extends Component {
     
         this.state = {
              reports: [],
+             reportsToShow: [],
              keywords: '',
+             filteredReports: [],
 
              isFocused: false        }
     }
@@ -28,8 +30,8 @@ class ReportSidebar extends Component {
          Axios.get("http://139.59.67.104:8011/api/v1/report/")
          .then(response => {
             
-             this.setState({reports: response.data})
-             console.log('fisrt',this.state.reports[0]);
+             this.setState({reports: response.data, reportsToShow: response.data})
+            
              
              
          })
@@ -41,6 +43,15 @@ class ReportSidebar extends Component {
          
      }
      searchNow = () => {
+        
+         
+         
+         let filteredReports = this.state.reports.filter((report) =>  report.title.toLowerCase().includes(this.state.keywords.toLowerCase()) )
+       console.log(filteredReports);
+       
+          this.setState({reportsToShow:filteredReports})
+   
+
 
 
      }
@@ -96,6 +107,12 @@ class ReportSidebar extends Component {
                                                 setTimeout(()=>this.setState({isFocused: false}),100)
                                                 
                                             }}
+                                            onKeyDown = {(e) => {
+                                                if(e.key ==='Enter') {
+                                                  this.searchNow() 
+                                                  // this.setState({focused: false})
+                                                }
+                                              } } 
                                             />
                                             <div class="input-group-append">
                                                 <span class="input-group-text">
@@ -106,7 +123,7 @@ class ReportSidebar extends Component {
                                         </div>
 
                                         <ul>
-                                            {this.state.reports&&this.state.reports.map( (e) => {
+                                            {this.state.reports&&this.state.reportsToShow.map( (e) => {
                                                return   <ReportCard title = {e.title} location = {e.name} urgency= {e.urgency} date = {e.date} ReportLocation={e.location} />
                                                 
                                                
