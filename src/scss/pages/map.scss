@@ -203,6 +203,12 @@
                         display: flex;
                         text-align: center;
                         flex-wrap: nowrap;
+                        .css-2b097c-container{
+                            width:100%;
+                            &:nth-child(2){
+                                margin:0 1rem;
+                            }
+                        }
 
                         .dropdown.bootstrap-select {
                             &:nth-child(2) {
