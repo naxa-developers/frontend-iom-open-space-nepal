@@ -109,9 +109,10 @@
         position: relative;
         background-size: cover;
         background-position: center center;
-        iframe{
+
+        iframe {
             max-width: 640px;
-            width:100%;
+            width: 100%;
         }
 
         .overlay {
@@ -155,14 +156,14 @@
         position: relative;
         z-index: 1011;
         text-align: center;
-        width:100%;
+        width: 100%;
 
         .openspace-title {
             position: relative;
             color: $color-white;
             max-width: 524px;
-            margin:0 auto 8rem auto;
-            
+            margin: 0 auto 8rem auto;
+
 
         }
 
@@ -185,27 +186,30 @@
             font-weight: 700;
         }
     }
+
     @media screen and (min-width:280px) {
         .container {
-            .row{
+            .row {
                 align-items: center;
                 justify-content: center;
             }
+
             .col-space-5 {
                 -ms-flex: 0 0 100;
                 flex: 0 0 100%;
                 max-width: 100%;
-                margin-bottom:2rem;
+                margin-bottom: 2rem;
             }
         }
     }
 
     @media screen and (min-width:$pt-tab) {
         .container {
-            .row{
+            .row {
                 align-items: center;
                 justify-content: center;
             }
+
             .col-space-5 {
                 -ms-flex: 0 0 33.333333%;
                 flex: 0 0 33.333333%;
@@ -217,6 +221,7 @@
     @media screen and (min-width:1400px) {
         .container {
             max-width: 1366px;
+
             .col-space-5 {
                 -ms-flex: 0 0 20%;
                 flex: 0 0 20%;
@@ -227,10 +232,24 @@
 }
 
 .process {
+    .col-md-6 {
+        position: relative;
+    }
+
     .process-left {
-        .openspace-title{
-            padding-right: 3rem;
+        &.fixed-process {
+            position: absolute;
+            top: 0;
+            left: 0;
         }
+
+
+        .openspace-title {
+            padding-right: 3rem;
+
+
+        }
+
         p {
             margin-top: 2rem;
         }
@@ -261,40 +280,50 @@
         }
     }
 }
-.app-section{
-    background-color:$color-blue;
-    .openspace-title,.sub-title{
-        color:$color-white;
+
+.app-section {
+    background-color: $color-blue;
+
+    .openspace-title,
+    .sub-title {
+        color: $color-white;
     }
-    .sub-title{
+
+    .sub-title {
         font-weight: 700;
         text-transform: uppercase;
-        font-size:1.5rem;
+        font-size: 1.5rem;
     }
-    .app-figure{
-        margin:0;
+
+    .app-figure {
+        margin: 0;
         max-width: 400px;
     }
-    .app-content{
-        .app-icons-content{
-            margin-top:3rem;
-            h4{
-                color:$color-white;
-                font-size:1.2rem;
+
+    .app-content {
+        .app-icons-content {
+            margin-top: 3rem;
+
+            h4 {
+                color: $color-white;
+                font-size: 1.2rem;
                 font-weight: 700;
             }
-            .app-icon{
-                margin-top:1rem;
-                figure:first-child{
+
+            .app-icon {
+                margin-top: 1rem;
+
+                figure:first-child {
                     margin-right: 1rem;
                 }
             }
-            a.openspace-button{
-                background-color:lighten($color-blue, 8%);
-                clear:both;
+
+            a.openspace-button {
+                background-color: lighten($color-blue, 8%);
+                clear: both;
                 margin-bottom: 2rem;
             }
-            
+
         }
     }
 }
@@ -307,6 +336,7 @@
 @media screen and (max-width:1540px) {
     .banner {
         min-height: 700px;
+
         .banner-content {
             margin-top: 3rem;
 
@@ -331,6 +361,7 @@
 
     }
 }
+
 @media screen and (max-width:1366px) {
     .banner {
         .banner-content {
@@ -345,7 +376,8 @@
 
             .intro {
                 max-width: 750px;
-                padding-left:4rem;
+                padding-left: 4rem;
+
                 h1 {
                     font-size: 2.8rem;
                     line-height: 3.5rem;
@@ -359,12 +391,15 @@
 
     }
 }
-@media screen and (max-width:$ls-tab){
+
+@media screen and (max-width:$ls-tab) {
     .banner {
         min-height: 650px;
+
         .banner-content {
             .intro {
-                padding-left:0;
+                padding-left: 0;
+
                 h1 {
                     font-size: 2.5rem;
                 }
@@ -377,30 +412,34 @@
         }
 
     }
+
     .slick-slider {
         .slick-prev {
             margin-top: -100px;
-            left:1rem;
-    
+            left: 1rem;
+
             &::before {
                 color: $color-blue;
-    
+
             }
         }
-    
+
         .slick-next {
-            right:1rem;
+            right: 1rem;
+
             &::before {
                 color: $color-blue;
-    
+
             }
         }
-    
+
     }
 }
+
 @media screen and (max-width:$lg-tab) {
     .banner {
         min-height: 600px;
+
         .banner-content {
             margin-top: 2rem;
 
@@ -483,11 +522,13 @@
             }
         }
     }
-    .app-section{
-        padding-top:4rem;
+
+    .app-section {
+        padding-top: 4rem;
         margin-bottom: 0;
     }
 }
+
 @media screen and (max-width:$mb-xl) {
     .banner {
         .banner-content {
@@ -517,9 +558,10 @@
                     font-size: 1.5rem;
                     line-height: 2.2rem;
                 }
-                p{
+
+                p {
                     font-size: .875rem;
-                    margin-top:1rem;
+                    margin-top: 1rem;
                 }
             }
         }
@@ -527,7 +569,8 @@
     }
 
     .home-slider {
-         margin-top: 2rem;
+        margin-top: 2rem;
+
         .intro-slider {
             .intro-item {
 
@@ -592,32 +635,39 @@
             }
         }
     }
-    .app-section{
-        .sub-title{
-            font-size:1rem;
+
+    .app-section {
+        .sub-title {
+            font-size: 1rem;
         }
-        .app-figure{
-            margin-bottom:3rem;
+
+        .app-figure {
+            margin-bottom: 3rem;
         }
-        .app-content{
-            .app-icons-content{
-                margin-top:2rem;
-                h4{
-                    font-size:1rem;
+
+        .app-content {
+            .app-icons-content {
+                margin-top: 2rem;
+
+                h4 {
+                    font-size: 1rem;
                 }
-                .app-icon{
-                    figure:first-child{
+
+                .app-icon {
+                    figure:first-child {
                         margin-right: 0;
                     }
                 }
-                
+
             }
         }
     }
 }
-@media screen and (max-width:$mb-md){
+
+@media screen and (max-width:$mb-md) {
     .banner {
         padding-bottom: 3rem;
+
         .banner-content {
             .logos {
                 figure {
