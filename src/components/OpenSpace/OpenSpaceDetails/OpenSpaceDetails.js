@@ -1,13 +1,13 @@
 import React, { Component,createRef } from "react";
 import Navbar from "../../Home/Navbar";
-import OpenspaceMap from '../OpenspaceMap';
+import DetailsMap from './DetailsMap';
 import DetailsCard from './DetailsCard';
 import '../OpenSpaceCSS.css';
 
 class OpenSpaceDetails extends Component {
   constructor(props) {
     super(props)
-    this.mapRefs=createRef();
+    this.map=createRef();
     this.state = {
        
     };
@@ -22,8 +22,8 @@ class OpenSpaceDetails extends Component {
           <section class="openSpace-map">
             <div class="container-fluid">
               <div class="map-wrapper">
-                <OpenspaceMap />
-                <DetailsCard />
+                <DetailsMap reff={this.map}/>
+                <DetailsCard reff={this.map}/>
               </div>
               
             </div>
