@@ -5,20 +5,26 @@ import { Link } from "react-router-dom";
 import logo from "../../img/logo.png";
 import nepal from "../../img/nepal.png";
 import uk from "../../img/uk.png";
-import $ from "jquery";
 
-// do by react
-function toggle_button() {
-  $(".headRight .toggle-button").on("click", function() {
-    $(this).toggleClass("active");
-    $("body").toggleClass("Is-toggle");
-  });
-}
-toggle_button();
+
 
 class Navbar extends Component {
+  // constructor(props) {
+  //   super(props);
+
+  //   this.state = {
+  //     toggle: true
+  //   };
+  // }
+
+
+// this.props.toggleClass = !this.props.toggleClass;
+
+  // };
+
+
+
   render() {
-   
     const { contents } = this.props;
 
     return (
@@ -30,20 +36,20 @@ class Navbar extends Component {
                 <div className="logo">
                   <Link to="/">
                     <img src={logo} alt="logo" />
-                    </Link>
+                  </Link>
                 </div>
               </div>
 
               <div className="headRight">
                 <div className="country-logos flex-end">
-                  <a className="active" >
+                  <a className="active">
                     <img
                       src={uk}
                       alt="uk"
                       onClick={() => this.props.dispatch({ type: "english" })}
                     />
                   </a>
-                  <a >
+                  <a>
                     <img
                       src={nepal}
                       alt="Nepal"
@@ -56,7 +62,14 @@ class Navbar extends Component {
                   className="main-navigation"
                   role="navigation"
                 >
-                  <div className="toggle-button" onClick={toggle_button}>
+                  <div
+                    className={
+                      this.props.toggle
+                        ? "toggle-button active "
+                        : "toggle-button "
+                    }
+                    onClick={() => this.props.onToggle(event)}
+                  >
                     <span></span>
                     <span></span>
                     <span></span>
@@ -71,10 +84,10 @@ class Navbar extends Component {
                             : "स्रोतहरु"}
                         </Link>
                       </li>
-                      <li className="menu-item ">  
+                      <li className="menu-item ">
                         <Link to="report">
                           {this.props.language == "0" ? "Reports" : "रिपोर्ट"}
-                          </Link>
+                        </Link>
                       </li>
                       <li className="menu-item menu-item">
                         <Link to="openspace">
