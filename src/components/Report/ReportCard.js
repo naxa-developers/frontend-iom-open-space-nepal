@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router-dom';
+import {connect } from 'react-redux';
+
 
 class ReportCard extends Component {
   render() {
+   
     
     
     return (
@@ -12,7 +15,7 @@ class ReportCard extends Component {
               
               this.props.history.push('/reportdetails')
             }}>
-            <h5 >
+            <h5  onClick={() => this.props.dispatch({ type: "reportClicked", id:this.props.id })} >
               {this.props.title} 
               <i
                 className="material-icons pending"
@@ -37,4 +40,11 @@ class ReportCard extends Component {
     );
   }
 }
-export default withRouter(ReportCard);
+const mapStateToProps = (state) => {
+  return {
+       language: state.language,
+       reportID: state.reportID
+   }
+}
+
+export default withRouter(connect(mapStateToProps)(ReportCard));
