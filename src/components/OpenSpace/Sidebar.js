@@ -69,7 +69,7 @@ class Sidebar extends Component {
     
     Axios.get(url)
       .then(response => {
-        console.log(response.data.data,"A")
+      
         var array = []
         // console.log(response.data.data[0][prvnc_dist.toString()],"..a.a.a.")
         response.data.data.map((e) => {
@@ -102,9 +102,9 @@ class Sidebar extends Component {
 
   onload = () => {
     var windowHeight = window.innerHeight;
-    console.log(windowHeight);
+    
     var navHeight = document.getElementsByClassName('site-header')[0].clientHeight;
-    console.log(navHeight);
+   
     document.getElementsByClassName('sidebar-wrapper')[0].style.height= `${windowHeight-navHeight}px`
    
 
@@ -170,7 +170,7 @@ class Sidebar extends Component {
 }
 searchOs=()=>{
   var Filtered=this.state.Openspaces.filter((e)=>e.title.toUpperCase().includes(this.state.search_keyword.toUpperCase()))
-  console.log(Filtered,"aaa")
+  
 }
  
 

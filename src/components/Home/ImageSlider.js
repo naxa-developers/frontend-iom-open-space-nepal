@@ -51,13 +51,13 @@ import slider2 from '../../img/slider-2.jpg';
                     <Slider {...settings}> 
                         <div className="intro-item">
                            
-                            <div className="figure" style={{backgroundImage: `url(http://139.59.67.104:8011/media/slider/slider-1.jpg)`}}>
+                            <div className="figure" style={{backgroundImage: `url(http://139.59.67.104:8011/media/slider/tab_1.jpg)`}}>
 
                             </div>
                             <h3> {this.state.sliderData&&this.props.language =="0" ? this.state.sliderData[0].title : this.state.sliderData&&this.state.sliderData[0].title_nep  }</h3>     
                         </div>
                         <div className="intro-item">
-                            <div className="figure" style={{backgroundImage: `url(http://139.59.67.104:8011/media/slider/slider-2.jpg)`}}>
+                            <div className="figure" style={{backgroundImage: `url(http://139.59.67.104:8011/media/slider/tab.jpg)`}}>
 
                             </div>
                             <h3> {this.state.sliderData&&this.props.language =="0" ? this.state.sliderData[1].title : this.state.sliderData&&this.state.sliderData[1].title_nep  }</h3> 
