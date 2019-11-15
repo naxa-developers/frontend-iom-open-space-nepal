@@ -52,6 +52,8 @@
             .figure {
                 min-height: 600px;
                 display: block;
+                background-size: cover;
+                background-repeat: no-repeat;
             }
 
             h3 {
@@ -103,10 +105,14 @@
     background-color: $green-highlight;
 
     .video {
-        min-height: 470px;
+        // min-height: 470px;
         position: relative;
         background-size: cover;
         background-position: center center;
+        iframe{
+            max-width: 640px;
+            width:100%;
+        }
 
         .overlay {
             background-color: rgba($color-blue, .6);
