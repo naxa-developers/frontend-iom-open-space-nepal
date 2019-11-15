@@ -18,7 +18,7 @@ toggle_button();
 
 class Navbar extends Component {
   render() {
-    console.log(this.props);
+   
     const { contents } = this.props;
 
     return (

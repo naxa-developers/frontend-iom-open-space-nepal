@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import MaterialIcon from 'material-icons-react';
 import Axios from 'axios';
 import ReportCard from './ReportCard';
+import ReportFilter from './ReportFilter';
 
 class ReportSidebar extends Component {
     constructor(props) {
@@ -63,44 +64,24 @@ class ReportSidebar extends Component {
         return (
             <div>
                 
-                      <div class="map-sidebar">
-                        <span class="sidebar-toggle">
+                      <div className="map-sidebar">
+                        <span className="sidebar-toggle">
                         <MaterialIcon icon="keyboard_arrow_right" />
                         </span>
                         
-                        <div class="sidebar-wrapper">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="map-filter">
-                                        <div class="filter-option">
-                                            <select class="selectpicker">
-                                                <option>Last 7 days</option>
-                                            </select>
-                                            <select class="selectpicker">
-                                                <option>status</option>
-                                            </select>
-                                            <select class="selectpicker">
-                                                <option>Urgency</option>
-                                            </select>
-                                        </div>
-                                        <div class="reset-btns">
-                                            <div class="reset">
-                                            <MaterialIcon icon="refresh" />
-                                                
-                                                <span>clear all</span>
-                                            </div>
-                                            <a href="#" class="openspace-button">Apply</a>
-                                        </div>
-                                    </div>
-                                    <div class="report-count">
+                        <div className="sidebar-wrapper">
+                            <div className="card">
+                                <div className="card-body">
+                                   <ReportFilter />
+                                    <div className="report-count">
         <h5>Reports: <span>{this.state.reports.length}</span></h5>
                                     </div>
-                                    <div class="report-list">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">  <MaterialIcon icon="search" /></span>
+                                    <div className="report-list">
+                                        <div className="input-group">
+                                            <div className="input-group-prepend">
+                                                <span className="input-group-text">  <MaterialIcon icon="search" /></span>
                                             </div>
-                                            <input type="text" class="form-control" aria-label="" placeholder="Search reports" 
+                                            <input type="text" className="form-control" aria-label="" placeholder="Search reports" 
                                             onInput ={(e) => this.setKeywords(e.target.value)}
                                             onFocus = {() => this.setState({isFocused: true})}
                                             onBlur = {() => {
@@ -114,17 +95,17 @@ class ReportSidebar extends Component {
                                                 }
                                               } } 
                                             />
-                                            <div class="input-group-append">
-                                                <span class="input-group-text">
+                                            <div className="input-group-append">
+                                                <span className="input-group-text">
                                                     {this.state.isFocused &&<i
-                                                        class="material-icons" onClick={() =>this.searchNow()}>keyboard_backspace</i> }
+                                                        className="material-icons" onClick={() =>this.searchNow()}>keyboard_backspace</i> }
                                                    </span>
                                             </div>
                                         </div>
 
                                         <ul>
                                             {this.state.reports&&this.state.reportsToShow.map( (e) => {
-                                               return   <ReportCard title = {e.title} location = {e.name} urgency= {e.urgency} date = {e.date} ReportLocation={e.location} />
+                                               return   <ReportCard id = {e.id} title = {e.title} location = {e.name} urgency= {e.urgency} date = {e.date} ReportLocation={e.location} />
                                                 
                                                
                                             }) 
