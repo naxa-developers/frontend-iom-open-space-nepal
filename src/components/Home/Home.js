@@ -38,7 +38,7 @@ import bannerShape from "../../img/banner-shape.png";
           <Banner />
         </section> 
         <main className="main-content">
-        {/* <ImageSlider /> */}
+        <ImageSlider />
         <OpenSpace />
         <Glimpse />
         
