@@ -237,13 +237,9 @@
     }
 
     .process-left {
-        &.fixed-process {
-            position: absolute;
+            position: sticky;
+            position: -webkit-sticky;
             top: 0;
-            left: 0;
-        }
-
-
         .openspace-title {
             padding-right: 3rem;
 
