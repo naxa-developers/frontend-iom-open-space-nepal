@@ -102,7 +102,7 @@ import AssementList from './AssementList'
                     </ul>
                 </div>
                 <p>
-                    <span>"Airport Central Dojo"</span>
+                    <span>""</span>
                     <a href="#">more</a>
                 </p>
             </div>

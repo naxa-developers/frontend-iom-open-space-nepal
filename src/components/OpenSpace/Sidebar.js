@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Select from "react-select";
 import OpenSpaceCard from "./OpenSpaceCard";
-import PerfectScrollbar from "react-perfect-scrollbar";
+
 import "./OpenSpaceCSS.css";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
@@ -9,12 +9,8 @@ import L from "leaflet";
 
 import MaterialIcon from "material-icons-react";
 import Axios from "axios";
-import { log } from "util";
 
-const Province = [{ value: "1", label: "Last 7 days" }];
-const District = [{ value: "1", label: "Status" }];
 
-const Municipality = [{ value: "1", label: "Urgency" }];
 
 class Sidebar extends Component {
   constructor(props) {
@@ -173,10 +169,10 @@ class Sidebar extends Component {
   };
 
   displayOS = () => {
-    console.log("hfsjd", this.state.Allos);
+   
 
     this.state.Allos.map(e => {
-      console.log("markers", e);
+    
       var map = this.props.mapRefs.current.leafletElement;
       var marker = L.circleMarker([e.latitude, e.longitude]).addTo(map);
     });
@@ -239,9 +235,7 @@ class Sidebar extends Component {
                       isDisabled={this.state.handlingindex < 2 ? true : false}
                       value={this.state.SelectedMunicipality}
                     />
-                    {/* <select className="selectpicker">
-                    <option>status</option>
-                  </select> */}
+                 
                   </div>
                   <div className="reset-btns">
                     <div className="reset">
@@ -311,10 +305,7 @@ class Sidebar extends Component {
                       onKeyDown={e => {
                         if (e.key == "Enter") this.searchOs();
                       }}
-                      // onBlur={()=>setTimeout(()=>{
-                      //   this.setState({focused:false})
-
-                      // },300)}
+                      
                     />
                     <div className="input-group-append">
                       <span className="input-group-text">
@@ -331,16 +322,15 @@ class Sidebar extends Component {
                   </div>
 
                   <ul>
-                    {/* <PerfectScrollbar> */}
+                 
 
                     {this.state.Allos &&
                       this.state.Allos.map(e => {
-                        // L.marker([])
-                        //
-                        // console.log(e);
+                      
 
                         return (
                           <OpenSpaceCard
+                            key= {e.id}
                             name={e.title}
                             address={e.address}
                             image={e.image}
@@ -349,19 +339,7 @@ class Sidebar extends Component {
                         );
                       })}
 
-                    {/* <OpenSpaceCard />
-                    <OpenSpaceCard />
-                    <OpenSpaceCard />
-                    <OpenSpaceCard />
-                    <OpenSpaceCard />
-                    <OpenSpaceCard />
-                    <OpenSpaceCard />
-                    <OpenSpaceCard />
-                    <OpenSpaceCard />
-                    <OpenSpaceCard />
-                    <OpenSpaceCard />
-                    <OpenSpaceCard /> */}
-                    {/* </PerfectScrollbar> */}
+                   
                   </ul>
                 </div>
               </div>
