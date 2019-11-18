@@ -110,7 +110,7 @@ class Sidebar extends Component {
 
   handledistrict = e => {
     this.setState({ SelectedDistrict: e });
-    this.setState({ handlingindex: 1 });
+    this.setState({ handlingindex: 2 });
     window.map = this.props.mapRefs.current.leafletElement;
     this.state.district_muni.eachLayer(e =>
       this.state.district_muni.removeLayer(e)
