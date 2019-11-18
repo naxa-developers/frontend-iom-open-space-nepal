@@ -7,15 +7,15 @@ import AssementList from './AssementList'
             <div className="general-info">
             <div className="general-overview flex-between">
                 <div className="overview-item">
-                    <h6>40212</h6>
+                    <h6>{this.props.capacity}</h6>
                     <p>Capacity</p>
                 </div>
                 <div className="overview-item">
-                    <h6>176,853 <sub>sq.m</sub></h6>
+                    <h6>{this.props.total_area} <sub>sq.m</sub></h6>
                     <p>Total Area</p>
                 </div>
                 <div className="overview-item">
-                    <h6>140,742.9<sub>sq.m</sub></h6>
+                    <h6>{this.props.usable_area}<sub>sq.m</sub></h6>
                     <p>Usable Area</p>
                 </div>
             </div>
@@ -102,14 +102,7 @@ import AssementList from './AssementList'
                     </ul>
                 </div>
                 <p>
-                    <span>Ratnapark and Tundikhel and is a likely rallying point
-                        for
-                        IDP. It extends in an area of 177,241.96 sq. m out of
-                        which
-                        140742.94 is found to be usable. The site is under the
-                        ownership of Kathmandu Metropolitan City Ratnapark and
-                        Tundikhel and is a likely rallying point
-                        for IDP.</span>
+                    <span>"Airport Central Dojo"</span>
                     <a href="#">more</a>
                 </p>
             </div>

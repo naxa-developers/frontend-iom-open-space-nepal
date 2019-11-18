@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import './OpenSpaceCSS.css'
 import { useHistory } from "react-router-dom";
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class OpenSpaceCard extends Component {
     render() {
@@ -19,11 +20,12 @@ class OpenSpaceCard extends Component {
                             />
                         </figure>
                         <div className="space-content" onClick= {() => {
-                     
-                           this.props.history.push('/OpenSpaceDetails')
+                            this.props.dispatch({type: "spaceClicked", id: this.props.id})
+                           this.props.history.push('/OpenSpaceDetails');
+                           
                         }
                         }>
-                            <h5>{this.props.name}</h5>
+                            <h5  >{this.props.name}</h5>
                             <p>
                                 <span>
                                     <i className="material-icons">room</i>{this.props.address}
@@ -42,5 +44,10 @@ class OpenSpaceCard extends Component {
         );
     }
 }
+const mapStateToProps = (state) => {
+    return {
+         ...state
+    }
+}
 
-export default withRouter(OpenSpaceCard);
+export default withRouter(connect(mapStateToProps)(OpenSpaceCard));

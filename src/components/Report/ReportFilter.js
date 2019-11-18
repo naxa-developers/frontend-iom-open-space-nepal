@@ -20,19 +20,33 @@ class ReportFilter extends Component {
     super(props);
 
     this.state = {
-      selection: 0
+      valueDays: null,
+      valueStatus: null,
+      valueUrgency: null,
+   
+      
     };
   }
 
-//   onSelectChange = e => {
-//     this.setState({ selection: e.value });
-//   };
-  onClear = (e) => {
-    e.preventDefault();
-    console.log("clear now");
+  onDaysChange = e => {
+    this.setState({ valueDays: e });
+    
+  };
 
-    const { selection } = this.state;
-    this.setState({ selection: 0 });
+  onStatusChange = e => {
+    this.setState({  valueStatus: e });
+    
+  };
+
+  onUrgencyChange = e => {
+    this.setState({  valueUrgency: e });
+    
+  };
+  onClear = () => {
+   
+
+  
+    this.setState({ valueDays: null, valueStatus: null,valueUrgency: null});
   };
 
   render() {
@@ -41,17 +55,20 @@ class ReportFilter extends Component {
         <div className="filter-option">
           <Select
             options={days}
-            //  value={this.state.selection}
-            // onChange={this.onSelectChange}
+            value = {this.state.valueDays}
+           
+            onChange={this.onDaysChange}
           />
 
           <Select
             options={status}
-            // value={this.state.selection}
-            // onChange={this.onSelectChange}
+            value = {this.state.valueStatus}
+            onChange={this.onStatusChange}
           />
           <Select 
           options={urgency}
+          value = {this.state.valueUrgency}
+            onChange={this.onUrgencyChange}
            />
         </div>
         <div className="reset-btns">

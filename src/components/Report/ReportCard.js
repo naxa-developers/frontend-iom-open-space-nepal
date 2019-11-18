@@ -43,7 +43,7 @@ class ReportCard extends Component {
 const mapStateToProps = (state) => {
   return {
        language: state.language,
-       reportID: state.reportID
+       id: state.reportID
    }
 }
 

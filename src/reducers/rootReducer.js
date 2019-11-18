@@ -1,6 +1,7 @@
 const initState = {
   language: '0',
-  reportID: null
+  reportID: null,
+  spaceID: null
 
   
             
@@ -22,6 +23,11 @@ const rootReducer = (state= initState, action) => {
                 return{
                     ...state,
                     reportID: action.id
+                }
+            case "spaceClicked":
+                return{
+                    ...state,
+                    spaceID: action.id
                 }
                 
 

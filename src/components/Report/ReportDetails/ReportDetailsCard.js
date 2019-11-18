@@ -35,7 +35,7 @@ class ReportDetailsCard extends Component {
   }
 
   render() {
-    console.log(this.props.id);
+   
 
     return (
       <div className="map-sidebar">
