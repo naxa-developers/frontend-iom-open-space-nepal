@@ -40,11 +40,11 @@ class ImageSlider extends Component {
           <div className="container">
             <div className="intro-slider">
               <Slider {...settings}>
-                {/* {this.state.sliderData&&this.state.sliderData.map( (e) => {
+               {this.state.sliderData&&this.state.sliderData.map( (e) => { 
                        return <SingleSlider title = {e.title} title_nep={e.title_nep} image={e.image} />
-                     } )} */}
-               
-                <div className="intro-item">
+                     } )} 
+             
+                {/* <div className="intro-item">
                   <div
                     className="figure"
                     style={{
@@ -78,14 +78,14 @@ class ImageSlider extends Component {
                     style={{
                       backgroundImage: `url(http://139.59.67.104:8011/media/slider/Dolakha_Map_Atlas_Mock_up.jpg)`
                     }}
-                  ></div>
-                  <h3>
+                  ></div> */}
+                  {/* <h3>
                    
                     {this.state.sliderData && this.props.language == "0"
                       ?  this.state.sliderData &&this.state.sliderData[2].title
                       : this.state.sliderData && this.state.sliderData[2].title_nep}
                   </h3>
-                </div>
+                </div> */}
 
 
 

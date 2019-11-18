@@ -34,10 +34,10 @@ class DetailsCard extends Component {
     fetchDetails = () => {
         Axios.get(`http://139.59.67.104:8011/api/v1/open_space/${this.props.spaceID}`).then(
             response => {
-                console.log("space arrived");
+             
                 
               this.setState({ spaceInfo: response.data });
-              console.log("space",this.state.spaceInfo);
+            
               
             }
           );
@@ -63,7 +63,7 @@ class DetailsCard extends Component {
                         <div className="card">
                             <div className="card-body">
                                 <DetailsHeader 
-                                title= {this.state.spaceInfo.title}
+                                title= {this.state.spaceInfo&&this.state.spaceInfo.title}
                                 address = {this.state.spaceInfo.address}
                                 image = {this.state.spaceInfo.image}
 
@@ -80,6 +80,7 @@ class DetailsCard extends Component {
                                             capacity = {this.state.spaceInfo.capacity}
                                             total_area = {this.state.spaceInfo.total_area}
                                             usable_area = {this.state.spaceInfo.usable_area}
+
                                             />
                                         </div>
                                         <div className={this.state.tabid == 2 ? "tab-pane fade show active" : "tab-pane fade"} id="images" role="tabpanel"

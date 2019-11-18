@@ -2,7 +2,7 @@ import React, { Component,createRef } from "react";
 import Navbar from "../../Home/Navbar";
 import DetailsMap from './DetailsMap';
 import DetailsCard from './DetailsCard';
-import '../OpenSpaceCSS.css';
+// import '../OpenSpaceCSS.css';
 
 class OpenSpaceDetails extends Component {
   constructor(props) {

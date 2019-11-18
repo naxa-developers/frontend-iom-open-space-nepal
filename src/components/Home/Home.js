@@ -22,7 +22,7 @@ import bannerShape from "../../img/banner-shape.png";
 
   toggleButton = (event) => {
     event.preventDefault();
-    console.log("toggle now");
+ 
   
     this.setState({
        toggle: !this.state.toggle
