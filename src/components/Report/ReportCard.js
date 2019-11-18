@@ -27,7 +27,7 @@ class ReportCard extends Component {
               </i>
             </h5>
              <div className="loc-time flex-start">
-          <a >{this.props.ReportLocation}</a>
+          <a >{this.props.ReportLocat}</a>
               <time>1 week ago</time>
             </div> 
           </div>
