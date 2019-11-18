@@ -17,7 +17,7 @@ class ImageSlider extends Component {
     Axios.get(`http://139.59.67.104:8011/api/v1/slider/`).then(res => {
       const Sliderdata = res.data;
       this.setState({ sliderData: Sliderdata });
-      console.log("slide", this.state.sliderData);
+    
     });
   }
   render() {
