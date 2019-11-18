@@ -81,10 +81,11 @@ class Sidebar extends Component {
           Allos: response.data.data,
           Openspaces: response.data.data
         });
-        // this.props.mapRefs.addLayer(this.state.Ospointlayer)
-        this.state.Allos.map(e => {
-          console.log(this.props.mapRefs);
-        });
+
+        // this.state.Allos.map(e => {
+        //   console.log(this.props.mapRefs);
+        // });
+        this.displayOS();
       }
     );
   };
@@ -105,7 +106,12 @@ class Sidebar extends Component {
     let FilteredDistrict = this.state.districttofilter.filter(i => {
       return i.province == e.label;
     });
-    this.setState({ district: FilteredDistrict, handlingindex: 1 });
+    this.setState({
+      district: FilteredDistrict,
+      handlingindex: 1,
+      SelectedDistrict: null,
+      SelectedMunicipality: null
+    });
   };
 
   handledistrict = e => {
@@ -126,12 +132,15 @@ class Sidebar extends Component {
     ).then(response => {
       var district = L.geoJSON(response.data);
       district.addTo(this.state.district_muni);
-      // this.props.mapRefs.current.leafletElement.fitBounds(this.state.district_muni.getBounds())
+      this.props.mapRefs.current.leafletElement.fitBounds(
+        this.state.district_muni.getBounds()
+      );
       // console.log(this.state.district_muni.getBounds())
       // var zoom=window.map.getZoom()
-      // console.log(zoom)
+
       // window.map.setZoom(zoom-3)
     });
+    this.setState({ SelectedMunicipality: null });
   };
 
   handlemunicipality = e => {
@@ -146,17 +155,32 @@ class Sidebar extends Component {
     ).then(response => {
       var municipality = L.geoJSON(response.data);
       municipality.addTo(this.state.district_muni);
-      // this.props.mapRefs.current.leafletElement.fitBounds(this.state.district_muni.getBounds())
+      this.props.mapRefs.current.leafletElement.fitBounds(
+        this.state.district_muni.getBounds()
+      );
 
-      var zoom = window.map.getZoom();
+      // var zoom = window.map.getZoom();
     });
   };
   searchOs = () => {
+    console.log("search");
+
     var Filtered = this.state.Openspaces.filter(e =>
       e.title.toUpperCase().includes(this.state.search_keyword.toUpperCase())
     );
+
+    this.setState({ Allos: Filtered });
   };
 
+  displayOS = () => {
+    console.log("hfsjd", this.state.Allos);
+
+    this.state.Allos.map(e => {
+      console.log("markers", e);
+      var map = this.props.mapRefs.current.leafletElement;
+      var marker = L.circleMarker([e.latitude, e.longitude]).addTo(map);
+    });
+  };
   componentDidMount() {
     this.fetchingForDropdown("province");
     this.fetchingForDropdown("district");
@@ -169,6 +193,10 @@ class Sidebar extends Component {
   }
 
   render() {
+
+    
+    
+    
     // var toggleClass = this.props.isClick ? 'rotated' : 'sidebar-toggle';
     const { showContent } = this.state;
     return (
@@ -195,7 +223,7 @@ class Sidebar extends Component {
                       options={this.state.province}
                       placeholder="Province"
                       onChange={e => this.handleprovince(e)}
-                      value = {this.state.SelectedProvince}
+                      value={this.state.SelectedProvince}
                     />
                     <Select
                       options={this.state.district}
@@ -219,7 +247,7 @@ class Sidebar extends Component {
                     <div className="reset">
                       <i className="material-icons">refresh</i>
                       <span
-                        onClick={() =>
+                        onClick={() =>{
                           this.setState({
                             SelectedProvince: null,
                             SelectedDistrict: null,
@@ -228,6 +256,15 @@ class Sidebar extends Component {
                             municipality: null,
                             handlingindex: 0
                           })
+                          var bounds = [[30.86924662953735,
+                            100.29542704344739],
+                           [
+                             26.7211025368031,
+                      79.2016770434474
+                           ] ];
+                           window.map.fitBounds(bounds)
+                          }
+
                         }
                       >
                         clear all
@@ -271,6 +308,9 @@ class Sidebar extends Component {
                         this.setState({ search_keyword: e.target.value })
                       }
                       onFocus={() => this.setState({ focused: true })}
+                      onKeyDown={e => {
+                        if (e.key == "Enter") this.searchOs();
+                      }}
                       // onBlur={()=>setTimeout(()=>{
                       //   this.setState({focused:false})
 
@@ -297,7 +337,7 @@ class Sidebar extends Component {
                       this.state.Allos.map(e => {
                         // L.marker([])
                         //
-                        console.log(e);
+                        // console.log(e);
 
                         return (
                           <OpenSpaceCard
