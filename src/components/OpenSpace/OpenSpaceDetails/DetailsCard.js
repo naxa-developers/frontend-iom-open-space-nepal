@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
+import Axios from 'axios'
+
 import DetailsHeader from './DetailsHeader'
 import TabNavbar from './TabNavbar'
 import GeneralInfo from './GeneralInfo'
 import ReportTab from './ReportTab'
 import NearbyTab from './NearbyTab'
 import MaterialIcon from 'material-icons-react';
+import {connect} from 'react-redux';
+
 
 
 class DetailsCard extends Component {
@@ -12,21 +16,35 @@ class DetailsCard extends Component {
         super(props)
 
         this.state = {
+            spaceInfo: '',
             tabid: 1
         }
     }
 
     onload = () => {
         var windowHeight = window.innerHeight;
-        console.log(windowHeight);
+    
         var navHeight = document.getElementsByClassName('site-header')[0].clientHeight;
-        console.log(navHeight);
+        
         document.getElementsByClassName('sidebar-wrapper')[0].style.height = `${windowHeight - navHeight}px`
 
 
     }
+
+    fetchDetails = () => {
+        Axios.get(`http://139.59.67.104:8011/api/v1/open_space/${this.props.spaceID}`).then(
+            response => {
+             
+                
+              this.setState({ spaceInfo: response.data });
+            
+              
+            }
+          );
+    }
     componentDidMount() {
         this.onload();
+        this.fetchDetails();
     }
     changetabid = (e) => {
         this.setState({tabid:e})
@@ -44,7 +62,12 @@ class DetailsCard extends Component {
                         <span className="sidebar-close material-icons">close</span>
                         <div className="card">
                             <div className="card-body">
-                                <DetailsHeader />
+                                <DetailsHeader 
+                                title= {this.state.spaceInfo&&this.state.spaceInfo.title}
+                                address = {this.state.spaceInfo.address}
+                                image = {this.state.spaceInfo.image}
+
+                                />
                                 <TabNavbar tabid={this.state.tabid} changetabid={this.changetabid} />
 
 
@@ -53,7 +76,12 @@ class DetailsCard extends Component {
                                     <div className="tab-content" id="myTabContent">
                                         <div className={this.state.tabid == 1 ? "tab-pane fade show active" : "tab-pane fade"} id="general" role="tabpanel"
                                             aria-labelledby="general_tab">
-                                            <GeneralInfo />
+                                            <GeneralInfo 
+                                            capacity = {this.state.spaceInfo.capacity}
+                                            total_area = {this.state.spaceInfo.total_area}
+                                            usable_area = {this.state.spaceInfo.usable_area}
+
+                                            />
                                         </div>
                                         <div className={this.state.tabid == 2 ? "tab-pane fade show active" : "tab-pane fade"} id="images" role="tabpanel"
                                             aria-labelledby="images_tab">
@@ -83,4 +111,10 @@ class DetailsCard extends Component {
         )
     }
 }
-export default DetailsCard;
+
+const mapStateToProps = state => {
+    return {
+      spaceID: state.spaceID
+    };
+  };
+export default connect(mapStateToProps)(DetailsCard);

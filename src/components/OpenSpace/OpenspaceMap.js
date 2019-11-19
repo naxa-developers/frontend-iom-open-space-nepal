@@ -40,7 +40,12 @@ const { BaseLayer } = LayersControl;
     }
     render() {
       
-      
+        var bounds = [[30.86924662953735,
+            100.29542704344739],
+           [
+             26.7211025368031,
+      79.2016770434474
+           ] ];
         
     
         return (
@@ -58,7 +63,7 @@ const { BaseLayer } = LayersControl;
                     dragging={true}
                     animate={true}
                     easeLinearity={0.35}
-                    // bounds={this.bounds}
+                    bounds={bounds}
                     ref={this.props.mapRefss}
                     style={{ height: this.state.height == null ? '80vh': this.state.height,overflow: 'hidden', }}  
                     >

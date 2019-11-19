@@ -25,7 +25,7 @@ import ReportDetails from './Report/ReportDetails/ReportDetails';
 
 class App extends Component {
   render() {
-  console.log(this.props,"Props")
+
     return (
      
       <Router>

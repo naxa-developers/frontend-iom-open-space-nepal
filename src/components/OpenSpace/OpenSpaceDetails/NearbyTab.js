@@ -28,7 +28,7 @@ class NearbyTab extends Component {
             </a>
           </div>
           <div id="collapseOne" className= {this.state.accordian==1?"collapse show":"collapse"} data-parent="#accordion">
-            <div className="card-body">
+            {/* <div className="card-body">
               <div className="facility-overview flex-between">
                 <div className="overview-item">
                   <h6>1</h6>
@@ -119,7 +119,7 @@ class NearbyTab extends Component {
                   </li>
                 </ul>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 

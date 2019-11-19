@@ -1,5 +1,7 @@
 const initState = {
-  language: '0'
+  language: '0',
+  reportID: null,
+  spaceID: null
 
   
             
@@ -17,6 +19,16 @@ const rootReducer = (state= initState, action) => {
                         ...state,
                         language: '0'
                     }
+            case "reportClicked":
+                return{
+                    ...state,
+                    reportID: action.id
+                }
+            case "spaceClicked":
+                return{
+                    ...state,
+                    spaceID: action.id
+                }
                 
 
         default:

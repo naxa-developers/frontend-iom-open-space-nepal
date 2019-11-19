@@ -2,7 +2,7 @@ import React, { Component,createRef } from "react";
 import Navbar from "../../Home/Navbar";
 import DetailsMap from './DetailsMap';
 import DetailsCard from './DetailsCard';
-import '../OpenSpaceCSS.css';
+// import '../OpenSpaceCSS.css';
 
 class OpenSpaceDetails extends Component {
   constructor(props) {
@@ -15,6 +15,8 @@ class OpenSpaceDetails extends Component {
   
 
   render() {
+    console.log(this.props.id);
+    
     return (
     <>
         <Navbar />
@@ -22,8 +24,8 @@ class OpenSpaceDetails extends Component {
           <section class="openSpace-map">
             <div class="container-fluid">
               <div class="map-wrapper">
-                <DetailsMap reff={this.map}/>
-                <DetailsCard reff={this.map}/>
+                <DetailsMap reff={this.map} />
+                <DetailsCard reff={this.map} id = {this.props.id}/>
               </div>
               
             </div>

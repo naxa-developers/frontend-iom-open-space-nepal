@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import post1 from '../../img/post-1.jpg'
-import post2 from '../../img/post-2.jpg'
-import post3 from '../../img/post-3.jpg'
-import post4 from '../../img/post-4.jpg'
-import post5 from '../../img/post-1.jpg'
+
 import IdentificationCard from './IdentificationCard';
 
 class Identification extends Component {
@@ -38,7 +34,7 @@ class Identification extends Component {
                     <div className="col-md-6" style={{
                         flexBasis: '50%'
                     }}>
-                        <div className="process-left">
+                        <div className="process-left sticky">
                             <h3 className="openspace-title">Open space indentification process</h3>
                             <p>Open space was identified by conducting workshops and interaction programs with locally
                                 elected
@@ -52,7 +48,7 @@ class Identification extends Component {
                         <div className="process-content">
                          { this.state.steps&&this.state.steps.map( (step) => 
                        
-                            <IdentificationCard image = {step.image} title = {step.title} />
+                            <IdentificationCard key= {step.id} image = {step.image} title = {step.title} />
                             )} 
                            
                            {/*  <div className="post-meta">
