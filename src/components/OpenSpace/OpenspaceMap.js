@@ -29,9 +29,14 @@ const { BaseLayer } = LayersControl;
         })
 
      }
-     
+     currentLocation=()=>{
+     navigator.geolocation.getCurrentPosition(function(location) {
+        var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
+        L.circleMarker(latlng,{color:'red',radius:5}).addTo(window.map);
+     })}
      componentDidMount() {
-        this.onload();     
+        this.onload();    
+        this.currentLocation() 
     }
     render() {
       
