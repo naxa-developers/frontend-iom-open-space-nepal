@@ -2,7 +2,11 @@ import React, { Component } from 'react'
 import AssementList from './AssementList'
 
  class GeneralInfo extends Component {
+    
+     
     render() {
+       this.props.services&&console.log("psycho",this.props.services[0].name);
+       
         return (
             <div className="general-info">
             <div className="general-overview flex-between">
@@ -45,61 +49,20 @@ import AssementList from './AssementList'
                 <div className="suggested-list">
 
                     <ul>
-                        <li>
-                            <i
-                                className="humanitarian-icon-Camp-Coordination-and-Camp-Management humanitarian-icons"></i>
-                            <span>Camp</span></li>
-                        <li>
-                            <i
-                                className="humanitarian-icon-Helipad humanitarian-icons"></i>
-                            <span> Helipad</span>
-                        </li>
-                        <li>
-                            <i
-                                className="humanitarian-icon-Building-facility-not-affected humanitarian-icons"></i>
-                            <span>civil Mall coordination</span>
-                        </li>
-                        <li>
-                            <i
-                                className="humanitarian-icon-Medicine humanitarian-icons"></i>
-                            <span> medical assistance area</span>
-                        </li>
-                        <li>
-                            <i
-                                className="humanitarian-icon-Population-return humanitarian-icons"></i>
-                            <span>vulnerable population assistance area</span>
-                        </li>
+        <li>{this.props.suggested_use&&this.props.suggested_use[0].name}</li>
+        
                     </ul>
                 </div>
                 <div className="suggested-list ">
-
-                    <ul>
-                        <li>
-                            <i
-                                className="humanitarian-icon-Internet humanitarian-icons"></i>
-                            <span>Wifi</span>
-                            <i className="material-icons check">check_circle</i>
-                        </li>
-
-                        <li>
-                            <i
-                                className="humanitarian-icon-Potable-water-source humanitarian-icons"></i>
-                            <span> drinking water</span>
-                            <i className="material-icons check">check_circle</i>
-                        </li>
-                        <li>
-                            <i
-                                className="humanitarian-icon-Innovation humanitarian-icons"></i>
-                            <span>Electricity</span>
-                            <i className="material-icons check">check_circle</i>
-                        </li>
-                        <li>
-                            <i
-                                className="humanitarian-icon-Toilet humanitarian-icons"></i>
-                            <span> Drainage</span>
-                            <i className="material-icons cross">cancel</i>
-                        </li>
-                    </ul>
+{this.props.services&& this.props.services.map((service) => {
+    return(
+    <ul>
+        
+               <li>{service.name}  </li>      
+                       </ul>
+    )
+}) }
+                    
                 </div>
                 <p>
                     <span>""</span>

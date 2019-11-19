@@ -14,9 +14,17 @@ class Report extends Component {
           <section class="openSpace-map">
             <div class="container-fluid">
               <div class="map-wrapper">
-                {/* <ReportMap /> */}
-                <OpenspaceMap/>
-                <ReportSidebar/>
+              <div className="row no-gutters">
+                  <div className="col-md-7">
+                  <OpenspaceMap/>
+                  </div>
+                  <div className="col-md-5">
+                  <ReportSidebar/>
+                  </div>
+                </div>
+               
+              
+                
               </div>
               
             </div>

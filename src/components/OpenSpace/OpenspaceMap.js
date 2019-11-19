@@ -47,12 +47,13 @@ const { BaseLayer } = LayersControl;
             "&algorithm=alternative_route";
         var colors=["red",'green','black']
         Axios.get(url)
-        .then(Response=>{console.log(Response)
-            console.log(Response.data.paths[0].points.coordinates,"patharray",Response.data.paths.length);
+        .then(Response=>{
+            // console.log(Response)
+            // console.log(Response.data.paths[0].points.coordinates,"patharray",Response.data.paths.length);
             for(var j=0;j<Response.data.paths.length;j++){
                 var path=[]
                 for(var i=0;i<Response.data.paths[j].points.coordinates.length;i++){
-                    console.log(j);
+                   
                     
                     path.push(Response.data.paths[j].points.coordinates[i].reverse())
                 }
