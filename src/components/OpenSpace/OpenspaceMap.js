@@ -5,6 +5,7 @@ import {
     LayersControl
 } from "react-leaflet";
 import 'leaflet/dist/leaflet.css';
+import Axios from 'axios';
 const { BaseLayer } = LayersControl;
 
 
@@ -14,7 +15,8 @@ const { BaseLayer } = LayersControl;
        super(props)
           
        this.state = {
-           height: null
+           height: null,
+           activeroute:0
           
        };
      };
@@ -29,9 +31,43 @@ const { BaseLayer } = LayersControl;
         })
 
      }
-     
+     currentLocation=()=>{
+     navigator.geolocation.getCurrentPosition(function(location) {
+        var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
+        L.circleMarker(latlng,{color:'red',radius:5}).addTo(window.map);
+     })}
+     fetchroute=()=>{
+        var baseUrl = "http://3.91.5.231:8989/route";
+        var url =
+            `${baseUrl}?point= 27.63487379134253,85.352783203125`+
+            "&point=27.751607687549384,85.242919921875"+
+            "&points_encoded=false"+
+            "&ch.disable=true"+
+            "&alternative_route.max_paths=3"+
+            "&algorithm=alternative_route";
+        var colors=["red",'green','black']
+        Axios.get(url)
+        .then(Response=>{console.log(Response)
+            console.log(Response.data.paths[0].points.coordinates,"patharray",Response.data.paths.length);
+            for(var j=0;j<Response.data.paths.length;j++){
+                var path=[]
+                for(var i=0;i<Response.data.paths[j].points.coordinates.length;i++){
+                    console.log(j);
+                    
+                    path.push(Response.data.paths[j].points.coordinates[i].reverse())
+                }
+                var polyline=L.polyline(path,{color: colors[j],opacity:this.state.activeroute==j?0.7:0.5})
+                window.map.addLayer(polyline)
+                window.map.fitBounds(polyline.getBounds())
+
+            }
+        }
+        )
+     }
      componentDidMount() {
-        this.onload();     
+        this.onload();    
+        this.currentLocation() 
+        this.fetchroute()
     }
     render() {
       
