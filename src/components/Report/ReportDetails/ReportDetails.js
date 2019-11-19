@@ -13,8 +13,16 @@ class ReportDetails extends Component {
             <section class="openSpace-map">
               <div class="container-fluid">
                 <div class="map-wrapper">
+                <div className="row no-gutters">
+                  <div className="col-md-7">
                   <OpenspaceMap />
+                  </div>
+                  <div className="col-md-5">
                   <ReportDetailsCard />
+                  </div>
+                </div>
+            
+               
                  
                 </div>
               </div>

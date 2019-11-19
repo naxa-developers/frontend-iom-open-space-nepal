@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import MaterialIcon from "material-icons-react";
 
  class DetailsHeader extends Component {
     render() {
@@ -11,7 +11,7 @@ import React, { Component } from 'react'
         <h5>{this.props.title}</h5>
                                                 <p>
         <span><i className="material-icons">room</i>{this.props.location}</span>
-                                                    <span><i className="material-icons">near_me</i>200 m</span>
+                                                    <span><MaterialIcon icon="near_me"></MaterialIcon>200 m</span>
                                                 </p>
                                             </div>
                                             <div className="space-direction">
