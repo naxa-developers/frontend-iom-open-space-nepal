@@ -15,17 +15,25 @@ class OpenSpaceDetails extends Component {
   
 
   render() {
-    console.log(this.props.id);
+  
     
     return (
     <>
         <Navbar />
-        <main class="main-content">
-          <section class="openSpace-map">
-            <div class="container-fluid">
-              <div class="map-wrapper">
-                <DetailsMap reff={this.map} />
-                <DetailsCard reff={this.map} id = {this.props.id}/>
+        <main className="main-content">
+          <section className="openSpace-map">
+            <div className="container-fluid">
+              <div className="map-wrapper">
+              <div className="row no-gutters">
+                  <div className="col-md-7">
+                  <DetailsMap reff={this.map} />
+                  </div>
+                  <div className="col-md-5">
+                  <DetailsCard reff={this.map} id = {this.props.id}/>
+                  </div>
+                </div>
+                
+                
               </div>
               
             </div>

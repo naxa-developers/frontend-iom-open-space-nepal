@@ -229,7 +229,7 @@ class Sidebar extends Component {
                   </div>
                   <div className="reset-btns">
                     <div className="reset">
-                      <i className="material-icons">refresh</i>
+                      <MaterialIcon icon="refresh"></MaterialIcon>
                       <span
                         onClick={() =>{
                           this.setState({
