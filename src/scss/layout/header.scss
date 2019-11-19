@@ -488,15 +488,14 @@
 
     }
 
-    .Is-toggle {
-        .site-header {
-            .headerWrap {
-                .menu-primary-container {
-                    right: 0;
-                }
+
+.site-header {
+    &.Is-toggle{
+        .headerWrap {
+            .menu-primary-container {
+                right: 0;
             }
-
-
         }
     }
+}
 }

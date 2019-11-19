@@ -41,7 +41,7 @@ class ImageSlider extends Component {
             <div className="intro-slider">
               <Slider {...settings}>
                {this.state.sliderData&&this.state.sliderData.map( (e) => { 
-                       return <SingleSlider title = {e.title} title_nep={e.title_nep} image={e.image} />
+                       return <SingleSlider key={e.id} title = {e.title} title_nep={e.title_nep} image={e.image} />
                      } )} 
              
                 {/* <div className="intro-item">

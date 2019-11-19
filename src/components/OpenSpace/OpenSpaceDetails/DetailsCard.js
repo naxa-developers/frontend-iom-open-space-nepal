@@ -5,7 +5,7 @@ import DetailsHeader from './DetailsHeader'
 import TabNavbar from './TabNavbar'
 import GeneralInfo from './GeneralInfo'
 import ReportTab from './ReportTab'
-import NearbyTab from './NearbyTab'
+import NearbyTab from './NearbyTab/NearbyTab'
 import MaterialIcon from 'material-icons-react';
 import {connect} from 'react-redux';
 

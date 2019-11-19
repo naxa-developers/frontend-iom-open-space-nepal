@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import MaterialIcon from 'material-icons-react';
 
-import logo from '../../img/logo.png';
-import gov from '../../img/gov.png';
-import iom from '../../img/iom.png';
-import ccm from '../../img/ccm.png';
+
 import appstore from '../../img/appstore.png'
 import googleplay from '../../img/googleplay.png'
 

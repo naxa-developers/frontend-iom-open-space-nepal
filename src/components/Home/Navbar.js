@@ -9,19 +9,23 @@ import uk from "../../img/uk.png";
 
 
 class Navbar extends Component {
-  // constructor(props) {
-  //   super(props);
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       toggle: false
+    }
+  }
 
-  //   this.state = {
-  //     toggle: true
-  //   };
-  // }
+ toggleButton = (event) => {
+   event.preventDefault();
 
+ 
+   this.setState({
+      toggle: !this.state.toggle
 
-// this.props.toggleClass = !this.props.toggleClass;
-
-  // };
-
+      });
+     }
 
 
   render() {
@@ -29,7 +33,12 @@ class Navbar extends Component {
 
     return (
       <>
-        <header className="site-header" id="navHeader">
+        <header
+        className=  {this.state.toggle
+         ? "site-header Is-toggle"
+         : "site-header " 
+        }
+         id="navHeader">
           <div className="container">
             <div className="headerWrap">
               <div className="headLeft">
@@ -64,11 +73,11 @@ class Navbar extends Component {
                 >
                   <div
                     className={
-                      this.props.toggle
+                      this.state.toggle
                         ? "toggle-button active "
                         : "toggle-button "
                     }
-                    onClick={() => this.props.onToggle(event)}
+                    onClick={() => this.toggleButton(event)}
                   >
                     <span></span>
                     <span></span>

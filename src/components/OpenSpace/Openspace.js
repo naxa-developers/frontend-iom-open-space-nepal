@@ -25,8 +25,16 @@ class OpenSpace extends Component {
           <section className="openSpace-map">
             <div className="container-fluid">
               <div className ="map-wrapper">
-                <OpenspaceMap mapRefss={this.mapRefs} />
-                <Sidebar mapRefs={this.mapRefs} />
+                <div className="row no-gutters">
+                  <div className="col-md-7">
+                  <OpenspaceMap mapRefss={this.mapRefs} />
+                  </div>
+                  <div className="col-md-5">
+                  <Sidebar mapRefs={this.mapRefs} />
+                  </div>
+                </div>
+                
+                
               </div>
               
             </div>

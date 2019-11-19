@@ -105,31 +105,31 @@
         }
 
         .map-sidebar {
-            position: absolute;
-            right: 0;
-            top: 0;
-            z-index: 2;
-            max-width: 50%;
-            width: 50%;
+            // position: absolute;
+            // right: 0;
+            // top: 0;
+            // z-index: 2;
+            // max-width: 50%;
+            // width: 50%;
 
             .sidebar-toggle {
-                position: absolute;
-                width: 40px;
-                height: 40px;
-                @include flexvr;
-                background-color: $color-blue;
-                top:0;
-                left: -40px;
-                z-index: 3;
-                cursor: pointer;
+                // position: absolute;
+                // width: 40px;
+                // height: 40px;
+                // @include flexvr;
+                // background-color: $color-blue;
+                // top:0;
+                // left: -40px;
+                // z-index: 3;
+                // cursor: pointer;
 
-                i.material-icons {
-                    font-size: 2rem;
-                    font-weight: 700;
-                    color: $color-white;
-                        background-color: $color-blue;
+                // i.material-icons {
+                //     font-size: 2rem;
+                //     font-weight: 700;
+                //     color: $color-white;
+                //         background-color: $color-blue;
                    
-                }
+                // }
 
                 &.rotated {
                     i {
@@ -167,7 +167,7 @@
                 width: 100%;
                 padding: 2rem;
                 overflow-y: auto;
-                height: calc(100vh - 165px);
+                // height: calc(100vh - 165px);
 
                 .sidebar-close {
                     position: absolute;
@@ -999,11 +999,9 @@
 }
 @media screen and (max-width:$pt-tab) {
     .openSpace-map {
-        .map-wrapper {
-            .map-sidebar {
-                max-width: calc(100% - 40px);
-                width:100%;
-            }
+        .container-fluid {
+            max-width: 100%;
+            padding: 0 15px;
         }
     }
 }
