@@ -198,17 +198,7 @@ class Sidebar extends Component {
     return (
       <>
         <div className="map-sidebar">
-          <span
-            className={` ${
-              showContent == true ? "sidebar-toggle" : "sidebar-toggle rotated"
-            }`}
-          >
-            <MaterialIcon
-              icon="keyboard_arrow_right"
-              onClick={() => this.sidebarToggle(event)}
-            />
-            {/* <i className="material-icons" onClick={this.sidebarToggle}>keyboard_arrow_right</i> */}
-          </span>
+        
 
           <div className="sidebar-wrapper">
             <div className="card">

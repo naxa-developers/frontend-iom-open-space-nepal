@@ -12,29 +12,13 @@ import Background from "../../img/banner-shape.png";
 import bannerShape from "../../img/banner-shape.png";
 
  class Home extends Component {
-   constructor(props) {
-     super(props)
    
-     this.state = {
-        toggle: false
-     }
-   }
-
-  toggleButton = (event) => {
-    event.preventDefault();
- 
-  
-    this.setState({
-       toggle: !this.state.toggle
-
-       });
-      }
     render() {
         return (
         
-        < body className={this.state.toggle? "Is-toggle": ""}>
+        < body >
          <section className="banner" style={{ backgroundImage: `url(${Background})` }}>
-          <Navbar toggle = {this.state.toggle} onToggle = {this.toggleButton} />
+          <Navbar />
           <Banner />
         </section> 
         <main className="main-content">
