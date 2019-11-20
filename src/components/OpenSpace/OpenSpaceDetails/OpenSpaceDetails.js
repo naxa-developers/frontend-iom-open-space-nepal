@@ -2,6 +2,7 @@ import React, { Component,createRef } from "react";
 import Navbar from "../../Home/Navbar";
 import DetailsMap from './DetailsMap';
 import DetailsCard from './DetailsCard';
+import { connect } from 'react-redux';
 // import '../OpenSpaceCSS.css';
 
 class OpenSpaceDetails extends Component {
@@ -15,6 +16,7 @@ class OpenSpaceDetails extends Component {
   
 
   render() {
+
   
     
     return (
@@ -43,4 +45,11 @@ class OpenSpaceDetails extends Component {
     );
   }
 }
-export default OpenSpaceDetails;
+const mapStateToProps = (state) => {
+  return {
+       
+       id: state.spaceID
+
+  }
+}
+export default connect(mapStateToProps)(OpenSpaceDetails);

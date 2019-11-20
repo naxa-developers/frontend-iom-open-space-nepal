@@ -13,7 +13,8 @@ const status = [
 
 const urgency = [
   { value: "1", label: "High" },
-  { value: "2", label: "Low" }
+  { value: "2", label: "Medium" },
+  { value: "3", label: "Low" }
 ];
 class ReportFilter extends Component {
   constructor(props) {

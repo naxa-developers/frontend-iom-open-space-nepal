@@ -63,8 +63,13 @@ import Axios from 'axios';
 
                     <div className="col-lg-10 col-md-9">
                         <div className="intro">
-                           <h1>OPEN SPACE PORTAL FOR HUMANITARIAN <br /> ASSISTANCE</h1>
-                       {/* <h1>{this.props.language == '0' ? this.state.loader && this.state.texts[0].title : this.state.loader && this.state.texts[0].title_nep  }</h1> */}
+                           {/* <h1>OPEN SPACE PORTAL FOR <br/> HUMANITARIAN <br /> ASSISTANCE</h1> */}
+                       <h1>{this.props.language == '0' ? this.state.loader && this.state.texts[0].title1 : this.state.loader && this.state.texts[0].title_nep1  }
+                       <br />
+                       {this.props.language == '0' ? this.state.loader && this.state.texts[0].title2 : this.state.loader && this.state.texts[0].title_nep2  }
+                       <br />
+                       {this.props.language == '0' ? this.state.loader && this.state.texts[0].title3 : this.state.loader && this.state.texts[0].title_nep3  }
+                       </h1>
                         <p>{this.props.language == '0' ? this.state.loader && this.state.texts[0].description : this.state.loader && this.state.texts[0].description_nep}</p>
                         </div>
                         
