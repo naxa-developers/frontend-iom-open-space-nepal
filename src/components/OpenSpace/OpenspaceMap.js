@@ -32,13 +32,9 @@ const { BaseLayer } = LayersControl;
         })
 
      }
-     currentLocation=()=>{
-     navigator.geolocation.getCurrentPosition(function(location) {
-        var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
-        L.circleMarker(latlng,{color:'red',radius:5}).addTo(window.map);
-     })}
+ 
      fetchroute=()=>{
-        var baseUrl = "http://3.90.36.151:8989/route";
+        var baseUrl = "http://localhost:8989/route";
         var url =
             `${baseUrl}?point= 27.63487379134253,85.352783203125`+
             "&point=27.751607687549384,85.242919921875"+
@@ -121,8 +117,8 @@ const { BaseLayer } = LayersControl;
      }
      componentDidMount() {
         this.onload();    
-        this.currentLocation() 
-        this.fetchroute()
+       
+        // this.fetchroute()
     }
     render() {
       
