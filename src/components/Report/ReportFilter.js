@@ -52,7 +52,7 @@ class ReportFilter extends Component {
     const status = this.state.valueStatus;
     const urgency = this.state.valueUrgency;
     const url = `http://139.59.67.104:8011/api/v1/report/?status=${status.label.toLowerCase()}&urgency=${urgency.label.toLowerCase()}`
-    console.log(url)
+   
     Axios.get(url)
     .then(response => {
      
