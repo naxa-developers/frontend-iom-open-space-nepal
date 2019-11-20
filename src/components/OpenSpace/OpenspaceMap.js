@@ -32,11 +32,7 @@ const { BaseLayer } = LayersControl;
         })
 
      }
-     currentLocation=()=>{
-     navigator.geolocation.getCurrentPosition(function(location) {
-        var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
-        L.circleMarker(latlng,{color:'red',radius:5}).addTo(window.map);
-     })}
+ 
      fetchroute=()=>{
         var baseUrl = "http://localhost:8989/route";
         var url =
@@ -44,7 +40,7 @@ const { BaseLayer } = LayersControl;
             "&point=27.751607687549384,85.242919921875"+
             "&points_encoded=false"+
             "&ch.disable=true"+
-            "&alternative_route.max_paths=4"+
+            "&alternative_route.max_paths=3"+
             "&algorithm=alternative_route";
         var colors=["red",'green','black']
         Axios.get(url)
@@ -121,8 +117,8 @@ const { BaseLayer } = LayersControl;
      }
      componentDidMount() {
         this.onload();    
-        this.currentLocation() 
-        this.fetchroute()
+       
+        // this.fetchroute()
     }
     render() {
       

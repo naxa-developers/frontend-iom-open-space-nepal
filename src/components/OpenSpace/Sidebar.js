@@ -28,7 +28,10 @@ class Sidebar extends Component {
       Allos: [],
       handlingindex: 0,
       focused: false,
-      district_muni: L.featureGroup()
+      district_muni: L.featureGroup(),
+      Routespaths: [],
+      Routes: L.featureGroup(),
+      legend: L.control({ position: 'bottomright' })
     };
   }
 
@@ -44,17 +47,17 @@ class Sidebar extends Component {
       name == "province"
         ? "province_api"
         : name == "district"
-        ? "district_api"
-        : name == "municipality"
-        ? "municipality_api"
-        : "";
+          ? "district_api"
+          : name == "municipality"
+            ? "municipality_api"
+            : "";
     var url = `http://139.59.67.104:8011/api/v1/${key}`;
     var prvnc_dist =
       name == "district"
         ? "province"
         : name == "municipality"
-        ? "district"
-        : "";
+          ? "district"
+          : "";
 
     Axios.get(url).then(response => {
       var array = [];
@@ -159,7 +162,7 @@ class Sidebar extends Component {
     });
   };
   searchOs = () => {
-  
+
 
     var Filtered = this.state.Openspaces.filter(e =>
       e.title.toUpperCase().includes(this.state.search_keyword.toUpperCase())
@@ -169,36 +172,155 @@ class Sidebar extends Component {
   };
 
   displayOS = () => {
-   
+
 
     this.state.Allos.map(e => {
-    
+
       var map = this.props.mapRefs.current.leafletElement;
       var marker = L.circleMarker([e.latitude, e.longitude]).addTo(map);
     });
   };
+
+  fetchroute = (first, second) => {
+    // window.map.removeLayer(this.state.legend)
+    this.state.Routes.eachLayer((r) => this.state.Routes.removeLayer(r))
+    var baseUrl = "http://localhost:8989/route";
+    var url =
+      `${baseUrl}?point= ${first[0]},${first[1]},` +
+      `&point=${second[0]},${second[1]}` +
+      "&points_encoded=false" +
+      "&ch.disable=true" +
+      "&alternative_route.max_paths=4" +
+      "&algorithm=alternative_route";
+    var colors = ["red", 'green', 'black']
+    Axios.get(url)
+      .then(Response => {
+        for (var j = 0; j < Response.data.paths.length; j++) {
+          var path = []
+          for (var i = 0; i < Response.data.paths[j].points.coordinates.length; i++) {
+
+            path.push(Response.data.paths[j].points.coordinates[i].reverse())
+          }
+          var polyline = L.polyline(path, { color: j == Response.data.paths.length - 1 ? 'blue' : 'grey' })
+          this.state.Routespaths.push({ id: j, path: polyline, description: Response.data.paths[j].description[0], distance: Response.data.paths[j].distance })
+
+          this.state.Routes.addLayer(polyline)
+          window.map.fitBounds(polyline.getBounds())
+
+        }
+
+
+        var divss = document.getElementsByClassName('routeWrapper');
+        console.log(divss,"divs")
+        if(divss!=0){
+          for(var i=0;i<divss.length;i++){
+            console.log("loop");
+            
+            divss[i].innerHTML='<h1>a</h1>'
+            console.log("looped");
+
+
+          }
+        }
+        div.innerHTML="" 
+        this.state.legend.onAdd = (map) => {
+          console.log("clicked")
+          var div;
+          
+          div = L.DomUtil.create('div', 'routeWrapper')
+          
+        
+
+  
+        
+
+
+
+          
+
+          this.state.Routespaths.map(e => {
+
+            var descCard = "<div  class='desccard' name=" + e.id + ">" +
+              e.description + '<br/>' +
+              e.distance + " m"
+            "<div>";
+            div.innerHTML += descCard
+
+          })
+          // innterhtml
+
+
+
+          return div;
+        }
+        this.state.legend.addTo(window.map)
+   
+        
+
+        var doc = document.getElementsByClassName('desccard')
+        for (var i = 0; i < doc.length; i++) {
+          doc[i].addEventListener('click', (e) => {
+            // console.log(e.target.getAttribute('name'));
+            var value = e.target.getAttribute('name')
+            for (var a = 0; a < doc.length; a++) {
+              if (doc[a].getAttribute('name') == value) {
+                doc[a].classList.add('pathactive')
+                var selected = this.state.Routespaths.filter((a) => a.id == value)
+                for (var k = 0; k < this.state.Routespaths.length; k++) {
+                  this.state.Routespaths[k].path.setStyle({
+                    color: 'grey'
+                  })
+                }
+                selected[0].path.setStyle({ color: 'blue' })
+
+                selected[0].path.bringToFront()
+
+              }
+              else {
+                doc[a].classList.remove('pathactive')
+
+
+              }
+            }
+
+
+          }
+          )
+        }
+
+
+      }
+      )
+  }
+
+
+
   componentDidMount() {
     this.fetchingForDropdown("province");
     this.fetchingForDropdown("district");
     this.fetchingForDropdown("municipality");
     this.fetchOS();
     this.onload();
+
+
     window.map = this.props.mapRefs.current.leafletElement;
     window.map.addLayer(this.state.district_muni);
+    window.map.addLayer(this.state.Routes);
+
     // window.map1=this.props.mapRefs.current.leafletElement
   }
 
   render() {
 
-    
-    
-    
+
+
+
     // var toggleClass = this.props.isClick ? 'rotated' : 'sidebar-toggle';
     const { showContent } = this.state;
     return (
       <>
         <div className="map-sidebar">
-        
+
 
           <div className="sidebar-wrapper">
             <div className="card">
@@ -225,13 +347,13 @@ class Sidebar extends Component {
                       isDisabled={this.state.handlingindex < 2 ? true : false}
                       value={this.state.SelectedMunicipality}
                     />
-                 
+
                   </div>
                   <div className="reset-btns">
                     <div className="reset">
                       <MaterialIcon icon="refresh"></MaterialIcon>
                       <span
-                        onClick={() =>{
+                        onClick={() => {
                           this.setState({
                             SelectedProvince: null,
                             SelectedDistrict: null,
@@ -242,12 +364,12 @@ class Sidebar extends Component {
                           })
                           var bounds = [[30.86924662953735,
                             100.29542704344739],
-                           [
-                             26.7211025368031,
-                      79.2016770434474
-                           ] ];
-                           window.map.fitBounds(bounds)
-                          }
+                          [
+                            26.7211025368031,
+                            79.2016770434474
+                          ]];
+                          window.map.fitBounds(bounds)
+                        }
 
                         }
                       >
@@ -295,7 +417,7 @@ class Sidebar extends Component {
                       onKeyDown={e => {
                         if (e.key == "Enter") this.searchOs();
                       }}
-                      
+
                     />
                     <div className="input-group-append">
                       <span className="input-group-text">
@@ -312,15 +434,17 @@ class Sidebar extends Component {
                   </div>
 
                   <ul>
-                 
+
 
                     {this.state.Allos &&
                       this.state.Allos.map(e => {
-                      
+
 
                         return (
                           <OpenSpaceCard
-                            key= {e.id}
+                            latlng={[e.latitude, e.longitude]}
+                            routing={this.fetchroute}
+                            key={e.id}
                             name={e.title}
                             address={e.address}
                             image={e.image}
@@ -329,7 +453,7 @@ class Sidebar extends Component {
                         );
                       })}
 
-                   
+
                   </ul>
                 </div>
               </div>
