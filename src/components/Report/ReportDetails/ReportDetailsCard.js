@@ -36,14 +36,12 @@ class ReportDetailsCard extends Component {
 
   render() {
    
+console.log(this.props.id);
 
     return (
       <div className="map-sidebar">
-        <span className="sidebar-toggle">
-          <MaterialIcon icon="keyboard_arrow_right"></MaterialIcon>
-        </span>
+      
         <div className="sidebar-wrapper">
-          <span className="sidebar-close material-icons">close</span>
           <div className="card">
             <div className="card-body">
               <div className="report-details">
@@ -66,7 +64,7 @@ class ReportDetailsCard extends Component {
                         <time>2 days ago</time>
                       </p>
                       <p className="flex-start address">
-                        <i className="material-icons">room</i>
+                        <MaterialIcon icon="room">room</MaterialIcon>
     <span>{this.state.reportInfo.location}</span>
                       </p>
                     </div>
@@ -78,10 +76,10 @@ class ReportDetailsCard extends Component {
                 </div>
 
                 <div className="report-email">
-                  <span>Hello,</span>
+                  {/* <span>Hello,</span> */}
                   <p>{this.state.reportInfo.message}</p>
                   <div className="reporter">
-                    <span>Regards</span>
+                    {/* <span>Regards</span> */}
                     <h6>{this.state.reportInfo.reported_by}</h6>
                   </div>
                 </div>

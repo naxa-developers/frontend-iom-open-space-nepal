@@ -31,8 +31,8 @@ class ReportCard extends Component {
               <time>1 week ago</time>
             </div> 
           </div>
-          <div class="report-status">
-            <label class="unsuccess">high</label>
+          <div className="report-status">
+            <label className="unsuccess">Urgency</label>
             <span>{this.props.urgency}</span>
           </div>
         </li>

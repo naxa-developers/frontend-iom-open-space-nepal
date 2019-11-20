@@ -32,9 +32,12 @@ class DetailsCard extends Component {
 
   fetchDetails = () => {
     Axios.get(
-      `http://139.59.67.104:8011/api/v1/open_space/${this.props.spaceID}`
+      `http://139.59.67.104:8011/api/v1/open_space/${this.props.id}`
     ).then(response => {
+      console.log("id data", response.data);
       this.setState({ spaceInfo: response.data });
+     
+      
     });
   };
   componentDidMount() {
@@ -46,6 +49,8 @@ class DetailsCard extends Component {
   };
 
   render() {
+    console.log("fsfs", this.props.id);
+    
     return (
       <div>
         <div className="map-sidebar">
@@ -81,6 +86,7 @@ class DetailsCard extends Component {
                         usable_area={this.state.spaceInfo.usable_area}
                         suggested_use={this.state.spaceInfo.suggested_use}
                         services = {this.state.spaceInfo.services}
+                        title = {this.state.spaceInfo.title}
                       />
                     </div>
                     <div

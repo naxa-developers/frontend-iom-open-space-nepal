@@ -5,7 +5,7 @@ import AssementList from './AssementList'
     
      
     render() {
-       this.props.services&&console.log("psycho",this.props.services[0].name);
+    //    this.props.services&&console.log("psycho",this.props.services[0].name);
        
         return (
             <div className="general-info">
@@ -49,7 +49,7 @@ import AssementList from './AssementList'
                 <div className="suggested-list">
 
                     <ul>
-        <li>{this.props.suggested_use&&this.props.suggested_use[0].name}</li>
+        {/* <li>{this.props.suggested_use&&this.props.suggested_use[0].name}</li> */}
         
                     </ul>
                 </div>
@@ -65,8 +65,8 @@ import AssementList from './AssementList'
                     
                 </div>
                 <p>
-                    <span>""</span>
-                    <a href="#">more</a>
+                    {/* <span>""</span>
+                    <a href="#">more</a> */}
                 </p>
             </div>
                 <AssementList className= "toggleModal"/>
