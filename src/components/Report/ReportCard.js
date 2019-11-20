@@ -32,7 +32,7 @@ class ReportCard extends Component {
             </div> 
           </div>
           <div className="report-status">
-            <label className="unsuccess">high</label>
+            <label className="unsuccess">Urgency</label>
             <span>{this.props.urgency}</span>
           </div>
         </li>
