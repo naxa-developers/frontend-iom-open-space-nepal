@@ -222,7 +222,6 @@ class Sidebar extends Component {
 
           }
         }
-        div.innerHTML="" 
         this.state.legend.onAdd = (map) => {
           console.log("clicked")
           var div;
