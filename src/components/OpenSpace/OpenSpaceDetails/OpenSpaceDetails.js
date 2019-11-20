@@ -17,6 +17,7 @@ class OpenSpaceDetails extends Component {
 
   render() {
 
+
   
     
     return (
