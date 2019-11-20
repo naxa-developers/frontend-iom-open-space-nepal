@@ -16,7 +16,8 @@ const { BaseLayer } = LayersControl;
           
        this.state = {
            height: null,
-           activeroute:0
+           activeroute:0,
+           Routespaths:[]
           
        };
      };
@@ -37,7 +38,7 @@ const { BaseLayer } = LayersControl;
         L.circleMarker(latlng,{color:'red',radius:5}).addTo(window.map);
      })}
      fetchroute=()=>{
-        var baseUrl = "http://3.91.5.231:8989/route";
+        var baseUrl = "http://3.90.36.151:8989/route";
         var url =
             `${baseUrl}?point= 27.63487379134253,85.352783203125`+
             "&point=27.751607687549384,85.242919921875"+
@@ -48,20 +49,73 @@ const { BaseLayer } = LayersControl;
         var colors=["red",'green','black']
         Axios.get(url)
         .then(Response=>{
-            // console.log(Response)
-            // console.log(Response.data.paths[0].points.coordinates,"patharray",Response.data.paths.length);
             for(var j=0;j<Response.data.paths.length;j++){
                 var path=[]
                 for(var i=0;i<Response.data.paths[j].points.coordinates.length;i++){
-                   
                     
                     path.push(Response.data.paths[j].points.coordinates[i].reverse())
                 }
-                var polyline=L.polyline(path,{color: colors[j],opacity:this.state.activeroute==j?0.7:0.5})
+                var polyline=L.polyline(path,{color: j==Response.data.paths.length-1?'blue':'grey'})
+                this.state.Routespaths.push({id:j,path:polyline,description:Response.data.paths[j].description[0],distance:Response.data.paths[j].distance})
+                
                 window.map.addLayer(polyline)
                 window.map.fitBounds(polyline.getBounds())
 
             }
+
+            var legend = L.control({ position: 'bottomright' });
+
+            legend.onAdd = (map) => {
+    
+                var div = L.DomUtil.create('div', 'routeWrapper')
+                this.state.Routespaths.map(e=>{
+                    var descCard="<div  class='desccard' name="+ e.id+">"+
+                    e.description+'<br/>'+
+                    e.distance+" m"
+                    "<div>";
+                    div.innerHTML += descCard
+
+                })
+                // innterhtml
+                 
+            
+             
+                return div;
+            } 
+            legend.addTo(window.map)  
+            var doc= document.getElementsByClassName('desccard')
+            console.log(doc)
+            for(var i=0;i<doc.length;i++){
+                doc[i].addEventListener('click',(e)=>{
+                    console.log(e.target.getAttribute('name'));
+                    var value=e.target.getAttribute('name')
+                    for(var a=0;a<doc.length;a++){
+                        if(doc[a].getAttribute('name')==value){
+                            doc[a].classList.add('pathactive')
+                            var selected=this.state.Routespaths.filter((a)=>a.id==value)
+                            for(var k=0;k<this.state.Routespaths.length;k++){
+                                this.state.Routespaths[k].path.setStyle({
+                                    color:'grey'
+                                })
+                            }
+                            selected[0].path.setStyle({color:'blue'})
+                            
+                            selected[0].path.bringToFront()
+
+                        }
+                        else{
+                            doc[a].classList.remove('pathactive')
+
+
+                        }
+                    }
+                    
+                 
+                }
+                )
+            }
+
+
         }
         )
      }
