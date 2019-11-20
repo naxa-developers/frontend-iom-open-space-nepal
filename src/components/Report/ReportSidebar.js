@@ -3,6 +3,7 @@ import MaterialIcon from 'material-icons-react';
 import Axios from 'axios';
 import ReportCard from './ReportCard';
 import ReportFilter from './ReportFilter';
+import LoadingSpinner from './LoadingSpinner';
 
 class ReportSidebar extends Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class ReportSidebar extends Component {
              reportsToShow: [],
              keywords: '',
              filteredReports: [],
-
+            loading: true,
              isFocused: false        }
     }
     
@@ -31,7 +32,9 @@ class ReportSidebar extends Component {
          Axios.get("http://139.59.67.104:8011/api/v1/report/")
          .then(response => {
             
-             this.setState({reports: response.data, reportsToShow: response.data})
+             this.setState({reports: response.data, reportsToShow: response.data,
+            loading: false
+            })
             
              
              
@@ -64,11 +67,7 @@ class ReportSidebar extends Component {
         return (
             <div>
                 
-                      <div className="map-sidebar">
-                        <span className="sidebar-toggle">
-                        <MaterialIcon icon="keyboard_arrow_right" />
-                        </span>
-                        
+                      <div className="map-sidebar">       
                         <div className="sidebar-wrapper">
                             <div className="card">
                                 <div className="card-body">
@@ -104,7 +103,7 @@ class ReportSidebar extends Component {
                                         </div>
 
                                         <ul>
-                                            {this.state.reports&&this.state.reportsToShow.map( (e) => {
+                                            {this.state.loading ? <LoadingSpinner /> : this.state.reportsToShow.map( (e) => {
                                                return   <ReportCard id = {e.id} title = {e.title} location = {e.name} urgency= {e.urgency} date = {e.date} ReportLocation={e.location} />
                                                 
                                                
