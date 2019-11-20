@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import MaterialIcon from "material-icons-react";
+import {Link } from 'react-router-dom'
+
+
+
 
 import appstore from "../../img/appstore.png";
 import googleplay from "../../img/googleplay.png";
@@ -28,9 +32,9 @@ class Footer extends Component {
         <div className="footer-top">
           <div className="container">
             <h3 className="openspace-title">find nearby open spaces</h3>
-            <button className="openspace-button" role="button">
+            <Link to="/openspace"><button className="openspace-button" role="button">
               find open space
-            </button>
+            </button> </Link>
           </div>
         </div>
         <div className="footer-bottom mt-150">
