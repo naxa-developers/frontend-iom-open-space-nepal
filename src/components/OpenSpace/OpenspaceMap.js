@@ -38,13 +38,13 @@ const { BaseLayer } = LayersControl;
         L.circleMarker(latlng,{color:'red',radius:5}).addTo(window.map);
      })}
      fetchroute=()=>{
-        var baseUrl = "http://3.91.5.231:8989/route";
+        var baseUrl = "http://localhost:8989/route";
         var url =
             `${baseUrl}?point= 27.63487379134253,85.352783203125`+
             "&point=27.751607687549384,85.242919921875"+
             "&points_encoded=false"+
             "&ch.disable=true"+
-            "&alternative_route.max_paths=3"+
+            "&alternative_route.max_paths=4"+
             "&algorithm=alternative_route";
         var colors=["red",'green','black']
         Axios.get(url)
