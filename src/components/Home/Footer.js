@@ -19,7 +19,7 @@ class Footer extends Component {
       this.setState({
         contactInfo: res.data
       });
-      console.log(this.state.contactInfo);
+    
     });
   }
   render() {
