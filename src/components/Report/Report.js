@@ -10,10 +10,10 @@ class Report extends Component {
         return (
             <>
             <Navbar />
-            <main class="main-content">
-          <section class="openSpace-map">
-            <div class="container-fluid">
-              <div class="map-wrapper">
+            <main className="main-content">
+          <section className="openSpace-map">
+            <div className="container-fluid">
+              <div className="map-wrapper">
               <div className="row no-gutters">
                   <div className="col-md-7">
                   <OpenspaceMap/>

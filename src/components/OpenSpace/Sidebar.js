@@ -159,7 +159,7 @@ class Sidebar extends Component {
     });
   };
   searchOs = () => {
-    console.log("search");
+  
 
     var Filtered = this.state.Openspaces.filter(e =>
       e.title.toUpperCase().includes(this.state.search_keyword.toUpperCase())

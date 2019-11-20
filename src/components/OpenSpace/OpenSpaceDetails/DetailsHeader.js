@@ -3,6 +3,8 @@ import MaterialIcon from "material-icons-react";
 
  class DetailsHeader extends Component {
     render() {
+      
+        
         return (
          
                 <div className="space-details">

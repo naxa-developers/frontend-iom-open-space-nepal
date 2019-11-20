@@ -28,8 +28,8 @@ class ReportSidebar extends Component {
        
     
      }
-     fetchReports= () => {
-         Axios.get("http://139.59.67.104:8011/api/v1/report/")
+      fetchReports= () => {
+        Axios.get("http://139.59.67.104:8011/api/v1/report/")
          .then(response => {
             
              this.setState({reports: response.data, reportsToShow: response.data,
@@ -40,6 +40,7 @@ class ReportSidebar extends Component {
              
          })
      }
+
      setKeywords = (e) => {
          this.setState({keywords: e})
         //  console.log(this.state.keywords);
@@ -83,10 +84,10 @@ class ReportSidebar extends Component {
                                             <input type="text" className="form-control" aria-label="" placeholder="Search reports" 
                                             onInput ={(e) => this.setKeywords(e.target.value)}
                                             onFocus = {() => this.setState({isFocused: true})}
-                                            onBlur = {() => {
-                                                setTimeout(()=>this.setState({isFocused: false}),100)
+                                            // onBlur = {() => {
+                                            //     setTimeout(()=>this.setState({isFocused: false}),100)
                                                 
-                                            }}
+                                        
                                             onKeyDown = {(e) => {
                                                 if(e.key ==='Enter') {
                                                   this.searchNow() 

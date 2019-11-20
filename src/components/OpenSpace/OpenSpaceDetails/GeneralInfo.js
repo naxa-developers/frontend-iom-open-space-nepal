@@ -65,8 +65,8 @@ import AssementList from './AssementList'
                     
                 </div>
                 <p>
-                    <span>""</span>
-                    <a href="#">more</a>
+                    {/* <span>""</span>
+                    <a href="#">more</a> */}
                 </p>
             </div>
                 <AssementList className= "toggleModal"/>
