@@ -1,7 +1,8 @@
 const initState = {
   language: '0',
   reportID: null,
-  spaceID: null
+  spaceID: null,
+  reportData: null
 
   
             
@@ -28,6 +29,13 @@ const rootReducer = (state= initState, action) => {
                 return{
                     ...state,
                     spaceID: action.id
+                }
+            case "ReportFilter":
+                return{
+                    ...state,
+                    reportData: action.data
+
+                    
                 }
                 
 
