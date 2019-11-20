@@ -7,8 +7,29 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 class OpenSpaceCard extends Component {
+    constructor(props) {
+        super(props)
+    
+        this.state = {
+             currentLocation:null
+        }
+    }
+    
+
+    currentLocation = () => {
+        navigator.geolocation.getCurrentPosition( (location)=> {
+            var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
+            this.setState({currentLocation:[location.coords.latitude, location.coords.longitude]})
+            L.circleMarker(latlng, { color: 'red', radius: 5 }).addTo(window.map);
+
+        })
+    }
+    componentDidMount() {
+        this.currentLocation()
+
+    }
     render() {
-        
+
         return (
             <>
                 <li>
@@ -19,24 +40,28 @@ class OpenSpaceCard extends Component {
                                 alt="space"
                             />
                         </figure>
-                        <div className="space-content" onClick= {() => {
-                            this.props.dispatch({type: "spaceClicked", id: this.props.id})
-                           this.props.history.push('/OpenSpaceDetails');
-                           
+                        <div className="space-content" onClick={() => {
+                            this.props.dispatch({ type: "spaceClicked", id: this.props.id })
+                            this.props.history.push('/OpenSpaceDetails');
+
                         }
                         }>
                             <h5  >{this.props.name}</h5>
                             <p>
                                 <span>
                                     <i className="material-icons">room</i>{this.props.address}
-                          </span>
+                                </span>
                                 {/* <span>
                                     <i className="material-icons">near_me</i>200 m
                           </span> */}
                             </p>
                         </div>
                     </div>
-                    <div className="space-direction">
+                    <div className="space-direction" onClick={() => {
+                        this.props.routing(this.props.latlng,this.state.currentLocation)
+                        console.log("consoled");
+
+                    }}>
                         <i className="material-icons">directions</i>
                     </div>
                 </li>
@@ -46,7 +71,7 @@ class OpenSpaceCard extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-         ...state
+        ...state
     }
 }
 
