@@ -5,26 +5,47 @@ import './OpenSpaceCSS.css'
 import { useHistory } from "react-router-dom";
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Axios from 'axios';
 
 class OpenSpaceCard extends Component {
     constructor(props) {
         super(props)
-    
+
         this.state = {
-             currentLocation:null
+            currentLocation: null
         }
     }
-    
 
-    currentLocation = () => {
-        console.log(navigator)
-        navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition( (location)=> {
-            var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
-            this.setState({currentLocation:[location.coords.latitude, location.coords.longitude]})
+
+    currentLocation =  () => {
+     
+        let latlng
+
+        if(window.chrome){
+            console.log("chrome")
+
+            Axios.get('http://ip-api.com/json')
+            .then(Response=>{
+                latlng = new L.LatLng(Response.data.lat, Response.data.lon);
+                this.setState({ currentLocation: [Response.data.lat, Response.data.lon] })
+                L.circleMarker(this.state.currentLocation, { color: 'red', radius: 5 }).addTo(window.map);
+
+
+            })
+            
+
+
+        }
+      
+else{
+    console.log("not chrome")
+        navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition((location) => {
+            latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
+            this.setState({ currentLocation: [location.coords.latitude, location.coords.longitude] })
             L.circleMarker(latlng, { color: 'red', radius: 5 }).addTo(window.map);
-            console.log("current",this.state.currentLocation)
-
+            // console.log("current", this.state.currentLocation)
         })
+    }
     }
     componentDidMount() {
         this.currentLocation()
@@ -60,7 +81,7 @@ class OpenSpaceCard extends Component {
                         </div>
                     </div>
                     <div className="space-direction" onClick={() => {
-                        this.props.routing(this.props.latlng,this.state.currentLocation)
+                        this.props.routing(this.props.latlng, this.state.currentLocation)
                         console.log("consoled");
 
                     }}>
