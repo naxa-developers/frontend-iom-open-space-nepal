@@ -10,7 +10,6 @@ import L from "leaflet";
 
 import MaterialIcon from "material-icons-react";
 import Axios from "axios";
-import Legend from './legend'
 
 
 
