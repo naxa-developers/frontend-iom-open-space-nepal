@@ -17,7 +17,8 @@ class OpenSpaceCard extends Component {
     
 
     currentLocation = () => {
-        navigator.geolocation.getCurrentPosition( (location)=> {
+        console.log(navigator)
+        navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition( (location)=> {
             var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
             this.setState({currentLocation:[location.coords.latitude, location.coords.longitude]})
             L.circleMarker(latlng, { color: 'red', radius: 5 }).addTo(window.map);
