@@ -49,7 +49,6 @@ class DetailsCard extends Component {
   };
 
   render() {
-    console.log("fsfs", this.props.id);
     
     return (
       <div>
