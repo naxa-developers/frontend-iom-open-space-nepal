@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Navbar from '../Home/Navbar';
 import ReportMap from './ReportMap';
 import ReportSidebar from './ReportSidebar'
-import OpenspaceMap from '../OpenSpace/OpenspaceMap'
+
 
 class Report extends Component {
   
@@ -16,7 +16,7 @@ class Report extends Component {
               <div className="map-wrapper">
               <div className="row no-gutters">
                   <div className="col-md-7">
-                  <OpenspaceMap/>
+                  <ReportMap/>
                   </div>
                   <div className="col-md-5">
                   <ReportSidebar/>

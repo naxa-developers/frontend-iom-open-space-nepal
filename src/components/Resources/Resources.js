@@ -3,13 +3,11 @@ import React, { Component } from "react";
 
 import Navbar from "../Home/Navbar";
 import SearchFilter from "./SearchFilter";
-import MainContent from "./MainContent";
-import RightSidebar from "./RightSidebar";
 import Resourcecard from "./Resourcecard";
-// import TestDownload from './TestDownload';
+
 
 import Axios from 'axios'
-import { Button } from 'react-bootstrap';
+
 
 
 
@@ -93,20 +91,19 @@ class Resources extends Component {
             <div>
                 <Navbar />
                 <div className="page-wrap">
-                    {/* <!-- main-content --> */}
+               
                     <main className="main-content">
                         <div className="container">
                             <div className="row-wrap mt-150">
                                 <div className="row">
-                                    {/* <!-- form-section --> */}
+                                
                                     <div className="col-12 col-md-3 col-xl-4">
                                         <SearchFilter selectFilter={this.selectFilter} setKeywords={this.setKeywords} onApply={this.onApply}/>
-                                        {/* <TestDownload /> */}
-                                        {/* <Button onClick={()=>this.onApply()}>Apply</Button> */}
+                                     
 
                                     </div>
 
-                                    {/* <!--  content-section --> */}
+                            
                                     <div className="col-12 col-md-9 col-xl-8">
                                         <div className="content-section">
                                             
@@ -130,7 +127,6 @@ class Resources extends Component {
                                     {this.state.slicedResources.map((e, i) => {
                                         return <a className={this.state.resouceindex == i ? "active" : ""} onClick={() => this.setState({ resouceindex: i })}>{i+1}</a>
                                     })}
-                                    {/* <a className={this.state.resouceindex == 1 ? "active" : ""} onClick={() => this.setState({ resouceindex: 1 })}>2</a> */}
                                     <a style={{}} onClick={() => { this.setState({ resouceindex: this.state.resouceindex + 1 }) }} >&raquo;</a>
                                 </div>
                             </div>

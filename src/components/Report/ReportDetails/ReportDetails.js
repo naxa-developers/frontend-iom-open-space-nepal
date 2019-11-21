@@ -5,6 +5,8 @@ import ReportDetailsCard from "./ReportDetailsCard";
 
 class ReportDetails extends Component {
   render() {
+    this.props.reportID&&console.log("pid",this.props.reportID);
+    
     return (
       <div>
         <>

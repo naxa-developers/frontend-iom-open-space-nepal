@@ -32,7 +32,7 @@ class ReportSidebar extends Component {
   };
   fetchReports = () => {
     Axios.get("http://139.59.67.104:8011/api/v1/report/").then(response => {
-      console.log("api", response.data);
+     
 
       this.props.dispatch({ type: "ReportFilter", data: response.data });
       this.setState({
@@ -76,7 +76,7 @@ class ReportSidebar extends Component {
                 />
                 <div className="report-count">
                   <h5>
-                    Reports: <span>{this.state.reports.length}</span>
+                    Reports: <span>{this.props.reportData&&this.props.reportData.length}</span>
                   </h5>
                 </div>
                 <div className="report-list">
