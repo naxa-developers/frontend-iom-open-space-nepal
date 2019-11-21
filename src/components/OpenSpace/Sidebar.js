@@ -186,6 +186,7 @@ class Sidebar extends Component {
   };
 
   fetchroute = (first, second) => {
+    console.log(second)
     var activeroute;
 
     this.state.Routespaths = []
