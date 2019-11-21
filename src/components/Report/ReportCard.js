@@ -15,7 +15,11 @@ class ReportCard extends Component {
               
               this.props.history.push('/reportdetails')
             }}>
-            <h5  onClick={() => this.props.dispatch({ type: "reportClicked", id:this.props.id })} >
+            <h5  onClick={() => {
+            
+              this.props.dispatch({ type: "reportClicked", id:this.props.id }),
+              console.log(this.props.id)
+              }} >
               {this.props.title} 
               <i
                 className="material-icons pending"
@@ -42,8 +46,9 @@ class ReportCard extends Component {
 }
 const mapStateToProps = (state) => {
   return {
+    ...state,
        language: state.language,
-       id: state.reportID
+      //  id: state.reportID
    }
 }
 

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Select from "react-select";
 import OpenSpaceCard from "./OpenSpaceCard";
+import Loader from '../Report/LoadingSpinner';
 
 import "./OpenSpaceCSS.css";
 import "react-perfect-scrollbar/dist/css/styles.css";
@@ -80,8 +81,10 @@ class Sidebar extends Component {
       response => {
         this.setState({
           Allos: response.data.data,
-          Openspaces: response.data.data
+          Openspaces: response.data.data,
+          loading: false
         });
+        
 
         // this.state.Allos.map(e => {
         //   console.log(this.props.mapRefs);
@@ -465,7 +468,7 @@ class Sidebar extends Component {
                   <ul>
 
 
-                    {this.state.Allos &&
+                    {this.state.loading ? <Loader /> :
                       this.state.Allos.map(e => {
 
 
