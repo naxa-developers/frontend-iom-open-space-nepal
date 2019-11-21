@@ -9,6 +9,7 @@ import L from "leaflet";
 
 import MaterialIcon from "material-icons-react";
 import Axios from "axios";
+import Legend from './legend'
 
 
 
@@ -31,7 +32,8 @@ class Sidebar extends Component {
       district_muni: L.featureGroup(),
       Routespaths: [],
       Routes: L.featureGroup(),
-      legend: L.control({ position: 'bottomright' })
+      legend: L.control({ position: 'bottomright' }),
+      div: L.DomUtil.create('div', 'routeWrapper')
     };
   }
 
@@ -182,9 +184,11 @@ class Sidebar extends Component {
   };
 
   fetchroute = (first, second) => {
-    // window.map.removeLayer(this.state.legend)
+    var activeroute;
+
+    this.state.Routespaths = []
     this.state.Routes.eachLayer((r) => this.state.Routes.removeLayer(r))
-    var baseUrl = "http://localhost:8989/route";
+    var baseUrl = "http://139.59.67.104:8989/route";
     var url =
       `${baseUrl}?point= ${first[0]},${first[1]},` +
       `&point=${second[0]},${second[1]}` +
@@ -195,81 +199,107 @@ class Sidebar extends Component {
     var colors = ["red", 'green', 'black']
     Axios.get(url)
       .then(Response => {
+        console.log(Response.data)
+
+   
         for (var j = 0; j < Response.data.paths.length; j++) {
           var path = []
           for (var i = 0; i < Response.data.paths[j].points.coordinates.length; i++) {
 
             path.push(Response.data.paths[j].points.coordinates[i].reverse())
           }
+          console.log(Response.data.paths[j].description)
           var polyline = L.polyline(path, { color: j == Response.data.paths.length - 1 ? 'blue' : 'grey' })
-          this.state.Routespaths.push({ id: j, path: polyline, description: Response.data.paths[j].description[0], distance: Response.data.paths[j].distance })
-
+          this.state.Routespaths.push({ id: j, path: polyline, description:Response.data.paths[j].description==undefined?"No Descrption":Response.data.paths[j].description[0] , distance: Response.data.paths[j].distance })
+        
           this.state.Routes.addLayer(polyline)
           window.map.fitBounds(polyline.getBounds())
 
         }
+        activeroute=0
 
 
-        var divss = document.getElementsByClassName('routeWrapper');
-        console.log(divss,"divs")
-        if(divss!=0){
-          for(var i=0;i<divss.length;i++){
-            console.log("loop");
-            
-            divss[i].innerHTML='<h1>a</h1>'
-            console.log("looped");
 
 
-          }
-        }
+
+
+
+
+
+
+
+        // var legend = L.control({ position: 'bottomright' })
         this.state.legend.onAdd = (map) => {
-          console.log("clicked")
-          var div;
-          
-          div = L.DomUtil.create('div', 'routeWrapper')
-          
-        
 
-  
-        
+          var div = L.DomUtil.create('div', `routeWrapper`)
+          div.innerHTML = ''
 
-
-
-          
 
           this.state.Routespaths.map(e => {
+            console.log(activeroute)
 
-            var descCard = "<div  class='desccard' name=" + e.id + ">" +
+            var class1='desccard';
+            var class2='desccard pathactive' 
+            var descCard = `<div  class=${activeroute==this.state.Routespaths.length-1?class1:class2} name=`+ e.id + ">" +
               e.description + '<br/>' +
               e.distance + " m"
             "<div>";
+
+
+
+
             div.innerHTML += descCard
+            activeroute++
 
           })
           // innterhtml
+          
 
 
 
           return div;
         }
+
+
+
+        // var divss = document.getElementsByClassName('routeWrapper');
+        // console.log(divss,"divs")
+        // if(divss!=0){
+        //   for(var i=0;i<divss.length;i++){
+
+
+        //     divss[i].innerHTML='<h1>a</h1>'
+
+
+
+        //   }
+        // }
+
         this.state.legend.addTo(window.map)
-   
-        
+        console.log(this.state.Routespaths)
+
+
+
+
 
         var doc = document.getElementsByClassName('desccard')
+
         for (var i = 0; i < doc.length; i++) {
           doc[i].addEventListener('click', (e) => {
             // console.log(e.target.getAttribute('name'));
             var value = e.target.getAttribute('name')
+            var selected = this.state.Routespaths.filter((a) => {
+              return a.id == value})
+
             for (var a = 0; a < doc.length; a++) {
               if (doc[a].getAttribute('name') == value) {
                 doc[a].classList.add('pathactive')
-                var selected = this.state.Routespaths.filter((a) => a.id == value)
                 for (var k = 0; k < this.state.Routespaths.length; k++) {
                   this.state.Routespaths[k].path.setStyle({
                     color: 'grey'
                   })
                 }
+
                 selected[0].path.setStyle({ color: 'blue' })
 
                 selected[0].path.bringToFront()
