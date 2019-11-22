@@ -53,7 +53,7 @@ class SearchFilter extends Component {
     return (
       <div>
           <div className="form-section">
-          {/* <!-- form-search-bar --> */}
+    
           <form className="form-search">
             <div className="form-wrap">
               <button className="btn btn-search" type="submit">
@@ -78,7 +78,7 @@ class SearchFilter extends Component {
               onKeyDown = {(e) => {
                 if(e.key ==='Enter') {
                   this.props.onApply() 
-                  // this.setState({focused: false})
+                 
                 }
               } } 
 
