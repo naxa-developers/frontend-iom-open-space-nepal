@@ -45,7 +45,7 @@ class Resources extends Component {
   };
 
   selectFilter = (state, e) => {
-    console.log(e);
+    
     var Filtered = this.state.resources.filter(i => {
       var a = state == 0 ? i.category : i.document_type;
       return a == e.value;
@@ -64,6 +64,8 @@ class Resources extends Component {
   }
 
   render() {
+    console.log(this.state.resources);
+    
     return (
       <div>
         <Navbar />
@@ -77,6 +79,8 @@ class Resources extends Component {
                       selectFilter={this.selectFilter}
                       setKeywords={this.setKeywords}
                       onApply={this.onApply}
+                      initialData = {this.state.resources}
+                      displayInitial = {this.chunkArray}
                     />
                   </div>
 
@@ -99,6 +103,7 @@ class Resources extends Component {
                             date={e.date}
                             categories={e.category}
                             document_type={e.document_type}
+                           
                           />
                           
                         )

@@ -23,11 +23,33 @@ class SearchFilter extends Component {
     super(props)
   
     this.state = {
-       focused: false
+       focused: false,
+       value1: '',
+       value2: '',
+       categorySelect: null,
+       documentSelect: null,
+       resources:null
     }
+  }
+
+  // onCategoryChange = (e) => this.setState({categorySelect: e }) 
+
+  applyFilter = () => {
+    this.props.selectFilter(0,this.state.value1);
+    this.props.selectFilter(1,this.state.value2);
+
+  }
+
+  onClear = () => {
+    
+    
+    this.setState({value1: '', value2: ''})
+    this.props.displayInitial(this.props.initialData,3)
   }
   
   render() {
+    console.log(this.props.initialData);
+    
     return (
       <div>
           <div className="form-section">
@@ -65,6 +87,7 @@ class SearchFilter extends Component {
             </div>
             
           </form>
+       
           </div>
           <br />
           <br />
@@ -72,13 +95,30 @@ class SearchFilter extends Component {
 
         <div className="dropdown-select">
           <div className="categories-dropdown">
-            <Select options={options} onChange={(e)=>this.props.selectFilter(0,e)} placeholder='Category' />
+           
+            <Select options={options} onChange={(e)=>this.setState({value1: e})} value={this.state.value1} placeholder='Category' />
           </div>
         </div>
         <br />
         <div className="document-types-dropdown">
-            <Select options={options1} onChange={(e)=>this.props.selectFilter(1,e)} placeholder="Document Type" />
+  
+            <Select options={options1} onChange={(e)=>this.setState({value2:e })} value={this.state.value2} placeholder="Document Type" />
             </div>
+<br/>
+<div className="map-filter">
+            <div className="reset-btns">
+          <div className="reset"  >
+            <MaterialIcon icon="refresh" />
+
+            <span onClick={() => this.onClear()} className="btn" style={{cursor:"pointer"}}>Clear all </span>
+           
+          </div> <br/>
+          <a className="openspace-button" onClick={() => this.applyFilter()}>
+            Apply
+          </a>
+        </div>
+        </div>
+
       </div>
     );
   }

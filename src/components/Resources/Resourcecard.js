@@ -30,7 +30,7 @@ class Resourcecard extends Component {
   // }
 
   render() {
-  console.log(this.props);
+
   
  
     return (
@@ -84,11 +84,11 @@ class Resourcecard extends Component {
                   <p className="para-details-block">
                     <span className="title">Type</span>
                     <span className="subtitle">
-                      {this.props.document_type == 2
+                      {this.props.document_type == 0
                         ? "Publication"
-                        : this.props.document_type == 1
+                        : this.props.document_type == 2
                         ? "Video"
-                        : this.props.document_type == 0
+                        : this.props.document_type == 1
                         ? "Audio"
                         : ""}
                     </span>
