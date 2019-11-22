@@ -4,7 +4,7 @@ import React, { Component } from 'react'
  
      
     render() {
-console.log("rendered");
+
 
         return (
             <div>

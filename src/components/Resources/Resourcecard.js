@@ -13,24 +13,10 @@ class Resourcecard extends Component {
     };
   }
 
-  // componentDidMount(){
-  //     Axios({
-  //         url: 'http://139.59.67.104:8011/api/v1/resource/',
-  //         method: 'GET',
-  //         responseType: 'blob',
-  //     })
-  //     .then(response=>{
-  //         console.log('api', response.data);
 
-  //         this.setState({files:response.data})
-  //         console.log("download", this.state.files);
-
-  //     })
-
-  // }
 
   render() {
-  console.log(this.props);
+
   
  
     return (
@@ -84,11 +70,11 @@ class Resourcecard extends Component {
                   <p className="para-details-block">
                     <span className="title">Type</span>
                     <span className="subtitle">
-                      {this.props.document_type == 2
+                      {this.props.document_type == 0
                         ? "Publication"
-                        : this.props.document_type == 1
+                        : this.props.document_type == 2
                         ? "Video"
-                        : this.props.document_type == 0
+                        : this.props.document_type == 1
                         ? "Audio"
                         : ""}
                     </span>

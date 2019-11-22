@@ -44,15 +44,32 @@ class Resources extends Component {
     !Filtered.length == 0 ? this.chunkArray(Filtered, 3) : alert("Not Found");
   };
 
-  selectFilter = (state, e) => {
-    console.log(e);
-    var Filtered = this.state.resources.filter(i => {
-      var a = state == 0 ? i.category : i.document_type;
-      return a == e.value;
-    });
+  selectFilterNew = (category, dtype) => {
+   
+    
+    var Filtered1 = this.state.resources.filter(i => {
+     if(category!=null&&dtype!=null) {
+       return(
+         category.value==i.category && dtype.value == i.document_type
+         
+         
+        )
+     } 
+     else if(category!=null&&dtype==null) {
+      
+       
+       return category.value==i.category
+      }
+     else if(category==null&&dtype!=null) {
+     
+       
+      return dtype.value==i.document_type
+    }
+     })
+Filtered1.length!=0 && this.chunkArray(Filtered1, 3);
 
-    !Filtered.length == 0 && this.chunkArray(Filtered, 3);
-  };
+  }
+
 
   componentDidMount() {
     Axios.get("http://139.59.67.104:8011/api/v1/resource/").then(response => {
@@ -64,6 +81,8 @@ class Resources extends Component {
   }
 
   render() {
+ 
+    
     return (
       <div>
         <Navbar />
@@ -74,9 +93,11 @@ class Resources extends Component {
                 <div className="row">
                   <div className="col-12 col-md-3 col-xl-4">
                     <SearchFilter
-                      selectFilter={this.selectFilter}
+                      selectFilter={this.selectFilterNew}
                       setKeywords={this.setKeywords}
                       onApply={this.onApply}
+                      initialData = {this.state.resources}
+                      displayInitial = {this.chunkArray}
                     />
                   </div>
 
@@ -99,6 +120,7 @@ class Resources extends Component {
                             date={e.date}
                             categories={e.category}
                             document_type={e.document_type}
+                           
                           />
                           
                         )

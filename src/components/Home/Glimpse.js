@@ -53,32 +53,56 @@ class Glimpse extends Component {
                                 <h4><Odometer
                                     format= "d"
                                     duration= {500}
-                                    value = {this.state.counts.open_space}
+                                    value = {this.state.counts&&this.state.counts.data.open_space}
                                 /></h4>
                                 <h6>{this.props.language =="0" ? `Open spaces` : `खुल्ला क्षेत्र` }</h6>
                             </div>
                         </div>
                         <div className="col-md-3 col-space-5">
                             <div className="glimps-count">
-                                <h4>{this.state.counts&&this.state.counts.data.district}</h4>
+                                <h4>
+                                <Odometer
+                                    format= "d"
+                                    duration= {500}
+                                    value = {this.state.counts&&this.state.counts.data.district}
+                                />
+                                    </h4>
                                 <h6>{this.props.language =="0" ? `District` : ` जिल्ला` }</h6>
                             </div>
                         </div>
                         <div className="col-md-3 col-space-5">
                             <div className="glimps-count">
-                                <h4>{this.state.counts&&this.state.counts.data.municipality}</h4>
+                                <h4>
+                                <Odometer
+                                    format= "d"
+                                    duration= {500}
+                                    value =  {this.state.counts&&this.state.counts.data.municipality}
+                                />
+                                   </h4>
                                 <h6>{this.props.language =="0" ? `Municipalities` : ` नगरपालिका` }</h6>
                             </div>
                         </div>
                         <div className="col-md-3 col-space-5">
                             <div className="glimps-count">
-                                <h4>{this.state.counts&&this.state.counts.total_area}</h4>
+                                <h4>
+                                <Odometer
+                                    format= "d"
+                                    duration= {500}
+                                    value = {this.state.counts&&this.state.counts.data.total_area}
+                                />
+                                    </h4>
                                 <h6>{this.props.language =="0" ? `Total area(sq.m)` : `जम्मा क्षेत्रफल  ` }</h6>
                             </div>
                         </div>
                         <div className="col-md-3 col-space-5">
                             <div className="glimps-count">
-        <h4>{this.state.counts&&this.state.counts.total_capacity}</h4>
+        <h4>
+        <Odometer
+                                    format= "d"
+                                    duration= {500}
+                                    value =  {this.state.counts&&this.state.counts.data.total_capacity}
+                                />
+           </h4>
                                 <h6>{this.props.language =="0" ? `Total Capacity` : `जम्मा क्षमता ` }</h6>
                             </div>
                         </div>

@@ -25,7 +25,7 @@ class HospitalCard extends Component {
   }
 
   render() {
-    console.log(this.state.data);
+
 
     return (
       <>
@@ -47,7 +47,7 @@ class HospitalCard extends Component {
         {this.state.data &&
           this.state.data.facility.map(e => {
          
-              return <IndividualCard name={e.name} />
+              return <IndividualCard key ={e.id}name={e.name} />
            
           })}
           </span>
