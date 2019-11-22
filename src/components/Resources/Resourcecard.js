@@ -13,21 +13,7 @@ class Resourcecard extends Component {
     };
   }
 
-  // componentDidMount(){
-  //     Axios({
-  //         url: 'http://139.59.67.104:8011/api/v1/resource/',
-  //         method: 'GET',
-  //         responseType: 'blob',
-  //     })
-  //     .then(response=>{
-  //         console.log('api', response.data);
 
-  //         this.setState({files:response.data})
-  //         console.log("download", this.state.files);
-
-  //     })
-
-  // }
 
   render() {
 

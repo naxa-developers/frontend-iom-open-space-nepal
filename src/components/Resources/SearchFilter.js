@@ -24,8 +24,8 @@ class SearchFilter extends Component {
   
     this.state = {
        focused: false,
-       value1: '',
-       value2: '',
+       value1: null,
+       value2: null,
        categorySelect: null,
        documentSelect: null,
        resources:null
@@ -35,8 +35,8 @@ class SearchFilter extends Component {
   // onCategoryChange = (e) => this.setState({categorySelect: e }) 
 
   applyFilter = () => {
-    this.props.selectFilter(0,this.state.value1);
-    this.props.selectFilter(1,this.state.value2);
+    this.props.selectFilter(this.state.value1, this.state.value2);
+    // this.props.selectFilter(1,this.state.value2);
 
   }
 
