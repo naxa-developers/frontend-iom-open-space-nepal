@@ -4,8 +4,8 @@ import Loader from '../../img/loader.gif'
  class LoadingSpinner extends Component {
     render() {
         return (
-            <div>
-               <img src={require('../../img/loader.gif')} alt="loading..." />
+            <div >
+               <img  style={{backgroundColor:'white',width:40}} src={require('../../img/loader.gif')} alt="loading..." />
             </div>
         )
     }

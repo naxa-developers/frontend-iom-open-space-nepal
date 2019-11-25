@@ -7,6 +7,8 @@ import {
 import 'leaflet/dist/leaflet.css';
 import Axios from 'axios';
 import L from 'leaflet'
+import { compose } from 'redux';
+require('leaflet.vectorgrid/dist/Leaflet.VectorGrid.bundled');
 const { BaseLayer } = LayersControl;
 
 
@@ -47,32 +49,90 @@ const { BaseLayer } = LayersControl;
      
         let latlng
 
-        // if(window.chrome){
-        //     console.log("chrome")
+       
 
-        //     Axios.get('http://ip-api.com/json')
-        //     .then(Response=>{
-        //         this.props.setcurrentLocation([Response.data.lat, Response.data.lon])
-        //         // this.setState({ currentLocation: [Response.data.lat, Response.data.lon] })
-        //         L.circleMarker(this.props.currentLocation, { color: 'red', radius: 5 }).addTo(window.map);
-
-
-        //     })
-            
-
-
-        // }
-      
-// else{
     
         navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition((location) => {
             latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
-            console.log([location.coords.latitude, location.coords.longitude])
+            console.log([location.coords.latitude, location.coords.longitude],"aa")
             this.props.setcurrentLocation([location.coords.latitude, location.coords.longitude])
-            L.circleMarker(latlng, { color: 'red', radius: 5 }).addTo(window.map);
+            L.circleMarker(latlng, { color: 'red', radius: 5 }).addTo(this.props.mapRefss.current.leafletElement);
             console.log("current", this.state.currentLocation)
         })
-    // }
+   
+    }
+
+    loadVectortile=()=>{
+        console.log("called")
+        const url = 'http://dvs.naxa.com.np/api/v1/core/district-tile/{z}/{x}/{y}'
+        // var vectorTileOptions = {
+
+        //     vectorTileLayerStyles: {
+        //         'test': function () {
+        //             return {
+        //                 fillColor: "red",
+        //                 fillOpacity: 0.02,
+        //                 weight: 0.3,
+        //                 opacity: 0.0,
+        //                 color: 'red',
+        //                 fill: true,
+        //             }
+        //         },
+        //         zIndex: 1000
+
+        //     },
+        //     tms: true,
+        //     // noWrap: true,
+        //     interactive: true, // Make sure that this VectorGrid fires mouse/pointer events
+        //     // pane: "world_shp",
+        //     getFeatureId: function (feature) {
+
+        //         console.log(feature)
+        //     }
+        // }
+
+
+        // var district = L.vectorGrid.protobuf(url, vectorTileOptions)
+        // district.addTo(this.props.mapRefss.current.leafletElement);
+
+
+        var vectorTileOptions = {
+            tms: true,
+            vectorTileLayerStyles: {
+                'test': function () {
+                    return {
+                        fillColor: "blue",
+                        fillOpacity: 0.2,
+                        weight: 1,
+                        opacity: 1,
+                        color: '#a3b7e3',
+                        fill: true,
+                    }
+                },
+                zIndex: 2000,
+               
+            },
+            interactive: true, 
+            noWrap:true,
+            pane:'vtile',// Make sure that this VectorGrid fires mouse/pointer events
+
+            getFeatureId: function (feature) {
+            //    console.log(feature)
+               return feature.properties.id
+
+            }
+        }
+
+
+var dvsurl = "http://139.59.67.104:8060/api/v1/core/district-tile/{z}/{-y}/{x}?province=3";
+// var dvsurl="https://apps.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Naxa:final_world@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf"
+
+
+
+
+var district = L.vectorGrid.protobuf(dvsurl,vectorTileOptions);
+district.addTo(this.props.mapRefss.current.leafletElement)
+// this.props.mapRefss.current.leafletElement.fitBounds(district.getBounds())
     }
  
     
@@ -81,15 +141,19 @@ const { BaseLayer } = LayersControl;
         this.onload(); 
         this.currentLocation()
         // this.fetchroute()
-        this.addnortharrow()
+        // this.addnortharrow()
+        this.props.mapRefss.current.leafletElement.createPane('vtile');
+        this.props.mapRefss.current.leafletElement.getPane('vtile').style.zIndex = 2000;
+        // this.loadVectortile()
+
     }
     render() {
       
-        var bounds = [[30.86924662953735,
-            100.29542704344739],
+        var bounds = [[31.456782472114312
+            , 90.0439453125],
            [
-             26.7211025368031,
-      79.2016770434474
+            24.67696979820268
+            ,79.0576171875
            ] ];
         
     
@@ -98,8 +162,9 @@ const { BaseLayer } = LayersControl;
 
             <>
             <LeafletMap
+            
                     center={[27, 85]}
-                    zoom={4}
+                    zoom={10}
                     maxZoom={15}
                     attributionControl={true}
                     zoomControl={true}
@@ -113,7 +178,7 @@ const { BaseLayer } = LayersControl;
                     style={{ height: this.state.height == null ? '80vh': this.state.height,overflow: 'hidden', }}  
                     >
                         <LayersControl position="topleft">
-                        <BaseLayer checked  name="OpenStreetMap">
+                        <BaseLayer checked={true} name="OpenStreetMap">
                             <TileLayer
                                 attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -121,6 +186,14 @@ const { BaseLayer } = LayersControl;
 
 
 
+                            />
+                        </BaseLayer>
+                        <BaseLayer name="Google Hybrid">
+                            <TileLayer
+                                attribution='&amp;copy <a href="http://maps.google.com">Google Maps</a> contributors'
+                                url="http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}"
+                                maxZoom={20}
+                                subdomains={["mt0", "mt1", "mt2", "mt3"]}
                             />
                         </BaseLayer>
                         </LayersControl>
