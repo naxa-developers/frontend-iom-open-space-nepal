@@ -12,43 +12,14 @@ class OpenSpaceCard extends Component {
         super(props)
 
         this.state = {
-            currentLocation: null
-        }
-    }
-
-
-    currentLocation =  () => {
-     
-        let latlng
-
-        if(window.chrome){
-            console.log("chrome")
-
-            Axios.get('http://ip-api.com/json')
-            .then(Response=>{
-                latlng = new L.LatLng(Response.data.lat, Response.data.lon);
-                this.setState({ currentLocation: [Response.data.lat, Response.data.lon] })
-                L.circleMarker(this.state.currentLocation, { color: 'red', radius: 5 }).addTo(window.map);
-
-
-            })
             
-
-
         }
-      
-else{
-    console.log("not chrome")
-        navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition((location) => {
-            latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
-            this.setState({ currentLocation: [location.coords.latitude, location.coords.longitude] })
-            L.circleMarker(latlng, { color: 'red', radius: 5 }).addTo(window.map);
-            // console.log("current", this.state.currentLocation)
-        })
     }
-    }
+
+
+   
     componentDidMount() {
-        this.currentLocation()
+     
 
     }
     render() {
@@ -81,7 +52,7 @@ else{
                         </div>
                     </div>
                     <div className="space-direction" onClick={() => {
-                        this.props.routing(this.props.latlng, this.state.currentLocation)
+                        this.props.routing(this.props.latlng, this.props.currentlocation)
                         console.log("consoled");
 
                     }}>
