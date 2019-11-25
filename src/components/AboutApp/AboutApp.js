@@ -51,7 +51,7 @@ import Steps from './Steps';
                                     <h3 className="openspace-title">OPEN SPACES App</h3>
                                     
                                     <div className="app-icons-content">
-                                        {/* <a href="#" className="openspace-button">Learn more</a> */}
+                                        
                                         <h4>Download now</h4>
                                         <div className="app-icon flex-start">
                                             <figure>
