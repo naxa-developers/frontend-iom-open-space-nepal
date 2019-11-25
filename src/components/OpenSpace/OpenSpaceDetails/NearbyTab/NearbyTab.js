@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Card, Accordion, Button } from "react-bootstrap";
+import HospitalCard from "./HospitalCard";
 
 class NearbyTab extends Component {
   render() {
@@ -14,21 +15,7 @@ class NearbyTab extends Component {
           </Card.Header>
           <Accordion.Collapse eventKey="0">
             <Card.Body>
-              <div className="facility-overview flex-between">
-                <div className="overview-item ">
-                  <h6>1</h6>
-                  <p>district hospital</p>
-                </div>
-                <div className="overview-item">
-                  <h6>13</h6>
-                  <p>government Hospital</p>
-                </div>
-                <div className="overview-item">
-                  <h6>1</h6>
-                  <p>private Hospital</p>
-                </div>
-              </div>
-              <span>Here goes individual hospitals now </span>
+              <HospitalCard/>
             </Card.Body>
           </Accordion.Collapse>
         </Card>

@@ -4,7 +4,7 @@ import Axios from "axios";
 import DetailsHeader from "./DetailsHeader";
 import TabNavbar from "./TabNavbar";
 import GeneralInfo from "./GeneralInfo";
-import ReportTab from "./ReportTab";
+import ReportTab from "./ReportTab/ReportTab";
 import NearbyTab from "./NearbyTab/NearbyTab";
 
 import { connect } from "react-redux";
@@ -49,7 +49,6 @@ class DetailsCard extends Component {
   };
 
   render() {
-    console.log("fsfs", this.props.id);
     
     return (
       <div>
@@ -111,7 +110,7 @@ class DetailsCard extends Component {
                       role="tabpanel"
                       aria-labelledby="report_tab"
                     >
-                      <ReportTab />
+                      <ReportTab id={this.props.id}/>
                     </div>
                     <div
                       className={
