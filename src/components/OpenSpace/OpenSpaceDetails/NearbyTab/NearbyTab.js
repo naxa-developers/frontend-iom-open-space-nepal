@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Card, Accordion, Button } from "react-bootstrap";
 import HospitalCard from "./HospitalCard";
 import FireCard from './FireCard';
-import Axios from 'axios';
 import SecurityCard from "./SecurityCard";
+import EducationCard from './EducationCard';
 
 class NearbyTab extends Component {
 
@@ -70,43 +70,24 @@ class NearbyTab extends Component {
             </Card.Body>
           </Accordion.Collapse>
         </Card>
+        <Card>
+          <Card.Header>
+            <Accordion.Toggle as={Button} variant="link" eventKey="4">
+              Educational Facilities
+            </Accordion.Toggle>
+            
+          </Card.Header>
+          <Accordion.Collapse eventKey="4">
+            <Card.Body>
+              <EducationCard
+              id= {this.props.id}
+              />
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
       </Accordion>
 
-      /*   <div className="card">
-          <div className="card-header">
-            <a
-              className="collapsed card-link btn-link"
-              data-toggle="collapse"
-              // href="#collapseThree"
-          
-
-            >
-              <i className="humanitarian-icon-Helipad"></i>
-              Helipad (Airport)
-            </a>
-          </div>
-          <div id="collapseThree" className= "collapse show collapse" data-parent="#accordion">
-   
-          </div>
-        </div>
-        <div className="card">
-          <div className="card-header">
-            <a
-              className="collapsed card-link btn-link"
-              data-toggle="collapse"
-              // href="#collapseFour"
-           
-
-            >
-              <i className="humanitarian-icon-National-army"></i>
-              Security Forces
-            </a>
-          </div>
-          <div id="collapseFour" className= "collapse show collapse" data-parent="#accordion">
-           
-          </div>
-        </div> */
-      // </Accordion>
+     
     );
   }
 }
