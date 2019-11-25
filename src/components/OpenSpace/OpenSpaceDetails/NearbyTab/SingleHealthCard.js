@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
- class IndividualCard extends Component {
+ class SingleHealthCard extends Component {
  
      
     render() {
@@ -13,4 +13,4 @@ import React, { Component } from 'react'
         )
     }
 }
-export default IndividualCard;
+export default SingleHealthCard;

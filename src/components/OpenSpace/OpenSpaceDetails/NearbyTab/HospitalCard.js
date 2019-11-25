@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Axios from "axios";
-import IndividualCard from "./IndividualCard";
+import SingleHealthCard from "./SingleHealthCard";
 
 class HospitalCard extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class HospitalCard extends Component {
 
   fetchInfo = () => {
     Axios.get(
-      `http://139.59.67.104:8011/api/v1/near_by_me?type=education%20facility&count=10&distance=10000000&id=8`
+      `http://139.59.67.104:8011/api/v1/near_by_me?type=health%20facility&count=100&distance=500&id=${this.props.id}`
     ).then(response => {
       this.setState({
         data: response.data
@@ -25,6 +25,7 @@ class HospitalCard extends Component {
   }
 
   render() {
+
 
 
     return (
@@ -47,7 +48,7 @@ class HospitalCard extends Component {
         {this.state.data &&
           this.state.data.facility.map(e => {
          
-              return <IndividualCard key ={e.id}name={e.name} />
+              return <SingleHealthCard key ={e.id}name={e.name} />
            
           })}
           </span>
