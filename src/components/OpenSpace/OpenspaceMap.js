@@ -6,6 +6,7 @@ import {
 } from "react-leaflet";
 import 'leaflet/dist/leaflet.css';
 import Axios from 'axios';
+import L from 'leaflet'
 const { BaseLayer } = LayersControl;
 
 
@@ -17,10 +18,20 @@ const { BaseLayer } = LayersControl;
        this.state = {
            height: null,
            activeroute:0,
-           Routespaths:[]
+           Routespaths:[],
+           currentLocation: null
           
        };
      };
+     addnortharrow=()=>{
+        var north = L.control({position: "topleft"});
+        north.onAdd = (map) =>{
+            var div = L.DomUtil.create("div", "info legend");
+            div.innerHTML = '<img id="north" src="../../src/img/n.png">';
+            return div;
+        }
+        north.addTo(this.props.mapRefss.current.leafletElement);
+     }
 
      onload = () => {
         var windowHeight = window.innerHeight;
@@ -32,93 +43,45 @@ const { BaseLayer } = LayersControl;
         })
 
      }
- 
-     fetchroute=()=>{
-        var baseUrl = "http://localhost:8989/route";
-        var url =
-            `${baseUrl}?point= 27.63487379134253,85.352783203125`+
-            "&point=27.751607687549384,85.242919921875"+
-            "&points_encoded=false"+
-            "&ch.disable=true"+
-            "&alternative_route.max_paths=3"+
-            "&algorithm=alternative_route";
-        var colors=["red",'green','black']
-        Axios.get(url)
-        .then(Response=>{
-            for(var j=0;j<Response.data.paths.length;j++){
-                var path=[]
-                for(var i=0;i<Response.data.paths[j].points.coordinates.length;i++){
-                    
-                    path.push(Response.data.paths[j].points.coordinates[i].reverse())
-                }
-                var polyline=L.polyline(path,{color: j==Response.data.paths.length-1?'blue':'grey'})
-                this.state.Routespaths.push({id:j,path:polyline,description:Response.data.paths[j].description[0],distance:Response.data.paths[j].distance})
-                
-                window.map.addLayer(polyline)
-                window.map.fitBounds(polyline.getBounds())
+     currentLocation =  () => {
+     
+        let latlng
 
-            }
+        // if(window.chrome){
+        //     console.log("chrome")
 
-            var legend = L.control({ position: 'bottomright' });
+        //     Axios.get('http://ip-api.com/json')
+        //     .then(Response=>{
+        //         this.props.setcurrentLocation([Response.data.lat, Response.data.lon])
+        //         // this.setState({ currentLocation: [Response.data.lat, Response.data.lon] })
+        //         L.circleMarker(this.props.currentLocation, { color: 'red', radius: 5 }).addTo(window.map);
 
-            legend.onAdd = (map) => {
-    
-                var div = L.DomUtil.create('div', 'routeWrapper')
-                this.state.Routespaths.map(e=>{
-                    var descCard="<div  class='desccard' name="+ e.id+">"+
-                    e.description+'<br/>'+
-                    e.distance+" m"
-                    "<div>";
-                    div.innerHTML += descCard
 
-                })
-                // innterhtml
-                 
+        //     })
             
-             
-                return div;
-            } 
-            legend.addTo(window.map)  
-            var doc= document.getElementsByClassName('desccard')
-            console.log(doc)
-            for(var i=0;i<doc.length;i++){
-                doc[i].addEventListener('click',(e)=>{
-                    console.log(e.target.getAttribute('name'));
-                    var value=e.target.getAttribute('name')
-                    for(var a=0;a<doc.length;a++){
-                        if(doc[a].getAttribute('name')==value){
-                            doc[a].classList.add('pathactive')
-                            var selected=this.state.Routespaths.filter((a)=>a.id==value)
-                            for(var k=0;k<this.state.Routespaths.length;k++){
-                                this.state.Routespaths[k].path.setStyle({
-                                    color:'grey'
-                                })
-                            }
-                            selected[0].path.setStyle({color:'blue'})
-                            
-                            selected[0].path.bringToFront()
-
-                        }
-                        else{
-                            doc[a].classList.remove('pathactive')
 
 
-                        }
-                    }
-                    
-                 
-                }
-                )
-            }
-
-
-        }
-        )
-     }
+        // }
+      
+// else{
+    
+        navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition((location) => {
+            latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
+            console.log([location.coords.latitude, location.coords.longitude])
+            this.props.setcurrentLocation([location.coords.latitude, location.coords.longitude])
+            L.circleMarker(latlng, { color: 'red', radius: 5 }).addTo(window.map);
+            console.log("current", this.state.currentLocation)
+        })
+    // }
+    }
+ 
+    
+    
      componentDidMount() {
-        this.onload();    
-       
+        this.onload(); 
+        this.currentLocation()
         // this.fetchroute()
+        this.addnortharrow()
     }
     render() {
       
@@ -149,7 +112,7 @@ const { BaseLayer } = LayersControl;
                     ref={this.props.mapRefss}
                     style={{ height: this.state.height == null ? '80vh': this.state.height,overflow: 'hidden', }}  
                     >
-                        <LayersControl position="topright">
+                        <LayersControl position="topleft">
                         <BaseLayer checked  name="OpenStreetMap">
                             <TileLayer
                                 attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

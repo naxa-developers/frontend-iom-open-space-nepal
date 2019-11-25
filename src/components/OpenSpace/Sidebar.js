@@ -186,7 +186,7 @@ class Sidebar extends Component {
   };
 
   fetchroute = (first, second) => {
-    console.log(second)
+    console.log(second,first)
     var activeroute;
 
     this.state.Routespaths = []
@@ -200,6 +200,7 @@ class Sidebar extends Component {
       "&alternative_route.max_paths=4" +
       "&algorithm=alternative_route";
     var colors = ["red", 'green', 'black']
+    console.log(url)
     Axios.get(url)
       .then(Response => {
         console.log(Response.data)
@@ -242,13 +243,13 @@ class Sidebar extends Component {
             console.log(activeroute)
 
             var class1='desccard';
-            var class2='desccard pathactive' 
-            var descCard = `<div  class=${activeroute==this.state.Routespaths.length-1?class1:class2} name=`+ e.id + ">" +
+            var activeclass=class1
+     
+            var descCard = `<div  class=${class1} name=`+ e.id + ">" +
               e.description + '<br/>' +
               e.distance + " m"
             "<div>";
-
-
+            activeroute==this.state.Routespaths.length-1?descCard.classList.add('pathactive'):null
 
 
             div.innerHTML += descCard
@@ -471,9 +472,9 @@ class Sidebar extends Component {
                     {this.state.loading ? <Loader /> :
                       this.state.Allos.map(e => {
 
-
                         return (
                           <OpenSpaceCard
+                          currentlocation={this.props.currentLocation}
                             latlng={[e.latitude, e.longitude]}
                             routing={this.fetchroute}
                             key={e.id}

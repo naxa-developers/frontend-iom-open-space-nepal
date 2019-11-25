@@ -9,15 +9,22 @@ class OpenSpace extends Component {
     super(props)
     this.mapRefs=createRef();
     this.state = {
+      currentLocation: null
+
        
     };
   };
+  setcurrentlocation=(loc)=>{
+    console.log(loc,"sert")
+    this.setState({currentLocation:loc})
+  }
   componentDidMount(){
 
   }
   
 
   render() {
+    console.log("render",this.state.currentLocation)
     return (
     <>
         <Navbar />
@@ -27,10 +34,10 @@ class OpenSpace extends Component {
               <div className ="map-wrapper">
                 <div className="row no-gutters">
                   <div className="col-md-7">
-                  <OpenspaceMap mapRefss={this.mapRefs} />
+                  <OpenspaceMap setcurrentLocation={this.setcurrentlocation} currentLocation={this.state.currentLocation} mapRefss={this.mapRefs} />
                   </div>
                   <div className="col-md-5">
-                  <Sidebar mapRefs={this.mapRefs} />
+                  <Sidebar mapRefs={this.mapRefs}  currentLocation={this.state.currentLocation} />
                   </div>
                 </div>
                 
