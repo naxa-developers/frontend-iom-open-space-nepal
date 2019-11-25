@@ -29,6 +29,7 @@ class Sidebar extends Component {
       Allos: [],
       handlingindex: 0,
       focused: false,
+      loading: true,
       district_muni: L.featureGroup(),
       Routespaths: [],
       Routes: L.featureGroup(),

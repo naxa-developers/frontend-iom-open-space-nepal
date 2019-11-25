@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Axios from "axios";
-import IndividualCard from "./IndividualCard";
+import SingleHealthCard from "./SingleHealthCard";
 
 class HospitalCard extends Component {
   constructor(props) {
@@ -48,7 +48,7 @@ class HospitalCard extends Component {
         {this.state.data &&
           this.state.data.facility.map(e => {
          
-              return <IndividualCard key ={e.id}name={e.name} />
+              return <SingleHealthCard key ={e.id}name={e.name} />
            
           })}
           </span>

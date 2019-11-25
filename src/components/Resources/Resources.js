@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Navbar from "../Home/Navbar";
 import SearchFilter from "./SearchFilter";
 import Resourcecard from "./Resourcecard";
+import LoadingSpinner from '../Report/LoadingSpinner';
 
 import Axios from "axios";
 
@@ -103,7 +104,8 @@ Filtered1.length!=0 && this.chunkArray(Filtered1, 3);
 
                   <div className="col-12 col-md-9 col-xl-8">
                     <div className="content-section">
-                      {this.state.loaded &&
+
+                      {this.state.loaded == false ? <LoadingSpinner /> :
                         this.state.slicedResources[
                           this.state.resouceindex
                         ].map(e => (
