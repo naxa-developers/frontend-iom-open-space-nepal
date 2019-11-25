@@ -24,7 +24,7 @@ class OpenSpace extends Component {
   
 
   render() {
-    console.log("render",this.state.currentLocation)
+    // console.log("render",this.state.currentLocation)
     return (
     <>
         <Navbar />
