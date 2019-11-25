@@ -1,32 +1,59 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Axios from 'axios';
+
 import Navbar from '../Home/Navbar';
 import Footer from '../Home/Footer';
 
 import bannerShape from '../../img/banner-shape.png';
-import MapLocation from '../../img/map-pin-locations.svg'
+import Steps from './Steps';
 
  class AboutApp extends Component {
+
+    constructor(props) {
+        super(props);
+        this.counter = 0;
+        this.state = {
+          data: ""
+        };
+      }
+    
+      fetchInfo = () => {
+        Axios.get(
+          `http://139.59.67.104:8011/api/v1/open_space_app/`
+        ).then(response => {
+          this.setState({
+            data: response.data
+          });
+        });
+      };
+      componentDidMount() {
+        this.fetchInfo();
+      }
+
+
     render() {
+     
+        
         return (
             <div className="app-page">
                 <Navbar />
-                <div class="app-section mb-150 pt-150">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <figure class="app-figure flex-end">
+                <div className="app-section mb-150 pt-150">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-6">
+                                <figure className="app-figure flex-end">
                                     <img src={require('../../img/app-banner.png')} alt="app" />
                                 </figure>
                             </div>
-                            <div class="col-md-6">
-                                <figure class="app-content">
-                                    <span class="sub-title">Get started with</span>
-                                    <h3 class="openspace-title">OPEN SPACES App</h3>
+                            <div className="col-md-6">
+                                <figure className="app-content">
+                                    <span className="sub-title">Get started with</span>
+                                    <h3 className="openspace-title">OPEN SPACES App</h3>
                                     
-                                    <div class="app-icons-content">
-                                        {/* <a href="#" class="openspace-button">Learn more</a> */}
+                                    <div className="app-icons-content">
+                                        {/* <a href="#" className="openspace-button">Learn more</a> */}
                                         <h4>Download now</h4>
-                                        <div class="app-icon flex-start">
+                                        <div className="app-icon flex-start">
                                             <figure>
                                                 <img src={require('../../img/appstore.png')} alt="ios" />
                                             </figure>
@@ -40,84 +67,27 @@ import MapLocation from '../../img/map-pin-locations.svg'
                         </div>
                     </div>
             </div>
-            <main class="main-content">
-            <div class="container">
-                {/* <!-- first-row --> */}
-                <div class="row-wrap">
-                    <div class="row">
-                        <div class="col-12 col-md-6">
-                            <div class="content-text">
-                                <div class="content-center">
-                                    <figure>
-                                        <img src={MapLocation} alt="location" />
-                                    </figure>
-                                    <div class="content-title">
-                                        <h3 class="openspace-title">Find open spaces</h3>
-                                        <p class="content-para">In 13 district with total 141 open spaces, find an open space near you easily, in times of disaster</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="content-image">
-                                <figure>
-                                    <img src={require('../../img/find-space.png')} alt="find-space" />
-                                </figure>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <main className="main-content">
+            <div className="container">
+              
+                <div className="row-wrap">
+                {this.state.data&&this.state.data.map((d,i) => { 
+                    
+                      return  <Steps 
+                        counter = {this.counter}
+                        key={d.id}
+                        count = {i}
+                        title ={d.title}
+                        image = {d.image}
+                        icon = {d.icon}
+                        description = {d.description}
 
-                {/* <!-- second-row --> */}
-                <div class="row-wrap">
-                    <div class="row">
-                        <div class="col-12 col-md-6 order-sm-1 order-md-0">
-                            <div class="content-image">
-                                <figure>
-                                    <img src={require('../../img/report.png')} alt="" />
-                                </figure>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6 order-sm-0 order-md-1">
-                            <div class="content-text">
-                                <div class="content-center">
-                                    <figure>
-                                        <img src={require('../../img/chat.svg')} alt="" />
-                                    </figure>
-                                    <div class="content-title">
-                                        <h3 class="openspace-title">Report Encroachment</h3>
-                                        <p class="content-para">Click a photo and submit your report, issue or suggestion on any open space</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* <!-- third-row --> */}
-                <div class="row-wrap">
-                    <div class="row">
-                        <div class="col-12 col-md-6 ">
-                            <div class="content-text">
-                                <div class="content-center">
-                                    <figure>
-                                        <img src={require('../../img/flag.svg')} alt="" />
-                                    </figure>
-                                    <div class="content-title">
-                                        <h3 class="openspace-title">I support open space</h3>
-                                        <p class="content-para">Click a photo and submit your report, issue or suggestion on any open space</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="content-image">
-                                <figure>
-                                    <img src={require('../../img/support.png')} alt="" />
-                                </figure>
-                            </div>
-                        </div>
-                    </div>
+                        />
+                     
+                      
+                    }
+                    ) } 
+                    
                 </div>
             </div>
             
