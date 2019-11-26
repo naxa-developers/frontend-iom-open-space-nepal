@@ -7,10 +7,14 @@ import "./OpenSpaceCSS.css";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
 import L from "leaflet";
+import 'leaflet.markercluster'
 
 import MaterialIcon from "material-icons-react";
 import Axios from "axios";
 import mrk from '../../img/mrk.png'
+import 'leaflet.markercluster/dist/MarkerCluster.css'
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
+require('leaflet.markercluster')
 
 
 
@@ -35,7 +39,8 @@ class Sidebar extends Component {
       Routespaths: [],
       Routes: L.featureGroup(),
       legend: L.control({ position: 'topright' }),
-      div: L.DomUtil.create('div', 'routeWrapper')
+      div: L.DomUtil.create('div', 'routeWrapper'),
+      OSmarkers : L.markerClusterGroup()
     };
   }
 
@@ -185,8 +190,8 @@ class Sidebar extends Component {
 
       var map = this.props.mapRefs.current.leafletElement;
       // new L.circleMarker([e.latitude, e.longitude]).addTo(map)
-      new L.Marker([e.latitude, e.longitude],{icon: new L.icon({ iconUrl: '../../src/img/mrk.png', iconSize: [10, 20] })}).addTo(map)
-
+      var mrk=new L.Marker([e.latitude, e.longitude],{icon: new L.icon({ iconUrl: '../../src/img/mrk.png', iconSize: [10, 20] })})
+      mrk.addTo(this.state.OSmarkers)
 
     });
   };
@@ -353,6 +358,7 @@ class Sidebar extends Component {
     window.map = this.props.mapRefs.current.leafletElement;
     window.map.addLayer(this.state.district_muni);
     window.map.addLayer(this.state.Routes);
+    window.map.addLayer(this.state.OSmarkers);
 
     // window.map1=this.props.mapRefs.current.leafletElement
   }

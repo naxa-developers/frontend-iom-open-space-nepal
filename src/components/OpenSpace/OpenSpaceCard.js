@@ -32,9 +32,9 @@ class OpenSpaceCard extends Component {
           "&algorithm=alternative_route";
           Axios.get(url)
           .then(Response => {
-              console.log(Response.data.paths)
+            //   console.log(Response.data.paths)
               for(var i=0; i<Response.data.paths.length;i++ ){
-                  console.log(Response.data.paths[i])
+                //   console.log(Response.data.paths[i])
                   distances.push(Response.data.paths[i].distance)
               }
               let shortest=Math.min(...distances)
