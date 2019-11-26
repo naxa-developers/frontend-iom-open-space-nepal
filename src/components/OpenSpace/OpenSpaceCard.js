@@ -20,6 +20,7 @@ class OpenSpaceCard extends Component {
     }
 
     getshortestdistance=(first,second)=>{
+        console.log(first,second);
         var baseUrl = "http://139.59.67.104:8989/route";
         var distances=[]
         // console.log(first,second)
