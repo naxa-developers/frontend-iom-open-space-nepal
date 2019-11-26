@@ -45,7 +45,7 @@ class OpenSpaceCard extends Component {
    
     componentDidMount() {
         
-        this.getshortestdistance(this.props.latlng, this.props.currentLocation)
+        // this.getshortestdistance(this.props.latlng, this.props.currentLocation)
      
 
     }

@@ -422,6 +422,7 @@ class Sidebar extends Component {
                             79.2016770434474
                           ]];
                           window.map.fitBounds(bounds)
+                          this.state.Routes.eachLayer((e)=>this.state.Routes.removeLayer(e))
                         }
 
                         }

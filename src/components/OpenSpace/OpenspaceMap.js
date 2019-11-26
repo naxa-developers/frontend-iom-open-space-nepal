@@ -61,6 +61,22 @@ const { BaseLayer } = LayersControl;
         })
    
     }
+    loadprovince=()=>{
+        console.log("province loadig...")
+        Axios.get('http://139.59.67.104:8011/api/v1/province_geo_json')
+        .then(response=>{console.log(response,"province")
+        L.geoJSON(response.data,{
+            style:(feature)=>{
+                return {
+                    color:'red',
+                    weight:0.2,
+                    fillColor:feature.properties.code%2==0?'blue':'green'
+                }
+
+            }
+        }).addTo(window.map)
+    })
+    }
 
     loadVectortile=()=>{
         console.log("called")
@@ -145,6 +161,7 @@ district.addTo(this.props.mapRefss.current.leafletElement)
         this.props.mapRefss.current.leafletElement.createPane('vtile');
         this.props.mapRefss.current.leafletElement.getPane('vtile').style.zIndex = 2000;
         // this.loadVectortile()
+        this.loadprovince()
 
     }
     render() {
@@ -165,7 +182,7 @@ district.addTo(this.props.mapRefss.current.leafletElement)
             
                     center={[27, 85]}
                     zoom={10}
-                    maxZoom={15}
+                    maxZoom={18}
                     attributionControl={true}
                     zoomControl={true}
                     doubleClickZoom={true}
