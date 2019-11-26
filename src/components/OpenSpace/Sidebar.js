@@ -187,10 +187,16 @@ class Sidebar extends Component {
 
 
     this.state.Allos.map(e => {
+      // console.log(e)
 
       var map = this.props.mapRefs.current.leafletElement;
       // new L.circleMarker([e.latitude, e.longitude]).addTo(map)
       var mrk=new L.Marker([e.latitude, e.longitude],{icon: new L.icon({ iconUrl: '../../src/img/mrk.png', iconSize: [10, 20] })})
+      var popup="<h6>"+e.title+"</h6>"+
+      "<h6>"+e.municipality+"</h6>"
+
+      mrk.bindPopup(popup)
+
       mrk.addTo(this.state.OSmarkers)
 
     });
@@ -261,8 +267,8 @@ class Sidebar extends Component {
             // var activeclass=class1
      
             var descCard = `<div  class=${class1} name=`+ e.id + ">" +
-              e.description + '<br/>' +
-              e.distance + " m"
+              "<h6>"+e.description+"</h6>" +
+              "<span>"+e.distance + " m"+"</span>"
             "<div>";
            
 

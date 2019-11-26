@@ -62,19 +62,22 @@ const { BaseLayer } = LayersControl;
    
     }
     loadprovince=()=>{
+        var colors=["#0489B1","#045FB4","purple","#0404B4","#3104B4","#5F04B4","#1B0A2A"]
         console.log("province loadig...")
         Axios.get('http://139.59.67.104:8011/api/v1/province_geo_json')
         .then(response=>{console.log(response,"province")
-        L.geoJSON(response.data,{
+        var province=L.geoJSON(response.data,{
             style:(feature)=>{
                 return {
-                    color:'red',
-                    weight:0.2,
-                    fillColor:feature.properties.code%2==0?'blue':'green'
+                    color:'black',
+                    weight:0.8,
+                    fillColor:colors[feature.properties.code-1],
+                    fillOpacity:0.7
                 }
 
             }
         }).addTo(window.map)
+        this.props.setProvince(province)
     })
     }
 

@@ -8,42 +8,16 @@
     min-width: 150px;
 
 } 
-#legendtitle{
-    padding: 4px;
-    color: white;
-    position: sticky;
-    top: 0;
-    background-color: #174BDD;
-    z-index: 10;
-    align-self: center;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
+
 
 .routeWrapper{
     width: 200px;
     height: 180px;
-    background-color: rgba(247, 241, 241, 0.8);
     overflow: auto;
-    padding-left: 10px;
-    padding-top: 5px;
-    padding-right: 10px;
 
 }
-.desccard{
-    width:auto;
-    padding: 4px;
-    cursor: pointer;
 
-}
-.pathactive{
-    width:auto;
-    padding: 4px;
-    cursor: pointer;
-    background-color: rgba(65, 201, 31,0.6);
 
-}
 #north{
     height: 50px;
     width: 50px;
