@@ -7,10 +7,14 @@ import "./OpenSpaceCSS.css";
 import "react-perfect-scrollbar/dist/css/styles.css";
 
 import L from "leaflet";
+import 'leaflet.markercluster'
 
 import MaterialIcon from "material-icons-react";
 import Axios from "axios";
 import mrk from '../../img/mrk.png'
+import 'leaflet.markercluster/dist/MarkerCluster.css'
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
+require('leaflet.markercluster')
 
 
 
@@ -35,7 +39,8 @@ class Sidebar extends Component {
       Routespaths: [],
       Routes: L.featureGroup(),
       legend: L.control({ position: 'topright' }),
-      div: L.DomUtil.create('div', 'routeWrapper')
+      div: L.DomUtil.create('div', 'routeWrapper'),
+      OSmarkers : L.markerClusterGroup()
     };
   }
 
@@ -182,11 +187,17 @@ class Sidebar extends Component {
 
 
     this.state.Allos.map(e => {
+      // console.log(e)
 
       var map = this.props.mapRefs.current.leafletElement;
       // new L.circleMarker([e.latitude, e.longitude]).addTo(map)
-      new L.Marker([e.latitude, e.longitude],{icon: new L.icon({ iconUrl: '../../src/img/mrk.png', iconSize: [10, 20] })}).addTo(map)
+      var mrk=new L.Marker([e.latitude, e.longitude],{icon: new L.icon({ iconUrl: '../../src/img/mrk.png', iconSize: [10, 20] })})
+      var popup="<h6>"+e.title+"</h6>"+
+      "<h6>"+e.municipality+"</h6>"
 
+      mrk.bindPopup(popup)
+
+      mrk.addTo(this.state.OSmarkers)
 
     });
   };
@@ -256,8 +267,8 @@ class Sidebar extends Component {
             // var activeclass=class1
      
             var descCard = `<div  class=${class1} name=`+ e.id + ">" +
-              e.description + '<br/>' +
-              e.distance + " m"
+              "<h6>"+e.description+"</h6>" +
+              "<span>"+e.distance + " m"+"</span>"
             "<div>";
            
 
@@ -353,6 +364,7 @@ class Sidebar extends Component {
     window.map = this.props.mapRefs.current.leafletElement;
     window.map.addLayer(this.state.district_muni);
     window.map.addLayer(this.state.Routes);
+    window.map.addLayer(this.state.OSmarkers);
 
     // window.map1=this.props.mapRefs.current.leafletElement
   }
@@ -416,6 +428,7 @@ class Sidebar extends Component {
                             79.2016770434474
                           ]];
                           window.map.fitBounds(bounds)
+                          this.state.Routes.eachLayer((e)=>this.state.Routes.removeLayer(e))
                         }
 
                         }
