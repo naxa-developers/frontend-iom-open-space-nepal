@@ -12,8 +12,8 @@ const options = [
 
 const options1 = [
     { value: 0, label: "Publication" },
-    { value: 1, label: "Video" },
-    { value: 2, label: "Audio" }
+    { value: 1, label: "Audio" },
+    { value: 2, label: "Video" }
 
 
 ]
@@ -48,7 +48,7 @@ class SearchFilter extends Component {
   }
   
   render() {
-    console.log(this.props.initialData);
+    
     
     return (
       <div>

@@ -29,20 +29,27 @@ class ReportFilter extends Component {
     this.state = {
       valueDays: null,
       valueStatus: null,
-      valueUrgency: null
+      valueUrgency: null,
+      showApply: false
     };
   }
 
   onDaysChange = e => {
-    this.setState({ valueDays: e });
+    this.setState({ valueDays: e ,
+    showApply: !this.state.showApply
+    });
   };
 
   onStatusChange = e => {
-    this.setState({ valueStatus: e });
+    this.setState({ valueStatus: e,
+      showApply: !this.state.showApply
+     });
   };
 
   onUrgencyChange = e => {
-    this.setState({ valueUrgency: e });
+    this.setState({ valueUrgency: e,
+      showApply: !this.state.showApply
+     });
   };
   onClear = () => {
     this.setState({ valueDays: null, valueStatus: null, valueUrgency: null });
@@ -99,10 +106,11 @@ class ReportFilter extends Component {
 
             <span onClick={() => this.onClear()}>clear all</span>
           </div>
-          <a className="openspace-button" onClick={() => this.applyFilter()}>
+          <button disabled ={!this.state.showApply} className="openspace-button" onClick={() => this.applyFilter()}>
             Apply
-          </a>
+          </button>
         </div>
+      
       </div>
     );
   }

@@ -16,7 +16,8 @@ class ReportSidebar extends Component {
       keywords: "",
       filteredReports: [],
       loading: true,
-      isFocused: false
+      isFocused: false,
+      
     };
   }
 
