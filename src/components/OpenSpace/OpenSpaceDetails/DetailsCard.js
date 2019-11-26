@@ -50,6 +50,8 @@ class DetailsCard extends Component {
 
   render() {
     this.props.id&&localStorage.setItem('OpenspaceID', this.props.id)
+   
+    
  
     
     return (
