@@ -124,11 +124,10 @@ class DetailsCard extends Component {
                       role="tabpanel"
                       aria-labelledby="nearby_tab"
                     >
-                      <div id="accordion" className="accordion map-accordion">
+                      
                         <NearbyTab
                         id={this.props.id}
                         />
-                      </div>
                     </div>
                   </div>
                 </div>

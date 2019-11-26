@@ -13,14 +13,15 @@
     &.map-accordion{
         .card{
             .card-header{
-                a{
-                    &.card-link,.bln-link{
+                a,button{
+                    &.card-link,&.btn-link{
                         color:$color-primary;
                         font-size:1rem;
                         font-weight: 700;
                         text-decoration: none;
                         display: block;
                         position: relative;
+                        text-align: left;
                         i{
                             margin-right: .6125rem;
                             &::before{

@@ -10,6 +10,7 @@ import L from "leaflet";
 
 import MaterialIcon from "material-icons-react";
 import Axios from "axios";
+import mrk from '../../img/mrk.png'
 
 
 
@@ -33,7 +34,7 @@ class Sidebar extends Component {
       district_muni: L.featureGroup(),
       Routespaths: [],
       Routes: L.featureGroup(),
-      legend: L.control({ position: 'bottomright' }),
+      legend: L.control({ position: 'topright' }),
       div: L.DomUtil.create('div', 'routeWrapper')
     };
   }
@@ -176,18 +177,23 @@ class Sidebar extends Component {
     this.setState({ Allos: Filtered });
   };
 
+  
   displayOS = () => {
 
 
     this.state.Allos.map(e => {
 
       var map = this.props.mapRefs.current.leafletElement;
-      var marker = L.circleMarker([e.latitude, e.longitude]).addTo(map);
+      // new L.circleMarker([e.latitude, e.longitude]).addTo(map)
+      new L.Marker([e.latitude, e.longitude],{icon: new L.icon({ iconUrl: '../../src/img/mrk.png', iconSize: [10, 20] })}).addTo(map)
+
+
     });
   };
 
   fetchroute = (first, second) => {
-    console.log(second,first)
+    // console.log(second,first)
+
     var activeroute;
 
     this.state.Routespaths = []
@@ -202,9 +208,10 @@ class Sidebar extends Component {
       "&algorithm=alternative_route";
     var colors = ["red", 'green', 'black']
     console.log(url)
+
     Axios.get(url)
       .then(Response => {
-        console.log(Response.data)
+        // console.log(Response.data)
 
    
         for (var j = 0; j < Response.data.paths.length; j++) {
@@ -213,14 +220,15 @@ class Sidebar extends Component {
 
             path.push(Response.data.paths[j].points.coordinates[i].reverse())
           }
-          console.log(Response.data.paths[j].description)
-          var polyline = L.polyline(path, { color: j == Response.data.paths.length - 1 ? 'blue' : 'grey' })
+          // console.log(Response.data.paths[j].description)
+          var polyline = L.polyline(path, { color: j == 0 ? 'blue' : 'grey' })
           this.state.Routespaths.push({ id: j, path: polyline, description:Response.data.paths[j].description==undefined?"No Descrption":Response.data.paths[j].description[0] , distance: Response.data.paths[j].distance })
         
           this.state.Routes.addLayer(polyline)
           window.map.fitBounds(polyline.getBounds())
 
         }
+        this.state.Routespaths[0].path.bringToFront()
         activeroute=0
 
 
@@ -238,19 +246,20 @@ class Sidebar extends Component {
 
           var div = L.DomUtil.create('div', `routeWrapper`)
           div.innerHTML = ''
+          div.innerHTML += "<h6 id='legendtitle'>Routes</h6>"
 
 
           this.state.Routespaths.map(e => {
-            console.log(activeroute)
+            // console.log(activeroute)
 
             var class1='desccard';
-            var activeclass=class1
+            // var activeclass=class1
      
             var descCard = `<div  class=${class1} name=`+ e.id + ">" +
               e.description + '<br/>' +
               e.distance + " m"
             "<div>";
-            activeroute==this.state.Routespaths.length-1?descCard.classList.add('pathactive'):null
+           
 
 
             div.innerHTML += descCard
@@ -267,8 +276,7 @@ class Sidebar extends Component {
 
 
 
-        // var divss = document.getElementsByClassName('routeWrapper');
-        // console.log(divss,"divs")
+   
         // if(divss!=0){
         //   for(var i=0;i<divss.length;i++){
 
@@ -279,15 +287,20 @@ class Sidebar extends Component {
 
         //   }
         // }
+       
 
-        this.state.legend.addTo(window.map)
-        console.log(this.state.Routespaths)
+        this.state.legend.addTo(this.props.mapRefs.current.leafletElement)
+        // console.log(this.state.Routespaths)
+
+        var divss = document.getElementsByClassName('routeWrapper');
+
 
 
 
 
 
         var doc = document.getElementsByClassName('desccard')
+        doc[0].classList.add('pathactive')
 
         for (var i = 0; i < doc.length; i++) {
           doc[i].addEventListener('click', (e) => {
@@ -472,10 +485,13 @@ class Sidebar extends Component {
 
                     {this.state.loading ? <Loader /> :
                       this.state.Allos.map(e => {
+                        // console.log(this.props.currentLocation,"cur",[e.latitude, e.longitude]);
+
+                        
 
                         return (
                           <OpenSpaceCard
-                          currentlocation={this.props.currentLocation}
+                          currentLocation={this.props.currentLocation}
                             latlng={[e.latitude, e.longitude]}
                             routing={this.fetchroute}
                             key={e.id}
