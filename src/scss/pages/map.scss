@@ -1,6 +1,7 @@
 .openSpace-map {
-    padding: 0 !important;
-
+    padding: 0;
+    
+    
     .container-fluid {
         max-width: 100%;
         padding: 0;
@@ -11,9 +12,49 @@
         width: 100%;
        
 
-        .leaflet-right.leaflet-top {
-            bottom: 1rem;
-            top: auto;
+        
+        .leaflet-control-container{
+            .leaflet-left{
+                left:auto;
+                right:3rem;
+                &.leaflet-top{
+                    top:auto;
+                    bottom:5rem;
+        
+                }
+                .leaflet-bar{
+                   border:none;
+                   a{
+                    width: 36px;
+                    height: 36px;
+                    line-height: 36px;
+                    color:$primary-light;
+                    @include animate_all(all .5s);
+                    &:hover {
+                        background-color: $green-highlight;
+                        color: $color-green;
+                       }
+                   }
+                   
+                }
+                
+            }
+            .leaflet-control-layers-toggle{
+                width: 36px;
+                height: 36px;
+                background-size: 16px 16px;
+            }
+            .leaflet-right{
+                right:3rem;
+                &.leaflet-top{
+                    top:auto;
+                    bottom: 1rem;
+                }
+                .leaflet-control{
+                    margin:0;
+                }
+            }
+            
         }
 
         .leaflet-popup.popupCustom {
@@ -102,6 +143,28 @@
         .leaflet-container {
             z-index: 1;
             
+        }
+        .routeWrapper{
+            margin-right: 5rem;
+            background-color: $color-white;
+            padding:0;
+            #legendtitle{
+                background:transparent;
+                color:$color-primary;
+                text-transform: uppercase;
+                font-weight: 600;
+                border-bottom:1px solid $color-border;
+                margin-bottom: .5rem;
+                font-size: .775rem;
+                text-align: left;
+                padding:.5rem .6125rem;
+            }
+            .desccard{
+                padding:.6125rem;
+                &.pathactive{
+                    background-color: $green-highlight;
+                }
+            }
         }
 
         .map-sidebar {
@@ -203,7 +266,7 @@
                         display: flex;
                         text-align: center;
                         flex-wrap: nowrap;
-                        .css-2b097c-container{
+                        .css-2b097c-container, .css-14jk2my-container{
                             width:100%;
                             &:nth-child(2){
                                 margin:0 1rem;
@@ -235,6 +298,12 @@
 
                             i {
                                 margin-right: .5rem;
+                            }
+                            &:hover{
+                                color:$color-green;
+                                i{
+                                    color:$color-green
+                                }
                             }
                         }
                     }
@@ -574,7 +643,10 @@
 
                     .legend-list {
                         align-items: center;
-
+                        .symbol-content{
+                            align-items: center;
+                            
+                        }
                         span {
                             color: $color-dim;
                         }
@@ -593,34 +665,26 @@
                         &:first-child {
                             margin-right: 2rem;
                         }
+                        .usable-percent{
+                            margin-left:1.5rem;
+                        }
                     }
                 }
 
                 .chart-wrapper {
-                    @include flex;
-
                     .chart-item {
                         position: relative;
                         width: 100%;
                         height: 30px;
-                        .usable-percent{
-                            color:$color-white;
-                            font-weight: 600;
-                            @include translatey;
-                            left:1rem;
-                        }
-
+                        background-color: $color-border;
+                    
                         &.usable {
                             background-color: $color-green;
-                            -ms-flex: 0 0 60%;
-                            flex: 0 0 60%;
-                            max-width: 60%;
-                        }
-                        &.non-usable {
-                            background-color: $color-border;
-                            -ms-flex: 0 0 40%;
-                            flex: 0 0 40%;
-                            max-width: 40%;
+                            position: absolute;
+                            height: 100%;
+                            left:0;
+                            top:0;
+                            bottom:0;
                         }
                     }
                 }

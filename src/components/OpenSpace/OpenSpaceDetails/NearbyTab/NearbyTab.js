@@ -11,11 +11,11 @@ class NearbyTab extends Component {
  
     
     return (
-      <Accordion>
+      <Accordion className="map-accordion" id="accordion">
         <Card>
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="0">
-              Health Facilities
+            <i class="humanitarian-icon-Medical-supply"> </i> Health Facilities
              
             </Accordion.Toggle>
           </Card.Header>
@@ -31,6 +31,7 @@ class NearbyTab extends Component {
         <Card>
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="1">
+            <i class="humanitarian-icon-Fire"></i>
               Fire Brigade
             </Accordion.Toggle>
           </Card.Header>
@@ -47,6 +48,7 @@ class NearbyTab extends Component {
         <Card>
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="2">
+            <i class="humanitarian-icon-Helipad"></i>
               Helipad(Airport)
             </Accordion.Toggle>
             
@@ -58,6 +60,7 @@ class NearbyTab extends Component {
         <Card>
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="3">
+            <i class="humanitarian-icon-National-army"></i>
               Security Forces
             </Accordion.Toggle>
             
@@ -73,6 +76,7 @@ class NearbyTab extends Component {
         <Card>
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="4">
+              <i className="humanitarian-icon-Education"></i>
               Educational Facilities
             </Accordion.Toggle>
             
