@@ -43,8 +43,11 @@
     .marker-cluster-small,
     .marker-cluster-medium,
     .marker-cluster-large {
-        background-color: rgba($color-blue, .4) !important;
+        // background-color: rgba($color-blue, .4) !important;
+        background-color: $color-blue;
         @include flexvr;
+        width:30px !important;
+        height: 30px !important;
 
         div {
             background-color: $color-blue;
@@ -58,35 +61,35 @@
         }
     }
 
-    .marker-cluster-small {
-        width: 36px;
-        height: 36px;
+    // .marker-cluster-small {
+    //     width: 36px;
+    //     height: 36px;
 
-        div {
-            width: 26px;
-            height: 26px;
-        }
-    }
+    //     div {
+    //         width: 26px;
+    //         height: 26px;
+    //     }
+    // }
 
-    .marker-cluster-medium {
-        width: 40px;
-        height: 40px;
+    // .marker-cluster-medium {
+    //     width: 40px;
+    //     height: 40px;
 
-        div {
-            width: 30px;
-            height: 30px;
-        }
-    }
+    //     div {
+    //         width: 30px;
+    //         height: 30px;
+    //     }
+    // }
 
-    .marker-cluster-large {
-        width: 44px;
-        height: 44px;
+    // .marker-cluster-large {
+    //     width: 44px;
+    //     height: 44px;
 
-        div {
-            width: 34px;
-            height: 34px;
-        }
-    }
+    //     div {
+    //         width: 34px;
+    //         height: 34px;
+    //     }
+    // }
 
     // .marker-cluster-large {
     //     background-color: rgba(181, 179, 179,0.9);
@@ -112,6 +115,7 @@
             .leaflet-left {
                 left: auto;
                 right: 3rem;
+                z-index: 999;
 
                 &.leaflet-top {
                     top: auto;
@@ -200,6 +204,7 @@
                         margin: 0;
                         font-size: 0.675rem;
                         line-height: 1;
+                        color:$color-white;
 
                         span,
                         i {
@@ -225,8 +230,8 @@
 
         .leaflet-popup-tip-container {
             background-color: transparent;
-            border-bottom: 1.5rem solid transparent;
-            border-left: 1.5rem solid darken($color-blue, 10%);
+            border-bottom: 1.2rem solid transparent;
+            border-left: 1.2rem solid darken($color-blue, 15%);
             width: auto;
             height: auto;
             left: auto;
@@ -915,6 +920,22 @@
                             i {
                                 margin-left: .25rem;
                             }
+                        }
+                    }
+                }
+            }
+            .gallery-category{
+                .gallery-grid{
+                    margin-top:2rem;
+                    h4{
+                        font-size:1rem;
+                        color:$color-blue;
+                        text-transform: capitalize;
+                    }
+                    figure{
+                        cursor: pointer;
+                        img{
+                            max-height: 144px;
                         }
                     }
                 }

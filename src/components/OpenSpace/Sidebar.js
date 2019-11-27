@@ -191,7 +191,7 @@ class Sidebar extends Component {
 
       var map = this.props.mapRefs.current.leafletElement;
       // new L.circleMarker([e.latitude, e.longitude]).addTo(map)
-      var mrk=new L.circleMarker([e.latitude, e.longitude], {radius: 6, fillcolor: '#0b319c', fillOpacity: 1, weight: 15,opacity:0.3})
+      var mrk=new L.circleMarker([e.latitude, e.longitude], {radius: 6, fillColor:'#174BDD', fillOpacity: 1, weight: 15,opacity:0.3})
       var popup="<h5>"+e.title+"</h5>"+
       "<h6>"+e.municipality+"</h6>"
       var pop="<div class='bind-popup'> <div class='bind-header'><h5>"+e.title+"</h5> <p><i class='fa fa-map-marker'></i>"+e.municipality+"</p></div></div>"
@@ -233,7 +233,7 @@ class Sidebar extends Component {
             path.push(Response.data.paths[j].points.coordinates[i].reverse())
           }
           // console.log(Response.data.paths[j].description)
-          var polyline = L.polyline(path, { color: j == 0 ? 'blue' : 'grey' })
+          var polyline = L.polyline(path, { color: j == 0 ? '#174BDD' : 'grey' })
           this.state.Routespaths.push({ id: j, path: polyline, description:Response.data.paths[j].description==undefined?"No Descrption":Response.data.paths[j].description[0] , distance: Response.data.paths[j].distance })
         
           this.state.Routes.addLayer(polyline)
@@ -330,7 +330,7 @@ class Sidebar extends Component {
                   })
                 }
 
-                selected[0].path.setStyle({ color: 'blue' })
+                selected[0].path.setStyle({ color: '#174BDD' })
 
                 selected[0].path.bringToFront()
 

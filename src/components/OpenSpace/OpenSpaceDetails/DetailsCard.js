@@ -34,10 +34,10 @@ class DetailsCard extends Component {
     Axios.get(
       `http://139.59.67.104:8011/api/v1/open_space/${localStorage.getItem("OpenspaceID")}`
     ).then(response => {
-  
+
       this.setState({ spaceInfo: response.data });
-     
-      
+
+
     });
   };
   componentDidMount() {
@@ -49,16 +49,16 @@ class DetailsCard extends Component {
   };
 
   render() {
-    this.props.id&&localStorage.setItem('OpenspaceID', this.props.id)
-   
-    
- 
-    
+    this.props.id && localStorage.setItem('OpenspaceID', this.props.id)
+
+
+
+
     return (
       <div>
         <div className="map-sidebar">
           <div className="sidebar-wrapper">
-          
+
             <div className="card">
               <div className="card-body">
                 <DetailsHeader
@@ -88,8 +88,8 @@ class DetailsCard extends Component {
                         total_area={this.state.spaceInfo.total_area}
                         usable_area={this.state.spaceInfo.usable_area}
                         suggested_use={this.state.spaceInfo.suggested_use}
-                        services = {this.state.spaceInfo.services}
-                        title = {this.state.spaceInfo.title}
+                        services={this.state.spaceInfo.services}
+                        title={this.state.spaceInfo.title}
                       />
                     </div>
                     <div
@@ -102,7 +102,50 @@ class DetailsCard extends Component {
                       role="tabpanel"
                       aria-labelledby="images_tab"
                     >
-                      <h2>khali</h2>
+                      <div className="gallery-category">
+                        <div className="gallery-grid">
+                          <h4>maps</h4>
+                          <div class="row">
+                            <div className="col-sm-4">
+                              <figure>
+                                <img src="images/post-1.jpg" alt="map" />
+                              </figure>
+                            </div>
+                            <div className="col-sm-4">
+                              <figure>
+                                <img src="images/post-1.jpg" alt="map" />
+                              </figure>
+                            </div>
+                            <div className="col-sm-4">
+                              <figure>
+                                <img src="images/post-1.jpg" alt="map" />
+                              </figure>
+                            </div>
+
+                          </div>
+                        </div>
+                        <div className="gallery-grid">
+                          <h4>Gallery</h4>
+                          <div class="row">
+                            <div className="col-sm-4">
+                              <figure>
+                                <img src="images/post-1.jpg" alt="map" />
+                              </figure>
+                            </div>
+                            <div className="col-sm-4">
+                              <figure>
+                                <img src="images/post-1.jpg" alt="map" />
+                              </figure>
+                            </div>
+                            <div className="col-sm-4">
+                              <figure>
+                                <img src="images/post-1.jpg" alt="map" />
+                              </figure>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     <div
                       className={
@@ -114,7 +157,7 @@ class DetailsCard extends Component {
                       role="tabpanel"
                       aria-labelledby="report_tab"
                     >
-                      <ReportTab id={this.props.id}/>
+                      <ReportTab id={this.props.id} />
                     </div>
                     <div
                       className={
@@ -126,10 +169,10 @@ class DetailsCard extends Component {
                       role="tabpanel"
                       aria-labelledby="nearby_tab"
                     >
-                      
-                        <NearbyTab
+
+                      <NearbyTab
                         id={this.props.id}
-                        />
+                      />
                     </div>
                   </div>
                 </div>

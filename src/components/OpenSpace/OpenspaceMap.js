@@ -120,7 +120,7 @@ const { BaseLayer } = LayersControl;
             vectorTileLayerStyles: {
                 'test': function () {
                     return {
-                        fillColor: "blue",
+                        fillColor: "#174BDD",
                         fillOpacity: 0.2,
                         weight: 1,
                         opacity: 1,
