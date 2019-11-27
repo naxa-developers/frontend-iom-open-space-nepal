@@ -59,7 +59,7 @@ class Resourcecard extends Component {
                       ? this.props.audio
                       ? this.props.document_type==2
                       : this.props.video
-                      :"jhj"
+                      :""
                     }  download target="_blank">
                     <button className="btn btn-download">
                       <i className="humanitarian-icon-Download"></i>
@@ -72,10 +72,10 @@ class Resourcecard extends Component {
                     <span className="subtitle">
                       {this.props.document_type == 0
                         ? "Publication"
-                        : this.props.document_type == 2
-                        ? "Video"
                         : this.props.document_type == 1
                         ? "Audio"
+                        : this.props.document_type == 2
+                        ? "Video"
                         : ""}
                     </span>
                   </p>

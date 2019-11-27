@@ -32,7 +32,7 @@ class DetailsCard extends Component {
 
   fetchDetails = () => {
     Axios.get(
-      `http://139.59.67.104:8011/api/v1/open_space/${this.props.id}`
+      `http://139.59.67.104:8011/api/v1/open_space/${localStorage.getItem("OpenspaceID")}`
     ).then(response => {
   
       this.setState({ spaceInfo: response.data });
@@ -49,6 +49,10 @@ class DetailsCard extends Component {
   };
 
   render() {
+    this.props.id&&localStorage.setItem('OpenspaceID', this.props.id)
+   
+    
+ 
     
     return (
       <div>
