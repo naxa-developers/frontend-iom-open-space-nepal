@@ -29,7 +29,11 @@ class OpenSpaceDetails extends Component {
               <div className="map-wrapper">
               <div className="row no-gutters">
                   <div className="col-md-7">
+<<<<<<< HEAD
+                  <DetailsMap reff={this.map}  />
+=======
                   <DetailsMap reff={this.map} id={this.props.id} />
+>>>>>>> 008c9a29eb2d22e77465634b7dcd9aff36f0cc34
                   </div>
                   <div className="col-md-5">
                   <DetailsCard reff={this.map} id = {this.props.id}/>
