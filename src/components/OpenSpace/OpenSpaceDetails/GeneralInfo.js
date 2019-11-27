@@ -59,7 +59,7 @@ calcPerc =() => {
                                 <span>Usable Area</span>
                             </div>
 
-        <span className="usable-percent">{usable_perc}</span>
+        <span className="usable-percent">{usable_perc}%</span>
                         </div>
                         <div className="legend-list ">
                             <div className="symbol-content flex-start">
@@ -67,7 +67,7 @@ calcPerc =() => {
                                 <span>Non Usable Area</span>
                             </div>
 
-        <span className="usable-percent">{100-usable_perc}</span>
+        <span className="usable-percent">{100-usable_perc}%</span>
                         </div>
                     </div>
                     <div className="chart-wrapper flex-start">
