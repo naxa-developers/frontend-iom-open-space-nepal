@@ -164,7 +164,7 @@ district.addTo(this.props.mapRefss.current.leafletElement)
         this.props.mapRefss.current.leafletElement.createPane('vtile');
         this.props.mapRefss.current.leafletElement.getPane('vtile').style.zIndex = 2000;
         // this.loadVectortile()
-        this.loadprovince()
+        // this.loadprovince()
 
     }
     render() {

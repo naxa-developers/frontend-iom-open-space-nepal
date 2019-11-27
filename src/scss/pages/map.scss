@@ -161,10 +161,10 @@
 
         }
 
-        .leaflet-popup.popupCustom {
+        .leaflet-popup {
             left: auto !important;
-            right: 0rem !important;
-            bottom: 0 !important;
+            right: -1.5rem !important;
+            bottom: .7rem !important;
         }
 
         .leaflet-popup-content-wrapper {

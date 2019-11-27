@@ -191,11 +191,12 @@ class Sidebar extends Component {
 
       var map = this.props.mapRefs.current.leafletElement;
       // new L.circleMarker([e.latitude, e.longitude]).addTo(map)
-      var mrk=new L.Marker([e.latitude, e.longitude],{icon: new L.icon({ iconUrl: '../../src/img/mrk.png', iconSize: [10, 20] })})
-      var popup="<h6>"+e.title+"</h6>"+
+      var mrk=new L.circleMarker([e.latitude, e.longitude], {radius: 6, fillcolor: '#0b319c', fillOpacity: 1, weight: 15,opacity:0.3})
+      var popup="<h5>"+e.title+"</h5>"+
       "<h6>"+e.municipality+"</h6>"
+      var pop="<div class='bind-popup'> <div class='bind-header'><h5>"+e.title+"</h5> <p><i class='fa fa-map-marker'></i>"+e.municipality+"</p></div></div>"
 
-      mrk.bindPopup(popup)
+      mrk.bindPopup(pop)
 
       mrk.addTo(this.state.OSmarkers)
 
