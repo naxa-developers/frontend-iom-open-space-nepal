@@ -1,174 +1,103 @@
-import React, { Component ,createRef} from 'react';
-import {
-    Map as LeafletMap,
-     TileLayer,
-    LayersControl
-} from "react-leaflet";
-import 'leaflet/dist/leaflet.css';
-import Axios from 'axios';
+import React, { Component, createRef } from "react";
+import { Map as LeafletMap, TileLayer, LayersControl } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import Axios from "axios";
 const { BaseLayer } = LayersControl;
+import L from 'leaflet'
 
+class ReportMap extends Component {
+  constructor(props) {
+    super(props);
+    // this.RmapRefss = createRef();
 
-
- class ReportMap extends Component {
-     constructor(props) {
-       super(props)
-          
-       this.state = {
-           height: null,
-           activeroute:0,
-           Routespaths:[]
-          
-       };
-     };
-
-     onload = () => {
-        var windowHeight = window.innerHeight;
-        
-        var navHeight = document.getElementsByClassName('site-header')[0].clientHeight;
-     
-        this.setState({
-        height: windowHeight-navHeight
-        })
-
-     }
- 
-     fetchroute=()=>{
-        var baseUrl = "http://localhost:8989/route";
-        var url =
-            `${baseUrl}?point= 27.63487379134253,85.352783203125`+
-            "&point=27.751607687549384,85.242919921875"+
-            "&points_encoded=false"+
-            "&ch.disable=true"+
-            "&alternative_route.max_paths=3"+
-            "&algorithm=alternative_route";
-        var colors=["red",'green','black']
-        Axios.get(url)
-        .then(Response=>{
-            for(var j=0;j<Response.data.paths.length;j++){
-                var path=[]
-                for(var i=0;i<Response.data.paths[j].points.coordinates.length;i++){
-                    
-                    path.push(Response.data.paths[j].points.coordinates[i].reverse())
-                }
-                var polyline=L.polyline(path,{color: j==Response.data.paths.length-1?'blue':'grey'})
-                this.state.Routespaths.push({id:j,path:polyline,description:Response.data.paths[j].description[0],distance:Response.data.paths[j].distance})
-                
-                window.map.addLayer(polyline)
-                window.map.fitBounds(polyline.getBounds())
-
-            }
-
-            var legend = L.control({ position: 'bottomright' });
-
-            legend.onAdd = (map) => {
-    
-                var div = L.DomUtil.create('div', 'routeWrapper')
-                this.state.Routespaths.map(e=>{
-                    var descCard="<div  class='desccard' name="+ e.id+">"+
-                    e.description+'<br/>'+
-                    e.distance+" m"
-                    "<div>";
-                    div.innerHTML += descCard
-
-                })
-                // innterhtml
-                 
-            
-             
-                return div;
-            } 
-            legend.addTo(window.map)  
-            var doc= document.getElementsByClassName('desccard')
-            console.log(doc)
-            for(var i=0;i<doc.length;i++){
-                doc[i].addEventListener('click',(e)=>{
-                    console.log(e.target.getAttribute('name'));
-                    var value=e.target.getAttribute('name')
-                    for(var a=0;a<doc.length;a++){
-                        if(doc[a].getAttribute('name')==value){
-                            doc[a].classList.add('pathactive')
-                            var selected=this.state.Routespaths.filter((a)=>a.id==value)
-                            for(var k=0;k<this.state.Routespaths.length;k++){
-                                this.state.Routespaths[k].path.setStyle({
-                                    color:'grey'
-                                })
-                            }
-                            selected[0].path.setStyle({color:'blue'})
-                            
-                            selected[0].path.bringToFront()
-
-                        }
-                        else{
-                            doc[a].classList.remove('pathactive')
-
-
-                        }
-                    }
-                    
-                 
-                }
-                )
-            }
-
-
-        }
-        )
-     }
-     componentDidMount() {
-        this.onload();    
-       
-        // this.fetchroute()
-    }
-    render() {
+    this.state = {
+      height: null,
       
-        var bounds = [[30.86924662953735,
-            100.29542704344739],
-           [
-             26.7211025368031,
-      79.2016770434474
-           ] ];
-        
+     
+    };
+  }
+
+  onload = () => {
+    var windowHeight = window.innerHeight;
+
+    var navHeight = document.getElementsByClassName("site-header")[0]
+      .clientHeight;
+
+    this.setState({
+      height: windowHeight - navHeight
+    });
+  };
+
+ 
+
+//   displayLegends = () => {
+//     var map=this.props.mapR.current.leafletElement;
+//     var reportLegend = L.DomUtil.create('div', 'info legend'),
+//     grades = [0, 5, 10, 20, 50, 100];
+// // labels = [];
+// div.innerHTML += "<h6>Legend</h6>"
+// div.innerHTML += "<h7>No. of Projects</h7><br>"
+// div.innerHTML +=
+//     '<i style="background:' + this.getColor('red') + '; border:1px solid #d5d5d5"></i> ' +
+//     '0' + '<br>'
+// // loop through our density intervals and generate a label with a colored square for each interval
+// for (var i = 0; i < grades.length - 1; i++) {
+//     div.innerHTML +=
+//         '<i style="background:' + this.getColor(grades[i + 1]) + '"></i> ' +
+//         grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+// }
+// div.innerHTML +=
+//     '<i style="background:' + this.getColor(200) + '"></i> ' +
+//     '100+' + '<br>'
+// return div;
+// };
+  
+//   }
+
+  componentDidMount() {
+    this.onload();
+    // this.loadReports();
+    // this.displayLegends();
+  }
+  render() {
+   
     
-        return (
-          
+    var bounds =[ [ 25.710836919640595, 79.79365377708339],
+        [ 30.798474179567847 , 88.54975729270839]];
 
-            <>
-            <LeafletMap
-                    center={[27, 85]}
-                    zoom={4}
-                    maxZoom={15}
-                    attributionControl={true}
-                    zoomControl={true}
-                    doubleClickZoom={true}
-                    scrollWheelZoom={true}
-                    dragging={true}
-                    animate={true}
-                    easeLinearity={0.35}
-                    bounds={bounds}
-                    ref={this.props.mapRefss}
-                    style={{ height: this.state.height == null ? '80vh': this.state.height,overflow: 'hidden', }}  
-                    >
-                        <LayersControl position="topright">
-                        <BaseLayer checked  name="OpenStreetMap">
-                            <TileLayer
-                                attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                                // noWrap={true}
+    return (
+      <>
+        <LeafletMap
+          center={[27, 85]}
+          zoom={4}
+          maxZoom={18}
+          attributionControl={true}
+          zoomControl={true}
+          doubleClickZoom={true}
+          scrollWheelZoom={true}
+          dragging={true}
+          animate={true}
+          easeLinearity={0.35}
+          bounds={bounds}
+          ref={this.props.mapR}
+          style={{
+            height: this.state.height == null ? "80vh" : this.state.height,
+            overflow: "hidden"
+          }}
+        >
+          <LayersControl position="topright">
+            <BaseLayer checked name="OpenStreetMap">
+              <TileLayer
+                attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
 
-
-
-                            />
-                        </BaseLayer>
-                        </LayersControl>
+            </BaseLayer>
+          </LayersControl>
         </LeafletMap>
-            
-            </>)}}
-                // <div id="map" class="map">
-                   
-                // </div>
-            
-        
-    
+      </>
+    );
+  }
+}
 
 export default ReportMap;

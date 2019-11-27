@@ -60,7 +60,7 @@ import Axios from 'axios';
                         </div>
                         
                     </div>
-
+        
                     <div className="col-lg-10 col-md-9">
                         <div className="intro">
                            {/* <h1>OPEN SPACE PORTAL FOR <br/> HUMANITARIAN <br /> ASSISTANCE</h1> */}

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Select from "react-select";
 import OpenSpaceCard from "./OpenSpaceCard";
-import Loader from '../Report/LoadingSpinner';
+import LoaderBig from '../Report/LoadingSpinnerBig';
 
 import "./OpenSpaceCSS.css";
 import "react-perfect-scrollbar/dist/css/styles.css";
@@ -14,6 +14,7 @@ import Axios from "axios";
 import mrk from '../../img/mrk.png'
 import 'leaflet.markercluster/dist/MarkerCluster.css'
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
+import LoadingSpinner from "../Report/LoadingSpinner";
 require('leaflet.markercluster')
 
 
@@ -88,7 +89,7 @@ class Sidebar extends Component {
         this.setState({
           Allos: response.data.data,
           Openspaces: response.data.data,
-          loading: false
+          loading: !this.state.loading
         });
         
 
@@ -219,7 +220,7 @@ class Sidebar extends Component {
       "&alternative_route.max_paths=4" +
       "&algorithm=alternative_route";
     var colors = ["red", 'green', 'black']
-    console.log(url)
+ 
 
     Axios.get(url)
       .then(Response => {
@@ -456,10 +457,10 @@ class Sidebar extends Component {
                 </div>
                 <div className="report-count">
                   <h5>
-                    Open spaces: <span>{this.state.Allos.length}</span>
+                    Open spaces: <span>{this.state.Allos.length==0 ? <LoadingSpinner/> : this.state.Allos.length }</span>
                   </h5>
                 </div>
-                <div className="space-list">
+                <div className="space-list" >
                   <div className="input-group">
                     <div className="input-group-prepend">
                       <span className="input-group-text">
@@ -493,11 +494,15 @@ class Sidebar extends Component {
                       </span>
                     </div>
                   </div>
+                  <div className="loader" style={{textAlign: "center"}}>
+                  {this.state.loading&&<LoaderBig /> }
+                  </div>
+                 
 
                   <ul>
 
 
-                    {this.state.loading ? <Loader /> :
+                    { this.state.Allos&&
                       this.state.Allos.map(e => {
                         // console.log(this.props.currentLocation,"cur",[e.latitude, e.longitude]);
 

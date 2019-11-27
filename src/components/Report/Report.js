@@ -1,10 +1,19 @@
-import React, { Component } from 'react'
+import React, { Component,createRef } from "react";
 import Navbar from '../Home/Navbar';
 import ReportMap from './ReportMap';
 import ReportSidebar from './ReportSidebar'
 
 
 class Report extends Component {
+  constructor(props) {
+    super(props)
+    this.mapR=createRef();
+   
+  }
+  // componentDidMount() {
+  //   var map=this.mapRef.current.leafletElement;
+  // }
+  
   
     render() {
         return (
@@ -16,10 +25,10 @@ class Report extends Component {
               <div className="map-wrapper">
               <div className="row no-gutters">
                   <div className="col-md-7">
-                  <ReportMap/>
+                  <ReportMap mapR= {this.mapR}/>
                   </div>
                   <div className="col-md-5">
-                  <ReportSidebar/>
+                  <ReportSidebar  mapR= {this.mapR} />
                   </div>
                 </div>
                
