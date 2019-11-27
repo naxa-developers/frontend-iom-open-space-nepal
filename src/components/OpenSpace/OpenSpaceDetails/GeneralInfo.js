@@ -1,40 +1,16 @@
 import React, { Component } from 'react'
-import AssementList from './AssementList'
+import AssementList from './ModalComponent/AssementList'
 
 class GeneralInfo extends Component {
-    constructor(props) {
-        super(props)
-    
-        this.state = {
-             
-            usable_perc: null
-        }
-    }
-    
-calcPerc =() => {
-   var usable_area =  this.props.usable_area&&this.props.usable_area;
-    var total_area = this.props.total_area&&this.props.total_area
-    console.log("values", usable_area, total_area);
-    
+  
 
-     var usable_perc = (usable_area/total_area)*100;
-     console.log("use",usable_perc);
-     
-     this.setState({
-         usable_perc: this.usable_perc
-      
-        
-     })
-}
-// componentDidMount () {
-//     this.calcPerc();
-// }
-    
 
     render() {
-        var usable_perc = Math.round((this.props.usable_area/this.props.total_area)*100);
-        var actual_perc = usable_perc + '%';
-  
+        var usable_perc = (this.props.usable_area/this.props.total_area)*100;
+        var actual_perc = usable_perc.toFixed(1) ;
+        var width_perc = actual_perc+ '%'; 
+      
+        
         return (
             <div className="general-info">
                 <div className="general-overview flex-between">
@@ -47,7 +23,7 @@ calcPerc =() => {
                         <p>Total Area</p>
                     </div>
                     <div className="overview-item">
-                        <h6>{this.props.usable_area}<sub>sq.m</sub></h6>
+                        <h6>{this.props.usable_area} <sub>sq.m</sub></h6>
                         <p>Usable Area</p>
                     </div>
                 </div>
@@ -59,7 +35,7 @@ calcPerc =() => {
                                 <span>Usable Area</span>
                             </div>
 
-        <span className="usable-percent">{usable_perc}%</span>
+        <span className="usable-percent">{actual_perc}%</span>
                         </div>
                         <div className="legend-list ">
                             <div className="symbol-content flex-start">
@@ -67,12 +43,12 @@ calcPerc =() => {
                                 <span>Non Usable Area</span>
                             </div>
 
-        <span className="usable-percent">{100-usable_perc}%</span>
+        <span className="usable-percent">{(100-actual_perc).toFixed(1)} %</span>
                         </div>
                     </div>
                     <div className="chart-wrapper flex-start">
                         <div className="chart-item non-usable">
-                            <div className="chart-item usable" style={{width: actual_perc}}>
+                            <div className="chart-item usable" style={{width: width_perc}}>
 
                             </div>
                         </div>
@@ -115,7 +91,7 @@ calcPerc =() => {
                     <a href="#">more</a> */}
                     </p>
                 </div>
-                <AssementList className="toggleModal" />
+                <AssementList className="toggleModal" question_data ={this.props.question_data}/>
             </div>
         )
     }

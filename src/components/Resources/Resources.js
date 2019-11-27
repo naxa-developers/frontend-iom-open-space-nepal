@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import Navbar from "../Home/Navbar";
 import SearchFilter from "./SearchFilter";
 import Resourcecard from "./Resourcecard";
-import LoadingSpinner from '../Report/LoadingSpinner';
+import LoadingSpinnerBig from '../Report/LoadingSpinnerBig';
 
 import Axios from "axios";
 
@@ -89,9 +89,13 @@ Filtered1.length!=0 && this.chunkArray(Filtered1, 3);
         <Navbar />
         <div className="page-wrap">
           <main className="main-content">
+      
             <div className="container">
+            
               <div className="row-wrap mt-150">
+          
                 <div className="row">
+               
                   <div className="col-12 col-md-3 col-xl-4">
                     <SearchFilter
                       selectFilter={this.selectFilterNew}
@@ -101,17 +105,21 @@ Filtered1.length!=0 && this.chunkArray(Filtered1, 3);
                       displayInitial = {this.chunkArray}
                     />
                   </div>
-
+                 
+                 
                   <div className="col-12 col-md-9 col-xl-8">
+                
                     <div className="content-section">
-
-                      {this.state.loaded == false ? <LoadingSpinner /> :
+                    <div className="loader" style={{textAlign: "center"}}>
+                          { this.state.loaded == false && <LoadingSpinnerBig />}
+                          </div>
+                      {this.state.loaded&&
                         this.state.slicedResources[
                           this.state.resouceindex
                         ].map(e => (
                           
                           <Resourcecard
-                         
+                        
                           id= {e.id}
                             title={e.title}
                             description={e.description}
