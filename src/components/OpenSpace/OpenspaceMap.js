@@ -197,7 +197,7 @@ district.addTo(this.props.mapRefss.current.leafletElement)
                     ref={this.props.mapRefss}
                     style={{ height: this.state.height == null ? '80vh': this.state.height,overflow: 'hidden', }}  
                     >
-                        <LayersControl position="topleft">
+                        <LayersControl position="topright">
                         <BaseLayer checked={true} name="OpenStreetMap">
                             <TileLayer
                                 attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

@@ -38,7 +38,7 @@ class Sidebar extends Component {
       district_muni: L.featureGroup(),
       Routespaths: [],
       Routes: L.featureGroup(),
-      legend: L.control({ position: 'topright' }),
+      legend: L.control({ position: 'bottomleft' }),
       div: L.DomUtil.create('div', 'routeWrapper'),
       OSmarkers : L.markerClusterGroup()
     };
