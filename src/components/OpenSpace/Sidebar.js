@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import Select from "react-select";
 import OpenSpaceCard from "./OpenSpaceCard";
 import Loader from '../Report/LoadingSpinner';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 
 import "./OpenSpaceCSS.css";
 import "react-perfect-scrollbar/dist/css/styles.css";
@@ -14,6 +17,7 @@ import Axios from "axios";
 import mrk from '../../img/mrk.png'
 import 'leaflet.markercluster/dist/MarkerCluster.css'
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
+// import { stat } from "fs";
 require('leaflet.markercluster')
 
 
@@ -194,9 +198,20 @@ class Sidebar extends Component {
       var mrk=new L.circleMarker([e.latitude, e.longitude], {radius: 6, fillcolor: '#0b319c', fillOpacity: 1, weight: 15,opacity:0.3})
       var popup="<h5>"+e.title+"</h5>"+
       "<h6>"+e.municipality+"</h6>"
-      var pop="<div class='bind-popup'> <div class='bind-header'><h5>"+e.title+"</h5> <p><i class='fa fa-map-marker'></i>"+e.municipality+"</p></div></div>"
+      var pop="<div class='bind-popup'> <div class='bind-header'><h5>"+e.title+"</h5> <p><i class='fa fa-map-marker'></i>"+e.municipality+"</p><a  class='openSpace_btn' href='/#/OpenSpaceDetails'>View Details</a></div></div>"
 
       mrk.bindPopup(pop)
+      mrk.on('click', () => {
+        var classes = document.getElementsByClassName('openSpace_btn')
+        for (var i = 0; i < classes.length; i++) {
+            classes[i].addEventListener('click', () => {
+              this.props.dispatch({ type: "spaceClicked", id: e.id })
+              this.props.history.push('/OpenSpaceDetails');
+
+            })
+        }
+    })
+
 
       mrk.addTo(this.state.OSmarkers)
 
@@ -528,4 +543,11 @@ class Sidebar extends Component {
     );
   }
 }
-export default Sidebar;
+const mapStateToProps = (state) => {
+  return {
+      ...state,
+      id:state.id
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(Sidebar));
