@@ -17,8 +17,8 @@ class ReportCard extends Component {
             }}>
             <h5  onClick={() => {
             
-              this.props.dispatch({ type: "reportClicked", id:this.props.id }),
-              console.log(this.props.id)
+              this.props.dispatch({ type: "reportClicked", id:this.props.id })
+              
               }} >
               {this.props.title} 
               <i

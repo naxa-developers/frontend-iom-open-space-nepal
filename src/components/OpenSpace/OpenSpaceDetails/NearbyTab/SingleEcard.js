@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import fa from '../../../../img/school.png'
+
+
 
 export default class SingleEcard extends Component {
   render() {
@@ -6,7 +9,7 @@ export default class SingleEcard extends Component {
         <li>
         <div class="space">
         <figure>
-          <img src="images/space-1.jpg" alt="space" />
+          <img src={fa} alt="space" />
         </figure>
         <div class="space-content">
           <h5>{this.props.name}</h5>
