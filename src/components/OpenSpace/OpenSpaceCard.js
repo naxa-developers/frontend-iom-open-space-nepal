@@ -51,6 +51,8 @@ class OpenSpaceCard extends Component {
 
     }
     render() {
+        var image="https://api.adorable.io/avatars/226/abott@adorable.png"
+        // console.log(this.props.image)
 
         return (
             <>
@@ -58,7 +60,9 @@ class OpenSpaceCard extends Component {
                     <div className="space">
                         <figure>
                             <img
-                                src={`http://139.59.67.104:8011${this.props.image}`}
+                                // src={this.props.image!=null?`http://139.59.67.104:8011${this.props.image}`:image}
+                                src='../../src/img/tento.png'
+                                // src={image}
                                 alt="space"
                             />
                         </figure>
