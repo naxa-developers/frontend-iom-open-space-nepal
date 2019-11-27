@@ -91,85 +91,80 @@
                     &:nth-child(3){
                         margin-bottom: 0px;
                     }
-                    .content-wrapper{
-                        @include flex;
-                        .image-section{
-                            @include flexCenter;
-                            figure{
-                                img{
-                                    width: 150px;
-                                }
-                            }
+                    .image-section{
+                        @include flexCenter;
+                        img{
+                            max-width: 150px;
                         }
-                        .content-col-wrap{
-                            flex: 1;
-                            @include flexCenter;
-                            padding-left: 20px; 
-                            .content-element-wrap{
-                                .h3-title{
-                                    font-size: 1.375rem;
-                                    font-weight: 700;
-                                    margin-bottom: 10px;
-                                }
-                                span{
-                                    font-size: 0.875rem;
-                                    font-weight: 600;
-                                    display: block;
-                                    color: $primary-light;
-                                    padding-bottom: 20px;
-                                }
-                                p{
-                                    text-align: justify;
-                                    font-size: 1rem;
-                                    font-weight: 400;
-                                }
-                            }
-                        }
+                        
                     }
-
-                    .download-section{
-                        .icon-wrap-section{
-                            margin-bottom: 50px;
-                            .btn{
-                                &:hover{
-                                    i{
-                                        background: lighten($color-bg-text, 20%);
-                                        @include boxshadow($boxshadow:0 1px 2px rgba($color-bg-text, 0.40));
-                                        
+                    .wrapper-content{
+                        .content-wrap{
+                            width: calc(100% - 30%);
+                            float: left;
+                            .h3-title{
+                                font-size: 1.375rem;
+                                font-weight: 700;
+                                margin-bottom: 10px;
+                            }
+                            span{
+                                font-size: 0.875rem;
+                                font-weight: 600;
+                                display: block;
+                                color: $primary-light;
+                                padding-bottom: 20px;
+                            }
+                            p{
+                                text-align: justify;
+                                font-size: 1rem;
+                                font-weight: 400;
+                            }
+                        }
+                        .download-section{
+                            float: right;
+                            .icon-wrap-section{
+                                margin-bottom: 50px;
+                                .btn{
+                                    &:hover{
+                                        i{
+                                            background: lighten($color-bg-text, 20%);
+                                            @include boxshadow($boxshadow:0 1px 2px rgba($color-bg-text, 0.40));
+                                            
+                                        }
                                     }
                                 }
-                            }
-                            .btn-share{
-                                margin-right: 10px;
-                            }
-                            i{
-                                @include animate;
-                                padding: 10px;
-                                vertical-align: middle;
-                                font-size: 20px;
-                                border-radius: 50%;
-                            }
-                            
-                        }
-                        .para-wrap-section{
-                            padding-left: 10px;
-                            .para-details-block{
-                                margin-bottom: 20px;
-                                &:nth-child(2){
-                                    margin-bottom: 0px;
+                                .btn-share{
+                                    margin-right: 10px;
                                 }
-                                .title{
-                                    font-size: 0.875rem;
-                                    font-weight: 600;
-                                    color: $primary-light;
-                                    padding-bottom: 5px;
-                                    display: block;
+                                i{
+                                    @include animate;
+                                    padding: 10px;
+                                    vertical-align: middle;
+                                    font-size: 20px;
+                                    border-radius: 50%;
                                 }
-                                .subtitle{
-                                    font-size: 0.813rem;
-                                    font-weight: 700;
-                                    display: block;
-                                    text-transform: uppercase;
+                                
+                            }
+                            .para-wrap-section{
+                                padding-left: 10px;
+                                .para-details-block{
+                                    margin-bottom: 20px;
+                                    &:nth-child(2){
+                                        margin-bottom: 0px;
+                                    }
+                                    .title{
+                                        font-size: 0.875rem;
+                                        font-weight: 600;
+                                        color: $primary-light;
+                                        padding-bottom: 5px;
+                                        display: block;
+                                    }
+                                    .subtitle{
+                                        font-size: 0.813rem;
+                                        font-weight: 700;
+                                        display: block;
+                                        text-transform: uppercase;
+                                    }
                                 }
                             }
                         }
@@ -179,6 +174,7 @@
         }
     }
 }
+
 
 /* less than 991px; */
 @media only screen and (max-width: $lg-tab){
@@ -191,6 +187,21 @@
                         .categories-dropdown, .document-types-dropdown{
                             .dropdown-toggle{
                                 padding: 2px 8px;
+                            }
+                        }
+                    }
+                }
+                .content-section{
+                    .row-section-wrap {
+                        .image-section{
+                            img{
+                                max-width: 120px;
+                                height: 220px;
+                            }
+                        }
+                        .wrapper-content{
+                            .content-wrap{
+                                width: calc(100% - 40%);
                             }
                         }
                     }
@@ -218,16 +229,20 @@
 
                 .content-section{
                     .row-section-wrap {
-                        .content-wrapper {
-                            .content-col-wrap{
-                                .content-element-wrap{
-                                    .h3-title{
-                                        font-size: 1.25rem;
-                                        margin-bottom: 5px;
-                                    }
-                                    .datetime{
-                                        padding-bottom: 10px;
-                                    }
+                        .image-section{
+                            padding-bottom: 10px;
+                                img{
+                                    height: 280px;
+                                }
+                        }
+                        .wrapper-content{
+                            .content-wrap{
+                                .h3-title{
+                                    font-size: 1.25rem;
+                                    margin-bottom: 5px;
+                                }
+                                .datetime{
+                                    padding-bottom: 10px;
                                 }
                             }
                         }
@@ -254,34 +269,49 @@
                 }
                 .content-section{
                     .row-section-wrap{
-                        .content-wrapper {
-                           @include flexvr;
-                           .image-section{
-                               padding-bottom: 10px;
+                        .image-section{
+                            padding-bottom: 10px;
+                            img{
+                                max-width: 100%;
+                                height: auto;
                             }
-                            .content-col-wrap{
-                                margin-bottom: 10px;
-                                .content-element-wrap{
-                                    max-width: 400px;
-                                    .h3-title{
-                                        text-align: justify;
+                        }
+                        .wrapper-content{
+                            .content-wrap{
+                                .download-section {
+                                    @include flexvr;
+                                    .icon-wrap-section{
+                                        margin-bottom: 15px;
                                     }
-                                    p{
-                                        text-align: justify;
+                                    .para-wrap-section {
+                                        text-align: center;
+                                        .para-details-block{
+                                            margin-bottom: 10px;
+                                        }
                                     }
                                 }
                             }
                         }
-                        .download-section {
-                            @include flexvr;
-                            .icon-wrap-section{
-                                margin-bottom: 15px;
-                            }
-                            .para-wrap-section {
-                                text-align: center;
-                                .para-details-block{
-                                    margin-bottom: 10px;
-                                }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* less than 576px; */
+@media only screen and (max-width: $mb-lg){
+    .mt-150{
+        margin-top: 50px !important;
+    }
+    .page-wrap {
+        .main-content{ 
+            .row-wrap {
+                .content-section{
+                    .row-section-wrap{
+                        .wrapper-content{
+                            .content-wrap{
+                                width: calc(100% - 40%);
                             }
                         }
                     }

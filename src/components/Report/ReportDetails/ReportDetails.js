@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "../../Home/Navbar";
-import OpenspaceMap from '../../OpenSpace/OpenspaceMap';
+import ReportMap from '../ReportMap'
 import ReportDetailsCard from "./ReportDetailsCard";
 import ReportMap from "../ReportMap";
 
@@ -18,7 +18,7 @@ class ReportDetails extends Component {
                 <div class="map-wrapper">
                 <div className="row no-gutters">
                   <div className="col-md-7">
-                 <ReportMap/>
+                  <ReportMap />
                   </div>
                   <div className="col-md-5">
                   <ReportDetailsCard />

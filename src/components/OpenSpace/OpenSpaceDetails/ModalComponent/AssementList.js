@@ -1,13 +1,20 @@
 import React, { useState } from 'react'
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+import Question from './Question';
 
 const AssementList = (props) => {
     const {
         className
 
     } = props;
+    const {
+        question_data 
+    } = props;
+
+  
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
+
 
 
     return (
@@ -35,31 +42,11 @@ const AssementList = (props) => {
                 <ModalBody>
                     <div class="modal-body">
                         <ul class="assessment-modal-list">
-                            <li>
-                                <span>Is it a protected area?</span>
-                                <i class="material-icons check">check_circle</i>
-                            </li>
-                            <li>
-                                <span>Is it a buffer zone of protected
-                                                area?</span>
-                                <i class="material-icons cross">cancel</i>
-                            </li>
-                            <li>
-                                <span>Is it a cultural heritage Site?
-                                            </span>
-                                <i class="material-icons cross">cancel</i>
-                            </li>
-                            <li>
-                                <span>Densely populated area? </span>
-                                <i class="material-icons check">check_circle</i>
-                            </li>
-                            <li>
-                                <span>Special area for protection of
-                                    biodiversity
-
-                                            </span>
-                                <i class="material-icons cross">cancel</i>
-                            </li>
+                            
+                               <Question question_data= {question_data}/>
+                            
+                            
+                           
                         </ul>
                     </div>
                 </ModalBody>

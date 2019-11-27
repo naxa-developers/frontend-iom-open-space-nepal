@@ -7,6 +7,7 @@ import GeneralInfo from "./GeneralInfo";
 import ReportTab from "./ReportTab/ReportTab";
 import NearbyTab from "./NearbyTab/NearbyTab";
 
+
 import { connect } from "react-redux";
 
 class DetailsCard extends Component {
@@ -90,6 +91,7 @@ class DetailsCard extends Component {
                         suggested_use={this.state.spaceInfo.suggested_use}
                         services={this.state.spaceInfo.services}
                         title={this.state.spaceInfo.title}
+                        question_data= {this.state.spaceInfo.question_data}
                       />
                     </div>
                     <div
