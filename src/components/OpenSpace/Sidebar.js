@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import Select from "react-select";
 import OpenSpaceCard from "./OpenSpaceCard";
+import Loader from '../Report/LoadingSpinner';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import LoaderBig from '../Report/LoadingSpinnerBig';
+
 
 import "./OpenSpaceCSS.css";
 import "react-perfect-scrollbar/dist/css/styles.css";
@@ -22,6 +26,7 @@ require('leaflet.markercluster')
 class Sidebar extends Component {
   constructor(props) {
     super(props);
+
     this.sidebarToggle = this.sidebarToggle.bind(this);
     this.state = {
       Openspaces: null,
@@ -32,6 +37,7 @@ class Sidebar extends Component {
       SelectedProvince: null,
       SelectedDistrict: null,
       SelectedMunicipality: null,
+      nearbyOS:null,
       Allos: [],
       handlingindex: 0,
       focused: false,
@@ -39,9 +45,10 @@ class Sidebar extends Component {
       district_muni: L.featureGroup(),
       Routespaths: [],
       Routes: L.featureGroup(),
+      nearbyGroup:L.featureGroup(),
       legend: L.control({ position: 'bottomleft' }),
       div: L.DomUtil.create('div', 'routeWrapper'),
-      OSmarkers : L.markerClusterGroup()
+      OSmarkers: null
     };
   }
 
@@ -91,7 +98,7 @@ class Sidebar extends Component {
           Openspaces: response.data.data,
           loading: !this.state.loading
         });
-        
+
 
         // this.state.Allos.map(e => {
         //   console.log(this.props.mapRefs);
@@ -128,62 +135,166 @@ class Sidebar extends Component {
   handledistrict = e => {
     this.setState({ SelectedDistrict: e });
     this.setState({ handlingindex: 2 });
-    window.map = this.props.mapRefs.current.leafletElement;
-    this.state.district_muni.eachLayer(e =>
-      this.state.district_muni.removeLayer(e)
-    );
+    // window.map = this.props.mapRefs.current.leafletElement;
+    // this.state.district_muni.eachLayer(e =>
+    //   this.state.district_muni.removeLayer(e)
+    // );
 
     let FilteredMunicipality = this.state.municipalitytofilter.filter(i => {
       return i.district == e.label;
     });
     this.setState({ municipality: FilteredMunicipality, handlingindex: 2 });
 
-    Axios.get(
-      `http://139.59.67.104:8011/api/v1/district_geo_json?id=${e.value}`
-    ).then(response => {
-      var district = L.geoJSON(response.data);
-      district.addTo(this.state.district_muni);
-      this.props.mapRefs.current.leafletElement.fitBounds(
-        this.state.district_muni.getBounds()
-      );
-      // console.log(this.state.district_muni.getBounds())
-      // var zoom=window.map.getZoom()
+    // Axios.get(
+    //   `http://139.59.67.104:8011/api/v1/district_geo_json?id=${e.value}`
+    // ).then(response => {
+    //   var district = L.geoJSON(response.data);
+    //   district.addTo(this.state.district_muni);
+    //   this.props.mapRefs.current.leafletElement.fitBounds(
+    //     this.state.district_muni.getBounds()
+    //   );
+    //   // console.log(this.state.district_muni.getBounds())
+    //   // var zoom=window.map.getZoom()
 
-      // window.map.setZoom(zoom-3)
-    });
+    //   // window.map.setZoom(zoom-3)
+    // });
     this.setState({ SelectedMunicipality: null });
   };
 
   handlemunicipality = e => {
     this.setState({ SelectedMunicipality: e });
+    // window.map = this.props.mapRefs.current.leafletElement;
+    // this.state.district_muni.eachLayer(e =>
+    //   this.state.district_muni.removeLayer(e)
+    // );
+
+    // Axios.get(
+    //   `http://139.59.67.104:8011/api/v1/municipality_geo_json?id=${e.value}`
+    // ).then(response => {
+    //   var municipality = L.geoJSON(response.data);
+    //   municipality.addTo(this.state.district_muni);
+    //   this.props.mapRefs.current.leafletElement.fitBounds(
+    //     this.state.district_muni.getBounds()
+    //   );
+
+    //   // var zoom = window.map.getZoom();
+    // });
+
+
+  };
+  onApply = () => {
     window.map = this.props.mapRefs.current.leafletElement;
     this.state.district_muni.eachLayer(e =>
       this.state.district_muni.removeLayer(e)
     );
-
-    Axios.get(
-      `http://139.59.67.104:8011/api/v1/municipality_geo_json?id=${e.value}`
-    ).then(response => {
-      var municipality = L.geoJSON(response.data);
-      municipality.addTo(this.state.district_muni);
-      this.props.mapRefs.current.leafletElement.fitBounds(
-        this.state.district_muni.getBounds()
+    // console.log("apply",this.state.SelectedProvince,this.state.SelectedDistrict,this.state.SelectedMunicipality)
+    if (this.state.SelectedProvince && this.state.SelectedDistrict && this.state.SelectedMunicipality) {
+      Axios.get(
+        `http://139.59.67.104:8011/api/v1/municipality_geo_json?id=${this.state.SelectedMunicipality.value}`
+      ).then(response => {
+        var municipality = L.geoJSON(response.data, {
+          style: () => {
+            return {
+              color: '#174BDD',
+              fillColor: '#174BDD',
+              fillOpacity: 0.1,
+              weight: 1
+            }
+          }
+        });
+        municipality.addTo(this.state.district_muni);
+        this.props.mapRefs.current.leafletElement.fitBounds(
+          this.state.district_muni.getBounds()
+        );
+      })
+    }
+    else if (this.state.SelectedProvince && this.state.SelectedDistrict) {
+      window.map = this.props.mapRefs.current.leafletElement;
+      this.state.district_muni.eachLayer(e =>
+        this.state.district_muni.removeLayer(e)
       );
+      Axios.get(
+        `http://139.59.67.104:8011/api/v1/district_geo_json?id=${this.state.SelectedDistrict.value}`
+      ).then(response => {
+        var municipality = L.geoJSON(response.data, {
+          style: () => {
+            return {
+              color: '#174BDD',
+              fillColor: '#174BDD',
+              fillOpacity: 0.1,
+              weight: 1
+            }
+          }
+        });
+        municipality.addTo(this.state.district_muni);
+        this.props.mapRefs.current.leafletElement.fitBounds(
+          this.state.district_muni.getBounds()
+        );
+      })
+    }
+    else if (this.state.SelectedProvince) {
 
-      // var zoom = window.map.getZoom();
-    });
-  };
+    }
+    
+
+  }
   searchOs = () => {
+   
 
 
     var Filtered = this.state.Openspaces.filter(e =>
       e.title.toUpperCase().includes(this.state.search_keyword.toUpperCase())
-    );
+    )
+    
 
-    this.setState({ Allos: Filtered });
+    this.state.OSmarkers.clearLayers()
+    this.setState({ Allos: Filtered })
+
+
+    setTimeout(()=>{this.displayOS()
+    window.map.fitBounds(this.state.OSmarkers.getBounds())
+    },100) 
   };
 
-  
+  nearbymeOS=()=>{
+    Axios.get(`http://139.59.67.104:8011/api/v1/near_by_openspace?count=100&distance=2&latitude=${this.props.currentLocation[0]}&longitude=${this.props.currentLocation[1]}`)
+    .then(response=>{this.setState({nearbyOS:response.data.open_space})
+    this.displaynearbyOs()
+  })
+
+  }
+
+  displaynearbyOs=()=>{
+
+    this.state.nearbyOS.map(e => {
+    var mrk = new L.circleMarker([e.centroid[1], e.centroid[0]], { radius: 6, fillColor: 'green', fillOpacity: 1, weight: 15, opacity: 0.3 ,color:'green',pane:'nearby'})
+      var popup = "<h5>" + e.title + "</h5>" +
+        "<h6>" + e.municipality + "</h6>"
+      var pop = "<div class='bind-popup'> <div class='bind-header'><h5>" + e.title + "</h5> <p><i class='fa fa-map-marker'></i>" + e.municipality + "</p><a  class='openSpace_btn' href='/#/OpenSpaceDetails'>View Details</a></div></div>"
+
+      mrk.bindPopup(pop)
+      mrk.on('click', () => {
+        var classes = document.getElementsByClassName('openSpace_btn')
+        for (var i = 0; i < classes.length; i++) {
+          classes[i].addEventListener('click', () => {
+            this.props.dispatch({ type: "spaceClicked", id: e.id })
+            this.props.history.push('/OpenSpaceDetails');
+
+          })
+        }
+      })
+
+
+      mrk.addTo(this.state.nearbyGroup)
+    })
+    this.state.nearbyGroup.bringToFront()
+    window.map.fitBounds(this.state.nearbyGroup.getBounds())
+
+
+
+  }
+
+
   displayOS = () => {
 
 
@@ -192,12 +303,23 @@ class Sidebar extends Component {
 
       var map = this.props.mapRefs.current.leafletElement;
       // new L.circleMarker([e.latitude, e.longitude]).addTo(map)
-      var mrk=new L.circleMarker([e.latitude, e.longitude], {radius: 6, fillColor:'#174BDD', fillOpacity: 1, weight: 15,opacity:0.3})
-      var popup="<h5>"+e.title+"</h5>"+
-      "<h6>"+e.municipality+"</h6>"
-      var pop="<div class='bind-popup'> <div class='bind-header'><h5>"+e.title+"</h5> <p><i class='fa fa-map-marker'></i>"+e.municipality+"</p></div></div>"
+      var mrk = new L.circleMarker([e.centroid[1], e.centroid[0]], { radius: 6, fillColor: '#174BDD', fillOpacity: 1, weight: 15, opacity: 0.3,pane:'Oslanding'})
+      var popup = "<h5>" + e.title + "</h5>" +
+        "<h6>" + e.municipality + "</h6>" 
+      var pop = "<div class='bind-popup'> <div class='bind-header'><h5>" + e.title + "</h5> <p><i class='fa fa-map-marker'></i>" + e.municipality + "</p><a  class='openSpace_btn' href='/#/OpenSpaceDetails'>View Details</a></div></div>"
 
       mrk.bindPopup(pop)
+      mrk.on('click', () => {
+        var classes = document.getElementsByClassName('openSpace_btn')
+        for (var i = 0; i < classes.length; i++) {
+          classes[i].addEventListener('click', () => {
+            this.props.dispatch({ type: "spaceClicked", id: e.id })
+            this.props.history.push('/OpenSpaceDetails');
+
+          })
+        }
+      })
+
 
       mrk.addTo(this.state.OSmarkers)
 
@@ -226,7 +348,7 @@ class Sidebar extends Component {
       .then(Response => {
         // console.log(Response.data)
 
-   
+
         for (var j = 0; j < Response.data.paths.length; j++) {
           var path = []
           for (var i = 0; i < Response.data.paths[j].points.coordinates.length; i++) {
@@ -235,14 +357,14 @@ class Sidebar extends Component {
           }
           // console.log(Response.data.paths[j].description)
           var polyline = L.polyline(path, { color: j == 0 ? '#174BDD' : 'grey' })
-          this.state.Routespaths.push({ id: j, path: polyline, description:Response.data.paths[j].description==undefined?"No Descrption":Response.data.paths[j].description[0] , distance: Response.data.paths[j].distance })
-        
+          this.state.Routespaths.push({ id: j, path: polyline, description: Response.data.paths[j].description == undefined ? "No Descrption" : Response.data.paths[j].description[0], distance: Response.data.paths[j].distance })
+
           this.state.Routes.addLayer(polyline)
           window.map.fitBounds(polyline.getBounds())
 
         }
         this.state.Routespaths[0].path.bringToFront()
-        activeroute=0
+        activeroute = 0
 
 
 
@@ -265,14 +387,14 @@ class Sidebar extends Component {
           this.state.Routespaths.map(e => {
             // console.log(activeroute)
 
-            var class1='desccard';
+            var class1 = 'desccard';
             // var activeclass=class1
-     
-            var descCard = `<div  class=${class1} name=`+ e.id + ">" +
-              "<h6>"+e.description+"</h6>" +
-              "<span>"+e.distance + " m"+"</span>"
+
+            var descCard = `<div  class=${class1} name=` + e.id + ">" +
+              "<h6>" + e.description + "</h6>" +
+              "<span>" + e.distance + " m" + "</span>"
             "<div>";
-           
+
 
 
             div.innerHTML += descCard
@@ -280,7 +402,7 @@ class Sidebar extends Component {
 
           })
           // innterhtml
-          
+
 
 
 
@@ -289,7 +411,7 @@ class Sidebar extends Component {
 
 
 
-   
+
         // if(divss!=0){
         //   for(var i=0;i<divss.length;i++){
 
@@ -300,7 +422,7 @@ class Sidebar extends Component {
 
         //   }
         // }
-       
+
 
         this.state.legend.addTo(this.props.mapRefs.current.leafletElement)
         // console.log(this.state.Routespaths)
@@ -320,7 +442,8 @@ class Sidebar extends Component {
             // console.log(e.target.getAttribute('name'));
             var value = e.target.getAttribute('name')
             var selected = this.state.Routespaths.filter((a) => {
-              return a.id == value})
+              return a.id == value
+            })
 
             for (var a = 0; a < doc.length; a++) {
               if (doc[a].getAttribute('name') == value) {
@@ -356,17 +479,33 @@ class Sidebar extends Component {
 
 
   componentDidMount() {
+    
+
+    var nearby=this.props.mapRefs.current.leafletElement.createPane('nearby');
+    var Oslanding=this.props.mapRefs.current.leafletElement.createPane('Oslanding');
+    this.props.mapRefs.current.leafletElement.createPane("cluster").style.zIndex = 100;
+
+
+
+
+    window.map = this.props.mapRefs.current.leafletElement;
+    window.map.getPane('nearby').style.zIndex = 200;
+    window.map.getPane('Oslanding').style.zIndex = 150;
+
+    var cluster=L.markerClusterGroup({disableClusteringAtZoom:14})
+    this.setState({OSmarkers:cluster})
+
+    window.map.addLayer(this.state.district_muni);
+    window.map.addLayer(this.state.Routes);
+   setTimeout(()=>window.map.addLayer(this.state.OSmarkers),500) 
+    window.map.addLayer(this.state.nearbyGroup);
+
     this.fetchingForDropdown("province");
     this.fetchingForDropdown("district");
     this.fetchingForDropdown("municipality");
     this.fetchOS();
     this.onload();
-
-
-    window.map = this.props.mapRefs.current.leafletElement;
-    window.map.addLayer(this.state.district_muni);
-    window.map.addLayer(this.state.Routes);
-    window.map.addLayer(this.state.OSmarkers);
+    // this.nearbymeOS();
 
     // window.map1=this.props.mapRefs.current.leafletElement
   }
@@ -423,14 +562,15 @@ class Sidebar extends Component {
                             municipality: null,
                             handlingindex: 0
                           })
-                          var bounds = [[30.86924662953735,
-                            100.29542704344739],
-                          [
-                            26.7211025368031,
-                            79.2016770434474
-                          ]];
+                          var bounds = [ [ 25.710836919640595, 79.79365377708339],
+                          [ 30.798474179567847 , 88.54975729270839]];
                           window.map.fitBounds(bounds)
-                          this.state.Routes.eachLayer((e)=>this.state.Routes.removeLayer(e))
+                          this.state.Routes.eachLayer((e) => this.state.Routes.removeLayer(e))
+
+                          this.state.district_muni.eachLayer(e =>
+                            this.state.district_muni.removeLayer(e)
+                          );
+                          window.map.removeControl(this.state.legend);
                         }
 
                         }
@@ -438,14 +578,14 @@ class Sidebar extends Component {
                         clear all
                       </span>
                     </div>
-                    <a href="#" className="openspace-button">
+                    <a onClick={() => this.onApply()} className="openspace-button">
                       Apply
                     </a>
                   </div>
                 </div>
 
-                <div className="nearme-btn">
-                  <a href="#" className="openspace-button">
+                <div onClick={this.nearbymeOS} className="nearme-btn">
+                  <a  className="openspace-button">
                     <i
                       className="material-icons"
                       style={{ textDecoration: "none" }}
@@ -506,11 +646,11 @@ class Sidebar extends Component {
                       this.state.Allos.map(e => {
                         // console.log(this.props.currentLocation,"cur",[e.latitude, e.longitude]);
 
-                        
+
 
                         return (
                           <OpenSpaceCard
-                          currentLocation={this.props.currentLocation}
+                            currentLocation={this.props.currentLocation}
                             latlng={[e.latitude, e.longitude]}
                             routing={this.fetchroute}
                             key={e.id}
@@ -533,4 +673,11 @@ class Sidebar extends Component {
     );
   }
 }
-export default Sidebar;
+const mapStateToProps = (state) => {
+  return {
+    ...state,
+    id: state.id
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(Sidebar));

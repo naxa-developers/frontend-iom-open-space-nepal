@@ -1,6 +1,6 @@
 import React, { Component,createRef } from "react";
 import Navbar from '../Home/Navbar';
-import ReportMap from './ReportMap';
+// import ReportMap from './ReportMap';
 import ReportSidebar from './ReportSidebar'
 
 

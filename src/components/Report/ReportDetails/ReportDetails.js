@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Navbar from "../../Home/Navbar";
-import ReportMap from '../ReportMap'
+// import ReportMap from '../ReportMap'
 import ReportDetailsCard from "./ReportDetailsCard";
+import ReportMap from "../ReportMap";
 
 class ReportDetails extends Component {
   render() {
