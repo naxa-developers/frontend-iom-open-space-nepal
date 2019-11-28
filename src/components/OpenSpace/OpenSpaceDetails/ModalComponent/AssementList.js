@@ -33,7 +33,7 @@ const AssementList = (props) => {
 
             </div>
       
-            <Modal isOpen={modal} toggle={toggle} className={className}  centered ="true">
+            <Modal isOpen={modal} toggle={toggle} className={className}  centered ="true" size = "lg">
         <ModalHeader toggle={toggle}>General Information Assessment
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>

@@ -5,21 +5,22 @@ export default class Question extends Component {
   
     render() {
      
+     console.log(this.props.question_data);
+     
         
         
         return (
-            <li>
-         return <QuestionOne questions={this.props} />
-                 {/* {this.state.questions&&this.state.questions.question_data.map((que) => {
-                     return (
-                     <>
-                     <span>{this.props.que.que}</span>  
-                     <i class="material-icons check">check_circle</i> 
+          
+        <>
+               {this.props.question_data&&this.props.question_data.map((que) => {
+                  
+                   
+                    return <QuestionOne question={que.que} ans = {que.ans}/>
                
-                    </>      
-                     )
-                 } )} */}
-            </li>
+                      
+               
+                 } )} 
+         </>   
         )
     }
 }
