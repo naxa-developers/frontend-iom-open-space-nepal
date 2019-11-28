@@ -19,7 +19,7 @@ class OpenSpace extends Component {
     this.setState({currentLocation:loc})
   }
   setProvince=(a)=>{
-    this.setState({nepalProvince:a})
+    // this.setState({nepalProvince:a})
   }
   componentDidMount(){
     var map=this.mapRefs.current.leafletElement
@@ -27,10 +27,10 @@ class OpenSpace extends Component {
     map.on('zoomend', ()=> {
       var z=map.getZoom()
       if(z>8){
-        map.hasLayer(this.state.nepalProvince)&&this.state.nepalProvince!=null&&map.removeLayer(this.state.nepalProvince)
+        // map.hasLayer(this.state.nepalProvince)&&this.state.nepalProvince!=null&&map.removeLayer(this.state.nepalProvince)
       }
       else{
-        !map.hasLayer(this.state.nepalProvince)&&this.state.nepalProvince!=null&&map.addLayer(this.state.nepalProvince)
+        // !map.hasLayer(this.state.nepalProvince)&&this.state.nepalProvince!=null&&map.addLayer(this.state.nepalProvince)
       }
   });
 

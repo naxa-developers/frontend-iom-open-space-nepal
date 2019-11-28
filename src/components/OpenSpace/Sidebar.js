@@ -198,7 +198,7 @@ class Sidebar extends Component {
         var class1 = 'desccard';
         // var activeclass=class1
 
-        var descCard = "<ul><h6>Markers</h6><li><span class='legend blue'></span><p>Openspace</p></li><li id='nearbylegend' style='visibility:hidden'><span class='legend green'></span><p>Nearby Openspace</p></li></ul>";
+        var descCard = "<ul><h6>Markers</h6><li><span class='legend red'></span><p>User location</p></li><li><span class='legend blue'></span><p>Openspace</p></li><li id='nearbylegend' style='visibility:hidden'><span class='legend green'></span><p>Nearby Openspace</p></li></ul>";
 
 
 
@@ -237,6 +237,9 @@ class Sidebar extends Component {
             }
           }
         });
+        let FilteredOS=this.state.Openspaces.filter((e)=>e.municipality==this.state.SelectedMunicipality.value)
+        console.log(FilteredOS)
+        this.setState({Allos:FilteredOS})
         municipality.addTo(this.state.district_muni);
         this.props.mapRefs.current.leafletElement.fitBounds(
           this.state.district_muni.getBounds()
@@ -261,6 +264,9 @@ class Sidebar extends Component {
             }
           }
         });
+        let FilteredOS=this.state.Openspaces.filter((e)=>e.district==this.state.SelectedDistrict.value)
+        console.log(FilteredOS)
+        this.setState({Allos:FilteredOS})
         municipality.addTo(this.state.district_muni);
         this.props.mapRefs.current.leafletElement.fitBounds(
           this.state.district_muni.getBounds()
@@ -268,6 +274,14 @@ class Sidebar extends Component {
       })
     }
     else if (this.state.SelectedProvince) {
+      let FilteredOS=this.state.Openspaces.filter((e)=>e.province==this.state.SelectedProvince.value)
+        console.log(FilteredOS)
+        this.setState({Allos:FilteredOS})
+
+        // this.props.mapRefs.current.leafletElement.fitBounds(
+        //   this.state.district_muni.getBounds()
+        // );
+
 
     }
     
@@ -548,8 +562,8 @@ class Sidebar extends Component {
 
 
     window.map = this.props.mapRefs.current.leafletElement;
-    window.map.getPane('nearby').style.zIndex = 200;
-    window.map.getPane('Oslanding').style.zIndex = 150;
+    window.map.getPane('nearby').style.zIndex = 300;
+    window.map.getPane('Oslanding').style.zIndex = 250;
 
     var cluster=L.markerClusterGroup({disableClusteringAtZoom:14})
     this.setState({OSmarkers:cluster})
