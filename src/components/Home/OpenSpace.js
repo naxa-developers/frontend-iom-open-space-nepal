@@ -16,7 +16,7 @@ class OpenSpace extends Component {
         }
     }
     getData() {
-      Axios.get(`http://139.59.67.104:8011/api/v1/open_space_def/`)
+      Axios.get(`https://iomapi.naxa.com.np/api/v1/open_space_def/`)
         .then( res => {
             const data1 = res.data;
             

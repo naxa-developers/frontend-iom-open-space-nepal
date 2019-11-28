@@ -13,7 +13,7 @@ class HospitalCard extends Component {
 
   fetchInfo = () => {
     Axios.get(
-      `http://139.59.67.104:8011/api/v1/near_by_me?type=health%20facility&count=100&distance=500&id=${this.props.id}`
+      `https://iomapi.naxa.com.np/api/v1/near_by_me?type=health%20facility&count=100&distance=500&id=${this.props.id}`
     ).then(response => {
       this.setState({
         data: response.data

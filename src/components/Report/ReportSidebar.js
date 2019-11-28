@@ -34,7 +34,7 @@ class ReportSidebar extends Component {
     )[0].style.height = `${windowHeight - navHeight}px`;
   };
   fetchReports = () => {
-    Axios.get("http://139.59.67.104:8011/api/v1/report/").then(response => {
+    Axios.get("https://iomapi.naxa.com.np/api/v1/report/").then(response => {
      
 
       this.props.dispatch({ type: "ReportFilter", data: response.data });

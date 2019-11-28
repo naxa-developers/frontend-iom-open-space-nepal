@@ -34,7 +34,7 @@ const { BaseLayer } = LayersControl;
      
      componentDidMount() {
         this.onload();
-        Axios.get(`http://139.59.67.104:8011/api/v1/single_open_geo_json?id=${localStorage.getItem('id')}`)  
+        Axios.get(`https://iomapi.naxa.com.np/api/v1/single_open_geo_json?id=${localStorage.getItem('id')}`)  
         .then(response=>{
             var geo=L.geoJSON(response.data).addTo(this.maps.current.leafletElement)
             this.maps.current.leafletElement.fitBounds(geo.getBounds())

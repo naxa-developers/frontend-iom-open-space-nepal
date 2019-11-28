@@ -60,7 +60,7 @@ class OpenSpaceCard extends Component {
                     <div className="space">
                         <figure>
                             <img
-                                // src={this.props.image!=null?`http://139.59.67.104:8011${this.props.image}`:image}
+                                // src={this.props.image!=null?`https://iomapi.naxa.com.np${this.props.image}`:image}
                                 src='../../src/img/tento.png'
                                 // src={image}
                                 alt="space"

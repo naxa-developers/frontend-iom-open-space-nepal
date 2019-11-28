@@ -73,7 +73,7 @@ Filtered1.length!=0 && this.chunkArray(Filtered1, 3);
 
 
   componentDidMount() {
-    Axios.get("http://139.59.67.104:8011/api/v1/resource/").then(response => {
+    Axios.get("https://iomapi.naxa.com.np/api/v1/resource/").then(response => {
       this.setState({ resources: response.data });
 
       this.chunkArray(this.state.resources, 3);
