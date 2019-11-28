@@ -361,6 +361,18 @@
                         .css-2b097c-container,
                         .css-14jk2my-container {
                             width: 100%;
+                            .css-yk16xz-control, .css-1fhf3k1-control{
+                                border:1px solid $color-border;
+                                border-radius: 0;
+                            }
+                            .css-1pahdxg-control{
+                                border-color:$color-blue;
+                                box-shadow:none;
+                                border-radius: 0;
+                                .css-1gtu0rj-indicatorContainer{
+                                    color:$color-blue;
+                                }
+                            }
 
                             &:nth-child(2) {
                                 margin: 0 1rem;
