@@ -48,7 +48,8 @@ class Sidebar extends Component {
       nearbyGroup:L.featureGroup(),
       legend: L.control({ position: 'bottomleft' }),
       div: L.DomUtil.create('div', 'routeWrapper'),
-      OSmarkers: null
+      OSmarkers: null,
+      markersLegend:L.control({ position: 'bottomright' }),
     };
   }
 
@@ -182,6 +183,40 @@ class Sidebar extends Component {
 
 
   };
+
+  addlegend=()=>{
+    this.state.markersLegend.onAdd = (map) => {
+
+      var div = L.DomUtil.create('div', `markersLegend`)
+      div.innerHTML = ''
+      div.innerHTML += "<h6 id='marker'>Markers</h6>"
+
+
+      
+        // console.log(activeroute)
+
+        var class1 = 'desccard';
+        // var activeclass=class1
+
+        var descCard = "<ul><li><span class='legend blue'></span><p>Openspace</p></li><li><span class='legend green'></span><p>Nearby Openspace</p></li></ul>";
+
+
+
+        div.innerHTML += descCard
+     
+
+     
+
+
+
+
+      return div;
+    }
+     this.state.markersLegend.addTo(this.props.mapRefs.current.leafletElement)
+
+
+  }
+
   onApply = () => {
     window.map = this.props.mapRefs.current.leafletElement;
     this.state.district_muni.eachLayer(e =>
@@ -265,6 +300,7 @@ class Sidebar extends Component {
   }
 
   displaynearbyOs=()=>{
+    this.state.nearbyGroup.eachLayer(e=>this.state.nearbyGroup.removeLayer(e))
 
     this.state.nearbyOS.map(e => {
     var mrk = new L.circleMarker([e.centroid[1], e.centroid[0]], { radius: 6, fillColor: 'green', fillOpacity: 1, weight: 15, opacity: 0.3 ,color:'green',pane:'nearby'})
@@ -499,11 +535,13 @@ class Sidebar extends Component {
     window.map.addLayer(this.state.Routes);
    setTimeout(()=>window.map.addLayer(this.state.OSmarkers),500) 
     window.map.addLayer(this.state.nearbyGroup);
+   
 
     this.fetchingForDropdown("province");
     this.fetchingForDropdown("district");
     this.fetchingForDropdown("municipality");
     this.fetchOS();
+     this.addlegend()
     this.onload();
     // this.nearbymeOS();
 
@@ -570,6 +608,8 @@ class Sidebar extends Component {
                           this.state.district_muni.eachLayer(e =>
                             this.state.district_muni.removeLayer(e)
                           );
+                          this.state.nearbyGroup.eachLayer(e=>this.state.nearbyGroup.removeLayer(e))
+
                           window.map.removeControl(this.state.legend);
                         }
 
