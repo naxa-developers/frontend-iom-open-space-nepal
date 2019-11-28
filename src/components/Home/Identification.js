@@ -17,7 +17,7 @@ class Identification extends Component {
     //     steps: []
     // }
     componentDidMount() {
-        axios.get(`http://139.59.67.104:8011/api/v1/identify_open_space/`)
+        axios.get(`https://iomapi.naxa.com.np/api/v1/identify_open_space/`)
         .then( res => {
             const steps = res.data;
             this.setState({ steps });

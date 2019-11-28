@@ -12,7 +12,7 @@ class ReportDetailsCard extends Component {
     };
   }
   fetchReport = () => {
-    Axios.get(`http://139.59.67.104:8011/api/v1/report/${this.props.id}`).then(
+    Axios.get(`https://iomapi.naxa.com.np/api/v1/report/${this.props.id}`).then(
       response => {
         this.setState({ reportInfo: response.data });
       }
@@ -36,7 +36,7 @@ class ReportDetailsCard extends Component {
 
   render() {
    
-// console.log("id",this.props.id);
+console.log("id",this.props.id);
 
     return (
       <div className="map-sidebar">

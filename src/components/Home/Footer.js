@@ -19,7 +19,7 @@ class Footer extends Component {
   }
 
   componentDidMount() {
-    Axios.get(`http://139.59.67.104:8011/api/v1/contact/`).then(res => {
+    Axios.get(`https://iomapi.naxa.com.np/api/v1/contact/`).then(res => {
       this.setState({
         contactInfo: res.data
       });
@@ -107,7 +107,9 @@ class Footer extends Component {
                       <img src={googleplay} alt="Android" />
                     </figure>
                   </div>
+                 
                   <ul>
+                  <h5>Useful Links</h5>
                     <li>
                       <a href="#">Mofaga</a>
                     </li>

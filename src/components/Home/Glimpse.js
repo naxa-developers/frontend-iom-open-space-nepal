@@ -18,7 +18,7 @@ class Glimpse extends Component {
     }
 
     fetchCounts = () => {
-        Axios.get(`http://139.59.67.104:8011/api/v1/glimpse_of_open_space`)
+        Axios.get(`https://iomapi.naxa.com.np/api/v1/glimpse_of_open_space`)
         .then(res => {
         
             

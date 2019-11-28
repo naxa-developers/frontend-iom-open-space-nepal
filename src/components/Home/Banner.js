@@ -19,7 +19,7 @@ import Axios from 'axios';
          }
      }
      getData() {
-       Axios.get(`http://139.59.67.104:8011/api/v1/header/`)
+       Axios.get(`https://iomapi.naxa.com.np/api/v1/header/`)
          .then( res => {
              const text = res.data;
              

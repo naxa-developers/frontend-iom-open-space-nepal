@@ -58,7 +58,7 @@ class ReportFilter extends Component {
     this.props.toggleLoader();
     const status = this.state.valueStatus;
     const urgency = this.state.valueUrgency;
-    const url = `http://139.59.67.104:8011/api/v1/report/?status=${status.label.toLowerCase()}&urgency=${urgency.label.toLowerCase()}`
+    const url = `https://iomapi.naxa.com.np/api/v1/report/?status=${status.label.toLowerCase()}&urgency=${urgency.label.toLowerCase()}`
    
     Axios.get(url)
     .then(response => {
