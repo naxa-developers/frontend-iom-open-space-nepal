@@ -1,20 +1,18 @@
 import React, { Component } from 'react'
 
  class QuestionOne extends Component {
-    constructor(props) {
-        super(props)
     
-        this.state = {
-             questions:this.props
-        }
-    }
     
     render() {
+      var yes = "check_circle"
+      var no = "cancel"
+
+        
         return (
-            <>
-                 <span>{this.state.questions_data}</span>  
-                 <i class="material-icons check">check_circle</i> 
-            </>
+            <li>
+                 <span>{this.props.question}</span>  
+        <i class="material-icons check">{this.props.ans=="Yes" ? no :yes  }</i> 
+                 </li>
         )
     }
 }

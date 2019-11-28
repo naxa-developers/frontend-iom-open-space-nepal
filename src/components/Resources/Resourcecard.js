@@ -25,9 +25,9 @@ class Resourcecard extends Component {
           <div className="row">
             <div className="col-12 col-md-9">
               <div className="content-wrapper">
-                <div className="image-section">
+                <div className="image-section" >
                   <figure>
-                    <img src={this.props.image} alt="" />
+                    <img src={this.props.image}  alt="" />
                   </figure>
                 </div>
                 <div className="content-col-wrap">
