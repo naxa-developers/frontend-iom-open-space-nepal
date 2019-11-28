@@ -9,10 +9,11 @@
         margin-right: 5rem;
         background-color: $color-white;
         padding: 0;
-        &.leaflet-control{
-            margin:0 !important;
+
+        &.leaflet-control {
+            margin: 0 !important;
         }
-        
+
 
         #legendtitle {
             background: transparent;
@@ -28,7 +29,8 @@
 
         .desccard {
             padding: .6125rem;
-            h6{
+
+            h6 {
                 font-weight: 600;
                 font-size: .875rem;
             }
@@ -46,7 +48,7 @@
         // background-color: rgba($color-blue, .4) !important;
         background-color: $color-blue;
         @include flexvr;
-        width:30px !important;
+        width: 30px !important;
         height: 30px !important;
 
         div {
@@ -55,8 +57,9 @@
             height: 24px;
             margin: 0;
             @include flexvr;
-            span{
-                color:$color-white;
+
+            span {
+                color: $color-white;
             }
         }
     }
@@ -114,12 +117,12 @@
         .leaflet-control-container {
             .leaflet-left {
                 left: auto;
-                right: 3rem;
+                right: 1rem;
                 z-index: 999;
 
                 &.leaflet-top {
                     top: auto;
-                    bottom: 5rem;
+                    bottom: 1rem;
 
                 }
 
@@ -140,10 +143,89 @@
                     }
 
                 }
-                &.leaflet-bottom{
-                    right:7rem;
+
+                &.leaflet-bottom {
+                    right: 5rem;
                 }
 
+            }
+
+            .leaflet-bottom {
+                right: auto;
+
+                &.leaflet-right {
+                    left: 1rem;
+                    bottom: 1rem;
+                    right: auto;
+
+                    .leaflet-control {
+                        float: none;
+                        margin: 0;
+
+                        ul {
+                            background-color: $color-white;
+
+                            h6 {
+                                background: transparent;
+                                color: $color-primary;
+                                text-transform: uppercase;
+                                font-weight: 600;
+                                border-bottom: 1px solid $color-border;
+                                font-size: .775rem;
+                                text-align: left;
+                                padding: .5rem .6125rem;
+                            }
+
+                            li {
+                                padding:.5rem .6125rem;
+                                @include flexStart;
+                                span.legend{
+                                    flex:0 0 18px;
+                                    max-width: 18px;
+                                    width:100%;
+                                    height: 18px;
+                                    @include radius(50%);
+                                    position: relative;
+                                    text-align: center;
+                                    margin-right: .6125rem;;
+                                    &::after{
+                                        content:'';
+                                        @include translatey;
+                                        width:8px;
+                                        height: 8px;
+                                        @include radius(50%);
+                                        left:0;
+                                        right:0;
+                                        margin:0 auto;
+                                        z-index: 999;
+                                    }
+                                    &.blue{
+                                        background-color:rgba($color-blue,.2);
+                                        &::after{
+                                            background-color: $color-blue;
+                                        }
+                                    }
+                                    &.green{
+                                        background-color:rgba($color-green,.2);
+                                        &::after{
+                                            background-color: $color-green;
+                                        }
+                                    }
+                                    &.red{
+                                        background-color:rgba($color-secondary,.2);
+                                        &::after{
+                                            background-color: $color-secondary;
+                                        }
+                                    }
+                                }
+                                p{
+                                    margin: 0;;
+                                }
+                               
+                            }
+                        }
+                    }
+                }
             }
 
             .leaflet-control-layers-toggle {
@@ -204,7 +286,7 @@
                         margin: 0;
                         font-size: 0.675rem;
                         line-height: 1;
-                        color:$color-white;
+                        color: $color-white;
 
                         span,
                         i {
@@ -361,16 +443,20 @@
                         .css-2b097c-container,
                         .css-14jk2my-container {
                             width: 100%;
-                            .css-yk16xz-control, .css-1fhf3k1-control{
-                                border:1px solid $color-border;
+
+                            .css-yk16xz-control,
+                            .css-1fhf3k1-control {
+                                border: 1px solid $color-border;
                                 border-radius: 0;
                             }
-                            .css-1pahdxg-control{
-                                border-color:$color-blue;
-                                box-shadow:none;
+
+                            .css-1pahdxg-control {
+                                border-color: $color-blue;
+                                box-shadow: none;
                                 border-radius: 0;
-                                .css-1gtu0rj-indicatorContainer{
-                                    color:$color-blue;
+
+                                .css-1gtu0rj-indicatorContainer {
+                                    color: $color-blue;
                                 }
                             }
 
@@ -936,17 +1022,21 @@
                     }
                 }
             }
-            .gallery-category{
-                .gallery-grid{
-                    margin-top:2rem;
-                    h4{
-                        font-size:1rem;
-                        color:$color-blue;
+
+            .gallery-category {
+                .gallery-grid {
+                    margin-top: 2rem;
+
+                    h4 {
+                        font-size: 1rem;
+                        color: $color-blue;
                         text-transform: capitalize;
                     }
-                    figure{
+
+                    figure {
                         cursor: pointer;
-                        img{
+
+                        img {
                             max-height: 144px;
                         }
                     }
