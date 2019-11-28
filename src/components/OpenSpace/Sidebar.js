@@ -335,6 +335,8 @@ class Sidebar extends Component {
     if(this.state.nearbytoogle){ 
       this.state.nearbyGroup.eachLayer(e=>this.state.nearbyGroup.removeLayer(e))
       document.getElementById('nearbylegend').style.visibility='hidden'
+      document.getElementsByClassName("openspace-button")[1].classList.remove("active");
+
 
 
 
@@ -342,7 +344,9 @@ class Sidebar extends Component {
     }
     else{
       this.nearbymeOS()
-
+      document.getElementsByClassName("openspace-button")[1].classList.add("active");
+      // console.log( document.getElementsByClassName("openspace-button"))
+// 
 
     }
     this.state.nearbytoogle=!this.state.nearbytoogle
