@@ -3,7 +3,7 @@ import MaterialIcon from "material-icons-react";
 import Axios from "axios";
 import ReportCard from "./ReportCard";
 import ReportFilter from "./ReportFilter";
-import LoadingSpinner from "./LoadingSpinner";
+import LoadingSpinnerBig from "./LoadingSpinnerBig";
 import { connect } from "react-redux";
 
 class ReportSidebar extends Component {
@@ -17,6 +17,8 @@ class ReportSidebar extends Component {
       filteredReports: [],
       loading: true,
       isFocused: false,
+      lat: 28.3949,
+      lng:  84.1240,
       
     };
   }
@@ -36,6 +38,7 @@ class ReportSidebar extends Component {
      
 
       this.props.dispatch({ type: "ReportFilter", data: response.data });
+      this.loadReports();
       this.setState({
         loading: false
       });
@@ -58,12 +61,51 @@ class ReportSidebar extends Component {
 
     this.setState({ reportsToShow: filteredReports });
   };
+  
+  loadReports = () => {
+    var color= ''
+    var fillColor= ''
+    if(this.props.urgency=="high"){
+      color= 'red'
+      fillColor= 'red'
+    } else if(this.props.urgency=="medium") {
+      color= "#a27109"
+      fillColor= "#ffb20f"
+    } else if(this.props.urgency=="low") {
+      color='green'
+      fillColor= 'green'
+
+    }
+    else {
+      color='white'
+      fillColor= 'white'
+    }
+    
+  const  reportStyle = {
+      color: 'red',
+      fillColor: 'red',
+      opacity: 0.3,
+      fillOpacity: 1,
+      weight: 15,
+      radius: 6
+    }
+    this.props.reportData&&this.props.reportData.map((p) => {
+      console.log(p);
+      
+      L.circleMarker([p.location[1],p.location[0]], reportStyle).addTo(this.props.mapR.current.leafletElement)
+    })
+     
+      
+  }
   componentDidMount() {
     this.onload();
     this.fetchReports();
+  
   }
 
   render() {
+
+    this.props.reportData&&console.log(this.props.reportData[0].location[0]);
 
 
     return (
@@ -121,7 +163,7 @@ class ReportSidebar extends Component {
 
                   <ul>
                     {this.state.loading ? (
-                      <LoadingSpinner />
+                      <LoadingSpinnerBig />
                     ) : (
                       this.props.reportData.map(e => {
                         return (

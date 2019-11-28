@@ -13,7 +13,7 @@ class EducationCard extends Component {
 
   fetchInfo = () => {
     Axios.get(
-      `http://139.59.67.104:8011/api/v1/near_by_me?type=education%20facility&count=100&distance=3&id=${localStorage.getItem(
+      `http://139.59.67.104:8011/api/v1/near_by_me?type=education%20facility&count=100&distance=2&id=${localStorage.getItem(
         "OpenspaceID"
       )}`
     ).then(response => {
@@ -30,21 +30,21 @@ class EducationCard extends Component {
 
     return (
       <>
-        {/* <div class="facility-overview flex-between">
-          <div class="overview-item">
+        <div class="facility-overview flex-between">
+          {/* <div class="overview-item">
               <h6>1</h6>
               <p>district hospital</p>
-          </div>
+          </div> */}
           <div class="overview-item">
               <h6>13</h6>
-              <p>government Hospital</p>
+              <p>Government School</p>
           </div>
           <div class="overview-item">
               <h6>1</h6>
-              <p>private Hospital</p>
+              <p>Private School</p>
           </div>
       </div>
-        */}
+       
         <div class="space-list nearby-list">
           <ul>
            

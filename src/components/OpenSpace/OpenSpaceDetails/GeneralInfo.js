@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
-import AssementList from './AssementList'
+import AssementList from './ModalComponent/AssementList'
 
 class GeneralInfo extends Component {
+  
 
 
     render() {
-        //    this.props.services&&console.log("psycho",this.props.services[0].name);
-
+        var usable_perc = (this.props.usable_area/this.props.total_area)*100;
+        var actual_perc = usable_perc.toFixed(1) ;
+        var width_perc = actual_perc+ '%'; 
+      
+        
         return (
             <div className="general-info">
                 <div className="general-overview flex-between">
@@ -19,7 +23,7 @@ class GeneralInfo extends Component {
                         <p>Total Area</p>
                     </div>
                     <div className="overview-item">
-                        <h6>{this.props.usable_area}<sub>sq.m</sub></h6>
+                        <h6>{this.props.usable_area} <sub>sq.m</sub></h6>
                         <p>Usable Area</p>
                     </div>
                 </div>
@@ -31,7 +35,7 @@ class GeneralInfo extends Component {
                                 <span>Usable Area</span>
                             </div>
 
-                            <span className="usable-percent">60%</span>
+        <span className="usable-percent">{actual_perc}%</span>
                         </div>
                         <div className="legend-list ">
                             <div className="symbol-content flex-start">
@@ -39,12 +43,12 @@ class GeneralInfo extends Component {
                                 <span>Non Usable Area</span>
                             </div>
 
-                            <span className="usable-percent">40%</span>
+        <span className="usable-percent">{(100-actual_perc).toFixed(1)} %</span>
                         </div>
                     </div>
                     <div className="chart-wrapper flex-start">
                         <div className="chart-item non-usable">
-                            <div className="chart-item usable" style={{width:'60%'}}>
+                            <div className="chart-item usable" style={{width: width_perc}}>
 
                             </div>
                         </div>
@@ -59,6 +63,17 @@ class GeneralInfo extends Component {
                             {/* <li>{this.props.suggested_use&&this.props.suggested_use[0].name}</li> */}
 
                         </ul>
+                    </div>
+                    <div className="suggested-list ">
+                        {this.props.suggested_use && this.props.suggested_use.map((use) => {
+                            return (
+                                <ul>
+
+                                    <li>{use.name}  </li>
+                                </ul>
+                            )
+                        })}
+
                     </div>
                     <div className="suggested-list ">
                         {this.props.services && this.props.services.map((service) => {
@@ -76,7 +91,7 @@ class GeneralInfo extends Component {
                     <a href="#">more</a> */}
                     </p>
                 </div>
-                <AssementList className="toggleModal" />
+                <AssementList className="toggleModal" question_data ={this.props.question_data}/>
             </div>
         )
     }
