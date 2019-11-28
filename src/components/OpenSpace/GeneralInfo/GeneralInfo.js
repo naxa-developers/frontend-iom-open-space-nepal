@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import AssementList from './ModalComponent/AssementList'
+import AssementList from '../OpenSpaceDetails/ModalComponent/AssementList'
+import Service from './Service';
 
 class GeneralInfo extends Component {
   
@@ -9,7 +10,8 @@ class GeneralInfo extends Component {
         var usable_perc = (this.props.usable_area/this.props.total_area)*100;
         var actual_perc = usable_perc.toFixed(1) ;
         var width_perc = actual_perc+ '%'; 
-      
+
+   
         
         return (
             <div className="general-info">
@@ -79,8 +81,8 @@ class GeneralInfo extends Component {
                         {this.props.services && this.props.services.map((service) => {
                             return (
                                 <ul>
-
-                                    <li>{service.name}  </li>
+                                        <Service name = {service.name} desc={service.description}  />
+                                   
                                 </ul>
                             )
                         })}

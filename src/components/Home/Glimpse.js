@@ -45,7 +45,7 @@ class Glimpse extends Component {
             <div className="overlay"></div>
             <div className="glimps-wrapper">
                 <div className="container">
-                    <h3 className="openspace-title">{this.props.language =='0' ? `GLIMPSE OF OPEN SPACES IN NEPAL` : `नेपालको खुल्ला क्षेत्रहरूको झलक` }</h3>
+                    <h3 className="openspace-title">{this.props.language =='0' ? `Open Spaces in Figures` : `नेपालको खुल्ला क्षेत्रहरूको झलक` }</h3>
                     
                     <div className="row">
                         <div className="col-md-3 col-space-5">
@@ -106,6 +106,10 @@ class Glimpse extends Component {
                                 <h6>{this.props.language =="0" ? `Total Capacity` : `जम्मा क्षमता ` }</h6>
                             </div>
                         </div>
+                       
+                        <h4 style={{textAlign: "center", color:"white", marginTop:'20px'}}> The above numbers is the summary of all identified open spaces that has been surveyed by IOM till date. It includes open spaces of Kathmandu, Bhaktapur and Lalitpur.
+
+</h4>
                     </div>
                 </div>
             </div>

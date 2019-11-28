@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import logo from "../../img/logo.png";
 import nepal from "../../img/nepal.png";
@@ -26,7 +26,10 @@ class Navbar extends Component {
 
       });
      }
+handleClick = (v) => {
 
+
+}
 
   render() {
     const { contents } = this.props;
@@ -43,9 +46,9 @@ class Navbar extends Component {
             <div className="headerWrap">
               <div className="headLeft">
                 <div className="logo">
-                  <Link to="/">
+                  <NavLink to="/">
                     <img src={logo} alt="logo" />
-                  </Link>
+                  </NavLink>
                 </div>
               </div>
 
@@ -86,32 +89,44 @@ class Navbar extends Component {
                   </div>
                   <div className="menu-primary-container">
                     <ul id="primary-menu" className="menu nav-menu">
-                      <li className="menu-item ">
-                        <Link to="resources">
+                      <li className="menu-item  ">
+                      <NavLink to="/"  activeClassName = "active" >
                           {this.props.language == "0"
-                            ? "Resources"
-                            : "स्रोतहरु"}
-                        </Link>
-                      </li>
-                      <li className="menu-item ">
-                        <Link to="report">
-                          {this.props.language == "0" ? "Reports" : "रिपोर्ट"}
-                        </Link>
-                      </li>
-                      <li className="menu-item menu-item">
-                        <Link to="openspace">
+                            ? "Home"
+                            : "गृहपृष्ठ "
+                            } 
+                           
+                        </NavLink>
+                        </li>
+                        <li className="menu-item ">
+                        <NavLink to="openspace" activeClassName = " menu-item menu-item-has-current">
                           {this.props.language == "0"
                             ? "Find Open Space "
                             : "खुल्ला क्षेत्र पत्ता लगाउनुहोस"}
-                        </Link>
+                        </NavLink>
                       </li>
+                      <li className="menu-item  ">
+                        <NavLink to="resources"  activeClassName = "active" >
+                          {this.props.language == "0"
+                            ? "Resources"
+                            : "स्रोतहरु"
+                            } 
+                           
+                        </NavLink>
+                      </li>
+                      <li className="menu-item  ">
+                        <NavLink to="report" activeClassName = " menu-item menu-item-has-current">
+                          {this.props.language == "0" ? "Reports" : "रिपोर्ट"}
+                        </NavLink>
+                      </li>
+                 
                       <li className="menu-item ">
-                        <Link to="aboutapp">
+                        <NavLink to="aboutapp" activeClassName = " menu-item menu-item-has-current">
                           {" "}
                           {this.props.language == "0"
                             ? "mobile app"
                             : "मोबाईल एप  "}
-                        </Link>
+                        </NavLink>
                       </li>
                     </ul>
                   </div>
