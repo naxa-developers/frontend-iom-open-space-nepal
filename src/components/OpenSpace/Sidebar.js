@@ -189,7 +189,6 @@ class Sidebar extends Component {
 
       var div = L.DomUtil.create('div', `markersLegend`)
       div.innerHTML = ''
-      div.innerHTML += "<h6 id='marker'>Markers</h6>"
 
 
       
@@ -198,7 +197,7 @@ class Sidebar extends Component {
         var class1 = 'desccard';
         // var activeclass=class1
 
-        var descCard = "<ul><li><span class='legend blue'></span><p>Openspace</p></li><li><span class='legend green'></span><p>Nearby Openspace</p></li></ul>";
+        var descCard = "<ul><h6>Markers</h6><li><span class='legend blue'></span><p>Openspace</p></li><li><span class='legend green'></span><p>Nearby Openspace</p></li></ul>";
 
 
 
