@@ -1060,7 +1060,7 @@
                     margin-right: .6125rem;
                 }
 
-                &:hover {
+                &:hover,&.active {
                     background-color: $color-green;
                     box-shadow: none;
                     color: $color-white;
