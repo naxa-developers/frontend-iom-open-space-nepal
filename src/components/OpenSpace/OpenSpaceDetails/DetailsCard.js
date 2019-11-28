@@ -3,7 +3,7 @@ import Axios from "axios";
 
 import DetailsHeader from "./DetailsHeader";
 import TabNavbar from "./TabNavbar";
-import GeneralInfo from "./GeneralInfo";
+import GeneralInfo from "../GeneralInfo/GeneralInfo";
 import ReportTab from "./ReportTab/ReportTab";
 import NearbyTab from "./NearbyTab/NearbyTab";
 
@@ -51,6 +51,7 @@ class DetailsCard extends Component {
 
   render() {
     this.props.id && localStorage.setItem('OpenspaceID', this.props.id)
+console.log(this.props.id);
 
 
 
@@ -85,6 +86,7 @@ class DetailsCard extends Component {
                       aria-labelledby="general_tab"
                     >
                       <GeneralInfo
+                        id= {this.props.id}
                         capacity={this.state.spaceInfo.capacity}
                         total_area={this.state.spaceInfo.total_area}
                         usable_area={this.state.spaceInfo.usable_area}
