@@ -34,12 +34,14 @@ class ReportSidebar extends Component {
     )[0].style.height = `${windowHeight - navHeight}px`;
   };
   fetchReports = () => {
-    Axios.get("http://139.59.67.104:8011/api/v1/report/").then(response => {
+    Axios.get("https://iomapi.naxa.com.np/api/v1/report/").then(response => {
      
 
       this.props.dispatch({ type: "ReportFilter", data: response.data });
       this.loadReports();
       this.setState({
+        reports: response.data,
+        reportsToShow: response.data,
         loading: false
       });
     });
@@ -52,46 +54,53 @@ class ReportSidebar extends Component {
   }
   setKeywords = e => {
     this.setState({ keywords: e });
-    //  console.log(this.state.keywords);
   };
   searchNow = () => {
+   
+    
     let filteredReports = this.state.reports.filter(report =>
       report.title.toLowerCase().includes(this.state.keywords.toLowerCase())
     );
+
 
     this.setState({ reportsToShow: filteredReports });
   };
   
   loadReports = () => {
-    var color= ''
-    var fillColor= ''
-    if(this.props.urgency=="high"){
-      color= 'red'
-      fillColor= 'red'
-    } else if(this.props.urgency=="medium") {
-      color= "#a27109"
-      fillColor= "#ffb20f"
-    } else if(this.props.urgency=="low") {
-      color='green'
-      fillColor= 'green'
-
-    }
-    else {
-      color='white'
-      fillColor= 'white'
-    }
+   
     
-  const  reportStyle = {
-      color: 'red',
-      fillColor: 'red',
-      opacity: 0.3,
-      fillOpacity: 1,
-      weight: 15,
-      radius: 6
-    }
+  
     this.props.reportData&&this.props.reportData.map((p) => {
-      console.log(p);
+
+      var color= ''
+      var fillColor= ''
+      if(p.urgency=="high"){
+        color= 'red'
+        fillColor= 'red'
+      } else if(p.urgency=="medium") {
+        color= "#a27109"
+        fillColor= "#ffb20f"
+      } else if(p.urgency=="low") {
+        color='#1ee611'
+        fillColor= '#1ee611'
+  
+      }
+      else {
+        color='white'
+        fillColor= 'white'
+      }
       
+    const  reportStyle = {
+        color: color,
+        fillColor: fillColor,
+        opacity: 0.3,
+        fillOpacity: 1,
+        weight: 15,
+        radius: 6
+      }
+
+     
+     
       L.circleMarker([p.location[1],p.location[0]], reportStyle).addTo(this.props.mapR.current.leafletElement)
     })
      
@@ -105,8 +114,7 @@ class ReportSidebar extends Component {
 
   render() {
 
-    this.props.reportData&&console.log(this.props.reportData[0].location[0]);
-
+    
 
     return (
       <div>
@@ -165,7 +173,7 @@ class ReportSidebar extends Component {
                     {this.state.loading ? (
                       <LoadingSpinnerBig />
                     ) : (
-                      this.props.reportData.map(e => {
+                      this.state.reportsToShow.map(e => {
                         return (
                           <ReportCard
                             id={e.id}

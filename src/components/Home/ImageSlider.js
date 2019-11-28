@@ -14,7 +14,7 @@ class ImageSlider extends Component {
   }
 
   componentDidMount() {
-    Axios.get(`http://139.59.67.104:8011/api/v1/slider/`).then(res => {
+    Axios.get(`https://iomapi.naxa.com.np/api/v1/slider/`).then(res => {
       const Sliderdata = res.data;
       this.setState({ sliderData: Sliderdata });
     
@@ -48,7 +48,7 @@ class ImageSlider extends Component {
                   <div
                     className="figure"
                     style={{
-                      backgroundImage: `url(http://139.59.67.104:8011/media/slider/tab_Y99gsp8.jpg)`
+                      backgroundImage: `url(https://iomapi.naxa.com.np/media/slider/tab_Y99gsp8.jpg)`
                     }}
                   ></div>
                   <h3>
@@ -62,7 +62,7 @@ class ImageSlider extends Component {
                   <div
                     className="figure"
                     style={{
-                      backgroundImage: `url(http://139.59.67.104:8011/media/slider/tab_1_3VVYU4r.jpg)`
+                      backgroundImage: `url(https://iomapi.naxa.com.np/media/slider/tab_1_3VVYU4r.jpg)`
                     }}
                   ></div>
                   <h3>
@@ -76,7 +76,7 @@ class ImageSlider extends Component {
                   <div
                     className="figure"
                     style={{
-                      backgroundImage: `url(http://139.59.67.104:8011/media/slider/Dolakha_Map_Atlas_Mock_up.jpg)`
+                      backgroundImage: `url(https://iomapi.naxa.com.np/media/slider/Dolakha_Map_Atlas_Mock_up.jpg)`
                     }}
                   ></div> */}
                   {/* <h3>

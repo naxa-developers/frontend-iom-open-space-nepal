@@ -6,6 +6,7 @@ import {connect } from 'react-redux';
 class ReportCard extends Component {
   render() {
    
+    // this.props&&console.log("card", this.props);
     
     
     return (

@@ -70,7 +70,7 @@ class Sidebar extends Component {
           : name == "municipality"
             ? "municipality_api"
             : "";
-    var url = `http://139.59.67.104:8011/api/v1/${key}`;
+    var url = `https://iomapi.naxa.com.np/api/v1/${key}`;
     var prvnc_dist =
       name == "district"
         ? "province"
@@ -93,7 +93,7 @@ class Sidebar extends Component {
     });
   };
   fetchOS = () => {
-    Axios.get("http://139.59.67.104:8011/api/v1/open_space_landing").then(
+    Axios.get("https://iomapi.naxa.com.np/api/v1/open_space_landing").then(
       response => {
         this.setState({
           Allos: response.data.data,
@@ -148,7 +148,7 @@ class Sidebar extends Component {
     this.setState({ municipality: FilteredMunicipality, handlingindex: 2 });
 
     // Axios.get(
-    //   `http://139.59.67.104:8011/api/v1/district_geo_json?id=${e.value}`
+    //   `https://iomapi.naxa.com.np/api/v1/district_geo_json?id=${e.value}`
     // ).then(response => {
     //   var district = L.geoJSON(response.data);
     //   district.addTo(this.state.district_muni);
@@ -171,7 +171,7 @@ class Sidebar extends Component {
     // );
 
     // Axios.get(
-    //   `http://139.59.67.104:8011/api/v1/municipality_geo_json?id=${e.value}`
+    //   `https://iomapi.naxa.com.np/api/v1/municipality_geo_json?id=${e.value}`
     // ).then(response => {
     //   var municipality = L.geoJSON(response.data);
     //   municipality.addTo(this.state.district_muni);
@@ -225,7 +225,7 @@ class Sidebar extends Component {
     // console.log("apply",this.state.SelectedProvince,this.state.SelectedDistrict,this.state.SelectedMunicipality)
     if (this.state.SelectedProvince && this.state.SelectedDistrict && this.state.SelectedMunicipality) {
       Axios.get(
-        `http://139.59.67.104:8011/api/v1/municipality_geo_json?id=${this.state.SelectedMunicipality.value}`
+        `https://iomapi.naxa.com.np/api/v1/municipality_geo_json?id=${this.state.SelectedMunicipality.value}`
       ).then(response => {
         var municipality = L.geoJSON(response.data, {
           style: () => {
@@ -252,7 +252,7 @@ class Sidebar extends Component {
         this.state.district_muni.removeLayer(e)
       );
       Axios.get(
-        `http://139.59.67.104:8011/api/v1/district_geo_json?id=${this.state.SelectedDistrict.value}`
+        `https://iomapi.naxa.com.np/api/v1/district_geo_json?id=${this.state.SelectedDistrict.value}`
       ).then(response => {
         var municipality = L.geoJSON(response.data, {
           style: () => {
@@ -306,7 +306,7 @@ class Sidebar extends Component {
   };
 
   nearbymeOS=()=>{
-    Axios.get(`http://139.59.67.104:8011/api/v1/near_by_openspace?count=100&distance=2&latitude=${this.props.currentLocation[0]}&longitude=${this.props.currentLocation[1]}`)
+    Axios.get(`https://iomapi.naxa.com.np/api/v1/near_by_openspace?count=100&distance=2&latitude=${this.props.currentLocation[0]}&longitude=${this.props.currentLocation[1]}`)
     .then(response=>{this.setState({nearbyOS:response.data.open_space})
     this.displaynearbyOs()
   })

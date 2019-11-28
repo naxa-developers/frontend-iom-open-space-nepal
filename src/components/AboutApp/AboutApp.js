@@ -19,7 +19,7 @@ import Steps from './Steps';
     
       fetchInfo = () => {
         Axios.get(
-          `http://139.59.67.104:8011/api/v1/open_space_app/`
+          `https://iomapi.naxa.com.np/api/v1/open_space_app/`
         ).then(response => {
           this.setState({
             data: response.data

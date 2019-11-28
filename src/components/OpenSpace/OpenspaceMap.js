@@ -64,7 +64,7 @@ const { BaseLayer } = LayersControl;
     loadprovince=()=>{
         var colors=["#0489B1","#045FB4","purple","#0404B4","#3104B4","#5F04B4","#1B0A2A"]
         console.log("province loadig...")
-        Axios.get('http://139.59.67.104:8011/api/v1/province_geo_json')
+        Axios.get('https://iomapi.naxa.com.np/api/v1/province_geo_json')
         .then(response=>{console.log(response,"province")
         var province=L.geoJSON(response.data,{
             style:(feature)=>{
