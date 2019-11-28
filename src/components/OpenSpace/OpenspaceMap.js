@@ -82,77 +82,52 @@ const { BaseLayer } = LayersControl;
     }
 
     loadVectortile=()=>{
-        console.log("called")
-        const url = 'http://dvs.naxa.com.np/api/v1/core/district-tile/{z}/{x}/{y}'
-        // var vectorTileOptions = {
 
-        //     vectorTileLayerStyles: {
-        //         'test': function () {
-        //             return {
-        //                 fillColor: "red",
-        //                 fillOpacity: 0.02,
-        //                 weight: 0.3,
-        //                 opacity: 0.0,
-        //                 color: 'red',
-        //                 fill: true,
-        //             }
-        //         },
-        //         zIndex: 1000
-
-        //     },
-        //     tms: true,
-        //     // noWrap: true,
-        //     interactive: true, // Make sure that this VectorGrid fires mouse/pointer events
-        //     // pane: "world_shp",
-        //     getFeatureId: function (feature) {
-
-        //         console.log(feature)
-        //     }
-        // }
-
-
-        // var district = L.vectorGrid.protobuf(url, vectorTileOptions)
-        // district.addTo(this.props.mapRefss.current.leafletElement);
-
+        var url='https://geoserver.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Bipad:Province@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf'
 
         var vectorTileOptions = {
-            tms: true,
+
             vectorTileLayerStyles: {
-                'test': function () {
+                'province': function () {
                     return {
-                        fillColor: "#174BDD",
-                        fillOpacity: 0.2,
-                        weight: 1,
-                        opacity: 1,
-                        color: '#a3b7e3',
+                        fillColor: "red",
+                        fillOpacity: 0.02,
+                        weight: 0.3,
+                        opacity: 0.0,
+                        color: 'red',
                         fill: true,
                     }
                 },
-                zIndex: 2000,
-               
+                zIndex: 1000
+
             },
-            interactive: true, 
-            noWrap:true,
-            pane:'vtile',// Make sure that this VectorGrid fires mouse/pointer events
-
+            tms: true,
+            noWrap: true,
+            interactive: true, // Make sure that this VectorGrid fires mouse/pointer events
+            pane: "vectortile",
             getFeatureId: function (feature) {
-            //    console.log(feature)
-               return feature.properties.id
 
+                return feature.properties.id;
             }
         }
 
 
-var dvsurl = "http://139.59.67.104:8060/api/v1/core/district-tile/{z}/{-y}/{x}?province=3";
-// var dvsurl="https://apps.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Naxa:final_world@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf"
+        var world = L.vectorGrid.protobuf(url, vectorTileOptions)
+        var colors=['#0B6D11','#2A7F2F','#48924D','#67A46A','#85B688','#A4C8A6','#C2DAC4']
+        for (var i = 1; i <= 7; i++) {
+        world.setFeatureStyle(i, {
+            fillColor:colors[i-1],
+            fillOpacity: 0.5,
+            fill: true,
+            opacity: 1,
+            color: 'black',
+            weight: 0.3
 
-
-
-
-var district = L.vectorGrid.protobuf(dvsurl,vectorTileOptions);
-district.addTo(this.props.mapRefss.current.leafletElement)
-// this.props.mapRefss.current.leafletElement.fitBounds(district.getBounds())
+        })
     }
+
+        world.addTo(this.props.mapRefss.current.leafletElement)
+            }
  
     
     
@@ -161,9 +136,9 @@ district.addTo(this.props.mapRefss.current.leafletElement)
         this.currentLocation()
         // this.fetchroute()
         // this.addnortharrow()
-        this.props.mapRefss.current.leafletElement.createPane('vtile');
-        this.props.mapRefss.current.leafletElement.getPane('vtile').style.zIndex = 2000;
-        // this.loadVectortile()
+
+        this.props.mapRefss.current.leafletElement.createPane('vectortile').style.zIndex=200;
+        this.loadVectortile()
         // this.loadprovince()
 
     }
@@ -213,7 +188,7 @@ district.addTo(this.props.mapRefss.current.leafletElement)
                             />
                             
                         </BaseLayer>
-                        <BaseLayer name="Mapbox Streets" checked={true} >
+                        <BaseLayer name="Mapbox Streets" checked={true}  >
                         <TileLayer
 
                                 attribution='&amp;copy <a href="http://maps.google.com">Google Maps</a> contributors'

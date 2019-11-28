@@ -42,6 +42,7 @@ class Sidebar extends Component {
       handlingindex: 0,
       focused: false,
       loading: true,
+      nearbytoogle:false,
       district_muni: L.featureGroup(),
       Routespaths: [],
       Routes: L.featureGroup(),
@@ -197,7 +198,7 @@ class Sidebar extends Component {
         var class1 = 'desccard';
         // var activeclass=class1
 
-        var descCard = "<ul><h6>Markers</h6><li><span class='legend blue'></span><p>Openspace</p></li><li><span class='legend green'></span><p>Nearby Openspace</p></li></ul>";
+        var descCard = "<ul><h6>Markers</h6><li><span class='legend blue'></span><p>Openspace</p></li><li id='nearbylegend' style='visibility:hidden'><span class='legend green'></span><p>Nearby Openspace</p></li></ul>";
 
 
 
@@ -321,12 +322,35 @@ class Sidebar extends Component {
 
 
       mrk.addTo(this.state.nearbyGroup)
+      document.getElementById('nearbylegend').style.visibility='visible'
     })
     this.state.nearbyGroup.bringToFront()
     window.map.fitBounds(this.state.nearbyGroup.getBounds())
 
 
 
+  }
+
+  tooglenearby=()=>{
+    if(this.state.nearbytoogle){ 
+      this.state.nearbyGroup.eachLayer(e=>this.state.nearbyGroup.removeLayer(e))
+      document.getElementById('nearbylegend').style.visibility='hidden'
+      document.getElementsByClassName("openspace-button")[1].classList.remove("active");
+
+
+
+
+
+    }
+    else{
+      this.nearbymeOS()
+      document.getElementsByClassName("openspace-button")[1].classList.add("active");
+      // console.log( document.getElementsByClassName("openspace-button"))
+// 
+
+    }
+    this.state.nearbytoogle=!this.state.nearbytoogle
+    console.log(this.state.nearbytoogle)
   }
 
 
@@ -607,9 +631,10 @@ class Sidebar extends Component {
                           this.state.district_muni.eachLayer(e =>
                             this.state.district_muni.removeLayer(e)
                           );
-                          this.state.nearbyGroup.eachLayer(e=>this.state.nearbyGroup.removeLayer(e))
+                         
 
                           window.map.removeControl(this.state.legend);
+                          
                         }
 
                         }
@@ -623,7 +648,7 @@ class Sidebar extends Component {
                   </div>
                 </div>
 
-                <div onClick={this.nearbymeOS} className="nearme-btn">
+                <div onClick={this.tooglenearby} className="nearme-btn">
                   <a  className="openspace-button">
                     <i
                       className="material-icons"
