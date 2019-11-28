@@ -113,15 +113,18 @@ const { BaseLayer } = LayersControl;
 
 
         var world = L.vectorGrid.protobuf(url, vectorTileOptions)
-        world.setFeatureStyle(3, {
-            fillColor:'red',
-            fillOpacity: 1,
+        var colors=['#0B6D11','#2A7F2F','#48924D','#67A46A','#85B688','#A4C8A6','#C2DAC4']
+        for (var i = 1; i <= 7; i++) {
+        world.setFeatureStyle(i, {
+            fillColor:colors[i-1],
+            fillOpacity: 0.5,
             fill: true,
             opacity: 1,
-            color: 'white',
+            color: 'black',
             weight: 0.3
 
         })
+    }
 
         world.addTo(this.props.mapRefss.current.leafletElement)
             }
