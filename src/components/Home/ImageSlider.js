@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import SingleSlider from "./SingleSlider";
 import { connect } from "react-redux";
 import Axios from "axios";
+import SliderArrow from './SliderArrow';
 
 class ImageSlider extends Component {
   constructor(props) {
@@ -43,53 +44,6 @@ class ImageSlider extends Component {
                {this.state.sliderData&&this.state.sliderData.map( (e) => { 
                        return <SingleSlider key={e.id} title = {e.title} title_nep={e.title_nep} image={e.image} />
                      } )} 
-             
-                {/* <div className="intro-item">
-                  <div
-                    className="figure"
-                    style={{
-                      backgroundImage: `url(https://iomapi.naxa.com.np/media/slider/tab_Y99gsp8.jpg)`
-                    }}
-                  ></div>
-                  <h3>
-                    
-                    {this.props.language == "0"
-                      ? this.state.sliderData &&this.state.sliderData[0].title
-                      : this.state.sliderData &&this.state.sliderData[0].title_nep}
-                  </h3>
-                </div>
-                <div className="intro-item">
-                  <div
-                    className="figure"
-                    style={{
-                      backgroundImage: `url(https://iomapi.naxa.com.np/media/slider/tab_1_3VVYU4r.jpg)`
-                    }}
-                  ></div>
-                  <h3>
-                  
-                    {this.state.sliderData && this.props.language == "0"
-                      ? this.state.sliderData && this.state.sliderData[1].title
-                      : this.state.sliderData && this.state.sliderData[1].title_nep}
-                  </h3>
-                </div>
-                <div className="intro-item">
-                  <div
-                    className="figure"
-                    style={{
-                      backgroundImage: `url(https://iomapi.naxa.com.np/media/slider/Dolakha_Map_Atlas_Mock_up.jpg)`
-                    }}
-                  ></div> */}
-                  {/* <h3>
-                   
-                    {this.state.sliderData && this.props.language == "0"
-                      ?  this.state.sliderData &&this.state.sliderData[2].title
-                      : this.state.sliderData && this.state.sliderData[2].title_nep}
-                  </h3>
-                </div> */}
-
-
-
-
               </Slider>
             </div>
           </div>

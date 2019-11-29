@@ -17,8 +17,7 @@ class ReportSidebar extends Component {
       filteredReports: [],
       loading: true,
       isFocused: false,
-      lat: 28.3949,
-      lng:  84.1240,
+      reportLengend : L.control({position: 'bottomright'})
       
     };
   }
@@ -101,14 +100,32 @@ class ReportSidebar extends Component {
 
      
      
-      L.circleMarker([p.location[1],p.location[0]], reportStyle).addTo(this.props.mapR.current.leafletElement)
+    var marker =   L.circleMarker([p.location[1],p.location[0]], reportStyle).addTo(this.props.mapR.current.leafletElement)
+   var popOne = " <div class='bind-popup'> " +
+   "<div class='bind-header'> <h5>" +p.title+ "</h5>  <p> "+p.name+ " </p> </div> </div>"
+   
+   
+   marker.bindPopup(popOne);
     })
      
       
   }
+addReportLegend = () => {
+  this.state.reportLengend.onAdd = (map) => {
+    var div = L.DomUtil.create('div', `reportLegend`)
+    div.innerHTML=''
+    var reportCard =  "<ul><h6>Report Legends</h6><li><span class='legend red'></span><p>Pending Reports</p></li><li><span class='legend green'></span><p>Replied Reports</p></li></ul>"
+    div.innerHTML += reportCard 
+    return div;
+  }
+  this.state.reportLengend.addTo(this.props.mapR.current.leafletElement)
+}
+
+
   componentDidMount() {
     this.onload();
     this.fetchReports();
+    this.addReportLegend();
   
   }
 
@@ -182,6 +199,7 @@ class ReportSidebar extends Component {
                             urgency={e.urgency}
                             date={e.date}
                             ReportLocation={e.location}
+                            daysCount = {e.count}
 
                           />
                         );

@@ -41,14 +41,14 @@ class Glimpse extends Component {
         
         
         return (
-            <section className="glimps-counter" style={{backgroundImage: `url(${countershape})`}}>
-            <div className="overlay"></div>
+            <section className="glimps-counter" style={{backgroundImage: `url(${countershape})` , zIndex:'190000'}} >
+            <div className="overlay" ></div>
             <div className="glimps-wrapper">
                 <div className="container">
                     <h3 className="openspace-title">{this.props.language =='0' ? `Open Spaces in Figures` : `नेपालको खुल्ला क्षेत्रहरूको झलक` }</h3>
                     
                     <div className="row">
-                        <div className="col-md-3 col-space-5">
+                        <div className="col-md-3 col-space-5" >
                             <div className="glimps-count">
                                 <h4><Odometer
                                     format= "d"
@@ -83,7 +83,7 @@ class Glimpse extends Component {
                             </div>
                         </div>
                         <div className="col-md-3 col-space-5">
-                            <div className="glimps-count">
+                            <div className="glimps-count" >
                                 <h4>
                                 <Odometer
                                     format= "d"
