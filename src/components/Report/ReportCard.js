@@ -33,7 +33,7 @@ class ReportCard extends Component {
             </h5>
              <div className="loc-time flex-start">
           <a >{this.props.ReportLocat}</a>
-              <time>1 week ago</time>
+            <time>{this.props.daysCount} Days ago</time>
             </div> 
           </div>
           <div className="report-status">

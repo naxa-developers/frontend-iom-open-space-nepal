@@ -76,10 +76,10 @@ console.log("id",this.props.id);
                 </div>
 
                 <div className="report-email">
-                  {/* <span>Hello,</span> */}
+                  <span>Hello,</span>
                   <p>{this.state.reportInfo.message}</p>
                   <div className="reporter">
-                    {/* <span>Regards</span> */}
+                    <span>Regards</span>
                     <h6>{this.state.reportInfo.reported_by}</h6>
                   </div>
                 </div>
