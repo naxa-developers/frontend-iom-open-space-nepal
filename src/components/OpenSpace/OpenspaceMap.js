@@ -120,8 +120,8 @@ const { BaseLayer } = LayersControl;
             fillOpacity: 0.03,
             fill: true,
             opacity: 1,
-            color: 'black',
-            weight: 0.3
+            color: 'green',
+            weight: 0.8
 
         })
     }

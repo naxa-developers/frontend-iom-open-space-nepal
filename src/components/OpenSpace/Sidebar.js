@@ -218,6 +218,7 @@ class Sidebar extends Component {
   }
 
   onApply = () => {
+    this.setState({loading:true})
     window.map = this.props.mapRefs.current.leafletElement;
     this.state.district_muni.eachLayer(e =>
       this.state.district_muni.removeLayer(e)
@@ -239,7 +240,8 @@ class Sidebar extends Component {
         });
         let FilteredOS=this.state.Openspaces.filter((e)=>e.municipality==this.state.SelectedMunicipality.value)
         console.log(FilteredOS)
-        this.setState({Allos:FilteredOS})
+        this.setState({Allos:FilteredOS,loading:false})
+        this.displayOS()
         municipality.addTo(this.state.district_muni);
         this.props.mapRefs.current.leafletElement.fitBounds(
           this.state.district_muni.getBounds()
@@ -266,7 +268,9 @@ class Sidebar extends Component {
         });
         let FilteredOS=this.state.Openspaces.filter((e)=>e.district==this.state.SelectedDistrict.value)
         console.log(FilteredOS)
-        this.setState({Allos:FilteredOS})
+        this.setState({Allos:FilteredOS,loading:false})
+        this.displayOS()
+
         municipality.addTo(this.state.district_muni);
         this.props.mapRefs.current.leafletElement.fitBounds(
           this.state.district_muni.getBounds()
@@ -276,7 +280,9 @@ class Sidebar extends Component {
     else if (this.state.SelectedProvince) {
       let FilteredOS=this.state.Openspaces.filter((e)=>e.province==this.state.SelectedProvince.value)
         console.log(FilteredOS)
-        this.setState({Allos:FilteredOS})
+        this.setState({Allos:FilteredOS,loading:false})
+        this.displayOS()
+
 
         // this.props.mapRefs.current.leafletElement.fitBounds(
         //   this.state.district_muni.getBounds()
@@ -284,6 +290,8 @@ class Sidebar extends Component {
 
 
     }
+
+
     
 
   }
@@ -369,6 +377,7 @@ class Sidebar extends Component {
 
 
   displayOS = () => {
+    this.state.OSmarkers.eachLayer((e)=>this.state.OSmarkers.removeLayer(e))
 
 
     this.state.Allos.map(e => {
@@ -400,9 +409,8 @@ class Sidebar extends Component {
   };
 
   fetchroute = (first, second) => {
-    // console.log(second,first)
-
-    var activeroute;
+    L.tooltip().setLatLng(first).setContent('<h6>latlng</h6>').addTo(this.props.mapRefs.current.leafletElement)
+    map.closeTooltip();
 
     this.state.Routespaths = []
     this.state.Routes.eachLayer((r) => this.state.Routes.removeLayer(r))
@@ -625,6 +633,7 @@ class Sidebar extends Component {
 
                   </div>
                   <div className="reset-btns">
+                
                     <div className="reset">
                       <MaterialIcon icon="refresh"></MaterialIcon>
                       <span
@@ -635,7 +644,8 @@ class Sidebar extends Component {
                             SelectedMunicipality: null,
                             district: null,
                             municipality: null,
-                            handlingindex: 0
+                            handlingindex: 0,
+                            Allos:this.state.Openspaces
                           })
                           var bounds = [ [ 25.710836919640595, 79.79365377708339],
                           [ 30.798474179567847 , 88.54975729270839]];
@@ -675,7 +685,7 @@ class Sidebar extends Component {
                 </div>
                 <div className="report-count">
                   <h5>
-                    Open spaces: <span>{this.state.Allos.length==0 ? <LoadingSpinner/> : this.state.Allos.length }</span>
+                    Open spaces: <span> {this.state.Allos.length} </span>
                   </h5>
                 </div>
                 <div className="space-list" >

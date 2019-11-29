@@ -6,6 +6,7 @@ import TabNavbar from "./TabNavbar";
 import GeneralInfo from "../GeneralInfo/GeneralInfo";
 import ReportTab from "./ReportTab/ReportTab";
 import NearbyTab from "./NearbyTab/NearbyTab";
+import { withRouter } from 'react-router-dom';
 
 
 import { connect } from "react-redux";
@@ -60,6 +61,8 @@ console.log(this.props.id);
       <div>
         <div className="map-sidebar">
           <div className="sidebar-wrapper">
+          <span onClick={()=>this.props.history.push('/openspace')} class="sidebar-close material-icons">close</span>
+
 
             <div className="card">
               <div className="card-body">
@@ -194,4 +197,4 @@ const mapStateToProps = state => {
     spaceID: state.spaceID
   };
 };
-export default connect(mapStateToProps)(DetailsCard);
+export default withRouter(connect(mapStateToProps)(DetailsCard));

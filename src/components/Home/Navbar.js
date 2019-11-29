@@ -54,14 +54,14 @@ handleClick = (v) => {
 
               <div className="headRight">
                 <div className="country-logos flex-end">
-                  <a className="active">
+                  <a className={this.props.language=="0"?"active":''}>
                     <img
                       src={uk}
                       alt="uk"
                       onClick={() => this.props.dispatch({ type: "english" })}
                     />
                   </a>
-                  <a>
+                  <a className={ this.props.language=="1"?"active":''}>
                     <img
                       src={nepal}
                       alt="Nepal"
