@@ -56,7 +56,7 @@ const { BaseLayer } = LayersControl;
             latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
             console.log([location.coords.latitude, location.coords.longitude],"aa")
             this.props.setcurrentLocation([location.coords.latitude, location.coords.longitude])
-            L.circleMarker(latlng, { color: 'red', radius: 5 }).addTo(this.props.mapRefss.current.leafletElement);
+            L.circleMarker(latlng, { radius: 6, fillColor: 'red', fillOpacity: 1, weight: 15, opacity: 0.3 ,color:'red',}).addTo(this.props.mapRefss.current.leafletElement);
             console.log("current", this.state.currentLocation)
         })
    
@@ -117,11 +117,11 @@ const { BaseLayer } = LayersControl;
         for (var i = 1; i <= 7; i++) {
         world.setFeatureStyle(i, {
             fillColor:colors[i-1],
-            fillOpacity: 0.5,
+            fillOpacity: 0.03,
             fill: true,
             opacity: 1,
-            color: 'black',
-            weight: 0.3
+            color: 'green',
+            weight: 0.8
 
         })
     }
@@ -134,6 +134,7 @@ const { BaseLayer } = LayersControl;
      componentDidMount() {
         this.onload(); 
         this.currentLocation()
+        this.props.mapRefss.current.leafletElement.createPane("userloc").style.zIndex = 800;
         // this.fetchroute()
         // this.addnortharrow()
 
