@@ -3,12 +3,14 @@ import MaterialIcon from "material-icons-react";
 import Select from "react-select";
 import Axios from "axios";
 import {connect } from 'react-redux';
+import DateRangePicker from 'react-bootstrap-daterangepicker';
+import 'bootstrap-daterangepicker/daterangepicker.css'
+import moment from "moment";
 
 const days = [
   {
     value: "0",
     label: "Days",
-    value: "1",
     label: "Last 7 days"
   }
 ];
@@ -30,7 +32,9 @@ class ReportFilter extends Component {
       valueDays: null,
       valueStatus: null,
       valueUrgency: null,
-      showApply: false
+      showApply: false,
+      startDate: '',
+      endDate: ''
     };
   }
 
@@ -56,13 +60,15 @@ class ReportFilter extends Component {
   };
   applyFilter = () => {
     this.props.toggleLoader();
-    const status = this.state.valueStatus;
-    const urgency = this.state.valueUrgency;
-    const url = `https://iomapi.naxa.com.np/api/v1/report/?status=${status.label.toLowerCase()}&urgency=${urgency.label.toLowerCase()}`
    
+    const status = this.state.valueStatus;
+    const start_date = this.state.startDate;
+    const end_date = this.state.endDate;
+   const url = `http://139.59.67.104:8011/api/v1/report/?start_date=${start_date}%2006:00Z&end_date=${end_date}%2006:00Z&status=${status.label.toLowerCase()}`
     Axios.get(url)
     .then(response => {
-     
+      console.log(url);
+      
       console.log("filtered", response);
       
       this.props.dispatch({
@@ -76,29 +82,36 @@ class ReportFilter extends Component {
     })
     
   };
+  handleSelect = (range, v) => {
+    this.setState({
+      startDate: moment(v.startDate._d).format('YYYY-MM-DD'),
+      endDate: moment(v.endDate._d).format('YYYY-MM-DD')
+    })
+}
+
   render() {
     return (
+     
       <div className="map-filter">
+       
         <div className="filter-option">
-          <Select
-            placeholder="Days"
-            options={days}
-            value={this.state.valueDays}
-            onChange={this.onDaysChange}
-          />
-
+        <DateRangePicker onApply={(range,v) => this.handleSelect(range, v)}>
+      <button className="btn btn-outline-primary dropdown-toggle" >   Select Range</button>
+      
+    </DateRangePicker>
+     
           <Select
             placeholder="Status"
             options={status}
             value={this.state.valueStatus}
             onChange={this.onStatusChange}
           />
-          <Select
+          {/* <Select
             placeholder="Urgency"
             options={urgency}
             value={this.state.valueUrgency}
             onChange={this.onUrgencyChange}
-          />
+          /> */}
         </div>
         <div className="reset-btns">
           <div className="reset">
