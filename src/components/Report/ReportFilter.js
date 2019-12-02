@@ -117,7 +117,7 @@ class ReportFilter extends Component {
         </div>
         <div className="reset-btns">
           <div className="reset">
-            <MaterialIcon icon="refresh" />
+            <i icon="refresh" />
 
             <span onClick={() => this.onClear()}>clear all</span>
           </div>

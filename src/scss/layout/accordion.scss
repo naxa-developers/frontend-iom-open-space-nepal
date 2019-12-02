@@ -11,8 +11,11 @@
         }
     }
     &.map-accordion{
+        padding-top:1.5rem;
         .card{
             .card-header{
+                margin:0;
+                border-bottom: 1px solid $color-border;
                 a,button{
                     &.card-link,&.btn-link{
                         color:$color-primary;
@@ -34,6 +37,7 @@
                             @include translatey;
                             right: 0;
                             color:$color-dim;
+                            font-size:1.2rem;
                           }
                     }
                 }
@@ -54,7 +58,7 @@
                     
                   }
             }
-            border-bottom: 1px solid $color-border;
+            
         }
         
     }

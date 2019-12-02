@@ -20,7 +20,23 @@
     width: 50px;
 } */
 
-
+.loc{
+    width:20px;
+    height:20px;
+}
+#close-bt-route{
+    width:20px;
+    height:20px;
+}
+#shortest{
+    width:10px;
+    height:10px;
+    margin-right: 5px;
+}
+.desccard h5 {
+    color: green;
+    font-size: 12px;
+}
 
 
 

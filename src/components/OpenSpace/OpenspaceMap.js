@@ -21,7 +21,9 @@ const { BaseLayer } = LayersControl;
            height: null,
            activeroute:0,
            Routespaths:[],
-           currentLocation: null
+           currentLocation: null,
+           myloc:L.control({ position: 'bottomleft' })
+
           
        };
      };
@@ -56,6 +58,7 @@ const { BaseLayer } = LayersControl;
             latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
             console.log([location.coords.latitude, location.coords.longitude],"aa")
             this.props.setcurrentLocation([location.coords.latitude, location.coords.longitude])
+            this.setState({currentLocation:[location.coords.latitude, location.coords.longitude]})
             L.circleMarker(latlng, { radius: 6, fillColor: 'red', fillOpacity: 1, weight: 15, opacity: 0.3 ,color:'red',}).addTo(this.props.mapRefss.current.leafletElement);
             console.log("current", this.state.currentLocation)
         })
@@ -80,6 +83,22 @@ const { BaseLayer } = LayersControl;
         this.props.setProvince(province)
     })
     }
+    zoomTomylocation=()=>{
+        this.state.myloc.onAdd = (map) => {
+
+            var div = L.DomUtil.create('div', `loc`)
+            div.innerHTML = ''
+            div.innerHTML += "<img src='../../src/img/nav.png'></img>"
+            return div
+  
+    }
+   
+    this.state.myloc.addTo(this.props.mapRefss.current.leafletElement)
+    var locs=document.getElementsByClassName('loc')[0].addEventListener('click',()=>{
+        console.log("con")
+        this.props.mapRefss.current.leafletElement.setView(this.state.currentLocation, 14);
+    })
+}
 
     loadVectortile=()=>{
 
@@ -133,13 +152,15 @@ const { BaseLayer } = LayersControl;
     
      componentDidMount() {
         this.onload(); 
-        this.currentLocation()
+        this.currentLocation();
+        this.zoomTomylocation()
+
         this.props.mapRefss.current.leafletElement.createPane("userloc").style.zIndex = 800;
         // this.fetchroute()
         // this.addnortharrow()
 
         this.props.mapRefss.current.leafletElement.createPane('vectortile').style.zIndex=200;
-        this.loadVectortile()
+        // this.loadVectortile()
         // this.loadprovince()
 
     }

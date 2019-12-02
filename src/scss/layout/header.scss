@@ -28,20 +28,20 @@
                 margin-bottom: .5rem;
 
                 a {
-                    width: 30px;
-                    height: 30px;
+                    width: 26px;
+                    height: 26px;
                     @include radius(50%);
                     border: 2px solid $green-light;
 
 
                     img {
-                        width: 28px;
-                        height: 28px;
+                        width: 24px;
+                        height: 24px;
                         @include radius(50%);
                     }
 
                     &:last-child {
-                        margin-left: 1rem;
+                        margin-left: .6125rem;
                     }
 
                     &.active {
