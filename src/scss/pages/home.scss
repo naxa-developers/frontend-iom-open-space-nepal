@@ -148,7 +148,7 @@
     background-position: 50% 100% !important;
 
     .overlay {
-        background-color: rgba($color-blue, 90%);
+        background-color: rgba($color-blue, .9);
 
     }
 
@@ -371,7 +371,7 @@
 
 @media screen and (max-width:$ls-tab) {
     .banner {
-        min-height: 650px;
+        min-height: 600px;
 
         .banner-content {
             .intro {
@@ -406,8 +406,6 @@
 
 @media screen and (max-width:$lg-tab) {
     .banner {
-        min-height: 600px;
-
         .banner-content {
             margin-top: 2rem;
 
@@ -479,6 +477,9 @@
 
     .process {
         padding: 4rem 0;
+        .process-left{
+            padding-right: 0;;
+        }
 
         .process-content {
             .post-meta {
