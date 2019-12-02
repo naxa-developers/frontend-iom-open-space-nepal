@@ -26,7 +26,8 @@ class ImageSlider extends Component {
 
     // Use responsive slick here after calculating breakpoints
     const settings = {
-      arrows: false,
+
+      // arrows: true,
       autoplay: true,
       dots: false,
       infinite: true,

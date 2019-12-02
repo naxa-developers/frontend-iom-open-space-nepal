@@ -119,6 +119,9 @@
                 left: auto;
                 right: 1rem;
                 z-index: 999;
+                .leaflet-control{
+                    margin:0 !important;
+                }
 
                 &.leaflet-top {
                     top: auto;
@@ -142,9 +145,30 @@
                             color: $color-green;
                         }
                     }
+                    
 
                 }
-
+                
+                .loc{
+                        width: 30px;
+                        height: 30px;
+                        line-height: 40px;
+                        color: $primary-light;
+                        @include animate_all(all .5s);
+                        background-color: $color-white;
+                        text-align: center;
+                        border:0;
+                        margin-top:1.2rem !important;
+                        i{
+                            font-size: 1rem;
+                        }
+    
+                        &:hover {
+                            background-color: $green-highlight;
+                            color: $color-green;
+                        }
+                   
+                }
                 &.leaflet-bottom {
                     right: 5rem;
                 }
@@ -400,7 +424,7 @@
 
             .sidebar-wrapper {
                 background-color: $color-white;
-                @include boxshadow(0 5px 15px rgba(0, 0, 0, 0.16));
+                @include boxshadow(0 5px 15px rgba(0, 0, 0, 0.3));
                 width: 100%;
                 padding: 2rem 1rem;
                 overflow-y: auto;
@@ -626,6 +650,9 @@
                             -ms-flex: 0 0 20%;
                             flex: 0 0 20%;
                             max-width: 20%;
+                            &.active{
+                                color:$color-green;
+                            }
 
                             i {
                                 @include flex;
@@ -818,6 +845,9 @@
                         @include flex;
                         align-items: flex-end;
                         justify-content: flex-end;
+                        &.active{
+                            color:$color-green;
+                        }
 
                         i {
 
@@ -827,6 +857,7 @@
                                 color: $color-green;
                             }
                         }
+                        
                     }
                 }
 
@@ -1236,9 +1267,7 @@
                                     -ms-flex: 0 0 10%;
                                     flex: 0 0 10%;
                                     max-width: 10%;
-                                    &.active{
-                                        color:$color-green;
-                                    }
+                                    
                                 }
                             }
                         }
