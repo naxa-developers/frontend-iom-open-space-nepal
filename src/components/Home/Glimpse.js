@@ -107,9 +107,9 @@ class Glimpse extends Component {
                             </div>
                         </div>
                        
-                        <h4 style={{textAlign: "center", color:"white", marginTop:'20px'}}> The above numbers is the summary of all identified open spaces that has been surveyed by IOM till date. It includes open spaces of Kathmandu, Bhaktapur and Lalitpur.
+                        <p> The above numbers is the summary of all identified open spaces that has been surveyed by IOM till date. It includes open spaces of Kathmandu, Bhaktapur and Lalitpur.
 
-</h4>
+</p>
                     </div>
                 </div>
             </div>
