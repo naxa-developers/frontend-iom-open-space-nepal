@@ -12,7 +12,7 @@ class ReportDetailsCard extends Component {
     };
   }
   fetchReport = () => {
-    Axios.get(`https://iomapi.naxa.com.np/api/v1/report/${this.props.id}`).then(
+    Axios.get(`https://iomapi.naxa.com.np/api/v1/report/${localStorage.getItem("reportId")}`).then(
       response => {
         this.setState({ reportInfo: response.data });
       }
@@ -35,8 +35,10 @@ class ReportDetailsCard extends Component {
   }
 
   render() {
-   
-console.log("id",this.props.id);
+  
+var status = this.state.reportInfo.status;
+this.props.id && localStorage.setItem("reportId",this.props.id)
+
 
     return (
       <div className="map-sidebar">
@@ -49,13 +51,14 @@ console.log("id",this.props.id);
                   <h5>
                     {this.state.reportInfo.title}
                     <i
-                      className="material-icons pending"
-                      data-toggle="tooltip"
-                      data-placement="top"
-                      title="Pending"
-                    >
-                      timer
-                    </i>
+                className={status=="pending" ? "material-icons pending" : "material-icons success"}
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Pending"
+              >
+               
+              {status=="pending" ? "timer" : "check_circle"}
+              </i>
                   </h5>
                   <div className="report-content">
                     <div className="report-address ">
@@ -68,10 +71,10 @@ console.log("id",this.props.id);
     <span>{this.state.reportInfo.location}</span>
                       </p>
                     </div>
-                    <div className="report-status">
+                    {/* <div className="report-status">
                       <label className="unsuccess">{this.state.reportInfo.urgency}</label>
                       <span>Urgency</span>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
 
