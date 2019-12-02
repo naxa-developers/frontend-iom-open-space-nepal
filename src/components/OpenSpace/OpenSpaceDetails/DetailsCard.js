@@ -10,7 +10,7 @@ import { withRouter } from 'react-router-dom';
 
 
 import { connect } from "react-redux";
-import Gallary from "./Gallary";
+import Gallery from "./Gallary";
 
 class DetailsCard extends Component {
   constructor(props) {
@@ -109,51 +109,8 @@ class DetailsCard extends Component {
                       role="tabpanel"
                       aria-labelledby="images_tab"
                     >
-                      <Gallary/>
-                      {/* <div className="gallery-category">
-                        <div className="gallery-grid">
-                          <h4>maps</h4>
-                          <div class="row">
-                            <div className="col-sm-4">
-                              <figure>
-                                <img src="images/post-1.jpg" alt="map" />
-                              </figure>
-                            </div>
-                            <div className="col-sm-4">
-                              <figure>
-                                <img src="images/post-1.jpg" alt="map" />
-                              </figure>
-                            </div>
-                            <div className="col-sm-4">
-                              <figure>
-                                <img src="images/post-1.jpg" alt="map" />
-                              </figure>
-                            </div>
-
-                          </div>
-                        </div>
-                        <div className="gallery-grid">
-                          <h4>Gallery</h4>
-                          <div class="row">
-                            <div className="col-sm-4">
-                              <figure>
-                                <img src="images/post-1.jpg" alt="map" />
-                              </figure>
-                            </div>
-                            <div className="col-sm-4">
-                              <figure>
-                                <img src="images/post-1.jpg" alt="map" />
-                              </figure>
-                            </div>
-                            <div className="col-sm-4">
-                              <figure>
-                                <img src="images/post-1.jpg" alt="map" />
-                              </figure>
-                            </div>
-
-                          </div>
-                        </div>
-                      </div> */}
+                      <Gallery/>
+                     
                     </div>
                     <div
                       className={
