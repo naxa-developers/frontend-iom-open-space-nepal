@@ -20,7 +20,7 @@ import React, { Component } from 'react'
                                         </li>
                                         <li className="nav-item" onClick={()=>this.props.changetabid(4)}>
                                             <a className={this.props.tabid==4?"nav-link active":"nav-link"} id="nearby_tab" data-toggle="tab" 
-                                                role="tab" aria-controls="nearby" aria-selected="false">nearby </a>
+                                                role="tab" aria-controls="nearby" aria-selected="false">nearby Amenities</a>
                                         </li>
 
                                     </ul>

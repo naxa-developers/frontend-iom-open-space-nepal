@@ -50,8 +50,9 @@ class Footer extends Component {
 
                   <div className="copyright">
                     <p>
-                      Copyright © 2019. <a href="#">Open Space Nepal</a> All
-                      rights reserved.
+                      Copyright © 2019. <a href="#">Humanitarion Open Space portal.</a> <br/>All
+                      rights reserved.<br />
+                      Designed by <a href="http://naxa.com.np">NAXA.</a>
                     </p>
                   </div>
                 </div>
@@ -99,7 +100,7 @@ class Footer extends Component {
               </div>
               <div className="col-md-4">
                 <div className="footer-widget app-widget">
-                  <h5>Available</h5>
+                  <h5>download now</h5>
                   <div className="apps flex-start">
                     <figure>
                       <img src={appstore} alt="Ios" />

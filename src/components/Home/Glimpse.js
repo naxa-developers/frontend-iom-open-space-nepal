@@ -48,7 +48,7 @@ class Glimpse extends Component {
                     <h3 className="openspace-title">{this.props.language =='0' ? `Open Spaces in Figures` : `नेपालको खुल्ला क्षेत्रहरूको झलक` }</h3>
                     
                     <div className="row">
-                        <div className="col-md-3 col-space-5" >
+                        <div className="col-md-4 " >
                             <div className="glimps-count">
                                 <h4><Odometer
                                     format= "d"
@@ -58,7 +58,7 @@ class Glimpse extends Component {
                                 <h6>{this.props.language =="0" ? `Open spaces` : `खुल्ला क्षेत्र` }</h6>
                             </div>
                         </div>
-                        <div className="col-md-3 col-space-5">
+                        <div className="col-md-4 col-space-5">
                             <div className="glimps-count">
                                 <h4>
                                 <Odometer
@@ -70,7 +70,7 @@ class Glimpse extends Component {
                                 <h6>{this.props.language =="0" ? `District` : ` जिल्ला` }</h6>
                             </div>
                         </div>
-                        <div className="col-md-3 col-space-5">
+                        <div className="col-md-4">
                             <div className="glimps-count">
                                 <h4>
                                 <Odometer
@@ -82,7 +82,7 @@ class Glimpse extends Component {
                                 <h6>{this.props.language =="0" ? `Municipalities` : ` नगरपालिका` }</h6>
                             </div>
                         </div>
-                        <div className="col-md-3 col-space-5">
+                        <div className="col-md-4">
                             <div className="glimps-count" >
                                 <h4>
                                 <Odometer
@@ -94,7 +94,7 @@ class Glimpse extends Component {
                                 <h6>{this.props.language =="0" ? `Total area(sq.m)` : `जम्मा क्षेत्रफल  ` }</h6>
                             </div>
                         </div>
-                        <div className="col-md-3 col-space-5">
+                        <div className="col-md-4 ">
                             <div className="glimps-count">
         <h4>
         <Odometer

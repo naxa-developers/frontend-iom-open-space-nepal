@@ -15,8 +15,9 @@ footer {
             h5{
                 color:$color-blue;
                 font-weight: 700;
-                font-size:1.5rem;
-                margin-bottom: 3rem;
+                font-size:1.2rem;
+                margin-bottom: 1.5rem;
+                text-transform: capitalize;
             }
             &.about-widget{
                 padding-right: 1.5rem;
@@ -31,7 +32,7 @@ footer {
                     margin:3rem 0;
                     figure{
                         margin:0;
-                        max-width: 75px;
+                        max-width: 60px;
                         cursor: pointer;
                         &:nth-child(2){
                             margin:0 1rem;
@@ -42,11 +43,12 @@ footer {
                     p{
                         color:$primary-light;
                         margin:0;
-                        font-size:.875rem;
-                        line-height: 1.8;
+                        font-size:.745rem;
+                        line-height: 1.5;
                         a{
                             color:$primary-light;
-                            font-size:.875rem;
+                            font-weight: 600;
+                            font-size:.775rem;
                         }
                     }
                 }
@@ -57,7 +59,7 @@ footer {
                     li{
                         position: relative;
                         @include flexStart;
-                        margin-bottom: 1rem;
+                        margin-bottom: .6125rem;
                         i{
                             color:$color-green;
                             margin-right: 1rem;
@@ -84,13 +86,15 @@ footer {
                 .apps{
                     figure{
                         cursor: pointer;
+                        max-width: 120px;
+                        margin:0;
                         &:last-child{
                             margin-left: 1rem;
                         }
                     }
                 }
                 ul{
-                    margin-top:1rem;
+                    margin-top:2.5rem;
                     li{
                         margin-bottom:.5rem;
                         a{
