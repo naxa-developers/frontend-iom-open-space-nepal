@@ -714,7 +714,7 @@ class Sidebar extends Component {
                   <div className="input-group">
                     <div className="input-group-prepend">
                       <span className="input-group-text">
-                        <i className="material-icons">search</i>
+                      <i className="humanitarian-icon-Search"></i>
                       </span>
                     </div>
                     <input
