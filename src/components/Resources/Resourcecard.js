@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import {Link} from 'react-router-dom'
-import Axios from "axios";
-import MaterialIcon from "material-icons-react";
+import  {FacebookShareButton, FacebookIcon, TwitterShareButton,TwitterIcon} from 'react-share'
 
 class Resourcecard extends Component {
   constructor(props) {
@@ -9,7 +7,8 @@ class Resourcecard extends Component {
 
     this.state = {
       files: [],
-      downloadUrl: ''
+      downloadUrl: '',
+      shareUrl :`https://openspace.naxa.com.np/#/resources`
     };
   }
 
@@ -43,7 +42,8 @@ class Resourcecard extends Component {
             <div className="col-12 col-md-3">
               <div className="download-section">
                 <div className="icon-wrap-section">
-                  {/* <button className="btn btn-share"><MaterialIcon icon="share" color="#418fde"></MaterialIcon></button>  */}
+               
+                   {/* <button className="btn btn-share"><MaterialIcon icon="share" color="#418fde"></MaterialIcon></button>  */}
                   <div>
                   {/* {this.props.document_type == 0
                         ? this.props.audio
@@ -61,7 +61,11 @@ class Resourcecard extends Component {
                       : this.props.video
                       :""
                     }  download target="_blank">
+                       <FacebookShareButton children={<FacebookIcon size='30px' round="true" />} url={this.state.shareUrl} />
+                      <TwitterShareButton children={<TwitterIcon size='30px' round="true"/>} url={this.state.shareUrl} />
                     <button className="btn btn-download">
+                     
+                    {/* <FacebookShareCount url={this.state.shareUrl} /> */}
                       <i className="humanitarian-icon-Download"></i>
                     </button>
                   </a>

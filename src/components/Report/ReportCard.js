@@ -4,11 +4,23 @@ import {connect } from 'react-redux';
 
 
 class ReportCard extends Component {
+
+
+  CalcTime = (days) => {
+    var weeks = parseInt(days/7);
+    var months = parseInt(days/30);
+    return (months > 0 ? months + " month" + (months > 1 ? "s, " : ", ") : "") + (weeks > 0 ? weeks + " week" + (weeks > 1 ? "s, " : ", ") : "") + (days > 0 ? days + " day" + (days > 1 ? "s " : " ") : "") 
+
+   }
+    
+    componentDidMount(){
+      console.log(this.CalcTime(34));
+    }
+
+
   render() {
-   
-    // this.props&&console.log("card", this.props);
-    
-    
+
+  
     return (
     <>
         <li>
@@ -18,28 +30,29 @@ class ReportCard extends Component {
             }}>
             <h5  onClick={() => {
             
-              this.props.dispatch({ type: "reportClicked", id:this.props.id })
+              this.props.dispatch({ type: "reportClicked", id:this.props.id  })
               
               }} >
               {this.props.title} 
               <i
-                className="material-icons pending"
+                className={this.props.status=="pending" ? "material-icons pending" : "material-icons success"}
                 data-toggle="tooltip"
                 data-placement="top"
                 title="Pending"
               >
-                timer
+               
+              {this.props.status=="pending" ? "timer" : "check_circle"}
               </i>
             </h5>
              <div className="loc-time flex-start">
           <a >{this.props.ReportLocat}</a>
-            <time>{this.props.daysCount} Days ago</time>
+            <time>{this.CalcTime(this.props.daysCount) }</time>
             </div> 
           </div>
-          <div className="report-status">
+          {/* <div className="report-status">
             <label className="unsuccess">Urgency</label>
             <span>{this.props.urgency}</span>
-          </div>
+          </div> */}
         </li>
      </>
     );
