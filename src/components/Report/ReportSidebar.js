@@ -196,9 +196,9 @@ addReportLegend = () => {
                             id={e.id}
                             title={e.title}
                             location={e.name}
-                            // urgency={e.urgency}
                             date={e.date}
                             ReportLocation={e.location}
+                            ReportAddress = {e.address}
                             daysCount = {e.count}
                             status = {e.status}
 

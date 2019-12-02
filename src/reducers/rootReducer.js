@@ -21,9 +21,12 @@ const rootReducer = (state = initState, action) => {
                 language: '0'
             }
         case "reportClicked":
+         
+            
             return {
                 ...state,
-                reportID: action.id
+                reportID: action.id,
+                daysCount: action.daysCount
             }
         case "spaceClicked":
             return {

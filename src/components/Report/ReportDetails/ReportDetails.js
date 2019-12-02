@@ -6,7 +6,7 @@ import ReportMap from "../ReportMap";
 
 class ReportDetails extends Component {
   render() {
-    this.props.reportID&&console.log("pid",this.props.reportID);
+
     
     return (
       <div>
@@ -21,7 +21,7 @@ class ReportDetails extends Component {
                   <ReportMap />
                   </div>
                   <div className="col-md-5">
-                  <ReportDetailsCard />
+                  <ReportDetailsCard daysCount ={this.props.daysCount}/>
                   </div>
                 </div>
             
