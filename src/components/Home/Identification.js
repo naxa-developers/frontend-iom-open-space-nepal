@@ -44,9 +44,9 @@ class Identification extends Component {
                   
 
                         <div className="process-content">
-                         { this.state.steps&&this.state.steps.map( (step) => 
+                         { this.state.steps&&this.state.steps.map( (step,i) => 
                        
-                            <IdentificationCard key= {step.id} image = {step.image} title = {step.title} />
+                            <IdentificationCard key= {step.id} no ={i} image = {step.image} title = {step.title} />
                             )} 
                            
                            {/*  <div className="post-meta">
