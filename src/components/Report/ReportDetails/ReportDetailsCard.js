@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import MaterialIcon from "material-icons-react";
 import { connect } from "react-redux";
 import Axios from "axios";
-
+import { withRouter } from 'react-router-dom';
 class ReportDetailsCard extends Component {
   constructor(props) {
     super(props);
@@ -44,6 +44,7 @@ this.props.id && localStorage.setItem("reportId",this.props.id)
       <div className="map-sidebar">
       
         <div className="sidebar-wrapper">
+        <span onClick={()=>this.props.history.push('/report')} class="sidebar-close material-icons">close</span>
           <div className="card">
             <div className="card-body">
               <div className="report-details">
@@ -107,4 +108,4 @@ const mapStateToProps = state => {
     id: state.reportID
   };
 };
-export default connect(mapStateToProps)(ReportDetailsCard);
+export default withRouter(connect(mapStateToProps)(ReportDetailsCard));

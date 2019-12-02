@@ -90,6 +90,8 @@ class ReportFilter extends Component {
 }
 
   render() {
+    console.log(this.state.startDate);
+    
     return (
      
       <div className="map-filter">

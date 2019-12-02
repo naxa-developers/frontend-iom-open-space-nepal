@@ -688,9 +688,9 @@ class Sidebar extends Component {
                         clear all
                       </span>
                     </div>
-                    <a onClick={() => this.onApply()} className="openspace-button">
+                    <button onClick={() => this.onApply()} className="openspace-button">
                       Apply
-                    </a>
+                    </button>
                   </div>
                 </div>
 
