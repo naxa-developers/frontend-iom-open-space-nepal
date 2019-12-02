@@ -5,6 +5,8 @@ import LoaderSmall from '../../Report/LoadingSpinner';
 
 class DetailsHeader extends Component {
   render() {
+    console.log(this.props);
+    
     return (
       <div className="space-details">
         <div className="space">
@@ -13,7 +15,7 @@ class DetailsHeader extends Component {
             <p>
               <span>
                 <i className="material-icons">room</i>
-                {this.props.location}
+                {this.props.address}
               </span>
               <span>
                 <MaterialIcon icon="near_me"></MaterialIcon>200 m
