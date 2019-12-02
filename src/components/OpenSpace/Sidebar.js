@@ -137,7 +137,7 @@ class Sidebar extends Component {
   handledistrict = e => {
     this.setState({ SelectedDistrict: e });
     this.setState({ handlingindex: 2 });
-    // window.map = this.props.mapRefs.current.leafletElement;
+    // this.props.mapRefs.current.leafletElement = this.props.mapRefs.current.leafletElement;
     // this.state.district_muni.eachLayer(e =>
     //   this.state.district_muni.removeLayer(e)
     // );
@@ -156,16 +156,16 @@ class Sidebar extends Component {
     //     this.state.district_muni.getBounds()
     //   );
     //   // console.log(this.state.district_muni.getBounds())
-    //   // var zoom=window.map.getZoom()
+    //   // var zoom=this.props.mapRefs.current.leafletElement.getZoom()
 
-    //   // window.map.setZoom(zoom-3)
+    //   // this.props.mapRefs.current.leafletElement.setZoom(zoom-3)
     // });
     this.setState({ SelectedMunicipality: null });
   };
 
   handlemunicipality = e => {
     this.setState({ SelectedMunicipality: e });
-    // window.map = this.props.mapRefs.current.leafletElement;
+    // this.props.mapRefs.current.leafletElement = this.props.mapRefs.current.leafletElement;
     // this.state.district_muni.eachLayer(e =>
     //   this.state.district_muni.removeLayer(e)
     // );
@@ -179,7 +179,7 @@ class Sidebar extends Component {
     //     this.state.district_muni.getBounds()
     //   );
 
-    //   // var zoom = window.map.getZoom();
+    //   // var zoom = this.props.mapRefs.current.leafletElement.getZoom();
     // });
 
 
@@ -219,7 +219,7 @@ class Sidebar extends Component {
 
   onApply = () => {
     this.setState({loading:true})
-    window.map = this.props.mapRefs.current.leafletElement;
+    this.props.mapRefs.current.leafletElement = this.props.mapRefs.current.leafletElement;
     this.state.district_muni.eachLayer(e =>
       this.state.district_muni.removeLayer(e)
     );
@@ -249,7 +249,7 @@ class Sidebar extends Component {
       })
     }
     else if (this.state.SelectedProvince && this.state.SelectedDistrict) {
-      window.map = this.props.mapRefs.current.leafletElement;
+      this.props.mapRefs.current.leafletElement = this.props.mapRefs.current.leafletElement;
       this.state.district_muni.eachLayer(e =>
         this.state.district_muni.removeLayer(e)
       );
@@ -309,7 +309,7 @@ class Sidebar extends Component {
 
 
     setTimeout(()=>{this.displayOS()
-    window.map.fitBounds(this.state.OSmarkers.getBounds())
+    this.props.mapRefs.current.leafletElement.fitBounds(this.state.OSmarkers.getBounds())
     },100) 
   };
 
@@ -347,7 +347,7 @@ class Sidebar extends Component {
       document.getElementById('nearbylegend').style.visibility='visible'
     })
     this.state.nearbyGroup.bringToFront()
-    window.map.fitBounds(this.state.nearbyGroup.getBounds())
+    this.props.mapRefs.current.leafletElement.fitBounds(this.state.nearbyGroup.getBounds())
 
 
 
@@ -409,8 +409,8 @@ class Sidebar extends Component {
   };
 
   fetchroute = (first, second) => {
-    L.tooltip().setLatLng(first).setContent('<h6>latlng</h6>').addTo(this.props.mapRefs.current.leafletElement)
-    map.closeTooltip();
+    // L.tooltip().setLatLng(first).setContent('<h6>latlng</h6>').addTo(this.props.mapRefs.current.leafletElement)
+    // map.closeTooltip();
 
     this.state.Routespaths = []
     this.state.Routes.eachLayer((r) => this.state.Routes.removeLayer(r))
@@ -441,11 +441,11 @@ class Sidebar extends Component {
           this.state.Routespaths.push({ id: j, path: polyline, description: Response.data.paths[j].description == undefined ? "No Descrption" : Response.data.paths[j].description[0], distance: Response.data.paths[j].distance })
 
           this.state.Routes.addLayer(polyline)
-          window.map.fitBounds(polyline.getBounds())
+          this.props.mapRefs.current.leafletElement.fitBounds(polyline.getBounds())
 
         }
         this.state.Routespaths[0].path.bringToFront()
-        activeroute = 0
+        var activeroute = 0
 
 
 
@@ -462,7 +462,19 @@ class Sidebar extends Component {
 
           var div = L.DomUtil.create('div', `routeWrapper`)
           div.innerHTML = ''
+          div.innerHTML += "<img src='../../src/img/close.png' id='close-bt-route'></img>"
+
           div.innerHTML += "<h6 id='legendtitle'>Routes</h6>"
+          console.log(this.state.Routespaths)
+          var distances=[]
+          this.state.Routespaths.forEach((a)=>{
+            distances.push(a.distance)
+
+          })
+          var min=Math.min(...distances)
+          // this.state.Routespaths.filter((e)=>{
+          //   return e.distance==min
+          // })
 
 
           this.state.Routespaths.map(e => {
@@ -470,10 +482,12 @@ class Sidebar extends Component {
 
             var class1 = 'desccard';
             // var activeclass=class1
+            var Shorest= min==e.distance?"Shorest":""
 
             var descCard = `<div  class=${class1} name=` + e.id + ">" +
-              "<h6>" + e.description + "</h6>" +
-              "<span>" + e.distance + " m" + "</span>"
+              "<h6>" + e.description + "</h6>" +"<h5>" + Shorest+ "</h5>"+
+              "<img src='../../src/img/nav.png' id='shortest'></img>"+
+              "<span>" + e.distance + " m" +
             "<div>";
 
 
@@ -551,10 +565,18 @@ class Sidebar extends Component {
           }
           )
         }
+        console.log(document.getElementById('close-bt-route'),"a")
+      document.getElementById('close-bt-route').addEventListener('click',()=>{
+        this.state.Routes.eachLayer((e=>this.state.Routes.removeLayer(e)))
+        this.props.mapRefs.current.leafletElement.removeControl(this.state.legend)
+      })
+
+
 
 
       }
       )
+
   }
 
 
@@ -570,16 +592,16 @@ class Sidebar extends Component {
 
 
     window.map = this.props.mapRefs.current.leafletElement;
-    window.map.getPane('nearby').style.zIndex = 300;
-    window.map.getPane('Oslanding').style.zIndex = 250;
+    this.props.mapRefs.current.leafletElement.getPane('nearby').style.zIndex = 300;
+    this.props.mapRefs.current.leafletElement.getPane('Oslanding').style.zIndex = 250;
 
     var cluster=L.markerClusterGroup({disableClusteringAtZoom:14})
     this.setState({OSmarkers:cluster})
 
-    window.map.addLayer(this.state.district_muni);
-    window.map.addLayer(this.state.Routes);
-   setTimeout(()=>window.map.addLayer(this.state.OSmarkers),500) 
-    window.map.addLayer(this.state.nearbyGroup);
+    this.props.mapRefs.current.leafletElement.addLayer(this.state.district_muni);
+    this.props.mapRefs.current.leafletElement.addLayer(this.state.Routes);
+   setTimeout(()=>this.props.mapRefs.current.leafletElement.addLayer(this.state.OSmarkers),500) 
+    this.props.mapRefs.current.leafletElement.addLayer(this.state.nearbyGroup);
    
 
     this.fetchingForDropdown("province");
@@ -590,7 +612,7 @@ class Sidebar extends Component {
     this.onload();
     // this.nearbymeOS();
 
-    // window.map1=this.props.mapRefs.current.leafletElement
+    // this.props.mapRefs.current.leafletElement1=this.props.mapRefs.current.leafletElement
   }
 
   render() {
@@ -649,7 +671,7 @@ class Sidebar extends Component {
                           })
                           var bounds = [ [ 25.710836919640595, 79.79365377708339],
                           [ 30.798474179567847 , 88.54975729270839]];
-                          window.map.fitBounds(bounds)
+                          this.props.mapRefs.current.leafletElement.fitBounds(bounds)
                           this.state.Routes.eachLayer((e) => this.state.Routes.removeLayer(e))
 
                           this.state.district_muni.eachLayer(e =>
@@ -657,7 +679,7 @@ class Sidebar extends Component {
                           );
                          
 
-                          window.map.removeControl(this.state.legend);
+                          this.props.mapRefs.current.leafletElement.removeControl(this.state.legend);
                           
                         }
 
