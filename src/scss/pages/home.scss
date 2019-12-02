@@ -24,14 +24,14 @@
 
             h1 {
                 font-weight: 800;
-                font-size: 2.5rem;
+                font-size: 2.8rem;
                 text-transform: uppercase;
-                line-height: 1.3;
+                line-height: 1.4;
             }
 
             p {
                 margin: 2rem 0 0 0;
-                font-size: 1rem;
+                font-size: .975rem;
                 font-weight: 600;
                 color: $primary-light;
                 line-height: 1.7;
@@ -42,7 +42,7 @@
 }
 
 .home-slider {
-    margin-top: 5rem;
+    margin-top: 3rem;
     margin-bottom: 120px;
 
     .intro-slider {
@@ -58,9 +58,9 @@
 
             h3 {
                 margin-top: 3rem;
-                font-size: 1.5rem;
+                font-size: 1.2rem;
                 color: $color-blue;
-                font-weight: 600;
+                font-weight: 700;
             }
 
             &.slick-slide {
@@ -162,7 +162,10 @@
     }
 
     .video-content {
-        padding-left: .5rem;
+        min-height: 364px;
+        h3.openspace-title{
+            padding-right: 3.5rem;
+        }
 
         p {
             margin: 2rem 0 0 0;
@@ -193,7 +196,7 @@
             position: relative;
             color: $color-white;
             max-width: 524px;
-            margin: 0 auto 6rem auto;
+            margin: 0 auto 4rem auto;
 
 
         }
@@ -201,6 +204,7 @@
     }
 
     .glimps-count {
+        margin-bottom: 2rem;
         h4 {
             color: $color-white;
             -webkit-text-fill-color: transparent;
@@ -234,8 +238,10 @@
         color: $color-white;
         text-align: center;
         max-width: 600px;
-        margin: 2rem auto 0 auto;
+        margin: 3rem auto 0 auto;
         line-height: 1.8;
+        font-size:.8rem;
+        color:rgba($color-white, .7);
     }
 
     @media screen and (min-width:280px) {
@@ -310,12 +316,13 @@
             }
 
             h5 {
-                font-weight: 600;
+                font-weight: 700;
                 font-size: 1.2rem;
 
                 span {
                     color: $color-green;
                     margin-right: .5rem;
+                    font-style: italic;
                 }
             }
         }
@@ -395,7 +402,7 @@
 
             .intro {
                 h1 {
-                    font-size: 2.2rem;
+                    font-size: 2.8rem;
                 }
 
                 p {
@@ -473,8 +480,9 @@
         }
 
         .video-content {
-            padding-left: .5rem;
-
+            h3.openspace-title{
+                padding:0;
+            }
             p {
                 margin: 2rem 0 0 0;
                 font-size: 1rem;
@@ -543,6 +551,7 @@
 
                 figure {
                     margin-top: 0;
+                    max-width: 60px;
 
                     &:nth-child(2) {
                         margin: 0 1rem;
@@ -595,6 +604,7 @@
         .video-content {
             padding-left: 0;
             margin-top: 3rem;
+            min-height: auto;
 
             p {
                 margin-top: 1rem;

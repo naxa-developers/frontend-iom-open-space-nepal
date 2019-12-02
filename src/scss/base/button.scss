@@ -1,8 +1,8 @@
 button.openspace-button,a.openspace-button {
     padding: 1rem 2rem;
     text-align: center;
-    text-transform: capitalize;
-    font-size: 1rem;
+    text-transform: uppercase;
+    font-size: .775rem;
     color: $color-white;
     background-color: $color-blue;
     @include animate_all(all .5s);
