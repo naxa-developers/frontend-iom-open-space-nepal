@@ -31,9 +31,7 @@ class Identification extends Component {
                 <section className="process ptb-150">
             <div className="container">
                 <div className="row">
-                    <div className="col-md-6" style={{
-                        flexBasis: '50%'
-                    }}>
+                    <div className="col-md-6" >
                         <div className="process-left sticky">
                             <h3 className="openspace-title">Open space indentification process</h3>
                             <p>Open space was identified by conducting workshops and interaction programs with locally
