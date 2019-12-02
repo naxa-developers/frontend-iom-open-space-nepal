@@ -22,7 +22,7 @@ const { BaseLayer } = LayersControl;
            activeroute:0,
            Routespaths:[],
            currentLocation: null,
-           myloc:L.control({ position: 'bottomleft' })
+           myloc:L.control({ position: 'topleft' })
 
           
        };
@@ -88,7 +88,7 @@ const { BaseLayer } = LayersControl;
 
             var div = L.DomUtil.create('div', `loc`)
             div.innerHTML = ''
-            div.innerHTML += "<img src='../../src/img/nav.png'></img>"
+            div.innerHTML += "<i class='material-icons'>near_me</i>"
             return div
   
     }

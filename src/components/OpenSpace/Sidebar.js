@@ -414,7 +414,7 @@ class Sidebar extends Component {
 
     this.state.Routespaths = []
     this.state.Routes.eachLayer((r) => this.state.Routes.removeLayer(r))
-    var baseUrl = "http://139.59.67.104:8989/route";
+    var baseUrl = "https://route.naxa.com.np/route";
     var url =
       `${baseUrl}?point= ${first[0]},${first[1]},` +
       `&point=${second[0]},${second[1]}` +
@@ -485,7 +485,7 @@ class Sidebar extends Component {
             var Shorest= min==e.distance?"Shorest":""
 
             var descCard = `<div  class=${class1} name=` + e.id + ">" +
-              "<h6>" + e.description + "</h6>" +"<h5>" + Shorest+ "</h5>"+
+              "<h6>" + e.description + "<span>" + Shorest+ "</span>"+"</h6>" +
               "<img src='../../src/img/nav.png' id='shortest'></img>"+
               "<span>" + e.distance + " m" +
             "<div>";
