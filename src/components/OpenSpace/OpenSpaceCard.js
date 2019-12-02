@@ -21,7 +21,7 @@ class OpenSpaceCard extends Component {
 
     getshortestdistance=(first,second)=>{
         console.log(first,second);
-        var baseUrl = "http://139.59.67.104:8989/route";
+        var baseUrl = "https://route.naxa.com.np/route";
         var distances=[]
         // console.log(first,second)
         var url =
@@ -87,9 +87,10 @@ class OpenSpaceCard extends Component {
                             </p>
                         </div>
                     </div>
-                    <div className="space-direction" onClick={() => {
+                    <div className="space-direction active" onClick={() => {
+                        
                         this.props.routing(this.props.latlng, this.props.currentLocation)
-                        // console.log("consoled",this.props.latlng,this.props.currentLocation);
+                        
 
                     }}>
                         <i className="material-icons">directions</i>
