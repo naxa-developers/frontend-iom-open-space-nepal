@@ -485,7 +485,7 @@ class Sidebar extends Component {
             var Shorest= min==e.distance?"Shorest":""
 
             var descCard = `<div  class=${class1} name=` + e.id + ">" +
-              "<h6>" + e.description + "</h6>" +"<h5>" + Shorest+ "</h5>"+
+              "<h6>" + e.description + "<span>" + Shorest+ "</span>"+"</h6>" +
               "<img src='../../src/img/nav.png' id='shortest'></img>"+
               "<span>" + e.distance + " m" +
             "<div>";
