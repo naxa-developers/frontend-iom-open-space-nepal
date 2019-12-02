@@ -42,6 +42,7 @@ class Footer extends Component {
             <div className="row">
               <div className="col-md-4">
                 <div className="footer-widget about-widget">
+                <h5>About</h5>
                   <p>
                     {this.state.contactInfo &&
                       this.state.contactInfo[0].description}
@@ -109,7 +110,7 @@ class Footer extends Component {
                   </div>
                  
                   <ul>
-                  <h5>Useful Links</h5>
+                 
                     <li>
                       <a href="#">Mofaga</a>
                     </li>
