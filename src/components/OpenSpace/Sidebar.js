@@ -462,7 +462,7 @@ class Sidebar extends Component {
 
           var div = L.DomUtil.create('div', `routeWrapper`)
           div.innerHTML = ''
-          div.innerHTML += "<img src='../../src/img/close.png' id='close-bt-route'></img>"
+          // div.innerHTML += "<img src='../../src/img/close.png' id='close-bt-route'></img>"
 
           div.innerHTML += "<h6 id='legendtitle'>Routes</h6>"
           console.log(this.state.Routespaths)
@@ -486,7 +486,7 @@ class Sidebar extends Component {
 
             var descCard = `<div  class=${class1} name=` + e.id + ">" +
               "<h6>" + e.description + "<span>" + Shortest+ "</span>"+"</h6>" +
-              "<img src='../../src/img/nav.png' ></img>"+
+              "<i class='material-icons'>near_me</i>"+
               "<span>" + e.distance + " m" +
             "<div>";
 
