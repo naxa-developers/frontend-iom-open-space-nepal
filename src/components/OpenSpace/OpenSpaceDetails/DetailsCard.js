@@ -10,6 +10,7 @@ import { withRouter } from 'react-router-dom';
 
 
 import { connect } from "react-redux";
+import Gallary from "./Gallary";
 
 class DetailsCard extends Component {
   constructor(props) {
@@ -108,7 +109,8 @@ class DetailsCard extends Component {
                       role="tabpanel"
                       aria-labelledby="images_tab"
                     >
-                      <div className="gallery-category">
+                      <Gallary/>
+                      {/* <div className="gallery-category">
                         <div className="gallery-grid">
                           <h4>maps</h4>
                           <div class="row">
@@ -151,7 +153,7 @@ class DetailsCard extends Component {
 
                           </div>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                     <div
                       className={
