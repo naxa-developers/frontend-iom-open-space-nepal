@@ -18,7 +18,9 @@ class DetailsCard extends Component {
 
     this.state = {
       spaceInfo: "",
-      tabid: 1
+      tabid: 1,
+      shortest:null,
+      calculatedistance:true
     };
   }
 
@@ -37,8 +39,11 @@ class DetailsCard extends Component {
     Axios.get(
       `https://iomapi.naxa.com.np/api/v1/open_space/${localStorage.getItem("OpenspaceID")}`
     ).then(response => {
+      console.log(response)
 
       this.setState({ spaceInfo: response.data });
+      this.calculatedistance(this.state.spaceInfo.centroid.reverse(),[27,85])
+
 
 
     });
@@ -50,6 +55,31 @@ class DetailsCard extends Component {
   changetabid = e => {
     this.setState({ tabid: e });
   };
+
+  getshortestdistance=(first,second)=>{
+    // console.log(first,second,this.props.currentLocation);
+    var baseUrl = "https://route.naxa.com.np/route";
+    var distances=[]
+    // console.log(first,second)
+    var url =
+      `${baseUrl}?point= ${first[0]},${first[1]},` +
+      `&point=${second[0]},${second[1]}` +
+      "&points_encoded=false" +
+      "&ch.disable=true" +
+      "&alternative_route.max_paths=4" +
+      "&algorithm=alternative_route";
+      Axios.get(url)
+      .then(Response => {
+        //   console.log(Response.data.paths)
+          for(var i=0; i<Response.data.paths.length;i++ ){
+            //   console.log(Response.data.paths[i])
+              distances.push(Response.data.paths[i].distance)
+          }
+          let shortest=Math.min(...distances)
+          this.setState({shortest:(shortest/1000).toFixed(2),calculatedistance:false})
+      }
+        )
+}
 
   render() {
     this.props.id && localStorage.setItem('OpenspaceID', this.props.id)

@@ -51,7 +51,13 @@ class Sidebar extends Component {
       div: L.DomUtil.create('div', 'routeWrapper'),
       OSmarkers: null,
       markersLegend:L.control({ position: 'bottomright' }),
+      ActiveRouteindex:null
+            
     };
+  }
+
+  setActivefalse=(e)=>{
+    this.setState({ActiveRouteindex:e})
   }
 
   sidebarToggle = event => {
@@ -408,6 +414,11 @@ class Sidebar extends Component {
     });
   };
 
+  removeRoutes=()=>{
+    this.state.Routes.eachLayer((e=>this.state.Routes.removeLayer(e)))
+    this.props.mapRefs.current.leafletElement.removeControl(this.state.legend)
+  }
+
   fetchroute = (first, second) => {
     // L.tooltip().setLatLng(first).setContent('<h6>latlng</h6>').addTo(this.props.mapRefs.current.leafletElement)
     // map.closeTooltip();
@@ -565,11 +576,7 @@ class Sidebar extends Component {
           }
           )
         }
-        console.log(document.getElementById('close-bt-route'),"a")
-      document.getElementById('close-bt-route').addEventListener('click',()=>{
-        this.state.Routes.eachLayer((e=>this.state.Routes.removeLayer(e)))
-        this.props.mapRefs.current.leafletElement.removeControl(this.state.legend)
-      })
+   
 
 
 
@@ -753,7 +760,7 @@ class Sidebar extends Component {
 
 
                     { this.state.Allos&&
-                      this.state.Allos.map(e => {
+                      this.state.Allos.map((e,i) => {
                         // console.log(this.props.currentLocation,"cur",[e.latitude, e.longitude]);
 
 
@@ -768,6 +775,10 @@ class Sidebar extends Component {
                             address={e.address}
                             image={e.image}
                             id={e.id}
+                            removeRoutes={this.removeRoutes}
+                            setActivefalse={this.setActivefalse}
+                            ActiveRoute={this.state.ActiveRouteindex}
+                            index={i}
                           />
                         );
                       })}
