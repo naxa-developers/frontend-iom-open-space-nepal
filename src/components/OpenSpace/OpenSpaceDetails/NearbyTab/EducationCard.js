@@ -30,11 +30,11 @@ class EducationCard extends Component {
 
     return (
       <>
-        <div class="facility-overview flex-between">
-          {/* <div class="overview-item">
+        {/* <div class="facility-overview flex-between">
+          <div class="overview-item">
               <h6>1</h6>
               <p>district hospital</p>
-          </div> */}
+          </div>
           <div class="overview-item">
               <h6>13</h6>
               <p>Government School</p>
@@ -43,7 +43,7 @@ class EducationCard extends Component {
               <h6>1</h6>
               <p>Private School</p>
           </div>
-      </div>
+      </div> */}
        
         <div class="space-list nearby-list">
           <ul>
