@@ -424,7 +424,7 @@
 
             .sidebar-wrapper {
                 background-color: $color-white;
-                @include boxshadow(0 5px 15px rgba(0, 0, 0, 0.16));
+                @include boxshadow(0 5px 15px rgba(0, 0, 0, 0.3));
                 width: 100%;
                 padding: 2rem 1rem;
                 overflow-y: auto;
