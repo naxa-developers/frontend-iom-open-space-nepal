@@ -1,10 +1,10 @@
 .banner {
-    min-height: 815px;
+    min-height: 750px;
     background-size: content;
     background-position: 50% 100% !important;
 
     .banner-content {
-        margin-top: 8rem;
+        margin-top: 7rem;
 
         .logos {
             @include flexvr;
@@ -13,28 +13,28 @@
 
             figure {
                 margin-top: 2rem;
+                max-width: 90px;
                 cursor: pointer;
             }
         }
 
         .intro {
             margin-top: 2rem;
-            padding-left: 5rem;
-            max-width: 950px;
+            padding-left:8rem;
 
             h1 {
                 font-weight: 800;
-                font-size: 3.4rem;
+                font-size: 2.5rem;
                 text-transform: uppercase;
-                line-height: 4.5rem;
+                line-height: 1.3;
             }
 
             p {
                 margin: 2rem 0 0 0;
-                font-size: 1.1rem;
-                font-weight: 500;
+                font-size: 1rem;
+                font-weight: 600;
                 color: $primary-light;
-                line-height: 2rem;
+                line-height: 1.7;
             }
         }
     }
@@ -43,14 +43,14 @@
 
 .home-slider {
     margin-top: 5rem;
-    margin-bottom: 150px;
+    margin-bottom: 120px;
 
     .intro-slider {
         .intro-item {
             text-align: center;
 
             .figure {
-                min-height: 600px;
+                min-height: 550px;
                 display: block;
                 background-size: cover;
                 background-repeat: no-repeat;
@@ -135,8 +135,8 @@
         padding-left: .5rem;
 
         p {
-            margin: 3rem 0 0 0;
-            font-size: 1.1rem;
+            margin: 2rem 0 0 0;
+            line-height: 1.8;
         }
     }
 }
@@ -182,7 +182,7 @@
 
         h6 {
             color: $color-white;
-            font-size: 1.5rem;
+            font-size: 1rem;
             font-weight: 700;
         }
     }
@@ -240,14 +240,11 @@
             position: sticky;
             position: -webkit-sticky;
             top: 0;
-        .openspace-title {
-            padding-right: 3rem;
-
-
-        }
+            padding-right: 11rem;
 
         p {
             margin-top: 2rem;
+            line-height: 1.8;
         }
     }
 
@@ -257,12 +254,13 @@
             text-align: center;
 
             figure {
-                margin: 0;
+                margin-bottom: 2rem;
+                @include boxshadow(0 15px 30px rgba(0,0,0,.16));
             }
 
             h5 {
                 font-weight: 600;
-                font-size: 1.5rem;
+                font-size: 1.2rem;
 
                 span {
                     color: $color-green;
@@ -329,12 +327,13 @@
 
 
 
-@media screen and (max-width:1540px) {
+@media screen and (max-width:1640px) {
+
     .banner {
-        min-height: 700px;
+        min-height: 580px;
 
         .banner-content {
-            margin-top: 3rem;
+            margin-top: 2rem;
 
             .logos {
 
@@ -342,15 +341,13 @@
                     margin-top: 1.5rem;
                 }
             }
-
-            .intro {
+            .intro{
                 h1 {
-                    font-size: 3rem;
-                    line-height: 4rem;
+                    font-size: 2.2rem;
                 }
-
+    
                 p {
-                    font-size: 1.1rem;
+                    margin: 1.5rem 0 0 0;
                 }
             }
         }
@@ -361,26 +358,10 @@
 @media screen and (max-width:1366px) {
     .banner {
         .banner-content {
-            margin-top: 3rem;
-
             .logos {
 
                 figure {
                     margin-top: 1.5rem;
-                }
-            }
-
-            .intro {
-                max-width: 750px;
-                padding-left: 4rem;
-
-                h1 {
-                    font-size: 2.8rem;
-                    line-height: 3.5rem;
-                }
-
-                p {
-                    font-size: 1.1rem;
                 }
             }
         }
@@ -395,15 +376,6 @@
         .banner-content {
             .intro {
                 padding-left: 0;
-
-                h1 {
-                    font-size: 2.5rem;
-                }
-
-                p {
-                    font-size: 1rem;
-                    line-height: 1.6rem;
-                }
             }
         }
 

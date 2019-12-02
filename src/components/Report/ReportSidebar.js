@@ -152,7 +152,7 @@ addReportLegend = () => {
                     <div className="input-group-prepend">
                       <span className="input-group-text">
                         {" "}
-                        <MaterialIcon icon="search" />
+                        <i className="humanitarian-icon-Search"></i>
                       </span>
                     </div>
                     <input

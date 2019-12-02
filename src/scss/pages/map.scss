@@ -130,11 +130,12 @@
                     border: none;
 
                     a {
-                        width: 36px;
-                        height: 36px;
-                        line-height: 36px;
+                        width: 30px;
+                        height: 30px;
+                        line-height: 30px;
                         color: $primary-light;
                         @include animate_all(all .5s);
+                        border:0;
 
                         &:hover {
                             background-color: $green-highlight;
@@ -401,7 +402,7 @@
                 background-color: $color-white;
                 @include boxshadow(0 5px 15px rgba(0, 0, 0, 0.16));
                 width: 100%;
-                padding: 2rem;
+                padding: 2rem 1rem;
                 overflow-y: auto;
                 // height: calc(100vh - 165px);
 
@@ -443,6 +444,9 @@
                         .css-2b097c-container,
                         .css-14jk2my-container {
                             width: 100%;
+                             .css-1okebmr-indicatorSeparator,.css-109onse-indicatorSeparator{
+                                 display: none;
+                             }
 
                             .css-yk16xz-control,
                             .css-1fhf3k1-control {
@@ -527,7 +531,7 @@
 
                         .report-content {
                             h5 {
-                                font-size: 1rem;
+                                font-size: .875rem;
                                 font-weight: 700;
                                 @include flexStart;
                                 align-items: center;
@@ -535,6 +539,7 @@
 
                                 i {
                                     margin-left: .5rem;
+                                    font-size: 1rem;
                                 }
                             }
 
@@ -589,7 +594,7 @@
                                 cursor: pointer;
 
                                 h5 {
-                                    font-size: 1rem;
+                                    font-size: .875rem;
                                     font-weight: 700;
                                     margin-bottom: .25rem;
                                 }
@@ -652,7 +657,7 @@
             .report-details {
                 .report-details-heading {
                     h5 {
-                        font-size: 1.2rem;
+                        font-size: 1rem;
                         font-weight: 700;
                         @include flexStart;
                         align-items: center;
@@ -660,6 +665,7 @@
 
                         i {
                             margin-left: .5rem;
+                            font-size: 1rem;
                         }
                     }
 
@@ -676,7 +682,7 @@
                                     color: $color-blue;
                                     font-weight: 700;
                                     text-transform: capitalize;
-                                    font-size: 1rem;
+                                    font-size: .875rem;
 
                                     &::after {
                                         content: '|';
@@ -776,7 +782,8 @@
                         cursor: pointer;
 
                         h5 {
-                            font-size: 2rem;
+                            font-size: 1.5rem;
+                            line-height: 1.2;
                             font-weight: 800;
                             margin-bottom: .25rem;
                             color: $color-blue;
@@ -899,6 +906,10 @@
 
                         i {
                             color: $color-green;
+                            font-weight: 600;
+                            &::before{
+                                color:$color-green;
+                            }
                         }
                     }
                 }
@@ -913,6 +924,9 @@
                         outline: none;
                         box-shadow: none;
                     }
+                    @include input-placeholder {
+                        font-size: .875rem;
+                    }
                 }
 
                 .input-group-append {
@@ -925,6 +939,10 @@
                         i {
                             color: $color-green;
                             transform: rotate(180deg);
+                            font-weight: 600;
+                            &::before{
+                                color:$color-green;
+                            }
                         }
                     }
                 }
@@ -937,10 +955,10 @@
 
                 .suggested-content {
                     h5 {
-                        font-size: 1.5rem;
+                        font-size: 1.2rem;
                         color: $color-blue;
                         font-weight: 700;
-                        ;
+                        margin:0;
                     }
 
                     .suggested-list {
@@ -1045,14 +1063,15 @@
         }
 
         .nearme-btn {
-            margin: 2rem 0;
+            margin: 1.5rem 0;
 
             .openspace-button {
                 background-color: $green-highlight;
                 color: $primary-light;
                 @include flexStart;
                 align-items: center;
-                max-width: 188px;
+                max-width: 160px;
+                padding:.6125rem 1rem;
                 text-transform: initial;
 
                 i {
@@ -1217,6 +1236,9 @@
                                     -ms-flex: 0 0 10%;
                                     flex: 0 0 10%;
                                     max-width: 10%;
+                                    &.active{
+                                        color:$color-green;
+                                    }
                                 }
                             }
                         }
