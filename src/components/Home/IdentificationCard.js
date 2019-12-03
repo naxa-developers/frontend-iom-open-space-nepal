@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
  class IdentificationCard extends Component {
     render() {
-        console.log(this.props.no);
+        
         
         return (
             <div className="post-meta">

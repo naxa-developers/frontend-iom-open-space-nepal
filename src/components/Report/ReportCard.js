@@ -1,10 +1,18 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router-dom';
 import {connect } from 'react-redux';
-import MaterialIcon from "material-icons-react";
+
 
 
 class ReportCard extends Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       days: ''
+    }
+  }
+  
 
 
   CalcTime = (days) => {
@@ -15,13 +23,16 @@ class ReportCard extends Component {
    }
  
     componentDidMount(){
-      // console.log(this.CalcTime(34));
+     
+      // this.CalcTime(this.props.daysCount);
+      // var days =  this.CalcTime(this.props.daysCount);
     }
 
 
   render() {
 
-  console.log("dd", this.props.daysCount);
+    var timer = "timer"
+    var circle ="check_circle"
   var zero = '0 Days ago'
     return (
     <>
@@ -36,19 +47,21 @@ class ReportCard extends Component {
               
               }} >
               {this.props.title} 
-              <MaterialIcon
+             
+          
+               <i
                 className={this.props.status=="pending" ? "material-icons pending" : "material-icons success"}
                 data-toggle="tooltip"
                 data-placement="top"
-                title="Pending"
+                title={this.props.status=="pending" ? "Pending" : "Replied"}
               >
                
-              {this.props.status=="pending" ? "timer" : "check_circle"}
-              </MaterialIcon>
+              {this.props.status=="pending" ? timer : circle}
+              </i> 
             </h5>
              <div className="loc-time flex-start">
-          <a >{this.props.ReportLocat}</a>
-            <time>{this.props.daysCount == 0 ? zero : this.CalcTime(this.props.daysCount) }</time>
+          <a >{this.props.address}</a>
+            <time>{this.props.daysCount == 0 ? zero : this.CalcTime(this.props.daysCount)  }</time>
                 
             </div> 
           </div>
