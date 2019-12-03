@@ -1,5 +1,13 @@
 .site-header {
     @include easein_out($easein_out:all 0.5s ease-in-out);
+    
+    z-index: 99999;
+    position: relative;
+    // @include boxshadow(0 0 4px 0 rgba(0, 0, 0, 0.16));
+    &.sticky{
+        
+        top:0;
+    }
 
     .headerWrap {
         @include flexjust;
@@ -13,7 +21,7 @@
 
             .logo {
                 margin-right: 15px;
-                max-width: 190px;
+                max-width: 160px;
             }
 
             p {
@@ -28,24 +36,28 @@
                 margin-bottom: .5rem;
 
                 a {
-                    width: 26px;
-                    height: 26px;
                     @include radius(50%);
                     border: 2px solid $green-light;
-
+                    flex:0 0 18px;
+                    max-width: 18px;
+                    @include flexvr;
 
                     img {
-                        width: 24px;
-                        height: 24px;
                         @include radius(50%);
+                        opacity: 0.5;
+                        cursor: pointer;
                     }
 
                     &:last-child {
                         margin-left: .6125rem;
                     }
 
-                    &.active {
+                    &.active,
+                    &:hover {
                         border-color: $color-green;
+                        img{
+                            opacity: 1;
+                        }
                     }
                 }
             }
@@ -56,15 +68,15 @@
 
                     a {
                         display: block;
-                        padding: 1rem 1.5rem;
-                        font-size: .875rem;
+                        padding: .6125rem 1.5rem;
+                        font-size: .8rem;
                         text-transform: uppercase;
                         position: relative;
                         font-weight: 700;
-                        @include easein_out($easein_out:all 0.5s ease-in-out);
+                        @include easein_out($easein_out:all 0.3s ease-in-out);
                         text-decoration: none;
 
-                        &:hover {
+                        &:hover,&.active {
                             color: $color-blue;
                         }
 
@@ -214,13 +226,16 @@
                         text-align: right;
                     }
 
-                    &.menu-item-has-current,
-                    &:hover {
+                    &.menu-item-has-current{
 
                         a {
                             color: $color-white;
                             background-color: $color-blue;
+                            &:hover{
+                                @include boxshadow($boxshadow:0 10px 25px rgba($color-blue, 0.40));
+                            }
                         }
+                        
                     }
                 }
             }

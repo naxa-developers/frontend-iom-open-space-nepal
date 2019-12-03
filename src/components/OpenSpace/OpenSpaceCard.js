@@ -14,13 +14,13 @@ class OpenSpaceCard extends Component {
 
         this.state = {
             calculatedistance:true,
-            shortest:null
+            shortest:null,
             
         }
     }
 
     getshortestdistance=(first,second)=>{
-        console.log(first,second);
+        // console.log(first,second,this.props.currentLocation);
         var baseUrl = "https://route.naxa.com.np/route";
         var distances=[]
         // console.log(first,second)
@@ -46,7 +46,7 @@ class OpenSpaceCard extends Component {
    
     componentDidMount() {
         
-        // this.getshortestdistance(this.props.latlng, this.props.currentLocation)
+        this.props.currentLocation!=null&&this.getshortestdistance(this.props.latlng, this.props.currentLocation)
      
 
     }
@@ -87,9 +87,21 @@ class OpenSpaceCard extends Component {
                             </p>
                         </div>
                     </div>
-                    <div className="space-direction active" onClick={() => {
-                        
-                        this.props.routing(this.props.latlng, this.props.currentLocation)
+                    <div className={this.props.ActiveRoute==this.props.index?"space-direction active":"space-direction"} onClick={() => {
+                        console.log(this.props.ActiveRoute==this.props.index,this.props.ActiveRoute,this.props.index)
+                        if(this.props.ActiveRoute==this.props.index){
+                            this.props.removeRoutes();
+                            this.props.setActivefalse(null)
+
+                        }
+                        else{
+                            
+                            this.props.routing(this.props.latlng, this.props.currentLocation)
+                            this.props.setActivefalse(this.props.index)
+                            
+
+                        }
+                     
                         
 
                     }}>

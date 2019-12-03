@@ -46,7 +46,9 @@ this.props.days && localStorage.setItem("days",this.props.days)
       <div className="map-sidebar">
       
         <div className="sidebar-wrapper">
-        <span onClick={()=>this.props.history.push('/report')} class="sidebar-close material-icons">close</span>
+        <span onClick={() => {this.props.history.push('/report')
+         console.log("clickedddd") }
+        } class="sidebar-close material-icons">close</span>
           <div className="card">
             <div className="card-body">
               <div className="report-details">

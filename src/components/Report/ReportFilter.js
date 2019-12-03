@@ -57,6 +57,8 @@ class ReportFilter extends Component {
   };
   onClear = () => {
     this.setState({ valueDays: null, valueStatus: null, valueUrgency: null });
+    this.props.resetReports();
+   
   };
   applyFilter = () => {
     this.props.toggleLoader();
@@ -67,9 +69,8 @@ class ReportFilter extends Component {
    const url = `http://139.59.67.104:8011/api/v1/report/?start_date=${start_date}%2006:00Z&end_date=${end_date}%2006:00Z&status=${status.label.toLowerCase()}`
     Axios.get(url)
     .then(response => {
-      console.log(url);
       
-      console.log("filtered", response);
+
       
       this.props.dispatch({
        
@@ -90,7 +91,8 @@ class ReportFilter extends Component {
 }
 
   render() {
-    console.log(this.state.startDate);
+   
+    
     
     return (
      

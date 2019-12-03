@@ -32,7 +32,7 @@ class App extends Component {
           <Switch>
             <Route
               exact
-              path="/"
+              path="/home"
               render={props => <Home {...props}/>
               }
             ></Route>

@@ -54,7 +54,7 @@ class NearbyTab extends Component {
             
           </Card.Header>
           <Accordion.Collapse eventKey="2">
-            <Card.Body>Goes Helipad info from API</Card.Body>
+            <Card.Body>There is no available data at the moment.</Card.Body>
           </Accordion.Collapse>
         </Card>
         <Card>

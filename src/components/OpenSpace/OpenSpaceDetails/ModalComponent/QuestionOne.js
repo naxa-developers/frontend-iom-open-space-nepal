@@ -11,7 +11,7 @@ import React, { Component } from 'react'
         return (
             <li>
                  <span>{this.props.question}</span>  
-        <i class="material-icons check">{this.props.ans=="Yes" ? yes :no  }</i> 
+        <i class={this.props.ans=="Yes" ? "material-icons check": "material-icons cross"}>{this.props.ans=="Yes" ? yes :no  }</i> 
                  </li>
         )
     }

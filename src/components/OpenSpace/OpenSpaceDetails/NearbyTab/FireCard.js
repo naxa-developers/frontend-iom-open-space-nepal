@@ -5,7 +5,7 @@ import React, { Component } from 'react'
     render() {
         return (
             <div>
-                <p>Firee</p>
+                <p>There is no available data at the moment.</p>
             </div>
         )
     }

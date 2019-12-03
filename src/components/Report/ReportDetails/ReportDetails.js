@@ -1,12 +1,16 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import Navbar from "../../Home/Navbar";
-// import ReportMap from '../ReportMap'
 import ReportDetailsCard from "./ReportDetailsCard";
-import ReportMap from "../ReportMap";
+
+import RDetailsMap from "./RDetailsMap";
+
 
 class ReportDetails extends Component {
+
+  
   render() {
 
+    
     
     return (
       <div>
@@ -18,7 +22,7 @@ class ReportDetails extends Component {
                 <div class="map-wrapper">
                 <div className="row no-gutters">
                   <div className="col-md-7">
-                  <ReportMap />
+                  <RDetailsMap />
                   </div>
                   <div className="col-md-5">
                   <ReportDetailsCard daysCount ={this.props.daysCount}/>
@@ -36,4 +40,6 @@ class ReportDetails extends Component {
     );
   }
 }
-export default ReportDetails;
+
+
+export default (ReportDetails);

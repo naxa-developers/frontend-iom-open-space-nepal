@@ -6,11 +6,12 @@ import {
 } from "react-leaflet";
 import 'leaflet/dist/leaflet.css';
 import Axios from 'axios';
+import { connect } from 'react-redux';
 const { BaseLayer } = LayersControl;
 
 
 
- class OSDetails extends Component {
+ class RDetailsMap extends Component {
      constructor(props) {
        super(props)
        this.maps=createRef()
@@ -34,7 +35,7 @@ const { BaseLayer } = LayersControl;
      
      componentDidMount() {
         this.onload();
-        Axios.get(`https://iomapi.naxa.com.np/api/v1/single_open_geo_json?id=${localStorage.getItem('id')}`)  
+        Axios.get(`https://iomapi.naxa.com.np/api/v1/single_open_geo_json?id=${this.props.openSpace}`)  
         .then(response=>{
             var geo=L.geoJSON(response.data,{fillColor:'blue',fillOpacity:0.3,color:'green',weight:2}).addTo(this.maps.current.leafletElement)
             this.maps.current.leafletElement.fitBounds(geo.getBounds())
@@ -42,7 +43,10 @@ const { BaseLayer } = LayersControl;
         })   
     }
     render() {
-        this.props.id&&localStorage.setItem("id",this.props.id)
+        this.props.openSpace&&localStorage.setItem("id",this.props.openSpace)
+        console.log("oid", this.props);
+        // ${localStorage.getItem('id')}
+        
       
       
         
@@ -125,7 +129,12 @@ const { BaseLayer } = LayersControl;
             </>)}}
           
             
-        
+          const mapStateToPros = (state) => {
+            return{
+              openSpace : state.openSpace
+            }
+           
+          }      
     
 
-export default OSDetails;
+export default connect(mapStateToPros)(RDetailsMap);

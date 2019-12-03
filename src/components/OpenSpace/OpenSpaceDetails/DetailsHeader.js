@@ -5,7 +5,6 @@ import LoaderSmall from '../../Report/LoadingSpinner';
 
 class DetailsHeader extends Component {
   render() {
-    console.log(this.props);
     
     return (
       <div className="space-details">
