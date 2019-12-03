@@ -3,7 +3,16 @@ import { withRouter } from 'react-router-dom';
 import {connect } from 'react-redux';
 
 
+
 class ReportCard extends Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       days: ''
+    }
+  }
+  
 
 
   CalcTime = (days) => {
@@ -12,15 +21,19 @@ class ReportCard extends Component {
     return (months > 0 ? months + " month" + (months > 1 ? "s, " : ", ") : "") + (weeks > 0 ? weeks + " week" + (weeks > 1 ? "s, " : ", ") : "") + (days > 0 ? days + " day" + (days > 1 ? "s " : " ") : "") 
 
    }
-    
+ 
     componentDidMount(){
-      console.log(this.CalcTime(34));
+     
+      // this.CalcTime(this.props.daysCount);
+      // var days =  this.CalcTime(this.props.daysCount);
     }
 
 
   render() {
 
-  
+    var timer = "timer"
+    var circle ="check_circle"
+  var zero = '0 Days ago'
     return (
     <>
         <li>
@@ -30,23 +43,26 @@ class ReportCard extends Component {
             }}>
             <h5  onClick={() => {
             
-              this.props.dispatch({ type: "reportClicked", id:this.props.id  })
+              this.props.dispatch({ type: "reportClicked", id:this.props.id , daysCount :this.props.daysCount == 0 ? zero : this.CalcTime(this.props.daysCount) })
               
               }} >
               {this.props.title} 
-              <i
+             
+          
+               <i
                 className={this.props.status=="pending" ? "material-icons pending" : "material-icons success"}
                 data-toggle="tooltip"
                 data-placement="top"
-                title="Pending"
+                title={this.props.status=="pending" ? "Pending" : "Replied"}
               >
                
-              {this.props.status=="pending" ? "timer" : "check_circle"}
-              </i>
+              {this.props.status=="pending" ? timer : circle}
+              </i> 
             </h5>
              <div className="loc-time flex-start">
-          <a >{this.props.ReportLocat}</a>
-            <time>{this.CalcTime(this.props.daysCount) }</time>
+          <a >{this.props.address}</a>
+            <time>{this.props.daysCount == 0 ? zero : this.CalcTime(this.props.daysCount)  }</time>
+                
             </div> 
           </div>
           {/* <div className="report-status">

@@ -35,9 +35,11 @@ class ReportDetailsCard extends Component {
   }
 
   render() {
+
   
 var status = this.state.reportInfo.status;
 this.props.id && localStorage.setItem("reportId",this.props.id)
+this.props.days && localStorage.setItem("days",this.props.days)
 
 
     return (
@@ -65,11 +67,11 @@ this.props.id && localStorage.setItem("reportId",this.props.id)
                     <div className="report-address ">
                       <p className="flex-start loc-time">
     <a href="#">{this.state.reportInfo.name}</a>
-                        <time>2 days ago</time>
+    <time>{localStorage.getItem('days')}</time>
                       </p>
                       <p className="flex-start address">
                         <MaterialIcon icon="room">room</MaterialIcon>
-    <span>{this.state.reportInfo.location}</span>
+    <span>{this.state.reportInfo.address}</span>
                       </p>
                     </div>
                     {/* <div className="report-status">
@@ -105,7 +107,8 @@ this.props.id && localStorage.setItem("reportId",this.props.id)
 }
 const mapStateToProps = state => {
   return {
-    id: state.reportID
+    id: state.reportID,
+    days: state.daysCount
   };
 };
 export default withRouter(connect(mapStateToProps)(ReportDetailsCard));
