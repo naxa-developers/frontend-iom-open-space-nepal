@@ -51,7 +51,13 @@ class Sidebar extends Component {
       div: L.DomUtil.create('div', 'routeWrapper'),
       OSmarkers: null,
       markersLegend:L.control({ position: 'bottomright' }),
+      ActiveRouteindex:null
+            
     };
+  }
+
+  setActivefalse=(e)=>{
+    this.setState({ActiveRouteindex:e})
   }
 
   sidebarToggle = event => {
@@ -408,6 +414,11 @@ class Sidebar extends Component {
     });
   };
 
+  removeRoutes=()=>{
+    this.state.Routes.eachLayer((e=>this.state.Routes.removeLayer(e)))
+    this.props.mapRefs.current.leafletElement.removeControl(this.state.legend)
+  }
+
   fetchroute = (first, second) => {
     // L.tooltip().setLatLng(first).setContent('<h6>latlng</h6>').addTo(this.props.mapRefs.current.leafletElement)
     // map.closeTooltip();
@@ -462,7 +473,7 @@ class Sidebar extends Component {
 
           var div = L.DomUtil.create('div', `routeWrapper`)
           div.innerHTML = ''
-          div.innerHTML += "<img src='../../src/img/close.png' id='close-bt-route'></img>"
+          // div.innerHTML += "<img src='../../src/img/close.png' id='close-bt-route'></img>"
 
           div.innerHTML += "<h6 id='legendtitle'>Routes</h6>"
           console.log(this.state.Routespaths)
@@ -482,11 +493,11 @@ class Sidebar extends Component {
 
             var class1 = 'desccard';
             // var activeclass=class1
-            var Shorest= min==e.distance?"Shorest":""
+            var Shortest= min==e.distance?"Shortest":""
 
             var descCard = `<div  class=${class1} name=` + e.id + ">" +
-              "<h6>" + e.description + "<span>" + Shorest+ "</span>"+"</h6>" +
-              "<img src='../../src/img/nav.png' id='shortest'></img>"+
+              "<h6>" + e.description + "<span>" + Shortest+ "</span>"+"</h6>" +
+              "<i class='material-icons'>near_me</i>"+
               "<span>" + e.distance + " m" +
             "<div>";
 
@@ -565,11 +576,7 @@ class Sidebar extends Component {
           }
           )
         }
-        console.log(document.getElementById('close-bt-route'),"a")
-      document.getElementById('close-bt-route').addEventListener('click',()=>{
-        this.state.Routes.eachLayer((e=>this.state.Routes.removeLayer(e)))
-        this.props.mapRefs.current.leafletElement.removeControl(this.state.legend)
-      })
+   
 
 
 
@@ -657,7 +664,7 @@ class Sidebar extends Component {
                   <div className="reset-btns">
                 
                     <div className="reset">
-                      <MaterialIcon icon="refresh"></MaterialIcon>
+                      {/* <MaterialIcon icon="refresh"></MaterialIcon> */}
                       <span
                         onClick={() => {
                           this.setState({
@@ -753,7 +760,7 @@ class Sidebar extends Component {
 
 
                     { this.state.Allos&&
-                      this.state.Allos.map(e => {
+                      this.state.Allos.map((e,i) => {
                         // console.log(this.props.currentLocation,"cur",[e.latitude, e.longitude]);
 
 
@@ -768,6 +775,10 @@ class Sidebar extends Component {
                             address={e.address}
                             image={e.image}
                             id={e.id}
+                            removeRoutes={this.removeRoutes}
+                            setActivefalse={this.setActivefalse}
+                            ActiveRoute={this.state.ActiveRouteindex}
+                            index={i}
                           />
                         );
                       })}

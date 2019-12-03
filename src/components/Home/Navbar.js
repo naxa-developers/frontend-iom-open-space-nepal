@@ -38,7 +38,7 @@ handleClick = (v) => {
       <>
         <header
         className=  {this.state.toggle
-         ? "site-header Is-toggle"
+         ? "site-header Is-toggle sticky"
          : "site-header " 
         }
          id="navHeader">
@@ -90,7 +90,7 @@ handleClick = (v) => {
                   <div className="menu-primary-container">
                     <ul id="primary-menu" className="menu nav-menu">
                       <li className="menu-item  ">
-                      <NavLink to="/"  activeClassName = "active" >
+                      <NavLink to="/"  activeClassName = "" >
                           {this.props.language == "0"
                             ? "Home"
                             : "गृहपृष्ठ "
@@ -98,7 +98,7 @@ handleClick = (v) => {
                            
                         </NavLink>
                         </li>
-                      
+
                       <li className="menu-item  ">
                         <NavLink to="resources"  activeClassName = "active" >
                           {this.props.language == "0"
@@ -109,21 +109,23 @@ handleClick = (v) => {
                         </NavLink>
                       </li>
                       <li className="menu-item  ">
-                        <NavLink to="report" activeClassName = " menu-item menu-item-has-current">
+                        <NavLink to="report" activeClassName = " menu-item ">
                           {this.props.language == "0" ? "Reports" : "रिपोर्ट"}
                         </NavLink>
                       </li>
                  
                       <li className="menu-item ">
-                        <NavLink to="aboutapp" activeClassName = " menu-item menu-item-has-current">
+                        <NavLink to="aboutapp" activeClassName = " menu-item ">
                           {" "}
                           {this.props.language == "0"
                             ? "mobile app"
                             : "मोबाईल एप  "}
                         </NavLink>
                       </li>
-                      <li className="menu-item ">
-                        <NavLink to="openspace" activeClassName = " menu-item menu-item-has-current">
+
+                      <li className="menu-item menu-item-has-current">
+                        <NavLink to="openspace" activeClassName = " menu-item ">
+
                           {this.props.language == "0"
                             ? "Find Open Space "
                             : "खुल्ला क्षेत्र पत्ता लगाउनुहोस"}

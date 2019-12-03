@@ -3,7 +3,7 @@
 
     .routeWrapper {
         max-width: 200px;
-        width: 200px;
+        width: 160px;
         max-height: 180px;
         overflow-y: auto;
         margin-right: 5rem;
@@ -32,7 +32,12 @@
 
             h6 {
                 font-weight: 600;
-                font-size: .875rem;
+                font-size: .8rem;
+                @include flexBetween;
+                span{
+                    font-size:.745rem;
+                    font-weight: 400;
+                }
             }
 
             &.pathactive {
@@ -60,6 +65,7 @@
 
             span {
                 color: $color-white;
+                font-weight: 600;
             }
         }
     }
@@ -249,6 +255,10 @@
                                
                             }
                         }
+                        &.markersLegend{
+                            width:120px;
+                            @include boxshadow(0 0 15px 0 rgba(0, 0, 0, 0.16));
+                        }
                     }
                 }
             }
@@ -371,6 +381,8 @@
             // z-index: 2;
             // max-width: 50%;
             // width: 50%;
+            position: relative;
+            z-index: 999;
 
             .sidebar-toggle {
                 // position: absolute;
@@ -424,9 +436,9 @@
 
             .sidebar-wrapper {
                 background-color: $color-white;
-                @include boxshadow(0 5px 15px rgba(0, 0, 0, 0.16));
+                @include boxshadow(0 15   px 5px 0px rgba(0, 0, 0, 0.16));
                 width: 100%;
-                padding: 2rem 1rem;
+                padding:1rem;
                 overflow-y: auto;
                 // height: calc(100vh - 165px);
 
@@ -507,14 +519,18 @@
 
                         .openspace-button {
                             padding: .5rem 1rem;
+                            background-color: $blue-light-1;
                         }
 
                         .reset {
                             @include flexStart;
                             margin-right: 1rem;
-                            color: $color-dim;
+                            color: $color-bg-text;
                             text-transform: capitalize;
                             cursor: pointer;
+                            span{
+                                font-size: .775rem;
+                            }
 
                             i {
                                 margin-right: .5rem;
@@ -928,7 +944,7 @@
 
             .input-group {
                 border-bottom: 1px solid $color-border;
-                margin: 2rem 0 1rem 0;
+                margin: 2rem 0 3rem 0;
 
                 .input-group-prepend {
                     .input-group-text {
@@ -1079,12 +1095,15 @@
                     h4 {
                         font-size: 1rem;
                         color: $color-blue;
+                        font-weight: 600;;
                         text-transform: capitalize;
                     }
 
                     figure {
                         cursor: pointer;
-
+                        border:1px solid $color-border;
+                        text-align: center;
+                        padding:.25rem;
                         img {
                             max-height: 144px;
                         }
@@ -1094,7 +1113,7 @@
         }
 
         .nearme-btn {
-            margin: 1.5rem 0;
+            margin:.5rem 0 3rem 0;
 
             .openspace-button {
                 background-color: $green-highlight;
@@ -1110,10 +1129,15 @@
                     margin-right: .6125rem;
                 }
 
-                &:hover,&.active {
+
+                &:hover{
+                    @include boxshadow($boxshadow:0 10px 25px rgba($color-green, 0.1));
+                }
+                &.active {
                     background-color: $color-green;
                     box-shadow: none;
                     color: $color-white;
+                    @include boxshadow($boxshadow:0 10px 25px rgba($color-green, 0.30));
 
                     i {
                         color: $color-white;
