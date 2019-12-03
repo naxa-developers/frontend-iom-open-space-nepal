@@ -20,7 +20,7 @@ import React, { Component } from 'react'
 
         return (
             <li>{this.props.name+ ' ' }  
-         <i class="material-icons check">{result? yes :no  }</i> 
+         <i class={result ? "material-icons check" : "material-icons cross"}>{result? yes :no  }</i> 
             </li>
 
         )

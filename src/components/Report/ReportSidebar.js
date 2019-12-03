@@ -17,7 +17,8 @@ class ReportSidebar extends Component {
       filteredReports: [],
       loading: true,
       isFocused: false,
-      reportLengend : L.control({position: 'bottomright'})
+      reportLengend : L.control({position: 'bottomright'}),
+      reportsMarkers: L.featureGroup()
       
     };
   }
@@ -73,13 +74,11 @@ class ReportSidebar extends Component {
 
       var color= ''
       var fillColor= ''
-      if(p.urgency=="high"){
+      if(p.status=="pending"){
         color= 'red'
         fillColor= 'red'
-      } else if(p.urgency=="medium") {
-        color= "#a27109"
-        fillColor= "#ffb20f"
-      } else if(p.urgency=="low") {
+
+      } else if(p.status=="replied") {
         color='#1ee611'
         fillColor= '#1ee611'
   
@@ -100,13 +99,14 @@ class ReportSidebar extends Component {
 
      
      
-    var marker =   L.circleMarker([p.location[1],p.location[0]], reportStyle).addTo(this.props.mapR.current.leafletElement)
+    var marker =   L.circleMarker([p.location[1],p.location[0]], reportStyle).addTo(this.state.reportsMarkers)
    var popOne = " <div class='bind-popup'> " +
    "<div class='bind-header'> <h5>" +p.title+ "</h5>  <p> "+p.name+ " </p> </div> </div>"
    
    
    marker.bindPopup(popOne);
     })
+    this.props.mapR.current.leafletElement.fitBounds(this.state.reportsMarkers.getBounds())
      
       
   }
@@ -121,11 +121,21 @@ addReportLegend = () => {
   this.state.reportLengend.addTo(this.props.mapR.current.leafletElement)
 }
 
+resetReports = () => {
+  console.log("reset now");
+  
+  this.props.dispatch({
+    type: "ReportFilter",
+    data: this.state.reports
+  })
+}
+
 
   componentDidMount() {
     this.onload();
     this.fetchReports();
     this.addReportLegend();
+    this.state.reportsMarkers.addTo(this.props.mapR.current.leafletElement);
   
   }
 
@@ -140,6 +150,8 @@ addReportLegend = () => {
             <div className="card">
               <div className="card-body">
                 <ReportFilter 
+                resetReports = {this.resetReports}
+
                 toggleLoader = {this.toggleLoader}
                 />
                 <div className="report-count">
@@ -190,7 +202,7 @@ addReportLegend = () => {
                     {this.state.loading ? (
                       <LoadingSpinnerBig />
                     ) : (
-                      this.state.reportsToShow.map(e => {
+                      this.props.reportData.map(e => {
                         return (
                           <ReportCard
                             id={e.id}
@@ -201,6 +213,7 @@ addReportLegend = () => {
                             ReportAddress = {e.address}
                             daysCount = {e.count}
                             status = {e.status}
+                            openSpace = {e.open_space}
 
                           />
                         );

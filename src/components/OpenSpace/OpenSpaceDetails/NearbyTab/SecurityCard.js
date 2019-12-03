@@ -27,7 +27,7 @@ class SecurityCard extends Component {
     render() {
         return (
             <div>
-                <p>Securityyyyyyyyy</p>
+                <p>There is no available data at the moment.</p>
             </div>
         )
     }

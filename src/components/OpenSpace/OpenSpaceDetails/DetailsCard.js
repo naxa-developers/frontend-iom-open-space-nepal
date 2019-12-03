@@ -6,8 +6,7 @@ import TabNavbar from "./TabNavbar";
 import GeneralInfo from "../GeneralInfo/GeneralInfo";
 import ReportTab from "./ReportTab/ReportTab";
 import NearbyTab from "./NearbyTab/NearbyTab";
-import { withRouter } from 'react-router-dom';
-
+import { withRouter } from "react-router-dom";
 
 import { connect } from "react-redux";
 import Gallery from "./Gallary";
@@ -19,8 +18,8 @@ class DetailsCard extends Component {
     this.state = {
       spaceInfo: "",
       tabid: 1,
-      shortest:null,
-      calculatedistance:true
+      shortest: null,
+      calculatedistance: true
     };
   }
 
@@ -37,15 +36,14 @@ class DetailsCard extends Component {
 
   fetchDetails = () => {
     Axios.get(
-      `https://iomapi.naxa.com.np/api/v1/open_space/${localStorage.getItem("OpenspaceID")}`
+      `https://iomapi.naxa.com.np/api/v1/open_space/${localStorage.getItem(
+        "OpenspaceID"
+      )}`
     ).then(response => {
-      console.log(response)
+      console.log(response);
 
       this.setState({ spaceInfo: response.data });
-      this.calculatedistance(this.state.spaceInfo.centroid.reverse(),[27,85])
-
-
-
+      this.calculatedistance(this.state.spaceInfo.centroid.reverse(), [27, 85]);
     });
   };
   componentDidMount() {
@@ -56,10 +54,10 @@ class DetailsCard extends Component {
     this.setState({ tabid: e });
   };
 
-  getshortestdistance=(first,second)=>{
+  getshortestdistance = (first, second) => {
     // console.log(first,second,this.props.currentLocation);
     var baseUrl = "https://route.naxa.com.np/route";
-    var distances=[]
+    var distances = [];
     // console.log(first,second)
     var url =
       `${baseUrl}?point= ${first[0]},${first[1]},` +
@@ -68,31 +66,33 @@ class DetailsCard extends Component {
       "&ch.disable=true" +
       "&alternative_route.max_paths=4" +
       "&algorithm=alternative_route";
-      Axios.get(url)
-      .then(Response => {
-        //   console.log(Response.data.paths)
-          for(var i=0; i<Response.data.paths.length;i++ ){
-            //   console.log(Response.data.paths[i])
-              distances.push(Response.data.paths[i].distance)
-          }
-          let shortest=Math.min(...distances)
-          this.setState({shortest:(shortest/1000).toFixed(2),calculatedistance:false})
+    Axios.get(url).then(Response => {
+      //   console.log(Response.data.paths)
+      for (var i = 0; i < Response.data.paths.length; i++) {
+        //   console.log(Response.data.paths[i])
+        distances.push(Response.data.paths[i].distance);
       }
-        )
-}
+      let shortest = Math.min(...distances);
+      this.setState({
+        shortest: (shortest / 1000).toFixed(2),
+        calculatedistance: false
+      });
+    });
+  };
 
   render() {
-    this.props.id && localStorage.setItem('OpenspaceID', this.props.id)
-
-
-
+    this.props.id && localStorage.setItem("OpenspaceID", this.props.id);
 
     return (
       <div>
         <div className="map-sidebar">
           <div className="sidebar-wrapper">
-          <span onClick={()=>this.props.history.push('/openspace')} class="sidebar-close material-icons">close</span>
-
+            <span
+              onClick={() => this.props.history.push("/openspace")}
+              class="sidebar-close material-icons"
+            >
+              close
+            </span>
 
             <div className="card">
               <div className="card-body">
@@ -119,14 +119,15 @@ class DetailsCard extends Component {
                       aria-labelledby="general_tab"
                     >
                       <GeneralInfo
-                        id= {this.props.id}
+                        id={this.props.id}
                         capacity={this.state.spaceInfo.capacity}
                         total_area={this.state.spaceInfo.total_area}
                         usable_area={this.state.spaceInfo.usable_area}
                         suggested_use={this.state.spaceInfo.suggested_use}
                         services={this.state.spaceInfo.services}
                         title={this.state.spaceInfo.title}
-                        question_data= {this.state.spaceInfo.question_data}
+                        question_data={this.state.spaceInfo.question_data}
+                        description={this.state.spaceInfo.description}
                       />
                     </div>
                     <div
@@ -139,8 +140,7 @@ class DetailsCard extends Component {
                       role="tabpanel"
                       aria-labelledby="images_tab"
                     >
-                      <Gallery/>
-                     
+                      <Gallery />
                     </div>
                     <div
                       className={
@@ -164,10 +164,7 @@ class DetailsCard extends Component {
                       role="tabpanel"
                       aria-labelledby="nearby_tab"
                     >
-
-                      <NearbyTab
-                        id={this.props.id}
-                      />
+                      <NearbyTab id={this.props.id} />
                     </div>
                   </div>
                 </div>
