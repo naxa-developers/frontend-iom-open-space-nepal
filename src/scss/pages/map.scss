@@ -37,6 +37,7 @@
                 span{
                     font-size:.745rem;
                     font-weight: 400;
+                    color:$color-green;
                 }
             }
 
@@ -382,7 +383,6 @@
             // max-width: 50%;
             // width: 50%;
             position: relative;
-            z-index: 999;
 
             .sidebar-toggle {
                 // position: absolute;
@@ -438,17 +438,17 @@
                 background-color: $color-white;
                 @include boxshadow(0 15   px 5px 0px rgba(0, 0, 0, 0.16));
                 width: 100%;
-                padding:1rem;
                 overflow-y: auto;
                 // height: calc(100vh - 165px);
 
                 .sidebar-close {
                     position: absolute;
                     right: 2rem;
-                    top: 1rem;
+                    top: .5rem;
                     color: $color-dim;
                     font-size: 2rem;
                     cursor: pointer;
+                    z-index: 999;
 
                     &:hover {
                         color: $color-green;
@@ -605,6 +605,13 @@
                                 }
                             }
                         }
+                        &:hover{
+                            .report-content{
+                                h5{
+                                    color:$color-blue;
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -678,6 +685,15 @@
 
                                 &:hover {
                                     color: $color-green;
+                                }
+                            }
+                        }
+                        &:hover{
+                            .space{
+                                .space-content{
+                                    h5{
+                                        color:$color-blue;
+                                    }
                                 }
                             }
                         }
@@ -879,6 +895,9 @@
 
                 figure {
                     margin: 1rem 0 0 0;
+                    max-width: 300px;
+                    margin:0 auto;
+                    max-height: 150px;;
                 }
 
             }
@@ -1018,7 +1037,7 @@
                                 align-items: center;
                                 flex-wrap: nowrap;
                                 color: $color-dim;
-                                font-size: 1rem;
+                                font-size: .875rem;
                                 margin-bottom: .6125rem;
 
                                 span {
@@ -1026,6 +1045,8 @@
                                 }
 
                                 i {
+                                    font-size:1.2rem;
+                                    margin-left:.25rem;
                                     &.humanitarian-icons {
                                         &::before {
                                             color: $color-dim;
@@ -1074,7 +1095,7 @@
                         li {
                             @include flexStart;
                             color: $color-blue;
-                            font-size: 1rem;
+                            font-size: .875rem;
                             text-transform: uppercase;
                             margin-bottom: .6125rem;
                             cursor: pointer;
