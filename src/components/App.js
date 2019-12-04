@@ -28,11 +28,11 @@ class App extends Component {
 
     return (
      
-      <Router>
+      <Router >
           <Switch>
             <Route
               exact
-              path="/home"
+              path="/"
               render={props => <Home {...props}/>
               }
             ></Route>

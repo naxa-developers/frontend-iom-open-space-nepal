@@ -1,12 +1,20 @@
 import React, { Component } from "react";
+import {withRouter} from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class SingleReport extends Component {
   render() {
     return (
         <>
         <div className="report-content">
-        <h5>
-          {this.props.title}{" "}
+        <h5 onClick={() =>   {
+this.props.history.push('/reportdetails')
+this.props.dispatch({type:"reportClicked", id: this.props.id})
+        }
+        
+      
+      }>
+          {this.props.title} 
           <i
             className="material-icons pending"
             data-toggle="tooltip"
@@ -23,13 +31,13 @@ class SingleReport extends Component {
         </div>
         </div>
 
-        <div className="report-status">
+        {/* <div className="report-status">
     <label className="unsuccess">{this.props.urgency}</label>
           <span>Urgency</span>
-        </div>
+        </div> */}
         </>
     
     );
   }
 }
-export default SingleReport;
+export default connect()(withRouter(SingleReport));

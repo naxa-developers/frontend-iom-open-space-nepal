@@ -46,7 +46,7 @@ handleClick = (v) => {
             <div className="headerWrap">
               <div className="headLeft">
                 <div className="logo">
-                  <NavLink to="/home">
+                  <NavLink to="/">
                     <img src={logo} alt="logo" />
                   </NavLink>
                 </div>
@@ -90,7 +90,7 @@ handleClick = (v) => {
                   <div className="menu-primary-container">
                     <ul id="primary-menu" className="menu nav-menu">
                       <li className="menu-item  ">
-                      <NavLink to="/home" className="menu-item"  activeClassName = "menu-item active" >
+                      <NavLink to="/" className="menu-item"  activeClassName = "menu-item " >
                           {this.props.language == "0"
                             ? "Home"
                             : "गृहपृष्ठ "

@@ -2,21 +2,23 @@ import React, { Component } from "react";
 import MaterialIcon from "material-icons-react";
 import { connect } from "react-redux";
 import Axios from "axios";
-import { withRouter } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 class ReportDetailsCard extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      reportInfo: ''
+      reportInfo: ""
     };
   }
   fetchReport = () => {
-    Axios.get(`https://iomapi.naxa.com.np/api/v1/report/${localStorage.getItem("reportId")}`).then(
-      response => {
-        this.setState({ reportInfo: response.data });
-      }
-    );
+    Axios.get(
+      `https://iomapi.naxa.com.np/api/v1/report/${localStorage.getItem(
+        "reportId"
+      )}`
+    ).then(response => {
+      this.setState({ reportInfo: response.data });
+    });
   };
 
   onload = () => {
@@ -35,20 +37,24 @@ class ReportDetailsCard extends Component {
   }
 
   render() {
+    console.log("report", this.props.id);
 
-  
-var status = this.state.reportInfo.status;
-this.props.id && localStorage.setItem("reportId",this.props.id)
-this.props.days && localStorage.setItem("days",this.props.days)
-
+    var status = this.state.reportInfo.status;
+    this.props.id && localStorage.setItem("reportId", this.props.id);
+    this.props.days && localStorage.setItem("days", this.props.days);
 
     return (
       <div className="map-sidebar">
-      
         <div className="sidebar-wrapper">
-        <span onClick={() => {this.props.history.push('/report')
-         console.log("clickedddd") }
-        } class="sidebar-close material-icons">close</span>
+          <span
+            class="sidebar-close material-icons"
+            onClick={() => {
+              this.props.history.push("/report")
+              console.log("clickedddd")
+            }}
+          >
+            close
+          </span>
           <div className="card">
             <div className="card-body">
               <div className="report-details">
@@ -56,24 +62,27 @@ this.props.days && localStorage.setItem("days",this.props.days)
                   <h5>
                     {this.state.reportInfo.title}
                     <i
-                className={status=="pending" ? "material-icons pending" : "material-icons success"}
-                data-toggle="tooltip"
-                data-placement="top"
-                title="Pending"
-              >
-               
-              {status=="pending" ? "timer" : "check_circle"}
-              </i>
+                      className={
+                        status == "pending"
+                          ? "material-icons pending"
+                          : "material-icons success"
+                      }
+                      data-toggle="tooltip"
+                      data-placement="top"
+                      title="Pending"
+                    >
+                      {status == "pending" ? "timer" : "check_circle"}
+                    </i>
                   </h5>
                   <div className="report-content">
                     <div className="report-address ">
                       <p className="flex-start loc-time">
-    <a href="#">{this.state.reportInfo.name}</a>
-    <time>{localStorage.getItem('days')}</time>
+                        <a href="#">{this.state.reportInfo.name}</a>
+                        <time>{localStorage.getItem("days")}</time>
                       </p>
                       <p className="flex-start address">
                         <MaterialIcon icon="room">room</MaterialIcon>
-    <span>{this.state.reportInfo.address}</span>
+                        <span>{this.state.reportInfo.address}</span>
                       </p>
                     </div>
                     {/* <div className="report-status">
@@ -96,7 +105,10 @@ this.props.days && localStorage.setItem("days",this.props.days)
                     <i className="material-icons">attachment</i> attachment
                   </h5>
                   <figure>
-                    <img src={this.state.reportInfo&&this.state.reportInfo.image} alt="attach" />
+                    <img
+                      src={this.state.reportInfo && this.state.reportInfo.image}
+                      alt="attach"
+                    />
                   </figure>
                 </div>
               </div>

@@ -45,7 +45,7 @@ class ReportCard extends Component {
             }}>
             <h5  onClick={() => {
             
-              this.props.dispatch({ type: "reportClicked", id:this.props.id, openSpace:this.props.openSpace , daysCount :this.props.daysCount == 0 ? zero : this.CalcTime(this.props.daysCount) })
+              this.props.dispatch({ type: "reportClicked", id:this.props.id, openSpace:this.props.openSpace , daysCount :this.props.daysCount == 0 ? "Zero Days" : this.CalcTime(this.props.daysCount) })
               
               }} >
               {this.props.title} 
