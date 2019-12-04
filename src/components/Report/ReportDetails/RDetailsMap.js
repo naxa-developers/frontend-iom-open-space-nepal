@@ -47,6 +47,7 @@ const { BaseLayer } = LayersControl;
         
         // ${localStorage.getItem('id')}
         
+      console.log(this.props.openSpace);
       
       
         
