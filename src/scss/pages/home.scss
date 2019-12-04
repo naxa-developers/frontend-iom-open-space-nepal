@@ -388,7 +388,7 @@
 @media screen and (max-width:1640px) {
 
     .banner {
-        min-height: 580px;
+        min-height: 620px;
 
         .banner-content {
             margin-top: 2rem;
@@ -414,8 +414,9 @@
     }
 }
 
-@media screen and (max-width:1366px) {
+@media screen and (max-width:1400px) {
     .banner {
+        min-height: 600px;
         .banner-content {
             .logos {
 
