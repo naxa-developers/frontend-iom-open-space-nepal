@@ -31,7 +31,7 @@ class ReportCard extends Component {
 
   render() {
 
-    console.log("C",this.props.openS);
+  
     
     
 
@@ -46,11 +46,11 @@ class ReportCard extends Component {
               this.props.history.push('/reportdetails')
             }}>
             <h5  onClick={() => {
-                console.log("C",this.props.openS);
+                
 
               
             
-              this.props.dispatch({ type: "reportClicked", id:this.props.id, openSpace:this.props.openS , daysCount :this.props.daysCount == 0 ? "Zero Days" : this.CalcTime(this.props.daysCount) })
+              this.props.dispatch({ type: "reportClicked", id:this.props.id, openSpace:this.props.openS , daysCount :this.props.daysCount == 0 ? "0 Days" : this.CalcTime(this.props.daysCount) })
               
               }} >
               {this.props.title} 
