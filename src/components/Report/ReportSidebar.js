@@ -213,7 +213,7 @@ resetReports = () => {
                             ReportAddress = {e.address}
                             daysCount = {e.count}
                             status = {e.status}
-                            openSpace = {e.open_space}
+                            openS = {e.open_space}
 
                           />
                         );
