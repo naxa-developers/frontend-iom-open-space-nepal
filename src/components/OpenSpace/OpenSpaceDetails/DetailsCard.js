@@ -9,7 +9,7 @@ import NearbyTab from "./NearbyTab/NearbyTab";
 import { withRouter } from "react-router-dom";
 
 import { connect } from "react-redux";
-import Gallery from "./Gallary";
+import Gallery from "./Gallery/Gallery";
 
 class DetailsCard extends Component {
   constructor(props) {
@@ -40,7 +40,7 @@ class DetailsCard extends Component {
         "OpenspaceID"
       )}`
     ).then(response => {
-      console.log(response);
+     
 
       this.setState({ spaceInfo: response.data });
       this.calculatedistance(this.state.spaceInfo.centroid.reverse(), [27, 85]);
@@ -140,7 +140,7 @@ class DetailsCard extends Component {
                       role="tabpanel"
                       aria-labelledby="images_tab"
                     >
-                      <Gallery />
+                      <Gallery id={this.props.id} />
                     </div>
                     <div
                       className={

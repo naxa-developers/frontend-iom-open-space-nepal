@@ -44,7 +44,7 @@ const { BaseLayer } = LayersControl;
     }
     render() {
         this.props.openSpace&&localStorage.setItem("id",this.props.openSpace)
-        console.log("oid", this.props);
+        
         // ${localStorage.getItem('id')}
         
       

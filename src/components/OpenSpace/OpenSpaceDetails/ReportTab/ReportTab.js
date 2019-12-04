@@ -41,7 +41,7 @@ import SingleReport from './SingleReport'
                   
            
                  {   this.state.Reports&&this.state.Reports.map(e => {
-                 return  <li><SingleReport title={e.title}/> </li>
+                 return  <li><SingleReport id={this.props.id} title={e.title}/> </li>
                  })
                  
                 }
