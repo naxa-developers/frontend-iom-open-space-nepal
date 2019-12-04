@@ -12,42 +12,54 @@
             /* form-section */
             .form-section{
                 padding-right: 20px;
-                .form-search{
+                
+                .input-group {
                     border-bottom: 1px solid $color-border;
-                    .form-wrap{
-                        @include flex;
-                        padding-bottom: 10px;
-                        .btn-search{
-                            &:hover{
-                                i{
-                                    &::before{
-                                    color: rgba($green-highlight, 0.40);
-                                    }
-                                }
-                            }
-                            
-                            .search-icon{
-                                vertical-align: middle;
+                    margin: 0 0 3rem 0;
+    
+                    .input-group-prepend {
+                        .input-group-text {
+                            background-color: transparent;
+                            border: 0;
+    
+                            i {
+                                color: $color-green;
+                                font-weight: 600;
                                 &::before{
-                                    color: $green-highlight;
-                                    font-size: 20px;
+                                    color:$color-green;
                                 }
                             }
                         }
-                        .form-control{
-                            font-size: 0.875rem !important;
-                            border: none;
-                            @include radius(0px);
-                            overflow: hidden;
-                            white-space: nowrap;
-                            text-overflow: ellipsis;
-                            &::placeholder{
-                                color: $primary-light;
-                            }
-                            &:focus{
-                                box-shadow: none;
-                                &::placeholder{
-                                    color: $color-bg-text;
+                    }
+    
+                    input.form-control {
+                        border: 0;
+                        -webkit-outline: none;
+                        outline: none;
+    
+                        &:focus {
+                            -webkit-outline: none;
+                            outline: none;
+                            box-shadow: none;
+                        }
+                        @include input-placeholder {
+                            font-size: .875rem;
+                        }
+                    }
+    
+                    .input-group-append {
+                        .input-group-text {
+                            background-color: $green-light;
+                            border: 0;
+                            border-radius: 0;
+                            cursor: pointer;
+    
+                            i {
+                                color: $color-green;
+                                transform: rotate(180deg);
+                                font-weight: 600;
+                                &::before{
+                                    color:$color-green;
                                 }
                             }
                         }
@@ -55,7 +67,16 @@
                 }
 
                 .dropdown-select{
-                    margin-top: 100px;  
+                    margin-top: 100px; 
+                    
+                    .css-2b097c-container{
+                        .css-yk16xz-control,.css-lpahdxg-control{
+                            border-radius: 0;
+                        } 
+                        .css-1okebmr-indicatorSeparator{
+                            display: none;
+                        }
+                    }
                     .categories-dropdown, .document-types-dropdown{
                         margin-bottom: 20px;
                         .bootstrap-select{
@@ -87,14 +108,14 @@
             /* content-section */
             .content-section{
                 .row-section-wrap{
-                    margin-bottom: 80px;
-                    &:nth-child(3){
-                        margin-bottom: 0px;
-                    }
+                    margin-bottom: 3rem;
                     .image-section{
                         @include flexCenter;
                         img{
                             max-width: 150px;
+                        }
+                        &:last-child{
+                            margin-bottom: 0;
                         }
                         
                     }
@@ -102,13 +123,14 @@
                         .content-wrap{
                             width: calc(100% - 30%);
                             float: left;
+                            padding-right: 1rem;
                             .h3-title{
-                                font-size: 1.375rem;
+                                font-size: 1.1rem;
                                 font-weight: 700;
                                 margin-bottom: 10px;
                             }
                             span{
-                                font-size: 0.875rem;
+                                font-size: 0.775rem;
                                 font-weight: 600;
                                 display: block;
                                 color: $primary-light;
@@ -116,12 +138,13 @@
                             }
                             p{
                                 text-align: justify;
-                                font-size: 1rem;
+                                font-size: .875rem;
                                 font-weight: 400;
                             }
                         }
                         .download-section{
                             float: right;
+                            width:30%;
                             .icon-wrap-section{
                                 margin-bottom: 50px;
                                 .btn{
@@ -142,6 +165,13 @@
                                     vertical-align: middle;
                                     font-size: 20px;
                                     border-radius: 50%;
+                                }
+                                a{
+                                    @include flexStart;
+                                    align-items: center;
+                                    div{
+                                        margin-right: .25rem;
+                                    }
                                 }
                                 
                             }
