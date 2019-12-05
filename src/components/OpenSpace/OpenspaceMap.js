@@ -68,7 +68,7 @@ class OS extends Component {
         })
         navigator.permissions.query({name: 'geolocation'}).then((PermissionStatus)=> {
             if(PermissionStatus.state == 'granted'){
-                // this.notify()
+                this.notify()
 
                 
             }else{
@@ -181,7 +181,7 @@ class OS extends Component {
         // this.loadprovince()
 
     }
-    notify = () => toast.info("Turn your location service");
+    notify = () => toast.info("Turn your location service ON for better experience",{autoClose: false});
     render() {
 
         var bounds = [[25.710836919640595, 79.79365377708339],
