@@ -128,9 +128,9 @@ class SearchFilter extends Component {
               <span onClick={() => this.onClear()} className="btn" style={{ cursor: "pointer" }}>Clear all </span>
 
             </div> <br />
-            <a className="openspace-button" onClick={() => this.applyFilter()}>
+            <button className="btn openspace-button" onClick={() => this.applyFilter()}>
               Apply
-          </a>
+          </button>
           </div>
         </div>
 

@@ -30,29 +30,6 @@ class ReportMap extends Component {
 
  
 
-//   displayLegends = () => {
-//     var map=this.props.mapR.current.leafletElement;
-//     var reportLegend = L.DomUtil.create('div', 'info legend'),
-//     grades = [0, 5, 10, 20, 50, 100];
-// // labels = [];
-// div.innerHTML += "<h6>Legend</h6>"
-// div.innerHTML += "<h7>No. of Projects</h7><br>"
-// div.innerHTML +=
-//     '<i style="background:' + this.getColor('red') + '; border:1px solid #d5d5d5"></i> ' +
-//     '0' + '<br>'
-// // loop through our density intervals and generate a label with a colored square for each interval
-// for (var i = 0; i < grades.length - 1; i++) {
-//     div.innerHTML +=
-//         '<i style="background:' + this.getColor(grades[i + 1]) + '"></i> ' +
-//         grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
-// }
-// div.innerHTML +=
-//     '<i style="background:' + this.getColor(200) + '"></i> ' +
-//     '100+' + '<br>'
-// return div;
-// };
-  
-//   }
 
   componentDidMount() {
     this.onload();
