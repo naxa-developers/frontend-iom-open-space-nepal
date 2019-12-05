@@ -8,6 +8,8 @@ import 'leaflet/dist/leaflet.css';
 import Axios from 'axios';
 import L from 'leaflet'
 const { BaseLayer } = LayersControl;
+import EduImage from "../../../img/educationMarker.png";
+import FireImage from "../../../img/fireMarker.png";
 
 
 
@@ -18,7 +20,8 @@ const { BaseLayer } = LayersControl;
           
        this.state = {
            height: null,
-           currentLocation:null
+           currentLocation:null,
+           Edudata: null
           
        };
      };
@@ -32,7 +35,48 @@ const { BaseLayer } = LayersControl;
         height: windowHeight-navHeight
         })
 
-     }
+     };
+     plotNearby = () => {
+      Axios.get(
+          `https://iomapi.naxa.com.np/api/v1/near_by_me?type=education%20facility&count=100&distance=1&id=${localStorage.getItem(
+            "id"
+          )}`
+        ).then(response => {
+          this.setState({
+            Edudata: response.data
+          });
+         
+          
+          this.plotEdu();
+         
+        }
+        
+        ); 
+  
+     
+  
+    
+         
+    
+    
+     
+    };
+    plotEdu = () => {
+      var GenericIcon = L.Icon.extend({
+          options: {
+            iconSize: [20, 25]
+          }
+        });
+        var FireIcon = new GenericIcon({ iconUrl: FireImage});
+        var EduIcon = new GenericIcon({ iconUrl: EduImage});
+      this.state.Edudata.facility.map((e) => {
+          
+          var NearbyMarker = L.marker([e.latitude, e.longitude], {
+              icon: EduIcon
+            }).addTo(this.props.reff.current.leafletElement);
+      })
+  
+    }
      currentloc=()=>{
          
         navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition((location) => {
@@ -49,6 +93,7 @@ const { BaseLayer } = LayersControl;
      
      componentDidMount() {
         this.onload();
+        this.plotNearby();
         this.currentloc()
         Axios.get(`https://iomapi.naxa.com.np/api/v1/single_open_geo_json?id=${localStorage.getItem('id')}`)  
         .then(response=>{

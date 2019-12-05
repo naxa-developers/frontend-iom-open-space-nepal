@@ -3,6 +3,7 @@ import MaterialIcon from "material-icons-react";
 import { connect } from "react-redux";
 import Axios from "axios";
 import { withRouter } from "react-router-dom";
+
 class ReportDetailsCard extends Component {
   constructor(props) {
     super(props);
@@ -37,7 +38,7 @@ class ReportDetailsCard extends Component {
   }
 
   render() {
-    console.log("report", this.props.id);
+
 
     var status = this.state.reportInfo.status;
     this.props.id && localStorage.setItem("reportId", this.props.id);
@@ -104,12 +105,19 @@ class ReportDetailsCard extends Component {
                   <h5>
                     <i className="material-icons">attachment</i> attachment
                   </h5>
-                  <figure>
-                    <img
-                      src={this.state.reportInfo && this.state.reportInfo.image}
-                      alt="attach"
-                    />
-                  </figure>
+               
+          
+                  <figure    style={{ 
+                    height: 400,
+                    width: 200,
+                    backgroundImage: `url('${this.state.reportInfo&&this.state.reportInfo.image}') ` }} >
+                  {/* <img
+                    src=""
+                    // {this.state.reportInfo&&this.state.reportInfo.image}
+                    alt="attach"
+                  /> */}
+                </figure>
+                 
                 </div>
               </div>
             </div>

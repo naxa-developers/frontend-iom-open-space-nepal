@@ -42,4 +42,4 @@ class ReportDetails extends Component {
 }
 
 
-export default (ReportDetails);
+export default ReportDetails;
