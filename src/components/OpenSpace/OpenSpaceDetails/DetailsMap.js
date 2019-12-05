@@ -6,6 +6,7 @@ import {
 } from "react-leaflet";
 import 'leaflet/dist/leaflet.css';
 import Axios from 'axios';
+import L from 'leaflet'
 const { BaseLayer } = LayersControl;
 
 
@@ -16,7 +17,8 @@ const { BaseLayer } = LayersControl;
        this.maps=createRef()
           
        this.state = {
-           height: null
+           height: null,
+           currentLocation:null
           
        };
      };
@@ -31,13 +33,27 @@ const { BaseLayer } = LayersControl;
         })
 
      }
+     currentloc=()=>{
+         
+        navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition((location) => {
+            var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
+            console.log([location.coords.latitude, location.coords.longitude], "aa")
+            // this.props.setcurrentLocation([location.coords.latitude, location.coords.longitude])
+            this.setState({ currentLocation: [location.coords.latitude, location.coords.longitude] })
+            L.circleMarker(latlng, { radius: 6, fillColor: 'red', fillOpacity: 1, weight: 15, opacity: 0.3, color: 'red', }).addTo(this.props.reff.current.leafletElement);
+            console.log("current", this.state.currentLocation)
+           
+        
+        })
+     }
      
      componentDidMount() {
         this.onload();
+        this.currentloc()
         Axios.get(`https://iomapi.naxa.com.np/api/v1/single_open_geo_json?id=${localStorage.getItem('id')}`)  
         .then(response=>{
-            var geo=L.geoJSON(response.data,{fillColor:'blue',fillOpacity:0.3,color:'green',weight:2}).addTo(this.maps.current.leafletElement)
-            this.maps.current.leafletElement.fitBounds(geo.getBounds())
+            var geo=L.geoJSON(response.data,{fillColor:'blue',fillOpacity:0.3,color:'green',weight:2}).addTo(this.props.reff.current.leafletElement)
+            this.props.reff.current.leafletElement.fitBounds(geo.getBounds())
 
         })   
     }
@@ -63,11 +79,11 @@ const { BaseLayer } = LayersControl;
                     animate={true}
                     easeLinearity={0.35}
                     // bounds={this.bounds}
-                    ref={this.maps}
+                    ref={this.props.reff}
                     style={{ height: this.state.height == null ? '80vh': this.state.height,overflow: 'hidden', }}  
                     >
                          <LayersControl position="topright">
-                        <BaseLayer checked={this.state.baselayer ? true : false} ref={this.baseLayer} name="OpenStreetMap">
+                        <BaseLayer  ref={this.baseLayer} name="OpenStreetMap">
                             <TileLayer
                                 attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
