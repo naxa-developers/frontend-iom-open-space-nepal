@@ -22,25 +22,20 @@ class Resourcecard extends Component {
       <>
         <div className="row-section-wrap">
           <div className="row">
+            <div className="col-12 col-md-3">
+                <figure className="image-section">
+                  <img src={this.props.image}  alt="" />
+                </figure>
+              </div>
+
             <div className="col-12 col-md-9">
-              <div className="content-wrapper">
-                <div className="image-section" >
-                  <figure>
-                    <img src={this.props.image}  alt="" />
-                  </figure>
-                </div>
-                <div className="content-col-wrap">
-                  <div className="content-element-wrap">
-                    <h3 className="h3-title">{this.props.title}</h3>
+              <div className="wrapper-content">
+                <div className="content-wrap">
+                <h3 className="h3-title">{this.props.title}</h3>
                     <span className="datetime">{this.props.date}</span>
                     <p>{this.props.description}</p>
-                  </div>
                 </div>
-              </div>
-            </div>
-
-            <div className="col-12 col-md-3">
-              <div className="download-section">
+                <div className="download-section">
                 <div className="icon-wrap-section">
                
                    {/* <button className="btn btn-share"><MaterialIcon icon="share" color="#418fde"></MaterialIcon></button>  */}
@@ -97,6 +92,8 @@ class Resourcecard extends Component {
                   </p>
                 </div>
               </div>
+              </div>
+              
             </div>
           </div>
         </div>

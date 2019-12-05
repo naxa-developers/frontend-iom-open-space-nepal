@@ -46,28 +46,28 @@ class Resources extends Component {
   };
 
   selectFilterNew = (category, dtype) => {
-   
-    
+
+
     var Filtered1 = this.state.resources.filter(i => {
-     if(category!=null&&dtype!=null) {
-       return(
-         category.value==i.category && dtype.value == i.document_type
-         
-         
+      if (category != null && dtype != null) {
+        return (
+          category.value == i.category && dtype.value == i.document_type
+
+
         )
-     } 
-     else if(category!=null&&dtype==null) {
-      
-       
-       return category.value==i.category
       }
-     else if(category==null&&dtype!=null) {
-     
-       
-      return dtype.value==i.document_type
-    }
-     })
-Filtered1.length!=0 && this.chunkArray(Filtered1, 3);
+      else if (category != null && dtype == null) {
+
+
+        return category.value == i.category
+      }
+      else if (category == null && dtype != null) {
+
+
+        return dtype.value == i.document_type
+      }
+    })
+    Filtered1.length != 0 && this.chunkArray(Filtered1, 3);
 
   }
 
@@ -77,25 +77,25 @@ Filtered1.length!=0 && this.chunkArray(Filtered1, 3);
       this.setState({ resources: response.data });
 
       this.chunkArray(this.state.resources, 3);
-    
+
     });
   }
 
   render() {
- 
-    
+
+
     return (
       <div>
         <Navbar />
         <div className="page-wrap">
           <main className="main-content">
-      
+
             <div className="container">
-            
+
               <div className="row-wrap mt-150">
-          
+
                 <div className="row">
-               
+
                   <div className="col-12 col-md-3 col-xl-4">
                     <SearchFilter
                       selectFilter={this.selectFilterNew}
@@ -104,38 +104,39 @@ Filtered1.length!=0 && this.chunkArray(Filtered1, 3);
                       initialData = {this.state.resources}
                       displayInitial = {this.chunkArray}
                     />
+                    
                   </div>
-                 
-                 
+
+
                   <div className="col-12 col-md-9 col-xl-8">
-                
+
                     <div className="content-section">
-                    <div className="loader" style={{textAlign: "center"}}>
-                          { this.state.loaded == false && <LoadingSpinnerBig />}
-                          </div>
-                      {this.state.loaded&&
+                      <div className="loader" style={{ textAlign: "center" }}>
+                        {this.state.loaded == false && <LoadingSpinnerBig />}
+                      </div>
+                      {this.state.loaded &&
                         this.state.slicedResources[
                           this.state.resouceindex
                         ].map(e => (
-                          
+
                           <Resourcecard
-                        
-                          id= {e.id}
+
+                            id={e.id}
                             title={e.title}
                             description={e.description}
                             image={e.image}
-                            audio ={e.audio}
-                            video = {e.video}
-                            publication = {e.publication}
+                            audio={e.audio}
+                            video={e.video}
+                            publication={e.publication}
                             date={e.date}
                             categories={e.category}
                             document_type={e.document_type}
-                           
+
                           />
-                          
+
                         )
-                        
-                        
+
+
                         )}
                     </div>
                   </div>

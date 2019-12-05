@@ -5,7 +5,6 @@ export default class Question extends Component {
   
     render() {
      
-     console.log(this.props.question_data);
      
         
         

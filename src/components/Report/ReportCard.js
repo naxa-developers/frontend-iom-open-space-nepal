@@ -31,9 +31,13 @@ class ReportCard extends Component {
 
   render() {
 
+    console.log("C",this.props.openS);
+    
+    
+
     var timer = "timer"
     var circle ="check_circle"
-  var zero = '0 Days ago'
+ 
     return (
     <>
         <li>
@@ -42,8 +46,11 @@ class ReportCard extends Component {
               this.props.history.push('/reportdetails')
             }}>
             <h5  onClick={() => {
+                console.log("C",this.props.openS);
+
+              
             
-              this.props.dispatch({ type: "reportClicked", id:this.props.id , daysCount :this.props.daysCount == 0 ? zero : this.CalcTime(this.props.daysCount) })
+              this.props.dispatch({ type: "reportClicked", id:this.props.id, openSpace:this.props.openS , daysCount :this.props.daysCount == 0 ? "Zero Days" : this.CalcTime(this.props.daysCount) })
               
               }} >
               {this.props.title} 
@@ -61,14 +68,10 @@ class ReportCard extends Component {
             </h5>
              <div className="loc-time flex-start">
           <a >{this.props.address}</a>
-            <time>{this.props.daysCount == 0 ? zero : this.CalcTime(this.props.daysCount)  }</time>
+            <time>{this.props.daysCount == "0" ? "0 Days" : this.CalcTime(this.props.daysCount)  }</time>
                 
             </div> 
           </div>
-          {/* <div className="report-status">
-            <label className="unsuccess">Urgency</label>
-            <span>{this.props.urgency}</span>
-          </div> */}
         </li>
      </>
     );

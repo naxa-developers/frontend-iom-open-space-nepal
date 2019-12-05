@@ -17,8 +17,7 @@ class DetailsHeader extends Component {
 
 
   render() {
-    console.log(this.props.shortest);
-
+    
     return (
       <div className="space-details">
         <div className="space">

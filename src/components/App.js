@@ -28,7 +28,7 @@ class App extends Component {
 
     return (
      
-      <Router>
+      <Router >
           <Switch>
             <Route
               exact

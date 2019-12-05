@@ -26,7 +26,8 @@ const rootReducer = (state = initState, action) => {
             return {
                 ...state,
                 reportID: action.id,
-                daysCount: action.daysCount
+                daysCount: action.daysCount,
+                openSpace: action.openSpace
             }
         case "spaceClicked":
             return {
