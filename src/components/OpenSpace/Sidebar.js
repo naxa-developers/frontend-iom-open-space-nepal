@@ -412,6 +412,8 @@ class Sidebar extends Component {
       mrk.addTo(this.state.OSmarkers)
 
     });
+    this.props.mapRefs.current.leafletElement.fitBounds(this.state.OSmarkers.getBounds())
+
   };
 
   removeRoutes=()=>{
