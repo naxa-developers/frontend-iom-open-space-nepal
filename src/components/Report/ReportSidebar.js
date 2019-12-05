@@ -5,6 +5,9 @@ import ReportCard from "./ReportCard";
 import ReportFilter from "./ReportFilter";
 import LoadingSpinnerBig from "./LoadingSpinnerBig";
 import { connect } from "react-redux";
+import 'leaflet.markercluster/dist/MarkerCluster.css'
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
+require('leaflet.markercluster')
 
 class ReportSidebar extends Component {
   constructor(props) {
@@ -18,7 +21,8 @@ class ReportSidebar extends Component {
       loading: true,
       isFocused: false,
       reportLengend: L.control({ position: "bottomright" }),
-      reportsMarkers: L.featureGroup()
+      reportsMarkers: L.markerClusterGroup()
+ 
     };
   }
 

@@ -8,6 +8,9 @@ import 'leaflet/dist/leaflet.css';
 import Axios from 'axios';
 import { connect } from 'react-redux';
 const { BaseLayer } = LayersControl;
+import 'leaflet.markercluster/dist/MarkerCluster.css'
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
+require('leaflet.markercluster')
 
 
 
