@@ -25,8 +25,12 @@ class DetailsHeader extends Component {
             <i className="material-icons">directions</i>
           </div>
         </div>
-        <figure>
-          <img src={this.props.image?this.props.image:Tent} alt="open space " />
+        <figure style={{ 
+                    height: 200,
+                    width: 200,
+                    backgroundImage: `url(${this.props.image?this.props.image:Tent}) ` }}
+        >
+          {/* <img src={this.props.image?this.props.image:Tent} alt="open space " /> */}
         </figure>
       </div>
     );

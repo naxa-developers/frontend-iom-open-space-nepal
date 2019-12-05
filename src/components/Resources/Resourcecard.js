@@ -23,8 +23,11 @@ class Resourcecard extends Component {
         <div className="row-section-wrap">
           <div className="row">
             <div className="col-12 col-md-3">
-                <figure className="image-section">
-                  <img src={this.props.image}  alt="" />
+                <figure className="image-section" style={{ 
+                    height: 150,
+                    width: 150,
+                    backgroundImage: `url('${this.props.image}') ` }} >
+                  {/* <img src={this.props.image}  alt="" /> */}
                 </figure>
               </div>
 

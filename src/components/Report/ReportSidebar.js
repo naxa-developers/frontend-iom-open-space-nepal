@@ -57,7 +57,7 @@ class ReportSidebar extends Component {
       report.title.toLowerCase().includes(this.state.keywords.toLowerCase())
     );
 
-    this.setState({ reportsToShow: filteredReports });
+    this.setState({ reportData: filteredReports });
   };
 
   loadReports = () => {
@@ -98,13 +98,12 @@ class ReportSidebar extends Component {
           " </p> </div> </div>";
 
         marker.bindPopup(popOne);
-        this.state.reportsMarkers&&this.props.mapR.current.leafletElement.fitBounds(
-          this.state.reportsMarkers.getBounds()
-        );
       
       });
      
-      
+      this.state.reportsMarkers&&this.props.mapR.current.leafletElement.fitBounds(
+        this.state.reportsMarkers.getBounds()
+      );
   };
   addReportLegend = () => {
     this.state.reportLengend.onAdd = map => {
@@ -206,7 +205,7 @@ class ReportSidebar extends Component {
                             date={e.date}
                             ReportLocation={e.location}
                             ReportAddress={e.address}
-                            daysCount={e.count}
+                            daysC={e.count}
                             status={e.status}
                             openS={e.open_space}
                           />

@@ -32,8 +32,10 @@ class ReportCard extends Component {
   render() {
 
   
+    console.log("days",this.props.daysCount);
     
-    
+    let reportDays =  this.props.daysC == "0" ? "0 Days" : this.CalcTime(this.props.daysC);
+  
 
     var timer = "timer"
     var circle ="check_circle"
@@ -50,7 +52,7 @@ class ReportCard extends Component {
 
               
             
-              this.props.dispatch({ type: "reportClicked", id:this.props.id, openSpace:this.props.openS , daysCount :this.props.daysCount == 0 ? "0 Days" : this.CalcTime(this.props.daysCount) })
+              this.props.dispatch({ type: "reportClicked", id:this.props.id, openSpace:this.props.openS , daysCount :reportDays })
               
               }} >
               {this.props.title} 
@@ -68,7 +70,7 @@ class ReportCard extends Component {
             </h5>
              <div className="loc-time flex-start">
           <a >{this.props.address}</a>
-            <time>{this.props.daysCount == "0" ? "0 Days" : this.CalcTime(this.props.daysCount)  }</time>
+            <time>{reportDays }</time>
                 
             </div> 
           </div>
