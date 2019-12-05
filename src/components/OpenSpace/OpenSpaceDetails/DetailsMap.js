@@ -53,7 +53,7 @@ const { BaseLayer } = LayersControl;
         Axios.get(`https://iomapi.naxa.com.np/api/v1/single_open_geo_json?id=${localStorage.getItem('id')}`)  
         .then(response=>{
             var geo=L.geoJSON(response.data,{fillColor:'blue',fillOpacity:0.3,color:'green',weight:2}).addTo(this.props.reff.current.leafletElement)
-            this.props.reff.current.leafletElement.fitBounds(geo.getBounds())
+            this.props.reff.current.leafletElement.fitBounds(geo.getBounds(),{padding: [200,200]})
 
         })   
     }
