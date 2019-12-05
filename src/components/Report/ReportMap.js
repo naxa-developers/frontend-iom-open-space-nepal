@@ -3,7 +3,8 @@ import { Map as LeafletMap, TileLayer, LayersControl } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import Axios from "axios";
 const { BaseLayer } = LayersControl;
-import L from 'leaflet'
+import L from 'leaflet';
+
 
 class ReportMap extends Component {
   constructor(props) {
@@ -55,7 +56,7 @@ class ReportMap extends Component {
           dragging={true}
           animate={true}
           easeLinearity={0.35}
-          bounds={bounds}
+          // bounds={bounds}
           ref={this.props.mapR}
           style={{
             height: this.state.height == null ? "80vh" : this.state.height,
