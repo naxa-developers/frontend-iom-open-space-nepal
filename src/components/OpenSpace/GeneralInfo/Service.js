@@ -7,6 +7,7 @@ import React, { Component } from 'react'
     render() {
 
 
+
         var yes = "check_circle"
         var no = "cancel"
 

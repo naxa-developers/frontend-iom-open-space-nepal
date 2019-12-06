@@ -38,23 +38,18 @@ class ReportFilter extends Component {
     };
   }
 
-  onDaysChange = e => {
-    this.setState({ valueDays: e ,
-    showApply: !this.state.showApply
-    });
-  };
 
   onStatusChange = e => {
-    this.setState({ valueStatus: e,
-      showApply: !this.state.showApply
+   
+     
+   
+    this.setState({ valueStatus: e
+      // showApply: !this.state.showApply
      });
+
   };
 
-  onUrgencyChange = e => {
-    this.setState({ valueUrgency: e,
-      showApply: !this.state.showApply
-     });
-  };
+ 
   onClear = () => {
     this.setState({ valueDays: null, valueStatus: null, valueUrgency: null });
     this.props.resetReports();
@@ -63,10 +58,12 @@ class ReportFilter extends Component {
   applyFilter = () => {
     this.props.toggleLoader();
    
+   
     const status = this.state.valueStatus;
     const start_date = this.state.startDate;
     const end_date = this.state.endDate;
-   const url = `http://139.59.67.104:8011/api/v1/report/?start_date=${start_date}%2006:00Z&end_date=${end_date}%2006:00Z&status=${status.label.toLowerCase()}`
+    const url = `http://139.59.67.104:8011/api/v1/report/?start_date=${start_date}&end_date=${end_date}&status=${status.label.toLowerCase()}`
+  
     Axios.get(url)
     .then(response => {
       
@@ -84,6 +81,8 @@ class ReportFilter extends Component {
     
   };
   handleSelect = (range, v) => {
+ 
+    
     this.setState({
       startDate: moment(v.startDate._d).format('YYYY-MM-DD'),
       endDate: moment(v.endDate._d).format('YYYY-MM-DD')
@@ -99,7 +98,9 @@ class ReportFilter extends Component {
       <div className="map-filter">
        
         <div className="filter-option">
-        <DateRangePicker onApply={(range,v) => this.handleSelect(range, v)}>
+        <DateRangePicker onApply={(range,v) => this.handleSelect(range, v)}
+        onChange={this.onDaysChange}
+        >
       <button className="btn btn-outline-primary dropdown-toggle" >   Select Range</button>
       
     </DateRangePicker>
@@ -123,7 +124,8 @@ class ReportFilter extends Component {
 
             <span onClick={() => this.onClear()}>clear all</span>
           </div>
-          <button disabled ={!this.state.showApply} className="openspace-button" onClick={() => this.applyFilter()}>
+        
+          <button  className="openspace-button" onClick={() => this.applyFilter()}>
             Apply
           </button>
         </div>
