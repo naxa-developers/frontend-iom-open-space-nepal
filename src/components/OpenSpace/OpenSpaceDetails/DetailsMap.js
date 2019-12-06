@@ -8,7 +8,7 @@ import 'leaflet/dist/leaflet.css';
 import Axios from 'axios';
 import L from 'leaflet'
 const { BaseLayer } = LayersControl;
-import EduImage from "../../../img/educationMarker.png";
+import EduImage from "../../../img/educationMarker.svg";
 import FireImage from "../../../img/fireMarker.png";
 
 
@@ -64,7 +64,7 @@ import FireImage from "../../../img/fireMarker.png";
     plotEdu = () => {
       var GenericIcon = L.Icon.extend({
           options: {
-            iconSize: [10, 10]
+            iconSize: [40, 30]
           }
         });
         var FireIcon = new GenericIcon({ iconUrl: FireImage});
@@ -98,7 +98,7 @@ import FireImage from "../../../img/fireMarker.png";
         Axios.get(`https://iomapi.naxa.com.np/api/v1/single_open_geo_json?id=${localStorage.getItem('id')}`)  
         .then(response=>{
             var geo=L.geoJSON(response.data,{fillColor:'blue',fillOpacity:0.3,color:'green',weight:2}).addTo(this.props.reff.current.leafletElement)
-            this.props.reff.current.leafletElement.fitBounds(geo.getBounds())
+            this.props.reff.current.leafletElement.fitBounds(geo.getBounds(),{padding: [200,200]})
 
         })   
     }
