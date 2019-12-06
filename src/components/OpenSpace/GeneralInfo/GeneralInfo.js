@@ -82,7 +82,7 @@ class GeneralInfo extends Component {
                             return (
                                 <ul>
                                    
-                                        <Service name = {service.service.name} desc={service.description}  />
+                                        <Service icon={service.service.icon} name = {service.service.name} desc={service.description}  />
                                    
                                 </ul>
                             )

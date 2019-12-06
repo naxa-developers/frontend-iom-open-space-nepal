@@ -64,7 +64,7 @@ import FireImage from "../../../img/fireMarker.png";
     plotEdu = () => {
       var GenericIcon = L.Icon.extend({
           options: {
-            iconSize: [20, 25]
+            iconSize: [10, 10]
           }
         });
         var FireIcon = new GenericIcon({ iconUrl: FireImage});
