@@ -4,7 +4,6 @@ import {connect } from 'react-redux';
 import gov from '../../img/gov.png';
 import iom from '../../img/iom.png';
 import ccm from '../../img/ccm.png';
-import Background from "../../img/banner-shape.png";
 import Axios from 'axios';
 
  class Banner extends Component {

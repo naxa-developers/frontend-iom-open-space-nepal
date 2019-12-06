@@ -17,6 +17,7 @@ class DetailsHeader extends Component {
 
 
   render() {
+   
     
     return (
       <div className="space-details">
@@ -49,12 +50,10 @@ class DetailsHeader extends Component {
             <i className="material-icons">directions</i>
           </div>
         </div>
-        <figure style={{ 
-                    height: 200,
-                    width: 200,
-                    backgroundImage: `url(${this.props.image?this.props.image:Tent}) ` }}
-        >
-          {/* <img src={this.props.image?this.props.image:Tent} alt="open space " /> */}
+        {/* style={{ height: 300, width:300,backgroundImage: `url('${Tent}')`}} */}
+        <figure 
+            >
+          <img src={this.props.image?this.props.image:Tent} alt="open space " />
         </figure>
       </div>
     );

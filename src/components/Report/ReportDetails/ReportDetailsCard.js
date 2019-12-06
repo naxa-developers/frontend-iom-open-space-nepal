@@ -108,8 +108,8 @@ class ReportDetailsCard extends Component {
                
           
                   <figure    style={{ 
-                    height: 400,
-                    width: 200,
+                    height: 300,
+                    width: 600,
                     backgroundImage: `url('${this.state.reportInfo&&this.state.reportInfo.image}') ` }} >
                   {/* <img
                     src=""

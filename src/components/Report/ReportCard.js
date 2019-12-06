@@ -32,7 +32,7 @@ class ReportCard extends Component {
   render() {
 
   
-    console.log("days",this.props.daysCount);
+    console.log("days",this.props);
     
     let reportDays =  this.props.daysC == "0" ? "0 Days" : this.CalcTime(this.props.daysC);
   
@@ -69,7 +69,7 @@ class ReportCard extends Component {
               </i> 
             </h5>
              <div className="loc-time flex-start">
-          <a >{this.props.address}</a>
+          <a >{this.props.ReportAddress}</a>
             <time>{reportDays }</time>
                 
             </div> 

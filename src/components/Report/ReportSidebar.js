@@ -60,8 +60,15 @@ class ReportSidebar extends Component {
     let filteredReports = this.state.reports.filter(report =>
       report.title.toLowerCase().includes(this.state.keywords.toLowerCase())
     );
+console.log("ff", filteredReports);
 
-    this.setState({ reportData: filteredReports });
+this.props.dispatch({
+       
+        
+  type:"ReportFilter",
+  data: filteredReports
+
+})
   };
 
   loadReports = () => {
