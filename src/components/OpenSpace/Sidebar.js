@@ -334,7 +334,7 @@ class Sidebar extends Component {
     var mrk = new L.circleMarker([e.centroid[1], e.centroid[0]], { radius: 6, fillColor: 'green', fillOpacity: 1, weight: 15, opacity: 0.3 ,color:'green',pane:'nearby'})
       var popup = "<h5>" + e.title + "</h5>" +
         "<h6>" + e.municipality + "</h6>"
-      var pop = "<div class='bind-popup'> <div class='bind-header'><h5>" + e.title + "</h5> <p><i class='fa fa-map-marker'></i>" + e.municipality + "</p><a  class='openSpace_btn' href='/#/OpenSpaceDetails'>View Details</a></div></div>"
+      var pop = "<div class='bind-popup'> <div class='bind-header'><h5>" + e.title + "</h5> <h3>A</h2><i class='material-icons'>near_me</i> <p><i class='fa fa-map-marker'></i>" + e.municipality + "</p><a  class='openSpace_btn' href='/#/OpenSpaceDetails'>View Details</a></div></div>"
 
       mrk.bindPopup(pop)
       mrk.on('click', () => {
@@ -394,7 +394,7 @@ class Sidebar extends Component {
       var mrk = new L.circleMarker([e.centroid[1], e.centroid[0]], { radius: 6, fillColor: '#174BDD', fillOpacity: 1, weight: 15, opacity: 0.3,pane:'Oslanding'})
       var popup = "<h5>" + e.title + "</h5>" +
         "<h6>" + e.municipality + "</h6>" 
-      var pop = "<div class='bind-popup'> <div class='bind-header'><h5>" + e.title + "</h5> <p><i class='fa fa-map-marker'></i>" + e.municipality + "</p><a  class='openSpace_btn' href='/#/OpenSpaceDetails'>View Details</a></div></div>"
+      var pop = "<div class='bind-popup'> <div class='bind-header'><h5>" + e.title + "</h5> <p><i class='material-icons' style='font-size:16px'>room</i>" + e.municipality + "</p><a  class='openSpace_btn' href='/#/OpenSpaceDetails'>View Details</a></div></div>"
 
       mrk.bindPopup(pop)
       mrk.on('click', () => {
