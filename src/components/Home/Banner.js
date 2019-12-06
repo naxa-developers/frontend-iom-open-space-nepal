@@ -5,6 +5,7 @@ import gov from '../../img/gov.png';
 import iom from '../../img/iom.png';
 import ccm from '../../img/ccm.png';
 import Axios from 'axios';
+import MaterialIcon from 'material-icons-react';
 
  class Banner extends Component {
      constructor(props) {
@@ -69,7 +70,8 @@ import Axios from 'axios';
                        <br />
                        {this.props.language == '0' ? this.state.loader && this.state.texts[0].title3 : this.state.loader && this.state.texts[0].title_nep3  }
                        </h1>
-                        <p>{this.props.language == '0' ? this.state.loader && this.state.texts[0].description : this.state.loader && this.state.texts[0].description_nep}</p>
+                        <p>
+                        {this.props.language == '0' ? this.state.loader && this.state.texts[0].description : this.state.loader && this.state.texts[0].description_nep}</p>
                         </div>
                         
                     </div>

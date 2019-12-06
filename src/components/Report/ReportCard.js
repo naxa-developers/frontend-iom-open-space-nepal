@@ -32,7 +32,7 @@ class ReportCard extends Component {
   render() {
 
   
-    console.log("days",this.props);
+   
     
     let reportDays =  this.props.daysC == "0" ? "0 Days" : this.CalcTime(this.props.daysC);
   

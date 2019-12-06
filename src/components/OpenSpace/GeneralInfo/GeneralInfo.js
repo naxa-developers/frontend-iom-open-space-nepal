@@ -13,6 +13,7 @@ class GeneralInfo extends Component {
         var actual_perc = usable_perc.toFixed(1) ;
         var width_perc = actual_perc+ '%'; 
 
+
    
         
         return (
@@ -81,7 +82,7 @@ class GeneralInfo extends Component {
                             return (
                                 <ul>
                                    
-                                        <Service name = {service.name} desc={service.description}  />
+                                        <Service name = {service.service.name} desc={service.description}  />
                                    
                                 </ul>
                             )
