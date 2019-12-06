@@ -45,10 +45,17 @@ class DetailsCard extends Component {
     Axios.get(
       `https://iomapi.naxa.com.np/api/v1/open_space/${localStorage.getItem("OpenspaceID")}`
     ).then(response =>  {
-      console.log(response)
+      console.log(response,'anananan')
 
       this.setState({ spaceInfo: response.data })
       this.currentloc()
+      var mrk = new L.circleMarker([response.data.centroid[1], response.data.centroid[0]], { radius: 6, fillColor: '#174BDD', fillOpacity: 1, weight: 15, opacity: 0.3})
+      // var shortest=this.getshortestdistance(this.state.spaceInfo.centroid.reverse(),this.state.currentLocation)
+      var pop = "<div class='bind-popup'> <div class='bind-header'><h5>" + response.data.title + "</h5> <p><i class='material-icons' style='font-size:16px'>room</i>" + response.data.municipality + "</p></div></div>"
+
+      mrk.bindPopup(pop)
+      mrk.addTo(this.props.reff.current.leafletElement)
+      mrk.fire('click')
      
 
 
@@ -280,6 +287,7 @@ class DetailsCard extends Component {
         shortest: (shortest / 1000).toFixed(2),
         calculatedistance: false
       });
+      return shortest
     });
   };
 
