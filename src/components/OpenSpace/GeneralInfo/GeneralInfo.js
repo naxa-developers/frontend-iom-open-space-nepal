@@ -13,6 +13,7 @@ class GeneralInfo extends Component {
         var actual_perc = usable_perc.toFixed(1) ;
         var width_perc = actual_perc+ '%'; 
 
+
    
         
         return (
@@ -61,19 +62,16 @@ class GeneralInfo extends Component {
                 </div>
                 <div className="suggested-content my-5">
                     <h5>Suggested Use</h5>
-                    <div className="suggested-list">
-
-                        <ul>
-                            {/* <li>{this.props.suggested_use&&this.props.suggested_use[0].name}</li> */}
-
-                        </ul>
-                    </div>
+                   
                     <div className="suggested-list ">
                         {this.props.suggested_use && this.props.suggested_use.map((use) => {
+                           
+                            
                             return (
                                 <ul>
-
-                                    <li>{use.name}  </li>
+                                    
+                      
+                                    <li>    <img src ={use.suggested_use.icon} style={{height:30, width:"auto"}}  ></img>  {use.suggested_use.name}  </li>
                                 </ul>
                             )
                         })}
@@ -83,7 +81,8 @@ class GeneralInfo extends Component {
                         {this.props.services && this.props.services.map((service) => {
                             return (
                                 <ul>
-                                        <Service name = {service.name} desc={service.description}  />
+                                   
+                                        <Service name = {service.service.name} desc={service.description}  />
                                    
                                 </ul>
                             )

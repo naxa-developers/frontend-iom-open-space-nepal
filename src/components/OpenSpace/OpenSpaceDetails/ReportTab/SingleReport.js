@@ -1,15 +1,19 @@
 import React, { Component } from "react";
 import {withRouter} from 'react-router-dom';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
+
 
 class SingleReport extends Component {
   render() {
+   console.log("fghjghjg", this.props);
+   
+    
     return (
         <>
         <div className="report-content">
         <h5 onClick={() =>   {
 this.props.history.push('/reportdetails')
-this.props.dispatch({type:"reportClicked", id: this.props.id})
+this.props.dispatch({type:'reportClicked', id: this.props.id})
         }
         
       
@@ -27,7 +31,7 @@ this.props.dispatch({type:"reportClicked", id: this.props.id})
 
         <div className="loc-time flex-start">
     <a href="#">{this.props.name}</a>
-          <time>1 week ago</time>
+    <time>{this.props.days} days ago</time>
         </div>
         </div>
 
@@ -40,4 +44,7 @@ this.props.dispatch({type:"reportClicked", id: this.props.id})
     );
   }
 }
+
+
+
 export default connect()(withRouter(SingleReport));

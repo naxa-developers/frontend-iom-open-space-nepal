@@ -45,8 +45,7 @@ class DetailsCard extends Component {
     Axios.get(
       `https://iomapi.naxa.com.np/api/v1/open_space/${localStorage.getItem("OpenspaceID")}`
     ).then(response =>  {
-      console.log(response,'anananan')
-
+      
       this.setState({ spaceInfo: response.data })
       this.currentloc()
       var mrk = new L.circleMarker([response.data.centroid[1], response.data.centroid[0]], { radius: 6, fillColor: '#174BDD', fillOpacity: 1, weight: 15, opacity: 0.3})
@@ -98,7 +97,7 @@ class DetailsCard extends Component {
  fetchroute = (first, second) => {
   // L.tooltip().setLatLng(first).setContent('<h6>latlng</h6>').addTo(this.props.mapRefs.current.leafletElement)
   // map.closeTooltip();
-  console.log(first,second)
+  
 
   this.state.Routespaths = []
   this.state.Routes.eachLayer((r) => this.state.Routes.removeLayer(r))

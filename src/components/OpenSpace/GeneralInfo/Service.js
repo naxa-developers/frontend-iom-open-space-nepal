@@ -7,6 +7,7 @@ import React, { Component } from 'react'
     render() {
 
 
+
         var yes = "check_circle"
         var no = "cancel"
 
@@ -19,7 +20,10 @@ import React, { Component } from 'react'
 
 
         return (
-            <li>{this.props.name+ ' ' }  
+            <li>
+                 {/* <i
+                                                                        class="humanitarian-icon-Internet humanitarian-icons"> </i> */}
+                {this.props.name+ ' ' }  
          <i class={result ? "material-icons check" : "material-icons cross"}>{result? yes :no  }</i> 
             </li>
 

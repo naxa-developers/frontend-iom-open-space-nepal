@@ -51,7 +51,7 @@ class ReportDetailsCard extends Component {
             class="sidebar-close material-icons"
             onClick={() => {
               this.props.history.push("/report")
-              console.log("clickedddd")
+              
             }}
           >
             close
@@ -97,7 +97,7 @@ class ReportDetailsCard extends Component {
                   <span>Hello,</span>
                   <p>{this.state.reportInfo.message}</p>
                   <div className="reporter">
-                    <span>Regards</span>
+                    <span>Regards,</span>
                     <h6>{this.state.reportInfo.reported_by}</h6>
                   </div>
                 </div>
@@ -108,8 +108,8 @@ class ReportDetailsCard extends Component {
                
           
                   <figure    style={{ 
-                    height: 400,
-                    width: 200,
+                    height: 300,
+                    width: 600,
                     backgroundImage: `url('${this.state.reportInfo&&this.state.reportInfo.image}') ` }} >
                   {/* <img
                     src=""

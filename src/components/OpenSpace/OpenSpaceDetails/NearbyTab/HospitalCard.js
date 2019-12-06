@@ -30,7 +30,7 @@ class HospitalCard extends Component {
 
     return (
       <>
-        <div className="facility-overview flex-between">
+        {/* <div className="facility-overview flex-between">
           <div className="overview-item ">
             <h6>1</h6>
             <p>district hospital</p>
@@ -43,7 +43,7 @@ class HospitalCard extends Component {
             <h6>1</h6>
             <p>private Hospital</p>
           </div>
-        </div>
+        </div> */}
         <span>
         {this.state.data &&
           this.state.data.facility.map(e => {

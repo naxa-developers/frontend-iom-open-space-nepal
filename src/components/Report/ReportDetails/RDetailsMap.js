@@ -50,7 +50,7 @@ require('leaflet.markercluster')
         
         // ${localStorage.getItem('id')}
         
-      console.log(this.props.openSpace);
+      console.log("R",this.props);
       
       
         
@@ -135,7 +135,7 @@ require('leaflet.markercluster')
             
           const mapStateToPros = (state) => {
             return{
-              openSpace : state.openSpace
+              openSpace : state.reportID
             }
            
           }      
