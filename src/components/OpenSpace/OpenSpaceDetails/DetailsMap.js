@@ -8,7 +8,7 @@ import 'leaflet/dist/leaflet.css';
 import Axios from 'axios';
 import L from 'leaflet'
 const { BaseLayer } = LayersControl;
-import EduImage from "../../../img/educationMarker.png";
+import EduImage from "../../../img/educationMarker.svg";
 import FireImage from "../../../img/fireMarker.png";
 
 
@@ -64,7 +64,7 @@ import FireImage from "../../../img/fireMarker.png";
     plotEdu = () => {
       var GenericIcon = L.Icon.extend({
           options: {
-            iconSize: [10, 10]
+            iconSize: [40, 30]
           }
         });
         var FireIcon = new GenericIcon({ iconUrl: FireImage});
