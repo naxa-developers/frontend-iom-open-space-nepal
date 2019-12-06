@@ -19,7 +19,10 @@ import React, { Component } from 'react'
 
 
         return (
-            <li>{this.props.name+ ' ' }  
+            <li>
+                 {/* <i
+                                                                        class="humanitarian-icon-Internet humanitarian-icons"> </i> */}
+                {this.props.name+ ' ' }  
          <i class={result ? "material-icons check" : "material-icons cross"}>{result? yes :no  }</i> 
             </li>
 

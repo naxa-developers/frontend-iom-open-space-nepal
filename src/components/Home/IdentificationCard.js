@@ -6,8 +6,10 @@ import React, { Component } from 'react'
         
         return (
             <div className="post-meta">
-            <figure>
-                <img src={this.props.image} alt="post" />
+            <figure style={{ height: 300, width:500,backgroundImage: `url('${this.props.image}')`}}
+            >
+            
+                {/* <img src={this.props.image} alt="post" /> */}
             </figure>
     <h5><span>{this.props.no+1}</span>{this.props.title}</h5>
        </div>

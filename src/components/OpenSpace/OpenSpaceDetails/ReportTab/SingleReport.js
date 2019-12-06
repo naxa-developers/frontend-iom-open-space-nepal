@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import {withRouter} from 'react-router-dom';
-import { connect } from 'react-redux';
+
 
 class SingleReport extends Component {
   render() {
+   
+    
     return (
         <>
         <div className="report-content">
@@ -27,7 +29,7 @@ this.props.dispatch({type:"reportClicked", id: this.props.id})
 
         <div className="loc-time flex-start">
     <a href="#">{this.props.name}</a>
-          <time>1 week ago</time>
+    <time>{this.props.days} days ago</time>
         </div>
         </div>
 
@@ -40,4 +42,6 @@ this.props.dispatch({type:"reportClicked", id: this.props.id})
     );
   }
 }
-export default connect()(withRouter(SingleReport));
+
+
+export default withRouter(SingleReport);
