@@ -45,6 +45,7 @@ class DetailsCard extends Component {
     Axios.get(
       `https://iomapi.naxa.com.np/api/v1/open_space/${localStorage.getItem("OpenspaceID")}`
     ).then(response =>  {
+      console.log(response.data,'resdata')
       
       this.setState({ spaceInfo: response.data })
       this.currentloc()
@@ -133,6 +134,39 @@ class DetailsCard extends Component {
       }
       this.state.Routespaths[0].path.bringToFront()
       var activeroute = 0
+      this.state.Routespaths.map((e)=>{
+        e.path.on('click',()=>{
+          this.state.Routespaths.map((i)=>{
+            i.path.setStyle({color:'grey'})
+          })
+          this.state.Routespaths[e.id].path.setStyle({color:'#174BDD'})
+          this.state.Routespaths[e.id].path.bringToFront();
+          var doac = document.getElementsByClassName('desccard')
+          // console.log(doac,doc.length)
+          // doac.map((a)=>{
+          //   console.log(a)
+          // })
+          for(var i=0;i<doac.length;i++){
+            // console.log(doac[i],doac[i].getAttribute('name'))
+            // var selectindex=doac[i].getAttribute('name')
+            // var filtered=this.state.Routespaths.filter((d)=>d.id==selectindex)
+            doac[i].classList.contains('pathactive')&&doac[i].classList.remove('pathactive')
+            console.log(doac[i].getAttribute('name')==e.id)
+            doac[i].getAttribute('name')==e.id&&doac[i].classList.add('pathactive')
+            
+
+          }
+
+
+
+
+
+
+
+
+        })
+
+      })
 
 
 
@@ -173,8 +207,8 @@ class DetailsCard extends Component {
 
           var descCard = `<div  class=${class1} name=` + e.id + ">" +
             "<h6>" + e.description + "<span>" + Shortest+ "</span>"+"</h6>" +
-            "<i class='material-icons'>near_me</i>"+
-            "<span>" + e.distance + " m" +
+            "<p><i class='material-icons'>near_me</i>"+
+            "<span>" + e.distance + " m" +"</p>"
           "<div>";
 
 
@@ -366,7 +400,7 @@ class DetailsCard extends Component {
                       role="tabpanel"
                       aria-labelledby="report_tab"
                     >
-                      <ReportTab id={this.props.id} />
+                      <ReportTab id={this.props.id}  />
                     </div>
                     <div
                       className={
@@ -378,7 +412,7 @@ class DetailsCard extends Component {
                       role="tabpanel"
                       aria-labelledby="nearby_tab"
                     >
-                      <NearbyTab id={this.props.id} />
+                      <NearbyTab  reff={this.props.reff} OSlatlng={this.state.spaceInfo.centroid} id={this.props.id} />
                     </div>
                   </div>
                 </div>
