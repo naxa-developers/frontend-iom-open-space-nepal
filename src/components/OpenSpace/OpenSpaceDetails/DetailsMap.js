@@ -171,7 +171,7 @@ import FireImage from "../../../img/fireMarker.png";
                             />
                         </BaseLayer>
                       
-                        <BaseLayer name="Mapbox Streets" checked={true}  >
+                        <BaseLayer name="Mapbox Streets"  checked={true}  >
                         <TileLayer
 
                                 attribution='&amp;copy <a href="http://maps.google.com">Google Maps</a> contributors'
