@@ -77,6 +77,7 @@ class GeneralInfo extends Component {
                         })}
 
                     </div>
+                    <h5>On-site Amenities</h5>
                     <div className="suggested-list ">
                         {this.props.services && this.props.services.map((service) => {
                             return (
@@ -104,7 +105,20 @@ class GeneralInfo extends Component {
                    
                     </p>
                 </div>
-                <AssementList className="toggleModal" question_data ={this.props.question_data}/>
+                <AssementList className="toggleModal" 
+                question_data ={this.props.question_data}
+                id={this.props.id}
+                capacity={this.props.capacity}
+                total_area={this.props.total_area}
+                usable_area={this.props.usable_area}
+                suggested_use={this.props.suggested_use}
+                services={this.props.services}
+                title={this.props.title}
+                question_data={this.props.question_data}
+                description={this.props.description}
+                
+                
+                />
             </div>
         )
     }

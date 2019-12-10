@@ -11,11 +11,18 @@ const AssementList = (props) => {
         question_data 
     } = props;
 
+    const {
+        title,  total_area, usable_area, capacity
+    } = props;
+
    
   
     const [modal, setModal] = useState(false);
-    const toggle = () => setModal(!modal);
+    const [modalOne, setModalOne] = useState(false);
 
+    const toggle = () => setModal(!modal);
+    const toggle1 = () =>  setModalOne(!modalOne); 
+    
 
 
     return (
@@ -28,7 +35,7 @@ const AssementList = (props) => {
                         General Information Assessment
                         <i className="material-icons">chevron_right</i>
                     </li>
-                    <li data-toggle="modal" data-target="#assessment-popup" onClick={toggle}>
+                    <li data-toggle="modal" data-target="#assessment-popup" onClick={toggle1}>
                         Environment Assessment
                         <i className="material-icons">chevron_right</i>
                     </li>
@@ -36,8 +43,8 @@ const AssementList = (props) => {
 
             </div>
       
-            <Modal isOpen={modal} toggle={toggle} className={className}  centered ="true" size = "lg" zIndex="99999">
-        <ModalHeader toggle={toggle}>General Information Assessment
+            <Modal isOpen={modalOne} toggle={toggle1} className={className}  centered ="true" size = "lg" zIndex="99999">
+        <ModalHeader toggle={toggle1}>Environment Assessment
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -51,6 +58,54 @@ const AssementList = (props) => {
                             
                            
                         </ul>
+                    </div>
+                </ModalBody>
+
+            </Modal>
+            <Modal isOpen={modal} toggle={toggle} className={className}  centered ="true" size = "lg" zIndex="99999">
+        <ModalHeader toggle={toggle}>General Information Assessment
+        <button type="button" class="close" data-dismiss="modalOne" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </ModalHeader>
+                <ModalBody>
+                    <div class="modal-body">
+                    <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">S.N</th>
+      <th scope="col">Title</th>
+      <th scope="col">Value</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Name of OpenSpace</td>
+    <td>{title}</td>
+     
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Capacity</td>
+    <td>{capacity}</td>
+     
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Total Area</td>
+    <td>{total_area}sq.m.</td>
+      
+    </tr>
+    <tr>
+      <th scope="row">4</th>
+      <td>Usable Area Area</td>
+    <td>{usable_area}</td>
+      
+    </tr>
+  </tbody>
+</table>
                     </div>
                 </ModalBody>
 
