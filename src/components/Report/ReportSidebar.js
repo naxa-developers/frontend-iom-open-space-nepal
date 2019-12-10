@@ -146,6 +146,8 @@ this.props.dispatch({
   }
 
   render() {
+    console.log("rr",this.props.reportData);
+    
     return (
       <div>
         <div className="map-sidebar">
@@ -212,7 +214,7 @@ this.props.dispatch({
                           <ReportCard
                             id={e.id}
                             title={e.title}
-                            location={e.name}
+                            oname={e.name}
                             date={e.date}
                             ReportLocation={e.location}
                             ReportAddress={e.address}

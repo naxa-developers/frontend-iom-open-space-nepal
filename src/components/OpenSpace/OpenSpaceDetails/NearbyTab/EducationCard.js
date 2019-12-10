@@ -17,6 +17,8 @@ class EducationCard extends Component {
         "OpenspaceID"
       )}`
     ).then(response => {
+     
+      
       this.setState({
         data: response.data
       });

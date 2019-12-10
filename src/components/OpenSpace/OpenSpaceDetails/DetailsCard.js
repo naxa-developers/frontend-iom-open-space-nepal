@@ -292,7 +292,6 @@ class DetailsCard extends Component {
 
   render() {
     this.props.id && localStorage.setItem("OpenspaceID", this.props.id);
-
     return (
       <div>
         <div className="map-sidebar">
@@ -342,6 +341,11 @@ class DetailsCard extends Component {
                         title={this.state.spaceInfo.title}
                         question_data={this.state.spaceInfo.question_data}
                         description={this.state.spaceInfo.description}
+                        province ={this.state.spaceInfo.province}
+                        municipality = {this.state.spaceInfo.municipality}
+                        ward ={this.state.spaceInfo.ward}
+                        ownership = {this.state.spaceInfo.ownership}
+                        special_feature ={this.state.spaceInfo.special_feature}
                       />
                     </div>
                     <div
