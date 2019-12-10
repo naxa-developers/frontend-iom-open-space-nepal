@@ -5,7 +5,7 @@ import gov from '../../img/gov.png';
 import iom from '../../img/iom.png';
 import ccm from '../../img/ccm.png';
 import Axios from 'axios';
-import MaterialIcon from 'material-icons-react';
+
 
  class Banner extends Component {
      constructor(props) {

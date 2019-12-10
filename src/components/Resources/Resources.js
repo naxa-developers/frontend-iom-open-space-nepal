@@ -42,7 +42,7 @@ class Resources extends Component {
       i.title.toUpperCase().includes(this.state.keywords.toUpperCase())
     );
     this.setState({ resouceindex: 0 });
-    !Filtered.length == 0 ? this.chunkArray(Filtered, 3) : alert("Not Found");
+    !Filtered.length ==0 ? this.chunkArray(Filtered, 3) : alert("Not Found");
   };
 
   selectFilterNew = (category, dtype) => {
@@ -66,6 +66,7 @@ class Resources extends Component {
 
         return dtype.value == i.document_type
       }
+     
     })
     Filtered1.length != 0 && this.chunkArray(Filtered1, 3);
 
