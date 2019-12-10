@@ -133,6 +133,39 @@ class DetailsCard extends Component {
       }
       this.state.Routespaths[0].path.bringToFront()
       var activeroute = 0
+      this.state.Routespaths.map((e)=>{
+        e.path.on('click',()=>{
+          this.state.Routespaths.map((i)=>{
+            i.path.setStyle({color:'grey'})
+          })
+          this.state.Routespaths[e.id].path.setStyle({color:'#174BDD'})
+          this.state.Routespaths[e.id].path.bringToFront();
+          var doac = document.getElementsByClassName('desccard')
+          // console.log(doac,doc.length)
+          // doac.map((a)=>{
+          //   console.log(a)
+          // })
+          for(var i=0;i<doac.length;i++){
+            // console.log(doac[i],doac[i].getAttribute('name'))
+            // var selectindex=doac[i].getAttribute('name')
+            // var filtered=this.state.Routespaths.filter((d)=>d.id==selectindex)
+            doac[i].classList.contains('pathactive')&&doac[i].classList.remove('pathactive')
+            console.log(doac[i].getAttribute('name')==e.id)
+            doac[i].getAttribute('name')==e.id&&doac[i].classList.add('pathactive')
+            
+
+          }
+
+
+
+
+
+
+
+
+        })
+
+      })
 
 
 
