@@ -74,7 +74,7 @@ export default class SingleEcard extends Component {
                 <i class="material-icons">phone</i>01-4250931
             </span>
               <span>
-                <i class="material-icons">near_me</i>{this.state.calculatedistance ? <h6>..</h6> : this.state.shortest + " "}  km </span>
+                <i class="material-icons">near_me</i>{this.state.calculatedistance ? '' : this.state.shortest + " km"}  </span>
               <div className={this.props.ActiveRoute==this.props.index?"space-direction active":"space-direction"}onClick={() => {
                 if (this.props.ActiveRoute==this.props.index) {
                  
