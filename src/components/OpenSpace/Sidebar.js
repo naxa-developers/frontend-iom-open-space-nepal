@@ -534,8 +534,8 @@ class Sidebar extends Component {
 
             var descCard = `<div  class=${class1} name=` + e.id + ">" +
               "<h6>" + e.description + "<span>" + Shortest+ "</span>"+"</h6>" +
-              "<i class='material-icons'>near_me</i>"+
-              "<span>" + e.distance + " m" +
+              "<p><i class='material-icons'>near_me</i>"+
+              "<span>" + e.distance + " m"+"</p" +
             "<div>";
 
 

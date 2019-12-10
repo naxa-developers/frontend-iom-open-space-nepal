@@ -45,6 +45,7 @@ class DetailsCard extends Component {
     Axios.get(
       `https://iomapi.naxa.com.np/api/v1/open_space/${localStorage.getItem("OpenspaceID")}`
     ).then(response =>  {
+      console.log(response.data,'resdata')
       
       this.setState({ spaceInfo: response.data })
       this.currentloc()
@@ -206,8 +207,8 @@ class DetailsCard extends Component {
 
           var descCard = `<div  class=${class1} name=` + e.id + ">" +
             "<h6>" + e.description + "<span>" + Shortest+ "</span>"+"</h6>" +
-            "<i class='material-icons'>near_me</i>"+
-            "<span>" + e.distance + " m" +
+            "<p><i class='material-icons'>near_me</i>"+
+            "<span>" + e.distance + " m" +"</p>"
           "<div>";
 
 
@@ -399,7 +400,7 @@ class DetailsCard extends Component {
                       role="tabpanel"
                       aria-labelledby="report_tab"
                     >
-                      <ReportTab id={this.props.id} />
+                      <ReportTab id={this.props.id}  />
                     </div>
                     <div
                       className={
@@ -411,7 +412,7 @@ class DetailsCard extends Component {
                       role="tabpanel"
                       aria-labelledby="nearby_tab"
                     >
-                      <NearbyTab id={this.props.id} />
+                      <NearbyTab  reff={this.props.reff} OSlatlng={this.state.spaceInfo.centroid} id={this.props.id} />
                     </div>
                   </div>
                 </div>
