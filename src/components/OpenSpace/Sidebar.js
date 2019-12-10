@@ -204,7 +204,7 @@ class Sidebar extends Component {
         var class1 = 'desccard';
         // var activeclass=class1
 
-        var descCard = "<ul><h6>Markers</h6><li><span class='legend red'></span><p>User location</p></li><li><span class='legend blue'></span><p>Openspace</p></li><li id='nearbylegend' style='visibility:hidden'><span class='legend green'></span><p>Nearby Openspace</p></li></ul>";
+        var descCard = "<ul><h6>Markers</h6><li><span class='legend blue'></span><p>Openspace</p></li><li id='nearbylegend' style='visibility:hidden'><span class='legend green'></span><p>Nearby OS</p></li></ul>";
 
 
 
@@ -391,6 +391,7 @@ class Sidebar extends Component {
 
       var map = this.props.mapRefs.current.leafletElement;
       // new L.circleMarker([e.latitude, e.longitude]).addTo(map)
+      
       var mrk = new L.circleMarker([e.centroid[1], e.centroid[0]], { radius: 6, fillColor: '#174BDD', fillOpacity: 1, weight: 15, opacity: 0.3,pane:'Oslanding'})
       var popup = "<h5>" + e.title + "</h5>" +
         "<h6>" + e.municipality + "</h6>" 
