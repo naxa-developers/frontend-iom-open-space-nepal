@@ -7,23 +7,13 @@ import DateRangePicker from 'react-bootstrap-daterangepicker';
 import 'bootstrap-daterangepicker/daterangepicker.css'
 import moment from "moment";
 
-const days = [
-  {
-    value: "0",
-    label: "Days",
-    label: "Last 7 days"
-  }
-];
+
 const status = [
   { value: "1", label: "Pending" },
   { value: "2", label: "Replied" }
 ];
 
-const urgency = [
-  { value: "1", label: "High" },
-  { value: "2", label: "Medium" },
-  { value: "3", label: "Low" }
-];
+
 class ReportFilter extends Component {
   constructor(props) {
     super(props);

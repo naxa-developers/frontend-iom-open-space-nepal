@@ -17,7 +17,12 @@ const options1 = [
 
 
 ]
-
+const customStyles = {
+  option: (provided, state) => ({
+    ...provided,
+    
+    indicatorSeparator: false
+  }) }
 class SearchFilter extends Component {
   constructor(props) {
     super(props)
@@ -77,32 +82,7 @@ class SearchFilter extends Component {
                 <span class="input-group-text">{this.state.focused && <MaterialIcon icon="arrow_right_alt" onClick={() => this.props.onApply()} ></MaterialIcon>}</span>
               </div>
             </div>
-            {/* <div className="form-wrap">
-              <button className="btn btn-search" type="submit">
-                <i class="humanitarian-icon-Search search-icon" aria-hidden="true"></i>
-              </button>
-
-              <input
-                className="form-control"
-                type="text"
-                placeholder="Search resources by keyword"
-                aria-label="Search"
-                onInput={(e) => this.props.setKeywords(e.target.value)}
-                onFocus={() => this.setState({ focused: true })}
-                onBlur={() => {
-                  setTimeout(() => this.setState({ focused: false }), 100)
-
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    this.props.onApply()
-
-                  }
-                }}
-
-              />
-              
-            </div> */}
+           
 
           </form>
 
@@ -117,12 +97,12 @@ class SearchFilter extends Component {
         <br />
         <div className="document-types-dropdown">
 
-          <Select options={options1} onChange={(e) => this.setState({ value2: e })} value={this.state.value2} placeholder="Document Type" />
+          <Select styles={customStyles} options={options1} onChange={(e) => this.setState({ value2: e })} value={this.state.value2} placeholder="Document Type" />
         </div>
         <br />
         <div className="map-filter">
           <div className="reset-btns">
-            <div className="reset"  >
+            <div className="reset flex-start" style={{alignItems:'center'}} >
               <MaterialIcon icon="refresh" />
 
               <span onClick={() => this.onClear()} className="btn" style={{ cursor: "pointer" }}>Clear all </span>
