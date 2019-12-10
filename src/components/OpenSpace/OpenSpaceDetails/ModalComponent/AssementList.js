@@ -105,40 +105,40 @@ const AssementList = (props) => {
      
     </tr> */}
     <tr>
-      <th scope="row">4</th>
+      <th scope="row">3</th>
       <td>Name of OpenSpace</td>
     <td>{title}</td>
      
     </tr>
     <tr>
-      <th scope="row">3</th>
+      <th scope="row">4</th>
       <td>Capacity</td>
     <td>{capacity}</td>
      
     </tr>
     <tr>
-      <th scope="row">4</th>
+      <th scope="row">5</th>
       <td>Total Area</td>
     <td>{total_area}sq.m.</td>
       
     </tr>
 
     <tr>
-      <th scope="row">5</th>
+      <th scope="row">6</th>
       <td>Usable Area</td>
     <td>{usable_area}sq.m.</td>
       
     </tr>
    
     <tr>
-      <th scope="row">6</th>
+      <th scope="row">7</th>
       <td>Ownership</td>
 <td>{ownership}</td>
       
     </tr>
 
     <tr>
-      <th scope="row">7</th>
+      <th scope="row">8</th>
       <td>Special Features</td>
     <td>{special_feature}</td>
       
