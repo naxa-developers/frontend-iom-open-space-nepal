@@ -61,8 +61,15 @@ class OS extends Component {
             console.log([location.coords.latitude, location.coords.longitude], "aa")
             this.props.setcurrentLocation([location.coords.latitude, location.coords.longitude])
             this.setState({ currentLocation: [location.coords.latitude, location.coords.longitude] })
-            L.circleMarker(latlng, { radius: 6, fillColor: 'red', fillOpacity: 1, weight: 15, opacity: 0.3, color: 'red', }).addTo(this.props.mapRefss.current.leafletElement);
-            console.log("current", this.state.currentLocation)
+            // L.circleMarker(latlng, { radius: 6, fillColor: 'red', fillOpacity: 1, weight: 15, opacity: 0.3, color: 'red', }).addTo(this.props.mapRefss.current.leafletElement);
+            // console.log("current", this.state.currentLocation)
+            var icon = L.divIcon({
+                className: 'custom-div-icon',
+                html: "<i class='material-icons'>near_me</i>",
+                // iconSize: [4, 4],
+                iconAnchor: [12, 6]
+            });
+            L.marker(latlng, { icon: icon }).addTo(this.props.mapRefss.current.leafletElement);
            
         
         })
@@ -259,7 +266,8 @@ class OS extends Component {
                         <BaseLayer name="Mapbox Streets" checked={true}  >
                             <TileLayer
 
-                                attribution='&amp;copy <a href="http://maps.google.com">Google Maps</a> contributors'
+                                // attribution='&amp;copy <a href="http://maps.google.com">Google Maps</a> contributors'
+                                // https://api.mapbox.com/styles/v1/upendraoli/cjuvfcfns1q8r1focd0rdlgqn/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidXBlbmRyYW9saSIsImEiOiJjaWYwcnFnNmYwMGY4dGZseWNwOTVtdW1tIn0.uhY72SyqmMJNTKa0bY-Oyw'
                                 url="https://api.mapbox.com/styles/v1/rowheat02/ck3h10kz80mnq1cmz5v34i1wi/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoicm93aGVhdDAyIiwiYSI6ImNqeGQwZWNybjA5NXIzb21zZ3NzN290encifQ.51qM62lMBZUj2cBeykTG6g"
                                 maxZoom={20}
                             // subdomains={["mt0", "mt1", "mt2", "mt3"]}
