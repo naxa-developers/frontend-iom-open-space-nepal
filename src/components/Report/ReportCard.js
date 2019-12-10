@@ -31,6 +31,7 @@ class ReportCard extends Component {
 
   render() {
 
+  // console.log(this.props.location);
   
    
     
@@ -59,7 +60,7 @@ class ReportCard extends Component {
              
           
                <i
-                className={this.props.status=="pending" ? "material-icons pending" : "material-icons success"}
+                className={this.props.status=="pending" ? "material-icons unsuccess" : "material-icons success"}
                 data-toggle="tooltip"
                 data-placement="top"
                 title={this.props.status=="pending" ? "Pending" : "Replied"}
@@ -69,7 +70,7 @@ class ReportCard extends Component {
               </i> 
             </h5>
              <div className="loc-time flex-start">
-          <a >{this.props.ReportAddress}</a>
+          <a >{this.props.oname}</a>
             <time>{reportDays }</time>
                 
             </div> 

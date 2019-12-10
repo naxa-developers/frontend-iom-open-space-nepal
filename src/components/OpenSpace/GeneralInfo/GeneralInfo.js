@@ -13,6 +13,7 @@ class GeneralInfo extends Component {
         var actual_perc = usable_perc.toFixed(1) ;
         var width_perc = actual_perc+ '%'; 
 
+console.log("gene", this.props);
 
    
         
@@ -91,7 +92,9 @@ class GeneralInfo extends Component {
 
                     </div>
                     <p>
+                    <h5>Description</h5>
                     <span>
+                        There is no description available at the moment.
                     {/* <LinesEllipsis
   text="During construction, young players were intended be the primary beneficiaries of the new facilities. At the time, the national association had already set up seven academies (for U-19, U-14, U-12 and U-10 players) with their activities thus far having centered on the Nepalese capital, Kathmandu. The new regional centers allowed the project to be extended across the nation. The national association's headquarters in Kathmandu, with its technical centre, playing field and player accommodation, was opened early in 2000 by the President of the Asian Football Confederation, Mohammed Bin Hammam."
   maxLine='4'
@@ -99,7 +102,7 @@ class GeneralInfo extends Component {
   trimRight
   basedOn='letters'
 /> */}
-{this.props.description}
+{/* {this.props.description} */}
 
                         </span>
                    
@@ -116,6 +119,11 @@ class GeneralInfo extends Component {
                 title={this.props.title}
                 question_data={this.props.question_data}
                 description={this.props.description}
+                ward = {this.props.ward}
+                province ={this.props.province}
+                municipality = {this.props.municipality}
+                ownership = {this.props.ownership}
+                special_feature ={this.props.special_feature}
                 
                 
                 />
