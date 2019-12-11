@@ -70,6 +70,7 @@ import FireImage from "../../../img/fireMarker.png";
         var FireIcon = new GenericIcon({ iconUrl: FireImage});
         var EduIcon = new GenericIcon({ iconUrl: EduImage});
       this.state.Edudata.facility.map((e) => {
+        
           
           var NearbyMarker = L.marker([e.latitude, e.longitude], {
               icon: EduIcon

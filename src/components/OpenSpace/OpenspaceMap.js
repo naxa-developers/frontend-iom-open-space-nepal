@@ -65,7 +65,7 @@ class OS extends Component {
             // console.log("current", this.state.currentLocation)
             var icon = L.divIcon({
                 className: 'custom-div-icon',
-                html: "<i class='material-icons'>near_me</i>",
+                html: "<i class='material-icons'>gps_fixed</i>",
                 // iconSize: [4, 4],
                 iconAnchor: [12, 6]
             });
@@ -111,7 +111,7 @@ class OS extends Component {
 
             var div = L.DomUtil.create('div', `loc`)
             div.innerHTML = ''
-            div.innerHTML += "<i class='material-icons'>near_me</i>"
+            div.innerHTML += "<i class='material-icons'>gps_fixed</i>"
             return div
 
         }
