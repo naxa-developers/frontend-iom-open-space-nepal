@@ -82,6 +82,10 @@ import FireImage from "../../../img/fireMarker.png";
           var NearbyMarker = L.marker([e.latitude, e.longitude], {
               icon: NearbyIcon
             }).addTo(this.props.reff.current.leafletElement);
+
+        var popUp = "<div class='bind-popup'>" +
+        " </div> <div class='bind-header'> <h5>" +e.name +"</h5> </div> "
+        NearbyMarker.bindPopup(popUp);
       })
   
     }
@@ -114,6 +118,7 @@ import FireImage from "../../../img/fireMarker.png";
     render() {
         this.props.id&&localStorage.setItem("id",this.props.id)
       
+     
       
         
     
@@ -158,7 +163,7 @@ import FireImage from "../../../img/fireMarker.png";
                         <BaseLayer name="Google Hybrid">
                             <TileLayer
                                 attribution='&amp;copy <a href="http://maps.google.com">Google Maps</a> contributors'
-                                url="http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}"
+                                url=".facilityhttp://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}"
                                 maxZoom={20}
                                 subdomains={["mt0", "mt1", "mt2", "mt3"]}
                             />

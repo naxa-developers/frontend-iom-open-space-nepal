@@ -145,6 +145,7 @@ this.props.dispatch({
   }
 
   render() {
+    console.log("load", this.state.loading, this.props.reportData);
     
     
     return (
@@ -206,8 +207,9 @@ this.props.dispatch({
 
                   <ul>
                     {this.state.loading ? (
-                      <LoadingSpinnerBig />
-                    ) : (
+                    <LoadingSpinnerBig /> )  :this.props.reportData&& this.props.reportData.length==0 ? <h5>No reports available</h5> 
+                   
+                   : (
                       this.props.reportData.map(e => {
                         return (
                           <ReportCard
