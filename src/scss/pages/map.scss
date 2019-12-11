@@ -32,7 +32,7 @@
             @include animate_all(all .6s linear);
             h6 {
                 font-weight: 600;
-                font-size: .7rem;
+                font-size: .75rem;
                 @include flexBetween;
                 span{
                     font-size: .625rem;
@@ -46,8 +46,11 @@
                 align-items: center;
                 margin: 0;
                 i{
-                    font-size: 1rem;
+                    font-size: 0.7rem;
                     margin-right: .25rem;
+                }
+                span{
+                    font-size: 0.7rem;
                 }
             }
 
