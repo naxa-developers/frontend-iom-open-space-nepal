@@ -567,7 +567,7 @@
                     li {
                         @include flexBetween;
                         margin: 1.5rem 0 0 0;
-                        padding: .25rem .5rem;
+                        padding: .25rem .15rem;
                         cursor: pointer;
                         @include animate_all(all .5s linear);
                         .report-content {
