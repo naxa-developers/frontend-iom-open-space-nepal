@@ -156,7 +156,7 @@
                         width: 30px;
                         height: 30px;
                         line-height: 30px;
-                        color: $primary-light;
+                        color: $color-green;
                         @include animate_all(all .5s);
                         border:0;
 
@@ -181,6 +181,7 @@
                         margin-top:1.2rem !important;
                         i{
                             font-size: 1rem;
+                            color: $color-green;
                         }
     
                         &:hover {
@@ -380,6 +381,15 @@
         .leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
             z-index: 1;
             height: calc(100vh - 165px);
+            .leaflet-map-pane{
+                .leaflet-marker-pane{
+                    .leaflet-marker-icon{
+                        &.nearby-div-icon{
+                            color: $color-green;
+                        }
+                    }
+                }
+            }
         }
 
         .leaflet-container {
