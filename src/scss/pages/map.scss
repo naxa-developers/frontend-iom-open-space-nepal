@@ -29,19 +29,32 @@
 
         .desccard {
             padding: .6125rem;
-
+            @include animate_all(all .6s linear);
             h6 {
                 font-weight: 600;
-                font-size: .8rem;
+                font-size: .75rem;
                 @include flexBetween;
                 span{
-                    font-size:.745rem;
+                    font-size: .625rem;
                     font-weight: 400;
                     color:$color-green;
                 }
             }
+            p{
+                @include flex;
+                justify-content: flex-start;
+                align-items: center;
+                margin: 0;
+                i{
+                    font-size: 0.7rem;
+                    margin-right: .25rem;
+                }
+                span{
+                    font-size: 0.7rem;
+                }
+            }
 
-            &.pathactive {
+            &.pathactive, &:hover {
                 background-color: $green-highlight;
             }
         }
@@ -371,7 +384,16 @@
 
         .leaflet-container {
             z-index: 1;
-
+            .leaflet-map-pane{
+                .leaflet-marker-pane{
+                    .leaflet-marker-icon{
+                        i{
+                            color: $primary-light;
+                            font-size: 1.125rem;
+                        }
+                    }
+                }
+            }
         }
 
 
@@ -480,14 +502,14 @@
                         .css-2b097c-container,
                         .css-14jk2my-container {
                             width: 100%;
-                             .css-1okebmr-indicatorSeparator,.css-109onse-indicatorSeparator{
-                                 display: none;
-                             }
+                            .css-1okebmr-indicatorSeparator,.css-109onse-indicatorSeparator{
+                                display: none;
+                            }
 
                             .css-yk16xz-control,
                             .css-1fhf3k1-control {
                                 border: 1px solid $color-border;
-                                border-radius: 0;
+                                border-radius: .25rem;
                             }
 
                             .css-1pahdxg-control {
@@ -567,8 +589,10 @@
                     li {
                         @include flexBetween;
                         margin: 1.5rem 0 0 0;
+                        padding: .25rem .5rem;
                         cursor: pointer;
-
+                        @include animate_all(all .5s linear);
+                        border-bottom: 1px solid $color-grey;
                         .report-content {
                             h5 {
                                 font-size: .875rem;
@@ -605,9 +629,9 @@
                                 }
                             }
                         }
-                        // &:hover{
-                        //     background: $color-bg;
-                        // }
+                        &:hover{
+                            background: $color-bg;
+                        }
                     }
                 }
             }
@@ -618,7 +642,12 @@
                         @include flexBetween;
                         margin: 1.5rem 0 0 0;
                         align-items: center;
-
+                        padding: .4rem .5rem .25rem;
+                        cursor: pointer;
+                        @include animate_all(all .5s linear);
+                        &:hover{
+                            background: $color-bg;
+                        }
                         .space {
                             @include flexStart;
                             align-items: center;
@@ -681,15 +710,6 @@
 
                                 &:hover {
                                     color: $color-green;
-                                }
-                            }
-                        }
-                        &:hover{
-                            .space{
-                                .space-content{
-                                    h5{
-                                        color:$color-blue;
-                                    }
                                 }
                             }
                         }
