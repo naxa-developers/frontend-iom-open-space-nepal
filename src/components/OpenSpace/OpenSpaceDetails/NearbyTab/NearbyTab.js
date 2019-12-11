@@ -5,6 +5,7 @@ import FireCard from './FireCard';
 import SecurityCard from "./SecurityCard";
 import EducationCard from './EducationCard';
 import Axios from 'axios'
+import HelipadCard from "./HelipadCard";
 
 class NearbyTab extends Component {
 
@@ -281,7 +282,9 @@ class NearbyTab extends Component {
             
           </Card.Header>
           <Accordion.Collapse eventKey="2">
-            <Card.Body>There is no available data at the moment.</Card.Body>
+            <Card.Body>
+              <HelipadCard />
+            </Card.Body>
           </Accordion.Collapse>
         </Card>
         <Card>
