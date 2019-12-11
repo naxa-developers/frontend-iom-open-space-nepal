@@ -70,19 +70,19 @@ class OS extends Component {
                 iconAnchor: [12, 6]
             });
             L.marker(latlng, { icon: icon }).addTo(this.props.mapRefss.current.leafletElement);
-           
-        
+
+
         })
-         this.notify()
-        navigator.permissions.query({name: 'geolocation'}).then((PermissionStatus)=> {
-            if(PermissionStatus.state == 'granted'){
+        this.notify()
+        navigator.permissions.query({ name: 'geolocation' }).then((PermissionStatus) => {
+            if (PermissionStatus.state == 'granted') {
                 // this.notify()
 
-                
-            }else{
+
+            } else {
                 // this.notify()
 
-                 
+
             }
         })
 
@@ -178,7 +178,8 @@ class OS extends Component {
         this.onload();
         this.currentLocation();
         this.zoomTomylocation();
-        
+        toast.info("If current location is not in correct position, disconnect and reconnect your wifi network", { autoClose: false, position: "bottom-right" })
+
 
         this.props.mapRefss.current.leafletElement.createPane("userloc").style.zIndex = 800;
         // this.fetchroute()
@@ -189,7 +190,9 @@ class OS extends Component {
         // this.loadprovince()
 
     }
-    notify = () => toast.info("Turn your location service ON for better experience",{autoClose: false,containerId:'B'});
+    notify = () => toast.info("Turn your location service ON for better experience", {
+        autoClose: 3000, position: "bottom-right"
+    });
     render() {
 
         var bounds = [[25.710836919640595, 79.79365377708339],
@@ -200,10 +203,12 @@ class OS extends Component {
 
 
             <>
-                <div>
-                    
-                    <ToastContainer enableMultiContainer containerId={'B'} position={toast.POSITION.BOTTOM_RIGHT}  />
-                </div>
+
+
+                <ToastContainer newestOnTop={true} enableMultiContainer />
+       
+
+
                 <LeafletMap
 
                     center={[27, 85]}
@@ -267,7 +272,7 @@ class OS extends Component {
                         <BaseLayer name="Mapbox Streets" checked={true}  >
                             <TileLayer
 
-                                // attribution='&amp;copy <a href="http://maps.google.com">Google Maps</a> contributors'
+                                attribution='&amp;copy Developer:<a href="http://maps.google.com">NAXA</a>'
                                 // https://api.mapbox.com/styles/v1/upendraoli/cjuvfcfns1q8r1focd0rdlgqn/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidXBlbmRyYW9saSIsImEiOiJjaWYwcnFnNmYwMGY4dGZseWNwOTVtdW1tIn0.uhY72SyqmMJNTKa0bY-Oyw'
                                 url="https://api.mapbox.com/styles/v1/upendraoli/cjuvfcfns1q8r1focd0rdlgqn/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidXBlbmRyYW9saSIsImEiOiJjaWYwcnFnNmYwMGY4dGZseWNwOTVtdW1tIn0.uhY72SyqmMJNTKa0bY-Oyw"
                                 maxZoom={20}

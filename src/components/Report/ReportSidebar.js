@@ -121,7 +121,7 @@ this.props.dispatch({
       var div = L.DomUtil.create("div", `reportLegend`);
       div.innerHTML = "";
       var reportCard =
-        "<ul><h6>Report Legends</h6><li><span class='legend red'></span><p>Pending Reports</p></li><li><span class='legend green'></span><p>Replied Reports</p></li></ul>";
+        "<ul><h6>Report Status</h6><li><span class='legend red'></span><p>Pending </p></li><li><span class='legend green'></span><p>Replied</p></li></ul>";
       div.innerHTML += reportCard;
       return div;
     };
