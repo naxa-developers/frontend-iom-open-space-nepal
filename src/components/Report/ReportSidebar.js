@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import MaterialIcon from "material-icons-react";
 import Axios from "axios";
 import ReportCard from "./ReportCard";
 import ReportFilter from "./ReportFilter";
@@ -60,7 +59,7 @@ class ReportSidebar extends Component {
     let filteredReports = this.state.reports.filter(report =>
       report.title.toLowerCase().includes(this.state.keywords.toLowerCase())
     );
-console.log("ff", filteredReports);
+
 
 this.props.dispatch({
        
@@ -146,7 +145,7 @@ this.props.dispatch({
   }
 
   render() {
-    console.log("rr",this.props.reportData);
+    
     
     return (
       <div>

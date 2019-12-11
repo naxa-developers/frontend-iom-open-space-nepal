@@ -13,6 +13,7 @@ const AssementList = (props) => {
 
     const {
         title,  total_area, usable_area, capacity, municipality, ownership, special_feature,province, ward, 
+        access, elevation
     } = props;
 
    
@@ -106,10 +107,11 @@ const AssementList = (props) => {
     </tr> */}
     <tr>
       <th scope="row">3</th>
-      <td>Name of OpenSpace</td>
-    <td>{title}</td>
+      <td>Municipality</td>
+    <td>{municipality}</td>
      
     </tr>
+    
     <tr>
       <th scope="row">4</th>
       <td>Capacity</td>
@@ -141,6 +143,18 @@ const AssementList = (props) => {
       <th scope="row">8</th>
       <td>Special Features</td>
     <td>{special_feature}</td>
+      
+    </tr>
+    <tr>
+      <th scope="row">9</th>
+      <td>Access to Site</td>
+    <td>{access}</td>
+      
+    </tr>
+    <tr>
+      <th scope="row">10</th>
+      <td>Elevation</td>
+    <td>{elevation}</td>
       
     </tr>
 
