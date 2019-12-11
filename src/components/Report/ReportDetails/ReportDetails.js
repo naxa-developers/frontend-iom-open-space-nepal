@@ -21,10 +21,10 @@ class ReportDetails extends Component {
               <div class="container-fluid">
                 <div class="map-wrapper">
                 <div className="row no-gutters">
-                  <div className="col-md-7">
+                  <div className="col-md-8">
                   <RDetailsMap />
                   </div>
-                  <div className="col-md-5">
+                  <div className="col-md-4">
                   <ReportDetailsCard daysCount ={this.props.daysCount}/>
                   </div>
                 </div>
