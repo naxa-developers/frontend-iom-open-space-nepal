@@ -106,12 +106,19 @@
             /* content-section */
             .content-section{
                 .row-section-wrap{
+                    @include animate_all(all .6s linear);
                     margin-bottom: 3rem;
                     .image-section{
-                        @include flexCenter;
-                        img{
-                            max-width: 150px;
-                        }
+                        background-size: cover;
+                        max-width: 400px;
+                        width: 100%;
+                        height: 151px;
+                        background-repeat: no-repeat;
+                        background-position: center center;
+                    //    @include flexCenter;
+                        // img{
+                        //     // max-width: 150px;
+                        // } 
                         &:last-child{
                             margin-bottom: 0;
                         }
@@ -144,7 +151,7 @@
                             float: right;
                             width:30%;
                             .icon-wrap-section{
-                                margin-bottom: 50px;
+                                margin-bottom: 10px;
                                 .btn{
                                     &:hover{
                                         i{
@@ -174,21 +181,20 @@
                                 
                             }
                             .para-wrap-section{
-                                padding-left: 10px;
                                 .para-details-block{
-                                    margin-bottom: 20px;
+                                    margin-bottom: 15px;
                                     &:nth-child(2){
                                         margin-bottom: 0px;
                                     }
                                     .title{
-                                        font-size: 0.875rem;
+                                        font-size: 0.75rem;
                                         font-weight: 600;
                                         color: $primary-light;
                                         padding-bottom: 5px;
                                         display: block;
                                     }
                                     .subtitle{
-                                        font-size: 0.813rem;
+                                        font-size: 0.625rem;
                                         font-weight: 700;
                                         display: block;
                                         text-transform: uppercase;
@@ -196,6 +202,9 @@
                                 }
                             }
                         }
+                    }
+                    &:hover{
+                        background: $color-bg;
                     }
                 }
             }
@@ -222,10 +231,10 @@
                 .content-section{
                     .row-section-wrap {
                         .image-section{
-                            img{
+                            /* img{
                                 max-width: 120px;
                                 height: 220px;
-                            }
+                            } */
                         }
                         .wrapper-content{
                             .content-wrap{
@@ -259,9 +268,9 @@
                     .row-section-wrap {
                         .image-section{
                             padding-bottom: 10px;
-                                img{
+                                /* img{
                                     height: 280px;
-                                }
+                                } */
                         }
                         .wrapper-content{
                             .content-wrap{
@@ -296,15 +305,18 @@
                     }
                 }
                 .content-section{
+                    margin-top: 100px;
                     .row-section-wrap{
+                        margin-bottom: 100px;
                         .image-section{
                             padding-bottom: 10px;
-                            img{
+                            /* img{
                                 max-width: 100%;
                                 height: auto;
-                            }
+                            } */
                         }
                         .wrapper-content{
+                            margin-top: 30px;
                             .content-wrap{
                                 .download-section {
                                     @include flexvr;
