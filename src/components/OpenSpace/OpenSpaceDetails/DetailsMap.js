@@ -62,18 +62,25 @@ import FireImage from "../../../img/fireMarker.png";
      
     };
     plotEdu = () => {
-      var GenericIcon = L.Icon.extend({
-          options: {
-            iconSize: [40, 30]
-          }
-        });
-        var FireIcon = new GenericIcon({ iconUrl: FireImage});
-        var EduIcon = new GenericIcon({ iconUrl: EduImage});
+    //   var GenericIcon = L.Icon.extend({
+    //       options: {
+    //         iconSize: [40, 30]
+    //       }
+    //     });
+    //     var FireIcon = new GenericIcon({ iconUrl: FireImage});
+    //     var EduIcon = new GenericIcon({ iconUrl: EduImage});
+
+    var NearbyIcon = L.divIcon({
+        className: 'nearby-div-icon',
+        html: "<i class='humanitarian-icon-Education success'></i>",
+        // iconSize: [4, 4],
+        iconAnchor: [12, 6]
+    })
       this.state.Edudata.facility.map((e) => {
         
           
           var NearbyMarker = L.marker([e.latitude, e.longitude], {
-              icon: EduIcon
+              icon: NearbyIcon
             }).addTo(this.props.reff.current.leafletElement);
       })
   

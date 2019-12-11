@@ -91,8 +91,8 @@ this.props.dispatch({
           fillColor: fillColor,
           opacity: 0.3,
           fillOpacity: 1,
-          weight: 15,
-          radius: 6
+          weight: 12,
+          radius: 5
         };
 
         var marker = L.circleMarker(

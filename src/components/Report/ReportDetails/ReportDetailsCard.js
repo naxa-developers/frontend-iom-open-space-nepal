@@ -42,7 +42,7 @@ class ReportDetailsCard extends Component {
 
     var status = this.state.reportInfo.status;
     this.props.id && localStorage.setItem("reportId", this.props.id);
-    console.log("should change", localStorage.getItem("reportId"));
+    // console.log("should change", localStorage.getItem("reportId"));
     
     this.props.days && localStorage.setItem("days", this.props.days);
 
