@@ -787,7 +787,8 @@ class Sidebar extends Component {
                 </div>
                 <div className="report-count">
                   <h5>
-                    Open spaces: <span> {this.state.Allos.length} </span>
+                    Open spaces: <span> 83 </span>
+                    {/* Open spaces: <span> {this.state.Allos.length} </span> */}
                   </h5>
                 </div>
                 <div className="space-list" >

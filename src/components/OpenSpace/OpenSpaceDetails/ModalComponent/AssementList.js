@@ -12,7 +12,7 @@ const AssementList = (props) => {
     } = props;
 
     const {
-        title,  total_area, usable_area, capacity
+        title,  total_area, usable_area, capacity, municipality, ownership, special_feature,province, ward, 
     } = props;
 
    
@@ -88,22 +88,63 @@ const AssementList = (props) => {
     </tr>
     <tr>
       <th scope="row">2</th>
+      <td>Province</td>
+    <td>{province}</td>
+     
+    </tr>
+    {/* <tr>
+      <th scope="row">3</th>
+      <td>Municipality</td>
+    <td>{municipality}</td>
+     
+    </tr> */}
+    {/* <tr>
+      <th scope="row">3</th>
+      <td>Ward</td>
+    <td>{ward}</td>
+     
+    </tr> */}
+    <tr>
+      <th scope="row">3</th>
+      <td>Name of OpenSpace</td>
+    <td>{title}</td>
+     
+    </tr>
+    <tr>
+      <th scope="row">4</th>
       <td>Capacity</td>
     <td>{capacity}</td>
      
     </tr>
     <tr>
-      <th scope="row">3</th>
+      <th scope="row">5</th>
       <td>Total Area</td>
     <td>{total_area}sq.m.</td>
       
     </tr>
+
     <tr>
-      <th scope="row">4</th>
-      <td>Usable Area Area</td>
-    <td>{usable_area}</td>
+      <th scope="row">6</th>
+      <td>Usable Area</td>
+    <td>{usable_area}sq.m.</td>
       
     </tr>
+   
+    <tr>
+      <th scope="row">7</th>
+      <td>Ownership</td>
+<td>{ownership}</td>
+      
+    </tr>
+
+    <tr>
+      <th scope="row">8</th>
+      <td>Special Features</td>
+    <td>{special_feature}</td>
+      
+    </tr>
+
+
   </tbody>
 </table>
                     </div>
