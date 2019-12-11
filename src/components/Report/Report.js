@@ -24,10 +24,10 @@ class Report extends Component {
             <div className="container-fluid">
               <div className="map-wrapper">
               <div className="row no-gutters">
-                  <div className="col-md-7">
+                  <div className="col-md-8">
                   <ReportMap mapR= {this.mapR}/>
                   </div>
-                  <div className="col-md-5">
+                  <div className="col-md-4">
                   <ReportSidebar  mapR= {this.mapR} />
                   </div>
                 </div>

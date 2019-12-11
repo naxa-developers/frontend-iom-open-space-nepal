@@ -423,9 +423,10 @@ class Sidebar extends Component {
       var htmlmrk = L.marker([e.centroid[1], e.centroid[0]], { icon: icon });
 
       var mrk = new L.circleMarker([e.centroid[1], e.centroid[0]], { radius: 6, fillColor: '#174BDD', fillOpacity: 1, weight: 15, opacity: 0.3, pane: 'Oslanding' })
+      let address=e.address==null?'Nepal':e.address
       var popup = "<h5>" + e.title + "</h5>" +
         "<h6>" + e.municipality + "</h6>"
-      var pop = "<div class='bind-popup'> <div class='bind-header'><h5>" + e.title + "</h5> <p><i class='material-icons' style='font-size:16px'>room</i>" + e.municipality + "</p><a  class='openSpace_btn' href='/#/OpenSpaceDetails'>View Details</a></div></div>"
+      var pop = "<div class='bind-popup'> <div class='bind-header'><h5>" + e.title + "</h5> <p><i class='material-icons' style='font-size:16px'>room</i>" + address + "</p><a  class='openSpace_btn' href='/#/OpenSpaceDetails'>View Details</a></div></div>"
 
       htmlmrk.bindPopup(pop)
       htmlmrk.on('click', () => {
@@ -453,7 +454,7 @@ class Sidebar extends Component {
   }
 
   fetchroute = (first, second) => {
-    // L.tooltip().setLatLng(first).setContent('<h6>latlng</h6>').addTo(this.props.mapRefs.current.leafletElement)
+    // L.tooltip().setLatLng(first).setContent('<h6></h6>').addTo(this.props.mapRefs.current.leafletElement)
     // map.closeTooltip();
 
     this.state.Routespaths = []
@@ -688,7 +689,7 @@ class Sidebar extends Component {
 
     // this.props.mapRefs.current.leafletElement1=this.props.mapRefs.current.leafletElement
   }
-  notify = () => toast.info("NO Openspace Found",{autoClose: false});
+  notify = () => toast.info("NO Openspace Found",{containerId: 'A',autoClose: false,});
 
 
   render() {
@@ -702,7 +703,7 @@ class Sidebar extends Component {
       <>
         <div>
 
-          <ToastContainer position={toast.POSITION.BOTTOM_RIGHT} />
+          <ToastContainer enableMultiContainer containerId={'A'}  position={toast.POSITION.BOTTOM_RIGHT} />
         </div>
         <div className="map-sidebar">
 
