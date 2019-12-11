@@ -73,13 +73,14 @@ class OS extends Component {
            
         
         })
+         this.notify()
         navigator.permissions.query({name: 'geolocation'}).then((PermissionStatus)=> {
             if(PermissionStatus.state == 'granted'){
-                this.notify()
+                // this.notify()
 
                 
             }else{
-                this.notify()
+                // this.notify()
 
                  
             }
@@ -188,7 +189,7 @@ class OS extends Component {
         // this.loadprovince()
 
     }
-    notify = () => toast.info("Turn your location service ON for better experience",{autoClose: false});
+    notify = () => toast.info("Turn your location service ON for better experience",{autoClose: false,containerId:'B'});
     render() {
 
         var bounds = [[25.710836919640595, 79.79365377708339],
@@ -201,7 +202,7 @@ class OS extends Component {
             <>
                 <div>
                     
-                    <ToastContainer position={toast.POSITION.BOTTOM_RIGHT}  />
+                    <ToastContainer enableMultiContainer containerId={'B'} position={toast.POSITION.BOTTOM_RIGHT}  />
                 </div>
                 <LeafletMap
 

@@ -688,7 +688,7 @@ class Sidebar extends Component {
 
     // this.props.mapRefs.current.leafletElement1=this.props.mapRefs.current.leafletElement
   }
-  notify = () => toast.info("NO Openspace Found",{autoClose: false});
+  notify = () => toast.info("NO Openspace Found",{containerId: 'A',autoClose: false,});
 
 
   render() {
@@ -702,7 +702,7 @@ class Sidebar extends Component {
       <>
         <div>
 
-          <ToastContainer position={toast.POSITION.BOTTOM_RIGHT} />
+          <ToastContainer enableMultiContainer containerId={'A'}  position={toast.POSITION.BOTTOM_RIGHT} />
         </div>
         <div className="map-sidebar">
 
