@@ -605,13 +605,9 @@
                                 }
                             }
                         }
-                        &:hover{
-                            .report-content{
-                                h5{
-                                    color:$color-blue;
-                                }
-                            }
-                        }
+                        // &:hover{
+                        //     background: $color-bg;
+                        // }
                     }
                 }
             }
