@@ -19,6 +19,8 @@ import mrk from '../../img/mrk.png'
 import 'leaflet.markercluster/dist/MarkerCluster.css'
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
 import LoadingSpinner from "../Report/LoadingSpinner";
+import { ToastContainer, toast } from 'react-toastify';
+
 require('leaflet.markercluster')
 
 
@@ -37,27 +39,27 @@ class Sidebar extends Component {
       SelectedProvince: null,
       SelectedDistrict: null,
       SelectedMunicipality: null,
-      nearbyOS:null,
+      nearbyOS: null,
       Allos: [],
       handlingindex: 0,
       focused: false,
       loading: true,
-      nearbytoogle:false,
+      nearbytoogle: false,
       district_muni: L.featureGroup(),
       Routespaths: [],
       Routes: L.featureGroup(),
-      nearbyGroup:L.featureGroup(),
+      nearbyGroup: L.featureGroup(),
       legend: L.control({ position: 'bottomleft' }),
       div: L.DomUtil.create('div', 'routeWrapper'),
       OSmarkers: null,
-      markersLegend:L.control({ position: 'bottomright' }),
-      ActiveRouteindex:null
-            
+      markersLegend: L.control({ position: 'bottomright' }),
+      ActiveRouteindex: null
+
     };
   }
 
-  setActivefalse=(e)=>{
-    this.setState({ActiveRouteindex:e})
+  setActivefalse = (e) => {
+    this.setState({ ActiveRouteindex: e })
   }
 
   sidebarToggle = event => {
@@ -191,40 +193,40 @@ class Sidebar extends Component {
 
   };
 
-  addlegend=()=>{
+  addlegend = () => {
     this.state.markersLegend.onAdd = (map) => {
 
       var div = L.DomUtil.create('div', `markersLegend`)
       div.innerHTML = ''
 
 
-      
-        // console.log(activeroute)
 
-        var class1 = 'desccard';
-        // var activeclass=class1
+      // console.log(activeroute)
 
-        var descCard = "<ul><h6>Markers</h6><li><span class='legend blue'></span><p>Openspace</p></li><li id='nearbylegend' style='visibility:hidden'><span class='legend green'></span><p>Nearby OS</p></li></ul>";
+      var class1 = 'desccard';
+      // var activeclass=class1
+
+      var descCard = "<ul><h6>Legend</h6><li><span class='legend blue'></span><p>Openspace</p></li><li id='nearbylegend' style='visibility:hidden'><span class='legend green'></span><p>Nearby OS</p></li></ul>";
 
 
 
-        div.innerHTML += descCard
-     
+      div.innerHTML += descCard
 
-     
+
+
 
 
 
 
       return div;
     }
-     this.state.markersLegend.addTo(this.props.mapRefs.current.leafletElement)
+    this.state.markersLegend.addTo(this.props.mapRefs.current.leafletElement)
 
 
   }
 
   onApply = () => {
-    this.setState({loading:true})
+    this.setState({ loading: true })
     this.props.mapRefs.current.leafletElement = this.props.mapRefs.current.leafletElement;
     this.state.district_muni.eachLayer(e =>
       this.state.district_muni.removeLayer(e)
@@ -244,9 +246,9 @@ class Sidebar extends Component {
             }
           }
         });
-        let FilteredOS=this.state.Openspaces.filter((e)=>e.municipality==this.state.SelectedMunicipality.value)
+        let FilteredOS = this.state.Openspaces.filter((e) => e.municipality == this.state.SelectedMunicipality.value)
         console.log(FilteredOS)
-        this.setState({Allos:FilteredOS,loading:false})
+        this.setState({ Allos: FilteredOS, loading: false })
         this.displayOS()
         municipality.addTo(this.state.district_muni);
         this.props.mapRefs.current.leafletElement.fitBounds(
@@ -272,9 +274,9 @@ class Sidebar extends Component {
             }
           }
         });
-        let FilteredOS=this.state.Openspaces.filter((e)=>e.district==this.state.SelectedDistrict.value)
+        let FilteredOS = this.state.Openspaces.filter((e) => e.district == this.state.SelectedDistrict.value)
         console.log(FilteredOS)
-        this.setState({Allos:FilteredOS,loading:false})
+        this.setState({ Allos: FilteredOS, loading: false })
         this.displayOS()
 
         municipality.addTo(this.state.district_muni);
@@ -284,60 +286,78 @@ class Sidebar extends Component {
       })
     }
     else if (this.state.SelectedProvince) {
-      let FilteredOS=this.state.Openspaces.filter((e)=>e.province==this.state.SelectedProvince.value)
-        console.log(FilteredOS)
-        this.setState({Allos:FilteredOS,loading:false})
-        this.displayOS()
+      let FilteredOS = this.state.Openspaces.filter((e) => e.province == this.state.SelectedProvince.value)
+      console.log(FilteredOS)
+      this.setState({ Allos: FilteredOS, loading: false })
+      this.displayOS()
 
 
-        // this.props.mapRefs.current.leafletElement.fitBounds(
-        //   this.state.district_muni.getBounds()
-        // );
+      // this.props.mapRefs.current.leafletElement.fitBounds(
+      //   this.state.district_muni.getBounds()
+      // );
 
 
     }
 
 
-    
+
 
   }
   searchOs = () => {
-   
+
 
 
     var Filtered = this.state.Openspaces.filter(e =>
       e.title.toUpperCase().includes(this.state.search_keyword.toUpperCase())
     )
-    
+
 
     this.state.OSmarkers.clearLayers()
     this.setState({ Allos: Filtered })
 
 
-    setTimeout(()=>{this.displayOS()
-    this.props.mapRefs.current.leafletElement.fitBounds(this.state.OSmarkers.getBounds())
-    },100) 
+    setTimeout(() => {
+      this.displayOS()
+      this.props.mapRefs.current.leafletElement.fitBounds(this.state.OSmarkers.getBounds())
+    }, 100)
   };
 
-  nearbymeOS=()=>{
+  nearbymeOS = () => {
     Axios.get(`https://iomapi.naxa.com.np/api/v1/near_by_openspace?count=100&distance=2&latitude=${this.props.currentLocation[0]}&longitude=${this.props.currentLocation[1]}`)
-    .then(response=>{this.setState({nearbyOS:response.data.open_space})
-    this.displaynearbyOs()
-  })
+      .then(response => {
+        this.setState({ nearbyOS: response.data.open_space })
+        if (response.data.open_space.length != 0) {
+          this.props.mapRefs.current.leafletElement.removeLayer(this.state.OSmarkers)
+          this.setState({ Allos: response.data.open_space })
+          this.displaynearbyOs()
+        }
+        else{
+          this.notify()
+        }
+
+
+      })
 
   }
 
-  displaynearbyOs=()=>{
-    this.state.nearbyGroup.eachLayer(e=>this.state.nearbyGroup.removeLayer(e))
+  displaynearbyOs = () => {
+    this.state.nearbyGroup.eachLayer(e => this.state.nearbyGroup.removeLayer(e))
 
     this.state.nearbyOS.map(e => {
-    var mrk = new L.circleMarker([e.centroid[1], e.centroid[0]], { radius: 6, fillColor: 'green', fillOpacity: 1, weight: 15, opacity: 0.3 ,color:'green',pane:'nearby'})
+      var icon = L.divIcon({
+        className: 'nearbymarker',
+        html: "<i class='OSmarker'></i>",
+        // iconSize: [4, 4],
+        // iconAnchor: [12, 6]
+      });
+      var htmlmrk = L.marker([e.centroid[1], e.centroid[0]], { icon: icon });
+      var mrk = new L.circleMarker([e.centroid[1], e.centroid[0]], { radius: 6, fillColor: 'green', fillOpacity: 1, weight: 15, opacity: 0.3, color: 'green', pane: 'nearby' })
       var popup = "<h5>" + e.title + "</h5>" +
         "<h6>" + e.municipality + "</h6>"
-      var pop = "<div class='bind-popup'> <div class='bind-header'><h5>" + e.title + "</h5> <h3>A</h2><i class='material-icons'>near_me</i> <p><i class='fa fa-map-marker'></i>" + e.municipality + "</p><a  class='openSpace_btn' href='/#/OpenSpaceDetails'>View Details</a></div></div>"
+      var pop = "<div class='bind-popup'> <div class='bind-header'><h5>" + e.title + "</h5><p><i class='material-icons' style='font-size:16px'>room</i>" + e.municipality + "</p><a  class='openSpace_btn' href='/#/OpenSpaceDetails'>View Details</a></div></div>"
 
-      mrk.bindPopup(pop)
-      mrk.on('click', () => {
+      htmlmrk.bindPopup(pop)
+      htmlmrk.on('click', () => {
         var classes = document.getElementsByClassName('openSpace_btn')
         for (var i = 0; i < classes.length; i++) {
           classes[i].addEventListener('click', () => {
@@ -349,8 +369,8 @@ class Sidebar extends Component {
       })
 
 
-      mrk.addTo(this.state.nearbyGroup)
-      document.getElementById('nearbylegend').style.visibility='visible'
+      htmlmrk.addTo(this.state.nearbyGroup)
+      document.getElementById('nearbylegend').style.visibility = 'visible'
     })
     this.state.nearbyGroup.bringToFront()
     this.props.mapRefs.current.leafletElement.fitBounds(this.state.nearbyGroup.getBounds())
@@ -359,10 +379,13 @@ class Sidebar extends Component {
 
   }
 
-  tooglenearby=()=>{
-    if(this.state.nearbytoogle){ 
-      this.state.nearbyGroup.eachLayer(e=>this.state.nearbyGroup.removeLayer(e))
-      document.getElementById('nearbylegend').style.visibility='hidden'
+  tooglenearby = () => {
+    if (this.state.nearbytoogle) {
+      this.state.nearbyGroup.eachLayer(e => this.state.nearbyGroup.removeLayer(e))
+      document.getElementById('nearbylegend').style.visibility = 'hidden'
+      this.setState({ Allos: this.state.Openspaces })
+      this.props.mapRefs.current.leafletElement.addLayer(this.state.OSmarkers)
+
       document.getElementsByClassName("openspace-button")[1].classList.remove("active");
 
 
@@ -370,20 +393,20 @@ class Sidebar extends Component {
 
 
     }
-    else{
+    else {
       this.nearbymeOS()
       document.getElementsByClassName("openspace-button")[1].classList.add("active");
       // console.log( document.getElementsByClassName("openspace-button"))
-// 
+      // 
 
     }
-    this.state.nearbytoogle=!this.state.nearbytoogle
+    this.state.nearbytoogle = !this.state.nearbytoogle
     console.log(this.state.nearbytoogle)
   }
 
 
   displayOS = () => {
-    this.state.OSmarkers.eachLayer((e)=>this.state.OSmarkers.removeLayer(e))
+    this.state.OSmarkers.eachLayer((e) => this.state.OSmarkers.removeLayer(e))
 
 
     this.state.Allos.map(e => {
@@ -391,14 +414,21 @@ class Sidebar extends Component {
 
       var map = this.props.mapRefs.current.leafletElement;
       // new L.circleMarker([e.latitude, e.longitude]).addTo(map)
+      var icon = L.divIcon({
+        className: 'OSmarkers',
+        html: "<i class='OSmarker'></i>",
+        // iconSize: [4, 4],
+        // iconAnchor: [12, 6]
+      });
+      var htmlmrk = L.marker([e.centroid[1], e.centroid[0]], { icon: icon });
 
-      var mrk = new L.circleMarker([e.centroid[1], e.centroid[0]], { radius: 6, fillColor: '#174BDD', fillOpacity: 1, weight: 15, opacity: 0.3,pane:'Oslanding'})
+      var mrk = new L.circleMarker([e.centroid[1], e.centroid[0]], { radius: 6, fillColor: '#174BDD', fillOpacity: 1, weight: 15, opacity: 0.3, pane: 'Oslanding' })
       var popup = "<h5>" + e.title + "</h5>" +
-        "<h6>" + e.municipality + "</h6>" 
+        "<h6>" + e.municipality + "</h6>"
       var pop = "<div class='bind-popup'> <div class='bind-header'><h5>" + e.title + "</h5> <p><i class='material-icons' style='font-size:16px'>room</i>" + e.municipality + "</p><a  class='openSpace_btn' href='/#/OpenSpaceDetails'>View Details</a></div></div>"
 
-      mrk.bindPopup(pop)
-      mrk.on('click', () => {
+      htmlmrk.bindPopup(pop)
+      htmlmrk.on('click', () => {
         var classes = document.getElementsByClassName('openSpace_btn')
         for (var i = 0; i < classes.length; i++) {
           classes[i].addEventListener('click', () => {
@@ -410,15 +440,15 @@ class Sidebar extends Component {
       })
 
 
-      mrk.addTo(this.state.OSmarkers)
+      htmlmrk.addTo(this.state.OSmarkers)
 
     });
     this.props.mapRefs.current.leafletElement.fitBounds(this.state.OSmarkers.getBounds())
 
   };
 
-  removeRoutes=()=>{
-    this.state.Routes.eachLayer((e=>this.state.Routes.removeLayer(e)))
+  removeRoutes = () => {
+    this.state.Routes.eachLayer((e => this.state.Routes.removeLayer(e)))
     this.props.mapRefs.current.leafletElement.removeControl(this.state.legend)
   }
 
@@ -437,7 +467,7 @@ class Sidebar extends Component {
       "&alternative_route.max_paths=4" +
       "&algorithm=alternative_route";
     var colors = ["red", 'green', 'black']
- 
+
 
     Axios.get(url)
       .then(Response => {
@@ -460,26 +490,26 @@ class Sidebar extends Component {
         }
         this.state.Routespaths[0].path.bringToFront()
         var activeroute = 0
-        this.state.Routespaths.map((e)=>{
-          e.path.on('click',()=>{
-            this.state.Routespaths.map((i)=>{
-              i.path.setStyle({color:'grey'})
+        this.state.Routespaths.map((e) => {
+          e.path.on('click', () => {
+            this.state.Routespaths.map((i) => {
+              i.path.setStyle({ color: 'grey' })
             })
-            this.state.Routespaths[e.id].path.setStyle({color:'#174BDD'})
+            this.state.Routespaths[e.id].path.setStyle({ color: '#174BDD' })
             this.state.Routespaths[e.id].path.bringToFront();
             var doac = document.getElementsByClassName('desccard')
             // console.log(doac,doc.length)
             // doac.map((a)=>{
             //   console.log(a)
             // })
-            for(var i=0;i<doac.length;i++){
+            for (var i = 0; i < doac.length; i++) {
               // console.log(doac[i],doac[i].getAttribute('name'))
               // var selectindex=doac[i].getAttribute('name')
               // var filtered=this.state.Routespaths.filter((d)=>d.id==selectindex)
-              doac[i].classList.contains('pathactive')&&doac[i].classList.remove('pathactive')
-              console.log(doac[i].getAttribute('name')==e.id)
-              doac[i].getAttribute('name')==e.id&&doac[i].classList.add('pathactive')
-              
+              doac[i].classList.contains('pathactive') && doac[i].classList.remove('pathactive')
+              console.log(doac[i].getAttribute('name') == e.id)
+              doac[i].getAttribute('name') == e.id && doac[i].classList.add('pathactive')
+
 
             }
 
@@ -514,12 +544,12 @@ class Sidebar extends Component {
 
           div.innerHTML += "<h6 id='legendtitle'>Routes</h6>"
           console.log(this.state.Routespaths)
-          var distances=[]
-          this.state.Routespaths.forEach((a)=>{
+          var distances = []
+          this.state.Routespaths.forEach((a) => {
             distances.push(a.distance)
 
           })
-          var min=Math.min(...distances)
+          var min = Math.min(...distances)
           // this.state.Routespaths.filter((e)=>{
           //   return e.distance==min
           // })
@@ -530,13 +560,13 @@ class Sidebar extends Component {
 
             var class1 = 'desccard';
             // var activeclass=class1
-            var Shortest= min==e.distance?"Shortest":""
+            var Shortest = min == e.distance ? "Shortest" : ""
 
             var descCard = `<div  class=${class1} name=` + e.id + ">" +
-              "<h6>" + e.description + "<span>" + Shortest+ "</span>"+"</h6>" +
-              "<p><i class='material-icons'>near_me</i>"+
-              "<span>" + e.distance + " m"+"</p" +
-            "<div>";
+              "<h6>" + e.description + "<span>" + Shortest + "</span>" + "</h6>" +
+              "<p><i class='material-icons'>near_me</i>" +
+              "<span>" + e.distance + " m" + "</p" +
+              "<div>";
 
 
 
@@ -613,7 +643,7 @@ class Sidebar extends Component {
           }
           )
         }
-   
+
 
 
 
@@ -626,10 +656,10 @@ class Sidebar extends Component {
 
 
   componentDidMount() {
-    
 
-    var nearby=this.props.mapRefs.current.leafletElement.createPane('nearby');
-    var Oslanding=this.props.mapRefs.current.leafletElement.createPane('Oslanding');
+
+    var nearby = this.props.mapRefs.current.leafletElement.createPane('nearby');
+    var Oslanding = this.props.mapRefs.current.leafletElement.createPane('Oslanding');
     this.props.mapRefs.current.leafletElement.createPane("cluster").style.zIndex = 100;
 
 
@@ -639,25 +669,27 @@ class Sidebar extends Component {
     this.props.mapRefs.current.leafletElement.getPane('nearby').style.zIndex = 300;
     this.props.mapRefs.current.leafletElement.getPane('Oslanding').style.zIndex = 250;
 
-    var cluster=L.markerClusterGroup({disableClusteringAtZoom:14})
-    this.setState({OSmarkers:cluster})
+    var cluster = L.markerClusterGroup({ disableClusteringAtZoom: 14 })
+    this.setState({ OSmarkers: cluster })
 
     this.props.mapRefs.current.leafletElement.addLayer(this.state.district_muni);
     this.props.mapRefs.current.leafletElement.addLayer(this.state.Routes);
-   setTimeout(()=>this.props.mapRefs.current.leafletElement.addLayer(this.state.OSmarkers),500) 
+    setTimeout(() => this.props.mapRefs.current.leafletElement.addLayer(this.state.OSmarkers), 500)
     this.props.mapRefs.current.leafletElement.addLayer(this.state.nearbyGroup);
-   
+
 
     this.fetchingForDropdown("province");
     this.fetchingForDropdown("district");
     this.fetchingForDropdown("municipality");
     this.fetchOS();
-     this.addlegend()
+    this.addlegend()
     this.onload();
     // this.nearbymeOS();
 
     // this.props.mapRefs.current.leafletElement1=this.props.mapRefs.current.leafletElement
   }
+  notify = () => toast.info("NO Openspace Found",{autoClose: false});
+
 
   render() {
 
@@ -668,6 +700,10 @@ class Sidebar extends Component {
     const { showContent } = this.state;
     return (
       <>
+        <div>
+
+          <ToastContainer position={toast.POSITION.BOTTOM_RIGHT} />
+        </div>
         <div className="map-sidebar">
 
 
@@ -699,7 +735,7 @@ class Sidebar extends Component {
 
                   </div>
                   <div className="reset-btns">
-                
+
                     <div className="reset">
                       {/* <MaterialIcon icon="refresh"></MaterialIcon> */}
                       <span
@@ -711,20 +747,20 @@ class Sidebar extends Component {
                             district: null,
                             municipality: null,
                             handlingindex: 0,
-                            Allos:this.state.Openspaces
+                            Allos: this.state.Openspaces
                           })
-                          var bounds = [ [ 25.710836919640595, 79.79365377708339],
-                          [ 30.798474179567847 , 88.54975729270839]];
+                          var bounds = [[25.710836919640595, 79.79365377708339],
+                          [30.798474179567847, 88.54975729270839]];
                           this.props.mapRefs.current.leafletElement.fitBounds(bounds)
                           this.state.Routes.eachLayer((e) => this.state.Routes.removeLayer(e))
 
                           this.state.district_muni.eachLayer(e =>
                             this.state.district_muni.removeLayer(e)
                           );
-                         
+
 
                           this.props.mapRefs.current.leafletElement.removeControl(this.state.legend);
-                          
+
                         }
 
                         }
@@ -739,7 +775,7 @@ class Sidebar extends Component {
                 </div>
 
                 <div onClick={this.tooglenearby} className="nearme-btn">
-                  <a  className="openspace-button">
+                  <a className="openspace-button">
                     <i
                       className="material-icons"
                       style={{ textDecoration: "none" }}
@@ -758,7 +794,7 @@ class Sidebar extends Component {
                   <div className="input-group">
                     <div className="input-group-prepend">
                       <span className="input-group-text">
-                      <i className="humanitarian-icon-Search"></i>
+                        <i className="humanitarian-icon-Search"></i>
                       </span>
                     </div>
                     <input
@@ -788,16 +824,16 @@ class Sidebar extends Component {
                       </span>
                     </div>
                   </div>
-                  <div className="loader" style={{textAlign: "center"}}>
-                  {this.state.loading&&<LoaderBig /> }
+                  <div className="loader" style={{ textAlign: "center" }}>
+                    {this.state.loading && <LoaderBig />}
                   </div>
-                 
+
 
                   <ul>
 
 
-                    { this.state.Allos&&
-                      this.state.Allos.map((e,i) => {
+                    {this.state.Allos &&
+                      this.state.Allos.map((e, i) => {
                         // console.log(this.props.currentLocation,"cur",[e.latitude, e.longitude]);
 
 

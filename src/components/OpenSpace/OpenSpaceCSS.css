@@ -37,6 +37,44 @@
     color: green;
     font-size: 12px;
 }
+.legend .blue{
+    width: 20px;
+    height: 20px;
+    color: red;
+}
+.OSmarkers {
+    width:15px !important;
+    height: 15px !important;
+    background-color: blue;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border:solid 4px rgba(6, 6, 247,0.2);
+    z-index: 200;
+}
+.OSmarkers:hover{
+    background-color: white;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border:solid 6px rgba(6, 6, 247,0.8)
+}
+.nearbymarker{
+    width:15px !important;
+    height: 15px !important;
+    background-color: green;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border:solid 4px rgba(2, 158, 2,0.1);
+    transition: transform 1s;
+    z-index: 202;
+}
+.nearbymarker:hover{
+    background-color: white;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border:solid 6px rgba(2, 158, 2,0.8);
+
+}
+
 
 
 
