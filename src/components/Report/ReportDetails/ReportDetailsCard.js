@@ -42,6 +42,8 @@ class ReportDetailsCard extends Component {
 
     var status = this.state.reportInfo.status;
     this.props.id && localStorage.setItem("reportId", this.props.id);
+    // console.log("should change", localStorage.getItem("reportId"));
+    
     this.props.days && localStorage.setItem("days", this.props.days);
 
     return (
@@ -78,7 +80,7 @@ class ReportDetailsCard extends Component {
                   <div className="report-content">
                     <div className="report-address ">
                       <p className="flex-start loc-time">
-                        <a href="#">{this.state.reportInfo.name}</a>
+                        <a >{this.state.reportInfo.name}</a>
                         <time>{localStorage.getItem("days")}</time>
                       </p>
                       <p className="flex-start address">

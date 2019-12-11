@@ -4,12 +4,15 @@ import {
      TileLayer,
     LayersControl
 } from "react-leaflet";
+
+
 import 'leaflet/dist/leaflet.css';
 import Axios from 'axios';
 import { connect } from 'react-redux';
 const { BaseLayer } = LayersControl;
 import 'leaflet.markercluster/dist/MarkerCluster.css'
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
+
 require('leaflet.markercluster')
 
 
@@ -20,7 +23,8 @@ require('leaflet.markercluster')
        this.maps=createRef()
           
        this.state = {
-           height: null
+           height: null,
+           spacedata: ''
           
        };
      };
@@ -35,28 +39,69 @@ require('leaflet.markercluster')
         })
 
      }
+
+     fetchLatLng = () => {
+         Axios.get(`http://139.59.67.104:8011/api/v1/open_space/${localStorage.getItem("id")}`) 
+         .then(r =>{
+
+          this.setState({
+              spacedata: r.data
+          })
+         
+          const reportStyle = {
+            color: "red",
+            fillColor: "red",
+            opacity: 0.3,
+            fillOpacity: 1,
+            weight: 15,
+            radius: 6
+          };
+          console.log(this.state.spacedata.centroid);
+          
+          var marker = L.circleMarker(
+              [this.state.spacedata.centroid[1],
+              this.state.spacedata.centroid[0]],reportStyle
+          )
+         
+          var popUp =  " <div class='bind-popup'> " +
+          "<div class='bind-header'> <h5>" +
+          this.props.title+
+          "</h5>   </div> </div>";
+            marker.bindPopup(popUp)
+            marker.addTo(this.maps.current.leafletElement)
+            
+         })
+     }
      
      componentDidMount() {
         this.onload();
-        Axios.get(`https://iomapi.naxa.com.np/api/v1/single_open_geo_json?id=${this.props.openSpace}`)  
+        this.fetchLatLng();
+        Axios.get(`https://iomapi.naxa.com.np/api/v1/single_open_geo_json?id=${localStorage.getItem("id")}`)  
         .then(response=>{
             var geo=L.geoJSON(response.data,{fillColor:'blue',fillOpacity:0.3,color:'green',weight:2}).addTo(this.maps.current.leafletElement)
             this.maps.current.leafletElement.fitBounds(geo.getBounds())
+            this.maps.current.leafletElement.setZoom( this.maps.current.leafletElement.getZoom()-2)
+            
 
         })   
     }
     render() {
         this.props.openSpace&&localStorage.setItem("id",this.props.openSpace)
         
-        // ${localStorage.getItem('id')}
+       
+        this.props.title&&sessionStorage.setItem("title",this.props.title)
+       
+
         
-      console.log("R",this.props);
+        var bounds = [[25.710836919640595, 79.79365377708339],
+        [30.798474179567847, 88.54975729270839]];
       
       
         
     
         return (
           
+
 
             <>
             <LeafletMap
@@ -70,7 +115,7 @@ require('leaflet.markercluster')
                     dragging={true}
                     animate={true}
                     easeLinearity={0.35}
-                    // bounds={this.bounds}
+                    // bounds={bounds}
                     ref={this.maps}
                     style={{ height: this.state.height == null ? '80vh': this.state.height,overflow: 'hidden', }}  
                     >
@@ -136,7 +181,8 @@ require('leaflet.markercluster')
             
           const mapStateToPros = (state) => {
             return{
-              openSpace : state.reportID
+              openSpace : state.space,
+              title: state.ReportTitle
             }
            
           }      

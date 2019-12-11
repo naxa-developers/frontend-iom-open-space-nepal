@@ -381,6 +381,8 @@ class DetailsCard extends Component {
                         ward ={this.state.spaceInfo.ward}
                         ownership = {this.state.spaceInfo.ownership}
                         special_feature ={this.state.spaceInfo.special_feature}
+                        access = {this.state.spaceInfo.access_to_site}
+                        elevation={this.state.spaceInfo.elevation}
                       />
                     </div>
                     <div
