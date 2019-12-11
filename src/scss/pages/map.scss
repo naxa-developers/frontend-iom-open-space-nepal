@@ -606,11 +606,7 @@
                             }
                         }
                         &:hover{
-                            .report-content{
-                                h5{
-                                    color:$color-blue;
-                                }
-                            }
+                            background: $color-bg;
                         }
                     }
                 }
