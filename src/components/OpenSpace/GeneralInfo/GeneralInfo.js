@@ -124,6 +124,8 @@ console.log("gene", this.props);
                 municipality = {this.props.municipality}
                 ownership = {this.props.ownership}
                 special_feature ={this.props.special_feature}
+                access = {this.props.access}
+                elevation={this.props.elevation}
                 
                 
                 />
