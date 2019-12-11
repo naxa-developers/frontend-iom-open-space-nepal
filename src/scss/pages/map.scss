@@ -32,7 +32,7 @@
             @include animate_all(all .6s linear);
             h6 {
                 font-weight: 600;
-                font-size: .7rem;
+                font-size: .75rem;
                 @include flexBetween;
                 span{
                     font-size: .625rem;
@@ -46,8 +46,11 @@
                 align-items: center;
                 margin: 0;
                 i{
-                    font-size: 1rem;
+                    font-size: 0.7rem;
                     margin-right: .25rem;
+                }
+                span{
+                    font-size: 0.7rem;
                 }
             }
 
@@ -381,7 +384,16 @@
 
         .leaflet-container {
             z-index: 1;
-
+            .leaflet-map-pane{
+                .leaflet-marker-pane{
+                    .leaflet-marker-icon{
+                        i{
+                            color: $primary-light;
+                            font-size: 1.125rem;
+                        }
+                    }
+                }
+            }
         }
 
 
@@ -497,10 +509,6 @@
                             .css-yk16xz-control,
                             .css-1fhf3k1-control {
                                 border: 1px solid $color-border;
-                                border-radius: 0;
-                            }
-
-                            .css-yk16xz-control{
                                 border-radius: .25rem;
                             }
 
@@ -584,6 +592,7 @@
                         padding: .25rem .5rem;
                         cursor: pointer;
                         @include animate_all(all .5s linear);
+                        border-bottom: 1px solid $color-grey;
                         .report-content {
                             h5 {
                                 font-size: .875rem;
