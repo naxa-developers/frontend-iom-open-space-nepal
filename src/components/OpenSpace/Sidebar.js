@@ -206,7 +206,7 @@ class Sidebar extends Component {
       var class1 = 'desccard';
       // var activeclass=class1
 
-      var descCard = "<ul><h6>Legend</h6><li><span class='legend blue'></span><p>Openspace</p></li><li id='nearbylegend' style='visibility:hidden'><span class='legend green'></span><p>Nearby OS</p></li></ul>";
+      var descCard = "<ul id='mrk-lg'><h6>Legend</h6><li><span class='legend blue'></span><p>Openspace</p></li></ul>";
 
 
 
@@ -331,7 +331,7 @@ class Sidebar extends Component {
           this.setState({ Allos: response.data.open_space })
           this.displaynearbyOs()
         }
-        else{
+        else {
           this.notify()
         }
 
@@ -370,8 +370,9 @@ class Sidebar extends Component {
 
 
       htmlmrk.addTo(this.state.nearbyGroup)
-      document.getElementById('nearbylegend').style.visibility = 'visible'
+
     })
+    document.getElementById('mrk-lg').innerHTML+="<li id='nearbylegend' ><span class='legend green'></span><p>Nearby OS</p></li>"
     this.state.nearbyGroup.bringToFront()
     this.props.mapRefs.current.leafletElement.fitBounds(this.state.nearbyGroup.getBounds())
 
@@ -382,7 +383,7 @@ class Sidebar extends Component {
   tooglenearby = () => {
     if (this.state.nearbytoogle) {
       this.state.nearbyGroup.eachLayer(e => this.state.nearbyGroup.removeLayer(e))
-      document.getElementById('nearbylegend').style.visibility = 'hidden'
+      document.getElementById('mrk-lg').removeChild(document.getElementById('nearbylegend'))
       this.setState({ Allos: this.state.Openspaces })
       this.props.mapRefs.current.leafletElement.addLayer(this.state.OSmarkers)
 
@@ -410,38 +411,41 @@ class Sidebar extends Component {
 
 
     this.state.Allos.map(e => {
-      // console.log(e)
-
-      var map = this.props.mapRefs.current.leafletElement;
-      // new L.circleMarker([e.latitude, e.longitude]).addTo(map)
-      var icon = L.divIcon({
-        className: 'OSmarkers',
-        html: "<i class='OSmarker'></i>",
-        // iconSize: [4, 4],
-        // iconAnchor: [12, 6]
-      });
-      var htmlmrk = L.marker([e.centroid[1], e.centroid[0]], { icon: icon });
-
-      var mrk = new L.circleMarker([e.centroid[1], e.centroid[0]], { radius: 6, fillColor: '#174BDD', fillOpacity: 1, weight: 15, opacity: 0.3, pane: 'Oslanding' })
-      let address=e.address==null?'Nepal':e.address
-      var popup = "<h5>" + e.title + "</h5>" +
-        "<h6>" + e.municipality + "</h6>"
-      var pop = "<div class='bind-popup'> <div class='bind-header'><h5>" + e.title + "</h5> <p><i class='material-icons' style='font-size:16px'>room</i>" + address + "</p><a  class='openSpace_btn' href='/#/OpenSpaceDetails'>View Details</a></div></div>"
-
-      htmlmrk.bindPopup(pop)
-      htmlmrk.on('click', () => {
-        var classes = document.getElementsByClassName('openSpace_btn')
-        for (var i = 0; i < classes.length; i++) {
-          classes[i].addEventListener('click', () => {
-            this.props.dispatch({ type: "spaceClicked", id: e.id })
-            this.props.history.push('/OpenSpaceDetails');
-
-          })
-        }
-      })
+      console.log(e, 'data')
+      if (e.centroid != null) {
+        var map = this.props.mapRefs.current.leafletElement;
+        // new L.circleMarker([e.latitude, e.longitude]).addTo(map)
+        var icon = L.divIcon({
+          className: 'OSmarkers',
+          html: "<i class='OSmarker'></i>",
+          // iconSize: [4, 4],
+          // iconAnchor: [12, 6]
+        });
 
 
-      htmlmrk.addTo(this.state.OSmarkers)
+        var htmlmrk = L.marker([e.centroid[1], e.centroid[0]], { icon: icon });
+
+        var mrk = new L.circleMarker([e.centroid[1], e.centroid[0]], { radius: 6, fillColor: '#174BDD', fillOpacity: 1, weight: 15, opacity: 0.3, pane: 'Oslanding' })
+        let address = e.address == null ? 'Nepal' : e.address
+        var popup = "<h5>" + e.title + "</h5>" +
+          "<h6>" + e.municipality + "</h6>"
+        var pop = "<div class='bind-popup'> <div class='bind-header'><h5>" + e.title + "</h5> <p><i class='material-icons' style='font-size:16px'>room</i>" + address + "</p><a  class='openSpace_btn' href='/#/OpenSpaceDetails'>View Details</a></div></div>"
+
+        htmlmrk.bindPopup(pop)
+        htmlmrk.on('click', () => {
+          var classes = document.getElementsByClassName('openSpace_btn')
+          for (var i = 0; i < classes.length; i++) {
+            classes[i].addEventListener('click', () => {
+              this.props.dispatch({ type: "spaceClicked", id: e.id })
+              this.props.history.push('/OpenSpaceDetails');
+
+            })
+          }
+        })
+
+
+        htmlmrk.addTo(this.state.OSmarkers)
+      }
 
     });
     this.props.mapRefs.current.leafletElement.fitBounds(this.state.OSmarkers.getBounds())
@@ -689,7 +693,7 @@ class Sidebar extends Component {
 
     // this.props.mapRefs.current.leafletElement1=this.props.mapRefs.current.leafletElement
   }
-  notify = () => toast.info("NO Openspace Found",{containerId: 'A',autoClose: false,});
+  notify = () => toast.info("NO Openspace Found", { containerId: 'A', autoClose: false, });
 
 
   render() {
@@ -703,7 +707,7 @@ class Sidebar extends Component {
       <>
         <div>
 
-          <ToastContainer enableMultiContainer containerId={'A'}  position={toast.POSITION.BOTTOM_RIGHT} />
+          <ToastContainer enableMultiContainer containerId={'A'} position={toast.POSITION.BOTTOM_RIGHT} />
         </div>
         <div className="map-sidebar">
 
