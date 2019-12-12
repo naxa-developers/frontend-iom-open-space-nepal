@@ -60,7 +60,7 @@ export default class SingleEcard extends Component {
   }
 
   render() {
-    console.log(this.props.reff,this.props.remove,'asassaasdccax')
+    
     return (
       <li>
         <div class="space">
