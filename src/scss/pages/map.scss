@@ -461,14 +461,17 @@
             .overview-item {
                 h6 {
                     font-weight: 700;
-                    font-size: 1.2rem;
+                    font-size: 1.125rem;
                     margin: 0 0 .5rem 0;
+                    sub{
+                        bottom: 0;
+                    }
                 }
 
                 p {
                     color: $color-dim;
                     text-transform: capitalize;
-                    font-size: .875rem;
+                    font-size: .844rem;
                     margin: 0;
                 }
             }
@@ -516,6 +519,16 @@
                         text-align: center;
                         flex-wrap: nowrap;
 
+                        /* .css-2b097c-container, .css-14jk2my-container{
+                            .css-yk16xz-control, .css-1fhf3k1-control {
+                                .css-1hwfws3{
+                                    .css-1wa3eu0-placeholder{
+                                        font-size: .75rem;
+                                    }
+                                }
+                            }
+                        } */
+
                         .css-2b097c-container,
                         .css-14jk2my-container {
                             width: 100%;
@@ -526,7 +539,14 @@
                             .css-yk16xz-control,
                             .css-1fhf3k1-control {
                                 border: 1px solid $color-border;
-                                border-radius: .25rem;
+                                border-radius: 0rem;
+                                .css-1hwfws3{
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    .css-1wa3eu0-placeholder{
+                                        font-size: .797rem;
+                                    }
+                                }
                             }
 
                             .css-1pahdxg-control {
@@ -559,6 +579,8 @@
                         .openspace-button {
                             padding: .5rem 1rem;
                             background-color: $blue-light-1;
+                            font-size: 0.75rem;
+                            font-weight: 500;
                         }
 
                         .reset {
@@ -862,8 +884,6 @@
             }
 
             .space-details {
-
-
                 .space {
                     @include flexBetween;
                     align-items: center;
@@ -874,7 +894,7 @@
                         cursor: pointer;
 
                         h5 {
-                            font-size: 1.5rem;
+                            font-size: 1.325rem;
                             line-height: 1.2;
                             font-weight: 800;
                             margin-bottom: .25rem;
@@ -927,10 +947,10 @@
                 }
 
                 figure {
-                    margin: 1rem 0 0 0;
+                    margin: 1rem 0 0 0 !important;
                     max-width: 300px;
                     margin:0 auto;
-                    max-height: 150px;;
+                    max-height: 150px;
                 }
 
             }
@@ -952,6 +972,7 @@
 
                         span {
                             color: $color-dim;
+                            font-size: 0.844rem;
                         }
 
                         .symbol {
@@ -1054,7 +1075,7 @@
 
                 .suggested-content {
                     h5 {
-                        font-size: 1.2rem;
+                        font-size: 1rem;
                         color: $color-blue;
                         font-weight: 700;
                         margin:0;
@@ -1062,7 +1083,7 @@
 
                     .suggested-list {
                         padding: 0.6125rem;
-                        margin: 1rem 0.25rem;
+                        margin: 0.25rem;
 
                         ul {
                             li {
@@ -1070,7 +1091,7 @@
                                 align-items: center;
                                 flex-wrap: nowrap;
                                 color: $color-dim;
-                                font-size: .875rem;
+                                font-size: .844rem;
                                 margin-bottom: .6125rem;
 
                                 span {
@@ -1096,13 +1117,17 @@
                                         }
                                     }
                                 }
+                                img{
+                                    height: 25px !important;
+                                    width: auto;
+                                }
                             }
                         }
                     }
 
                     p {
                         color: $color-dim;
-                        font-size: 1rem;
+                        font-size: .875rem;
                         margin: 0;
 
                         span {
@@ -1173,14 +1198,13 @@
                 background-color: $green-highlight;
                 color: $primary-light;
                 @include flexStart;
-                align-items: center;
-                max-width: 160px;
-                padding:.6125rem 1rem;
                 text-transform: initial;
-
+                max-width: 140px;
+                padding: .75rem 1.688rem .75rem 1.188rem;
                 i {
+                    font-size: 1.125rem;
                     color: $color-green;
-                    margin-right: .6125rem;
+                    margin-right: .625rem;
                 }
 
 
@@ -1306,7 +1330,7 @@
                         .space {
                             .space-content {
                                 h5 {
-                                    font-size: 1.5rem;
+                                    font-size: 1.325rem;
                                 }
                             }
                         }
@@ -1321,6 +1345,35 @@
     .openSpace-map {
         .map-wrapper {
             .map-sidebar {
+                .overview-item {
+                    h6 {
+                        font-size: 1rem;
+                    }
+                    p{
+                        font-size: 0.75rem;
+                    }
+                }
+                .gallery-category{
+                    .gallery-grid {
+                        h4{
+                            font-size: .875rem;
+                        }
+                    }
+                } 
+                .space-chart{
+                    .chart-legend {
+                        .legend-list {
+                            span{
+                                font-size: .75rem;
+                            }
+                        }
+                    }
+                    .chart-wrapper{
+                        .chart-item{
+                            height: 24px;
+                        }
+                    }
+                }  
                 .sidebar-wrapper {
                     .space-list {
                         ul {
@@ -1355,13 +1408,16 @@
                         .space {
                             .space-content {
                                 padding-right: 0;
+                                font-size: 1.125rem;
                             }
                         }
                     }
 
                     .report-list {
-
                         ul {
+                            h6{
+                                font-size: .875rem;
+                            }
                             li {
                                 flex-wrap: wrap;
 
@@ -1377,14 +1433,12 @@
                     .general-info {
                         .suggested-content {
                             h5 {
-                                font-size: 1rem;
+                                font-size: .875rem;
                             }
-
                             .suggested-list {
-
                                 ul {
                                     li {
-                                        font-size: .875rem;
+                                        font-size: .75rem;
 
                                         span {
                                             margin: 0 .6125rem;
@@ -1418,6 +1472,261 @@
         .container-fluid {
             max-width: 100%;
             padding: 0 15px;
+        }
+    }
+}
+
+@media screen and (max-width:$mb-xl) {
+    .openSpace-map {
+        .map-wrapper {
+            .map-sidebar {
+                .overview-item {
+                    h6 {
+                        font-size: 1.063rem;
+                    }
+                    p{
+                        font-size: 0.938rem;
+                    }
+                }
+                .gallery-category{
+                    .gallery-grid {
+                        h4{
+                            font-size: .938rem;
+                        }
+                    }
+                } 
+                .space-chart{
+                    .chart-legend {
+                        .legend-list {
+                            span{
+                                font-size: .938rem;
+                            }
+                        }
+                    }
+                    .chart-wrapper{
+                        .chart-item{
+                            height: 24px;
+                        }
+                    }
+                }  
+                .sidebar-wrapper {
+                    .space-list {
+                        ul {
+                            li {
+                                .space {
+                                    @include flexStart;
+                                    align-items: center;
+                                    -ms-flex: 0 0 90%;
+                                    flex: 0 0 90%;
+                                    max-width: 90%;
+
+                                    .space-content {
+                                        padding-right: 0;
+
+                                        h5 {
+                                            font-size: .938rem;
+                                        }
+                                    }
+                                }
+
+                                .space-direction {
+                                    -ms-flex: 0 0 10%;
+                                    flex: 0 0 10%;
+                                    max-width: 10%;
+                                    
+                                }
+                            }
+                        }
+                    }
+
+                    .space-details {
+                        .space {
+                            .space-content {
+                                padding-right: 0;
+                                font-size: 1.125rem;
+                            }
+                        }
+                    }
+
+                    .report-list {
+                        ul {
+                            h6{
+                                font-size: .938rem;
+                            }
+                            li {
+                                flex-wrap: wrap;
+
+                                .report-content {
+                                    h5 {
+                                        font-size: .938rem;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .general-info {
+                        .suggested-content {
+                            h5 {
+                                font-size: .938rem;
+                            }
+                            .suggested-list {
+                                ul {
+                                    li {
+                                        font-size: .813rem;
+
+                                        span {
+                                            margin: 0 .6125rem;
+                                        }
+                                    }
+                                }
+                            }
+
+                            p {
+                                font-size: .813rem;
+                            }
+                        }
+
+                        .assessment-list {
+                            ul {
+                                li {
+                                    font-size: .938rem;
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:$mb-md) {
+    .openSpace-map {
+        .map-wrapper {
+            .map-sidebar {
+                .overview-item {
+                    h6 {
+                        font-size: .875rem;
+                    }
+                    p{
+                        font-size: .75rem;
+                    }
+                }
+                .gallery-category{
+                    .gallery-grid {
+                        h4{
+                            font-size: .875rem;
+                        }
+                    }
+                } 
+                .space-chart{
+                    .chart-legend {
+                        .legend-list {
+                            span{
+                                font-size: .875rem;
+                            }
+                        }
+                    }
+                    .chart-wrapper{
+                        .chart-item{
+                            height: 20px;
+                        }
+                    }
+                }  
+                .sidebar-wrapper {
+                    .space-list {
+                        ul {
+                            li {
+                                .space {
+                                    @include flexStart;
+                                    align-items: center;
+                                    -ms-flex: 0 0 90%;
+                                    flex: 0 0 90%;
+                                    max-width: 90%;
+
+                                    .space-content {
+                                        padding-right: 0;
+
+                                        h5 {
+                                            font-size: .875rem;
+                                        }
+                                    }
+                                }
+
+                                .space-direction {
+                                    -ms-flex: 0 0 10%;
+                                    flex: 0 0 10%;
+                                    max-width: 10%;
+                                    
+                                }
+                            }
+                        }
+                    }
+
+                    .space-details {
+                        .space {
+                            .space-content {
+                                padding-right: 0;
+                                font-size: 1.125rem;
+                                h5{
+                                    font-size: 1.125rem;
+                                }
+                            }
+                        }
+                    }
+
+                    .report-list {
+                        ul {
+                            h6{
+                                font-size: .875rem;
+                            }
+                            li {
+                                flex-wrap: wrap;
+
+                                .report-content {
+                                    h5 {
+                                        font-size: .938rem;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .general-info {
+                        .suggested-content {
+                            h5 {
+                                font-size: .875rem;
+                            }
+                            .suggested-list {
+                                ul {
+                                    li {
+                                        font-size: .813rem;
+
+                                        span {
+                                            margin: 0 .6125rem;
+                                        }
+                                    }
+                                }
+                            }
+
+                            p {
+                                font-size: .813rem;
+                            }
+                        }
+
+                        .assessment-list {
+                            ul {
+                                li {
+                                    font-size: .875rem;
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
         }
     }
 }

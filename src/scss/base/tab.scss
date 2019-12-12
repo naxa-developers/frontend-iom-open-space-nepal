@@ -61,7 +61,7 @@
       .nav-link{
         border-radius: 0;
         background-color:transparent;
-        font-size:.875rem;
+        font-size:.75rem;
         text-transform: uppercase;
         border:none;
         font-weight: 700;
@@ -99,3 +99,26 @@
   }
 }
 
+@media screen and (max-width:$lg-tab) {
+  .nav-tabs{
+    &.map-tab{
+      .nav-item{
+        .nav-link{
+          font-size: .688rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width:$mb-xl) {
+  .nav-tabs{
+    &.map-tab{
+      .nav-item{
+        .nav-link{
+          font-size: .75rem;
+        }
+      }
+    }
+  }
+}
