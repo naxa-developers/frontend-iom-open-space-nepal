@@ -292,7 +292,7 @@ class Sidebar extends Component {
       // this.displayOS()
 
       Axios.get(
-        `http://139.59.67.104:8011/api/v1/province_geo_json?id=${this.state.SelectedProvince.value}`
+        `https://iomapi.naxa.com.np/api/v1/province_geo_json?id=${this.state.SelectedProvince.value}`
       ).then(response => {
         var Province = L.geoJSON(response.data, {
           style: () => {
