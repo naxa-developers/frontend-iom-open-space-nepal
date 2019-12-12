@@ -53,8 +53,8 @@ class Glimpse extends Component {
                                 <h4><Odometer
                                     format= "d"
                                     duration= {500}
-                                value = "120"
-                                    // value = {this.state.counts&&this.state.counts.data.open_space}
+                                // value = "120"
+                                    value = {this.state.counts&&this.state.counts.data.open_space}
                                 /></h4>
                                 <h6>{this.props.language =="0" ? `Open spaces` : `खुल्ला क्षेत्र` }</h6>
                             </div>
@@ -65,8 +65,8 @@ class Glimpse extends Component {
                                 <Odometer
                                     format= "d"
                                     duration= {500}
-                                    value="10"
-                                    // value = {this.state.counts&&this.state.counts.data.district}
+                                    // value="10"
+                                    value = {this.state.counts&&this.state.counts.data.district}
                                 />
                                     </h4>
                                 <h6>{this.props.language =="0" ? `Districts` : ` जिल्ला` }</h6>
@@ -78,8 +78,8 @@ class Glimpse extends Component {
                                 <Odometer
                                     format= "d"
                                     duration= {500}
-                                    value="10"
-                                    // value =  {this.state.counts&&this.state.counts.data.municipality}
+                                    // value="10"
+                                    value =  {this.state.counts&&this.state.counts.data.municipality}
                                 />
                                    </h4>
                                 <h6>{this.props.language =="0" ? `Municipalities` : ` नगरपालिका` }</h6>

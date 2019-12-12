@@ -37,12 +37,12 @@ class EducationCard extends Component {
     this.setState({ActiveRouteindex:e})
   }
   render() {
-    console.log(this.props.OSlatlng, 'oslatlngedu')
+   
 
     this.props.id && localStorage.setItem("OpenspaceID", this.props.id);
 
     return (
-      <>
+      
 
         <div class="space-list nearby-list">
           <ul>
@@ -63,7 +63,7 @@ class EducationCard extends Component {
 
           </ul>
         </div>
-      </>
+     
     );
   }
 }
