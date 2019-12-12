@@ -617,8 +617,9 @@ class Sidebar extends Component {
 
         for (var i = 0; i < doc.length; i++) {
           doc[i].addEventListener('click', (e) => {
-            // console.log(e.target.getAttribute('name'));
-            var value = e.target.getAttribute('name')
+            console.log(e.target.parentElement.getAttribute('name'));
+            var value = e.target.closest(".desccard").getAttribute('name')
+        
             var selected = this.state.Routespaths.filter((a) => {
               return a.id == value
             })
