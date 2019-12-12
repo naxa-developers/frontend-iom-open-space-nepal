@@ -161,8 +161,8 @@
                         border:0;
 
                         &:hover {
-                            background-color: $green-highlight;
-                            color: $color-green;
+                            background-color: $color-green;
+                            color: $green-highlight;
                         }
                     }
                     
@@ -174,21 +174,22 @@
                         height: 30px;
                         line-height: 40px;
                         color: $primary-light;
-                        @include animate_all(all .5s);
+                        @include animate_all(all .5s linear);
                         background-color: $color-white;
                         text-align: center;
                         border:0;
                         margin-top:1.2rem !important;
                         i{
                             font-size: 1rem;
-                            color: $color-green;
+                            color: $color-green; 
                         }
-    
-                        &:hover {
-                            background-color: $green-highlight;
-                            color: $color-green;
+                        &:hover{
+                            cursor: pointer;
+                            background-color: $color-green;
+                            i{
+                                color: $green-highlight;
+                            }
                         }
-                   
                 }
                 &.leaflet-bottom {
                     right: 5rem;
@@ -385,7 +386,12 @@
                 .leaflet-marker-pane{
                     .leaflet-marker-icon{
                         &.nearby-div-icon{
-                            color: $color-green;
+                            i{
+                                font-size: 0.875rem;
+                                &:before{
+                                    color: $color-green !important;
+                                }
+                            }
                         }
                     }
                 }
@@ -401,9 +407,6 @@
                             @include animate_all(all .6s linear);
                             color: $color-green;
                             font-size: 1.125rem;
-                            &:hover{
-                                color: $color-grey;
-                            }
                         }
                     }
                 }
