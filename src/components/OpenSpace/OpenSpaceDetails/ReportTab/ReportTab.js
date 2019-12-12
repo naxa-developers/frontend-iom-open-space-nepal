@@ -8,7 +8,7 @@ import SingleReport from './SingleReport'
          super(props)
      
          this.state = {
-              Reports: null
+              Reports: ''
          }
      }
      
@@ -31,6 +31,7 @@ import SingleReport from './SingleReport'
 
     render() {
        
+    
      
         
         return (
@@ -42,9 +43,18 @@ import SingleReport from './SingleReport'
                   
            
                  { 
-                  this.state.Reports!=null ?  this.state.Reports.map(e => {   return  <li><SingleReport id={this.props.id} title={e.title} days = {e.count}/> </li>  }) :  <h6>There are no reports available</h6>
+                 this.state.Reports!=null&& this.state.Reports.length == 0 ? 
+<h5>There is no report available for this openspace.</h5>  :
+
+                    this.state.Reports.map(e => {   return  <li><SingleReport id={this.props.id} title={e.title} days = {e.count}/> </li>  }) 
+                    
                  
                 }
+
+
+
+
+        
           
             </ul>
 
