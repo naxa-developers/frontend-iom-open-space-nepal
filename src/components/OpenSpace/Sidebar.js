@@ -286,10 +286,33 @@ class Sidebar extends Component {
       })
     }
     else if (this.state.SelectedProvince) {
-      let FilteredOS = this.state.Openspaces.filter((e) => e.province == this.state.SelectedProvince.value)
-      console.log(FilteredOS)
-      this.setState({ Allos: FilteredOS, loading: false })
-      this.displayOS()
+      // let FilteredOS = this.state.Openspaces.filter((e) => e.province == this.state.SelectedProvince.value)
+    
+      // this.setState({ Allos: FilteredOS, loading: false })
+      // this.displayOS()
+
+      Axios.get(
+        `http://139.59.67.104:8011/api/v1/province_geo_json?id=${this.state.SelectedProvince.value}`
+      ).then(response => {
+        var Province = L.geoJSON(response.data, {
+          style: () => {
+            return {
+              color: '#174BDD',
+              fillColor: '#174BDD',
+              fillOpacity: 0.1,
+              weight: 1
+            }
+          }
+        });
+        let FilteredOS = this.state.Openspaces.filter((e) => e.province == this.state.SelectedProvince.value)
+        console.log(FilteredOS)
+        this.setState({ Allos: FilteredOS, loading: false })
+        this.displayOS()
+        Province.addTo(this.state.district_muni);
+        this.props.mapRefs.current.leafletElement.fitBounds(
+          this.state.district_muni.getBounds()
+        );
+      })
 
 
       // this.props.mapRefs.current.leafletElement.fitBounds(
@@ -754,11 +777,13 @@ class Sidebar extends Component {
                             municipality: null,
                             handlingindex: 0,
                             Allos: this.state.Openspaces
-                          })
+                          },()=>this.displayOS())
                           var bounds = [[25.710836919640595, 79.79365377708339],
                           [30.798474179567847, 88.54975729270839]];
                           this.props.mapRefs.current.leafletElement.fitBounds(bounds)
                           this.state.Routes.eachLayer((e) => this.state.Routes.removeLayer(e))
+                          
+
 
                           this.state.district_muni.eachLayer(e =>
                             this.state.district_muni.removeLayer(e)
@@ -766,6 +791,7 @@ class Sidebar extends Component {
 
 
                           this.props.mapRefs.current.leafletElement.removeControl(this.state.legend);
+                          
 
                         }
 
