@@ -41,7 +41,7 @@ require('leaflet.markercluster')
      }
 
      fetchLatLng = () => {
-         Axios.get(`http://139.59.67.104:8011/api/v1/open_space/${localStorage.getItem("id")}`) 
+         Axios.get(`https://iomapi.naxa.com.np/api/v1/open_space/${localStorage.getItem("id")}`) 
          .then(r =>{
 
           this.setState({
