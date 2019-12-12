@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 
 class SingleReport extends Component {
   render() {
-   console.log("fghjghjg", this.props);
+  
    
     
     return (
@@ -13,7 +13,8 @@ class SingleReport extends Component {
         <div className="report-content">
         <h5 onClick={() =>   {
 this.props.history.push('/reportdetails')
-this.props.dispatch({type:'reportClicked', id: this.props.id})
+this.props.dispatch({type:'reportClicked', id: this.props.reportid})
+
         }
         
       

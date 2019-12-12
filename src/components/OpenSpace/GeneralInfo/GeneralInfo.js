@@ -13,8 +13,6 @@ class GeneralInfo extends Component {
         var actual_perc = usable_perc.toFixed(1) ;
         var width_perc = actual_perc+ '%'; 
 
-console.log("gene", this.props);
-
    
         
         return (
