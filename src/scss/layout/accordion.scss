@@ -63,3 +63,51 @@
         
     }
 }
+
+@media screen and (max-width: $lg-tab){
+    .accordion{
+        &.map-accordion{
+            .card {
+                .card-header{
+                    button{
+                        &.btn-link{
+                            font-size: .875rem;
+                        }
+                    }
+                } 
+            }
+        }
+    } 
+}
+
+@media screen and (max-width: $mb-xl){
+    .accordion{
+        &.map-accordion{
+            .card {
+                .card-header{
+                    button{
+                        &.btn-link{
+                            font-size: .938rem;
+                        }
+                    }
+                } 
+            }
+        }
+    } 
+}
+
+@media screen and (max-width: $mb-md){
+    .accordion{
+        &.map-accordion{
+            .card {
+                .card-header{
+                    button{
+                        &.btn-link{
+                            font-size: .875rem;
+                        }
+                    }
+                } 
+            }
+        }
+    } 
+}
