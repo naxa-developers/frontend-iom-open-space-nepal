@@ -47,10 +47,10 @@ class OpenSpace extends Component {
             <div className="container-fluid">
               <div className ="map-wrapper">
                 <div className="row no-gutters">
-                  <div className="col-md-8">
+                  <div className="col-md-7 col-lg-8">
                   <OpenspaceMap setProvince={this.setProvince} setcurrentLocation={this.setcurrentlocation} currentLocation={this.state.currentLocation} mapRefss={this.mapRefs} />
                   </div>
-                  <div className="col-md-4">
+                  <div className="col-md-5 col-lg-4">
                   <Sidebar mapRefs={this.mapRefs}  currentLocation={this.state.currentLocation} />
                   </div>
                 </div>

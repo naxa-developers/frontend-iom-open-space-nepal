@@ -32,6 +32,9 @@ button.openspace-button,a.openspace-button {
         border:1px solid $color-blue;
     }
 }
+a.openspace-button {
+    font-size: .75rem;
+}
 .action-btn{
     width:100%;
     .sm-button:last-child{
