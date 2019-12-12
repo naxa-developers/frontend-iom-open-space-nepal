@@ -514,3 +514,20 @@
     }
 }
 }
+
+@media screen and (max-width: $lg-tab)
+{
+    .site-header {
+        .headerWrap {
+            .headRight{
+                ul{
+                    li{
+                       a {
+                            padding: .525rem 1rem;
+                        }
+                    } 
+                }
+            }
+        }
+    } 
+}

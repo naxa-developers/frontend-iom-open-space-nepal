@@ -140,7 +140,7 @@
                 right: 1rem;
                 z-index: 999;
                 .leaflet-control{
-                    margin:0 !important;
+                    margin-top: 20px !important;
                 }
 
                 &.leaflet-top {
@@ -541,10 +541,10 @@
                                 border: 1px solid $color-border;
                                 border-radius: 0rem;
                                 .css-1hwfws3{
-                                    overflow: hidden;
-                                    text-overflow: ellipsis;
                                     .css-1wa3eu0-placeholder{
                                         font-size: .797rem;
+                                        overflow: hidden;
+                                        text-overflow: ellipsis;
                                     }
                                 }
                             }
@@ -887,10 +887,10 @@
                 .space {
                     @include flexBetween;
                     align-items: center;
-
+                    width: 100%;
                     .space-content {
                         width: 100%;
-                        padding-right: 3rem;
+                        // padding-right: 3rem;
                         cursor: pointer;
 
                         h5 {
@@ -930,12 +930,13 @@
                         @include flex;
                         align-items: flex-end;
                         justify-content: flex-end;
+                       
                         &.active{
                             color:$color-green;
                         }
 
                         i {
-
+                            margin-top: 28px;
                             cursor: pointer;
 
                             &:hover {
@@ -1341,6 +1342,173 @@
     }
 }
 
+@media screen and (max-width:$desktop) {
+    .openSpace-map {
+        .map-wrapper {
+            .map-sidebar {
+                .sidebar-wrapper {
+                    .space-details {
+                        .space {
+                            .space-content {
+                                padding-right: 0;
+                                font-size: 1.125rem;
+                                width: calc(100% - 10%);
+                                h5{
+                                    font-size: 1.125rem;
+                                }
+                                p{
+                                    i{
+                                        margin-right: 0;
+                                    }
+                                    span{
+                                        &:nth-child(1){
+                                            flex: 0 0 70%;
+                                        }
+                                        &:nth-child(2){
+                                            flex: 0 0 30%;
+                                        }
+                                        
+                                    }
+                                }
+                            }
+                            .space-direction{
+                                max-width: 10%;
+                                flex: 0 0 10%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+@media screen and (max-width:$ls-tab) {
+    .openSpace-map{
+        .map-wrapper{
+            .map-sidebar{
+               
+                .report-count{
+                    h5 {
+                        font-size: 1.325rem;
+                    }
+                }
+                .overview-item {
+                    h6 {
+                        font-size: 0.95rem;
+                    }
+                    p{
+                        font-size: 0.875rem;
+                    }
+                }
+                .gallery-category{
+                    .gallery-grid {
+                        h4{
+                            font-size: .875rem;
+                        }
+                    }
+                } 
+                .space-chart{
+                    .chart-legend {
+                        .legend-list {
+                            span{
+                                font-size: .875rem;
+                            }
+                        }
+                    }
+                    .chart-wrapper{
+                        .chart-item{
+                            height: 30px;
+                        }
+                    }
+                }  
+                .sidebar-wrapper {
+                    .space-details {
+                        .space {
+                            .space-content {
+                                padding-right: 0;
+                                width: calc(100% - 10%);
+                                h5{
+                                    font-size: 1.125rem;
+                                }
+                                p{
+                                    i{
+                                        margin-right: 0;
+                                    }
+                                    span{
+                                        &:nth-child(1){
+                                            flex: 0 0 60%;
+                                        }
+                                        &:nth-child(2){
+                                            flex: 0 0 40%;
+                                        }
+                                        
+                                    }
+                                }
+                                
+                            }
+                            .space-direction{
+                                max-width: 10%;
+                                flex: 0 0 10%;
+                            }
+                        }
+                    }
+
+                    .report-list {
+                        ul {
+                            h6{
+                                font-size: .875rem;
+                            }
+                            li {
+                                flex-wrap: wrap;
+
+                                .report-content {
+                                    h5 {
+                                        font-size: .875rem;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .general-info {
+                        .suggested-content {
+                            h5 {
+                                font-size: .95rem;
+                            }
+                            .suggested-list {
+                                ul {
+                                    li {
+                                        font-size: .875rem;
+
+                                        span {
+                                            margin: 0 .6125rem;
+                                        }
+                                    }
+                                }
+                            }
+
+                            p {
+                                font-size: .875rem;
+                            }
+                        }
+
+                        .assessment-list {
+                            ul {
+                                li {
+                                    font-size: .875rem;
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+    }  
+}
+
 @media screen and (max-width:$lg-tab) {
     .openSpace-map {
         .map-wrapper {
@@ -1414,6 +1582,28 @@
                             .space-content {
                                 padding-right: 0;
                                 font-size: 1.125rem;
+                                width: calc(100% - 10%);
+                                h5{
+                                    font-size: 1.125rem;
+                                }
+                                p{
+                                    i{
+                                        margin-right: 0;
+                                    }
+                                    span{
+                                        &:nth-child(1){
+                                            flex: 0 0 70%;
+                                        }
+                                        &:nth-child(2){
+                                            flex: 0 0 30%;
+                                        }
+                                        
+                                    }
+                                }
+                            }
+                            .space-direction{
+                                max-width: 10%;
+                                flex: 0 0 10%;
                             }
                         }
                     }
@@ -1477,6 +1667,71 @@
         .container-fluid {
             max-width: 100%;
             padding: 0 15px;
+            .map-wrapper {
+                .map-sidebar {
+                    .sidebar-wrapper {
+                        .space-list {
+                            ul {
+                                li {
+                                    .space {
+                                        @include flexStart;
+                                        align-items: center;
+                                        -ms-flex: 0 0 90%;
+                                        flex: 0 0 90%;
+                                        max-width: 90%;
+    
+                                        .space-content {
+                                            padding-right: 0;
+    
+                                            h5 {
+                                                font-size: .875rem;
+                                            }
+                                        }
+                                    }
+    
+                                    .space-direction {
+                                        -ms-flex: 0 0 10%;
+                                        flex: 0 0 10%;
+                                        max-width: 10%;
+                                        
+                                    }
+                                }
+                            }
+                        }
+    
+                        .space-details {
+                            .space {
+                                .space-content {
+                                    padding-right: 0;
+                                    font-size: 1.125rem;
+                                    width: calc(100% - 10%);
+                                    h5{
+                                        font-size: 1.125rem;
+                                    }
+                                    p{
+                                        i{
+                                            margin-right: 0;
+                                        }
+                                        span{
+                                            &:nth-child(1){
+                                                flex: 0 0 60%;
+                                            }
+                                            &:nth-child(2){
+                                                flex: 0 0 40%;
+                                            }
+                                            
+                                        }
+                                    }
+                                }
+                                .space-direction{
+                                    max-width: 10%;
+                                    flex: 0 0 10%;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
