@@ -187,7 +187,7 @@ class NearbyTab extends Component {
         for (var i = 0; i < doc.length; i++) {
           doc[i].addEventListener('click', (e) => {
             // console.log(e.target.getAttribute('name'));
-            var value = e.target.getAttribute('name')
+            var value = e.target.closest(".desccard").getAttribute('name')
             var selected = this.state.Routespaths.filter((a) => {
               return a.id == value
             })
@@ -236,7 +236,7 @@ class NearbyTab extends Component {
         <Card>
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="0">
-            <i class="humanitarian-icon-Medical-supply"> </i> Health Facilities
+            <i className="humanitarian-icon-Medical-supply"> </i> Health Facilities
              
             </Accordion.Toggle>
           </Card.Header>
@@ -247,6 +247,10 @@ class NearbyTab extends Component {
               id= {this.props.id}
               legend={this.state.legend}
 
+              reff={this.props.reff}
+              fetchroute={this.fetchroute}
+              remove={this.remove}
+
               />
             </Card.Body>
           </Accordion.Collapse>
@@ -255,7 +259,7 @@ class NearbyTab extends Component {
         <Card>
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="1">
-            <i class="humanitarian-icon-Fire"></i>
+            <i className="humanitarian-icon-Fire"></i>
               Fire Brigade
             </Accordion.Toggle>
           </Card.Header>
@@ -276,7 +280,7 @@ class NearbyTab extends Component {
         <Card>
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="2">
-            <i class="humanitarian-icon-Helipad"></i>
+            <i className="humanitarian-icon-Helipad"></i>
               Helipad(Airport)
             </Accordion.Toggle>
             
@@ -290,7 +294,7 @@ class NearbyTab extends Component {
         <Card>
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="3">
-            <i class="humanitarian-icon-National-army"></i>
+            <i className="humanitarian-icon-National-army"></i>
               Security Forces
             </Accordion.Toggle>
             

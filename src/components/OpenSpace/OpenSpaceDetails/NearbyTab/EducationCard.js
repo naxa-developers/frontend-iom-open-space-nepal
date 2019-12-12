@@ -37,12 +37,12 @@ class EducationCard extends Component {
     this.setState({ActiveRouteindex:e})
   }
   render() {
-    console.log(this.props.OSlatlng, 'oslatlngedu')
+   
 
     this.props.id && localStorage.setItem("OpenspaceID", this.props.id);
 
     return (
-      <>
+      
 
         <div class="space-list nearby-list">
           <ul>
@@ -58,12 +58,19 @@ class EducationCard extends Component {
                 
                  fetchroute={this.props.fetchroute}
                   remove={this.props.remove} 
-                  legend={this.props.legend} reff={this.props.reff} OSlatlng={this.props.OSlatlng} key={e.id} name={e.name} latlng={[e.latitude, e.longitude]} />;
+                  legend={this.props.legend} 
+                  reff={this.props.reff}
+                   OSlatlng={this.props.OSlatlng}
+
+                   latlng={[e.latitude, e.longitude]}
+                    key={e.id} 
+                    name={e.name}
+                      />;
               })}
 
           </ul>
         </div>
-      </>
+     
     );
   }
 }

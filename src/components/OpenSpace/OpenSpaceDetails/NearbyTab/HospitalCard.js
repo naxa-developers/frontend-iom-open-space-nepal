@@ -1,58 +1,71 @@
 import React, { Component } from "react";
 import Axios from "axios";
 import SingleHealthCard from "./SingleHealthCard";
+import SingleEcard from "./SingleEcard";
 
 class HospitalCard extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      data: ""
+      data: "",
+      ActiveRouteindex:null
     };
   }
 
   fetchInfo = () => {
     Axios.get(
-      `https://iomapi.naxa.com.np/api/v1/near_by_me?type=health%20facility&count=100&distance=500&id=${this.props.id}`
+      `https://iomapi.naxa.com.np/api/v1/near_by_me?type=health%20facility&count=50&distance=1&id=${localStorage.getItem("eid")}`
     ).then(response => {
       this.setState({
         data: response.data
       });
     });
   };
+  
+  
+  setActivefalse=(e)=>{
+    this.setState({ActiveRouteindex:e})
+  }
   componentDidMount() {
     this.fetchInfo();
   }
 
   render() {
-
+    this.props.id && localStorage.setItem("eid", this.props.id);
 
 
     return (
-      <>
-        {/* <div className="facility-overview flex-between">
-          <div className="overview-item ">
-            <h6>1</h6>
-            <p>district hospital</p>
-          </div>
-          <div className="overview-item">
-            <h6>13</h6>
-            <p>government Hospital</p>
-          </div>
-          <div className="overview-item">
-            <h6>1</h6>
-            <p>private Hospital</p>
-          </div>
-        </div> */}
-        <span>
-        {this.state.data &&
-          this.state.data.facility.map(e => {
+
+      <div class="space-list nearby-list">
+      <ul>
+
+      {this.state.data &&
+          this.state.data.facility.map((e,i) => {
          
-              return <SingleHealthCard key ={e.id}name={e.name} />
+              return <SingleEcard
+               key ={e.id}
+               name={e.name}
+               setActivefalse={this.setActivefalse}
+               ActiveRoute={this.state.ActiveRouteindex}
+               index={i}
+               
+                fetchroute={this.props.fetchroute}
+                 remove={this.props.remove} 
+                 legend={this.props.legend} 
+                 reff={this.props.reff}
+                  OSlatlng={this.props.OSlatlng}
+
+                  latlng={[e.latitude, e.longitude]}
+              
+              />
            
           })}
-          </span>
-      </>
+
+      </ul>
+    </div>
+
+
     );
   }
 }

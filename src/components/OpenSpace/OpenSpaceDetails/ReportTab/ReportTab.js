@@ -8,16 +8,17 @@ import SingleReport from './SingleReport'
          super(props)
      
          this.state = {
-              Reports: null
+              Reports: ''
          }
      }
      
 
 
     getReports = () => {
-        Axios.get(`https://iomapi.naxa.com.np/api/v1/report/?id=${this.props.id}&fbclid=IwAR2--o41VqMZ-5H9HhqgZegN8YXbtI9oHTCmhofE4vWB_BNQSDtkRGD_I-U`)
+        Axios.get(`https://iomapi.naxa.com.np/api/v1/report/?id=${localStorage.getItem("id")}&fbclid=IwAR2--o41VqMZ-5H9HhqgZegN8YXbtI9oHTCmhofE4vWB_BNQSDtkRGD_I-U`)
         .then(response => {
          
+
             
             this.setState({Reports: response.data})
 
@@ -31,6 +32,7 @@ import SingleReport from './SingleReport'
 
     render() {
        
+    localStorage.setItem("id", this.props.id)
      
         
         return (
@@ -42,9 +44,18 @@ import SingleReport from './SingleReport'
                   
            
                  { 
-                  this.state.Reports!=null ?  this.state.Reports.map(e => {   return  <li><SingleReport id={this.props.id} title={e.title} days = {e.count}/> </li>  }) :  <h6>There are no reports available</h6>
+                 this.state.Reports!=null&& this.state.Reports.length == 0 ? 
+<h5>There is no report available for this openspace.</h5>  :
+
+                    this.state.Reports.map(e => {   return  <li><SingleReport reportid={e.id} title={e.title} days = {e.count}/> </li>  }) 
+                    
                  
                 }
+
+
+
+
+        
           
             </ul>
 

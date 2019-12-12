@@ -60,12 +60,12 @@ export default class SingleEcard extends Component {
   }
 
   render() {
-    console.log(this.props.reff,this.props.remove,'asassaasdccax')
+    
     return (
       <li>
         <div class="space">
           <figure>
-            <img src={fa} alt="space" />
+            {/* <img src={fa} alt="space" /> */}
           </figure>
           <div class="space-content">
             <h5>{this.props.name}</h5>

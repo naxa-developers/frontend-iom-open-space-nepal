@@ -45,6 +45,8 @@ class ReportDetailsCard extends Component {
     // console.log("should change", localStorage.getItem("reportId"));
     
     this.props.days && localStorage.setItem("days", this.props.days);
+  
+    
 
     return (
       <div className="map-sidebar">

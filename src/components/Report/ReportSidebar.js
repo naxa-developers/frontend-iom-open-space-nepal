@@ -120,7 +120,7 @@ this.props.dispatch({
       var div = L.DomUtil.create("div", `reportLegend`);
       div.innerHTML = "";
       var reportCard =
-        "<ul><h6>Report Legends</h6><li><span class='legend red'></span><p>Pending Reports</p></li><li><span class='legend green'></span><p>Replied Reports</p></li></ul>";
+        "<ul><h6>Report Status</h6><li><span class='legend red'></span><p>Pending </p></li><li><span class='legend green'></span><p>Replied</p></li></ul>";
       div.innerHTML += reportCard;
       return div;
     };
@@ -145,6 +145,7 @@ this.props.dispatch({
   }
 
   render() {
+    console.log("load", this.state.loading, this.props.reportData);
     
     
     return (
@@ -206,8 +207,9 @@ this.props.dispatch({
 
                   <ul>
                     {this.state.loading ? (
-                      <LoadingSpinnerBig />
-                    ) : (
+                    <LoadingSpinnerBig /> )  :this.props.reportData&& this.props.reportData.length==0 ? <h5>No reports available</h5> 
+                   
+                   : (
                       this.props.reportData.map(e => {
                         return (
                           <ReportCard
