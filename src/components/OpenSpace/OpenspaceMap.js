@@ -96,16 +96,17 @@ class OS extends Component {
                 var province = L.geoJSON(response.data, {
                     style: (feature) => {
                         return {
-                            color: 'black',
-                            weight: 0.8,
+                            color: 'green',
+                            weight: 0.2,
                             fillColor: colors[feature.properties.code - 1],
-                            fillOpacity: 0.7
+                            fillOpacity: 0.0
                         }
 
                     }
-                }).addTo(window.map)
+                }).addTo(this.props.mapRefss.current.leafletElement)
                 this.props.setProvince(province)
             })
+           
     }
     zoomTomylocation = () => {
         this.state.myloc.onAdd = (map) => {
@@ -159,12 +160,12 @@ class OS extends Component {
         var colors = ['#0B6D11', '#2A7F2F', '#48924D', '#67A46A', '#85B688', '#A4C8A6', '#C2DAC4']
         for (var i = 1; i <= 7; i++) {
             world.setFeatureStyle(i, {
-                fillColor: colors[i - 1],
+                fillColor: colors[i-1],
                 fillOpacity: 0.03,
                 fill: true,
                 opacity: 1,
                 color: 'green',
-                weight: 0.8
+                weight: 2
 
             })
         }
@@ -176,6 +177,7 @@ class OS extends Component {
 
     componentDidMount() {
         this.onload();
+        this.loadprovince()
         this.currentLocation();
         this.zoomTomylocation();
         toast.info("If current location is not in correct position, disconnect and reconnect your wifi network", { autoClose: false, position: "bottom-right" })
@@ -187,7 +189,7 @@ class OS extends Component {
 
         this.props.mapRefss.current.leafletElement.createPane('vectortile').style.zIndex = 200;
         // this.loadVectortile()
-        // this.loadprovince()
+        
 
     }
     notify = () => toast.info("Turn your location service ON for better experience", {
