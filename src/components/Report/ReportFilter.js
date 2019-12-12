@@ -52,7 +52,7 @@ class ReportFilter extends Component {
     const status = this.state.valueStatus;
     const start_date = this.state.startDate;
     const end_date = this.state.endDate;
-    const url = `http://139.59.67.104:8011/api/v1/report/?start_date=${start_date}&end_date=${end_date}&status=${status.label.toLowerCase()}`
+    const url = `https://iomapi.naxa.com.np/api/v1/report/?start_date=${start_date}&end_date=${end_date}&status=${status.label.toLowerCase()}`
   
     Axios.get(url)
     .then(response => {
