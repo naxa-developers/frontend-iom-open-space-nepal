@@ -58,7 +58,14 @@ class EducationCard extends Component {
                 
                  fetchroute={this.props.fetchroute}
                   remove={this.props.remove} 
-                  legend={this.props.legend} reff={this.props.reff} OSlatlng={this.props.OSlatlng} key={e.id} name={e.name} latlng={[e.latitude, e.longitude]} />;
+                  legend={this.props.legend} 
+                  reff={this.props.reff}
+                   OSlatlng={this.props.OSlatlng}
+
+                   latlng={[e.latitude, e.longitude]}
+                    key={e.id} 
+                    name={e.name}
+                      />;
               })}
 
           </ul>

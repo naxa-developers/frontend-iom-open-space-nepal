@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import Axios from "axios";
 import SingleHealthCard from "./SingleHealthCard";
+import SingleEcard from "./SingleEcard";
 
 class HospitalCard extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      data: ""
+      data: "",
+      ActiveRouteindex:null
     };
   }
 
@@ -20,6 +22,11 @@ class HospitalCard extends Component {
       });
     });
   };
+  
+  
+  setActivefalse=(e)=>{
+    this.setState({ActiveRouteindex:e})
+  }
   componentDidMount() {
     this.fetchInfo();
   }
@@ -34,9 +41,24 @@ class HospitalCard extends Component {
       <ul>
 
       {this.state.data &&
-          this.state.data.facility.map(e => {
+          this.state.data.facility.map((e,i) => {
          
-              return <SingleHealthCard key ={e.id}name={e.name} />
+              return <SingleEcard
+               key ={e.id}
+               name={e.name}
+               setActivefalse={this.setActivefalse}
+               ActiveRoute={this.state.ActiveRouteindex}
+               index={i}
+               
+                fetchroute={this.props.fetchroute}
+                 remove={this.props.remove} 
+                 legend={this.props.legend} 
+                 reff={this.props.reff}
+                  OSlatlng={this.props.OSlatlng}
+
+                  latlng={[e.latitude, e.longitude]}
+              
+              />
            
           })}
 

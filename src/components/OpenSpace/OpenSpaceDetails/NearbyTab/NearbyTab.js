@@ -187,7 +187,7 @@ class NearbyTab extends Component {
         for (var i = 0; i < doc.length; i++) {
           doc[i].addEventListener('click', (e) => {
             // console.log(e.target.getAttribute('name'));
-            var value = e.target.getAttribute('name')
+            var value = e.target.closest(".desccard").getAttribute('name')
             var selected = this.state.Routespaths.filter((a) => {
               return a.id == value
             })
@@ -246,6 +246,10 @@ class NearbyTab extends Component {
               OSlatlng={this.props.OSlatlng}
               id= {this.props.id}
               legend={this.state.legend}
+
+              reff={this.props.reff}
+              fetchroute={this.fetchroute}
+              remove={this.remove}
 
               />
             </Card.Body>
