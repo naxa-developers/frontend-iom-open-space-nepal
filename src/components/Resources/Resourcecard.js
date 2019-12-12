@@ -56,7 +56,7 @@ class Resourcecard extends Component {
                       ? this.props.audio
                       ? this.props.document_type==2
                       : this.props.video
-                      :""
+                      :alert("No download resource ")
                     }  download target="_blank">
                        <FacebookShareButton children={<FacebookIcon size='30px' round="true" />} url={this.state.shareUrl} />
                       <TwitterShareButton children={<TwitterIcon size='30px' round="true"/>} url={this.state.shareUrl} />

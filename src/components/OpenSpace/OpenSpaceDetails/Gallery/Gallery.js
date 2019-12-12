@@ -16,7 +16,7 @@ class Gallary extends Component {
   }
   
   fetchMaps = () => {
-    Axios.get(`http://139.59.67.104:8011/api/v1/gallery/?id=${this.props.id}&type=map`).then(response => {
+    Axios.get(`https://iomapi.naxa.com.np//api/v1/gallery/?id=${this.props.id}&type=map`).then(response => {
       this.setState({
         maps: response.data,
         loading: false
@@ -24,7 +24,7 @@ class Gallary extends Component {
     });
   };
   fetchImages = () => {
-    Axios.get(`http://139.59.67.104:8011/api/v1/gallery/?id=${this.props.id}&type=image`).then(response => {
+    Axios.get(`https://iomapi.naxa.com.np/api/v1/gallery/?id=${this.props.id}&type=image`).then(response => {
       this.setState({
         photos: response.data,
         loading: false
