@@ -358,6 +358,8 @@ class Sidebar extends Component {
         else {
           this.notify()
         }
+        console.log(response.data.open_space ,this.state.Openspaces)
+
 
 
       })
@@ -378,7 +380,7 @@ class Sidebar extends Component {
       var mrk = new L.circleMarker([e.centroid[1], e.centroid[0]], { radius: 6, fillColor: 'green', fillOpacity: 1, weight: 15, opacity: 0.3, color: 'green', pane: 'nearby' })
       var popup = "<h5>" + e.title + "</h5>" +
         "<h6>" + e.municipality + "</h6>"
-      var pop = "<div class='bind-popup'> <div class='bind-header'><h5>" + e.title + "</h5><p><i class='material-icons' style='font-size:16px'>room</i>" + e.municipality + "</p><a  class='openSpace_btn' href='/#/OpenSpaceDetails'>View Details</a></div></div>"
+      var pop = "<div class='bind-popup'> <div class='bind-header'><h5>" + e.title + "</h5><p><i class='material-icons' style='font-size:16px'>room</i>" + e.address + "<i class='material-icons pop-dir'>directions</i></p><a  class='openSpace_btn' href='/#/OpenSpaceDetails'>View Details</a></div></div>"
 
       htmlmrk.bindPopup(pop)
       htmlmrk.on('click', () => {
@@ -390,6 +392,38 @@ class Sidebar extends Component {
 
           })
         }
+        let dir=document.getElementsByClassName('pop-dir')
+          
+          for(var i=0;i<dir.length; i++){
+            dir[i].addEventListener('click',()=>{
+             
+              const newData = [
+                this.state.Allos.find(item => item.id === e.id),
+                ...this.state.Allos.filter(item => item.id != e.id),
+              ]
+              this.setState({Allos:newData})
+              if(this.state.ActiveRouteindex==e.id){
+                console.log(dir)
+                dir[0].classList.remove('active')
+                this.removeRoutes();
+                this.setActivefalse(null)
+
+            }
+            else{
+              console.log(i,dir)
+                
+                this.fetchroute([e.centroid[1], e.centroid[0]], this.props.currentLocation)
+                this.setActivefalse(e.id)
+                dir[0].classList.add('active')
+
+                
+
+            }
+
+
+          })
+          }
+
       })
 
 
@@ -453,7 +487,8 @@ class Sidebar extends Component {
         let address = e.address == null ? 'Nepal' : e.address
         var popup = "<h5>" + e.title + "</h5>" +
           "<h6>" + e.municipality + "</h6>"
-        var pop = "<div class='bind-popup'> <div class='bind-header'><h5>" + e.title + "</h5> <p><i class='material-icons' style='font-size:16px'>room</i>" + address + "</p><a  class='openSpace_btn' href='/#/OpenSpaceDetails'>View Details</a></div></div>"
+         
+        var pop = "<div class='bind-popup'> <div class='bind-header'><h5>" + e.title + "</h5> <p><i class='material-icons ' style='font-size:16px'>room</i>" + address + "<i class='material-icons pop-dir'>directions</i></p><a  class='openSpace_btn' href='/#/OpenSpaceDetails'>View Details</a></div></div>"
 
         htmlmrk.bindPopup(pop)
         htmlmrk.on('click', () => {
@@ -465,6 +500,38 @@ class Sidebar extends Component {
 
             })
           }
+          let dir=document.getElementsByClassName('pop-dir')
+          
+          for(var i=0;i<dir.length; i++){
+            dir[i].addEventListener('click',()=>{
+             
+              const newData = [
+                this.state.Allos.find(item => item.id === e.id),
+                ...this.state.Allos.filter(item => item.id != e.id),
+              ]
+              this.setState({Allos:newData})
+              if(this.state.ActiveRouteindex==e.id){
+                console.log(dir)
+                dir[0].classList.remove('active')
+                this.removeRoutes();
+                this.setActivefalse(null)
+
+            }
+            else{
+              console.log(i,dir)
+                
+                this.fetchroute([e.centroid[1], e.centroid[0]], this.props.currentLocation)
+                this.setActivefalse(e.id)
+                dir[0].classList.add('active')
+
+                
+
+            }
+
+
+          })
+          }
+          
         })
 
 
@@ -484,6 +551,7 @@ class Sidebar extends Component {
   fetchroute = (first, second) => {
     // L.tooltip().setLatLng(first).setContent('<h6></h6>').addTo(this.props.mapRefs.current.leafletElement)
     // map.closeTooltip();
+    console.log(first,second)
 
     this.state.Routespaths = []
     this.state.Routes.eachLayer((r) => this.state.Routes.removeLayer(r))
@@ -875,7 +943,7 @@ class Sidebar extends Component {
                         return (
                           <OpenSpaceCard
                             currentLocation={this.props.currentLocation}
-                            latlng={[e.latitude, e.longitude]}
+                            latlng={[e.centroid[1], e.centroid[0]]}
                             routing={this.fetchroute}
                             key={e.id}
                             name={e.title}
@@ -885,7 +953,7 @@ class Sidebar extends Component {
                             removeRoutes={this.removeRoutes}
                             setActivefalse={this.setActivefalse}
                             ActiveRoute={this.state.ActiveRouteindex}
-                            index={i}
+                            index={e.id}
                           />
                         );
                       })}
