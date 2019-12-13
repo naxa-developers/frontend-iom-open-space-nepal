@@ -127,7 +127,7 @@ class OSDetails extends Component {
     this.currentloc();
     Axios.get(
       `https://iomapi.naxa.com.np/api/v1/single_open_geo_json?id=${localStorage.getItem(
-        "id"
+        "id" 
       )}`
     ).then(response => {
       var geo = L.geoJSON(response.data, {
