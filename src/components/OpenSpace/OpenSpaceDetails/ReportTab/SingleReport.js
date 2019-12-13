@@ -31,7 +31,7 @@ this.props.dispatch({type:'reportClicked', id: this.props.reportid})
         </h5>
 
         <div className="loc-time flex-start">
-    <a href="#">{this.props.name}</a>
+    <a >{this.props.name}</a>
     <time>{this.props.days} days ago</time>
         </div>
         </div>

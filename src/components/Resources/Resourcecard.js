@@ -12,6 +12,12 @@ class Resourcecard extends Component {
     };
   }
 
+  downloadClicked = () => {
+    console.log("check download");
+    
+    !this.props.audio&&!this.props.publication&&!this.props.video&& alert("No download resource available")
+  }
+
 
 
   render() {
@@ -50,14 +56,14 @@ class Resourcecard extends Component {
                         ? this.props.publication
                         : "default"} */}
                   </div>
-                  <a href={this.props.document_type==0
+                  <a onClick={()=> this.downloadClicked()} href={this.props.document_type==0
                      ? this.props.publication 
                      : this.props.document_type==1
                       ? this.props.audio
                       ? this.props.document_type==2
                       : this.props.video
-                      :alert("No download resource ")
-                    }  download target="_blank">
+                      :''
+                    }  download target="_blank" >
                        <FacebookShareButton children={<FacebookIcon size='30px' round="true" />} url={this.state.shareUrl} />
                       <TwitterShareButton children={<TwitterIcon size='30px' round="true"/>} url={this.state.shareUrl} />
                     <button className="btn btn-download">
