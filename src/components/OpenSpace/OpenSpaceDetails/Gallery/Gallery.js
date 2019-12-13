@@ -67,8 +67,11 @@ class Gallary extends Component {
              
               this.state.photos&&this.state.photos.map(g => {
                   return <Photo id={g.id} photo={g.image} />;
-                })
-              }
+                })  
+              } 
+            </div>
+            <div class="gallery-btn">
+              <button>See More</button>
             </div>
           </div>
         </div>

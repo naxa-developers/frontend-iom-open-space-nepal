@@ -5,7 +5,13 @@ import AssementList from '../OpenSpaceDetails/ModalComponent/AssementList'
 import Service from './Service';
 
 class GeneralInfo extends Component {
-  
+    handleReflow = (rleState) => {
+        const {
+          clamped,
+          text,
+        } = rleState
+        // do sth...
+      }
 
 
     render() {
@@ -93,14 +99,13 @@ class GeneralInfo extends Component {
                     <p>
                     <h5>Description</h5>
                     <span>
-                       
-                    <LinesEllipsis
-  text={this.props.description}
-  maxLine='3'
-  ellipsis='...'
-  basedOn='letters'
-/>
-{/* {this.props.description} */}
+                      {/* {this.props.description} */}
+                      <LinesEllipsis
+        text={this.props.description}
+        onReflow={this.handleReflow}
+        maxLine={3}
+      />
+
 
                         </span>
                    

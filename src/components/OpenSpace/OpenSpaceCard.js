@@ -75,7 +75,7 @@ class OpenSpaceCard extends Component {
                             <h5  >{this.props.name}</h5>
                             <p>
                                 <span>
-                                    <i className="material-icons">room</i>{this.props.address}
+                                    <i className="material-icons">room</i><p>{this.props.address}</p>
                                 </span>
                                 {!this.state.calculatedistance?<span>
                                     <i className="material-icons">near_me</i>{this.state.shortest}  km

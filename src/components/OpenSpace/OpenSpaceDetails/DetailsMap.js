@@ -16,6 +16,7 @@ class OSDetails extends Component {
       height: null,
       currentLocation: null,
       HealthData: null,
+      SecurityData: null,
       dummyNo:' 01-4250931'
     };
   }
@@ -53,6 +54,19 @@ class OSDetails extends Component {
 
       this.plotHealth();
     });
+    Axios.get(
+      `https://iomapi.naxa.com.np/api/v1/near_by_me?type=security%20force&count=100&distance=1&id=${localStorage.getItem(
+        "id"
+      )}`
+    ).then(response => {
+      this.setState({
+        SecurityData: response.data
+      });
+
+      this.plotSecurity();
+    });
+
+
   };
   plotHealth = () => {
     var NearbyIcon = L.divIcon({
@@ -68,7 +82,25 @@ class OSDetails extends Component {
 
       var popUp =
         "<div class='bind-popup'>" +
-        " </div> <div class='bind-header'> <h5>" +e.name+"</h5> <p>"+this.state.dummyNo+"</p> </div>  ";
+        " </div> <div class='bind-header'> <h5>" +e.name+"</h5> <p><i class='material-icons'>phone</i>"+this.state.dummyNo+"</p> </div>  ";
+      NearbyMarker.bindPopup(popUp);
+    });
+  };
+  plotSecurity = () => {
+    var NearbyIcon = L.divIcon({
+      className: "nearby-div-icon",
+      html: "<i class='humanitarian-icon-National-army'></i>",
+      
+      iconAnchor: [12, 6]
+    });
+    this.state.SecurityData.facility.map(e => {
+      var NearbyMarker = L.marker([e.latitude, e.longitude], {
+        icon: NearbyIcon
+      }).addTo(this.props.reff.current.leafletElement);
+
+      var popUp =
+        "<div class='bind-popup'>" +
+        " </div> <div class='bind-header'> <h5>" +e.name+"</h5> <p> <i class='material-icons'>phone</i>"+this.state.dummyNo+"</p> </div>  ";
       NearbyMarker.bindPopup(popUp);
     });
   };
