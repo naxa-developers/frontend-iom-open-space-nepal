@@ -89,7 +89,7 @@ class OSDetails extends Component {
         "<div class='bind-popup'>" +
         " </div> <div class='bind-header'> <h5>" +
         e.name +
-        "</h5> <p>"+this.state.dummyNo+"</p></div> ";
+        "</h5>  <p>  <i class='material-icons'>phone</i> "+this.state.dummyNo+" <i class='material-icons'>directions</i></p></div> ";
       NearbyMarker.bindPopup(popUp);
     });
   };
@@ -145,7 +145,7 @@ class OSDetails extends Component {
     });
   }
   render() {
-    this.props.id && localStorage.setItem("id", this.props.id);
+    // this.props.id && localStorage.setItem("id", this.props.id);
 
     return (
       <>
