@@ -815,7 +815,9 @@
                             p {
                                 margin: 0;
                                 align-items: center;
-
+                                &:hover{
+                                    cursor: pointer;
+                                }
                                 a {
                                     color: $color-blue;
                                     font-weight: 700;
