@@ -121,10 +121,23 @@ class OSDetails extends Component {
       });
   };
 
+  getOSlatlng=()=>{
+    Axios.get(`https://iomapi.naxa.com.np/api/v1/open_extra?id=${localStorage.getItem(
+      "id" 
+    )}`)
+    .then(response=>{
+     
+      this.setState({OSlatlng:[response.data[0].centroid[1],response.data[0].centroid[0]]})
+    
+    })
+  }
+
+
   componentDidMount() {
     this.onload();
     this.plotNearby();
     this.currentloc();
+    this.getOSlatlng()
     Axios.get(
       `https://iomapi.naxa.com.np/api/v1/single_open_geo_json?id=${localStorage.getItem(
         "id" 
@@ -149,6 +162,9 @@ class OSDetails extends Component {
 
     return (
       <>
+      <div onClick={()=>this.props.fetchroute([ 27.70419959812,85.315
+         ],[ 27.704199598618246,85.31621932983398
+         ])}>Clickme</div>
         <LeafletMap
           center={[27, 85]}
           zoom={4}
