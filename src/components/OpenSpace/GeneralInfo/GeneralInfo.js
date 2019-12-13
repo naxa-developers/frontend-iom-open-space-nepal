@@ -93,14 +93,14 @@ class GeneralInfo extends Component {
                     <p>
                     <h5>Description</h5>
                     <span>
-                       
+                      
                     <LinesEllipsis
-  text={this.props.description}
-  maxLine='3'
+text= {this.props.description}  
+maxLine='4'
   ellipsis='...'
   basedOn='letters'
-/>
-{/* {this.props.description} */}
+/> 
+
 
                         </span>
                    
