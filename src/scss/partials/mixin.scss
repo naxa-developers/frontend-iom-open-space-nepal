@@ -473,6 +473,16 @@ $breakpoints: (
   backface-visibility: $backface;
 }
 
+@mixin text-overflow($value){
+    
+  display: -webkit-flex;
+  display: flex;
+    display: -webkit-box;
+    -webkit-line-clamp: $value;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
 @mixin border($width, $style, $color){
   border-width: $width;
   border-style: $style;
