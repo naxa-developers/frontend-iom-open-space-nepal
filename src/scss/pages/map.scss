@@ -1194,10 +1194,9 @@
                         text-transform: capitalize;
                     }
                     .gallery-btn{
+                        padding-top: 30px;
                         @include flex;
                         justify-content: center;
-                        padding-top: 30px;
-                        margin: 0 auto;
                         button{
                             @include button($color-white, $color-blue);
                             border: none;
