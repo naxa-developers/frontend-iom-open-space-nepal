@@ -8,13 +8,10 @@ import fh from '../../../../img/hospital.png';
 
 
         return (
-            <div>
+            <>
         <li>
         <div class="space">
-          <figure>
-            {/* <img src={fh} alt="space" /> */}
-            {/* <i className="humanitarian-icon-Medical-supply"></i> */}
-          </figure>
+        
           <div class="space-content">
             <h5>{this.props.name}</h5>
             <p>
@@ -31,7 +28,7 @@ import fh from '../../../../img/hospital.png';
           </div>
         </div>
       </li>
-        </div>
+        </>
         )
     }
 }
