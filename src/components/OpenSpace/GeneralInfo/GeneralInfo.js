@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LinesEllipsis from 'react-lines-ellipsis';
+import LinesEllipsis from 'react-lines-ellipsis'
 
 import AssementList from '../OpenSpaceDetails/ModalComponent/AssementList'
 import Service from './Service';
@@ -93,14 +93,13 @@ class GeneralInfo extends Component {
                     <p>
                     <h5>Description</h5>
                     <span>
-                       {this.props.description}
-                    {/* <LinesEllipsis
-  text="During construction, young players were intended be the primary beneficiaries of the new facilities. At the time, the national association had already set up seven academies (for U-19, U-14, U-12 and U-10 players) with their activities thus far having centered on the Nepalese capital, Kathmandu. The new regional centers allowed the project to be extended across the nation. The national association's headquarters in Kathmandu, with its technical centre, playing field and player accommodation, was opened early in 2000 by the President of the Asian Football Confederation, Mohammed Bin Hammam."
-  maxLine='4'
+                       
+                    <LinesEllipsis
+  text={this.props.description}
+  maxLine='3'
   ellipsis='...'
-  trimRight
   basedOn='letters'
-/> */}
+/>
 {/* {this.props.description} */}
 
                         </span>
