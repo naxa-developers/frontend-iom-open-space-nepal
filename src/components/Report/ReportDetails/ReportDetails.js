@@ -3,6 +3,7 @@ import Navbar from "../../Home/Navbar";
 import ReportDetailsCard from "./ReportDetailsCard";
 
 import RDetailsMap from "./RDetailsMap";
+import {Connect} from 'react-redux';
 
 
 class ReportDetails extends Component {
@@ -10,6 +11,7 @@ class ReportDetails extends Component {
   
   render() {
 
+    console.log("rd",this.props);
     
     
     return (
@@ -25,7 +27,7 @@ class ReportDetails extends Component {
                   <RDetailsMap />
                   </div>
                   <div className="col-md-5 col-lg-4">
-                  <ReportDetailsCard daysCount ={this.props.daysCount}/>
+                  <ReportDetailsCard daysCount ={this.props.daysCount} />
                   </div>
                 </div>
             
@@ -40,6 +42,7 @@ class ReportDetails extends Component {
     );
   }
 }
+
 
 
 export default ReportDetails;
