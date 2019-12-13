@@ -53,14 +53,16 @@ require('leaflet.markercluster')
             fillColor: "red",
             opacity: 0.3,
             fillOpacity: 1,
-            weight: 15,
-            radius: 6
+            weight: 12,
+            radius: 4
           };
-          console.log(this.state.spacedata.centroid);
+          
           
           var marker = L.circleMarker(
               [this.state.spacedata.centroid[1],
-              this.state.spacedata.centroid[0]],reportStyle
+              this.state.spacedata.centroid[0]],reportStyle, {
+                  className: 'blinking'
+              }
           )
          
           var popUp =  " <div class='bind-popup'> " +

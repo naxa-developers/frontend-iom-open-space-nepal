@@ -115,9 +115,11 @@ class Resources extends Component {
                       <div className="loader" style={{ textAlign: "center" }}>
                         {this.state.loaded == false && <LoadingSpinnerBig />}
                       </div>
-                      {this.state.loaded &&
+                      {console.log(this.state.slicedResources) ,
+                      this.state.loaded && this.state.slicedResources.length!=0&&
                         this.state.slicedResources[
-                          this.state.resouceindex
+                          // this.state.resouceindex
+                          0
                         ].map(e => (
 
                           <Resourcecard
@@ -152,6 +154,7 @@ class Resources extends Component {
               <div className="pagination-link-wrap">
                 <div className="pagination-center">
                   <a
+                  style={{cursor:' pointer'}}
                     onClick={() => {
                       this.setState({
                         resouceindex: this.state.resouceindex - 1
@@ -171,7 +174,8 @@ class Resources extends Component {
                     );
                   })}
                   <a
-                    style={{}}
+                  
+                    style={{cursor:' pointer'}}
                     onClick={() => {
                       this.setState({
                         resouceindex: this.state.resouceindex + 1

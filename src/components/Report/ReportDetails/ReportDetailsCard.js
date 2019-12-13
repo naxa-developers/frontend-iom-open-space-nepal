@@ -86,7 +86,7 @@ class ReportDetailsCard extends Component {
                         <time>{localStorage.getItem("days")}</time>
                       </p>
                       <p className="flex-start address">
-                        <MaterialIcon icon="room">room</MaterialIcon>
+                        <MaterialIcon className="material-icons room">room</MaterialIcon>
                         <span>{this.state.reportInfo.address}</span>
                       </p>
                     </div>

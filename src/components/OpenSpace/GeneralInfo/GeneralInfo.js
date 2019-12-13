@@ -23,11 +23,12 @@ class GeneralInfo extends Component {
                         <p>Capacity</p>
                     </div>
                     <div className="overview-item">
-                        <h6>{this.props.total_area} <sub>sq.m</sub></h6>
+                       
+                        <h6>{Math.round(this.props.total_area)} <sub>sq.m</sub></h6>
                         <p>Total Area</p>
                     </div>
                     <div className="overview-item">
-                        <h6>{this.props.usable_area} <sub>sq.m</sub></h6>
+                        <h6>{Math.round(this.props.usable_area)} <sub>sq.m</sub></h6>
                         <p>Usable Area</p>
                     </div>
                 </div>
