@@ -18,6 +18,8 @@ import SingleReport from './SingleReport'
         Axios.get(`https://iomapi.naxa.com.np/api/v1/report/?id=${localStorage.getItem("id")}&fbclid=IwAR2--o41VqMZ-5H9HhqgZegN8YXbtI9oHTCmhofE4vWB_BNQSDtkRGD_I-U`)
         .then(response => {
          
+          
+            
 
             
             this.setState({Reports: response.data})
@@ -47,7 +49,7 @@ import SingleReport from './SingleReport'
                  this.state.Reports!=null&& this.state.Reports.length == 0 ? 
 <h5>There is no report available for this openspace.</h5>  :
 
-                    this.state.Reports.map(e => {   return  <li><SingleReport reportid={e.id} title={e.title} days = {e.count}/> </li>  }) 
+                    this.state.Reports.map(e => {   return  <li><SingleReport reportid={e.id} title={e.title} days = {e.count} name ={e.name}/> </li>  }) 
                     
                  
                 }

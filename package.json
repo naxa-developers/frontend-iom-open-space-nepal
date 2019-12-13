@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@ansur/leaflet-pulse-icon": "^0.1.1",
     "@axetroy/react-download": "^1.1.1",
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",

@@ -101,7 +101,7 @@ class SearchFilter extends Component {
         </div>
         <br />
         <div className="map-filter">
-          <div className="reset-btns">
+          <div className="reset-btns" style={{display:'flex'}}>
             <div className="reset flex-start" style={{alignItems:'center'}} >
               <MaterialIcon icon="refresh" />
 
