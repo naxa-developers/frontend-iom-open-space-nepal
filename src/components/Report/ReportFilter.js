@@ -91,7 +91,11 @@ class ReportFilter extends Component {
         <DateRangePicker onApply={(range,v) => this.handleSelect(range, v)}
         onChange={this.onDaysChange}
         >
-      <button className="btn btn-outline-primary dropdown-toggle" >   Select Range</button>
+      <button className="btn btn-outline-primary dropdown-toggle" >
+         {
+      this.state.startDate&&this.state.endDate ? `${this.state.startDate} - ${this.state.endDate}` : 'Select Range'
+  }
+        </button>
       
     </DateRangePicker>
      

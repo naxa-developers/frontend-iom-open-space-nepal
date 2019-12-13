@@ -42,7 +42,7 @@ console.log("c",this.props.openS);
           <div
             class="report-content"
             onClick={() => {
-              console.log("dispatch now");
+              
               this.props.history.push("/reportdetails");
               this.props.dispatch({
                 type: "reportClicked",
