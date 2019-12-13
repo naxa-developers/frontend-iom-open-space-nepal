@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Axios from 'axios';
+import SingleSecurity from './SingleSecurity';
 
 class SecurityCard extends Component {
     constructor(props) {
@@ -12,7 +13,7 @@ class SecurityCard extends Component {
     
       fetchInfo = () => {
         Axios.get(
-          `https://iomapi.naxa.com.np/api/v1/near_by_me?type=security%20force&count=100&distance=500&id=${this.props.id}`
+          `https://iomapi.naxa.com.np/api/v1/near_by_me?type=security%20force&count=10&distance=1&id=${localStorage.getItem("OpenspaceID")}`
         ).then(response => {
           this.setState({
             data: response.data
@@ -25,9 +26,25 @@ class SecurityCard extends Component {
 
 
     render() {
+      this.props.id && localStorage.setItem("OpenspaceID", this.props.id);
         return (
-            <div>
-                <p>There is no available data at the moment.</p>
+          <div class="space-list nearby-list">
+          <ul>
+           
+
+          {this.state.data &&
+          this.state.data.facility.map((e) => {
+         
+              return <SingleSecurity
+               key ={e.id}
+               name={e.name}
+             
+              
+              />
+           
+          })}
+
+            </ul>
             </div>
         )
     }

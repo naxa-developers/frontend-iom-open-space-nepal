@@ -64,9 +64,8 @@ export default class SingleEcard extends Component {
     return (
       <li>
         <div class="space">
-          <figure>
-            {/* <img src={fa} alt="space" /> */}
-          </figure>
+        
+
           <div class="space-content">
             <h5>{this.props.name}</h5>
             <p>

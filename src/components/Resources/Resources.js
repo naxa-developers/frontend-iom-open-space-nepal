@@ -76,6 +76,7 @@ class Resources extends Component {
   componentDidMount() {
     Axios.get("https://iomapi.naxa.com.np/api/v1/resource/").then(response => {
       this.setState({ resources: response.data });
+console.log("data", this.state.resources);
 
       this.chunkArray(this.state.resources, 3);
 
@@ -118,8 +119,8 @@ class Resources extends Component {
                       {console.log(this.state.slicedResources) ,
                       this.state.loaded && this.state.slicedResources.length!=0&&
                         this.state.slicedResources[
-                          // this.state.resouceindex
-                          0
+                          this.state.resouceindex
+                          
                         ].map(e => (
 
                           <Resourcecard
@@ -156,9 +157,12 @@ class Resources extends Component {
                   <a
                   style={{cursor:' pointer'}}
                     onClick={() => {
+
                       this.setState({
                         resouceindex: this.state.resouceindex - 1
                       });
+                      console.log("page", this.state.resouceindex);
+                      
                     }}
                   >
                     &laquo;
