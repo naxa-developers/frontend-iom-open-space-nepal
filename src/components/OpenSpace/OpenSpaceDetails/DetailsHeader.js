@@ -34,17 +34,16 @@ class DetailsHeader extends Component {
               </span>
             </p>
           </div>
-          <div className={this.state.isActive ? "space-direction active" : "space-direction"} onClick={() => {
-            if (this.state.isActive) {
+          <div className={this.props.isActive ? "space-direction active" : "space-direction"} onClick={() => {
+            if (this.props.isActive) {
               this.props.removeRoute()
 
             }
             else{
               this.props.Routing()
             }
-            let sta=this.state.isActive?false:true
-            console.log(this.state.isActive)
-            this.setState({isActive:sta})
+            this.props.toogleactivetoute()
+           
           }
           }>
             <i className="material-icons">directions</i>

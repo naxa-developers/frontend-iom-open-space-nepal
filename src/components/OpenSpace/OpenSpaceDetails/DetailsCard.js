@@ -25,6 +25,8 @@ class DetailsCard extends Component {
       Routespaths:null,
       Routes: L.featureGroup(),
       legend: L.control({ position: 'bottomleft' }),
+      isActive: false
+
 
     };
   }
@@ -52,11 +54,40 @@ class DetailsCard extends Component {
       var mrk = new L.circleMarker([response.data.centroid[1], response.data.centroid[0]], { radius: 6, fillColor: '#174BDD', fillOpacity: 1, weight: 15, opacity: 0.3})
       let address=response.data.address==null?"Nepal":response.data.address
       // var shortest=this.getshortestdistance(this.state.spaceInfo.centroid.reverse(),this.state.currentLocation)
-      var pop = "<div class='bind-popup'> <div class='bind-header'><h5>" + response.data.title + "</h5> <p><i class='material-icons' style='font-size:16px'>room</i>" + address + "</p></div></div>"
+      var pop = "<div class='bind-popup'> <div class='bind-header'><h5>" + response.data.title + "</h5> <p><i class='material-icons' style='font-size:16px'>room</i>" + address + "<i class='material-icons pop-dir'>directions</i></p></div></div>"
 
       mrk.bindPopup(pop)
       mrk.addTo(this.props.reff.current.leafletElement)
+     
+      mrk.on('click',()=>{
+        let dir=document.getElementsByClassName('pop-dir')
+          
+          for(var i=0;i<dir.length; i++){
+            dir[i].addEventListener('click',()=>{
+              if (this.state.isActive) {
+                this.removeRoute()
+                dir[0].classList.remove('active')
+  
+              }
+              else{
+                this.Routing()
+                dir[0].classList.add('active')
+              }
+              this.toogleactivetoute()
+              
+              
+
+                
+
+            
+
+
+          })
+          }
+      })
       mrk.fire('click')
+      
+
      
 
 
@@ -325,6 +356,12 @@ class DetailsCard extends Component {
     });
   };
 
+  toogleactivetoute=()=>{
+    let sta=this.state.isActive?false:true
+   
+    this.setState({isActive:sta})
+  }
+
   render() {
     this.props.id && localStorage.setItem("OpenspaceID", this.props.id);
     return (
@@ -348,6 +385,8 @@ class DetailsCard extends Component {
                   Routing={this.Routing}
                   reff={this.props.reff}
                   removeRoute={this.removeRoute}
+                  isActive={this.state.isActive}
+                  toogleactivetoute={this.toogleactivetoute}
                 />
                 <TabNavbar
                   tabid={this.state.tabid}
