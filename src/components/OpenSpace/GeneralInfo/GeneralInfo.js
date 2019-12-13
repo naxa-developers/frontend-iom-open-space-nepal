@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LinesEllipsis from 'react-lines-ellipsis';
+import LinesEllipsis from 'react-lines-ellipsis'
 
 import AssementList from '../OpenSpaceDetails/ModalComponent/AssementList'
 import Service from './Service';
@@ -98,7 +98,6 @@ class GeneralInfo extends Component {
 text= {this.props.description}  
 maxLine='4'
   ellipsis='...'
-  trimRight
   basedOn='letters'
 /> 
 
