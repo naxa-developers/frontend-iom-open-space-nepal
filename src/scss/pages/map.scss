@@ -347,11 +347,17 @@
                         font-size: 0.675rem;
                         line-height: 1;
                         color: $color-white;
+                        position:relative;
                         span,
                         i {
                             font-weight: 600;
                             margin-right: 0.25rem;
-                            color: $color-white
+                            color: $color-white;
+                            &:last-child{
+                                position: absolute;
+                                top: -6px;
+                                right: -10px;
+                            }
                         }
                     }
 
@@ -1194,10 +1200,9 @@
                         text-transform: capitalize;
                     }
                     .gallery-btn{
-                        @include flex;
-                        justify-content: center;
                         padding-top: 30px;
-                        margin: 0 auto;
+                        @include flex;
+                        justify-content: flex-end;
                         button{
                             @include button($color-white, $color-blue);
                             border: none;
