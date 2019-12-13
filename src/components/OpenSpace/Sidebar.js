@@ -696,6 +696,8 @@ class Sidebar extends Component {
 
         this.state.legend.addTo(this.props.mapRefs.current.leafletElement)
         // console.log(this.state.Routespaths)
+        let dom=document.getElementsByClassName('routeWrapper')
+        L.DomEvent.on(dom[0], 'mousewheel', L.DomEvent.stopPropagation);
 
         var divss = document.getElementsByClassName('routeWrapper');
 
