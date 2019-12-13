@@ -1196,7 +1196,7 @@
                     .gallery-btn{
                         padding-top: 30px;
                         @include flex;
-                        justify-content: center;
+                        justify-content: flex-end;
                         button{
                             @include button($color-white, $color-blue);
                             border: none;
