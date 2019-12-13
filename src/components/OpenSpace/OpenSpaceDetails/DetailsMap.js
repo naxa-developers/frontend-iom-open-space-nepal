@@ -194,9 +194,9 @@ class OSDetails extends Component {
 
     return (
       <>
-      <div onClick={()=>this.props.fetchroute([ 27.70419959812,85.315
+      {/* <div onClick={()=>this.props.fetchroute([ 27.70419959812,85.315
          ],[ 27.704199598618246,85.31621932983398
-         ])}>Clickme</div>
+         ])}>Clickme</div> */}
         <LeafletMap
           center={[27, 85]}
           zoom={4}
