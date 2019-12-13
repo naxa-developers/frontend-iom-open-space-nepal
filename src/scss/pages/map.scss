@@ -362,7 +362,7 @@
                         span {
                             font-weight: 600;
                             margin-right: 0.25rem;
-                            color: $color-white
+                            color: $color-white;
                         }
                     }
                 }
@@ -727,21 +727,22 @@
 
                                     i {
                                         font-size: 1rem;
-                                        line-height: .875rem;
+                                        line-height: 1.125rem;
                                         margin-right: .2rem;
                                     }
 
                                     span {
                                         font-weight: 300;
-                                        @include flexStart;
-                                        align-items: center;
-                                        overflow: hidden;
-                                        text-overflow: ellipsis;
-                                        &:nth-child(1){
+                                        &:first-child{
                                             flex: 0 0 70%;
-                                            
+                                            @include text-overflow(1);
+                                            align-items: center;
+                                            justify-content: flex-start;
+                                            p{
+                                                display: inline;
+                                            }
                                         }
-                                        &:nth-child(2){
+                                        &:last-child{
                                             flex: 0 0 30%;
                                         }
                                     }
@@ -896,6 +897,9 @@
 
                     figure {
                         margin: 0;
+                        width: 100%;
+                        max-width: 500px;
+                        min-height: 330px;
                     }
                 }
             }
@@ -1147,11 +1151,7 @@
                         margin: 0;
 
                         span {
-                            display: -webkit-box;
-                            -webkit-box-orient: vertical;
-                            -webkit-line-clamp: 3;
-                            overflow: hidden;
-
+                            margin-top: 10px;
                             &.text-expand {
                                 display: inline-block;
                                 -webkit-line-clamp: initial;
@@ -1192,6 +1192,18 @@
                         color: $color-blue;
                         font-weight: 600;;
                         text-transform: capitalize;
+                    }
+                    .gallery-btn{
+                        @include flex;
+                        justify-content: center;
+                        padding-top: 30px;
+                        margin: 0 auto;
+                        button{
+                            @include button($color-white, $color-blue);
+                            border: none;
+                            padding: 5px 20px;
+                        }
+
                     }
 
                     figure {
@@ -1343,10 +1355,10 @@
                                         margin-right: 0;
                                     }
                                     span{
-                                        &:nth-child(1){
+                                        &:first-child{
                                             flex: 0 0 60%;
                                         }
-                                        &:nth-child(2){
+                                        &:last-child{
                                             flex: 0 0 40%;
                                         }
                                         
@@ -1399,10 +1411,10 @@
                                         margin-right: 0;
                                     }
                                     span{
-                                        &:nth-child(1){
+                                        &:first-child{
                                             flex: 0 0 70%;
                                         }
-                                        &:nth-child(2){
+                                        &:last-child{
                                             flex: 0 0 30%;
                                         }
                                         
@@ -1725,10 +1737,10 @@
                                     p{
                                         flex-direction: row;
                                         span{
-                                            &:nth-child(1){
+                                            &:first-child{
                                                 flex: 0 0 55%;
                                             }
-                                            &:nth-child(2){
+                                            &:last-child{
                                                 flex: 0 0 45%;
                                             }
                                         }
@@ -1968,10 +1980,10 @@
                                     p{
                                         flex-direction: column;
                                         span{
-                                            &:nth-child(1){
+                                            &:first-child{
                                                 flex: 0 0 0;
                                             }
-                                            &:nth-child(2){
+                                            &:last-child{
                                                 flex: 0 0 0;
                                             }
                                         }
