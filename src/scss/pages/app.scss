@@ -5,6 +5,13 @@
     .main-content{
         .row-wrap{
             margin-bottom: 100px;
+            .content-image{
+                figure{
+                    img{
+                        @include boxshadow(0 1px 10px 1px $primary-light);
+                    }
+                }
+            }
             &:nth-child(2){
                 .content-image{
                     figure{
