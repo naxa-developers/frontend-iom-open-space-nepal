@@ -357,6 +357,7 @@
                                 position: absolute;
                                 top: -6px;
                                 right: -10px;
+                                cursor: pointer;
                             }
                         }
                     }
@@ -532,7 +533,7 @@
                         display: flex;
                         text-align: center;
                         flex-wrap: nowrap;
-
+                        width: 100%;
                         /* .css-2b097c-container, .css-14jk2my-container{
                             .css-yk16xz-control, .css-1fhf3k1-control {
                                 .css-1hwfws3{
@@ -542,10 +543,29 @@
                                 }
                             }
                         } */
-
+                        .react-bootstrap-daterangepicker-container{
+                            width: calc(100% - 50%);
+                            margin-right: .5rem;
+                            button{
+                                @include animate_all(all .4s linear);
+                                width: 100%;
+                                font-size: .797rem;
+                                padding: 0.55rem .75rem;
+                                &.dropdown-toggle{
+                                    &:after{
+                                        margin-left: .4em;
+                                        vertical-align: .1em;
+                                        border-top: 0.4em solid;
+                                        border-right: .4em solid transparent;
+                                        border-left: .4em solid transparent;
+                                    }
+                                } 
+                            }
+                        }
                         .css-2b097c-container,
                         .css-14jk2my-container {
-                            width: 100%;
+                            // width: 100%;
+                            width: calc(100% - 50%);
                             .css-1okebmr-indicatorSeparator,.css-109onse-indicatorSeparator{
                                 display: none;
                             }
@@ -553,12 +573,11 @@
                             .css-yk16xz-control,
                             .css-1fhf3k1-control {
                                 border: 1px solid $color-border;
-                                border-radius: 0rem;
+                                // border-radius: 0rem;
+                                border-radius: .25rem;
                                 .css-1hwfws3{
                                     .css-1wa3eu0-placeholder{
                                         font-size: .797rem;
-                                        overflow: hidden;
-                                        text-overflow: ellipsis;
                                     }
                                 }
                             }
@@ -574,7 +593,8 @@
                             }
 
                             &:nth-child(2) {
-                                margin: 0 1rem;
+                                // margin: 0 1rem;
+                                margin-left: .5rem;
                             }
                         }
 
@@ -800,7 +820,7 @@
                         @include flexStart;
                         align-items: center;
                         margin-bottom: .25rem;
-
+                        cursor: pointer;
                         i {
                             margin-left: .5rem;
                             font-size: 1rem;
@@ -868,10 +888,10 @@
                     font-size: .875rem;
                     color: $color-dim;
                     font-weight: 400;
-                    margin: 2rem 0;
+                    margin: 1.75rem 0;
 
                     p {
-                        margin: 2rem 0;
+                        margin: .5rem 0;
                         line-height: 1.8rem;
                         font-weight: 400;
                     }
