@@ -111,7 +111,7 @@ class Footer extends Component {
                   </div>
                  
                   <ul>
-                 
+                    <span class="list-title">Useful Links</span>
                     <li>
                       <a href="#">Mofaga</a>
                     </li>
