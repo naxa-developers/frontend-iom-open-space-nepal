@@ -1463,7 +1463,6 @@
 
 @media screen and (max-width:$ls-tab) {
     .openSpace-map {
-
         .map-wrapper {
             .map-sidebar {
                 .space-list{
@@ -1526,6 +1525,25 @@
                             }
                         }
                     }
+                    .map-filter{
+                        .filter-option{
+                            .css-2b097c-container{
+                                .css-yk16xz-control{
+                                    .css-1hb7zxy-IndicatorsContainer{
+                                        .css-tlfecz-indicatorContainer{
+                                            padding: 5px;
+                                        }
+                                    }
+                                }
+                            }
+                        }  
+                    }
+                }
+                
+                .report-count {
+                    h5{
+                        font-size: 1.325rem;
+                    }
                 }
             }
         }
@@ -1536,11 +1554,6 @@
     .openSpace-map {
         .map-wrapper {
             .map-sidebar {
-                .report-count{
-                    h5 {
-                        font-size: 1.325rem;
-                    }
-                }
                 .overview-item {
                     h6 {
                         font-size: 1rem;
@@ -1634,12 +1647,6 @@
                             }
                             li {
                                 flex-wrap: wrap;
-
-                                .report-content {
-                                    h5 {
-                                        font-size: .875rem;
-                                    }
-                                }
                             }
                         }
                     }
@@ -1750,6 +1757,11 @@
     .openSpace-map {
         .map-wrapper {
             .map-sidebar {
+                .report-count{
+                    h5{
+                        font-size: 1.25rem;
+                    }
+                }
                 .space-list {
                     ul {
                         li {
@@ -1810,8 +1822,6 @@
                     }
                 }  
                 .sidebar-wrapper {
-                   
-
                     .space-details {
                         .space {
                             .space-content {
@@ -1831,7 +1841,19 @@
 
                                 .report-content {
                                     h5 {
-                                        font-size: .938rem;
+                                        font-size: .875rem;
+                                        i{
+                                            font-size: .875rem;
+                                        }
+                                    }
+                                    .loc-time{
+                                       font-size: .75rem;
+                                        &.flex-start{
+                                            align-items: center;
+                                        }
+                                        time{
+                                            font-size: .625rem;
+                                        }
                                     }
                                 }
                             }
@@ -1957,12 +1979,6 @@
                             }
                             li {
                                 flex-wrap: wrap;
-
-                                .report-content {
-                                    h5 {
-                                        font-size: .938rem;
-                                    }
-                                }
                             }
                         }
                     }
@@ -2024,4 +2040,3 @@
         }
     }
 }
-

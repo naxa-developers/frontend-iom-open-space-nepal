@@ -94,7 +94,7 @@ console.log("data", this.state.resources);
 
             <div className="container">
 
-              <div className="row-wrap mt-150">
+              <div className="row-wrap">  
 
                 <div className="row">
 
@@ -142,6 +142,9 @@ console.log("data", this.state.resources);
 
 
                         )}
+                        <div class="btn-wrap">
+                          <button class="btn openspace-button">See more</button>
+                        </div>
                     </div>
                   </div>
                 </div>
