@@ -93,7 +93,7 @@ class Resources extends Component {
 
             <div className="container">
 
-              <div className="row-wrap mt-150">
+              <div className="row-wrap">  
 
                 <div className="row">
 
@@ -141,6 +141,9 @@ class Resources extends Component {
 
 
                         )}
+                        <div class="btn-wrap">
+                          <button class="btn openspace-button">See more</button>
+                        </div>
                     </div>
                   </div>
                 </div>
