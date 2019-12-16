@@ -261,9 +261,30 @@
                                     }
                                     &.red{
                                         background-color:rgba($color-secondary,.2);
+                                        animation-name: stretch;
+                                        animation-duration: 1.5s; 
+                                        animation-timing-function: ease-out;
+                                        animation-delay: 0s;
+                                        animation-direction: alternate;
+                                        animation-iteration-count: infinite;
+                                        animation-play-state: running; 
+                                        
+                                        @keyframes stretch {
+                                            0% {
+                                                background-color: lighten($color: $color-secondary, $amount: 10%);
+                                            }
+                                            50%{
+                                                background-color: lighten($color: $color-secondary, $amount: 20%);
+                                        
+                                            }
+                                            100% {
+                                                background-color: lighten($color: $color-secondary, $amount: 30%);
+                                            }
+                                        }
                                         &::after{
                                             background-color: $color-secondary;
                                         }
+                                       
                                     }
                                 }
                                 p{
