@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ModalImage from "react-modal-image";
 
 class Map extends Component {
   
@@ -9,7 +10,9 @@ class Map extends Component {
     return (
       <div className="col-sm-4">
         <figure>
-        <img src={this.props.mapImage} alt="map" /> 
+        <ModalImage small={this.props.mapImage} 
+        large={this.props.mapImage}
+        alt="map" /> 
         </figure>
       </div>
 

@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
-import LinesEllipsis from 'react-lines-ellipsis'
+// import LinesEllipsis from 'react-lines-ellipsis'
+import ShowMore from 'react-show-more';
 
 import AssementList from '../OpenSpaceDetails/ModalComponent/AssementList'
 import Service from './Service';
 
 class GeneralInfo extends Component {
-    handleReflow = (rleState) => {
-        const {
-          clamped,
-          text,
-        } = rleState
-        // do sth...
-      }
+
 
 
     render() {
@@ -99,12 +94,16 @@ class GeneralInfo extends Component {
                     <p>
                     <h5>Description</h5>
                     <span>
-                      {/* {this.props.description} */}
-                      <LinesEllipsis
-        text={this.props.description}
-        onReflow={this.handleReflow}
-        maxLine={3}
-      />
+                        <ShowMore 
+                        lines={3}
+                        more='Show more'
+                        less ='Show less'
+                        anchorClass= ''
+                        >
+ {this.props.description}
+                        </ShowMore>
+                     
+ 
 
 
                         </span>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import  {FacebookShareButton, FacebookIcon, TwitterShareButton,TwitterIcon} from 'react-share'
-
+import ShowMore from 'react-show-more';
 class Resourcecard extends Component {
   constructor(props) {
     super(props);
@@ -41,7 +41,18 @@ class Resourcecard extends Component {
                 <div className="content-wrap">
                 <h3 className="h3-title">{this.props.title}</h3>
                     <span className="datetime">{this.props.date}</span>
-                    <p>{this.props.description}</p>
+                    <p>
+                      {/* <ShowMore
+                      lines={3}
+                      more='Show more'
+                      less ='Show less'
+                      anchorClass= ''
+                      >
+ {this.props.description}
+                      </ShowMore> */}
+                      {this.props.description}
+
+                     </p>
                 </div>
                 <div className="download-section">
                 <div className="icon-wrap-section">
