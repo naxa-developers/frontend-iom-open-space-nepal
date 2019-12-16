@@ -566,6 +566,7 @@
                         .css-14jk2my-container {
                             // width: 100%;
                             width: calc(100% - 50%);
+                            margin-right: .5rem;
                             .css-1okebmr-indicatorSeparator,.css-109onse-indicatorSeparator{
                                 display: none;
                             }
@@ -592,9 +593,9 @@
                                 }
                             }
 
-                            &:nth-child(2) {
+                            &:nth-child(3) {
                                 // margin: 0 1rem;
-                                margin-left: .5rem;
+                                margin: 0;
                             }
                         }
 
