@@ -12,11 +12,11 @@ class Resourcecard extends Component {
     };
   }
 
-  // downloadClicked = () => {
-  //   console.log("check download");
+  downloadClicked = () => {
+    console.log("check download");
     
-  //   !this.props.audio&&!this.props.publication&&!this.props.video&& alert("No download resource available")
-  // }
+    !this.props.audio&&!this.props.publication&&!this.props.video&& alert("No download resource available")
+  }
 
 
 
@@ -56,7 +56,7 @@ class Resourcecard extends Component {
                         ? this.props.publication
                         : "default"} */}
                   </div>
-                  <a onClick={()=> alert("No download resource available!!")} 
+                  <a onClick={()=> this.downloadClicked()} 
                   href={this.props.document_type==0
                      ? this.props.publication 
                      : this.props.document_type==1

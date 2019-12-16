@@ -68,10 +68,10 @@ class SearchFilter extends Component {
               <input type="text" class="form-control" aria-label="Search"
                 placeholder="Search reports" onInput={(e) => this.props.setKeywords(e.target.value)}
                 onFocus={() => this.setState({ focused: true })}
-                onBlur={() => {
-                  setTimeout(() => this.setState({ focused: false }), 100)
+                // onBlur={() => {
+                //   setTimeout(() => this.setState({ focused: false }), 100)
 
-                }}
+                // }}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter') {
                     this.props.onApply()
