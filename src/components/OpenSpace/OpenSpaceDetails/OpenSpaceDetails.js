@@ -19,9 +19,13 @@ class OpenSpaceDetails extends Component {
   };
 
   routefromanother=(a,b)=>{
-    console.log('11',this.detail,"map", this.mapdet)
-    this.detail.fetchroute(a,b)
     
+    this.detail.nearbyref.fetchroute(a,b)
+    
+
+  }
+  removeroute=()=>{
+    this.detail.nearbyref.remove()
 
   }
 
@@ -29,6 +33,9 @@ class OpenSpaceDetails extends Component {
   // getRef=(childRef) => {
   //   this.parentRef = childRef
   // }
+  componentDidMount(){
+    console.log("/////////////.../////",this.detail)
+  }
   
 
   render() {
@@ -45,7 +52,7 @@ class OpenSpaceDetails extends Component {
               <div className="map-wrapper">
               <div className="row no-gutters" >
                   <div className="col-md-7 col-lg-8">
-                  <DetailsMap fetchroute={this.routefromanother }reff={this.map} id={this.props.id} />
+                  <DetailsMap remove={this.removeroute} nearbyroute={this.routefromanother }reff={this.map} id={this.props.id} />
                   </div>
                   <div className="col-md-5 col-lg-4" >
                   <DetailsCard  reff={this.map} id = {this.props.id} wrappedComponentRef={connectedComponent =>

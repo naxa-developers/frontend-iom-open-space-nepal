@@ -82,8 +82,38 @@ class OSDetails extends Component {
 
       var popUp =
         "<div class='bind-popup'>" +
-        " </div> <div class='bind-header'> <h5>" +e.name+"</h5><p><i class='material-icons'>phone</i>"+this.state.dummyNo+"</p> </div>";
+        " </div> <div class='bind-header'> <h5>" +e.name+"</h5><p><i class='material-icons'>phone</i>"+this.state.dummyNo+"<i class='material-icons pop-dir'>directions</i></p> </div>";
       NearbyMarker.bindPopup(popUp);
+      NearbyMarker.on('click',()=>{
+        let dir=document.getElementsByClassName('pop-dir')
+          
+          for(var i=0;i<dir.length; i++){
+            dir[i].addEventListener('click',()=>{
+              console.log("called",i)
+              if (dir[0].classList.contains('active')) {
+                console.log("calledif",i)
+
+                this.props.remove()
+                dir[0].classList.remove('active')
+  
+              }
+              else{
+                console.log("calledelse",i)
+                this.props.nearbyroute(this.state.OSlatlng,[e.latitude, e.longitude])
+                dir[0].classList.add('active')
+              }
+              // this.toogleactivetoute()
+              
+              
+
+                
+
+            
+
+
+          })
+          }
+      })
     });
   };
   plotSecurity = () => {
@@ -100,8 +130,38 @@ class OSDetails extends Component {
 
       var popUp =
         "<div class='bind-popup'>" +
-        " </div> <div class='bind-header'> <h5>" +e.name+"</h5> <p> <i class='material-icons'>phone</i>"+this.state.dummyNo+"</p> </div>  ";
+        " </div> <div class='bind-header'> <h5>" +e.name+"</h5> <p> <i class='material-icons'>phone</i>"+this.state.dummyNo+"<i class='material-icons pop-dir'>directions</i></p> </div>  ";
       NearbyMarker.bindPopup(popUp);
+      NearbyMarker.on('click',()=>{
+        let dir=document.getElementsByClassName('pop-dir')
+          
+          for(var i=0;i<dir.length; i++){
+            dir[i].addEventListener('click',()=>{
+              console.log("called",i)
+              if (dir[0].classList.contains('active')) {
+                console.log("calledif",i)
+
+                this.props.remove()
+                dir[0].classList.remove('active')
+  
+              }
+              else{
+                console.log("calledelse",i)
+                this.props.nearbyroute(this.state.OSlatlng,[e.latitude, e.longitude])
+                dir[0].classList.add('active')
+              }
+              // this.toogleactivetoute()
+              
+              
+
+                
+
+            
+
+
+          })
+          }
+      })
     });
   };
 
@@ -121,8 +181,38 @@ class OSDetails extends Component {
         "<div class='bind-popup'>" +
         " </div> <div class='bind-header'> <h5>" +
         e.name +
-        "</h5>  <p>  <i class='material-icons'>phone</i> "+this.state.dummyNo+" <i class='material-icons'>directions</i></p></div> ";
+        "</h5>  <p>  <i class='material-icons'>phone</i> "+this.state.dummyNo+" <i class='material-icons pop-dir'>directions</i></p></div> ";
       NearbyMarker.bindPopup(popUp);
+      NearbyMarker.on('click',()=>{
+        let dir=document.getElementsByClassName('pop-dir')
+          
+          for(var i=0;i<dir.length; i++){
+            dir[i].addEventListener('click',()=>{
+              console.log("called",i)
+              if (dir[0].classList.contains('active')) {
+                console.log("calledif",i)
+
+                this.props.remove()
+                dir[0].classList.remove('active')
+  
+              }
+              else{
+                console.log("calledelse",i)
+                this.props.nearbyroute(this.state.OSlatlng,[e.latitude, e.longitude])
+                dir[0].classList.add('active')
+              }
+              // this.toogleactivetoute()
+              
+              
+
+                
+
+            
+
+
+          })
+          }
+      })
     });
   };
   currentloc = () => {
@@ -158,8 +248,12 @@ class OSDetails extends Component {
       "id" 
     )}`)
     .then(response=>{
-     
-      this.setState({OSlatlng:[response.data[0].centroid[1],response.data[0].centroid[0]]})
+      console.log(this.state.OSlatlng,"OSLATLNG",response)
+      this.setState({OSlatlng:[response.data.data[0].centroid[1],response.data.data[0].centroid[0]]})
+      console.log(this.state.OSlatlng,"OSLATLNG",response)
+
+      
+
     
     })
   }
