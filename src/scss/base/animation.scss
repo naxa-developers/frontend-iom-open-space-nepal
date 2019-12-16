@@ -1099,7 +1099,8 @@
         opacity: 0
     }
 }
-.stretch{
+
+@mixin stretch{
     animation-name: stretch;
     -webkit-animation-name: stretch;
     animation-duration: 1.5s; 
