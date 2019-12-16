@@ -650,6 +650,12 @@ class Sidebar extends Component {
           // this.state.Routespaths.filter((e)=>{
           //   return e.distance==min
           // })
+          const newData = [
+            this.state.Routespaths.find(item => item.id === min),
+            ...this.state.Routespaths.filter(item => item.id != min),
+          ]
+          this.state.Routespaths=newData
+          
 
 
           this.state.Routespaths.map(e => {

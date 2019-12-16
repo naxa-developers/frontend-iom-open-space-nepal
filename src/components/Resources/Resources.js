@@ -142,9 +142,9 @@ console.log("data", this.state.resources);
 
 
                         )}
-                        <div class="btn-wrap">
+                        {/* <div class="btn-wrap">
                           <button class="btn openspace-button">See more</button>
-                        </div>
+                        </div> */}
                     </div>
                   </div>
                 </div>
