@@ -50,9 +50,9 @@ class DetailsHeader extends Component {
           </div>
         </div>
         {/* style={{ height: 300, width:300,backgroundImage: `url('${Tent}')`}} */}
-        <figure 
+        <figure style={{backgroundImage: `url('${this.props.image}')`}}
             >
-          <img src={this.props.image?this.props.image:Tent} alt="open space " />
+          {/* <img src={this.props.image?this.props.image:Tent} alt="open space " /> */}
         </figure>
       </div>
     );
