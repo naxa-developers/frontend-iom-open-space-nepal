@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect } from 'react-redux';
 
-import gov from '../../img/gov.png';
+import nepalLogo from '../../img/nepallogo.svg';
 import iom from '../../img/iom.png';
 import ccm from '../../img/ccm.png';
 import Axios from 'axios';
@@ -49,7 +49,7 @@ import Axios from 'axios';
                     <div className="col-lg-2 col-md-3">
                         <div className="logos">
                             <figure>
-                                <img src={gov} alt="government" />
+                                <img src={nepalLogo} alt="government" />
                             </figure>
                             <figure>
                                 <img src={iom} alt="IOM" />
