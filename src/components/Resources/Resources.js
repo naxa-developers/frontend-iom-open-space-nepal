@@ -38,10 +38,16 @@ class Resources extends Component {
     this.setState({ keywords: e });
   };
   onApply = () => {
+    ;
+    
+
     let Filtered = this.state.resources.filter(i =>
       i.title.toUpperCase().includes(this.state.keywords.toUpperCase())
     );
+   
     this.setState({ resouceindex: 0 });
+    
+    
     !Filtered.length ==0 ? this.chunkArray(Filtered, 3) : alert("Not Found");
   };
 
@@ -68,7 +74,7 @@ class Resources extends Component {
       }
      
     })
-    Filtered1.length != 0 && this.chunkArray(Filtered1, 3);
+    Filtered1.length != 0 ? this.chunkArray(Filtered1, 3) : alert("No resources found!");
 
   }
 
@@ -76,7 +82,7 @@ class Resources extends Component {
   componentDidMount() {
     Axios.get("https://iomapi.naxa.com.np/api/v1/resource/").then(response => {
       this.setState({ resources: response.data });
-console.log("data", this.state.resources);
+
 
       this.chunkArray(this.state.resources, 3);
 
@@ -164,7 +170,7 @@ console.log("data", this.state.resources);
                       this.setState({
                         resouceindex: this.state.resouceindex - 1
                       });
-                      console.log("page", this.state.resouceindex);
+                      
                       
                     }}
                   >

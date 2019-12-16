@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import  {FacebookShareButton, FacebookIcon, TwitterShareButton,TwitterIcon} from 'react-share'
-
+import ShowMore from 'react-show-more';
 class Resourcecard extends Component {
   constructor(props) {
     super(props);
@@ -12,11 +12,11 @@ class Resourcecard extends Component {
     };
   }
 
-  // downloadClicked = () => {
-  //   console.log("check download");
+  downloadClicked = () => {
+    console.log("check download");
     
-  //   !this.props.audio&&!this.props.publication&&!this.props.video&& alert("No download resource available")
-  // }
+    !this.props.audio&&!this.props.publication&&!this.props.video&& alert("No download resource available")
+  }
 
 
 
@@ -41,7 +41,18 @@ class Resourcecard extends Component {
                 <div className="content-wrap">
                 <h3 className="h3-title">{this.props.title}</h3>
                     <span className="datetime">{this.props.date}</span>
-                    <p>{this.props.description}</p>
+                    <p>
+                      {/* <ShowMore
+                      lines={3}
+                      more='Show more'
+                      less ='Show less'
+                      anchorClass= ''
+                      >
+ {this.props.description}
+                      </ShowMore> */}
+                      {this.props.description}
+
+                     </p>
                 </div>
                 <div className="download-section">
                 <div className="icon-wrap-section">
@@ -56,7 +67,7 @@ class Resourcecard extends Component {
                         ? this.props.publication
                         : "default"} */}
                   </div>
-                  <a onClick={()=> alert("No download resource available!!")} 
+                  <a onClick={()=> this.downloadClicked()} 
                   href={this.props.document_type==0
                      ? this.props.publication 
                      : this.props.document_type==1

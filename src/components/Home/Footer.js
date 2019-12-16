@@ -37,7 +37,7 @@ class Footer extends Component {
             </button> </Link>
           </div>
         </div>
-        <div className="footer-bottom mt-150">
+        <div className="footer-bottom">
           <div className="container">
             <div className="row">
               <div className="col-md-4">

@@ -290,6 +290,8 @@ class OSDetails extends Component {
         "OpenspaceID" 
       )}`
     ).then(response => {
+      console.log("oop" , response.data);
+      
       var geo = L.geoJSON(response.data, {
         fillColor: "blue",
         fillOpacity: 0.3,
