@@ -82,7 +82,7 @@ class OSDetails extends Component {
 
       var popUp =
         "<div class='bind-popup'>" +
-        " </div> <div class='bind-header'> <h5>" +e.name+"</h5> <p><i class='material-icons'>phone</i>"+this.state.dummyNo+"</p> </div>  ";
+        " </div> <div class='bind-header'> <h5>" +e.name+"</h5><p><i class='material-icons'>phone</i>"+this.state.dummyNo+"</p> </div>";
       NearbyMarker.bindPopup(popUp);
     });
   };

@@ -172,6 +172,8 @@ class NearbyTab extends Component {
   
   
         this.state.legend.addTo(this.props.reff.current.leafletElement)
+        let dom=document.getElementsByClassName('routeWrapper')
+        L.DomEvent.on(dom[0], 'mousewheel', L.DomEvent.stopPropagation);
         // console.log(this.state.Routespaths)
   
         var divss = document.getElementsByClassName('routeWrapper');
