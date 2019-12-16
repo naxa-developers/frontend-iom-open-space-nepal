@@ -101,13 +101,13 @@ class SearchFilter extends Component {
         </div>
         <br />
         <div className="map-filter">
-          <div className="reset-btns" style={{display:'flex'}}>
-            <div className="reset flex-start" style={{alignItems:'center'}} >
+          <div className="reset-btns">
+            <div className="reset flex-start">
               <MaterialIcon icon="refresh" />
 
               <span onClick={() => this.onClear()} className="btn" style={{ cursor: "pointer" }}>Clear all </span>
 
-            </div> <br />
+            </div> 
             <button className="btn openspace-button" onClick={() => this.applyFilter()}>
               Apply
           </button>

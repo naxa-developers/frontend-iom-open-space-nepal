@@ -13,7 +13,7 @@ import L from 'leaflet'
 import { connect } from "react-redux";
 import Gallery from "./Gallery/Gallery";
 
-class DetailsCard extends Component {
+ class  DetailsCard extends Component {
   constructor(props) {
     super(props);
 
@@ -25,7 +25,8 @@ class DetailsCard extends Component {
       Routespaths:null,
       Routes: L.featureGroup(),
       legend: L.control({ position: 'bottomleft' }),
-      isActive: false
+      isActive: false,
+    
 
 
     };
@@ -48,6 +49,7 @@ class DetailsCard extends Component {
       `https://iomapi.naxa.com.np/api/v1/open_space/${localStorage.getItem("OpenspaceID")}`
     ).then(response =>  {
       console.log(response.data,'resdata')
+    
       
       this.setState({ spaceInfo: response.data })
       this.currentloc()
@@ -131,6 +133,7 @@ class DetailsCard extends Component {
   // L.tooltip().setLatLng(first).setContent('<h6>latlng</h6>').addTo(this.props.mapRefs.current.leafletElement)
   // map.closeTooltip();
   
+ 
 
   this.state.Routespaths = []
   this.state.Routes.eachLayer((r) => this.state.Routes.removeLayer(r))
@@ -228,6 +231,11 @@ class DetailsCard extends Component {
         // this.state.Routespaths.filter((e)=>{
         //   return e.distance==min
         // })
+        const newData = [
+          this.state.Routespaths.find(item => item.distance === min),
+          ...this.state.Routespaths.filter(item => item.distance != min),
+        ]
+        this.state.Routespaths=newData
 
 
         this.state.Routespaths.map(e => {
@@ -273,6 +281,8 @@ class DetailsCard extends Component {
 
 
       this.state.legend.addTo(this.props.reff.current.leafletElement)
+      let dom=document.getElementsByClassName('routeWrapper')
+      L.DomEvent.on(dom[0], 'mousewheel', L.DomEvent.stopPropagation);
       // console.log(this.state.Routespaths)
 
       var divss = document.getElementsByClassName('routeWrapper');
@@ -362,10 +372,17 @@ class DetailsCard extends Component {
     this.setState({isActive:sta})
   }
 
+  // componentDidUpdate() {
+  //   console.log("didupdate")
+  //   if(this.childRef) {
+  //     this.props.getRef(this.childRef)
+  //   }
+  // }
+
   render() {
     this.props.id && localStorage.setItem("OpenspaceID", this.props.id);
     return (
-      <div>
+      <div >
         <div className="map-sidebar">
           <div className="sidebar-wrapper">
             <span
@@ -378,6 +395,7 @@ class DetailsCard extends Component {
             <div className="card">
               <div className="card-body">
                 <DetailsHeader
+                
                   title={this.state.spaceInfo && this.state.spaceInfo.title}
                   address={this.state.spaceInfo.address}
                   image={this.state.spaceInfo.image}
@@ -458,7 +476,7 @@ class DetailsCard extends Component {
                       role="tabpanel"
                       aria-labelledby="nearby_tab"
                     >
-                      <NearbyTab  reff={this.props.reff} OSlatlng={this.state.spaceInfo.centroid} id={this.props.id} />
+                      <NearbyTab fetchroute={this.fetchroute} reff={this.props.reff} OSlatlng={this.state.spaceInfo.centroid} id={this.props.id} />
                     </div>
                   </div>
                 </div>
@@ -476,4 +494,6 @@ const mapStateToProps = state => {
     spaceID: state.spaceID
   };
 };
-export default withRouter(connect(mapStateToProps)(DetailsCard));
+
+
+export default withRouter(connect(mapStateToProps, null, null, {forwardRef: true})(DetailsCard));

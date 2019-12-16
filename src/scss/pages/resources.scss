@@ -7,6 +7,7 @@
     }
     .main-content{
         .row-wrap{
+            margin-top: 50px;
             /* form-section */
             .form-section{
                 padding-right: 20px;
@@ -102,12 +103,27 @@
                     }
                 }
             }
-
+            .map-filter{
+                .reset-btns{
+                    @include flex;
+                    .flex-start{
+                        align-items: center;
+                    }
+                    button{
+                        &.openspace-button{
+                            min-width: 100px;
+                        }
+                    }
+                }
+            }
             /* content-section */
             .content-section{
+               
                 .row-section-wrap{
                     @include animate_all(all .6s linear);
                     margin-bottom: 3rem;
+                    border-bottom: 1px solid $color-bg-text;
+                    padding-bottom: 10px;
                     .image-section{
                         background-size: cover;
                         max-width: 400px;
@@ -115,10 +131,6 @@
                         height: 151px;
                         background-repeat: no-repeat;
                         background-position: center center;
-                    //    @include flexCenter;
-                        // img{
-                        //     // max-width: 150px;
-                        // } 
                         &:last-child{
                             margin-bottom: 0;
                         }
@@ -207,6 +219,14 @@
                         background: $color-bg;
                     }
                 }
+                .btn-wrap{
+                    text-align: center;
+                    button{
+                        &.openspace-button{
+                            margin-top: 20px;
+                        }
+                    }
+                }
             }
         }
     }
@@ -218,6 +238,15 @@
     .page-wrap {
         .main-content{
             .row-wrap {
+                .map-filter{
+                    .reset-btns{
+                        @include flex;
+                        flex-direction: column;
+                        .reset{
+                            margin-bottom: 10px;
+                        }
+                    }
+                }
                 .form-section{
                     padding-right: 0px;
                     .dropdown-select{ 
@@ -230,12 +259,6 @@
                 }
                 .content-section{
                     .row-section-wrap {
-                        .image-section{
-                            /* img{
-                                max-width: 120px;
-                                height: 220px;
-                            } */
-                        }
                         .wrapper-content{
                             .content-wrap{
                                 width: calc(100% - 40%);
@@ -247,11 +270,9 @@
         }
     }
 }
+
 /* less than 768px; */
 @media only screen and (max-width: $pt-tab){
-    .mt-150{
-        margin-top: 100px !important;
-    }
     .page-wrap {
         .main-content{
             .row-wrap {
@@ -292,12 +313,21 @@
 
 /* less than 767px; */
 @media only screen and (max-width: $mb-xl){
-    .mt-150{
-        margin-top: 50px !important;
-    }
     .page-wrap {
         .main-content{ 
             .row-wrap {
+                .map-filter{
+                    .reset-btns{
+                        @include flex;
+                        flex-direction: row;
+                        .reset{
+                            margin-right: 20px;
+                        }
+                        button{
+                            max-height: 38px;
+                        }
+                    }
+                }
                 .form-section {
                     margin-bottom: 60px;
                     .dropdown-select{
@@ -305,9 +335,12 @@
                     }
                 }
                 .content-section{
-                    margin-top: 100px;
+                    margin-top: 60px;
                     .row-section-wrap{
-                        margin-bottom: 100px;
+                        margin-bottom: 60px;
+                        &:last-child{
+                            margin-bottom: 0;
+                        }
                         .image-section{
                             padding-bottom: 10px;
                             max-width: 100%;
@@ -340,9 +373,6 @@
 
 /* less than 576px; */
 @media only screen and (max-width: $mb-lg){
-    .mt-150{
-        margin-top: 50px !important;
-    }
     .page-wrap {
         .main-content{ 
             .row-wrap {
