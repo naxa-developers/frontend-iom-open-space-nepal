@@ -49,11 +49,19 @@ class DetailsHeader extends Component {
             <i className="material-icons">directions</i>
           </div>
         </div>
-        {/* style={{ height: 300, width:300,backgroundImage: `url('${Tent}')`}} */}
-        <figure style={{backgroundImage: `url('${this.props.image}')`}}
-            >
-          {/* <img src={this.props.image?this.props.image:Tent} alt="open space " /> */}
-        </figure>
+      {this.props.image? 
+ <figure style={{backgroundImage: `url('${this.props.image}')`}}
+ >
+{/* <img src={this.props.image?this.props.image:Tent} alt="open space " /> */}
+</figure>
+:
+<figure style={{backgroundImage: `url('${Tent}')`}}
+>
+{/* <img src={this.props.image?this.props.image:Tent} alt="open space " /> */}
+</figure>
+
+      }
+       
       </div>
     );
   }
