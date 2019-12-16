@@ -54,7 +54,7 @@ class Gallary extends Component {
               ) : 
              
                this.state.maps&& this.state.maps.map(g => {
-                  return <Map id={g.id} mapImage={g.thumbnail} />;
+                  return <Map   className="toggleModal"  id={g.id} mapImage={g.thumbnail} largeImage={g.image} />;
                 })
               }
             </div>

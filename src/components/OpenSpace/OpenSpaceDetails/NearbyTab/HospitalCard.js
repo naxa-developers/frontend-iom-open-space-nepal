@@ -40,7 +40,7 @@ class HospitalCard extends Component {
       <div class="space-list nearby-list">
       <ul>
 
-      {this.state.data &&
+      {this.state.data && this.state.data.facility.length > 0 ? 
           this.state.data.facility.map((e,i) => {
          
               return <SingleEcard
@@ -60,7 +60,9 @@ class HospitalCard extends Component {
               
               />
            
-          })}
+          })
+        : <h7>There is no data available</h7>
+        }
 
       </ul>
     </div>
