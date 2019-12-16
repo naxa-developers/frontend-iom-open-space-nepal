@@ -348,16 +348,22 @@
                         line-height: 1;
                         color: $color-white;
                         position:relative;
+                        
                         span,
                         i {
+                            
                             font-weight: 600;
                             margin-right: 0.25rem;
                             color: $color-white;
                             &:last-child{
+                                @include animate_all(all .3s ease-in-out);
                                 position: absolute;
-                                top: -6px;
+                                top: -1px;
                                 right: -10px;
                                 cursor: pointer;
+                                &.active{
+                                    color: lighten($color-blue, 20%);
+                                }
                             }
                         }
                     }
@@ -821,7 +827,6 @@
                         @include flexStart;
                         align-items: center;
                         margin-bottom: .25rem;
-                        cursor: pointer;
                         i {
                             margin-left: .5rem;
                             font-size: 1rem;
