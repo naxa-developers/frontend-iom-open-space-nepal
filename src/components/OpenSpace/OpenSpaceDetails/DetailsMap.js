@@ -17,7 +17,8 @@ class OSDetails extends Component {
       currentLocation: null,
       HealthData: null,
       SecurityData: null,
-      dummyNo:' 01-4250931'
+      dummyNo:' 01-4250931',
+      myloc: L.control({ position: 'topleft' })
     };
   }
 
@@ -34,7 +35,7 @@ class OSDetails extends Component {
   plotNearby = () => {
     Axios.get(
       `https://iomapi.naxa.com.np/api/v1/near_by_me?type=education%20facility&count=100&distance=1&id=${localStorage.getItem(
-        "id"
+        "OpenspaceID"
       )}`
     ).then(response => {
       this.setState({
@@ -45,7 +46,7 @@ class OSDetails extends Component {
     });
     Axios.get(
       `https://iomapi.naxa.com.np/api/v1/near_by_me?type=health%20facility&count=100&distance=1&id=${localStorage.getItem(
-        "id"
+        "OpenspaceID"
       )}`
     ).then(response => {
       this.setState({
@@ -56,7 +57,7 @@ class OSDetails extends Component {
     });
     Axios.get(
       `https://iomapi.naxa.com.np/api/v1/near_by_me?type=security%20force&count=100&distance=1&id=${localStorage.getItem(
-        "id"
+        "OpenspaceID"
       )}`
     ).then(response => {
       this.setState({
@@ -82,8 +83,38 @@ class OSDetails extends Component {
 
       var popUp =
         "<div class='bind-popup'>" +
-        " </div> <div class='bind-header'> <h5>" +e.name+"</h5><p><i class='material-icons'>phone</i>"+this.state.dummyNo+"</p> </div>";
+        " </div> <div class='bind-header'> <h5>" +e.name+"</h5><p><i class='material-icons'>phone</i>"+this.state.dummyNo+"<i class='material-icons pop-dir'>directions</i></p> </div>";
       NearbyMarker.bindPopup(popUp);
+      NearbyMarker.on('click',()=>{
+        let dir=document.getElementsByClassName('pop-dir')
+          
+          for(var i=0;i<dir.length; i++){
+            dir[i].addEventListener('click',()=>{
+              console.log("called",i)
+              if (dir[0].classList.contains('active')) {
+                console.log("calledif",i)
+
+                this.props.remove()
+                dir[0].classList.remove('active')
+  
+              }
+              else{
+                console.log("calledelse",i)
+                this.props.nearbyroute(this.state.OSlatlng,[e.latitude, e.longitude])
+                dir[0].classList.add('active')
+              }
+              // this.toogleactivetoute()
+              
+              
+
+                
+
+            
+
+
+          })
+          }
+      })
     });
   };
   plotSecurity = () => {
@@ -100,8 +131,38 @@ class OSDetails extends Component {
 
       var popUp =
         "<div class='bind-popup'>" +
-        " </div> <div class='bind-header'> <h5>" +e.name+"</h5> <p> <i class='material-icons'>phone</i>"+this.state.dummyNo+"</p> </div>  ";
+        " </div> <div class='bind-header'> <h5>" +e.name+"</h5> <p> <i class='material-icons'>phone</i>"+this.state.dummyNo+"<i class='material-icons pop-dir'>directions</i></p> </div>  ";
       NearbyMarker.bindPopup(popUp);
+      NearbyMarker.on('click',()=>{
+        let dir=document.getElementsByClassName('pop-dir')
+          
+          for(var i=0;i<dir.length; i++){
+            dir[i].addEventListener('click',()=>{
+              console.log("called",i)
+              if (dir[0].classList.contains('active')) {
+                console.log("calledif",i)
+
+                this.props.remove()
+                dir[0].classList.remove('active')
+  
+              }
+              else{
+                console.log("calledelse",i)
+                this.props.nearbyroute(this.state.OSlatlng,[e.latitude, e.longitude])
+                dir[0].classList.add('active')
+              }
+              // this.toogleactivetoute()
+              
+              
+
+                
+
+            
+
+
+          })
+          }
+      })
     });
   };
 
@@ -121,10 +182,58 @@ class OSDetails extends Component {
         "<div class='bind-popup'>" +
         " </div> <div class='bind-header'> <h5>" +
         e.name +
-        "</h5>  <p>  <i class='material-icons'>phone</i> "+this.state.dummyNo+" <i class='material-icons'>directions</i></p></div> ";
+        "</h5>  <p>  <i class='material-icons'>phone</i> "+this.state.dummyNo+" <i class='material-icons pop-dir'>directions</i></p></div> ";
       NearbyMarker.bindPopup(popUp);
+      NearbyMarker.on('click',()=>{
+        let dir=document.getElementsByClassName('pop-dir')
+          
+          for(var i=0;i<dir.length; i++){
+            dir[i].addEventListener('click',()=>{
+              console.log("called",i)
+              if (dir[0].classList.contains('active')) {
+                console.log("calledif",i)
+
+                this.props.remove()
+                dir[0].classList.remove('active')
+  
+              }
+              else{
+                console.log("calledelse",i)
+                this.props.nearbyroute(this.state.OSlatlng,[e.latitude, e.longitude])
+                dir[0].classList.add('active')
+              }
+              // this.toogleactivetoute()
+              
+              
+
+                
+
+            
+
+
+          })
+          }
+      })
     });
   };
+
+  zoomTomylocation = () => {
+    this.state.myloc.onAdd = (map) => {
+
+        var div = L.DomUtil.create('div', `loc`)
+        div.innerHTML = ''
+        div.innerHTML += "<i class='material-icons'>gps_fixed</i>"
+        return div
+
+    }
+
+    this.state.myloc.addTo(this.props.reff.current.leafletElement)
+    var locs = document.getElementsByClassName('loc')[0].addEventListener('click', () => {
+        console.log("con")
+        this.props.reff.current.leafletElement.setView(this.state.currentLocation, 14);
+    })
+}
+
   currentloc = () => {
     navigator &&
       navigator.geolocation &&
@@ -141,25 +250,30 @@ class OSDetails extends Component {
         this.setState({
           currentLocation: [location.coords.latitude, location.coords.longitude]
         });
-        L.circleMarker(latlng, {
-          radius: 6,
-          fillColor: "red",
-          fillOpacity: 1,
-          weight: 15,
-          opacity: 0.3,
-          color: "red"
-        }).addTo(this.props.reff.current.leafletElement);
-        console.log("current", this.state.currentLocation);
+        var icon = L.divIcon({
+          className: 'custom-div-icon',
+          html: "<i class='material-icons'>gps_fixed</i>",
+          // iconSize: [4, 4],
+          iconAnchor: [12, 6]
+      });
+        L.marker(latlng, { icon: icon }).addTo(this.props.reff.current.leafletElement);
+      
       });
   };
 
   getOSlatlng=()=>{
     Axios.get(`https://iomapi.naxa.com.np/api/v1/open_extra?id=${localStorage.getItem(
-      "id" 
+      "OpenspaceID" 
     )}`)
     .then(response=>{
-     
-      this.setState({OSlatlng:[response.data[0].centroid[1],response.data[0].centroid[0]]})
+      console.log(this.state.OSlatlng,"OSLATLNG",response)
+      this.setState({OSlatlng:[response.data.data[0].centroid[1],response.data.data[0].centroid[0]]})
+      console.log(this.state.OSlatlng,"OSLATLNG",response)
+
+      this.zoomTomylocation();
+
+      
+
     
     })
   }
@@ -170,11 +284,14 @@ class OSDetails extends Component {
     this.plotNearby();
     this.currentloc();
     this.getOSlatlng()
+    
     Axios.get(
       `https://iomapi.naxa.com.np/api/v1/single_open_geo_json?id=${localStorage.getItem(
-        "id" 
+        "OpenspaceID" 
       )}`
     ).then(response => {
+      console.log("oop" , response.data);
+      
       var geo = L.geoJSON(response.data, {
         fillColor: "blue",
         fillOpacity: 0.3,
@@ -190,7 +307,7 @@ class OSDetails extends Component {
     });
   }
   render() {
-    // this.props.id && localStorage.setItem("id", this.props.id);
+    this.props.id && localStorage.setItem("OpenspaceID", this.props.id);
 
     return (
       <>

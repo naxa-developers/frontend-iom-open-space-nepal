@@ -261,6 +261,7 @@
                                     }
                                     &.red{
                                         background-color:rgba($color-secondary,.2);
+                                        @include stretch;
                                         &::after{
                                             background-color: $color-secondary;
                                         }
@@ -348,16 +349,22 @@
                         line-height: 1;
                         color: $color-white;
                         position:relative;
+                        
                         span,
                         i {
+                            
                             font-weight: 600;
                             margin-right: 0.25rem;
                             color: $color-white;
                             &:last-child{
+                                @include animate_all(all .3s ease-in-out);
                                 position: absolute;
-                                top: -6px;
+                                top: -1px;
                                 right: -10px;
                                 cursor: pointer;
+                                &.active{
+                                    color: $color-green;
+                                }
                             }
                         }
                     }
@@ -566,6 +573,7 @@
                         .css-14jk2my-container {
                             // width: 100%;
                             width: calc(100% - 50%);
+                            margin-right: .5rem;
                             .css-1okebmr-indicatorSeparator,.css-109onse-indicatorSeparator{
                                 display: none;
                             }
@@ -592,9 +600,9 @@
                                 }
                             }
 
-                            &:nth-child(2) {
+                            &:nth-child(3) {
                                 // margin: 0 1rem;
-                                margin-left: .5rem;
+                                margin: 0;
                             }
                         }
 
@@ -820,7 +828,6 @@
                         @include flexStart;
                         align-items: center;
                         margin-bottom: .25rem;
-                        cursor: pointer;
                         i {
                             margin-left: .5rem;
                             font-size: 1rem;

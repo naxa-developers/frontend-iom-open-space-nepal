@@ -1099,3 +1099,34 @@
         opacity: 0
     }
 }
+
+@mixin stretch{
+    animation-name: stretch;
+    -webkit-animation-name: stretch;
+    animation-duration: 1.5s; 
+    -webkit-animation-duration: 1.5s;
+    -webkit-animation-timing-function: ease-out; 
+    animation-timing-function: ease-out;
+    -webkit-animation-timing-function: ease-out;
+    animation-delay: 0s;
+    -webkit-animation-delay: 0s;
+    animation-direction: alternate;
+    -webkit-animation-direction: alternate;
+    animation-iteration-count: infinite;
+    -weblit-animation-iteration-count: infinite;
+    animation-play-state: running; 
+    -weblit-animation-play-state: running; 
+}
+
+@keyframes stretch {
+    0% {
+        background-color: lighten($color: $color-secondary, $amount: 10%);
+    }
+    50%{
+        background-color: lighten($color: $color-secondary, $amount: 20%);
+
+    }
+    100% {
+        background-color: lighten($color: $color-secondary, $amount: 30%);
+    }
+}

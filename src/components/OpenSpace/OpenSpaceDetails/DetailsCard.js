@@ -118,7 +118,7 @@ import Gallery from "./Gallery/Gallery";
         console.log([location.coords.latitude, location.coords.longitude], "aa")
         // this.props.setcurrentLocation([location.coords.latitude, location.coords.longitude])
         this.setState({ currentLocation: [location.coords.latitude, location.coords.longitude] })
-        L.circleMarker(latlng, { radius: 6, fillColor: 'red', fillOpacity: 1, weight: 15, opacity: 0.3, color: 'red', }).addTo(this.props.reff.current.leafletElement);
+        // L.circleMarker(latlng, { radius: 6, fillColor: 'red', fillOpacity: 1, weight: 15, opacity: 0.3, color: 'red', }).addTo(this.props.reff.current.leafletElement);
         console.log("current", this.state.currentLocation)
       this.getshortestdistance(this.state.spaceInfo.centroid.reverse(),this.state.currentLocation)
 
@@ -372,12 +372,10 @@ import Gallery from "./Gallery/Gallery";
     this.setState({isActive:sta})
   }
 
-  // componentDidUpdate() {
-  //   console.log("didupdate")
-  //   if(this.childRef) {
-  //     this.props.getRef(this.childRef)
-  //   }
-  // }
+  componentDidUpdate() {
+    console.log("didupdate",this.nearbyref)
+  
+  }
 
   render() {
     this.props.id && localStorage.setItem("OpenspaceID", this.props.id);
@@ -476,7 +474,9 @@ import Gallery from "./Gallery/Gallery";
                       role="tabpanel"
                       aria-labelledby="nearby_tab"
                     >
-                      <NearbyTab fetchroute={this.fetchroute} reff={this.props.reff} OSlatlng={this.state.spaceInfo.centroid} id={this.props.id} />
+                      <NearbyTab ref={comp =>
+            this.nearbyref =
+            comp}  fetchroute={this.fetchroute} reff={this.props.reff} OSlatlng={this.state.spaceInfo.centroid} id={this.props.id} />
                     </div>
                   </div>
                 </div>
