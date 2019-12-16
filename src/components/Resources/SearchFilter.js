@@ -68,10 +68,10 @@ class SearchFilter extends Component {
               <input type="text" class="form-control" aria-label="Search"
                 placeholder="Search reports" onInput={(e) => this.props.setKeywords(e.target.value)}
                 onFocus={() => this.setState({ focused: true })}
-                onBlur={() => {
-                  setTimeout(() => this.setState({ focused: false }), 100)
+                // onBlur={() => {
+                //   setTimeout(() => this.setState({ focused: false }), 100)
 
-                }}
+                // }}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter') {
                     this.props.onApply()
@@ -108,7 +108,11 @@ class SearchFilter extends Component {
               <span onClick={() => this.onClear()} className="btn" style={{ cursor: "pointer" }}>Clear all </span>
 
             </div> 
-            <button className="btn openspace-button" onClick={() => this.applyFilter()}>
+            <button className="btn openspace-button" onClick={() => {
+              this.applyFilter(), 
+            console.log("filter now")
+            }
+            }>
               Apply
           </button>
           </div>

@@ -16,7 +16,7 @@ class Gallary extends Component {
   }
   
   fetchMaps = () => {
-    Axios.get(`https://iomapi.naxa.com.np//api/v1/gallery/?id=${this.props.id}&type=map`).then(response => {
+    Axios.get(`https://iomapi.naxa.com.np//api/v1/gallery/?id=${localStorage.getItem("OpenspaceID")}&type=map`).then(response => {
       this.setState({
         maps: response.data,
         loading: false
@@ -24,7 +24,9 @@ class Gallary extends Component {
     });
   };
   fetchImages = () => {
-    Axios.get(`https://iomapi.naxa.com.np/api/v1/gallery/?id=${this.props.id}&type=image`).then(response => {
+    console.log("gal",localStorage.getItem("OpenspaceID"));
+    
+    Axios.get(`https://iomapi.naxa.com.np/api/v1/gallery/?id=${localStorage.getItem("OpenspaceID")}&type=image`).then(response => {
       this.setState({
         photos: response.data,
         loading: false
@@ -38,8 +40,7 @@ class Gallary extends Component {
   }
  
   render() {
-   
-
+  
 
 
     return (
@@ -53,7 +54,7 @@ class Gallary extends Component {
               ) : 
              
                this.state.maps&& this.state.maps.map(g => {
-                  return <Map id={g.id} mapImage={g.image} />;
+                  return <Map   className="toggleModal"  id={g.id} mapImage={g.thumbnail} largeImage={g.image} />;
                 })
               }
             </div>
@@ -66,13 +67,15 @@ class Gallary extends Component {
               ) : 
              
               this.state.photos&&this.state.photos.map(g => {
-                  return <Photo id={g.id} photo={g.image} />;
+                  return <Photo 
+                  className="toggleModal" 
+                  id={g.id} photo={g.thumbnail} largeImage ={g.image} />;
                 })  
               } 
             </div>
-            <div class="gallery-btn">
+            {/* <div class="gallery-btn">
               <button>See More</button>
-            </div>
+            </div> */}
           </div>
         </div>
       </>

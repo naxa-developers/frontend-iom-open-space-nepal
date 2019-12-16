@@ -12,6 +12,7 @@ const AssementList = (props) => {
     } = props;
 
     const {
+      
         title,  total_area, usable_area, capacity, municipality, ownership, special_feature,province, ward, 
         access, elevation
     } = props;
@@ -121,14 +122,14 @@ const AssementList = (props) => {
     <tr>
       <th scope="row">5</th>
       <td>Total Area</td>
-    <td>{total_area}sq.m.</td>
+    <td>{total_area} sq.m.</td>
       
     </tr>
 
     <tr>
       <th scope="row">6</th>
       <td>Usable Area</td>
-    <td>{usable_area}sq.m.</td>
+    <td>{usable_area} sq.m.</td>
       
     </tr>
    
@@ -154,7 +155,7 @@ const AssementList = (props) => {
     <tr>
       <th scope="row">10</th>
       <td>Elevation</td>
-    <td>{elevation}</td>
+    <td>{elevation} m</td>
       
     </tr>
 

@@ -118,7 +118,7 @@ import Gallery from "./Gallery/Gallery";
         console.log([location.coords.latitude, location.coords.longitude], "aa")
         // this.props.setcurrentLocation([location.coords.latitude, location.coords.longitude])
         this.setState({ currentLocation: [location.coords.latitude, location.coords.longitude] })
-        L.circleMarker(latlng, { radius: 6, fillColor: 'red', fillOpacity: 1, weight: 15, opacity: 0.3, color: 'red', }).addTo(this.props.reff.current.leafletElement);
+        // L.circleMarker(latlng, { radius: 6, fillColor: 'red', fillOpacity: 1, weight: 15, opacity: 0.3, color: 'red', }).addTo(this.props.reff.current.leafletElement);
         console.log("current", this.state.currentLocation)
       this.getshortestdistance(this.state.spaceInfo.centroid.reverse(),this.state.currentLocation)
 
