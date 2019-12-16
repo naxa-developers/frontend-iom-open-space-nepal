@@ -27,6 +27,8 @@ import Axios from 'axios'
         this.fetchInfo();
       }
     render() {
+        // console.log("on heli",localStorage.getItem("openspaceID"));
+        
         return (
             <div class="space-list nearby-list">
             <ul>
@@ -40,7 +42,7 @@ import Axios from 'axios'
                     />
                  
                 })
-              : <h7>There is no data available</h7>
+              : <h7>There is no data available at the moment.</h7>
               }
       
             </ul>
