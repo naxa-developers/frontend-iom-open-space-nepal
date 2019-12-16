@@ -870,7 +870,7 @@
                                 }
 
                                 &.address {
-                                    @include flexBetween;
+                                    @include flex;
                                     align-items: center;
 
                                     i {
@@ -934,7 +934,11 @@
                         margin: 0;
                         width: 100%;
                         max-width: 500px;
-                        min-height: 330px;
+                        height: 100%;
+                        min-height: 280px;
+                        background-size: cover;
+                        background-position: center;
+                        background-repeat: no-repeat;
                     }
                 }
             }
@@ -1002,10 +1006,14 @@
                 }
 
                 figure {
-                    margin: 1rem 0 0 0 !important;
-                    max-width: 300px;
-                    margin:0 auto;
-                    max-height: 150px;
+                    margin: 1rem 0 !important;
+                    background-size: cover;
+                    width: 100%;
+                    min-height: 200px;
+                    max-height: 200px;
+                    height: 100%;
+                    background-repeat: no-repeat;
+                    background-position: center;
                 }
 
             }
