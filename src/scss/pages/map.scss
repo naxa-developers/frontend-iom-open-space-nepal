@@ -261,9 +261,30 @@
                                     }
                                     &.red{
                                         background-color:rgba($color-secondary,.2);
+                                        animation-name: stretch;
+                                        animation-duration: 1.5s; 
+                                        animation-timing-function: ease-out;
+                                        animation-delay: 0s;
+                                        animation-direction: alternate;
+                                        animation-iteration-count: infinite;
+                                        animation-play-state: running; 
+                                        
+                                        @keyframes stretch {
+                                            0% {
+                                                background-color: lighten($color: $color-secondary, $amount: 10%);
+                                            }
+                                            50%{
+                                                background-color: lighten($color: $color-secondary, $amount: 20%);
+                                        
+                                            }
+                                            100% {
+                                                background-color: lighten($color: $color-secondary, $amount: 30%);
+                                            }
+                                        }
                                         &::after{
                                             background-color: $color-secondary;
                                         }
+                                       
                                     }
                                 }
                                 p{
@@ -348,16 +369,22 @@
                         line-height: 1;
                         color: $color-white;
                         position:relative;
+                        
                         span,
                         i {
+                            
                             font-weight: 600;
                             margin-right: 0.25rem;
                             color: $color-white;
                             &:last-child{
+                                @include animate_all(all .3s ease-in-out);
                                 position: absolute;
-                                top: -6px;
+                                top: -1px;
                                 right: -10px;
                                 cursor: pointer;
+                                &.active{
+                                    color: lighten($color-blue, 20%);
+                                }
                             }
                         }
                     }
@@ -821,7 +848,6 @@
                         @include flexStart;
                         align-items: center;
                         margin-bottom: .25rem;
-                        cursor: pointer;
                         i {
                             margin-left: .5rem;
                             font-size: 1rem;
