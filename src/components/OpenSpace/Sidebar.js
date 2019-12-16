@@ -565,10 +565,10 @@ class Sidebar extends Component {
       "&algorithm=alternative_route";
     var colors = ["red", 'green', 'black']
 
-
+console.log(url)
     Axios.get(url)
       .then(Response => {
-        // console.log(Response.data)
+        console.log(this.state.Routespaths)
 
 
         for (var j = 0; j < Response.data.paths.length; j++) {
@@ -651,15 +651,15 @@ class Sidebar extends Component {
           //   return e.distance==min
           // })
           const newData = [
-            this.state.Routespaths.find(item => item.id === min),
-            ...this.state.Routespaths.filter(item => item.id != min),
+            this.state.Routespaths.find(item => item.distance === min),
+            ...this.state.Routespaths.filter(item => item.distance != min),
           ]
           this.state.Routespaths=newData
           
 
 
-          this.state.Routespaths.map(e => {
-            // console.log(activeroute)
+          this.state.Routespaths.map((e) => {
+            console.log('activeroute',e,this.state.Routespaths)
 
             var class1 = 'desccard';
             // var activeclass=class1
