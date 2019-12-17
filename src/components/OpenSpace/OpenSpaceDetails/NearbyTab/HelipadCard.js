@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
+import SingleEcard from './SingleEcard'
 
  class HelipadCard extends Component {
     constructor(props) {
@@ -13,7 +14,7 @@ import Axios from 'axios'
     
     fetchInfo = () => {
         Axios.get(
-          `https://iomapi.naxa.com.np/api/v1/near_by_me?type=helipad&count=50&distance=1&id=${localStorage.getItem("openspaceID")}`
+          `https://iomapi.naxa.com.np/api/v1/near_by_me?type=helipad&count=50&distance=5&id=${localStorage.getItem("OpenspaceID")}`
         ).then(response => {
             console.log("heli",response.data);
             
@@ -27,7 +28,7 @@ import Axios from 'axios'
         this.fetchInfo();
       }
     render() {
-        // console.log("on heli",localStorage.getItem("openspaceID"));
+        console.log("on heli",localStorage.getItem("OpenspaceID"));
         
         return (
             <div class="space-list nearby-list">
@@ -37,6 +38,7 @@ import Axios from 'axios'
                 this.state.data.facility.map((e,i) => {
                
                     return <SingleEcard
+                    name = "Helipad"
                     
                     
                     />

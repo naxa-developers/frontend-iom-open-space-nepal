@@ -9,7 +9,8 @@ class Identification extends Component {
         super(props)
     
         this.state = {
-             steps: null
+             steps: null,
+             data: null
         }
     }
     
@@ -20,11 +21,20 @@ class Identification extends Component {
         axios.get(`https://iomapi.naxa.com.np/api/v1/identify_open_space/`)
         .then( res => {
             const steps = res.data;
-            this.setState({ steps });
+            this.setState({ steps: steps });
             
         })
+        axios.get(`http://iomapi.naxa.com.np/api/v1/open_space_ide/`)
+        .then( res => {
+            const data = res.data;
+            this.setState({ data: data });
+            
+        })
+
     }
     render() {
+        console.log(this.state.data);
+        
         return (
 
             <div>
@@ -34,9 +44,7 @@ class Identification extends Component {
                     <div className="col-md-6" >
                         <div className="process-left sticky">
                             <h3 className="openspace-title">Open space indentification process</h3>
-                            <p>Open space was identified by conducting workshops and interaction programs with locally
-                                elected
-                                representatives and local residents.</p>
+        <p>{this.state.data&&this.state.data[0].description}</p>
                         </div>
                      
                     </div>
