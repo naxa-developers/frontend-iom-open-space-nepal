@@ -278,6 +278,7 @@ import Gallery from "./Gallery/Gallery";
 
       //   }
       // }
+      
 
 
       this.state.legend.addTo(this.props.reff.current.leafletElement)
