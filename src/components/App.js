@@ -18,6 +18,7 @@ import ReportDetails from './Report/ReportDetails/ReportDetails';
 
 
 
+
 // import {Provider } from 'react-redux';
 // import store from '../store';
 
@@ -30,6 +31,7 @@ class App extends Component {
      
       <Router >
           <Switch>
+    
             <Route
               exact
               path="/"
