@@ -75,6 +75,13 @@ import Axios from 'axios';
                         </div>
                         
                     </div>
+                    {/* <div className="bot" style={{position:'absolute', bottom:0, right:0, zIndex:'99'}}>
+                    <iframe 
+                   width= "350"
+                   height ="430"
+                   src="https://bot.dialogflow.com/f89fc983-a574-45a5-aaad-6029ba4ad33a " > </iframe>
+                    </div> */}
+                 
                 </div>
             </div>
         </div>

@@ -113,17 +113,17 @@ class Footer extends Component {
                   <ul>
                     <span class="list-title">Useful Links</span>
                     <li>
-                      <a href="#">Mofaga</a>
+                      <a href="http://www.mofaga.gov.np/" target="blank">Mofaga</a>
                     </li>
                     <li>
-                      <a href="#">Moha</a>
+                      <a href="http://www.moha.gov.np/" target="blank">Moha</a>
                     </li>
                     <li>
-                      <a href="#">MOfaga</a>
+                      <a href="http://www.bipad.gov.np/" target="blank">bipad</a>
                     </li>
-                    <li>
+                    {/* <li>
                       <a href="#">moha</a>
-                    </li>
+                    </li> */}
                   </ul>
                 </div>
               </div>

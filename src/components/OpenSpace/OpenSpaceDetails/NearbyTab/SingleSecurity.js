@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
  class SingleSecurity extends Component {
     render() {
+      console.log("single", this.props.name);
+      
         return (
             <li>
             <div class="space">

@@ -27,6 +27,8 @@ class SecurityCard extends Component {
 
     render() {
       this.props.id && localStorage.setItem("OpenspaceID", this.props.id);
+      console.log("t" ,this.state.data.facility);
+      
         return (
           <div class="space-list nearby-list">
           <ul>
