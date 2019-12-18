@@ -38,13 +38,15 @@ class ReportSidebar extends Component {
   fetchReports = () => {
     Axios.get("https://iomapi.naxa.com.np/api/v1/report/").then(response => {
       this.props.dispatch({ type: "ReportFilter", data: response.data });
-      this.loadReports();
+   
       this.setState({
         reports: response.data,
         reportsToShow: response.data,
         loading: false
       });
+      this.loadReports();
     });
+ 
   };
 
   toggleLoader = () => {
@@ -73,32 +75,30 @@ this.props.dispatch({
   loadReports = () => {
     this.props.reportData &&
       this.props.reportData.map(p => {
-        var color = "";
-        var fillColor = "";
+        
+        
         if (p.status == "pending") {
-          color = "red";
-          fillColor = "red";
+        var reportClass="reportMarkerPending"
+       
         } else if (p.status == "replied") {
-          color = "#1ee611";
-          fillColor = "#1ee611";
+          var reportClass="reportMarkerReplied"
         } else {
-          color = "white";
-          fillColor = "white";
+          var reportClass=""
         }
+       
+        
 
-        const reportStyle = {
-          color: color,
-          fillColor: fillColor,
-          opacity: 0.3,
-          fillOpacity: 1,
-          weight: 12,
-          radius: 5
-        };
+    
+        var icon = L.divIcon({
+          className: reportClass,
+          html: "<i class='OSmarker'></i>",
+          // iconSize: [4, 4],
+          // iconAnchor: [12, 6]
+        });
+        var htmlmrk = L.marker([p.location[1], p.location[0]], { icon: icon })
+        .addTo(this.state.reportsMarkers);
 
-        var marker = L.circleMarker(
-          [p.location[1], p.location[0]],
-          reportStyle
-        ).addTo(this.state.reportsMarkers);
+    
         var popOne =
           " <div class='bind-popup'> " +
           "<div class='bind-header'> <h5>" +
@@ -107,7 +107,7 @@ this.props.dispatch({
           p.name +
           " </p> </div> </div>";
 
-        marker.bindPopup(popOne);
+        htmlmrk.bindPopup(popOne);
       
       });
      
@@ -145,7 +145,7 @@ this.props.dispatch({
   }
 
   render() {
-    console.log("load", this.state.loading, this.props.reportData);
+    // console.log("load", this.state.loading, this.props.reportData);
     
     
     return (

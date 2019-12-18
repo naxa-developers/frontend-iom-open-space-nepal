@@ -27,6 +27,8 @@ class NearbyTab extends Component {
   }
 
   fetchroute = (first, second) => {
+    console.log("fs",first, second);
+    
     // L.tooltip().setLatLng(first).setContent('<h6>latlng</h6>').addTo(this.props.mapRefs.current.leafletElement)
     // map.closeTooltip();
     
@@ -295,7 +297,15 @@ class NearbyTab extends Component {
           </Card.Header>
           <Accordion.Collapse eventKey="2">
             <Card.Body>
-              <HelipadCard />
+              <HelipadCard 
+              legend={this.state.legend}
+
+              id= {this.props.id}
+              OSlatlng={this.props.OSlatlng}
+              reff={this.props.reff}
+              fetchroute={this.fetchroute}
+              remove={this.remove}
+              />
             </Card.Body>
           </Accordion.Collapse>
         </Card>
