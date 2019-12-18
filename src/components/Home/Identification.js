@@ -33,7 +33,7 @@ class Identification extends Component {
 
     }
     render() {
-        console.log(this.state.data);
+        console.log("ide",this.state.data);
         
         return (
 
