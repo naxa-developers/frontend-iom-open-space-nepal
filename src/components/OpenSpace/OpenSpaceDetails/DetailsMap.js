@@ -418,7 +418,7 @@ class OSDetails extends Component {
 
             <BaseLayer name="Mapbox Streets" checked={true}>
               <TileLayer
-                // attribution='&amp;copy <a href="http://maps.google.com">Google Maps</a> contributors'
+                attribution='&amp;copy Developer:<a href=" http://naxa.com.np">NAXA</a>'
                 // https://api.mapbox.com/styles/v1/upendraoli/cjuvfcfns1q8r1focd0rdlgqn/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidXBlbmRyYW9saSIsImEiOiJjaWYwcnFnNmYwMGY4dGZseWNwOTVtdW1tIn0.uhY72SyqmMJNTKa0bY-Oyw'
                 url="https://api.mapbox.com/styles/v1/upendraoli/cjuvfcfns1q8r1focd0rdlgqn/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidXBlbmRyYW9saSIsImEiOiJjaWYwcnFnNmYwMGY4dGZseWNwOTVtdW1tIn0.uhY72SyqmMJNTKa0bY-Oyw"
                 maxZoom={20}
