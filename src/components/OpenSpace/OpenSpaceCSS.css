@@ -72,6 +72,25 @@
 
 }
 
+.reportMarkerReplied{
+    width:22px !important;
+    height: 22px !important;
+    background-color: #5ACE52;
+    border-radius: 15px;
+    background-clip: padding-box;
+    border:solid 6px rgba(11, 170, 5, 0.2);
+
+}
+.reportMarkerPending{
+    width:22px !important;
+    height: 22px !important;
+    background-color: #F32F30;
+    border-radius: 15px;
+    background-clip: padding-box;
+    border:solid 6px rgba(233, 18, 18, 0.2);
+
+}
+
 
 
 

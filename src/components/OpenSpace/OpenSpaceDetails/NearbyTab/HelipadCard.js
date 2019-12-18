@@ -8,6 +8,7 @@ import SingleEcard from './SingleEcard'
     
         this.state = {
           data: "",
+          ActiveRouteindex:null
          
         };
       }
@@ -23,7 +24,9 @@ import SingleEcard from './SingleEcard'
           });
         });
       };
-  
+      setActivefalse=(e)=>{
+        this.setState({ActiveRouteindex:e})
+      }
       componentDidMount() {
         this.fetchInfo();
       }
@@ -39,6 +42,18 @@ import SingleEcard from './SingleEcard'
                
                     return <SingleEcard
                     name = "Helipad"
+                    setActivefalse={this.setActivefalse}
+                    ActiveRoute={this.state.ActiveRouteindex}
+                    index={i}
+                    
+                     fetchroute={this.props.fetchroute}
+                      remove={this.props.remove} 
+                      legend={this.props.legend} 
+                      reff={this.props.reff}
+                       OSlatlng={this.props.OSlatlng}
+    
+                       latlng={[e.latitude, e.longitude]}
+                        key={e.id} 
                     
                     
                     />

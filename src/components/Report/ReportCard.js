@@ -28,7 +28,7 @@ class ReportCard extends Component {
 
   render() {
     
-console.log("c",this.props.openS);
+// console.log("c",this.props.openS);
 
     let reportDays =
       this.props.daysC == "0" ? "0 Days" : this.CalcTime(this.props.daysC);
