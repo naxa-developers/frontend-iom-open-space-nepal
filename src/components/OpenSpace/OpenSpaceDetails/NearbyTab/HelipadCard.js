@@ -31,7 +31,7 @@ import SingleEcard from './SingleEcard'
         this.fetchInfo();
       }
     render() {
-        console.log("on heli",localStorage.getItem("OpenspaceID"));
+        // console.log("on heli",localStorage.getItem("OpenspaceID"));
         
         return (
             <div class="space-list nearby-list">
