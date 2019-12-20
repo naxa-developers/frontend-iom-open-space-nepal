@@ -109,7 +109,7 @@ handleClick = (v) => {
                         </NavLink>
                       </li>
                       <li className="menu-item  ">
-                        <NavLink to="report" className="menu-item" activeClassName = " menu-item active">
+                        <NavLink to="report" className= {this.props.nav? "menu-item active" : "menu-item" }activeClassName = " menu-item active">
                           {this.props.language == "0" ? "Reports" : "रिपोर्ट"}
                         </NavLink>
                       </li>

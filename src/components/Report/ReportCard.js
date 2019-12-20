@@ -49,7 +49,8 @@ class ReportCard extends Component {
                 id: this.props.id,
                 open: this.props.openS,
                 daysCount: reportDays,
-                title: this.props.title
+                title: this.props.title,
+                nav: 'active'
               });
             }}
           >

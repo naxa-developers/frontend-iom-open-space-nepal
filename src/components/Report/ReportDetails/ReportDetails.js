@@ -3,7 +3,7 @@ import Navbar from "../../Home/Navbar";
 import ReportDetailsCard from "./ReportDetailsCard";
 
 import RDetailsMap from "./RDetailsMap";
-import {Connect} from 'react-redux';
+import {connect} from 'react-redux';
 
 
 class ReportDetails extends Component {
@@ -17,7 +17,7 @@ class ReportDetails extends Component {
     return (
       <div>
         <>
-          <Navbar />
+          <Navbar nav ={this.props.nav} />
           <main class="main-content">
             <section class="openSpace-map">
               <div class="container-fluid">
@@ -43,6 +43,11 @@ class ReportDetails extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    ...state,
+   nav: state.nav
+};
+}
 
-
-export default ReportDetails;
+export default connect(mapStateToProps)(ReportDetails);

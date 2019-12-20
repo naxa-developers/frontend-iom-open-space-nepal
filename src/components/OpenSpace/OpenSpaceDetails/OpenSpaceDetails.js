@@ -33,9 +33,9 @@ class OpenSpaceDetails extends Component {
   // getRef=(childRef) => {
   //   this.parentRef = childRef
   // }
-  componentDidMount(){
-    console.log("/////////////.../////",this.detail)
-  }
+  // componentDidMount(){
+  //   console.log("/////////////.../////",this.detail)
+  // }
   
 
   render() {
