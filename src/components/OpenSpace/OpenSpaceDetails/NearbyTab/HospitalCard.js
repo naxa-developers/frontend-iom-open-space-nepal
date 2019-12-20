@@ -61,7 +61,7 @@ class HospitalCard extends Component {
               />
            
           })
-        : <h7>There is no data available</h7>
+        : <h7>There is no data available at the moment</h7>
         }
 
       </ul>

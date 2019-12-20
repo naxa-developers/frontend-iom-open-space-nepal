@@ -47,7 +47,7 @@ class EducationCard extends Component {
         <div class="space-list nearby-list">
           <ul>
 
-            {this.state.data &&
+            {this.state.data && this.state.data.facility.length > 0 ? 
               this.state.data.facility.map((e,i) => {
                 
 
@@ -66,7 +66,9 @@ class EducationCard extends Component {
                     key={e.id} 
                     name={e.name}
                       />;
-              })}
+              })
+              : <h7>There is no data available at the moment.</h7>
+            }
 
           </ul>
         </div>

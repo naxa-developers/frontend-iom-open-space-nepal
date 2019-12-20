@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Axios from 'axios';
 import LoadingSpinner from '../Report/LoadingSpinner';
+import tent from '../../img/tento.png'
 
 class OpenSpaceCard extends Component {
     constructor(props) {
@@ -51,7 +52,7 @@ class OpenSpaceCard extends Component {
 
     }
     render() {
-        var image="https://api.adorable.io/avatars/226/abott@adorable.png"
+        // var image="https://api.adorable.io/avatars/226/abott@adorable.png"
         // console.log(this.props.image)
         // console.log("card",this.props);
         
@@ -61,9 +62,7 @@ class OpenSpaceCard extends Component {
                     <div className="space">
                         <figure>
                             <img
-                                // src={this.props.image!=null?`https://iomapi.naxa.com.np${this.props.image}`:image}
-                                // src='../../src/img/tento.png'
-                                // src={image}
+                               src={this.props.thumbnail!=null ? `https://iomapi.naxa.com.np${this.props.thumbnail}` : tent }
                                 alt="space"
                             />
                         </figure>

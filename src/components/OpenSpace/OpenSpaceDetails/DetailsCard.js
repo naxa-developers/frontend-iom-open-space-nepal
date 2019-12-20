@@ -221,7 +221,7 @@ import Gallery from "./Gallery/Gallery";
         // div.innerHTML += "<img src='../../src/img/close.png' id='close-bt-route'></img>"
 
         div.innerHTML += "<h6 id='legendtitle'>Routes</h6>"
-        console.log(this.state.Routespaths)
+        // console.log(this.state.Routespaths)
         var distances=[]
         this.state.Routespaths.forEach((a)=>{
           distances.push(a.distance)

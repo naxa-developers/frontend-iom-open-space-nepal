@@ -961,11 +961,13 @@ class Sidebar extends Component {
                             name={e.title}
                             address={e.address}
                             image={e.image}
+                            thumbnail = {e.thumbnail}
                             id={e.id}
                             removeRoutes={this.removeRoutes}
                             setActivefalse={this.setActivefalse}
                             ActiveRoute={this.state.ActiveRouteindex}
                             index={e.id}
+
                           />
                         );
                       })}

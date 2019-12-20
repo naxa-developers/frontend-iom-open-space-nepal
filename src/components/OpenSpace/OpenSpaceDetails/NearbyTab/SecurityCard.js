@@ -41,7 +41,7 @@ class SecurityCard extends Component {
           <ul>
            
 
-          {this.state.data &&
+          {this.state.data && this.state.data.facility.length > 0 ? 
           this.state.data.facility.map((e,i) => {
          
               return <SingleEcard
@@ -60,7 +60,9 @@ class SecurityCard extends Component {
                   name={e.name}
                     />;
 
-          })}
+          })
+          : <h7>There is no data available at the moment.</h7>
+          }
 
             </ul>
             </div>
