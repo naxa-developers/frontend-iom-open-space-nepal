@@ -243,8 +243,8 @@ class Sidebar extends Component {
         var municipality = L.geoJSON(response.data, {
           style: () => {
             return {
-              color: '#174BDD',
-              fillColor: '#174BDD',
+              color: '#095c05',
+              fillColor: '#095c05',
               fillOpacity: 0.1,
               weight: 1
             }
@@ -271,8 +271,8 @@ class Sidebar extends Component {
         var municipality = L.geoJSON(response.data, {
           style: () => {
             return {
-              color: '#174BDD',
-              fillColor: '#174BDD',
+              color: '#095c05',
+              fillColor: '#095c05',
               fillOpacity: 0.1,
               weight: 1
             }
@@ -302,8 +302,8 @@ class Sidebar extends Component {
         var Province = L.geoJSON(response.data, {
           style: () => {
             return {
-              color: '#174BDD',
-              fillColor: '#174BDD',
+              color: '#095c05',
+              fillColor: '#095c05',
               fillOpacity: 0.1,
               weight: 1
             }
@@ -487,7 +487,7 @@ class Sidebar extends Component {
 
         var htmlmrk = L.marker([e.centroid[1], e.centroid[0]], { icon: icon });
 
-        var mrk = new L.circleMarker([e.centroid[1], e.centroid[0]], { radius: 6, fillColor: '#174BDD', fillOpacity: 1, weight: 15, opacity: 0.3, pane: 'Oslanding' })
+        var mrk = new L.circleMarker([e.centroid[1], e.centroid[0]], { radius: 6, fillColor: '#095c05', fillOpacity: 1, weight: 15, opacity: 0.3, pane: 'Oslanding' })
         let address = e.address == null ? 'Nepal' : e.address
         var popup = "<h5>" + e.title + "</h5>" +
           "<h6>" + e.municipality + "</h6>"
@@ -582,7 +582,7 @@ class Sidebar extends Component {
             path.push(Response.data.paths[j].points.coordinates[i].reverse())
           }
           // console.log(Response.data.paths[j].description)
-          var polyline = L.polyline(path, { color: j == 0 ? '#174BDD' : 'grey' })
+          var polyline = L.polyline(path, { color: j == 0 ? '#095c05' : 'grey' })
           this.state.Routespaths.push({ id: j, path: polyline, description: Response.data.paths[j].description == undefined ? "No Descrption" : Response.data.paths[j].description[0], distance: Response.data.paths[j].distance })
 
           this.state.Routes.addLayer(polyline)
@@ -596,7 +596,7 @@ class Sidebar extends Component {
             this.state.Routespaths.map((i) => {
               i.path.setStyle({ color: 'grey' })
             })
-            this.state.Routespaths[e.id].path.setStyle({ color: '#174BDD' })
+            this.state.Routespaths[e.id].path.setStyle({ color: '#095c05' })
             this.state.Routespaths[e.id].path.bringToFront();
             var doac = document.getElementsByClassName('desccard')
             // console.log(doac,doc.length)
@@ -737,7 +737,7 @@ class Sidebar extends Component {
                   })
                 }
 
-                selected[0].path.setStyle({ color: '#174BDD' })
+                selected[0].path.setStyle({ color: '#095c05' })
 
                 selected[0].path.bringToFront()
 

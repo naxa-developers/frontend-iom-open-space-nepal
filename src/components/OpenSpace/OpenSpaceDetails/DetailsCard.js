@@ -53,7 +53,7 @@ import Gallery from "./Gallery/Gallery";
       
       this.setState({ spaceInfo: response.data })
       this.currentloc()
-      var mrk = new L.circleMarker([response.data.centroid[1], response.data.centroid[0]], { radius: 6, fillColor: '#174BDD', fillOpacity: 1, weight: 15, opacity: 0.3})
+      var mrk = new L.circleMarker([response.data.centroid[1], response.data.centroid[0]], { radius: 6, fillColor: '#095c05', fillOpacity: 1, weight: 15, opacity: 0.3})
       let address=response.data.address==null?"Nepal":response.data.address
       // var shortest=this.getshortestdistance(this.state.spaceInfo.centroid.reverse(),this.state.currentLocation)
       var pop = "<div class='bind-popup'> <div class='bind-header'><h5>" + response.data.title + "</h5> <p><i class='material-icons' style='font-size:16px'>room</i>" + address + "<i class='material-icons pop-dir'>directions</i></p></div></div>"
@@ -160,7 +160,7 @@ import Gallery from "./Gallery/Gallery";
           path.push(Response.data.paths[j].points.coordinates[i].reverse())
         }
         // console.log(Response.data.paths[j].description)
-        var polyline = L.polyline(path, { color: j == 0 ? '#174BDD' : 'grey' })
+        var polyline = L.polyline(path, { color: j == 0 ? '#095c05' : 'grey' })
         this.state.Routespaths.push({ id: j, path: polyline, description: Response.data.paths[j].description == undefined ? "No Descrption" : Response.data.paths[j].description[0], distance: Response.data.paths[j].distance })
 
         this.state.Routes.addLayer(polyline)
@@ -174,7 +174,7 @@ import Gallery from "./Gallery/Gallery";
           this.state.Routespaths.map((i)=>{
             i.path.setStyle({color:'grey'})
           })
-          this.state.Routespaths[e.id].path.setStyle({color:'#174BDD'})
+          this.state.Routespaths[e.id].path.setStyle({color:'#095c05'})
           this.state.Routespaths[e.id].path.bringToFront();
           var doac = document.getElementsByClassName('desccard')
           // console.log(doac,doc.length)
@@ -313,7 +313,7 @@ import Gallery from "./Gallery/Gallery";
                 })
               }
 
-              selected[0].path.setStyle({ color: '#174BDD' })
+              selected[0].path.setStyle({ color: '#095c05' })
 
               selected[0].path.bringToFront()
 
