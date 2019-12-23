@@ -58,7 +58,7 @@ class NearbyTab extends Component {
             path.push(Response.data.paths[j].points.coordinates[i].reverse())
           }
           // console.log(Response.data.paths[j].description)
-          var polyline = L.polyline(path, { color: j == 0 ? '#174BDD' : 'grey' })
+          var polyline = L.polyline(path, { color: j == 0 ? '#095c05' : 'grey' })
           this.state.Routespaths.push({ id: j, path: polyline, description: Response.data.paths[j].description == undefined ? "No Descrption" : Response.data.paths[j].description[0], distance: Response.data.paths[j].distance })
   
           this.state.Routes.addLayer(polyline)
@@ -72,7 +72,7 @@ class NearbyTab extends Component {
             this.state.Routespaths.map((i)=>{
               i.path.setStyle({color:'grey'})
             })
-            this.state.Routespaths[e.id].path.setStyle({color:'#174BDD'})
+            this.state.Routespaths[e.id].path.setStyle({color:'#095c05'})
             this.state.Routespaths[e.id].path.bringToFront();
             var doac = document.getElementsByClassName('desccard')
             // console.log(doac,doc.length)
@@ -211,7 +211,7 @@ class NearbyTab extends Component {
                   })
                 }
   
-                selected[0].path.setStyle({ color: '#174BDD' })
+                selected[0].path.setStyle({ color: '#095c05' })
   
                 selected[0].path.bringToFront()
   
