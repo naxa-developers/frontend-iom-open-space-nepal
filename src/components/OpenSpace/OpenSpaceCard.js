@@ -21,7 +21,8 @@ class OpenSpaceCard extends Component {
     }
 
     getshortestdistance=(first,second)=>{
-        // console.log(first,second,this.props.currentLocation);
+        
+        console.log(first,second,this.props.currentLocation);
         var baseUrl = "https://route.naxa.com.np/route";
         var distances=[]
         // console.log(first,second)
@@ -47,11 +48,14 @@ class OpenSpaceCard extends Component {
    
     componentDidMount() {
         
-        this.props.currentLocation!=null&&this.getshortestdistance(this.props.latlng, this.props.currentLocation)
+        // this.props.currentLocation!=null&&this.getshortestdistance(this.props.latlng, this.props.currentLocation)
      
 
     }
+ 
     render() {
+        this.state.calculatedistance==true&&this.props.currentLocation!=null&&this.getshortestdistance(this.props.latlng, this.props.currentLocation)
+
         // var image="https://api.adorable.io/avatars/226/abott@adorable.png"
         // console.log(this.props.image)
         // console.log("card",this.props);

@@ -65,7 +65,7 @@ class OSDetails extends Component {
           });
 
           this.plotSecurity();
-          this.props.reff.current.leafletElement.fitBounds(this.state.allNearby.getBounds())
+          this.props.reff.current.leafletElement.fitBounds(this.state.allNearby.getBounds().extend(this.geo.getBounds()))
 
         });
       });
@@ -315,7 +315,9 @@ class OSDetails extends Component {
         fillOpacity: 0.3,
         color: "green",
         weight: 2
-      }).addTo(this.props.reff.current.leafletElement);
+      })
+      geo.addTo(this.props.reff.current.leafletElement);
+      this.geo=geo
       // this.props.reff.current.leafletElement.fitBounds(geo.getBounds(), {
       //   // padding: [200, 200]
       // });
