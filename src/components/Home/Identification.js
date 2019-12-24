@@ -24,7 +24,7 @@ class Identification extends Component {
             this.setState({ steps: steps });
             
         })
-        axios.get(`http://iomapi.naxa.com.np/api/v1/open_space_ide/`)
+        axios.get(`https://iomapi.naxa.com.np/api/v1/open_space_ide/`)
         .then( res => {
             const data = res.data;
             this.setState({ data: data });
@@ -33,7 +33,7 @@ class Identification extends Component {
 
     }
     render() {
-        console.log(this.state.data);
+        console.log("ide",this.state.data);
         
         return (
 

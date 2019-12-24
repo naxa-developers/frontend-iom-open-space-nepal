@@ -41,7 +41,8 @@ class ReportFilter extends Component {
 
  
   onClear = () => {
-    this.setState({ valueDays: null, valueStatus: null, valueUrgency: null });
+    this.setState({ valueDays: null, valueStatus: null, valueUrgency: null, startDate: null, endDate:null
+    });
     this.props.resetReports();
    
   };

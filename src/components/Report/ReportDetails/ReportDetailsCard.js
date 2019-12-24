@@ -42,9 +42,7 @@ class ReportDetailsCard extends Component {
 
     var status = this.state.reportInfo.status;
     this.props.id && localStorage.setItem("reportId", this.props.id);
-    // console.log("should change", localStorage.getItem("reportId"));
-    console.log("props", this.props);
-    
+ 
     this.props.days && localStorage.setItem("days", this.props.days);
   
     
@@ -85,7 +83,7 @@ class ReportDetailsCard extends Component {
                       <p className="flex-start loc-time">
                         <a  
                          onClick={() => {
-                          console.log("dispatch now");
+                       
                            this.props.history.push('/openspacedetails'); 
                            this.props.dispatch({
                              type: 'spaceClicked',
@@ -147,7 +145,8 @@ const mapStateToProps = state => {
   return {
     id: state.reportID,
     days: state.daysCount,
-    spaceId: state.space
+    spaceId: state.space,
+   
   };
 };
 export default withRouter(connect(mapStateToProps)(ReportDetailsCard));

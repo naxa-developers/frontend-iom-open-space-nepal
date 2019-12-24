@@ -104,7 +104,11 @@ class Sidebar extends Component {
   fetchOS = () => {
     Axios.get("https://iomapi.naxa.com.np/api/v1/open_space_landing").then(
       response => {
+        // console.log("all", response.data.data),
         this.setState({
+
+         
+          
           Allos: response.data.data,
           Openspaces: response.data.data,
           loading: !this.state.loading
@@ -243,15 +247,15 @@ class Sidebar extends Component {
         var municipality = L.geoJSON(response.data, {
           style: () => {
             return {
-              color: '#174BDD',
-              fillColor: '#174BDD',
+              color: '#095c05',
+              fillColor: '#095c05',
               fillOpacity: 0.1,
               weight: 1
             }
           }
         });
         let FilteredOS = this.state.Openspaces.filter((e) => e.municipality == this.state.SelectedMunicipality.value)
-        console.log(FilteredOS)
+        // console.log(FilteredOS)
         this.setState({ Allos: FilteredOS, loading: false })
         this.displayOS()
         municipality.addTo(this.state.district_muni);
@@ -271,15 +275,15 @@ class Sidebar extends Component {
         var municipality = L.geoJSON(response.data, {
           style: () => {
             return {
-              color: '#174BDD',
-              fillColor: '#174BDD',
+              color: '#095c05',
+              fillColor: '#095c05',
               fillOpacity: 0.1,
               weight: 1
             }
           }
         });
         let FilteredOS = this.state.Openspaces.filter((e) => e.district == this.state.SelectedDistrict.value)
-        console.log(FilteredOS)
+        // console.log(FilteredOS)
         this.setState({ Allos: FilteredOS, loading: false })
         this.displayOS()
 
@@ -298,19 +302,19 @@ class Sidebar extends Component {
       Axios.get(
         `https://iomapi.naxa.com.np/api/v1/province_geo_json?id=${this.state.SelectedProvince.value}`
       ).then(response => {
-        console.log(response,'re')
+        // console.log(response,'re')
         var Province = L.geoJSON(response.data, {
           style: () => {
             return {
-              color: '#174BDD',
-              fillColor: '#174BDD',
+              color: '#095c05',
+              fillColor: '#095c05',
               fillOpacity: 0.1,
               weight: 1
             }
           }
         });
         let FilteredOS = this.state.Openspaces.filter((e) => e.province == this.state.SelectedProvince.value)
-        console.log(FilteredOS)
+        // console.log(FilteredOS)
         this.setState({ Allos: FilteredOS, loading: false })
         this.displayOS()
         Province.addTo(this.state.district_muni);
@@ -362,7 +366,7 @@ class Sidebar extends Component {
         else {
           this.notify()
         }
-        console.log(response.data.open_space ,this.state.Openspaces)
+        // console.log(response.data.open_space ,this.state.Openspaces)
 
 
 
@@ -407,7 +411,7 @@ class Sidebar extends Component {
               ]
               this.setState({Allos:newData})
               if(this.state.ActiveRouteindex==e.id){
-                console.log(dir)
+                // console.log(dir)
                 dir[0].classList.remove('active')
                 this.removeRoutes();
                 this.setActivefalse(null)
@@ -464,7 +468,7 @@ class Sidebar extends Component {
 
     }
     this.state.nearbytoogle = !this.state.nearbytoogle
-    console.log(this.state.nearbytoogle)
+    // console.log(this.state.nearbytoogle)
   }
 
 
@@ -473,7 +477,7 @@ class Sidebar extends Component {
 
 
     this.state.Allos.map(e => {
-      console.log(e, 'data')
+      // console.log(e, 'data')
       if (e.centroid != null) {
         var map = this.props.mapRefs.current.leafletElement;
         // new L.circleMarker([e.latitude, e.longitude]).addTo(map)
@@ -487,7 +491,7 @@ class Sidebar extends Component {
 
         var htmlmrk = L.marker([e.centroid[1], e.centroid[0]], { icon: icon });
 
-        var mrk = new L.circleMarker([e.centroid[1], e.centroid[0]], { radius: 6, fillColor: '#174BDD', fillOpacity: 1, weight: 15, opacity: 0.3, pane: 'Oslanding' })
+        var mrk = new L.circleMarker([e.centroid[1], e.centroid[0]], { radius: 6, fillColor: '#095c05', fillOpacity: 1, weight: 15, opacity: 0.3, pane: 'Oslanding' })
         let address = e.address == null ? 'Nepal' : e.address
         var popup = "<h5>" + e.title + "</h5>" +
           "<h6>" + e.municipality + "</h6>"
@@ -515,14 +519,14 @@ class Sidebar extends Component {
               ]
               this.setState({Allos:newData})
               if(this.state.ActiveRouteindex==e.id){
-                console.log(dir)
+                // console.log(dir)
                 dir[0].classList.remove('active')
                 this.removeRoutes();
                 this.setActivefalse(null)
 
             }
             else{
-              console.log(i,dir)
+              // console.log(i,dir)
                 
                 this.fetchroute([e.centroid[1], e.centroid[0]], this.props.currentLocation)
                 this.setActivefalse(e.id)
@@ -555,7 +559,7 @@ class Sidebar extends Component {
   fetchroute = (first, second) => {
     // L.tooltip().setLatLng(first).setContent('<h6></h6>').addTo(this.props.mapRefs.current.leafletElement)
     // map.closeTooltip();
-    console.log(first,second)
+    // console.log(first,second)
 
     this.state.Routespaths = []
     this.state.Routes.eachLayer((r) => this.state.Routes.removeLayer(r))
@@ -569,10 +573,10 @@ class Sidebar extends Component {
       "&algorithm=alternative_route";
     var colors = ["red", 'green', 'black']
 
-console.log(url)
+// console.log(url)
     Axios.get(url)
       .then(Response => {
-        console.log(this.state.Routespaths)
+        // console.log(this.state.Routespaths)
 
 
         for (var j = 0; j < Response.data.paths.length; j++) {
@@ -582,7 +586,7 @@ console.log(url)
             path.push(Response.data.paths[j].points.coordinates[i].reverse())
           }
           // console.log(Response.data.paths[j].description)
-          var polyline = L.polyline(path, { color: j == 0 ? '#174BDD' : 'grey' })
+          var polyline = L.polyline(path, { color: j == 0 ? '#095c05' : 'grey' })
           this.state.Routespaths.push({ id: j, path: polyline, description: Response.data.paths[j].description == undefined ? "No Descrption" : Response.data.paths[j].description[0], distance: Response.data.paths[j].distance })
 
           this.state.Routes.addLayer(polyline)
@@ -596,7 +600,7 @@ console.log(url)
             this.state.Routespaths.map((i) => {
               i.path.setStyle({ color: 'grey' })
             })
-            this.state.Routespaths[e.id].path.setStyle({ color: '#174BDD' })
+            this.state.Routespaths[e.id].path.setStyle({ color: '#095c05' })
             this.state.Routespaths[e.id].path.bringToFront();
             var doac = document.getElementsByClassName('desccard')
             // console.log(doac,doc.length)
@@ -608,7 +612,7 @@ console.log(url)
               // var selectindex=doac[i].getAttribute('name')
               // var filtered=this.state.Routespaths.filter((d)=>d.id==selectindex)
               doac[i].classList.contains('pathactive') && doac[i].classList.remove('pathactive')
-              console.log(doac[i].getAttribute('name') == e.id)
+              // console.log(doac[i].getAttribute('name') == e.id)
               doac[i].getAttribute('name') == e.id && doac[i].classList.add('pathactive')
 
 
@@ -644,7 +648,7 @@ console.log(url)
           // div.innerHTML += "<img src='../../src/img/close.png' id='close-bt-route'></img>"
 
           div.innerHTML += "<h6 id='legendtitle'>Routes</h6>"
-          console.log(this.state.Routespaths)
+          // console.log(this.state.Routespaths)
           var distances = []
           this.state.Routespaths.forEach((a) => {
             distances.push(a.distance)
@@ -663,7 +667,7 @@ console.log(url)
 
 
           this.state.Routespaths.map((e) => {
-            console.log('activeroute',e,this.state.Routespaths)
+            // console.log('activeroute',e,this.state.Routespaths)
 
             var class1 = 'desccard';
             // var activeclass=class1
@@ -737,7 +741,7 @@ console.log(url)
                   })
                 }
 
-                selected[0].path.setStyle({ color: '#174BDD' })
+                selected[0].path.setStyle({ color: '#095c05' })
 
                 selected[0].path.bringToFront()
 
@@ -977,11 +981,13 @@ console.log(url)
                             name={e.title}
                             address={e.address}
                             image={e.image}
+                            thumbnail = {e.thumbnail}
                             id={e.id}
                             removeRoutes={this.removeRoutes}
                             setActivefalse={this.setActivefalse}
                             ActiveRoute={this.state.ActiveRouteindex}
                             index={e.id}
+
                           />
                         );
                       })}
