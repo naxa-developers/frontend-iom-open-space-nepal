@@ -790,14 +790,14 @@ console.log(url)
 
     this.fetchingForDropdown("province");
     this.fetchingForDropdown("district");
-    this.fetchingForDropdown("municipality");
+    this.fetchingForDropdown("municipality")
     console.log(sessionStorage.Openspaces,"session",JSON.parse(sessionStorage.getItem('stored')));
     if(JSON.parse(sessionStorage.getItem('stored'))!=true){
       
       this.fetchOS();
 
     }
-    else{
+    else{ 
      
 
       this.state.Openspaces=JSON.parse(sessionStorage.getItem('Openspaces'));
