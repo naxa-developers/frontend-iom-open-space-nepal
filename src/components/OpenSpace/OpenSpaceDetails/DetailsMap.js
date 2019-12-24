@@ -17,8 +17,9 @@ class OSDetails extends Component {
       currentLocation: null,
       HealthData: null,
       SecurityData: null,
-      dummyNo:' 01-4250931',
-      myloc: L.control({ position: 'topleft' })
+      dummyNo: ' 01-4250931',
+      myloc: L.control({ position: 'topleft' }),
+      allNearby:L.featureGroup()
     };
   }
 
@@ -31,6 +32,7 @@ class OSDetails extends Component {
     this.setState({
       height: windowHeight - navHeight
     });
+    // this.plotfacilities();
   };
   plotNearby = () => {
     Axios.get(
@@ -43,29 +45,33 @@ class OSDetails extends Component {
       });
 
       this.plotEdu();
-    });
-    Axios.get(
-      `https://iomapi.naxa.com.np/api/v1/near_by_me?type=health%20facility&count=100&distance=1&id=${localStorage.getItem(
-        "OpenspaceID"
-      )}`
-    ).then(response => {
-      this.setState({
-        HealthData: response.data
-      });
+      Axios.get(
+        `https://iomapi.naxa.com.np/api/v1/near_by_me?type=health%20facility&count=100&distance=1&id=${localStorage.getItem(
+          "OpenspaceID"
+        )}`
+      ).then(response => {
+        this.setState({
+          HealthData: response.data
+        });
 
-      this.plotHealth();
-    });
-    Axios.get(
-      `https://iomapi.naxa.com.np/api/v1/near_by_me?type=security%20force&count=100&distance=1&id=${localStorage.getItem(
-        "OpenspaceID"
-      )}`
-    ).then(response => {
-      this.setState({
-        SecurityData: response.data
-      });
+        this.plotHealth();
+        Axios.get(
+          `https://iomapi.naxa.com.np/api/v1/near_by_me?type=security%20force&count=100&distance=1&id=${localStorage.getItem(
+            "OpenspaceID"
+          )}`
+        ).then(response => {
+          this.setState({
+            SecurityData: response.data
+          });
 
-      this.plotSecurity();
+          this.plotSecurity();
+          this.props.reff.current.leafletElement.fitBounds(this.state.allNearby.getBounds())
+
+        });
+      });
     });
+
+
 
 
   };
@@ -73,47 +79,47 @@ class OSDetails extends Component {
     var NearbyIcon = L.divIcon({
       className: "nearby-div-icon",
       html: "<i class='humanitarian-icon-Medical-supply'></i>",
-      
+
       iconAnchor: [12, 6]
     });
     this.state.HealthData.facility.map(e => {
       var NearbyMarker = L.marker([e.latitude, e.longitude], {
         icon: NearbyIcon
-      }).addTo(this.props.reff.current.leafletElement);
+      }).addTo(this.state.allNearby);
 
       var popUp =
         "<div class='bind-popup'>" +
-        " </div> <div class='bind-header'> <h5>" +e.name+"</h5><p><i class='material-icons'>phone</i>"+this.state.dummyNo+"<i class='material-icons pop-dir'>directions</i></p> </div>";
+        " </div> <div class='bind-header'> <h5>" + e.name + "</h5><p><i class='material-icons'>phone</i>" + this.state.dummyNo + "<i class='material-icons pop-dir'>directions</i></p> </div>";
       NearbyMarker.bindPopup(popUp);
-      NearbyMarker.on('click',()=>{
-        let dir=document.getElementsByClassName('pop-dir')
-          
-          for(var i=0;i<dir.length; i++){
-            dir[i].addEventListener('click',()=>{
-              console.log("called",i)
-              if (dir[0].classList.contains('active')) {
-                console.log("calledif",i)
+      NearbyMarker.on('click', () => {
+        let dir = document.getElementsByClassName('pop-dir')
 
-                this.props.remove()
-                dir[0].classList.remove('active')
-  
-              }
-              else{
-                console.log("calledelse",i)
-                this.props.nearbyroute(this.state.OSlatlng,[e.latitude, e.longitude])
-                dir[0].classList.add('active')
-              }
-              // this.toogleactivetoute()
-              
-              
+        for (var i = 0; i < dir.length; i++) {
+          dir[i].addEventListener('click', () => {
+            console.log("called", i)
+            if (dir[0].classList.contains('active')) {
+              console.log("calledif", i)
 
-                
+              this.props.remove()
+              dir[0].classList.remove('active')
 
-            
+            }
+            else {
+              console.log("calledelse", i)
+              this.props.nearbyroute(this.state.OSlatlng, [e.latitude, e.longitude])
+              dir[0].classList.add('active')
+            }
+            // this.toogleactivetoute()
+
+
+
+
+
+
 
 
           })
-          }
+        }
       })
     });
   };
@@ -121,47 +127,47 @@ class OSDetails extends Component {
     var NearbyIcon = L.divIcon({
       className: "nearby-div-icon",
       html: "<i class='humanitarian-icon-National-army'></i>",
-      
+
       iconAnchor: [12, 6]
     });
     this.state.SecurityData.facility.map(e => {
       var NearbyMarker = L.marker([e.latitude, e.longitude], {
         icon: NearbyIcon
-      }).addTo(this.props.reff.current.leafletElement);
+      }).addTo(this.state.allNearby);
 
       var popUp =
         "<div class='bind-popup'>" +
-        " </div> <div class='bind-header'> <h5>" +e.name+"</h5> <p> <i class='material-icons'>phone</i>"+this.state.dummyNo+"<i class='material-icons pop-dir'>directions</i></p> </div>  ";
+        " </div> <div class='bind-header'> <h5>" + e.name + "</h5> <p> <i class='material-icons'>phone</i>" + this.state.dummyNo + "<i class='material-icons pop-dir'>directions</i></p> </div>  ";
       NearbyMarker.bindPopup(popUp);
-      NearbyMarker.on('click',()=>{
-        let dir=document.getElementsByClassName('pop-dir')
-          
-          for(var i=0;i<dir.length; i++){
-            dir[i].addEventListener('click',()=>{
-              console.log("called",i)
-              if (dir[0].classList.contains('active')) {
-                console.log("calledif",i)
+      NearbyMarker.on('click', () => {
+        let dir = document.getElementsByClassName('pop-dir')
 
-                this.props.remove()
-                dir[0].classList.remove('active')
-  
-              }
-              else{
-                console.log("calledelse",i)
-                this.props.nearbyroute(this.state.OSlatlng,[e.latitude, e.longitude])
-                dir[0].classList.add('active')
-              }
-              // this.toogleactivetoute()
-              
-              
+        for (var i = 0; i < dir.length; i++) {
+          dir[i].addEventListener('click', () => {
+            console.log("called", i)
+            if (dir[0].classList.contains('active')) {
+              console.log("calledif", i)
 
-                
+              this.props.remove()
+              dir[0].classList.remove('active')
 
-            
+            }
+            else {
+              console.log("calledelse", i)
+              this.props.nearbyroute(this.state.OSlatlng, [e.latitude, e.longitude])
+              dir[0].classList.add('active')
+            }
+            // this.toogleactivetoute()
+
+
+
+
+
+
 
 
           })
-          }
+        }
       })
     });
   };
@@ -170,49 +176,49 @@ class OSDetails extends Component {
     var NearbyIcon = L.divIcon({
       className: "nearby-div-icon",
       html: "<i class='humanitarian-icon-Education success'></i>",
-      
+
       iconAnchor: [12, 6]
     });
     this.state.Edudata.facility.map(e => {
       var NearbyMarker = L.marker([e.latitude, e.longitude], {
         icon: NearbyIcon
-      }).addTo(this.props.reff.current.leafletElement);
+      }).addTo(this.state.allNearby);
 
       var popUp =
         "<div class='bind-popup'>" +
         " </div> <div class='bind-header'> <h5>" +
         e.name +
-        "</h5>  <p>  <i class='material-icons'>phone</i> "+this.state.dummyNo+" <i class='material-icons pop-dir'>directions</i></p></div> ";
+        "</h5>  <p>  <i class='material-icons'>phone</i> " + this.state.dummyNo + " <i class='material-icons pop-dir'>directions</i></p></div> ";
       NearbyMarker.bindPopup(popUp);
-      NearbyMarker.on('click',()=>{
-        let dir=document.getElementsByClassName('pop-dir')
-          
-          for(var i=0;i<dir.length; i++){
-            dir[i].addEventListener('click',()=>{
-              console.log("called",i)
-              if (dir[0].classList.contains('active')) {
-                console.log("calledif",i)
+      NearbyMarker.on('click', () => {
+        let dir = document.getElementsByClassName('pop-dir')
 
-                this.props.remove()
-                dir[0].classList.remove('active')
-  
-              }
-              else{
-                console.log("calledelse",i)
-                this.props.nearbyroute(this.state.OSlatlng,[e.latitude, e.longitude])
-                dir[0].classList.add('active')
-              }
-              // this.toogleactivetoute()
-              
-              
+        for (var i = 0; i < dir.length; i++) {
+          dir[i].addEventListener('click', () => {
+            console.log("called", i)
+            if (dir[0].classList.contains('active')) {
+              console.log("calledif", i)
 
-                
+              this.props.remove()
+              dir[0].classList.remove('active')
 
-            
+            }
+            else {
+              console.log("calledelse", i)
+              this.props.nearbyroute(this.state.OSlatlng, [e.latitude, e.longitude])
+              dir[0].classList.add('active')
+            }
+            // this.toogleactivetoute()
+
+
+
+
+
+
 
 
           })
-          }
+        }
       })
     });
   };
@@ -220,19 +226,19 @@ class OSDetails extends Component {
   zoomTomylocation = () => {
     this.state.myloc.onAdd = (map) => {
 
-        var div = L.DomUtil.create('div', `loc`)
-        div.innerHTML = ''
-        div.innerHTML += "<i class='material-icons'>gps_fixed</i>"
-        return div
+      var div = L.DomUtil.create('div', `loc`)
+      div.innerHTML = ''
+      div.innerHTML += "<i class='material-icons'>gps_fixed</i>"
+      return div
 
     }
 
     this.state.myloc.addTo(this.props.reff.current.leafletElement)
     var locs = document.getElementsByClassName('loc')[0].addEventListener('click', () => {
-        console.log("con")
-        this.props.reff.current.leafletElement.setView(this.state.currentLocation, 14);
+      console.log("con")
+      this.props.reff.current.leafletElement.setView(this.state.currentLocation, 14);
     })
-}
+  }
 
   currentloc = () => {
     navigator &&
@@ -255,27 +261,38 @@ class OSDetails extends Component {
           html: "<i class='material-icons'>gps_fixed</i>",
           // iconSize: [4, 4],
           iconAnchor: [12, 6]
-      });
+        });
         L.marker(latlng, { icon: icon }).addTo(this.props.reff.current.leafletElement);
-      
+
       });
   };
 
-  getOSlatlng=()=>{
+  getOSlatlng = () => {
     Axios.get(`https://iomapi.naxa.com.np/api/v1/open_extra?id=${localStorage.getItem(
-      "OpenspaceID" 
+      "OpenspaceID"
     )}`)
-    .then(response=>{
-      console.log(this.state.OSlatlng,"OSLATLNG",response)
-      this.setState({OSlatlng:[response.data.data[0].centroid[1],response.data.data[0].centroid[0]]})
-      console.log(this.state.OSlatlng,"OSLATLNG",response)
+      .then(response => {
+        console.log(this.state.OSlatlng, "OSLATLNG", response)
+        this.setState({ OSlatlng: [response.data.data[0].centroid[1], response.data.data[0].centroid[0]] })
+        console.log(this.state.OSlatlng, "OSLATLNG", response)
 
-      this.zoomTomylocation();
+        this.zoomTomylocation();
 
-      
 
-    
-    })
+
+
+      })
+  }
+
+  plotfacilities = () => {
+    Axios.get(`http://139.59.67.104:8011/api/v1/alternative_near_by_me?id=${localStorage.getItem(
+      "OpenspaceID"
+    )}&distance=1`)
+      .then(res => {
+        console.log("rr", res)
+        debugger
+      })
+
   }
 
 
@@ -283,27 +300,28 @@ class OSDetails extends Component {
     this.onload();
     this.plotNearby();
     this.currentloc();
-    this.getOSlatlng()
-    
+    this.getOSlatlng();
+    this.state.allNearby.addTo(this.props.reff.current.leafletElement);
+
     Axios.get(
       `https://iomapi.naxa.com.np/api/v1/single_open_geo_json?id=${localStorage.getItem(
-        "OpenspaceID" 
+        "OpenspaceID"
       )}`
     ).then(response => {
-      console.log("oop" , response.data);
-      
+      console.log("oop", response.data);
+
       var geo = L.geoJSON(response.data, {
         fillColor: "blue",
         fillOpacity: 0.3,
         color: "green",
         weight: 2
       }).addTo(this.props.reff.current.leafletElement);
-      this.props.reff.current.leafletElement.fitBounds(geo.getBounds(), {
-        padding: [200, 200]
-      });
-      this.props.reff.current.leafletElement.setZoom(
-        this.props.reff.current.leafletElement.getZoom() - 2
-      );
+      // this.props.reff.current.leafletElement.fitBounds(geo.getBounds(), {
+      //   // padding: [200, 200]
+      // });
+      // this.props.reff.current.leafletElement.setZoom(
+      //   this.props.reff.current.leafletElement.getZoom() - 2
+      // );
     });
   }
   render() {
@@ -311,7 +329,7 @@ class OSDetails extends Component {
 
     return (
       <>
-      {/* <div onClick={()=>this.props.fetchroute([ 27.70419959812,85.315
+        {/* <div onClick={()=>this.props.fetchroute([ 27.70419959812,85.315
          ],[ 27.704199598618246,85.31621932983398
          ])}>Clickme</div> */}
         <LeafletMap
@@ -379,7 +397,7 @@ class OSDetails extends Component {
                 // https://api.mapbox.com/styles/v1/upendraoli/cjuvfcfns1q8r1focd0rdlgqn/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidXBlbmRyYW9saSIsImEiOiJjaWYwcnFnNmYwMGY4dGZseWNwOTVtdW1tIn0.uhY72SyqmMJNTKa0bY-Oyw'
                 url="https://api.mapbox.com/styles/v1/upendraoli/cjuvfcfns1q8r1focd0rdlgqn/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidXBlbmRyYW9saSIsImEiOiJjaWYwcnFnNmYwMGY4dGZseWNwOTVtdW1tIn0.uhY72SyqmMJNTKa0bY-Oyw"
                 maxZoom={20}
-                // subdomains={["mt0", "mt1", "mt2", "mt3"]}
+              // subdomains={["mt0", "mt1", "mt2", "mt3"]}
               />
             </BaseLayer>
           </LayersControl>

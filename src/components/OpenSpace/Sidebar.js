@@ -28,6 +28,7 @@ require('leaflet.markercluster')
 class Sidebar extends Component {
   constructor(props) {
     super(props);
+    this.fetched=false
 
     this.sidebarToggle = this.sidebarToggle.bind(this);
     this.state = {
@@ -51,7 +52,7 @@ class Sidebar extends Component {
       nearbyGroup: L.featureGroup(),
       legend: L.control({ position: 'bottomleft' }),
       div: L.DomUtil.create('div', 'routeWrapper'),
-      OSmarkers: null,
+      OSmarkers: L.markerClusterGroup({ disableClusteringAtZoom: 14 }),
       markersLegend: L.control({ position: 'bottomright' }),
       ActiveRouteindex: null
 
@@ -108,6 +109,9 @@ class Sidebar extends Component {
           Openspaces: response.data.data,
           loading: !this.state.loading
         });
+        sessionStorage.setItem('Openspaces', JSON.stringify(response.data.data))
+        sessionStorage.setItem('stored', true)
+        // this.fetched=true
 
 
         // this.state.Allos.map(e => {
@@ -775,8 +779,8 @@ console.log(url)
     this.props.mapRefs.current.leafletElement.getPane('nearby').style.zIndex = 300;
     this.props.mapRefs.current.leafletElement.getPane('Oslanding').style.zIndex = 250;
 
-    var cluster = L.markerClusterGroup({ disableClusteringAtZoom: 14 })
-    this.setState({ OSmarkers: cluster })
+    // var cluster = L.markerClusterGroup({ disableClusteringAtZoom: 14 })
+    // this.setState({ OSmarkers: cluster })
 
     this.props.mapRefs.current.leafletElement.addLayer(this.state.district_muni);
     this.props.mapRefs.current.leafletElement.addLayer(this.state.Routes);
@@ -787,7 +791,23 @@ console.log(url)
     this.fetchingForDropdown("province");
     this.fetchingForDropdown("district");
     this.fetchingForDropdown("municipality");
-    this.fetchOS();
+    console.log(sessionStorage.Openspaces,"session",JSON.parse(sessionStorage.getItem('stored')));
+    if(JSON.parse(sessionStorage.getItem('stored'))!=true){
+      
+      this.fetchOS();
+
+    }
+    else{
+     
+
+      this.state.Openspaces=JSON.parse(sessionStorage.getItem('Openspaces'));
+      this.state.Allos=JSON.parse(sessionStorage.getItem('Openspaces'));
+      this.setState({loading: !this.state.loading})
+      console.log(this.state.Allos,"al",JSON.parse(sessionStorage.getItem('Openspaces')),sessionStorage.getItem('stored'),sessionStorage)
+     
+      this.displayOS();
+      
+    }
     this.addlegend()
     this.onload();
     // this.nearbymeOS();
