@@ -76,6 +76,7 @@ this.props.dispatch({
   };
 
   loadReports = () => {
+    this.state.reportsMarkers.eachLayer((l) => this.state.reportsMarkers.removeLayer(l) )
     this.props.reportData &&
       this.props.reportData.map(p => {
         
@@ -108,9 +109,20 @@ this.props.dispatch({
           p.title +
           "</h5>  <p> " +
           p.name +
-          " </p> </div> </div>";
+          " </p><a  class='report_btn' href='/#/reportDetails'>View Details</a> </div> </div>";
 
         htmlmrk.bindPopup(popOne);
+        htmlmrk.on('click', () => {
+          var classes = document.getElementsByClassName('report_btn')
+          for (var i = 0; i < classes.length; i++) {
+            classes[i].addEventListener('click', () => {
+              this.props.dispatch({ type: "reportClicked", id: p.id, open: p.openS })
+              this.props.history.push('/reportDetails');
+  
+            })
+          }
+      
+      });
       
       });
      
@@ -146,9 +158,14 @@ this.props.dispatch({
     this.state.reportsMarkers.addTo(this.props.mapR.current.leafletElement);
     
   }
+  componentDidUpdate() {
+
+    this.loadReports();
+
+  }
 
   render() {
-    // console.log("load", this.state.loading, this.props.reportData);
+    console.log("load", this.state.loading, this.props.reportData);
     
     
     return (
