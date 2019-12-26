@@ -5,7 +5,6 @@
         max-width: 200px;
         width: 200px;
         max-height: 180px;
-        overflow-y: auto;
         margin-right: 5rem;
         background-color: $color-white;
         padding: 0;
@@ -1341,7 +1340,7 @@
 
         .modal-body {
             .assessment-modal-list {
-                li {
+                li {    
                     @include flexStart;
                     margin-bottom: .6125rem;
                     font-size: .875rem;
