@@ -9,6 +9,7 @@ import NearbyTab from "./NearbyTab/NearbyTab";
 import { withRouter } from 'react-router-dom';
 import L from 'leaflet'
 import PerfectScrollbar from 'react-perfect-scrollbar'
+import PerfectScrollbarPS from 'perfect-scrollbar';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 
 
@@ -222,7 +223,7 @@ import Gallery from "./Gallery/Gallery";
         div.innerHTML = ''
         // div.innerHTML += "<img src='../../src/img/close.png' id='close-bt-route'></img>"
 
-        div.innerHTML += "<h6 id='legendtitle'>Routes</h6>"
+        div.innerHTML += "<h6 id='legendtitle'>Routes<span> <i id ='close-routeD' class='material-icons'>close</i></span></h6>"
         // console.log(this.state.Routespaths)
         var distances=[]
         this.state.Routespaths.forEach((a)=>{
@@ -297,7 +298,15 @@ import Gallery from "./Gallery/Gallery";
 
       var divss = document.getElementsByClassName('routeWrapper');
 
+      
+   var divss = document.getElementById('close-routeD');
+        divss.addEventListener("click",()=>{
+          this.removeRoute()
+          document.getElementsByClassName("space-direction active")[0].classList.remove("active")
+          this.toogleactivetoute()
+          
 
+        })
 
 
 
