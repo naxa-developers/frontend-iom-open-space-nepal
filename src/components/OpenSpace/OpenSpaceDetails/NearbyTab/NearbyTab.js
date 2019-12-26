@@ -6,6 +6,8 @@ import SecurityCard from "./SecurityCard";
 import EducationCard from './EducationCard';
 import Axios from 'axios'
 import HelipadCard from "./HelipadCard";
+import PerfectScrollbarPS from 'perfect-scrollbar';
+      
 
 class NearbyTab extends Component {
 
@@ -157,6 +159,14 @@ class NearbyTab extends Component {
   
           })
           // innterhtml
+          setTimeout(()=>{
+            const ps = new PerfectScrollbarPS('.routeWrapper', {
+              wheelSpeed: 2,
+              wheelPropagation: true,
+              minScrollbarLength: 20
+            });
+  
+          },2000)
   
   
   
@@ -184,7 +194,14 @@ class NearbyTab extends Component {
         L.DomEvent.on(dom[0], 'mousewheel', L.DomEvent.stopPropagation);
         // console.log(this.state.Routespaths)
   
-        var divss = document.getElementsByClassName('routeWrapper');
+        
+        // var divss = document.getElementById('close-routeN');
+        //      divss.addEventListener("click",()=>{
+        //       this.remove()
+              
+               
+     
+        //      })
   
   
   

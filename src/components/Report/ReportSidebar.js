@@ -6,6 +6,9 @@ import LoadingSpinnerBig from "./LoadingSpinnerBig";
 import { connect } from "react-redux";
 import 'leaflet.markercluster/dist/MarkerCluster.css'
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
+import PerfectScrollbar from 'react-perfect-scrollbar'
+import 'react-perfect-scrollbar/dist/css/styles.css';
+
 require('leaflet.markercluster')
 
 class ReportSidebar extends Component {
@@ -167,6 +170,7 @@ this.props.dispatch({
     
     return (
       <div>
+        <PerfectScrollbar>
         <div className="map-sidebar">
           <div className="sidebar-wrapper">
             <div className="card">
@@ -249,6 +253,7 @@ this.props.dispatch({
             </div>
           </div>
         </div>
+        </PerfectScrollbar>
       </div>
     );
   }
