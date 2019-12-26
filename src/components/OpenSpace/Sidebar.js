@@ -651,7 +651,7 @@ class Sidebar extends Component {
           // div.classList.add("scrollbar-container ps ps--active-y")
           // div.innerHTML += "<img src='../../src/img/close.png' id='close-bt-route'></img>"
 
-          div.innerHTML += "<h6 id='legendtitle'>Routes</h6>"
+          div.innerHTML += "<h6 id='legendtitle'>Routes<span> <i id ='close-route' class='material-icons'>close</i></span></h6>"
           // console.log(this.state.Routespaths)
           var distances = []
           this.state.Routespaths.forEach((a) => {
@@ -717,7 +717,11 @@ class Sidebar extends Component {
         let dom=document.getElementsByClassName('routeWrapper')
         L.DomEvent.on(dom[0], 'mousewheel', L.DomEvent.stopPropagation);
 
-        var divss = document.getElementsByClassName('routeWrapper');
+        var divss = document.getElementById('close-route');
+        divss.addEventListener("click",()=>{
+          this.removeRoutes();
+          this.setActivefalse(null)
+        })
 
 
 
