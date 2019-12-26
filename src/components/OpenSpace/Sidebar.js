@@ -5,6 +5,11 @@ import Loader from '../Report/LoadingSpinner';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LoaderBig from '../Report/LoadingSpinnerBig';
+import PerfectScrollbar from 'react-perfect-scrollbar'
+import 'react-perfect-scrollbar/dist/css/styles.css';
+import 'perfect-scrollbar/css/perfect-scrollbar.css'
+import PerfectScrollbarPS from 'perfect-scrollbar';
+
 
 
 import "./OpenSpaceCSS.css";
@@ -643,11 +648,12 @@ class Sidebar extends Component {
         // var legend = L.control({ position: 'bottomright' })
         this.state.legend.onAdd = (map) => {
 
-          var div = L.DomUtil.create('div', `routeWrapper`)
+          var div = L.DomUtil.create('div', `routeWrapper `)
           div.innerHTML = ''
+          // div.classList.add("scrollbar-container ps ps--active-y")
           // div.innerHTML += "<img src='../../src/img/close.png' id='close-bt-route'></img>"
 
-          div.innerHTML += "<h6 id='legendtitle'>Routes</h6>"
+          div.innerHTML += "<h6 id='legendtitle'>Routes<span> <i id ='close-route' class='material-icons'>close</i></span></h6>"
           // console.log(this.state.Routespaths)
           var distances = []
           this.state.Routespaths.forEach((a) => {
@@ -684,14 +690,26 @@ class Sidebar extends Component {
             div.innerHTML += descCard
             activeroute++
 
+
           })
+          
+          // ps.update();
           // innterhtml
+          setTimeout(()=>{
+            const ps = new PerfectScrollbarPS('.routeWrapper', {
+              wheelSpeed: 2,
+              wheelPropagation: true,
+              minScrollbarLength: 20
+            });
+
+          },1000)
 
 
 
 
           return div;
         }
+      
 
 
 
@@ -713,7 +731,11 @@ class Sidebar extends Component {
         let dom=document.getElementsByClassName('routeWrapper')
         L.DomEvent.on(dom[0], 'mousewheel', L.DomEvent.stopPropagation);
 
-        var divss = document.getElementsByClassName('routeWrapper');
+        var divss = document.getElementById('close-route');
+        divss.addEventListener("click",()=>{
+          this.removeRoutes();
+          this.setActivefalse(null)
+        })
 
 
 
@@ -830,6 +852,7 @@ class Sidebar extends Component {
     const { showContent } = this.state;
     return (
       <>
+      <PerfectScrollbar>
         <div>
 
           <ToastContainer enableMultiContainer containerId={'A'} position={toast.POSITION.BOTTOM_RIGHT} />
@@ -999,6 +1022,7 @@ class Sidebar extends Component {
             </div>
           </div>
         </div>
+        </PerfectScrollbar>
       </>
     );
   }
