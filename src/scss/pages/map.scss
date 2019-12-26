@@ -1339,6 +1339,33 @@
         }
 
         .modal-body {
+            .image-icon-options{
+                background: $green-light;
+                position: absolute;
+                @include flex;
+                flex-direction: column;
+                padding: 5px;
+                left: -35px;
+                i{
+                    text-align: center;
+                    width: 30px;
+                    height: 30px;
+                    line-height: 30px;
+                    color: $color-green;
+                    @include animate_all(all .5s linear);
+                    border: 0;
+                    margin-bottom: 10px;
+                    &:last-child{
+                        margin-bottom: 0;
+                    }
+                    &:hover{
+                        cursor: pointer;
+                        background: $color-green;
+                        color: $color-white;
+                    }
+                }
+                
+            }
             .assessment-modal-list {
                 li {    
                     @include flexStart;
