@@ -76,14 +76,15 @@ class Resourcecard extends Component {
                       : this.props.video
                       :''
                     }  download target="_blank" >
-                       <FacebookShareButton children={<FacebookIcon size='30px' round="true" />} url={this.state.shareUrl} />
-                      <TwitterShareButton children={<TwitterIcon size='30px' round="true"/>} url={this.state.shareUrl} />
+                      
                     <button className="btn btn-download">
                      
                     {/* <FacebookShareCount url={this.state.shareUrl} /> */}
                       <i className="humanitarian-icon-Download"></i>
                     </button>
                   </a>
+                  <FacebookShareButton children={<FacebookIcon size='30px' round="true" />} url={this.state.shareUrl} />
+                      <TwitterShareButton children={<TwitterIcon size='30px' round="true"/>} url={this.state.shareUrl} />
                 </div>
                 <div className="para-wrap-section">
                   <p className="para-details-block">
