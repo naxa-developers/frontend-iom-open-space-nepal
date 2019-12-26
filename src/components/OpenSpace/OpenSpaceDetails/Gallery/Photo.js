@@ -44,6 +44,7 @@ const Photo = (props) => {
                 </ModalHeader>
                 <ModalBody>
                     <div class="modal-body">
+                        ghjgjh
                         <img src ={largeImage} />
                     </div>
                 </ModalBody>

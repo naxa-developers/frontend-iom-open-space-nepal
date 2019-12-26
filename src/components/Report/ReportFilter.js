@@ -43,7 +43,11 @@ class ReportFilter extends Component {
   onClear = () => {
     this.setState({ valueDays: null, valueStatus: null, valueUrgency: null, startDate: null, endDate:null
     });
+    
+  
+
     this.props.resetReports();
+    this.clearRange();
    
   };
   applyFilter = () => {
@@ -64,7 +68,8 @@ class ReportFilter extends Component {
        
         
         type:"ReportFilter",
-        data: response.data
+        data: response.data,
+        reportData: response.data
 
       })
       this.props.toggleLoader();
@@ -73,11 +78,20 @@ class ReportFilter extends Component {
   };
   handleSelect = (range, v) => {
  
+    console.log("d", v.startDate._d);
     
     this.setState({
       startDate: moment(v.startDate._d).format('YYYY-MM-DD'),
       endDate: moment(v.endDate._d).format('YYYY-MM-DD')
     })
+}
+clearRange = (range,v) => {
+  console.log("clear");
+  
+  this.refs.datePicker.setState({
+    startDate:null
+  
+  })
 }
 
   render() {
@@ -90,7 +104,7 @@ class ReportFilter extends Component {
        
         <div className="filter-option">
         <DateRangePicker onApply={(range,v) => this.handleSelect(range, v)}
-        onChange={this.onDaysChange}
+        onChange={this.onDaysChange} ref="datePicker"
         >
       <button className="btn btn-outline-primary dropdown-toggle" >
          {
@@ -105,13 +119,10 @@ class ReportFilter extends Component {
             options={status}
             value={this.state.valueStatus}
             onChange={this.onStatusChange}
+            
+            ref="datePicker"
           />
-          {/* <Select
-            placeholder="Urgency"
-            options={urgency}
-            value={this.state.valueUrgency}
-            onChange={this.onUrgencyChange}
-          /> */}
+        
         </div>
         <div className="reset-btns">
           <div className="reset">
