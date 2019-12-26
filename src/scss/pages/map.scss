@@ -194,6 +194,7 @@
                 }
                 &.leaflet-bottom {
                     right: 5rem;
+                    bottom: 1rem;
                 }
 
             }
@@ -209,7 +210,7 @@
                     .leaflet-control {
                         float: none;
                         margin: 0;
-
+                        opacity: .7;
                         ul {
                             background-color: $color-white;
                             margin-bottom: 20px;
@@ -502,7 +503,6 @@
                 background-color: $color-white;
                 @include boxshadow(0 15   px 5px 0px rgba(0, 0, 0, 0.16));
                 width: 100%;
-                overflow-y: auto;
                 // height: calc(100vh - 165px);
 
                 .sidebar-close {
