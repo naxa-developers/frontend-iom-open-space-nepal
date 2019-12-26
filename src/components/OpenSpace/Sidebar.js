@@ -37,6 +37,7 @@ class Sidebar extends Component {
 
     this.sidebarToggle = this.sidebarToggle.bind(this);
     this.state = {
+      distances:[],
       Openspaces: null,
       showContent: true,
       province: null,
@@ -360,6 +361,7 @@ class Sidebar extends Component {
   };
 
   nearbymeOS = () => {
+    console.log(`https://iomapi.naxa.com.np/api/v1/near_by_openspace?count=100&distance=2&latitude=${this.props.currentLocation[0]}&longitude=${this.props.currentLocation[1]}`)
     Axios.get(`https://iomapi.naxa.com.np/api/v1/near_by_openspace?count=100&distance=2&latitude=${this.props.currentLocation[0]}&longitude=${this.props.currentLocation[1]}`)
       .then(response => {
         this.setState({ nearbyOS: response.data.open_space })
@@ -997,6 +999,7 @@ class Sidebar extends Component {
 
                         return (
                           <OpenSpaceCard
+                            distances={this.state.distances}
                             currentLocation={this.props.currentLocation}
                             latlng={[e.centroid[1], e.centroid[0]]}
                             routing={this.fetchroute}

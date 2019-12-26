@@ -228,7 +228,7 @@ class OSDetails extends Component {
 
       var div = L.DomUtil.create('div', `loc`)
       div.innerHTML = ''
-      div.innerHTML += "<i class='material-icons'>gps_fixed</i>"
+      div.innerHTML += "<i class='material-icons' title='My Location'>gps_fixed</i>"
       return div
 
     }
@@ -258,7 +258,7 @@ class OSDetails extends Component {
         });
         var icon = L.divIcon({
           className: 'custom-div-icon',
-          html: "<i class='material-icons'>gps_fixed</i>",
+          html: "<i class='material-icons' >gps_fixed</i>",
           // iconSize: [4, 4],
           iconAnchor: [12, 6]
         });

@@ -113,7 +113,7 @@ class OS extends Component {
 
             var div = L.DomUtil.create('div', `loc`)
             div.innerHTML = ''
-            div.innerHTML += "<i class='material-icons'>gps_fixed</i>"
+            div.innerHTML += "<i class='material-icons' title='My Location'>gps_fixed</i>"
             return div
 
         }
