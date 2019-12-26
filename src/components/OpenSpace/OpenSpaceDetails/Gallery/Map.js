@@ -44,6 +44,11 @@ const Map = (props) => {
                 </ModalHeader>
                 <ModalBody>
                     <div class="modal-body">
+                        <div class="image-icon-options">
+                            <p><i class="material-icons" style="font-size:16px">room</i></p>
+                            <p><i class="material-icons" style="font-size:16px">room</i></p>
+                            <p><i class="material-icons" style="font-size:16px">room</i></p>
+                        </div>
                         <img src ={largeImage} />
                     </div>
                 </ModalBody>
