@@ -5,7 +5,6 @@
         max-width: 200px;
         width: 200px;
         max-height: 180px;
-        overflow-y: auto;
         margin-right: 5rem;
         background-color: $color-white;
         padding: 0;
@@ -194,6 +193,7 @@
                 }
                 &.leaflet-bottom {
                     right: 5rem;
+                    bottom: 1rem;
                 }
 
             }
@@ -209,7 +209,7 @@
                     .leaflet-control {
                         float: none;
                         margin: 0;
-
+                        opacity: .7;
                         ul {
                             background-color: $color-white;
                             margin-bottom: 20px;
@@ -502,7 +502,6 @@
                 background-color: $color-white;
                 @include boxshadow(0 15   px 5px 0px rgba(0, 0, 0, 0.16));
                 width: 100%;
-                overflow-y: auto;
                 // height: calc(100vh - 165px);
 
                 .sidebar-close {
@@ -1341,7 +1340,7 @@
 
         .modal-body {
             .assessment-modal-list {
-                li {
+                li {    
                     @include flexStart;
                     margin-bottom: .6125rem;
                     font-size: .875rem;
