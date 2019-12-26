@@ -24,6 +24,21 @@
             font-size: .775rem;
             text-align: left;
             padding: .5rem .6125rem;
+            position: relative;
+            span{
+                display: inline-block;
+                position: absolute;
+                top: 7px;
+                right: 10px;
+                i{
+                    @include animate_all(all .7s linear);
+                    font-size: 20px !important;
+                    &:hover{
+                        cursor: pointer;
+                        color: $color-green;
+                    }
+                }
+            }
         }
 
         .desccard {
