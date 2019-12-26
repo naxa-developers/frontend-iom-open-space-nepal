@@ -44,6 +44,11 @@ const Photo = (props) => {
                 </ModalHeader>
                 <ModalBody>
                     <div class="modal-body">
+                      <div class="image-icon-options">
+                        <i className="material-icons">zoom_out</i>
+                        <i className="material-icons">zoom_in</i>
+                        <i className="material-icons">cached</i>
+                      </div>
                         <img src ={largeImage} />
                     </div>
                 </ModalBody>
