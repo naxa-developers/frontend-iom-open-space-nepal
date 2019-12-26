@@ -5,6 +5,9 @@ import Loader from '../Report/LoadingSpinner';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LoaderBig from '../Report/LoadingSpinnerBig';
+import PerfectScrollbar from 'react-perfect-scrollbar'
+import 'react-perfect-scrollbar/dist/css/styles.css';
+
 
 
 import "./OpenSpaceCSS.css";
@@ -643,8 +646,9 @@ class Sidebar extends Component {
         // var legend = L.control({ position: 'bottomright' })
         this.state.legend.onAdd = (map) => {
 
-          var div = L.DomUtil.create('div', `routeWrapper`)
+          var div = L.DomUtil.create('div', `routeWrapper `)
           div.innerHTML = ''
+          // div.classList.add("scrollbar-container ps ps--active-y")
           // div.innerHTML += "<img src='../../src/img/close.png' id='close-bt-route'></img>"
 
           div.innerHTML += "<h6 id='legendtitle'>Routes</h6>"
@@ -830,6 +834,7 @@ class Sidebar extends Component {
     const { showContent } = this.state;
     return (
       <>
+      <PerfectScrollbar>
         <div>
 
           <ToastContainer enableMultiContainer containerId={'A'} position={toast.POSITION.BOTTOM_RIGHT} />
@@ -999,6 +1004,7 @@ class Sidebar extends Component {
             </div>
           </div>
         </div>
+        </PerfectScrollbar>
       </>
     );
   }
