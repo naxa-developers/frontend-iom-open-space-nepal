@@ -42,6 +42,7 @@ class OpenSpaceCard extends Component {
               }
               let shortest=Math.min(...distances)
               this.setState({shortest:(shortest/1000).toFixed(2),calculatedistance:false})
+            //   this.props.distances.push({id:this.props.id,sdist:shortest})
           }
             )
     }
@@ -49,12 +50,16 @@ class OpenSpaceCard extends Component {
     componentDidMount() {
         
         // this.props.currentLocation!=null&&this.getshortestdistance(this.props.latlng, this.props.currentLocation)
-     
-
+        console.log(this.props.distances,"DIST");
+        this.state.calculatedistance==true&&this.props.currentLocation!=null&&this.getshortestdistance(this.props.latlng, this.props.currentLocation)
+        // this.getshortestdistance(this.props.latlng, this.props.currentLocation)
     }
  
     render() {
+        console.log(this.props.distances,"DIST");
         this.state.calculatedistance==true&&this.props.currentLocation!=null&&this.getshortestdistance(this.props.latlng, this.props.currentLocation)
+       
+        
 
         // var image="https://api.adorable.io/avatars/226/abott@adorable.png"
         // console.log(this.props.image)
