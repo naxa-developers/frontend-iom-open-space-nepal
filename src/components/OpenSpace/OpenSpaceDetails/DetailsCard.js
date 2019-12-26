@@ -8,6 +8,8 @@ import ReportTab from "./ReportTab/ReportTab";
 import NearbyTab from "./NearbyTab/NearbyTab";
 import { withRouter } from 'react-router-dom';
 import L from 'leaflet'
+import PerfectScrollbar from 'react-perfect-scrollbar'
+import 'react-perfect-scrollbar/dist/css/styles.css';
 
 
 import { connect } from "react-redux";
@@ -257,12 +259,19 @@ import Gallery from "./Gallery/Gallery";
           activeroute++
 
         })
-        // innterhtml
+        setTimeout(()=>{
+          const ps = new PerfectScrollbarPS('.routeWrapper', {
+            wheelSpeed: 2,
+            wheelPropagation: true,
+            minScrollbarLength: 20
+          });
 
+        },1000)
 
 
 
         return div;
+        
       }
 
 
@@ -382,6 +391,7 @@ import Gallery from "./Gallery/Gallery";
     this.props.id && localStorage.setItem("OpenspaceID", this.props.id);
     return (
       <div >
+        <PerfectScrollbar>
         <div className="map-sidebar">
           <div className="sidebar-wrapper">
             <span
@@ -485,6 +495,7 @@ import Gallery from "./Gallery/Gallery";
             </div>
           </div>
         </div>
+        </PerfectScrollbar>
       </div>
     );
   }

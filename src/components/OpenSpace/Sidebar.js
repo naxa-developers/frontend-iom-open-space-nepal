@@ -7,6 +7,8 @@ import { connect } from 'react-redux';
 import LoaderBig from '../Report/LoadingSpinnerBig';
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import 'react-perfect-scrollbar/dist/css/styles.css';
+import 'perfect-scrollbar/css/perfect-scrollbar.css'
+import PerfectScrollbarPS from 'perfect-scrollbar';
 
 
 
@@ -688,14 +690,26 @@ class Sidebar extends Component {
             div.innerHTML += descCard
             activeroute++
 
+
           })
+          
+          // ps.update();
           // innterhtml
+          setTimeout(()=>{
+            const ps = new PerfectScrollbarPS('.routeWrapper', {
+              wheelSpeed: 2,
+              wheelPropagation: true,
+              minScrollbarLength: 20
+            });
+
+          },1000)
 
 
 
 
           return div;
         }
+      
 
 
 
