@@ -93,9 +93,10 @@ class ReportFilter extends Component {
   }
   clearRange = (range, v) => {
     console.log("clear");
-range = range
+console.log("c value", v);
+
     this.refs.datePicker.setState ({
-     value: null
+     v: null
     })
     
   
@@ -114,7 +115,8 @@ range = range
         <div className="filter-option">
           <DateRangePicker 
           onApply={(range, v) => this.handleSelect(range, v)}
-            onChange={this.onDaysChange} 
+            onChange={this.onDaysChange}
+            onBlur = {(range,v) => this.clearRange(range,v)} 
             ref="datePicker"
           >
             <button className="btn btn-outline-primary dropdown-toggle" >
