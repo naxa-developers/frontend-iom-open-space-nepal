@@ -58,15 +58,7 @@ class Resourcecard extends Component {
                 <div className="icon-wrap-section">
                
                    {/* <button className="btn btn-share"><MaterialIcon icon="share" color="#418fde"></MaterialIcon></button>  */}
-                  <div>
-                  {/* {this.props.document_type == 0
-                        ? this.props.audio
-                        : this.props.document_type == 1
-                        ? this.props.video
-                        : this.props.document_type == 2
-                        ? this.props.publication
-                        : "default"} */}
-                  </div>
+                 
                   <a onClick={()=> this.downloadClicked()} 
                   href={this.props.document_type==0
                      ? this.props.publication 
