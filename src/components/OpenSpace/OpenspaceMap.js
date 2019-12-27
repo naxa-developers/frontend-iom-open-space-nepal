@@ -11,6 +11,7 @@ import { compose } from 'redux';
 require('leaflet.vectorgrid/dist/Leaflet.VectorGrid.bundled');
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { connect } from 'react-redux';
 const { BaseLayer } = LayersControl;
 
 
@@ -70,6 +71,7 @@ class OS extends Component {
                 iconAnchor: [12, 6]
             });
             L.marker(latlng, { icon: icon }).addTo(this.props.mapRefss.current.leafletElement);
+            this.props.dispatch({ type: "Setcurrentloc" })
 
 
         })
@@ -181,7 +183,7 @@ class OS extends Component {
         this.currentLocation();
         this.zoomTomylocation();
         console.log(sessionStorage.Openspaces,"OS")
-        debugger
+     
         sessionStorage.Openspaces==undefined&&toast.info("If current location is not in correct position, disconnect and reconnect your wifi network", { autoClose: false, position: "bottom-right" })
 
 
@@ -296,4 +298,4 @@ class OS extends Component {
 
 
 
-export default OS;
+export default connect()(OS);

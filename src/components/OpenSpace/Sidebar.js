@@ -794,6 +794,7 @@ class Sidebar extends Component {
 
 
   componentDidMount() {
+   
 
 
     var nearby = this.props.mapRefs.current.leafletElement.createPane('nearby');
@@ -843,7 +844,9 @@ class Sidebar extends Component {
     // this.props.mapRefs.current.leafletElement1=this.props.mapRefs.current.leafletElement
   }
   notify = () => toast.info("NO Openspace Found", { containerId: 'A', autoClose: false, });
-
+componentDidUpdate(){
+  // this.props.currentLocation!=null&&this.oscard.setdistance()
+}
 
   render() {
 
@@ -993,13 +996,15 @@ class Sidebar extends Component {
 
                     {this.state.Allos &&
                       this.state.Allos.map((e, i) => {
-                        // console.log(this.props.currentLocation,"cur",[e.latitude, e.longitude]);
+                        console.log(this.state.Allos.length,"a");
 
 
 
                         return (
                           <OpenSpaceCard
-                            // distances={this.state.distances}
+                          // wrappedComponentRef={(ref=>this.oscard=ref)}
+                            Arraylength={this.state.Allos.length}
+                            distances={this.state.distances}
                             currentLocation={this.props.currentLocation}
                             latlng={[e.centroid[1], e.centroid[0]]}
                             routing={this.fetchroute}

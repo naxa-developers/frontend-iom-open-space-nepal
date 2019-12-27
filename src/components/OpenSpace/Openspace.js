@@ -17,22 +17,17 @@ class OpenSpace extends Component {
   setcurrentlocation=(loc)=>{
     console.log(loc,"sert")
     this.setState({currentLocation:loc})
+    
   }
   setProvince=(a)=>{
     // this.setState({nepalProvince:a})
   }
   componentDidMount(){
+
     var map=this.mapRefs.current.leafletElement
 
-    map.on('zoomend', ()=> {
-      var z=map.getZoom()
-      if(z>8){
-        // map.hasLayer(this.state.nepalProvince)&&this.state.nepalProvince!=null&&map.removeLayer(this.state.nepalProvince)
-      }
-      else{
-        // !map.hasLayer(this.state.nepalProvince)&&this.state.nepalProvince!=null&&map.addLayer(this.state.nepalProvince)
-      }
-  });
+    var initialdis=[]
+    sessionStorage.Distances==undefined&&sessionStorage.setItem('Distances', JSON.stringify(initialdis))
 
   }
   
