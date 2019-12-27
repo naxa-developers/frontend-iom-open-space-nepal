@@ -31,7 +31,7 @@ class LightImage extends Component {
                             <Lightbox
                                 mainSrc={this.props.photo}
                                 onCloseRequest={() => this.setState({ isOpen: false })}
-                                imageCaption="Title"
+                                // imageCaption="Title"
                                 // reactModalStyle={{ 'zIndex': '9999' }}
 
                             />

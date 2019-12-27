@@ -32,6 +32,7 @@
     "react-bootstrap-daterangepicker": "^4.1.0",
     "react-bootstrap-select": "^0.14.0",
     "react-burger-menu": "^2.6.11",
+    "react-confirm-alert": "^2.4.1",
     "react-date-range": "^0.9.4",
     "react-datepicker": "^2.10.1",
     "react-dom": "^16.11.0",

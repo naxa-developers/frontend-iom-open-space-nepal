@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import  {FacebookShareButton, FacebookIcon, TwitterShareButton,TwitterIcon} from 'react-share'
-import ShowMore from 'react-show-more';
+
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; 
 class Resourcecard extends Component {
   constructor(props) {
     super(props);
@@ -8,14 +10,19 @@ class Resourcecard extends Component {
     this.state = {
       files: [],
       downloadUrl: '',
-      shareUrl :`https://openspace.naxa.com.np/#/resources`
+      shareUrl :`https://openspace.naxa.com.np/#/resources`,
+      showAlert: false
+
     };
   }
 
   downloadClicked = () => {
     console.log("check download");
     
-    !this.props.audio&&!this.props.publication&&!this.props.video&& alert("No download resource available")
+    !this.props.audio&&!this.props.publication&&!this.props.video&& confirmAlert({
+      title: 'No download resource available!',
+      buttons: []
+    })
   }
 
 
