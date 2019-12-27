@@ -58,8 +58,8 @@ class Resourcecard extends Component {
                 <div className="icon-wrap-section">
                
                    {/* <button className="btn btn-share"><MaterialIcon icon="share" color="#418fde"></MaterialIcon></button>  */}
-                   <FacebookShareButton children={<FacebookIcon size='30px' round="true" />} url={this.state.shareUrl} />
-                  <TwitterShareButton children={<TwitterIcon size='30px' round="true"/>} url={this.state.shareUrl} />
+                  <FacebookShareButton className="btn-share" children={<FacebookIcon size='30px' round="true" />} url={this.state.shareUrl} />
+                  <TwitterShareButton className="btn-share" children={<TwitterIcon size='30px' round="true"/>} url={this.state.shareUrl} />
                   <a onClick={()=> this.downloadClicked()} 
                   href={this.props.document_type==0
                      ? this.props.publication 
