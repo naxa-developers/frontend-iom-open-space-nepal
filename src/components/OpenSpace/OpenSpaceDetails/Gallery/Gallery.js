@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import Axios from "axios";
 import Map from "./Map";
-import Photo from './Photo'
+
 import LoadingSpinner from "../../../Report/LoadingSpinnerBig";
+import LightImage from './LightImage';
+
+
+
 
 class Gallary extends Component {
   constructor(props) {
@@ -67,15 +71,13 @@ class Gallary extends Component {
               ) : 
              
               this.state.photos&&this.state.photos.map(g => {
-                  return <Photo 
-                  className="toggleModal" 
-                  id={g.id} photo={g.thumbnail} largeImage ={g.image} />;
+                  return <LightImage photo ={g.thumbnail} />
+                  
+                 
                 })  
               } 
             </div>
-            {/* <div class="gallery-btn">
-              <button>See More</button>
-            </div> */}
+          
           </div>
         </div>
       </>

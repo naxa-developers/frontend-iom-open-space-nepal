@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import MaterialIcon from "material-icons-react";
 import Select from "react-select";
 import Axios from "axios";
-import {connect } from 'react-redux';
+import { connect } from 'react-redux';
 import DateRangePicker from 'react-bootstrap-daterangepicker';
 import 'bootstrap-daterangepicker/daterangepicker.css'
 import moment from "moment";
@@ -30,100 +30,110 @@ class ReportFilter extends Component {
 
 
   onStatusChange = e => {
-   
-     
-   
-    this.setState({ valueStatus: e
+
+
+
+    this.setState({
+      valueStatus: e
       // showApply: !this.state.showApply
-     });
+    });
 
   };
 
- 
+
   onClear = () => {
-    this.setState({ valueDays: null, valueStatus: null, valueUrgency: null, startDate: null, endDate:null
+    this.setState({
+      valueDays: null, valueStatus: null, valueUrgency: null, startDate: null, endDate: null
     });
-    
-  
+
+
 
     this.props.resetReports();
     this.clearRange();
-   
+
   };
   applyFilter = () => {
     this.props.toggleLoader();
-   
-   
-    const status = this.state.valueStatus==null? null : this.state.valueStatus;
     const start_date = this.state.startDate;
     const end_date = this.state.endDate;
-    
-    const url = `https://iomapi.naxa.com.np/api/v1/report/?start_date=${start_date}&end_date=${end_date}&status=${status.label.toLowerCase()}`
-  
+
+    let url = '';
+    this.state.valueStatus == null ?
+      url = `https://iomapi.naxa.com.np/api/v1/report/?start_date=${start_date}&end_date=${end_date}`
+      : url = `https://iomapi.naxa.com.np/api/v1/report/?start_date=${start_date}&end_date=${end_date}&status=${this.state.valueStatus.label.toLowerCase()}`
+
+
+
+
     Axios.get(url)
-    .then(response => {
-      
+      .then(response => {
 
-      
-      this.props.dispatch({
-       
-        
-        type:"ReportFilter",
-        data: response.data,
-        reportData: response.data
 
+
+        this.props.dispatch({
+
+
+          type: "ReportFilter",
+          data: response.data,
+          reportData: response.data
+
+        })
+        this.props.toggleLoader();
       })
-      this.props.toggleLoader();
-    })
-    
+
   };
   handleSelect = (range, v) => {
- 
+
     console.log("d", v.startDate._d);
-    
+
     this.setState({
       startDate: moment(v.startDate._d).format('YYYY-MM-DD'),
       endDate: moment(v.endDate._d).format('YYYY-MM-DD')
     })
-}
-clearRange = (range,v) => {
-  console.log("clear");
+  }
+  clearRange = (range, v) => {
+    console.log("clear");
+range = range
+    this.refs.datePicker.setState ({
+     value: null
+    })
+    
   
-  this.refs.datePicker.setState({
-    startDate:null
-  
-  })
-}
+ 
+
+  }
 
   render() {
-   
-    
-    
+
+
+
     return (
-     
+
       <div className="map-filter">
-       
+
         <div className="filter-option">
-        <DateRangePicker onApply={(range,v) => this.handleSelect(range, v)}
-        onChange={this.onDaysChange} ref="datePicker"
-        >
-      <button className="btn btn-outline-primary dropdown-toggle" >
-         {
-      this.state.startDate&&this.state.endDate ? `${this.state.startDate} - ${this.state.endDate}` : 'Select Range'
-  }
-        </button>
-      
-    </DateRangePicker>
-     
+          <DateRangePicker 
+          onApply={(range, v) => this.handleSelect(range, v)}
+            onChange={this.onDaysChange} 
+            ref="datePicker"
+          >
+            <button className="btn btn-outline-primary dropdown-toggle" >
+              {
+                this.state.startDate && this.state.endDate ? `${this.state.startDate} - ${this.state.endDate}` : 'Select Range'
+              }
+            </button>
+
+          </DateRangePicker>
+
           <Select
             placeholder="Status"
             options={status}
             value={this.state.valueStatus}
             onChange={this.onStatusChange}
-            
-            ref="datePicker"
+
+
           />
-        
+
         </div>
         <div className="reset-btns">
           <div className="reset">
@@ -131,12 +141,12 @@ clearRange = (range,v) => {
 
             <span onClick={() => this.onClear()}>clear all</span>
           </div>
-        
-          <button  className="openspace-button" onClick={() => this.applyFilter()}>
+
+          <button className="openspace-button" onClick={() => this.applyFilter()}>
             Apply
           </button>
         </div>
-      
+
       </div>
     );
   }
