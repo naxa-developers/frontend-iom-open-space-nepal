@@ -593,7 +593,7 @@ class Sidebar extends Component {
             path.push(Response.data.paths[j].points.coordinates[i].reverse())
           }
           // console.log(Response.data.paths[j].description)
-          var polyline = L.polyline(path, { color: j == 0 ? '#095c05' : 'grey' })
+          var polyline = L.polyline(path, { color: j == 0 ? 'blue' : 'grey', })
           this.state.Routespaths.push({ id: j, path: polyline, description: Response.data.paths[j].description == undefined ? "No Descrption" : Response.data.paths[j].description[0], distance: Response.data.paths[j].distance })
 
           this.state.Routes.addLayer(polyline)
@@ -607,7 +607,7 @@ class Sidebar extends Component {
             this.state.Routespaths.map((i) => {
               i.path.setStyle({ color: 'grey' })
             })
-            this.state.Routespaths[e.id].path.setStyle({ color: '#095c05' })
+            this.state.Routespaths[e.id].path.setStyle({ color: 'blue' })
             this.state.Routespaths[e.id].path.bringToFront();
             var doac = document.getElementsByClassName('desccard')
             // console.log(doac,doc.length)
@@ -765,7 +765,7 @@ class Sidebar extends Component {
                   })
                 }
 
-                selected[0].path.setStyle({ color: '#095c05' })
+                selected[0].path.setStyle({ color: 'blue' })
 
                 selected[0].path.bringToFront()
 
@@ -794,6 +794,7 @@ class Sidebar extends Component {
 
 
   componentDidMount() {
+   
 
 
     var nearby = this.props.mapRefs.current.leafletElement.createPane('nearby');
@@ -843,7 +844,9 @@ class Sidebar extends Component {
     // this.props.mapRefs.current.leafletElement1=this.props.mapRefs.current.leafletElement
   }
   notify = () => toast.info("NO Openspace Found", { containerId: 'A', autoClose: false, });
-
+componentDidUpdate(){
+  // this.props.currentLocation!=null&&this.oscard.setdistance()
+}
 
   render() {
 
@@ -993,12 +996,14 @@ class Sidebar extends Component {
 
                     {this.state.Allos &&
                       this.state.Allos.map((e, i) => {
-                        // console.log(this.props.currentLocation,"cur",[e.latitude, e.longitude]);
+                        console.log(this.state.Allos.length,"a");
 
 
 
                         return (
                           <OpenSpaceCard
+                          // wrappedComponentRef={(ref=>this.oscard=ref)}
+                            Arraylength={this.state.Allos.length}
                             distances={this.state.distances}
                             currentLocation={this.props.currentLocation}
                             latlng={[e.centroid[1], e.centroid[0]]}

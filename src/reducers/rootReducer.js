@@ -2,7 +2,8 @@ const initState = {
     language: '0',
     reportID: null,
     spaceID: null,
-    reportData: null
+    reportData: null,
+    currentloccalculated:false
 
 
 
@@ -42,6 +43,11 @@ const rootReducer = (state = initState, action) => {
                 reportData: action.data
 
 
+            }
+        case "Setcurrentloc":
+            return{
+                ...state,
+                currentloccalculated:true
             }
 
 
