@@ -163,7 +163,7 @@ import Gallery from "./Gallery/Gallery";
           path.push(Response.data.paths[j].points.coordinates[i].reverse())
         }
         // console.log(Response.data.paths[j].description)
-        var polyline = L.polyline(path, { color: j == 0 ? '#095c05' : 'grey' })
+        var polyline = L.polyline(path, { color: j == 0 ? 'blue' : 'grey' })
         this.state.Routespaths.push({ id: j, path: polyline, description: Response.data.paths[j].description == undefined ? "No Descrption" : Response.data.paths[j].description[0], distance: Response.data.paths[j].distance })
 
         this.state.Routes.addLayer(polyline)
@@ -177,7 +177,7 @@ import Gallery from "./Gallery/Gallery";
           this.state.Routespaths.map((i)=>{
             i.path.setStyle({color:'grey'})
           })
-          this.state.Routespaths[e.id].path.setStyle({color:'#095c05'})
+          this.state.Routespaths[e.id].path.setStyle({color:'blue'})
           this.state.Routespaths[e.id].path.bringToFront();
           var doac = document.getElementsByClassName('desccard')
           // console.log(doac,doc.length)
@@ -331,7 +331,7 @@ import Gallery from "./Gallery/Gallery";
                 })
               }
 
-              selected[0].path.setStyle({ color: '#095c05' })
+              selected[0].path.setStyle({ color: 'blue' })
 
               selected[0].path.bringToFront()
 
