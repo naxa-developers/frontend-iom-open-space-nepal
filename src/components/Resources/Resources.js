@@ -48,7 +48,7 @@ class Resources extends Component {
     this.setState({ resouceindex: 0 });
     
     
-    !Filtered.length ==0 ? this.chunkArray(Filtered, 3) : alert("Not Found");
+    !Filtered.length ==0 ? this.chunkArray(Filtered, 3) : this.chunkArray([],3);
   };
 
   selectFilterNew = (category, dtype) => {
@@ -74,7 +74,7 @@ class Resources extends Component {
       }
      
     })
-    Filtered1.length != 0 ? this.chunkArray(Filtered1, 3) : alert("No resources found!");
+    Filtered1.length != 0 ? this.chunkArray(Filtered1, 3) : this.chunkArray([],3);
 
   }
 
@@ -114,6 +114,7 @@ class Resources extends Component {
                     />
                     
                   </div>
+               
 
 
                   <div className="col-12 col-md-9 col-xl-8">
@@ -122,8 +123,8 @@ class Resources extends Component {
                       <div className="loader" style={{ textAlign: "center" }}>
                         {this.state.loaded == false && <LoadingSpinnerBig />}
                       </div>
-                      {console.log(this.state.slicedResources) ,
-                      this.state.loaded && this.state.slicedResources.length!=0&&
+                     {  this.state.slicedResources.length!=0 ?
+                        this.state.loaded && this.state.slicedResources.length!=0&&
                         this.state.slicedResources[
                           this.state.resouceindex
                           
@@ -147,10 +148,11 @@ class Resources extends Component {
                         )
 
 
-                        )}
-                        {/* <div class="btn-wrap">
-                          <button class="btn openspace-button">See more</button>
-                        </div> */}
+                        )
+                      : <div style={{textAlign:"center"}}><h6>No resources found</h6></div>
+                      }
+                      
+                     
                     </div>
                   </div>
                 </div>
