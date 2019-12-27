@@ -73,7 +73,7 @@ class OS extends Component {
 
 
         })
-        this.notify()
+        sessionStorage.Openspaces==undefined&&this.notify()
         navigator.permissions.query({ name: 'geolocation' }).then((PermissionStatus) => {
             if (PermissionStatus.state == 'granted') {
                 // this.notify()
@@ -180,7 +180,9 @@ class OS extends Component {
         this.loadprovince()
         this.currentLocation();
         this.zoomTomylocation();
-        toast.info("If current location is not in correct position, disconnect and reconnect your wifi network", { autoClose: false, position: "bottom-right" })
+        console.log(sessionStorage.Openspaces,"OS")
+        debugger
+        sessionStorage.Openspaces==undefined&&toast.info("If current location is not in correct position, disconnect and reconnect your wifi network", { autoClose: false, position: "bottom-right" })
 
 
         this.props.mapRefss.current.leafletElement.createPane("userloc").style.zIndex = 800;
