@@ -164,7 +164,6 @@
                             width:30%;
                             .icon-wrap-section{
                                 @include flex;
-                                justify-content: space-between;
                                 margin-bottom: 10px;
                                 .btn{
                                     &.btn-download{
@@ -172,21 +171,22 @@
                                     }
                                     &:hover{
                                         cursor: pointer;
-                                       /*  i{
-                                            background: lighten($color-bg-text, 20%);
+                                        i{
+                                            background: lighten($color-bg-text, 10%);
                                             @include boxshadow($boxshadow:0 1px 2px rgba($color-bg-text, 0.40));
                                             
-                                        } */
+                                        }
                                     }
                                 }
                                 .btn-share{
                                     margin-right: 10px;
                                 }
                                 i{
-                                    // @include animate;   
+                                    @include animate;   
                                     vertical-align: middle;
                                     font-size: 20px;
-                                    // border-radius: 50%;
+                                    border-radius: 50%;
+                                    padding: 5px;
                                 }
                                 a{
                                     @include flexStart;
