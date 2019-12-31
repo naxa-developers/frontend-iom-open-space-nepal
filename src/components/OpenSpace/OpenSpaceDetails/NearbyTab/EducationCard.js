@@ -52,6 +52,7 @@ class EducationCard extends Component {
                 
 
                 return <SingleEcard
+                reff={this.props.reff}
                 setActivefalse={this.setActivefalse}
                 ActiveRoute={this.state.ActiveRouteindex}
                 index={i}

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import fa from '../../../../img/school.png';
 import Axios from 'axios'
+import L from 'leaflet'
 
 
 
@@ -62,8 +63,13 @@ export default class SingleEcard extends Component {
   render() {
     
     return (
-      <li>
-        <div class="space">
+      <li onClick={()=>{
+
+        console.log(this.props.reff.current.leafletElement,this.props.latlng)
+        // this.props.reff.current.leafletElement.fitBounds(new L.featureGroup([L.marker(this.props.latlng)]).getBounds())
+        this.props.reff.current.leafletElement.setView(this.props.latlng,20)
+      }}>
+        <div class="space" >
         
 
           <div class="space-content">
