@@ -1355,15 +1355,31 @@
 
         .modal-body {
             .photo_viewer{
-                .fhNQJW{
-                    top: 30px;
-                    left: 30px;
-                    max-width: 40px;
-                    div{
-                        &:hover{
-                            @include animate_all(all .5s linear);
-                            cursor: pointer;
-                            background: $green-light;
+                .sc-bdVaJa{
+                    &.fhNQJW{
+                        top: 30px ;
+                        left: 30px;
+                        max-width: 40px;
+                        div{
+                            &:hover{
+                                @include animate_all(all .5s linear);
+                                cursor: pointer;
+                                background: $green-light;
+                            }
+                            &:last-child{
+                                svg{
+                                    display: none;
+                                }
+                                &:after{
+                                    content: "replay";
+                                    font-family: 'Material Icons';
+                                    position: relative;
+                                    right: 0;
+                                    top: 4px;
+                                    font-size: 22px;
+                                    color: darken($color-green, 22%);   
+                                }
+                            }
                         }
                     }
                 }
