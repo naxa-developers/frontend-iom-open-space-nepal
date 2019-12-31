@@ -1330,7 +1330,7 @@
 
         .modal-header {
             border: 0;
-            padding: 0 1rem;
+            padding: 0 2rem;
             text-align: left;
 
             h5 {
@@ -1354,7 +1354,23 @@
         }
 
         .modal-body {
-            .image-icon-options{
+            .photo_viewer{
+                .fhNQJW{
+                    top: 30px;
+                    left: 30px;
+                    max-width: 40px;
+                    div{
+                        &:hover{
+                            @include animate_all(all .6s linear);
+                            cursor: pointer;
+                            background: $green-light;
+                            
+                        }
+                    }
+                }
+            }
+
+            /* .image-icon-options{
                 background: $green-light;
                 position: absolute;
                 @include flex;
@@ -1380,7 +1396,7 @@
                     }
                 }
                 
-            }
+            } */
             .assessment-modal-list {
                 li {    
                     @include flexStart;

@@ -41,6 +41,7 @@ import SingleEcard from './SingleEcard'
                 this.state.data.facility.map((e,i) => {
                
                     return <SingleEcard
+                    reff={this.props.reff}
                     name = "Helipad"
                     setActivefalse={this.setActivefalse}
                     ActiveRoute={this.state.ActiveRouteindex}

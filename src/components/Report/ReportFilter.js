@@ -104,6 +104,9 @@ console.log("c value", v);
 
   }
 
+  componentDidUpdate(){
+    console.log(this.picker,"pock")
+  }
   render() {
 
 
@@ -115,9 +118,11 @@ console.log("c value", v);
         <div className="filter-option">
           <DateRangePicker 
           onApply={(range, v) => this.handleSelect(range, v)}
-            onChange={this.onDaysChange}
-            onBlur = {(range,v) => this.clearRange(range,v)} 
-            ref="datePicker"
+            onChange={this.onDaysChange} 
+            ref={ref=>this.picker=ref}
+            // onChange={this.onDaysChange}
+            // onBlur = {(range,v) => this.clearRange(range,v)} 
+            // ref="datePicker"
           >
             <button className="btn btn-outline-primary dropdown-toggle" >
               {

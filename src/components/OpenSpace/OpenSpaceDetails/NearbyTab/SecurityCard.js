@@ -45,6 +45,7 @@ class SecurityCard extends Component {
           this.state.data.facility.map((e,i) => {
          
               return <SingleEcard
+              reff={this.props.reff}
               setActivefalse={this.setActivefalse}
               ActiveRoute={this.state.ActiveRouteindex}
               index={i}

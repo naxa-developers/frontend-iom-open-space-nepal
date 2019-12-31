@@ -494,7 +494,7 @@ import Gallery from "./Gallery/Gallery";
                       role="tabpanel"
                       aria-labelledby="nearby_tab"
                     >
-                      <NearbyTab ref={comp =>
+                      <NearbyTab reff={this.props.reff} ref={comp =>
             this.nearbyref =
             comp}  fetchroute={this.fetchroute} reff={this.props.reff} OSlatlng={this.state.spaceInfo.centroid} id={this.props.id} />
                     </div>
