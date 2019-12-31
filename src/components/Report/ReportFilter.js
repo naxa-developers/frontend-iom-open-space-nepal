@@ -118,14 +118,11 @@ console.log("c value", v);
         <div className="filter-option">
           <DateRangePicker 
           onApply={(range, v) => this.handleSelect(range, v)}
-<<<<<<< HEAD
             onChange={this.onDaysChange} 
             ref={ref=>this.picker=ref}
-=======
-            onChange={this.onDaysChange}
-            onBlur = {(range,v) => this.clearRange(range,v)} 
-            ref="datePicker"
->>>>>>> 2ed51cee1b6803f590b97b2d20bd08224cc51834
+            // onChange={this.onDaysChange}
+            // onBlur = {(range,v) => this.clearRange(range,v)} 
+            // ref="datePicker"
           >
             <button className="btn btn-outline-primary dropdown-toggle" >
               {
