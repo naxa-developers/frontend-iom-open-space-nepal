@@ -58,7 +58,7 @@ class Sidebar extends Component {
       nearbyGroup: L.featureGroup(),
       legend: L.control({ position: 'bottomleft' }),
       div: L.DomUtil.create('div', 'routeWrapper'),
-      OSmarkers: L.markerClusterGroup({ disableClusteringAtZoom: 14 }),
+      OSmarkers: L.markerClusterGroup({ disableClusteringAtZoom: 14,pane:"cluster" }),
       markersLegend: L.control({ position: 'bottomright' }),
       ActiveRouteindex: null
 
@@ -554,7 +554,7 @@ class Sidebar extends Component {
       }
 
     });
-    this.props.mapRefs.current.leafletElement.fitBounds(this.state.OSmarkers.getBounds())
+    // this.props.mapRefs.current.leafletElement.fitBounds(this.state.OSmarkers.getBounds())
 
   };
 
@@ -799,7 +799,7 @@ class Sidebar extends Component {
 
     var nearby = this.props.mapRefs.current.leafletElement.createPane('nearby');
     var Oslanding = this.props.mapRefs.current.leafletElement.createPane('Oslanding');
-    this.props.mapRefs.current.leafletElement.createPane("cluster").style.zIndex = 100;
+    this.props.mapRefs.current.leafletElement.createPane("cluster").style.zIndex = 200;
 
 
 
@@ -832,7 +832,7 @@ class Sidebar extends Component {
       this.state.Openspaces=JSON.parse(sessionStorage.getItem('Openspaces'));
       this.state.Allos=JSON.parse(sessionStorage.getItem('Openspaces'));
       this.setState({loading: !this.state.loading})
-      console.log(this.state.Allos,"al",JSON.parse(sessionStorage.getItem('Openspaces')),sessionStorage.getItem('stored'),sessionStorage)
+      // console.log(this.state.Allos,"al",JSON.parse(sessionStorage.getItem('Openspaces')),sessionStorage.getItem('stored'),sessionStorage)
      
       this.displayOS();
       

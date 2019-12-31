@@ -270,6 +270,7 @@ class NearbyTab extends Component {
           <Accordion.Collapse eventKey="0">
             <Card.Body>
               <HospitalCard
+               reff={this.props.reff}
               OSlatlng={this.props.OSlatlng}
               id= {this.props.id}
               legend={this.state.legend}
@@ -294,6 +295,7 @@ class NearbyTab extends Component {
             <Card.Body>
 
               <FireCard
+               reff={this.props.reff}
               OSlatlng={this.props.OSlatlng}
               legend={this.state.legend}
 
@@ -316,6 +318,7 @@ class NearbyTab extends Component {
             <Card.Body>
               <HelipadCard 
               legend={this.state.legend}
+              reff={this.props.reff}
 
               id= {this.props.id}
               OSlatlng={this.props.OSlatlng}
@@ -337,6 +340,7 @@ class NearbyTab extends Component {
           <Accordion.Collapse eventKey="3">
             <Card.Body>
               <SecurityCard
+               reff={this.props.reff}
               legend={this.state.legend}
 
               id= {this.props.id}
@@ -360,6 +364,7 @@ class NearbyTab extends Component {
           <Accordion.Collapse eventKey="4">
             <Card.Body>
               <EducationCard
+               reff={this.props.reff}
               legend={this.state.legend}
 
               id= {this.props.id}

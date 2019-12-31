@@ -44,6 +44,7 @@ class HospitalCard extends Component {
           this.state.data.facility.map((e,i) => {
          
               return <SingleEcard
+              reff={this.props.reff}
                key ={e.id}
                name={e.name}
                setActivefalse={this.setActivefalse}

@@ -103,6 +103,9 @@ range = range
 
   }
 
+  componentDidUpdate(){
+    console.log(this.picker,"pock")
+  }
   render() {
 
 
@@ -115,7 +118,7 @@ range = range
           <DateRangePicker 
           onApply={(range, v) => this.handleSelect(range, v)}
             onChange={this.onDaysChange} 
-            ref="datePicker"
+            ref={ref=>this.picker=ref}
           >
             <button className="btn btn-outline-primary dropdown-toggle" >
               {
