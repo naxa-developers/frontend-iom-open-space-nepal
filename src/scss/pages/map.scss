@@ -1361,10 +1361,9 @@
                     max-width: 40px;
                     div{
                         &:hover{
-                            @include animate_all(all .6s linear);
+                            @include animate_all(all .5s linear);
                             cursor: pointer;
                             background: $green-light;
-                            
                         }
                     }
                 }
