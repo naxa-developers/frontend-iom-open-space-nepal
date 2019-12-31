@@ -3,7 +3,8 @@ import Axios from "axios";
 import Map from "./Map";
 
 import LoadingSpinner from "../../../Report/LoadingSpinnerBig";
-import LightImage from './LightImage';
+
+import Photo from "./Photo";
 
 
 
@@ -71,7 +72,8 @@ class Gallary extends Component {
               ) : 
              
               this.state.photos&&this.state.photos.map(g => {
-                  return <LightImage photo ={g.thumbnail} />
+                 
+                  return <Photo className="toggleModal"  photo = {g.thumbnail} name= {g.open_name} largeImage={g.image} />
                   
                  
                 })  
