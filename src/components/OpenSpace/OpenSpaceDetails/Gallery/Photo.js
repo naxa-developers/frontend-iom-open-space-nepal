@@ -48,7 +48,7 @@ const Photo = (props) => {
                         <i className="material-icons" >zoom_in</i>
                         <i className="material-icons" >cached</i>
                       </div> */}
-                      <figure style={{overflow:'hidden'}}>
+                      <figure style={{overflow:'hidden'}} className="photo_viewer">
                           <ReactPanZoom image={largeImage} />
                    
                       </figure>
