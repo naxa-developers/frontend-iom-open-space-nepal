@@ -258,7 +258,7 @@ class OSDetails extends Component {
         });
         var icon = L.divIcon({
           className: 'custom-div-icon',
-          html: "<i class='material-icons' >gps_fixed</i>",
+          html: "<i class='material-icons' >near_me</i>",
           // iconSize: [4, 4],
           iconAnchor: [12, 6]
         });
