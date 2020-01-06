@@ -1330,7 +1330,7 @@
 
         .modal-header {
             border: 0;
-            padding: 0 1rem;
+            padding: 0 2rem;
             text-align: left;
 
             h5 {
@@ -1354,7 +1354,38 @@
         }
 
         .modal-body {
-            .image-icon-options{
+            .photo_viewer{
+                .sc-bdVaJa{
+                    &.fhNQJW{
+                        top: 30px ;
+                        left: 30px;
+                        max-width: 40px;
+                        div{
+                            &:hover{
+                                @include animate_all(all .5s linear);
+                                cursor: pointer;
+                                background: $green-light;
+                            }
+                            &:last-child{
+                                svg{
+                                    display: none;
+                                }
+                                &:after{
+                                    content: "replay";
+                                    font-family: 'Material Icons';
+                                    position: relative;
+                                    right: 0;
+                                    top: 4px;
+                                    font-size: 22px;
+                                    color: darken($color-green, 22%);   
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            /* .image-icon-options{
                 background: $green-light;
                 position: absolute;
                 @include flex;
@@ -1380,7 +1411,7 @@
                     }
                 }
                 
-            }
+            } */
             .assessment-modal-list {
                 li {    
                     @include flexStart;
