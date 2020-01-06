@@ -262,8 +262,10 @@ class OSDetails extends Component {
           // iconSize: [4, 4],
           iconAnchor: [12, 6]
         });
-        L.marker(latlng, { icon: icon ,pane:"GPS"}).addTo(this.props.reff.current.leafletElement);
-        this.props.mapRefs.current.leafletElement.createPane("GPS").style.zIndex = 150;
+        // this.props.mapRefs.current.leafletElement.createPane("GPS").style.zIndex = 300;
+        L.marker(latlng, { icon: icon }).addTo(this.props.reff.current.leafletElement);
+       
+        
 
 
       });
