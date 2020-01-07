@@ -19,7 +19,7 @@ class OSDetails extends Component {
       SecurityData: null,
       dummyNo: ' 01-4250931',
       myloc: L.control({ position: 'topleft' }),
-      legend: L.control({ position: 'bottomleft' }),
+      legend: L.control({ position: 'bottomright' }),
       allNearby:L.featureGroup()
     };
   }
