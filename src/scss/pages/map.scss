@@ -225,6 +225,24 @@
                         float: none;
                         margin: 0;
                         opacity: .7;
+                        &.leg{
+                            padding: .75rem;
+                            margin-bottom: 10px;
+                            background: lighten($color: $blue-light, $amount: 25%);
+                            h5{
+                                margin-bottom: 15px;
+                            }
+                            h6{
+                                font-size: .875rem;
+                                i{
+                                    &:before{
+                                        color: $color-green;
+                                    }
+                                    margin-right: 10px;
+                                }
+                            }
+                        }
+                       
                         ul {
                             background-color: $color-white;
                             margin-bottom: 20px;
