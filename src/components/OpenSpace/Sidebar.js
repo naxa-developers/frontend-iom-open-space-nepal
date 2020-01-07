@@ -581,6 +581,8 @@ class Sidebar extends Component {
     var colors = ["red", 'green', 'black']
 
 // console.log(url)
+// debugger
+
     Axios.get(url)
       .then(Response => {
         // console.log(this.state.Routespaths)

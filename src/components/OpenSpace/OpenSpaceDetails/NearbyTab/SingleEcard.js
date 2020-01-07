@@ -76,7 +76,7 @@ export default class SingleEcard extends Component {
             <h5>{this.props.name}</h5>
             <p>
               <span>
-                <i class="material-icons">phone</i>01-4250931
+                <i class="material-icons">phone</i>00-0000000
             </span>
               <span>
                 <i class="material-icons">near_me</i>{this.state.calculatedistance ? '' : this.state.shortest + " km"}  </span>

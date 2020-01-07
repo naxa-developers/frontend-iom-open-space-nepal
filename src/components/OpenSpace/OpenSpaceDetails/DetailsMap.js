@@ -17,8 +17,9 @@ class OSDetails extends Component {
       currentLocation: null,
       HealthData: null,
       SecurityData: null,
-      dummyNo: ' 01-4250931',
+      dummyNo: ' 00-000000',
       myloc: L.control({ position: 'topleft' }),
+      legend: L.control({ position: 'bottomright' }),
       allNearby:L.featureGroup()
     };
   }
@@ -223,6 +224,30 @@ class OSDetails extends Component {
     });
   };
 
+  addlegend=()=>{
+    this.state.legend.onAdd = (map) => {
+
+      var div = L.DomUtil.create('div', `leg`)
+      div.innerHTML = ''
+      div.innerHTML += "<h5>Legend</h6>"
+      div.innerHTML += "<h6><i class='humanitarian-icon-Education'></i>Education</h6>"
+      div.innerHTML += "<h6><i class='humanitarian-icon-Medical-supply'></i>Health Facilities</h6>"
+      div.innerHTML += "<h6><i class='humanitarian-icon-Helipad'></i>Helipad(Airports)</h6>"
+      div.innerHTML += "<h6><i class='humanitarian-icon-Fire'></i>Fire Brigade</h6>"
+      div.innerHTML += "<h6><i class='humanitarian-icon-National-army'></i>Security Forces</h6>"
+      return div
+
+    }
+    
+
+    this.state.legend.addTo(this.props.reff.current.leafletElement)
+    // var locs = document.getElementsByClassName('loc')[0].addEventListener('click', () => {
+    //   console.log("con")
+    //   this.props.reff.current.leafletElement.setView(this.state.currentLocation, 14);
+    // })
+
+  }
+
   zoomTomylocation = () => {
     this.state.myloc.onAdd = (map) => {
 
@@ -262,8 +287,10 @@ class OSDetails extends Component {
           // iconSize: [4, 4],
           iconAnchor: [12, 6]
         });
-        L.marker(latlng, { icon: icon ,pane:"GPS"}).addTo(this.props.reff.current.leafletElement);
-        this.props.mapRefs.current.leafletElement.createPane("GPS").style.zIndex = 150;
+        // this.props.mapRefs.current.leafletElement.createPane("GPS").style.zIndex = 300;
+        L.marker(latlng, { icon: icon }).addTo(this.props.reff.current.leafletElement);
+       
+        
 
 
       });
@@ -303,6 +330,7 @@ class OSDetails extends Component {
     this.plotNearby();
     this.currentloc();
     this.getOSlatlng();
+    this.addlegend();
     this.state.allNearby.addTo(this.props.reff.current.leafletElement);
 
     Axios.get(
