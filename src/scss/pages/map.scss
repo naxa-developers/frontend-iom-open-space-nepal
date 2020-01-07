@@ -1359,6 +1359,7 @@
                     top: 30px;
                     left: 30px;
                     max-width: 40px;
+                
                     div{
                         &:hover{
                             @include animate_all(all .6s linear);

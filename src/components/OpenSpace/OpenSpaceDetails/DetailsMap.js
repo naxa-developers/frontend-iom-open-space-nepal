@@ -17,7 +17,7 @@ class OSDetails extends Component {
       currentLocation: null,
       HealthData: null,
       SecurityData: null,
-      dummyNo: ' 01-4250931',
+      dummyNo: ' 00-000000',
       myloc: L.control({ position: 'topleft' }),
       allNearby:L.featureGroup()
     };
