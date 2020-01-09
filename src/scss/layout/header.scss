@@ -38,10 +38,13 @@
                 a {
                     @include radius(50%);
                     border: 2px solid $green-light;
-                    flex:0 0 18px;
-                    max-width: 18px;
+                    flex:0 0 25px;
+                    max-width: 25px;
                     @include flexvr;
-
+                    @include animate_all(all .3s linear);
+                    p{
+                        margin-bottom: 0;
+                    }
                     img {
                         @include radius(50%);
                         opacity: 0.5;
@@ -54,10 +57,14 @@
 
                     &.active,
                     &:hover {
+                        cursor: pointer;
                         border-color: $color-green;
                         img{
                             opacity: 1;
                         }
+                    }
+                    &:hover{
+                        background: lighten($color-green, 40%);
                     }
                 }
             }
