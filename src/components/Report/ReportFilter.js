@@ -72,6 +72,7 @@ class ReportFilter extends Component {
 
 
 
+
     Axios.get(url)
       .then(response => {
 
@@ -110,7 +111,7 @@ class ReportFilter extends Component {
 
   }
   componentDidMount() {
-    Axios.get(`http://139.59.67.104:8011/api/v1/open_space_landing`)
+    Axios.get(`https://iomapi.naxa.com.np/api/v1/open_space_landing`)
       .then(res => {
         var arr =[];
         res.data.data.map(o => {
