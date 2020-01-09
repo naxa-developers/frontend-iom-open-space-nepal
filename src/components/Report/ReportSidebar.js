@@ -165,7 +165,7 @@ this.props.dispatch({
   }
 
   render() {
-    console.log("load", this.state.loading, this.props.reportData);
+ 
     
     
     return (

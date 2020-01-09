@@ -13,6 +13,12 @@ const status = [
   { value: "2", label: "Replied" }
 ];
 
+const openspace = [
+  { value: "1", label: "OpenSpace 1" },
+  { value: "2", label: "OpenSpace 2" }
+
+]
+
 
 class ReportFilter extends Component {
   constructor(props) {
@@ -24,7 +30,8 @@ class ReportFilter extends Component {
       valueUrgency: null,
       showApply: false,
       startDate: '',
-      endDate: ''
+      endDate: '',
+      openspaceList: ''
     };
   }
 
@@ -84,7 +91,7 @@ class ReportFilter extends Component {
   };
   handleSelect = (range, v) => {
 
-    console.log("d", v.startDate._d);
+
 
     this.setState({
       startDate: moment(v.startDate._d).format('YYYY-MM-DD'),
@@ -92,37 +99,71 @@ class ReportFilter extends Component {
     })
   }
   clearRange = (range, v) => {
-    console.log("clear");
-console.log("c value", v);
 
-    this.refs.datePicker.setState ({
-     v: null
+
+    this.refs.datePicker.setState({
+      v: null
     })
-    
-  
- 
+
+
+
 
   }
+  componentDidMount() {
+    Axios.get(`http://139.59.67.104:8011/api/v1/open_space_landing`)
+      .then(res => {
+        var arr =[];
+        res.data.data.map(o => {
+          let openObject = {
+            value: o.id,
+            label: o.title
+          }
+          arr.push(openObject)
+        })
+        this.setState({ openspaceList: arr })
+       console.log("oo", this.state.openspaceList);
+       
 
-  componentDidUpdate(){
-    console.log(this.picker,"pock")
+      })
   }
+
+  // componentDidUpdate(){
+  //   console.log(this.picker,"pock")
+  // }
   render() {
-
-
+   
+    this.state.openspaceList&&this.state.openspaceList.map(o => {
+      var list = o.title
+    }
+  
+      )
 
     return (
-
+  
       <div className="map-filter">
 
         <div className="filter-option">
-          <DateRangePicker 
-          onApply={(range, v) => this.handleSelect(range, v)}
-            onChange={this.onDaysChange} 
-            ref={ref=>this.picker=ref}
-            // onChange={this.onDaysChange}
-            // onBlur = {(range,v) => this.clearRange(range,v)} 
-            // ref="datePicker"
+          {this.state.openspaceList&&
+              <Select
+              placeholder="Openspace"
+              options={this.state.openspaceList}
+              // value={this.state.valueStatus}
+              // onChange={this.onStatusChange}
+  
+  
+            />
+
+            
+
+          }
+        
+          <DateRangePicker
+            onApply={(range, v) => this.handleSelect(range, v)}
+            onChange={this.onDaysChange}
+            ref={ref => this.picker = ref}
+          // onChange={this.onDaysChange}
+          // onBlur = {(range,v) => this.clearRange(range,v)} 
+          // ref="datePicker"
           >
             <button className="btn btn-outline-primary dropdown-toggle" >
               {
