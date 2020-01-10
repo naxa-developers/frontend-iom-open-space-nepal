@@ -33,7 +33,7 @@ class Identification extends Component {
 
     }
     render() {
-        console.log("ide",this.state.data);
+        // console.log("ide",this.state.data);
         
         return (
 
@@ -54,7 +54,7 @@ class Identification extends Component {
                         <div className="process-content">
                          { this.state.steps&&this.state.steps.map( (step,i) => 
                        
-                            <IdentificationCard key= {step.id} no ={i} image = {step.image} title = {step.title} />
+                            <IdentificationCard key= {step.id} no ={i} image = {step.image} title = {step.title} title_nep = {step.title_nep}/>
                             )} 
                            
                          

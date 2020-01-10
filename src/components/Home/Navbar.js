@@ -59,14 +59,14 @@ handleClick = (v) => {
                       // src={uk}
                       // alt="uk"
                     
-                      onClick={() => this.props.dispatch({ type: "english" })} >en</p>
+                      onClick={() => this.props.dispatch({ type: "english" })} >EN</p>
                  
                   </a>
                   <a className={ this.props.language=="1"?"active":''}>
                     <p
                       // src={nepal}
                       // alt="Nepal"
-                      onClick={() => this.props.dispatch({ type: "nepali" })}>ne</p>
+                      onClick={() => this.props.dispatch({ type: "nepali" })}>NE</p>
                   
                   </a>
                 </div>

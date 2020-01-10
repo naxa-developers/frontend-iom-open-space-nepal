@@ -51,7 +51,7 @@ import Gallery from "./Gallery/Gallery";
     Axios.get(
       `https://iomapi.naxa.com.np/api/v1/open_space/${localStorage.getItem("OpenspaceID")}`
     ).then(response =>  {
-      console.log(response.data,'resdata')
+      // console.log(response.data,'resdata')
     
       
       this.setState({ spaceInfo: response.data })

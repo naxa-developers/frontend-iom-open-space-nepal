@@ -31,7 +31,8 @@ class ReportFilter extends Component {
       showApply: false,
       startDate: '',
       endDate: '',
-      openspaceList: ''
+      openspaceList: '',
+      oID: null
     };
   }
 
@@ -47,10 +48,13 @@ class ReportFilter extends Component {
 
   };
 
-
+onOpenChange = e => {
+  this.setState({ oID: e})
+}
   onClear = () => {
     this.setState({
-      valueDays: null, valueStatus: null, valueUrgency: null, startDate: null, endDate: null
+      valueDays: null, valueStatus: null, valueUrgency: null, startDate: null, endDate: null,
+      oID:null
     });
 
 
@@ -61,26 +65,44 @@ class ReportFilter extends Component {
   };
   applyFilter = () => {
     this.props.toggleLoader();
-    const start_date = this.state.startDate;
-    const end_date = this.state.endDate;
+    let start_date = this.state.startDate ;
+    let end_date = this.state.endDate ;
+    let oID = this.state.oID;
+    let status = this.state.valueStatus.label.toLowerCase();
+    // console.log("filter from ", start_date, end_date,oID, status );
+    
 
-    let url = '';
-    this.state.valueStatus == null ?
-      url = `https://iomapi.naxa.com.np/api/v1/report/?start_date=${start_date}&end_date=${end_date}`
-      : url = `https://iomapi.naxa.com.np/api/v1/report/?start_date=${start_date}&end_date=${end_date}&status=${this.state.valueStatus.label.toLowerCase()}`
+    let url = ``;
+    if(start_date!=null && end_date!=null && status==null && oID== null)
+        url = `https://iomapi.naxa.com.np/api/v1/report/?start_date=${start_date}&end_date=${end_date}`
+  
+      else if(start_date!=null && end_date!=null && status!=null && oID == null ) 
+      url = `https://iomapi.naxa.com.np/api/v1/report/?start_date=${start_date}&end_date=${end_date}&status=${status}`
+
+      else if((start_date!=null && end_date!=null && status==null && oID!= null ))
+      url=`https://iomapi.naxa.com.np/api/v1/report/?start_date=${start_date}&end_date=${end_date}&id=${oID.value}`
+
+      else if((start_date==null && end_date==null && status!=null && oID== null ))
+      url=`https://iomapi.naxa.com.np/api/v1/report/?id=${oID}&status=${status}`
+
+      else if((start_date==null && end_date==null && status==null && oID!= null ))
+      url=`https://iomapi.naxa.com.np/api/v1/report/?id=${oID}&id=${oID.value}`
+
+      else 
+      url=`https://iomapi.naxa.com.np/api/v1/report/?start_date=${start_date}&end_date=${end_date}&status=${status}&id=${oID.value}`
 
 
 
 
+
+
+console.log(url);
 
     Axios.get(url)
       .then(response => {
-
-
-
+        console.log("f", response.data);
+        
         this.props.dispatch({
-
-
           type: "ReportFilter",
           data: response.data,
           reportData: response.data
@@ -101,11 +123,7 @@ class ReportFilter extends Component {
   }
   clearRange = (range, v) => {
 
-
-    this.refs.datePicker.setState({
-      v: null
-    })
-
+console.log("d");
 
 
 
@@ -122,7 +140,7 @@ class ReportFilter extends Component {
           arr.push(openObject)
         })
         this.setState({ openspaceList: arr })
-       console.log("oo", this.state.openspaceList);
+     
        
 
       })
@@ -148,8 +166,8 @@ class ReportFilter extends Component {
               <Select
               placeholder="Openspace"
               options={this.state.openspaceList}
-              // value={this.state.valueStatus}
-              // onChange={this.onStatusChange}
+              value={this.state.oID}
+              onChange={this.onOpenChange}
   
   
             />
