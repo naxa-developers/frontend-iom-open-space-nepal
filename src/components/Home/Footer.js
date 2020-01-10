@@ -34,6 +34,7 @@ class Footer extends Component {
           <div className="container">
             <h3 className="openspace-title">find nearby open spaces</h3>
             <Link to="/openspace"><button className="openspace-button" role="button">
+              {this.props.language =="0" ? "find open space" : "नजिकै खुला ठाउँहरू खोज्नुहोस् "}
               find open space
             </button> </Link>
           </div>
