@@ -8,6 +8,7 @@ import {Link } from 'react-router-dom'
 import appstore from "../../img/appstore.png";
 import googleplay from "../../img/googleplay.png";
 import Axios from "axios";
+import {connect} from 'react-redux';
 
 class Footer extends Component {
   constructor(props) {
@@ -44,16 +45,30 @@ class Footer extends Component {
                 <div className="footer-widget about-widget">
                 <h5>About</h5>
                   <p>
-                    {this.state.contactInfo &&
-                      this.state.contactInfo[0].description}
+                    {this.state.contactInfo && this.props.language=='0' ?
+                      this.state.contactInfo[0].description : this.state.contactInfo &&this.state.contactInfo[0].description_nep  }
                   </p>
 
                   <div className="copyright">
-                    <p>
+
+                    {
+                      this.props.language=="0" ?   <p>
                       Copyright © 2019. <a href="#">Humanitarion Open Space portal.</a> <br/>All
                       rights reserved.<br />
+                      
                       Designed by <a href="http://naxa.com.np">NAXA.</a>
+                
                     </p>
+                    :
+                    <p>
+                     प्रतिलिपि अधिकार © २०१९  <a href="#"> ह्यूमानिटेरियन खुला स्पेस पोर्टल।</a> <br/>सबै अधिकार सुरक्षित। <br />
+                     <a href="http://naxa.com.np">NAXA</a> द्वारा डिजाइन गरिएको। 
+              
+                
+                    </p>
+                    
+                    }
+                  
                   </div>
                 </div>
               </div>
@@ -64,10 +79,13 @@ class Footer extends Component {
                     <li>
                       <i className="humanitarian-icon-Location"></i>
                       <span>
-                        {this.state.contactInfo &&
-                          this.state.contactInfo[0].title} <br/>
-                        {this.state.contactInfo &&
-                          this.state.contactInfo[0].location}
+                        {this.state.contactInfo && this.props.language == '0' ?
+                          this.state.contactInfo[0].title 
+                        : this.state.contactInfo&& this.state.contactInfo[0].title_nep  
+                        } <br/>
+                        {this.state.contactInfo && this.props.language =='0' ?
+                          this.state.contactInfo[0].location :
+                          this.state.contactInfo && this.state.contactInfo[0].location_nep}
                       </span>
                     </li>
 
@@ -100,7 +118,7 @@ class Footer extends Component {
               </div>
               <div className="col-md-4">
                 <div className="footer-widget app-widget">
-                  <h5>download now</h5>
+                        <h5>{this.props.language=="0" ? "download now": "डाउनलोड गर्नुहोस्"}</h5>
                   <div className="apps flex-start">
                     <figure>
                       <img src={appstore} alt="Ios" />
@@ -111,15 +129,15 @@ class Footer extends Component {
                   </div>
                  
                   <ul>
-                    <span class="list-title">Useful Links</span>
+                    <span class="list-title">{this.props.language=="0" ? "Useful Links": "उपयोगी लिङ्कहरू"}</span>
                     <li>
-                      <a href="http://www.mofaga.gov.np/" target="blank">Mofaga</a>
+                      <a href="http://www.mofaga.gov.np/" target="blank">{this.props.language=="0" ? "mofaga": "मोफागा"}</a>
                     </li>
                     <li>
-                      <a href="http://www.moha.gov.np/" target="blank">Moha</a>
+                      <a href="http://www.moha.gov.np/" target="blank">{this.props.language=="0" ? "moha": "मोफागा"}</a>
                     </li>
                     <li>
-                      <a href="http://www.bipad.gov.np/" target="blank">bipad</a>
+                      <a href="http://www.bipad.gov.np/" target="blank">{this.props.language=="0" ? "bipad": "बिपद"}</a>
                     </li>
                     {/* <li>
                       <a href="#">moha</a>
@@ -135,4 +153,11 @@ class Footer extends Component {
   }
 }
 
-export default Footer;
+const mapStateToProps = state => {
+  return {
+    language: state.language
+  };
+};
+
+
+export default connect(mapStateToProps)(Footer);
