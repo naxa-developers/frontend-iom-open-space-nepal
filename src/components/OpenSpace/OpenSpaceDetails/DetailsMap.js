@@ -17,10 +17,11 @@ class OSDetails extends Component {
       currentLocation: null,
       HealthData: null,
       SecurityData: null,
+      HeliData: null,
       dummyNo: ' 00-000000',
       myloc: L.control({ position: 'topleft' }),
       legend: L.control({ position: 'bottomright' }),
-      allNearby:L.featureGroup()
+      allNearby: L.featureGroup()
     };
   }
 
@@ -36,6 +37,18 @@ class OSDetails extends Component {
     // this.plotfacilities();
   };
   plotNearby = () => {
+    Axios.get(
+      `https://iomapi.naxa.com.np/api/v1/near_by_me?type=helipad&count=50&distance=5&id=${localStorage.getItem("OpenspaceID")}`)
+      .then(res => {
+      // console.log("heli map",res.data);
+
+      this.setState({
+        HeliData: res.data
+      })
+      this.plotHeli();
+    })
+   
+
     Axios.get(
       `https://iomapi.naxa.com.np/api/v1/near_by_me?type=education%20facility&count=100&distance=1&id=${localStorage.getItem(
         "OpenspaceID"
@@ -56,6 +69,8 @@ class OSDetails extends Component {
         });
 
         this.plotHealth();
+
+
         Axios.get(
           `https://iomapi.naxa.com.np/api/v1/near_by_me?type=security%20force&count=100&distance=1&id=${localStorage.getItem(
             "OpenspaceID"
@@ -223,8 +238,50 @@ class OSDetails extends Component {
       })
     });
   };
+  plotHeli = () => {
+    var NearbyIcon = L.divIcon({
+      className: "nearby-div-icon",
+      html: "<i class='humanitarian-icon-Helipad'></i>",
 
-  addlegend=()=>{
+      iconAnchor: [12, 6]
+    });
+    this.state.HeliData && this.state.HeliData.facility.map(e => {
+      console.log("single",e);
+      
+      var NearbyMarker = L.marker([e.latitude, e.longitude], {
+        icon: NearbyIcon
+      }).addTo(this.state.allNearby);
+
+      var popUp =
+        "<div class='bind-popup'>" +
+        " </div> <div class='bind-header'> <h5>Helipad</h5><p><i class='material-icons'>phone</i>" + this.state.dummyNo + "<i class='material-icons pop-dir'>directions</i></p> </div>";
+      NearbyMarker.bindPopup(popUp);
+      NearbyMarker.on('click', () => {
+        let dir = document.getElementsByClassName('pop-dir')
+
+        for (var i = 0; i < dir.length; i++) {
+          dir[i].addEventListener('click', () => {
+            // console.log("called", i)
+            if (dir[0].classList.contains('active')) {
+              // console.log("calledif", i)
+
+              this.props.remove()
+              dir[0].classList.remove('active')
+
+            }
+            else {
+              // console.log("calledelse", i)
+              this.props.nearbyroute(this.state.OSlatlng, [e.latitude, e.longitude])
+              dir[0].classList.add('active')
+            }
+            // this.toogleactivetoute()
+          })
+        }
+      })
+    });
+  };
+
+  addlegend = () => {
     this.state.legend.onAdd = (map) => {
 
       var div = L.DomUtil.create('div', `leg`)
@@ -238,7 +295,7 @@ class OSDetails extends Component {
       return div
 
     }
-    
+
 
     this.state.legend.addTo(this.props.reff.current.leafletElement)
     // var locs = document.getElementsByClassName('loc')[0].addEventListener('click', () => {
@@ -289,8 +346,8 @@ class OSDetails extends Component {
         });
         // this.props.mapRefs.current.leafletElement.createPane("GPS").style.zIndex = 300;
         L.marker(latlng, { icon: icon }).addTo(this.props.reff.current.leafletElement);
-       
-        
+
+
 
 
       });
@@ -347,7 +404,7 @@ class OSDetails extends Component {
         weight: 2
       })
       geo.addTo(this.props.reff.current.leafletElement);
-      this.geo=geo
+      this.geo = geo
       // this.props.reff.current.leafletElement.fitBounds(geo.getBounds(), {
       //   // padding: [200, 200]
       // });
