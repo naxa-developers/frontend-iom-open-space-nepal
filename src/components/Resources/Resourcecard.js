@@ -44,18 +44,18 @@ console.log(desc.length)
                 <figure className="image-section" 
                 style={{ backgroundImage: `url(${this.props.image})`}}
                 >
-                  {/* { <img src={this.props.image}  alt="" /> } */}
+                  <img src={this.props.image}  alt="" /> 
                 </figure>
               </div>
 
             <div className="col-12 col-md-9">
               <div className="wrapper-content">
-                {/* <div className="content-wrap"> */}
+                 <div className="content-wrap"> 
                 <h3 className="h3-title">{this.props.title}</h3>
                
                     <span className="datetime">{this.props.date}</span>
-                   <p>
-                   <ShowMoreText
+                   {/* <p> */}
+                   {/* <ShowMoreText
                       lines={3}
                       more='Show more'
                       less ='Show less'
@@ -65,15 +65,13 @@ console.log(desc.length)
                       width = {320}
                       >
                   { this.props.description}
-                      </ShowMoreText> 
+                      </ShowMoreText>  */}
 
-                   </p>
-              
-                    
-                  
-            
-  {/* <p>{this.props.description}</p> */}
-                {/* </div> */}
+                  {/*  </p> */}
+  <p className="para-collapse collapse" id="collapseExample">{this.props.description}</p>
+  <a class="btn collapsed" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        </a>
+               </div>
                 <div className="download-section">
                 <div className="icon-wrap-section">
                
