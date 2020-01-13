@@ -158,6 +158,33 @@
                                 font-size: .875rem;
                                 font-weight: 400;
                             }
+                            #collapseExample{
+                                &.collapse{
+                                    &:not(.show) {
+                                        display: block;
+                                        height: 3.75rem;
+                                        overflow: hidden;
+                                    }
+                                }
+                                .collapsing{
+                                    height: 3.75rem;
+                                }
+                            }
+                            a{
+                                font-size: .75rem;
+                                padding: 10px 0;
+                                &.collapsed{
+                                    &:after{
+                                        content: 'Show More';
+                                    }
+                                }
+                                &:not(.collapsed){
+                                    &:after{
+                                        content: 'Show Less';
+                                        font-size: 0.75rem;
+                                    }
+                                }
+                            }
                         }
                         .download-section{
                             float: right;
