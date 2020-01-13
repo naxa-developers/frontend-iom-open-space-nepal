@@ -43,7 +43,7 @@ class Identification extends Component {
                 <div className="row">
                     <div className="col-md-6" >
                         <div className="process-left sticky">
-                            <h3 className="openspace-title">Open space indentification process</h3>
+                            <h3 className="openspace-title">{this.props.language=='0'? 'Open space indentification process': 'खुल्ला क्षेत्र पहिचान प्रक्रिया'}</h3>
         <p>{this.props.language=='0'? this.state.data&&this.state.data[0].description: this.state.data&&this.state.data[0].description_nep }</p>
                         </div>
                      

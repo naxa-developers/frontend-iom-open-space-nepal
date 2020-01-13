@@ -44,7 +44,7 @@ class Footer extends Component {
             <div className="row">
               <div className="col-md-4">
                 <div className="footer-widget about-widget">
-                <h5>About</h5>
+                <h5>{this.props.language=="0" ? 'About' : "बारेमा"}</h5>
                   <p>
                     {this.state.contactInfo && this.props.language=='0' ?
                       this.state.contactInfo[0].description : this.state.contactInfo &&this.state.contactInfo[0].description_nep  }
@@ -75,7 +75,7 @@ class Footer extends Component {
               </div>
               <div className="col-md-4">
                 <div className="footer-widget contact-widget">
-                  <h5>Contact</h5>
+                  <h5>{ this.props.language=="0" ? 'Contact ' :'सम्पर्क' }</h5>
                   <ul>
                     <li>
                       <i className="humanitarian-icon-Location"></i>

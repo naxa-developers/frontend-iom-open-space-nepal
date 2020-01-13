@@ -451,8 +451,8 @@ import Gallery from "./Gallery/Gallery";
                         title={this.state.spaceInfo.title}
                         question_data={this.state.spaceInfo.question_data}
                         description={this.state.spaceInfo.description}
-                        province ={this.state.spaceInfo.province}
-                        municipality = {this.state.spaceInfo.municipality}
+                        province ={this.state.spaceInfo.province_name}
+                        municipality = {this.state.spaceInfo.municipality_name}
                         ward ={this.state.spaceInfo.ward}
                         ownership = {this.state.spaceInfo.ownership}
                         special_feature ={this.state.spaceInfo.special_feature}

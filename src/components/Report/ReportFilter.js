@@ -68,25 +68,25 @@ onOpenChange = e => {
     let start_date = this.state.startDate ;
     let end_date = this.state.endDate ;
     let oID = this.state.oID;
-    let status = this.state.valueStatus.label.toLowerCase();
+    //  let status = this.state.valueStatus.label.toLowerCase();
     // console.log("filter from ", start_date, end_date,oID, status );
     
 
     let url = ``;
-    if(start_date!=null && end_date!=null && status==null && oID== null)
+    if(start_date!=null && end_date!=null && this.state.valueStatus==null && oID== null)
         url = `https://iomapi.naxa.com.np/api/v1/report/?start_date=${start_date}&end_date=${end_date}`
   
-      else if(start_date!=null && end_date!=null && status!=null && oID == null ) 
-      url = `https://iomapi.naxa.com.np/api/v1/report/?start_date=${start_date}&end_date=${end_date}&status=${status}`
+      else if(start_date!=null && end_date!=null &&this.state.valueStatus!=null && oID == null ) 
+      url = `https://iomapi.naxa.com.np/api/v1/report/?start_date=${start_date}&end_date=${end_date}&status=${this.state.valueStatus.label.toLowerCase()}`
 
-      else if((start_date!=null && end_date!=null && status==null && oID!= null ))
+      else if((start_date!=null && end_date!=null &&this.state.valueStatus==null && oID!= null ))
       url=`https://iomapi.naxa.com.np/api/v1/report/?start_date=${start_date}&end_date=${end_date}&id=${oID.value}`
 
-      else if((start_date==null && end_date==null && status!=null && oID== null ))
-      url=`https://iomapi.naxa.com.np/api/v1/report/?id=${oID}&status=${status}`
+      else if((start_date==null && end_date==null &&this.state.valueStatus!=null && oID== null ))
+      url=`https://iomapi.naxa.com.np/api/v1/report/?status=${this.state.valueStatus.label.toLowerCase()}`
 
-      else if((start_date==null && end_date==null && status==null && oID!= null ))
-      url=`https://iomapi.naxa.com.np/api/v1/report/?id=${oID}&id=${oID.value}`
+      else if((start_date==null && end_date==null &&this.state.valueStatus==null && oID!= null ))
+      url=`https://iomapi.naxa.com.np/api/v1/report/?id=${oID.value}`
 
       else 
       url=`https://iomapi.naxa.com.np/api/v1/report/?start_date=${start_date}&end_date=${end_date}&status=${status}&id=${oID.value}`
@@ -163,6 +163,7 @@ console.log("d");
 
         <div className="filter-option">
           {this.state.openspaceList&&
+          <>
               <Select
               placeholder="Openspace"
               options={this.state.openspaceList}
@@ -174,7 +175,7 @@ console.log("d");
 
             
 
-          }
+         
         
           <DateRangePicker
             onApply={(range, v) => this.handleSelect(range, v)}
@@ -200,7 +201,8 @@ console.log("d");
 
 
           />
-
+          </>
+ }
         </div>
         <div className="reset-btns">
           <div className="reset">
