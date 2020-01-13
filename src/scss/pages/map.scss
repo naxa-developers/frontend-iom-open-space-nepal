@@ -233,7 +233,7 @@
                                 margin-bottom: 15px;
                             }
                             h6{
-                                font-size: .875rem;
+                                font-size: .75rem;
                                 i{
                                     &:before{
                                         color: $color-green;
@@ -697,7 +697,7 @@
             }
 
             .report-list {
-
+                margin-top: 20px;
                 ul {
                     li {
                         @include flexBetween;
