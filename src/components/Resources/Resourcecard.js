@@ -50,27 +50,30 @@ console.log(desc.length)
 
             <div className="col-12 col-md-9">
               <div className="wrapper-content">
-                <div className="content-wrap">
+                {/* <div className="content-wrap"> */}
                 <h3 className="h3-title">{this.props.title}</h3>
                
                     <span className="datetime">{this.props.date}</span>
-                   
-                    <ShowMoreText
+                   <p>
+                   <ShowMoreText
                       lines={3}
                       more='Show more'
                       less ='Show less'
                       anchorClass= ''
                       expanded ={false}
-                      keepNewLines ={false}
+                      keepNewLines ={true}
+                      width = {320}
                       >
                   { this.props.description}
                       </ShowMoreText> 
 
+                   </p>
+              
                     
                   
             
   {/* <p>{this.props.description}</p> */}
-                </div>
+                {/* </div> */}
                 <div className="download-section">
                 <div className="icon-wrap-section">
                
