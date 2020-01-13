@@ -88,6 +88,9 @@ onOpenChange = e => {
       else if((start_date==null && end_date==null &&this.state.valueStatus==null && oID!= null ))
       url=`https://iomapi.naxa.com.np/api/v1/report/?id=${oID.value}`
 
+      else if((start_date==null && end_date==null &&this.state.valueStatus!=null && oID!= null ))
+      url=`https://iomapi.naxa.com.np/api/v1/report/?status=${this.state.valueStatus.label.toLowerCase()}&&id=${oID.value}`
+
       else 
       url=`https://iomapi.naxa.com.np/api/v1/report/?start_date=${start_date}&end_date=${end_date}&status=${status}&id=${oID.value}`
 
