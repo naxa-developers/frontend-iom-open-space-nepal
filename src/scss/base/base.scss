@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .z-index {
     z-index: 9999
 }
@@ -145,4 +146,153 @@ section{
         line-height: 2rem;
     }
     
+=======
+.z-index {
+    z-index: 9999
+}
+
+.mrt30 {
+    margin-top: 30px;
+}
+
+.mrb30 {
+    margin-bottom: 30px;
+}
+
+.pd-0 {
+    padding: 0 !important;
+}
+.mr-0{
+    margin:0 !important;
+}
+.mt-150{
+    margin-top: 8rem;
+}
+
+
+.p-l-0,
+.sidebar .menu .list,
+.sidebar .menu .list .ml-menu,
+.dropdown-menu ul.menu,
+.invoice .nav-tabs {
+    padding-left: 0px
+}
+.ptb-150{
+    padding:120px 0;
+}
+.mtb-100{
+    margin:100px 0;
+}
+
+.pt-150{
+    padding-top:120px;
+}
+.pb-150{
+    padding-bottom:120px;
+}
+.mb-150{
+    margin-bottom:120px;
+}
+
+h3.openspace-title {
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color:$color-blue;
+    line-height: 3rem;
+    margin:0;
+}
+.flex{
+    @include flex;
+}
+.flex-start{
+    @include flexStart;
+}
+.flex-end{
+    @include flexEnd;
+}
+.flex-center{
+    @include flexCenter;
+}
+.flexvr{
+    @include flexvr;
+}
+.flex-between{
+    @include flexBetween;
+}
+.overlay{
+    @include overlay;
+}
+
+.status{
+    min-width: 100px;
+    text-align: center;
+    text-transform: uppercase;;
+    font-size:.875rem;
+    font-weight: 600;
+    padding:0.25rem 1rem;
+    &.yellow{
+        
+        background-color:rgba($color-error,0.15);
+        color:$color-error;
+       
+    }
+    &.green{
+        background-color:rgba($color-green,0.15);
+        color:$color-green;
+    }
+}
+section{
+    @include clear;
+    clear:both;
+}
+.card {
+    @include animate_all(all .5s);
+    border: 0;
+    position: relative;
+    width: 100%;
+    box-shadow: none;
+    background: transparent;
+
+    .card-header {
+        background-color: $color-white;
+    }
+
+    .body {
+        font-weight: 400;
+        border-radius: .35rem;
+        background: $color-light;
+        font-size: 14px;
+        color: $color-primary;
+        padding: 20px;
+    }
+}
+.pending{
+    color:$color-error;
+}
+.success{
+    color:$color-green;
+}
+.unsuccess{
+    color:$color-secondary;
+}
+
+@media screen and (max-width:1640px){
+    h3.openspace-title {
+        font-size: 2.5rem;
+        line-height: 1.2;
+    }
+}
+@media screen and (max-width:$lg-tab){
+    h3.openspace-title {
+        font-size: 2rem;
+    }
+}
+@media screen and (max-width:$mb-xl){
+    h3.openspace-title {
+        font-size: 1.3rem;
+        line-height: 2rem;
+    }
+    
+>>>>>>> 27827056134716d4785a34912ef3d7223824891f
 }
