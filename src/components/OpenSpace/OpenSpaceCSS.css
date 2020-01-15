@@ -1,0 +1,127 @@
+/* .css-2b097c-container {
+    max-width:  400px !important;
+    min-width: 150px;
+    width: auto;
+ }
+.css-14jk2my-container{
+    max-width:  350px;
+    min-width: 150px;
+
+} 
+
+
+
+
+
+
+
+#north{
+    height: 50px;
+    width: 50px;
+} */
+
+.loc{
+    width:20px;
+    height:20px;
+}
+#close-bt-route{
+    width:20px;
+    height:20px;
+}
+#shortest{
+    width:10px;
+    height:10px;
+    margin-right: 5px;
+}
+.desccard h5 {
+    color: green;
+    font-size: 12px;
+}
+.legend .blue{
+    width: 20px;
+    height: 20px;
+    color: red;
+}
+.OSmarkers {
+    width:22px !important;
+    height: 22px !important;
+    background-color: blue;
+    border-radius: 15px;
+    background-clip: padding-box;
+    border:solid 6px rgba(6, 6, 247,0.2);
+    z-index: 200;
+}
+.OSmarkers:hover{
+    background-color: white;
+    
+   
+    border:solid 9px rgba(6, 6, 247,0.8)
+}
+.nearbymarker{
+    width:22px !important;
+    height: 22px !important;
+    background-color: green;
+    border-radius: 15px;
+    background-clip: padding-box;
+    border:solid 6px rgba(11, 170, 5, 0.2);
+
+}
+.nearbymarker:hover{
+    background-color: white;
+    border:solid 9px rgba(11, 170, 5, 0.8);
+
+}
+
+.reportMarkerReplied{
+    width:22px !important;
+    height: 22px !important;
+    background-color: #5ACE52;
+    border-radius: 15px;
+    background-clip: padding-box;
+    border:solid 6px rgba(11, 170, 5, 0.2);
+
+}
+.reportMarkerReplied:hover {
+    background-color: white;
+    border:solid 9px rgba(11, 170, 5, 0.8);
+
+
+}
+.reportMarkerPending:hover {
+
+    background-color: white;
+    border:solid 9px #F32F30;
+}
+.reportMarkerPending{
+    width:22px !important;
+    height: 22px !important;
+    background-color: #F32F30;
+    border-radius: 15px;
+    background-clip: padding-box;
+    border:solid 6px rgba(233, 18, 18, 0.2);
+
+}
+
+
+
+
+
+
+
+
+
+
+/*
+.openspace-button:hover{
+    text-decoration: none;
+}
+.map-sidebar{
+    z-index: 1500 !important;
+}
+.OpenSpaceScroll{
+    max-width: 50px;
+    overflow-y: 'scroll' ;
+}
+ul .scrollbar-container{
+    height: 350px !important;
+} */
