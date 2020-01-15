@@ -3691,8 +3691,13 @@ footer .footer-bottom .footer-widget.app-widget ul li:last-child {
   padding-top: 30px;
 }
 .app-page .main-content .row-wrap .content-image figure {
+<<<<<<< HEAD
   /* 
   display: flex;
+=======
+  /* 
+  display: flex;
+>>>>>>> 27827056134716d4785a34912ef3d7223824891f
   justify-content: center; */
 }
 .app-page .main-content .row-wrap .content-image figure img {
