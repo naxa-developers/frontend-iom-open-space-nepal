@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 // import 'bootstrap/dist/css/bootstrap.css';
 import '../css/slick.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../css/humanitarian-fonts.css';
+// import '../css/humanitarian-fonts.css';
 import "../scss/style.scss";
 
 

@@ -56,8 +56,7 @@
     "react-youtube": "^7.9.0",
     "reactstrap": "^8.1.1",
     "redux": "^4.0.4",
-    "slick-carousel": "^1.8.1",
-    "webpack-cli": "^2.0.10"
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
@@ -69,17 +68,14 @@
     "file-loader": "^4.2.0",
     "image-webpack-loader": "^6.0.0",
     "mini-css-extract-plugin": "^0.8.0",
-<<<<<<< HEAD
     "node-sass": "^4.13.0",
-=======
-    "node-sass": "^4.12.0",
->>>>>>> 27827056134716d4785a34912ef3d7223824891f
     "react-inlinesvg": "^1.1.7",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
     "svg-inline-loader": "^0.8.0",
     "url-loader": "^2.2.0",
-    "webpack": "^4.41.2",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.1",
     "webpack-dev-server": "^3.9.0"
   }
 }
