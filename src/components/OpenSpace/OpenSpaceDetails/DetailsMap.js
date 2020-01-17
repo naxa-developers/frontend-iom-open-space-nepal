@@ -112,16 +112,16 @@ class OSDetails extends Component {
 
         for (var i = 0; i < dir.length; i++) {
           dir[i].addEventListener('click', () => {
-            console.log("called", i)
+            // console.log("called", i)
             if (dir[0].classList.contains('active')) {
-              console.log("calledif", i)
+              // console.log("calledif", i)
 
               this.props.remove()
               dir[0].classList.remove('active')
 
             }
             else {
-              console.log("calledelse", i)
+              // console.log("calledelse", i)
               this.props.nearbyroute(this.state.OSlatlng, [e.latitude, e.longitude])
               dir[0].classList.add('active')
             }
@@ -160,16 +160,16 @@ class OSDetails extends Component {
 
         for (var i = 0; i < dir.length; i++) {
           dir[i].addEventListener('click', () => {
-            console.log("called", i)
+            // console.log("called", i)
             if (dir[0].classList.contains('active')) {
-              console.log("calledif", i)
+              // console.log("calledif", i)
 
               this.props.remove()
               dir[0].classList.remove('active')
 
             }
             else {
-              console.log("calledelse", i)
+              // console.log("calledelse", i)
               this.props.nearbyroute(this.state.OSlatlng, [e.latitude, e.longitude])
               dir[0].classList.add('active')
             }
@@ -211,16 +211,16 @@ class OSDetails extends Component {
 
         for (var i = 0; i < dir.length; i++) {
           dir[i].addEventListener('click', () => {
-            console.log("called", i)
+            // console.log("called", i)
             if (dir[0].classList.contains('active')) {
-              console.log("calledif", i)
+              // console.log("calledif", i)
 
               this.props.remove()
               dir[0].classList.remove('active')
 
             }
             else {
-              console.log("calledelse", i)
+              // console.log("calledelse", i)
               this.props.nearbyroute(this.state.OSlatlng, [e.latitude, e.longitude])
               dir[0].classList.add('active')
             }
@@ -246,7 +246,7 @@ class OSDetails extends Component {
       iconAnchor: [12, 6]
     });
     this.state.HeliData && this.state.HeliData.facility.map(e => {
-      console.log("single",e);
+      // console.log("single",e);
       
       var NearbyMarker = L.marker([e.latitude, e.longitude], {
         icon: NearbyIcon
@@ -330,10 +330,10 @@ class OSDetails extends Component {
           location.coords.latitude,
           location.coords.longitude
         );
-        console.log(
-          [location.coords.latitude, location.coords.longitude],
-          "aa"
-        );
+        // console.log(
+        //   [location.coords.latitude, location.coords.longitude],
+        //   "aa"
+        // );
         // this.props.setcurrentLocation([location.coords.latitude, location.coords.longitude])
         this.setState({
           currentLocation: [location.coords.latitude, location.coords.longitude]
@@ -358,9 +358,9 @@ class OSDetails extends Component {
       "OpenspaceID"
     )}`)
       .then(response => {
-        console.log(this.state.OSlatlng, "OSLATLNG", response)
+        // console.log(this.state.OSlatlng, "OSLATLNG", response)
         this.setState({ OSlatlng: [response.data.data[0].centroid[1], response.data.data[0].centroid[0]] })
-        console.log(this.state.OSlatlng, "OSLATLNG", response)
+        // console.log(this.state.OSlatlng, "OSLATLNG", response)
 
         this.zoomTomylocation();
 
@@ -375,7 +375,7 @@ class OSDetails extends Component {
       "OpenspaceID"
     )}&distance=1`)
       .then(res => {
-        console.log("rr", res)
+        // console.log("rr", res)
         debugger
       })
 
@@ -395,7 +395,7 @@ class OSDetails extends Component {
         "OpenspaceID"
       )}`
     ).then(response => {
-      console.log("oop", response.data);
+      // console.log("oop", response.data);
 
       var geo = L.geoJSON(response.data, {
         fillColor: "blue",
