@@ -71,7 +71,9 @@ class Resourcecard extends Component {
 
                   {/*  </p> */}
   <p className="para-collapse collapse" id="collapseExample">{this.props.description}</p>
-  <Link class="btn collapsed" data-toggle="collapse" to="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+  <Link class="btn collapsed" data-toggle="collapse" to="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"
+  
+  >
                         </Link>
                </div>
                 <div className="download-section">
