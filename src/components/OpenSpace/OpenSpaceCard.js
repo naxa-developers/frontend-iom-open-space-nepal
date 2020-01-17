@@ -26,7 +26,7 @@ class OpenSpaceCard extends Component {
         this.setState({ calculatedistance: false })
 
         console.log('====================================');
-        console.log();
+        console.log(first,second);
         console.log('====================================');
         console.log(first, second, this.props.currentLocation);
         var baseUrl = "https://route.naxa.com.np/route";
@@ -34,12 +34,13 @@ class OpenSpaceCard extends Component {
         // console.log(first,second)
         var url =
             `${baseUrl}?point= ${first[0]},${first[1]},` +
-            `&point=${second[0]},${second[1]}` +
+            `&point=${second!=null?second[0]:''},${second!=null?second[1]:''}` +
             "&points_encoded=false" +
             "&ch.disable=true" +
             "&alternative_route.max_paths=4" +
             "&algorithm=alternative_route";
-        Axios.get(url)
+       
+            second!=null&&Axios.get(url)
             .then(Response => {
                 //   console.log(Response.data.paths)
                 for (var i = 0; i < Response.data.paths.length; i++) {
@@ -187,7 +188,7 @@ class OpenSpaceCard extends Component {
                                     <i className="material-icons">room</i><p>{this.props.address}</p>
                                 </span>
                                 {!this.state.calculatedistance ? <span>
-                                    <i className="material-icons">near_me</i>{this.state.shortest}  km
+                                    <i className="material-icons">near_me</i>{this.state.shortest}  ...km
                                 </span> : <span>
                                         {/* <i className="material-icons">near_me</i>200 m */}
                                         <LoadingSpinner />
