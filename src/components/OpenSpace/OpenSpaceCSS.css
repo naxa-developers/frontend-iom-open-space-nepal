@@ -60,7 +60,7 @@
 .nearbymarker{
     width:22px !important;
     height: 22px !important;
-    background-color: green;
+    background-color: #418fde;
     border-radius: 15px;
     background-clip: padding-box;
     border:solid 6px rgba(11, 170, 5, 0.2);
@@ -102,8 +102,24 @@
 
 }
 
-
-
+.current-location i{
+   
+    animation: blink 1s linear infinite;
+}
+@keyframes blink{
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+   50% {
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5);
+    }
+    100% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
+}
 
 
 
@@ -125,3 +141,40 @@
 ul .scrollbar-container{
     height: 350px !important;
 } */
+
+.marker-pin {
+    width: 30px;
+    height: 30px;
+    border-radius: 50% 50% 50% 0;
+    background: #418fde;
+    position: absolute;
+    transform: rotate(-45deg);
+    left: 50%;
+    top: 50%;
+    margin: -15px 0 0 -15px;
+  }
+  
+  .marker-pin::after {
+      content: '';
+      width: 24px;
+      height: 24px;
+      margin: 3px 0 0 3px;
+      background: #fff;
+      position: absolute;
+      border-radius: 50%;
+   }
+  
+  .nearby-div-icon i {
+     position: absolute;
+     width: 22px;
+     font-size: 22px;
+     left: 0;
+     right: 0;
+     margin: 12px auto;
+     text-align: center;
+  }
+  
+  .nearby-div-icon i.awesome {
+     margin: 12px auto;
+     font-size: 17px;
+  }

@@ -34,11 +34,11 @@ const AssementList = (props) => {
             <div className="assessment-list">
                 <ul>
                     <li data-toggle="modal" data-target="#assessment-popup" onClick={toggle}>
-                        General Information Assessment
+                    General Information Table
                         <i className="material-icons">chevron_right</i>
                     </li>
                     <li data-toggle="modal" data-target="#assessment-popup" onClick={toggle1}>
-                        Environment Assessment
+                    Environment Assessment Table
                         <i className="material-icons">chevron_right</i>
                     </li>
                 </ul>

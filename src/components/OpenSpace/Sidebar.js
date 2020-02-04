@@ -937,8 +937,8 @@ componentDidUpdate(){
                   </div>
                 </div>
 
-                <div onClick={this.tooglenearby} className="nearme-btn">
-                  <a className="openspace-button">
+                <div  className="nearme-btn">
+                  <a className="openspace-button" onClick={this.tooglenearby}>
                     <i
                       className="material-icons"
                       style={{ textDecoration: "none" }}
