@@ -66,7 +66,7 @@ class OS extends Component {
             // console.log("current", this.state.currentLocation)
             var icon = L.divIcon({
                 className: 'custom-div-icon',
-                html: "<i class='material-icons'>gps_fixed</i>",
+                html: "<span class='current-location'><i class='material-icons'>gps_fixed</i> </span>",
                 // iconSize: [4, 4],
                 iconAnchor: [12, 6]
             });

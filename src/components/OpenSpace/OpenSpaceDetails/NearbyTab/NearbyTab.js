@@ -29,7 +29,7 @@ class NearbyTab extends Component {
   }
 
   fetchroute = (first, second) => {
-    console.log("fs",first, second);
+    // console.log("fs",first, second);
     
     // L.tooltip().setLatLng(first).setContent('<h6>latlng</h6>').addTo(this.props.mapRefs.current.leafletElement)
     // map.closeTooltip();

@@ -4,8 +4,9 @@ import "leaflet/dist/leaflet.css";
 import Axios from "axios";
 import L from "leaflet";
 const { BaseLayer } = LayersControl;
-import EduImage from "../../../img/educationMarker.svg";
-import FireImage from "../../../img/fireMarker.png";
+// import EduImage from "../../../img/educationMarker.svg";
+// import FireImage from "../../../img/fireMarker.png";
+// import healthIcon from '../../../img/icons_Medical.png'
 
 class OSDetails extends Component {
   constructor(props) {
@@ -92,16 +93,19 @@ class OSDetails extends Component {
 
   };
   plotHealth = () => {
-    var NearbyIcon = L.divIcon({
-      className: "nearby-div-icon",
-      html: "<i class='humanitarian-icon-Medical-supply'></i>",
-
-      iconAnchor: [12, 6]
-    });
+    // console.log("i", healthIcon);
+    
+    var HealthIcon = L.divIcon({
+      className: 'nearby-div-icon',
+      html: "<div class='marker-pin'></div><i class='humanitarian-icon-Medical-supply'></i>",
+      iconSize: [30, 42],
+      iconAnchor: [15, 42]
+  });
+  
+  
     this.state.HealthData.facility.map(e => {
-      var NearbyMarker = L.marker([e.latitude, e.longitude], {
-        icon: NearbyIcon
-      }).addTo(this.state.allNearby);
+  var NearbyMarker=  L.marker([e.latitude, e.longitude], 
+        {icon: HealthIcon }).addTo(this.state.allNearby);
 
       var popUp =
         "<div class='bind-popup'>" +
@@ -140,12 +144,18 @@ class OSDetails extends Component {
     });
   };
   plotSecurity = () => {
-    var NearbyIcon = L.divIcon({
-      className: "nearby-div-icon",
-      html: "<i class='humanitarian-icon-National-army'></i>",
+    // var NearbyIcon = L.divIcon({
+    //   className: "nearby-div-icon",
+    //   html: "<i class='humanitarian-icon-National-army'></i>",
 
-      iconAnchor: [12, 6]
-    });
+    //   iconAnchor: [12, 6]
+    // });
+    var NearbyIcon = L.divIcon({
+      className: 'nearby-div-icon',
+      html: "<div class='marker-pin'></div><i class='humanitarian-icon-National-army'></i>",
+      iconSize: [30, 42],
+      iconAnchor: [15, 42]
+  });
     this.state.SecurityData.facility.map(e => {
       var NearbyMarker = L.marker([e.latitude, e.longitude], {
         icon: NearbyIcon
@@ -190,11 +200,11 @@ class OSDetails extends Component {
 
   plotEdu = () => {
     var NearbyIcon = L.divIcon({
-      className: "nearby-div-icon",
-      html: "<i class='humanitarian-icon-Education success'></i>",
-
-      iconAnchor: [12, 6]
-    });
+      className: 'nearby-div-icon',
+      html: "<div class='marker-pin'></div><i class='humanitarian-icon-Education'></i>",
+      iconSize: [30, 42],
+      iconAnchor: [15, 42]
+  });
     this.state.Edudata.facility.map(e => {
       var NearbyMarker = L.marker([e.latitude, e.longitude], {
         icon: NearbyIcon
@@ -209,7 +219,8 @@ class OSDetails extends Component {
       NearbyMarker.on('click', () => {
         let dir = document.getElementsByClassName('pop-dir')
 
-        for (var i = 0; i < dir.length; i++) {
+        for (var i = 0; i < dir.length; i++) {                                                                 
+
           dir[i].addEventListener('click', () => {
             // console.log("called", i)
             if (dir[0].classList.contains('active')) {
@@ -240,11 +251,11 @@ class OSDetails extends Component {
   };
   plotHeli = () => {
     var NearbyIcon = L.divIcon({
-      className: "nearby-div-icon",
-      html: "<i class='humanitarian-icon-Helipad'></i>",
-
-      iconAnchor: [12, 6]
-    });
+      className: 'nearby-div-icon',
+      html: "<div class='marker-pin'></div><i class='humanitarian-icon-Helipad'></i>",
+      iconSize: [30, 42],
+      iconAnchor: [15, 42]
+  });
     this.state.HeliData && this.state.HeliData.facility.map(e => {
       // console.log("single",e);
       
