@@ -4,9 +4,12 @@ import "leaflet/dist/leaflet.css";
 import Axios from "axios";
 import L from "leaflet";
 const { BaseLayer } = LayersControl;
-// import EduImage from "../../../img/educationMarker.svg";
-// import FireImage from "../../../img/fireMarker.png";
-// import healthIcon from '../../../img/icons_Medical.png'
+import eduIcon from "../../../img/icons_Education.png";
+import fireIcon from "../../../img/icons_Firebrigade.png";
+import healthIcon from '../../../img/icons_Medical.png'
+import heliIcon from '../../../img/icons_Helipad.png'
+import securityIcon from '../../../img/icons_Security.png'
+
 
 class OSDetails extends Component {
   constructor(props) {
@@ -95,17 +98,27 @@ class OSDetails extends Component {
   plotHealth = () => {
     // console.log("i", healthIcon);
     
-    var HealthIcon = L.divIcon({
-      className: 'nearby-div-icon',
-      html: "<div class='marker-pin'></div><i class='humanitarian-icon-Medical-supply'></i>",
-      iconSize: [30, 42],
-      iconAnchor: [15, 42]
-  });
-  
+    // var HealthIcon = L.divIcon({
+    //   className: 'nearby-div-icon',
+    //   html: "<div class='marker-pin'></div><i class='humanitarian-icon-Medical-supply'></i>",
+    //   iconSize: [30, 42],
+    //   iconAnchor: [15, 42]
+  // });
+  const iconPerson = new L.Icon({
+    
+    iconUrl: healthIcon,
+    iconSize: [22, 28],
+    iconAnchor: [13, 27],
+    popupAnchor: [10, 5],
+    shadowUrl: null,
+    shadowSize: null,
+    shadowAnchor: null
+    // className: 'leaflet-div-icon'
+});
+
   
     this.state.HealthData.facility.map(e => {
-  var NearbyMarker=  L.marker([e.latitude, e.longitude], 
-        {icon: HealthIcon }).addTo(this.state.allNearby);
+  var NearbyMarker=  L.marker([e.latitude, e.longitude],{icon: iconPerson }).addTo(this.state.allNearby);
 
       var popUp =
         "<div class='bind-popup'>" +
@@ -150,12 +163,19 @@ class OSDetails extends Component {
 
     //   iconAnchor: [12, 6]
     // });
-    var NearbyIcon = L.divIcon({
-      className: 'nearby-div-icon',
-      html: "<div class='marker-pin'></div><i class='humanitarian-icon-National-army'></i>",
-      iconSize: [30, 42],
-      iconAnchor: [15, 42]
+    const iconPerson = new L.Icon({
+      // iconUrl: require('../img/marker-pin-person.svg'),
+      // iconRetinaUrl: require('../img/marker-pin-person.svg'),
+      iconUrl: securityIcon,
+      iconSize: [22, 28],
+      iconAnchor: [13, 27],
+      popupAnchor: [10, 5],
+      shadowUrl: null,
+      shadowSize: null,
+      shadowAnchor: null
+      // className: 'leaflet-div-icon'
   });
+  
     this.state.SecurityData.facility.map(e => {
       var NearbyMarker = L.marker([e.latitude, e.longitude], {
         icon: NearbyIcon
@@ -199,12 +219,25 @@ class OSDetails extends Component {
   };
 
   plotEdu = () => {
-    var NearbyIcon = L.divIcon({
-      className: 'nearby-div-icon',
-      html: "<div class='marker-pin'></div><i class='humanitarian-icon-Education'></i>",
-      iconSize: [30, 42],
-      iconAnchor: [15, 42]
-  });
+  //   var NearbyIcon = L.divIcon({
+  //     className: 'nearby-div-icon',
+  //     html: "<div class='marker-pin'></div><i class='humanitarian-icon-Education'></i>",
+  //     iconSize: [30, 42],
+  //     iconAnchor: [15, 42]
+  // });
+  const NearbyIcon = new L.Icon({
+    // iconUrl: require('../img/marker-pin-person.svg'),
+    // iconRetinaUrl: require('../img/marker-pin-person.svg'),
+    iconUrl: eduIcon,
+    iconSize:  [22, 28],
+    iconAnchor: [13, 27],
+    popupAnchor: [10, 5],
+    shadowUrl: null,
+    shadowSize: null,
+    shadowAnchor: null
+    // className: 'leaflet-div-icon'
+});
+
     this.state.Edudata.facility.map(e => {
       var NearbyMarker = L.marker([e.latitude, e.longitude], {
         icon: NearbyIcon
@@ -250,12 +283,19 @@ class OSDetails extends Component {
     });
   };
   plotHeli = () => {
-    var NearbyIcon = L.divIcon({
-      className: 'nearby-div-icon',
-      html: "<div class='marker-pin'></div><i class='humanitarian-icon-Helipad'></i>",
-      iconSize: [30, 42],
-      iconAnchor: [15, 42]
+    const NearbyIcon = new L.Icon({
+      // iconUrl: require('../img/marker-pin-person.svg'),
+      // iconRetinaUrl: require('../img/marker-pin-person.svg'),
+      iconUrl: heliIcon,
+      iconSize:  [22, 28],
+      iconAnchor: [13, 27],
+      popupAnchor: [10, 5],
+      shadowUrl: null,
+      shadowSize: null,
+      shadowAnchor: null
+      // className: 'leaflet-div-icon'
   });
+  
     this.state.HeliData && this.state.HeliData.facility.map(e => {
       // console.log("single",e);
       
