@@ -39,7 +39,8 @@ class OpenSpace extends Component {
       }
 
     render() {
-         const videoUrl = this.state.loader && this.state.Opendata[0].video;
+         const videoUrl = this.state.loader && this.state.Opendata[0].video ? this.state.Opendata[0].video : '';
+        console.log("vide", this.state.Opendata);
         
         const opts = {
             playersVars : {

@@ -164,7 +164,7 @@ import Gallery from "./Gallery/Gallery";
         }
         // console.log(Response.data.paths[j].description)
         var polyline = L.polyline(path, { color: j == 0 ? 'blue' : 'grey' })
-        this.state.Routespaths.push({ id: j, path: polyline, description: Response.data.paths[j].description == undefined ? "No Descrption" : Response.data.paths[j].description[0], distance: Response.data.paths[j].distance })
+        this.state.Routespaths.push({ id: j, path: polyline, description: Response.data.paths[j].description == undefined ? "No Description" : Response.data.paths[j].description[0], distance: Response.data.paths[j].distance })
 
         this.state.Routes.addLayer(polyline)
         this.props.reff.current.leafletElement.fitBounds(polyline.getBounds())

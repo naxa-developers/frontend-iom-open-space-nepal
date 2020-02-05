@@ -1,0 +1,18 @@
+container .leaflet-map-pane .leaflet-marker-pane .leaflet-marker-icon i{
+   
+    animation: blink 1s linear infinite;
+}
+@keyframes blink{
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+   50% {
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5);
+    }
+    100% {
+      -webkit-transform: scale(1);
+      transform: scale(1);
+    }
+}
