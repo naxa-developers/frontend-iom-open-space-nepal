@@ -462,9 +462,24 @@
                 .leaflet-marker-pane{
                     .leaflet-marker-icon{
                         i{
-                            @include animate_all(all .6s linear);
+                            // @include animate_all(all .6s linear);
+                            animation: blink 1s linear infinite;
                             color: $color-green;
                             font-size: 1.125rem;
+                        }
+                    }
+                    @keyframes blink{
+                        0% {
+                            -webkit-transform: scale(1);
+                            transform: scale(1);
+                        }
+                       50% {
+                            -webkit-transform: scale(1.5);
+                            transform: scale(1.5);
+                        }
+                        100% {
+                          -webkit-transform: scale(1);
+                          transform: scale(1);
                         }
                     }
                 }

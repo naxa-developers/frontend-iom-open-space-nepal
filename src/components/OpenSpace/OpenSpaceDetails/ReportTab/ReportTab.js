@@ -47,7 +47,7 @@ import SingleReport from './SingleReport'
            
                  { 
                  this.state.Reports!=null&& this.state.Reports.length == 0 ? 
-<h6>There is no report available for this openspace.</h6>  :
+<h6>Users have not reported any issues related to this open space.</h6>  :
 
                     this.state.Reports.map(e => {   return  <li><SingleReport reportid={e.id} title={e.title} days = {e.count} name ={e.name}/> </li>  }) 
                     

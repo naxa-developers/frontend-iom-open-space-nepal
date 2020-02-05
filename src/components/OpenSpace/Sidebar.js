@@ -492,7 +492,8 @@ class Sidebar extends Component {
           className: 'OSmarkers',
           html: "<i class='OSmarker'></i>",
           // iconSize: [4, 4],
-          // iconAnchor: [12, 6]
+          iconAnchor: [12, 14],
+          popupAnchor: [-5, 5],
         });
 
 

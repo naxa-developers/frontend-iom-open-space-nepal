@@ -10,6 +10,7 @@ import healthIcon from '../../../img/icons_Medical.png'
 import heliIcon from '../../../img/icons_Helipad.png'
 import securityIcon from '../../../img/icons_Security.png'
 
+import './Details.css'
 
 class OSDetails extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class OSDetails extends Component {
       HealthData: null,
       SecurityData: null,
       HeliData: null,
-      dummyNo: ' 00-000000',
+      dummyNo: 'Not Available',
       myloc: L.control({ position: 'topleft' }),
       legend: L.control({ position: 'bottomright' }),
       allNearby: L.featureGroup()
@@ -107,9 +108,9 @@ class OSDetails extends Component {
   const iconPerson = new L.Icon({
     
     iconUrl: healthIcon,
-    iconSize: [22, 28],
-    iconAnchor: [13, 27],
-    popupAnchor: [10, 5],
+    iconSize: [26, 34],
+    // iconAnchor: [15, 42],
+    popupAnchor: [-5, 5],
     shadowUrl: null,
     shadowSize: null,
     shadowAnchor: null
@@ -163,13 +164,13 @@ class OSDetails extends Component {
 
     //   iconAnchor: [12, 6]
     // });
-    const iconPerson = new L.Icon({
+    const NearbyIcon = new L.Icon({
       // iconUrl: require('../img/marker-pin-person.svg'),
       // iconRetinaUrl: require('../img/marker-pin-person.svg'),
       iconUrl: securityIcon,
-      iconSize: [22, 28],
-      iconAnchor: [13, 27],
-      popupAnchor: [10, 5],
+      iconSize:  [26, 34],
+      // iconAnchor: [13, 27],
+      popupAnchor: [-5, 5],
       shadowUrl: null,
       shadowSize: null,
       shadowAnchor: null
@@ -229,9 +230,9 @@ class OSDetails extends Component {
     // iconUrl: require('../img/marker-pin-person.svg'),
     // iconRetinaUrl: require('../img/marker-pin-person.svg'),
     iconUrl: eduIcon,
-    iconSize:  [22, 28],
-    iconAnchor: [13, 27],
-    popupAnchor: [10, 5],
+    iconSize:  [26, 34],
+    // iconAnchor: [13, 27],
+    popupAnchor: [-5, 5],
     shadowUrl: null,
     shadowSize: null,
     shadowAnchor: null
@@ -287,9 +288,9 @@ class OSDetails extends Component {
       // iconUrl: require('../img/marker-pin-person.svg'),
       // iconRetinaUrl: require('../img/marker-pin-person.svg'),
       iconUrl: heliIcon,
-      iconSize:  [22, 28],
-      iconAnchor: [13, 27],
-      popupAnchor: [10, 5],
+      iconSize:   [26, 34],
+      // iconAnchor: [13, 27],
+      popupAnchor: [-5, 5],
       shadowUrl: null,
       shadowSize: null,
       shadowAnchor: null
