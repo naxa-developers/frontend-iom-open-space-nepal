@@ -175,7 +175,7 @@
                                 padding: 10px 0;
                                 &.collapsed{
                                     &:after{
-                                        content: 'Show More';
+                                        content: '  ';
                                     }
                                 }
                                 &:not(.collapsed){
