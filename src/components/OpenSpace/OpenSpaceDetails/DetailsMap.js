@@ -362,7 +362,7 @@ class OSDetails extends Component {
       div.innerHTML += "<h6 style='margin-bottom: 10px'> <span class='legend-div'> <i class='humanitarian-icon-Education'></i> </span><font style='margin-left: 10px'>Education</font></h6>"
       div.innerHTML += "<h6 style='margin-bottom: 10px'> <span class='legend-div'><i class='humanitarian-icon-Medical-supply'></i></span><font style='margin-left: 12px'>Health Facilities</font></h6>"
       div.innerHTML += "<h6 style='margin-bottom: 10px'><span class='legend-div'><i class='humanitarian-icon-Helicopter'></i></span><font style='margin-left: 11px'>Helipad(Airports)</font></h6>"
-      div.innerHTML += "<h6 style='margin-bottom: 10px'><span class='legend-div-fire'><i class='humanitarian-icon-Fire'></i></span><font style='margin-left: 14px'>Fire Brigade</font></h6>"
+      div.innerHTML += "<h6 style='margin-bottom: 10px'><span class='legend-div-fire'><i class='humanitarian-icon-Fire'></i></span><font style='margin-left: 12px'>Fire Brigade</font></h6>"
       div.innerHTML += "<h6 style='margin-bottom: 10px'><span class='legend-div'><i class='humanitarian-icon-National-army'></i></span><font style='margin-left: 12px'>Security Forces</font></h6>"
       return div
 
