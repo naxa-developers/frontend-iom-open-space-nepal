@@ -4,11 +4,9 @@ import "leaflet/dist/leaflet.css";
 import Axios from "axios";
 import L from "leaflet";
 const { BaseLayer } = LayersControl;
-import eduIcon from "../../../img/icons_Education.png";
-import fireIcon from "../../../img/icons_Firebrigade.png";
+
 import healthIcon from '../../../img/icons_Medical.png'
-import heliIcon from '../../../img/icons_Helipad.png'
-import securityIcon from '../../../img/icons_Security.png'
+
 
 import './Details.css'
 
@@ -86,8 +84,17 @@ class OSDetails extends Component {
           });
 
           this.plotSecurity();
-          this.props.reff.current.leafletElement.fitBounds(this.state.allNearby.getBounds().extend(this.geo.getBounds()))
+          var mapRf =  this.props.reff.current.leafletElement; 
 
+          mapRf.fitBounds(this.state.allNearby.getBounds().extend(this.geo.getBounds()))
+          mapRf.setView(new L.LatLng(this.state.OSlatlng[0],this.state.OSlatlng[1] ), mapRf.getZoom()+1)
+
+          // count amenties to set the zoom level, if count> 20, zoom level will be increased by 2
+          var totalamenities = this.state.HealthData && this.state.Edudata && this.state.HeliData &&  this.state.HealthData.facility.length+ this.state.Edudata.facility.length
+           + this.state.HeliData.facility.length + this.state.SecurityData.facility.length
+           console.log("total", totalamenities);
+            totalamenities > 20 &&  mapRf.setView(new L.LatLng(this.state.OSlatlng[0],this.state.OSlatlng[1] ), mapRf.getZoom()+2)
+          
         });
       });
     });
@@ -97,14 +104,20 @@ class OSDetails extends Component {
 
   };
   plotHealth = () => {
-    // console.log("i", healthIcon);
+    console.log("i", healthIcon);
     
-    // var HealthIcon = L.divIcon({
-    //   className: 'nearby-div-icon',
-    //   html: "<div class='marker-pin'></div><i class='humanitarian-icon-Medical-supply'></i>",
-    //   iconSize: [30, 42],
-    //   iconAnchor: [15, 42]
+  //   var HealthIcon = L.divIcon({
+  //     className: 'nearby-div-icon',
+  //     html: "<div class='marker-pin'></div><i class='humanitarian-icon-Medical-supply'></i>",
+  //     iconSize: [30, 42],
+  //     iconAnchor: [15, 42]
   // });
+  var HealthIcon = L.divIcon({
+    className: 'nearby-div-icon',
+    html: "<div class='marker-pin'></div> <i class='humanitarian-icon-Medical-supply'></i>",
+    iconSize: [30, 42],
+    iconAnchor: [15, 42]
+});
   const iconPerson = new L.Icon({
     
     iconUrl: healthIcon,
@@ -119,7 +132,7 @@ class OSDetails extends Component {
 
   
     this.state.HealthData.facility.map(e => {
-  var NearbyMarker=  L.marker([e.latitude, e.longitude],{icon: iconPerson }).addTo(this.state.allNearby);
+  var NearbyMarker=  L.marker([e.latitude, e.longitude],{icon: HealthIcon }).addTo(this.state.allNearby);
 
       var popUp =
         "<div class='bind-popup'>" +
@@ -158,24 +171,25 @@ class OSDetails extends Component {
     });
   };
   plotSecurity = () => {
-    // var NearbyIcon = L.divIcon({
-    //   className: "nearby-div-icon",
-    //   html: "<i class='humanitarian-icon-National-army'></i>",
+    var NearbyIcon = L.divIcon({
+      className: "nearby-div-icon",
+      html: "<div class='marker-pin'></div><i class='humanitarian-icon-National-army'></i>",
+      iconSize: [30, 42],
 
-    //   iconAnchor: [12, 6]
-    // });
-    const NearbyIcon = new L.Icon({
-      // iconUrl: require('../img/marker-pin-person.svg'),
-      // iconRetinaUrl: require('../img/marker-pin-person.svg'),
-      iconUrl: securityIcon,
-      iconSize:  [26, 34],
-      // iconAnchor: [13, 27],
-      popupAnchor: [-5, 5],
-      shadowUrl: null,
-      shadowSize: null,
-      shadowAnchor: null
-      // className: 'leaflet-div-icon'
-  });
+      iconAnchor: [12, 6]
+    });
+  //   const NearbyIcon = new L.Icon({
+  //     // iconUrl: require('../img/marker-pin-person.svg'),
+  //     // iconRetinaUrl: require('../img/marker-pin-person.svg'),
+  //     iconUrl: securityIcon,
+  //     iconSize:  [26, 34],
+  //     // iconAnchor: [13, 27],
+  //     popupAnchor: [-5, 5],
+  //     shadowUrl: null,
+  //     shadowSize: null,
+  //     shadowAnchor: null
+  //     // className: 'leaflet-div-icon'
+  // });
   
     this.state.SecurityData.facility.map(e => {
       var NearbyMarker = L.marker([e.latitude, e.longitude], {
@@ -220,24 +234,24 @@ class OSDetails extends Component {
   };
 
   plotEdu = () => {
-  //   var NearbyIcon = L.divIcon({
-  //     className: 'nearby-div-icon',
-  //     html: "<div class='marker-pin'></div><i class='humanitarian-icon-Education'></i>",
-  //     iconSize: [30, 42],
-  //     iconAnchor: [15, 42]
-  // });
-  const NearbyIcon = new L.Icon({
-    // iconUrl: require('../img/marker-pin-person.svg'),
-    // iconRetinaUrl: require('../img/marker-pin-person.svg'),
-    iconUrl: eduIcon,
-    iconSize:  [26, 34],
-    // iconAnchor: [13, 27],
-    popupAnchor: [-5, 5],
-    shadowUrl: null,
-    shadowSize: null,
-    shadowAnchor: null
-    // className: 'leaflet-div-icon'
-});
+    var NearbyIcon = L.divIcon({
+      className: 'nearby-div-icon',
+      html: "<div class='marker-pin'></div><i class='humanitarian-icon-Education'></i>",
+      iconSize: [30, 42],
+      iconAnchor: [15, 42]
+  });
+//   const NearbyIcon = new L.Icon({
+//     // iconUrl: require('../img/marker-pin-person.svg'),
+//     // iconRetinaUrl: require('../img/marker-pin-person.svg'),
+//     iconUrl: eduIcon,
+//     iconSize:  [26, 34],
+//     // iconAnchor: [13, 27],
+//     popupAnchor: [-5, 5],
+//     shadowUrl: null,
+//     shadowSize: null,
+//     shadowAnchor: null
+//     // className: 'leaflet-div-icon'
+// });
 
     this.state.Edudata.facility.map(e => {
       var NearbyMarker = L.marker([e.latitude, e.longitude], {
@@ -284,18 +298,24 @@ class OSDetails extends Component {
     });
   };
   plotHeli = () => {
-    const NearbyIcon = new L.Icon({
-      // iconUrl: require('../img/marker-pin-person.svg'),
-      // iconRetinaUrl: require('../img/marker-pin-person.svg'),
-      iconUrl: heliIcon,
-      iconSize:   [26, 34],
-      // iconAnchor: [13, 27],
-      popupAnchor: [-5, 5],
-      shadowUrl: null,
-      shadowSize: null,
-      shadowAnchor: null
-      // className: 'leaflet-div-icon'
+    var NearbyIcon = L.divIcon({
+      className: 'nearby-div-icon',
+      html: "<div class='marker-pin'></div><i class='humanitarian-icon-Helicopter'></i>",
+      iconSize: [30, 42],
+      iconAnchor: [15, 42]
   });
+  //   const NearbyIcon = new L.Icon({
+  //     // iconUrl: require('../img/marker-pin-person.svg'),
+  //     // iconRetinaUrl: require('../img/marker-pin-person.svg'),
+  //     iconUrl: heliIcon,
+  //     iconSize:   [26, 34],
+  //     // iconAnchor: [13, 27],
+  //     popupAnchor: [-5, 5],
+  //     shadowUrl: null,
+  //     shadowSize: null,
+  //     shadowAnchor: null
+  //     // className: 'leaflet-div-icon'
+  // });
   
     this.state.HeliData && this.state.HeliData.facility.map(e => {
       // console.log("single",e);
@@ -339,11 +359,11 @@ class OSDetails extends Component {
       var div = L.DomUtil.create('div', `leg`)
       div.innerHTML = ''
       div.innerHTML += "<h5>Legend</h6>"
-      div.innerHTML += "<h6><i class='humanitarian-icon-Education'></i>Education</h6>"
-      div.innerHTML += "<h6><i class='humanitarian-icon-Medical-supply'></i>Health Facilities</h6>"
-      div.innerHTML += "<h6><i class='humanitarian-icon-Helipad'></i>Helipad(Airports)</h6>"
-      div.innerHTML += "<h6><i class='humanitarian-icon-Fire'></i>Fire Brigade</h6>"
-      div.innerHTML += "<h6><i class='humanitarian-icon-National-army'></i>Security Forces</h6>"
+      div.innerHTML += "<h6 style='margin-bottom: 10px'> <span class='legend-div'> <i class='humanitarian-icon-Education'></i> </span><font style='margin-left: 10px'>Education</font></h6>"
+      div.innerHTML += "<h6 style='margin-bottom: 10px'> <span class='legend-div'><i class='humanitarian-icon-Medical-supply'></i></span><font style='margin-left: 12px'>Health Facilities</font></h6>"
+      div.innerHTML += "<h6 style='margin-bottom: 10px'><span class='legend-div'><i class='humanitarian-icon-Helicopter'></i></span><font style='margin-left: 11px'>Helipad(Airports)</font></h6>"
+      div.innerHTML += "<h6 style='margin-bottom: 10px'><span class='legend-div-fire'><i class='humanitarian-icon-Fire'></i></span><font style='margin-left: 12px'>Fire Brigade</font></h6>"
+      div.innerHTML += "<h6 style='margin-bottom: 10px'><span class='legend-div'><i class='humanitarian-icon-National-army'></i></span><font style='margin-left: 12px'>Security Forces</font></h6>"
       return div
 
     }
@@ -369,7 +389,7 @@ class OSDetails extends Component {
 
     this.state.myloc.addTo(this.props.reff.current.leafletElement)
     var locs = document.getElementsByClassName('loc')[0].addEventListener('click', () => {
-      console.log("con")
+      // console.log("con")
       this.props.reff.current.leafletElement.setView(this.state.currentLocation, 14);
     })
   }
@@ -466,6 +486,8 @@ class OSDetails extends Component {
     });
   }
   render() {
+  this.state.HealthData&&  console.log("data", this.state.HealthData.facility.length, this.state.Edudata);
+    
     this.props.id && localStorage.setItem("OpenspaceID", this.props.id);
 
     return (
