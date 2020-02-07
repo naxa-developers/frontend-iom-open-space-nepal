@@ -102,7 +102,7 @@
 
 }
 
-.current-location i{
+/* .current-location i{
    
     animation: blink 1s linear infinite;
 }
@@ -119,7 +119,7 @@
       -webkit-transform: scale(1);
       transform: scale(1);
     }
-}
+} */
 
 
 
@@ -143,17 +143,26 @@ ul .scrollbar-container{
 } */
 
 .marker-pin {
-    width: 30px;
-    height: 30px;
-    border-radius: 50% 50% 50% 0;
-    background: #418fde;
+    width: 24px;
+    height: 24px;
+    border-radius: 100%;
+
+    /* border-width: 0.1rem; */
+    background: #fff;
     position: absolute;
     transform: rotate(-45deg);
-    left: 50%;
-    top: 50%;
-    margin: -15px 0 0 -15px;
-  }
-  
+    left: 55%;
+    top: 100%;
+    margin: -15px 0 0 -14px;
+    border: 1px solid #aad8ef;
+}
+.marker-pin:hover{
+    /* background: red; */
+    border: 2px solid #00aaff;
+}
+
+
+/*   
   .marker-pin::after {
       content: '';
       width: 24px;
@@ -162,14 +171,15 @@ ul .scrollbar-container{
       background: #fff;
       position: absolute;
       border-radius: 50%;
-   }
+   } */
   
   .nearby-div-icon i {
      position: absolute;
-     width: 22px;
+     width: 14px;
      /* font-size: 12px; */
      left: 0;
      right: 0;
+     top:50%;
      margin: 12px auto;
      text-align: center;
   }
@@ -177,4 +187,20 @@ ul .scrollbar-container{
   .nearby-div-icon i.awesome {
      margin: 12px auto;
      font-size: 17px;
+  }
+
+  span.legend-div {
+    border: 1px solid #aad8ef;
+    padding: 2px;
+    border-radius: 100%;
+    background: #fff;
+
+  }
+
+  span.legend-div-fire {
+    border: 1px solid #aad8ef;
+    padding: 3px;
+    border-radius: 90%;
+    background: #fff;
+
   }

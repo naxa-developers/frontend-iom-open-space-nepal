@@ -239,9 +239,10 @@
                                 font-size: .625rem;
                                 i{
                                     &:before{
-                                        color: $color-green;
+                                        padding-left: 2px;
+                                        color: #418fde;
                                     }
-                                    margin-right: 10px;
+                                    // margin-right: 10px;
                                 }
                             }
                         }
@@ -445,7 +446,7 @@
                     .leaflet-marker-icon{
                         &.nearby-div-icon{
                             i{
-                                font-size: 0.875rem;
+                                font-size: 0.775rem;
                                 &:before{
                                     // color: $color-blue;
                                 }
@@ -463,25 +464,25 @@
                     .leaflet-marker-icon{
                         i{
                             // @include animate_all(all .6s linear);
-                            animation: blink 1s linear infinite;
+                            // animation: blink 1s linear infinite;
                             color: $color-green;
-                            font-size: 1.125rem;
+                            // font-size: 1.125rem;
                         }
                     }
-                    @keyframes blink{
-                        0% {
-                            -webkit-transform: scale(1);
-                            transform: scale(1);
-                        }
-                       50% {
-                            -webkit-transform: scale(1.5);
-                            transform: scale(1.5);
-                        }
-                        100% {
-                          -webkit-transform: scale(1);
-                          transform: scale(1);
-                        }
-                    }
+                    // @keyframes blink{
+                    //     0% {
+                    //         -webkit-transform: scale(1);
+                    //         transform: scale(1);
+                    //     }
+                    //    50% {
+                    //         -webkit-transform: scale(1.5);
+                    //         transform: scale(1.5);
+                    //     }
+                    //     100% {
+                    //       -webkit-transform: scale(1);
+                    //       transform: scale(1);
+                    //     }
+                    // }
                 }
             }
         }
