@@ -1,6 +1,6 @@
 container .leaflet-map-pane .leaflet-marker-pane .leaflet-marker-icon i{
    
-    /* animation: blink 1s linear infinite; */
+    animation: blink 1s linear infinite;
 }
 @keyframes blink{
     0% {
