@@ -52,10 +52,10 @@ import Axios from 'axios';
                                 <img src={nepalLogo} alt="government" />
                             </figure> */}
                             <figure>
-                                <img src={iom} alt="IOM" />
+                                {/* <img src={iom} alt="IOM" /> */}
                             </figure>
                             <figure>
-                                <img src={ccm} alt="CCM" />
+                                {/* <img src={ccm} alt="CCM" /> */}
                             </figure>
                         </div>
                         
