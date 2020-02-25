@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 
-import logo from "../../img/logo.png";
+import logo from "../../img/New-Logo1.svg";
 import nepal from "../../img/nepal.png";
 import uk from "../../img/uk.png";
 
@@ -47,7 +47,7 @@ handleClick = (v) => {
               <div className="headLeft">
                 <div className="logo">
                   <NavLink to="/">
-                    <img src={logo} alt="logo" />
+                    <img src={logo} alt="logo" style={{zIndex: 99}} />
                   </NavLink>
                 </div>
               </div>
