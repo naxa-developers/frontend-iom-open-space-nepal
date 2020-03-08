@@ -13,6 +13,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { connect } from 'react-redux';
 const { BaseLayer } = LayersControl;
+import Spinner from '../Report/LoadingSpinnerBig'
 
 
 
@@ -25,7 +26,8 @@ class OS extends Component {
             activeroute: 0,
             Routespaths: [],
             currentLocation: null,
-            myloc: L.control({ position: 'topleft' })
+            myloc: L.control({ position: 'topleft' }),
+            provinceLoading: 'block'
 
 
         };
@@ -91,15 +93,15 @@ class OS extends Component {
     }
     loadprovince = () => {
         var colors = ["#0489B1", "#045FB4", "purple", "#0404B4", "#3104B4", "#5F04B4", "#1B0A2A"]
-        console.log("province loadig...")
+        
         Axios.get('https://iomapi.naxa.com.np/api/v1/province_geo_json')
             .then(response => {
-                console.log(response, "province")
+              this.setState({provinceLoading: 'none'})
                 var province = L.geoJSON(response.data, {
                     style: (feature) => {
                         return {
                             color: 'green',
-                            weight: 0.2,
+                            weight: 0.8,
                             fillColor: colors[feature.properties.code - 1],
                             fillOpacity: 0.0
                         }
@@ -122,7 +124,7 @@ class OS extends Component {
 
         this.state.myloc.addTo(this.props.mapRefss.current.leafletElement)
         var locs = document.getElementsByClassName('loc')[0].addEventListener('click', () => {
-            console.log("con")
+         
             this.props.mapRefss.current.leafletElement.setView(this.state.currentLocation, 14);
         })
     }
@@ -138,7 +140,7 @@ class OS extends Component {
                     return {
                         fillColor: "red",
                         fillOpacity: 0.02,
-                        weight: 0.3,
+                        weight: 0.7,
                         opacity: 0.0,
                         color: 'red',
                         fill: true,
@@ -167,12 +169,12 @@ class OS extends Component {
                 fill: true,
                 opacity: 1,
                 color: 'green',
-                weight: 2
+                weight: 8
 
             })
         }
 
-        world.addTo(this.props.mapRefss.current.leafletElement)
+       // world.addTo(this.props.mapRefss.current.leafletElement)
     }
 
 
@@ -218,7 +220,7 @@ class OS extends Component {
 
                 <ToastContainer newestOnTop={true} enableMultiContainer />
        
-
+           
 
                 <LeafletMap
 
@@ -236,6 +238,29 @@ class OS extends Component {
                     ref={this.props.mapRefss}
                     style={{ height: this.state.height == null ? '80vh' : this.state.height, overflow: 'hidden', }}
                 >
+                  
+
+                        <div
+            id='Spinner'
+            style={{
+              display: `${this.state.provinceLoading}`,
+              background: 'white',
+              opacity: '0.8',
+              position: 'absolute',
+              zIndex: '500',
+              textAlign: 'center',
+              height: '100%',
+              width: '100%',
+              padding: '30vh 40% 43vh'
+            }}
+          >
+           <Spinner />
+            <br />
+            <span style={{ color: 'black' }}>
+              <strong>Please wait, map is loading</strong>
+            </span>
+          </div>
+
                     <LayersControl position="topright">
                         <BaseLayer checked={this.state.baselayer ? true : false} ref={this.baseLayer} name="OpenStreetMap">
                             <TileLayer

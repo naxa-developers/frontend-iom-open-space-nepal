@@ -16,3 +16,8 @@ container .leaflet-map-pane .leaflet-marker-pane .leaflet-marker-icon i{
       transform: scale(1);
     }
 }
+
+div.fade.modal.show{
+    z-index: 999999999;
+
+}

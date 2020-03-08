@@ -123,13 +123,6 @@ handleClick = (v) => {
                             : "मोबाईल एप  "}
                         </NavLink>
                       </li>
-                      <li className="menu-item menu-item-has-current">
-                        <NavLink to="openspace" className="menu-item" activeClassName = " menu-item ">
-                          {this.props.language == "0"
-                            ? "Find Open Space "
-                            : "खुल्ला क्षेत्र पत्ता लगाउनुहोस"}
-                        </NavLink>
-                      </li>
                       <li className="menu-item ">
                         <NavLink to="about" className="menu-item" activeClassName = " menu-item active ">
                           {" "}
@@ -138,6 +131,14 @@ handleClick = (v) => {
                             : "खुल्ला क्षेत्र बारे"}
                         </NavLink>
                       </li>
+                      <li className="menu-item menu-item-has-current">
+                        <NavLink to="openspace" className="menu-item" activeClassName = " menu-item ">
+                          {this.props.language == "0"
+                            ? "Find Open Space "
+                            : "खुल्ला क्षेत्र पत्ता लगाउनुहोस"}
+                        </NavLink>
+                      </li>
+                   
                     </ul>
                   </div>
                 </nav>
