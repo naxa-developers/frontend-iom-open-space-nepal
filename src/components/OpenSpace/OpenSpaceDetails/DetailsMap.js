@@ -455,11 +455,15 @@ class OSDetails extends Component {
 
 
   componentDidMount() {
+
+  
+
     this.onload();
     this.plotNearby();
     this.currentloc();
     this.getOSlatlng();
     this.addlegend();
+ 
     this.state.allNearby.addTo(this.props.reff.current.leafletElement);
 
     Axios.get(
@@ -486,9 +490,7 @@ class OSDetails extends Component {
     });
   }
   render() {
-  this.state.HealthData&&  console.log("data", this.state.HealthData.facility.length, this.state.Edudata);
-    
-    this.props.id && localStorage.setItem("OpenspaceID", this.props.id);
+ 
 
     return (
       <>

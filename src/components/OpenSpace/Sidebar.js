@@ -482,7 +482,12 @@ class Sidebar extends Component {
   displayOS = () => {
     this.state.OSmarkers.eachLayer((e) => this.state.OSmarkers.removeLayer(e))
 
-
+  //   var nexrad = L.tileLayer.wms(this.state.displayOS, {
+  //     layers: 'nexrad-n0r-900913',
+  //     format: 'image/png',
+  //     transparent: true,
+  //     attribution: "Weather data © 2012 IEM Nexrad"
+  // });
     this.state.Allos.map(e => {
       // console.log(e, 'data')
       if (e.centroid != null) {
@@ -799,6 +804,7 @@ class Sidebar extends Component {
   componentDidMount() {
    
 
+ 
 
     var nearby = this.props.mapRefs.current.leafletElement.createPane('nearby');
     var Oslanding = this.props.mapRefs.current.leafletElement.createPane('Oslanding');

@@ -16,6 +16,7 @@ import OpenSpace from "../components/OpenSpace/Openspace"
 import AboutApp from "./AboutApp/AboutApp";
 import OpenSpaceDetails from "./OpenSpace/OpenSpaceDetails/OpenSpaceDetails";
 import ReportDetails from './Report/ReportDetails/ReportDetails';
+import About from './About/About';
 
 
 
@@ -50,6 +51,11 @@ class App extends Component {
               exact
               path="/report"
               render={props => <Report {...props}/>}
+            ></Route>
+              <Route
+              exact
+              path="/about"
+              render={props => <About {...props}/>}
             ></Route>
             <Route
               exact

@@ -130,6 +130,14 @@ handleClick = (v) => {
                             : "खुल्ला क्षेत्र पत्ता लगाउनुहोस"}
                         </NavLink>
                       </li>
+                      <li className="menu-item ">
+                        <NavLink to="about" className="menu-item" activeClassName = " menu-item active ">
+                          {" "}
+                          {this.props.language == "0"
+                            ? "About"
+                            : "खुल्ला क्षेत्र बारे"}
+                        </NavLink>
+                      </li>
                     </ul>
                   </div>
                 </nav>
