@@ -310,7 +310,7 @@ class NearbyTab extends Component {
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="2">
             <i className="humanitarian-icon-Helipad"></i>
-              Helipad(Airport)
+              Helipad, Airport
             </Accordion.Toggle>
             
           </Card.Header>

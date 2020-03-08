@@ -163,7 +163,7 @@ class OS extends Component {
         for (var i = 1; i <= 7; i++) {
             world.setFeatureStyle(i, {
                 fillColor: colors[i-1],
-                fillOpacity: 0.03,
+                fillOpacity: 0.04,
                 fill: true,
                 opacity: 1,
                 color: 'green',
@@ -178,6 +178,11 @@ class OS extends Component {
 
 
     componentDidMount() {
+
+       
+
+
+
         this.onload();
         this.loadprovince()
         this.currentLocation();
