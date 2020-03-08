@@ -446,6 +446,7 @@ class Sidebar extends Component {
 
     })
     document.getElementById('mrk-lg').innerHTML+="<li id='nearbylegend' ><span class='legend green'></span><p>Nearby OS</p></li>"
+    document.getElementById('mrk-lg').innerHTML+="<li id='nearbylegend' ><span class='current-location'><i class='material-icons' style='color: #5ACE52'>gps_fixed</i> </span></span><p>  </p><p>Your Location</p></li>"
     this.state.nearbyGroup.bringToFront()
     this.props.mapRefs.current.leafletElement.fitBounds(this.state.nearbyGroup.getBounds())
 
@@ -959,7 +960,9 @@ componentDidUpdate(){
                   <h5>
                     {/* Open spaces: <span> 83 </span> */}
                     Open spaces: <span> {this.state.Allos.length} </span>
+
                   </h5>
+                  {/* <span>Below is the result of Gandaki Province..</span> */}
                 </div>
                 <div className="space-list" >
                   <div className="input-group">
@@ -1002,7 +1005,7 @@ componentDidUpdate(){
 
                   <ul>
                     {this.state.Allos &&
-                   this.state.Allos.length== 0 ?   <h6>No openspace found</h6> :
+                   this.state.Allos.length== 0 ?   <h6>No open space identification survey has been  carried  in this location</h6> :
                       this.state.Allos.map((e, i) => {
                         return (
                           <OpenSpaceCard
