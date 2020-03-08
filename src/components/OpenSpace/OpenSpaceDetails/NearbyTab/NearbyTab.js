@@ -6,6 +6,8 @@ import SecurityCard from "./SecurityCard";
 import EducationCard from './EducationCard';
 import Axios from 'axios'
 import HelipadCard from "./HelipadCard";
+import PerfectScrollbarPS from 'perfect-scrollbar';
+      
 
 class NearbyTab extends Component {
 
@@ -27,7 +29,7 @@ class NearbyTab extends Component {
   }
 
   fetchroute = (first, second) => {
-    console.log("fs",first, second);
+    // console.log("fs",first, second);
     
     // L.tooltip().setLatLng(first).setContent('<h6>latlng</h6>').addTo(this.props.mapRefs.current.leafletElement)
     // map.closeTooltip();
@@ -58,8 +60,8 @@ class NearbyTab extends Component {
             path.push(Response.data.paths[j].points.coordinates[i].reverse())
           }
           // console.log(Response.data.paths[j].description)
-          var polyline = L.polyline(path, { color: j == 0 ? '#095c05' : 'grey' })
-          this.state.Routespaths.push({ id: j, path: polyline, description: Response.data.paths[j].description == undefined ? "No Descrption" : Response.data.paths[j].description[0], distance: Response.data.paths[j].distance })
+          var polyline = L.polyline(path, { color: j == 0 ? 'blue' : 'grey' })
+          this.state.Routespaths.push({ id: j, path: polyline, description: Response.data.paths[j].description == undefined ? "No Description" : Response.data.paths[j].description[0], distance: Response.data.paths[j].distance })
   
           this.state.Routes.addLayer(polyline)
           this.props.reff.current.leafletElement.fitBounds(polyline.getBounds())
@@ -72,7 +74,7 @@ class NearbyTab extends Component {
             this.state.Routespaths.map((i)=>{
               i.path.setStyle({color:'grey'})
             })
-            this.state.Routespaths[e.id].path.setStyle({color:'#095c05'})
+            this.state.Routespaths[e.id].path.setStyle({color:'blue'})
             this.state.Routespaths[e.id].path.bringToFront();
             var doac = document.getElementsByClassName('desccard')
             // console.log(doac,doc.length)
@@ -157,6 +159,14 @@ class NearbyTab extends Component {
   
           })
           // innterhtml
+          setTimeout(()=>{
+            const ps = new PerfectScrollbarPS('.routeWrapper', {
+              wheelSpeed: 2,
+              wheelPropagation: true,
+              minScrollbarLength: 20
+            });
+  
+          },2000)
   
   
   
@@ -184,7 +194,14 @@ class NearbyTab extends Component {
         L.DomEvent.on(dom[0], 'mousewheel', L.DomEvent.stopPropagation);
         // console.log(this.state.Routespaths)
   
-        var divss = document.getElementsByClassName('routeWrapper');
+        
+        // var divss = document.getElementById('close-routeN');
+        //      divss.addEventListener("click",()=>{
+        //       this.remove()
+              
+               
+     
+        //      })
   
   
   
@@ -211,7 +228,7 @@ class NearbyTab extends Component {
                   })
                 }
   
-                selected[0].path.setStyle({ color: '#095c05' })
+                selected[0].path.setStyle({ color: 'blue' })
   
                 selected[0].path.bringToFront()
   
@@ -253,6 +270,7 @@ class NearbyTab extends Component {
           <Accordion.Collapse eventKey="0">
             <Card.Body>
               <HospitalCard
+               reff={this.props.reff}
               OSlatlng={this.props.OSlatlng}
               id= {this.props.id}
               legend={this.state.legend}
@@ -277,6 +295,7 @@ class NearbyTab extends Component {
             <Card.Body>
 
               <FireCard
+               reff={this.props.reff}
               OSlatlng={this.props.OSlatlng}
               legend={this.state.legend}
 
@@ -291,7 +310,7 @@ class NearbyTab extends Component {
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="2">
             <i className="humanitarian-icon-Helipad"></i>
-              Helipad(Airport)
+              Helipad, Airport
             </Accordion.Toggle>
             
           </Card.Header>
@@ -299,6 +318,7 @@ class NearbyTab extends Component {
             <Card.Body>
               <HelipadCard 
               legend={this.state.legend}
+              reff={this.props.reff}
 
               id= {this.props.id}
               OSlatlng={this.props.OSlatlng}
@@ -320,6 +340,7 @@ class NearbyTab extends Component {
           <Accordion.Collapse eventKey="3">
             <Card.Body>
               <SecurityCard
+               reff={this.props.reff}
               legend={this.state.legend}
 
               id= {this.props.id}
@@ -343,6 +364,7 @@ class NearbyTab extends Component {
           <Accordion.Collapse eventKey="4">
             <Card.Body>
               <EducationCard
+               reff={this.props.reff}
               legend={this.state.legend}
 
               id= {this.props.id}

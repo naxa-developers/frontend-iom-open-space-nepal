@@ -60,7 +60,7 @@
 .nearbymarker{
     width:22px !important;
     height: 22px !important;
-    background-color: green;
+    background-color: #418fde;
     border-radius: 15px;
     background-clip: padding-box;
     border:solid 6px rgba(11, 170, 5, 0.2);
@@ -81,6 +81,17 @@
     border:solid 6px rgba(11, 170, 5, 0.2);
 
 }
+.reportMarkerReplied:hover {
+    background-color: white;
+    border:solid 9px rgba(11, 170, 5, 0.8);
+
+
+}
+.reportMarkerPending:hover {
+
+    background-color: white;
+    border:solid 9px #F32F30;
+}
 .reportMarkerPending{
     width:22px !important;
     height: 22px !important;
@@ -91,8 +102,24 @@
 
 }
 
-
-
+.current-location i{
+   
+    animation: blinkone 1.5s linear infinite;
+}
+@keyframes blinkone{
+    0% {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.2);
+    }
+    50% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    } 
+     100% {
+      -webkit-transform: scale(0.5);
+      transform: scale(0.5);
+    } 
+}
 
 
 
@@ -114,3 +141,66 @@
 ul .scrollbar-container{
     height: 350px !important;
 } */
+
+.marker-pin {
+    width: 24px;
+    height: 24px;
+    border-radius: 100%;
+
+    /* border-width: 0.1rem; */
+    background: #fff;
+    position: absolute;
+    transform: rotate(-45deg);
+    left: 55%;
+    top: 100%;
+    margin: -15px 0 0 -14px;
+    border: 1px solid #aad8ef;
+}
+.marker-pin:hover{
+    /* background: red; */
+    border: 2px solid #00aaff;
+}
+
+
+/*   
+  .marker-pin::after {
+      content: '';
+      width: 24px;
+      height: 24px;
+      margin: 3px 0 0 3px;
+      background: #fff;
+      position: absolute;
+      border-radius: 50%;
+   } */
+  
+  .nearby-div-icon i {
+     position: absolute;
+     width: 14px;
+     /* font-size: 12px; */
+     left: 0;
+     right: 0;
+     top:50%;
+     margin: 12px auto;
+     text-align: center;
+  }
+  
+  .nearby-div-icon i.awesome {
+     margin: 12px auto;
+     font-size: 17px;
+  }
+
+  span.legend-div {
+    border: 1px solid #aad8ef;
+    padding: 2px;
+    border-radius: 100%;
+    background: #fff;
+
+  }
+
+  span.legend-div-fire {
+    border: 1px solid #aad8ef;
+    padding: 3px;
+    border-radius: 90%;
+    background: #fff;
+
+  }

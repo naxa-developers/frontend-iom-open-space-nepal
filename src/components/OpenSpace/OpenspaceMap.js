@@ -11,6 +11,7 @@ import { compose } from 'redux';
 require('leaflet.vectorgrid/dist/Leaflet.VectorGrid.bundled');
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { connect } from 'react-redux';
 const { BaseLayer } = LayersControl;
 
 
@@ -65,15 +66,16 @@ class OS extends Component {
             // console.log("current", this.state.currentLocation)
             var icon = L.divIcon({
                 className: 'custom-div-icon',
-                html: "<i class='material-icons'>gps_fixed</i>",
+                html: "<span class='current-location'><i class='material-icons'>gps_fixed</i> </span>",
                 // iconSize: [4, 4],
                 iconAnchor: [12, 6]
             });
             L.marker(latlng, { icon: icon }).addTo(this.props.mapRefss.current.leafletElement);
+            this.props.dispatch({ type: "Setcurrentloc" })
 
 
         })
-        this.notify()
+        sessionStorage.Openspaces==undefined&&this.notify()
         navigator.permissions.query({ name: 'geolocation' }).then((PermissionStatus) => {
             if (PermissionStatus.state == 'granted') {
                 // this.notify()
@@ -113,7 +115,7 @@ class OS extends Component {
 
             var div = L.DomUtil.create('div', `loc`)
             div.innerHTML = ''
-            div.innerHTML += "<i class='material-icons'>gps_fixed</i>"
+            div.innerHTML += "<i class='material-icons' title='My Location'>gps_fixed</i>"
             return div
 
         }
@@ -161,7 +163,7 @@ class OS extends Component {
         for (var i = 1; i <= 7; i++) {
             world.setFeatureStyle(i, {
                 fillColor: colors[i-1],
-                fillOpacity: 0.03,
+                fillOpacity: 0.04,
                 fill: true,
                 opacity: 1,
                 color: 'green',
@@ -176,11 +178,18 @@ class OS extends Component {
 
 
     componentDidMount() {
+
+       
+
+
+
         this.onload();
         this.loadprovince()
         this.currentLocation();
         this.zoomTomylocation();
-        toast.info("If current location is not in correct position, disconnect and reconnect your wifi network", { autoClose: false, position: "bottom-right" })
+        console.log(sessionStorage.Openspaces,"OS")
+     
+        sessionStorage.Openspaces==undefined&&toast.info("If current location is not in correct position, disconnect and reconnect your wifi network", { autoClose: false, position: "bottom-right" })
 
 
         this.props.mapRefss.current.leafletElement.createPane("userloc").style.zIndex = 800;
@@ -294,4 +303,4 @@ class OS extends Component {
 
 
 
-export default OS;
+export default connect()(OS);

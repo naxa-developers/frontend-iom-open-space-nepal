@@ -8,10 +8,14 @@ import ReportTab from "./ReportTab/ReportTab";
 import NearbyTab from "./NearbyTab/NearbyTab";
 import { withRouter } from 'react-router-dom';
 import L from 'leaflet'
+import PerfectScrollbar from 'react-perfect-scrollbar'
+import PerfectScrollbarPS from 'perfect-scrollbar';
+import 'react-perfect-scrollbar/dist/css/styles.css';
 
 
 import { connect } from "react-redux";
 import Gallery from "./Gallery/Gallery";
+
 
  class  DetailsCard extends Component {
   constructor(props) {
@@ -25,7 +29,9 @@ import Gallery from "./Gallery/Gallery";
       Routespaths:null,
       Routes: L.featureGroup(),
       legend: L.control({ position: 'bottomleft' }),
+      wmsToggle: L.control({ position: 'topright' }),
       isActive: false,
+      wms: false
     
 
 
@@ -50,6 +56,8 @@ import Gallery from "./Gallery/Gallery";
     ).then(response =>  {
       console.log(response.data,'resdata')
     
+    
+
       
       this.setState({ spaceInfo: response.data })
       this.currentloc()
@@ -103,10 +111,84 @@ import Gallery from "./Gallery/Gallery";
     this.props.reff.current.leafletElement.removeControl(this.state.legend)
 
   }
+
+  addWms = () => {
+    console.log("wms");
+    
+    this.state.wmsToggle.onAdd = (w) => {
+
+      var div = L.DomUtil.create('div', `wms`)
+      div.innerHTML = ''
+    
+      div.innerHTML += "<h6> <span class='wms-div'> </span><font>WMS</font></h6>"
+    
+      return div
+
+    }
+    this.state.wmsToggle.addTo(this.props.reff.current.leafletElement)
+    var wmsClicked = document.getElementsByClassName('wms')[0].addEventListener('click', () => {
+      this.setState({ wms: !this.state.wms}, () => {
+        {
+
+          var wmsLayer = L.tileLayer.wms(this.state.spaceInfo.geoserver_url, {
+            layers: this.state.spaceInfo.workspace+':'+this.state.spaceInfo.layername
+        }).addTo(this.props.reff.current.leafletElement)
+    
+        var nexrad = L.tileLayer.wms(this.state.spaceInfo.geoserver_url, {
+        layers: this.state.spaceInfo.workspace+':'+this.state.spaceInfo.layername,
+        format: 'image/png',
+        transparent: true,
+        attribution: "Weather data © 2012 IEM Nexrad"
+    });
+    
+    
+    
+   if( this.state.wms==true ) {
+    console.log("show wms", wmsLayer);
+     nexrad.addTo(this.props.reff.current.leafletElement);
+       nexrad.bringToFront();
+   } else {
+     console.log("remove wms");
+     
+    this.props.reff.current.leafletElement.removeLayer(nexrad)
+     
+   }
+          
+          
+      }
+
+
+      })
+    }
+  )
+
+  }
+
   componentDidMount() {
+  
+    
+
+    const map =  this.props.reff.current.leafletElement;
+    map.createPane("tilePane").style.zIndex = 200;
+    map.createPane("baseLayerPane").style.zIndex = 250;
+    map.createPane("wmsPane").style.zIndex = 300;
+    map.createPane("overlayPane").style.zIndex = 400;
+    map.createPane("polygonsPane").style.zIndex = 450;
+    map.createPane("linesPane").style.zIndex = 460;
+    map.createPane("shadowPane").style.zIndex = 500;
+    map.createPane("markerPane").style.zIndex = 600;
+    map.createPane("pointsPane").style.zIndex = 600;
+    map.createPane("tooltipPane").style.zIndex = 650;
+    map.createPane("popupPane").style.zIndex = 700;
+    map.createPane("maskPane").style.zIndex = 700;
+    map.createPane("topPane").style.zIndex = 701;
+
+
+    
     this.onload();
     this.fetchDetails();
     this.props.reff.current.leafletElement.addLayer(this.state.Routes)
+    this.addWms();
   }
   changetabid = e => {
     this.setState({ tabid: e });
@@ -160,8 +242,8 @@ import Gallery from "./Gallery/Gallery";
           path.push(Response.data.paths[j].points.coordinates[i].reverse())
         }
         // console.log(Response.data.paths[j].description)
-        var polyline = L.polyline(path, { color: j == 0 ? '#095c05' : 'grey' })
-        this.state.Routespaths.push({ id: j, path: polyline, description: Response.data.paths[j].description == undefined ? "No Descrption" : Response.data.paths[j].description[0], distance: Response.data.paths[j].distance })
+        var polyline = L.polyline(path, { color: j == 0 ? 'blue' : 'grey' })
+        this.state.Routespaths.push({ id: j, path: polyline, description: Response.data.paths[j].description == undefined ? "No Description" : Response.data.paths[j].description[0], distance: Response.data.paths[j].distance })
 
         this.state.Routes.addLayer(polyline)
         this.props.reff.current.leafletElement.fitBounds(polyline.getBounds())
@@ -174,7 +256,7 @@ import Gallery from "./Gallery/Gallery";
           this.state.Routespaths.map((i)=>{
             i.path.setStyle({color:'grey'})
           })
-          this.state.Routespaths[e.id].path.setStyle({color:'#095c05'})
+          this.state.Routespaths[e.id].path.setStyle({color:'blue'})
           this.state.Routespaths[e.id].path.bringToFront();
           var doac = document.getElementsByClassName('desccard')
           // console.log(doac,doc.length)
@@ -220,7 +302,7 @@ import Gallery from "./Gallery/Gallery";
         div.innerHTML = ''
         // div.innerHTML += "<img src='../../src/img/close.png' id='close-bt-route'></img>"
 
-        div.innerHTML += "<h6 id='legendtitle'>Routes</h6>"
+        div.innerHTML += "<h6 id='legendtitle'>Routes<span> <i id ='close-routeD' class='material-icons'>close</i></span></h6>"
         // console.log(this.state.Routespaths)
         var distances=[]
         this.state.Routespaths.forEach((a)=>{
@@ -257,12 +339,19 @@ import Gallery from "./Gallery/Gallery";
           activeroute++
 
         })
-        // innterhtml
+        setTimeout(()=>{
+          const ps = new PerfectScrollbarPS('.routeWrapper', {
+            wheelSpeed: 2,
+            wheelPropagation: true,
+            minScrollbarLength: 20
+          });
 
+        },1000)
 
 
 
         return div;
+        
       }
 
 
@@ -288,7 +377,15 @@ import Gallery from "./Gallery/Gallery";
 
       var divss = document.getElementsByClassName('routeWrapper');
 
+      
+   var divss = document.getElementById('close-routeD');
+        divss.addEventListener("click",()=>{
+          this.removeRoute()
+          document.getElementsByClassName("space-direction active")[0].classList.remove("active")
+          this.toogleactivetoute()
+          
 
+        })
 
 
 
@@ -313,7 +410,7 @@ import Gallery from "./Gallery/Gallery";
                 })
               }
 
-              selected[0].path.setStyle({ color: '#095c05' })
+              selected[0].path.setStyle({ color: 'blue' })
 
               selected[0].path.bringToFront()
 
@@ -373,15 +470,17 @@ import Gallery from "./Gallery/Gallery";
     this.setState({isActive:sta})
   }
 
-  componentDidUpdate() {
-    console.log("didupdate",this.nearbyref)
+  // componentDidUpdate() {
+  //   console.log("didupdate",this.nearbyref)
   
-  }
+  // }
 
   render() {
+ 
     this.props.id && localStorage.setItem("OpenspaceID", this.props.id);
     return (
       <div >
+        <PerfectScrollbar>
         <div className="map-sidebar">
           <div className="sidebar-wrapper">
             <span
@@ -432,8 +531,8 @@ import Gallery from "./Gallery/Gallery";
                         title={this.state.spaceInfo.title}
                         question_data={this.state.spaceInfo.question_data}
                         description={this.state.spaceInfo.description}
-                        province ={this.state.spaceInfo.province}
-                        municipality = {this.state.spaceInfo.municipality}
+                        province ={this.state.spaceInfo.province_name}
+                        municipality = {this.state.spaceInfo.municipality_name}
                         ward ={this.state.spaceInfo.ward}
                         ownership = {this.state.spaceInfo.ownership}
                         special_feature ={this.state.spaceInfo.special_feature}
@@ -475,7 +574,7 @@ import Gallery from "./Gallery/Gallery";
                       role="tabpanel"
                       aria-labelledby="nearby_tab"
                     >
-                      <NearbyTab ref={comp =>
+                      <NearbyTab reff={this.props.reff} ref={comp =>
             this.nearbyref =
             comp}  fetchroute={this.fetchroute} reff={this.props.reff} OSlatlng={this.state.spaceInfo.centroid} id={this.props.id} />
                     </div>
@@ -485,6 +584,7 @@ import Gallery from "./Gallery/Gallery";
             </div>
           </div>
         </div>
+        </PerfectScrollbar>
       </div>
     );
   }

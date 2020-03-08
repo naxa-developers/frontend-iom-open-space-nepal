@@ -5,7 +5,6 @@
         max-width: 200px;
         width: 200px;
         max-height: 180px;
-        overflow-y: auto;
         margin-right: 5rem;
         background-color: $color-white;
         padding: 0;
@@ -25,6 +24,21 @@
             font-size: .775rem;
             text-align: left;
             padding: .5rem .6125rem;
+            position: relative;
+            span{
+                display: inline-block;
+                position: absolute;
+                top: 7px;
+                right: 10px;
+                i{
+                    @include animate_all(all .7s linear);
+                    font-size: 20px !important;
+                    &:hover{
+                        cursor: pointer;
+                        color: $color-green;
+                    }
+                }
+            }
         }
 
         .desccard {
@@ -194,6 +208,7 @@
                 }
                 &.leaflet-bottom {
                     right: 5rem;
+                    bottom: 1rem;
                 }
 
             }
@@ -209,7 +224,29 @@
                     .leaflet-control {
                         float: none;
                         margin: 0;
+                        opacity: .7;
+                        &.leg{
+                            padding: .625rem;
+                            margin-bottom: 10px;
+                            background: lighten($color: $blue-light, $amount: 25%);
+                            h5{
+                                margin-bottom: 10px;
+                                font-size: .8rem;
+                                font-weight: 400;
+                            }
 
+                            h6{
+                                font-size: .625rem;
+                                i{
+                                    &:before{
+                                        padding-left: 2px;
+                                        color: #418fde;
+                                    }
+                                    // margin-right: 10px;
+                                }
+                            }
+                        }
+                       
                         ul {
                             background-color: $color-white;
                             margin-bottom: 20px;
@@ -409,9 +446,9 @@
                     .leaflet-marker-icon{
                         &.nearby-div-icon{
                             i{
-                                font-size: 0.875rem;
+                                font-size: 0.775rem;
                                 &:before{
-                                    color: $color-green !important;
+                                    // color: $color-blue;
                                 }
                             }
                         }
@@ -426,11 +463,26 @@
                 .leaflet-marker-pane{
                     .leaflet-marker-icon{
                         i{
-                            @include animate_all(all .6s linear);
+                            // @include animate_all(all .6s linear);
+                            // animation: blink 1s linear infinite;
                             color: $color-green;
-                            font-size: 1.125rem;
+                            // font-size: 1.125rem;
                         }
                     }
+                    // @keyframes blink{
+                    //     0% {
+                    //         -webkit-transform: scale(1);
+                    //         transform: scale(1);
+                    //     }
+                    //    50% {
+                    //         -webkit-transform: scale(1.5);
+                    //         transform: scale(1.5);
+                    //     }
+                    //     100% {
+                    //       -webkit-transform: scale(1);
+                    //       transform: scale(1);
+                    //     }
+                    // }
                 }
             }
         }
@@ -502,7 +554,6 @@
                 background-color: $color-white;
                 @include boxshadow(0 15   px 5px 0px rgba(0, 0, 0, 0.16));
                 width: 100%;
-                overflow-y: auto;
                 // height: calc(100vh - 165px);
 
                 .sidebar-close {
@@ -665,7 +716,7 @@
             }
 
             .report-list {
-
+                margin-top: 20px;
                 ul {
                     li {
                         @include flexBetween;
@@ -1316,7 +1367,7 @@
 
         .modal-header {
             border: 0;
-            padding: 0 1rem;
+            padding: 0 2rem;
             text-align: left;
 
             h5 {
@@ -1340,8 +1391,66 @@
         }
 
         .modal-body {
+            .photo_viewer{
+                .sc-bdVaJa{
+                    &.fhNQJW{
+                        top: 30px ;
+                        left: 30px;
+                        max-width: 40px;
+                        div{
+                            &:hover{
+                                @include animate_all(all .5s linear);
+                                cursor: pointer;
+                                background: $green-light;
+                            }
+                            &:last-child{
+                                svg{
+                                    display: none;
+                                }
+                                &:after{
+                                    content: "replay";
+                                    font-family: 'Material Icons';
+                                    position: relative;
+                                    right: 0;
+                                    top: 4px;
+                                    font-size: 20px;
+                                    color: darken($color-green, 22%);   
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            /* .image-icon-options{
+                background: $green-light;
+                position: absolute;
+                @include flex;
+                flex-direction: column;
+                padding: 5px;
+                left: -35px;
+                i{
+                    text-align: center;
+                    width: 30px;
+                    height: 30px;
+                    line-height: 30px;
+                    color: $color-green;
+                    @include animate_all(all .5s linear);
+                    border: 0;
+                    margin-bottom: 10px;
+                    &:last-child{
+                        margin-bottom: 0;
+                    }
+                    &:hover{
+                        cursor: pointer;
+                        background: $color-green;
+                        color: $color-white;
+                    }
+                }
+                
+            } */
             .assessment-modal-list {
-                li {
+                li {    
                     @include flexStart;
                     margin-bottom: .6125rem;
                     font-size: .875rem;

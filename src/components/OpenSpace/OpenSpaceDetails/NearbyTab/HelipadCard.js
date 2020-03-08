@@ -17,7 +17,7 @@ import SingleEcard from './SingleEcard'
         Axios.get(
           `https://iomapi.naxa.com.np/api/v1/near_by_me?type=helipad&count=50&distance=5&id=${localStorage.getItem("OpenspaceID")}`
         ).then(response => {
-            console.log("heli",response.data);
+            // console.log("heli",response.data);
             
           this.setState({
             data: response.data
@@ -41,6 +41,7 @@ import SingleEcard from './SingleEcard'
                 this.state.data.facility.map((e,i) => {
                
                     return <SingleEcard
+                    reff={this.props.reff}
                     name = "Helipad"
                     setActivefalse={this.setActivefalse}
                     ActiveRoute={this.state.ActiveRouteindex}

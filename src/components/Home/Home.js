@@ -3,8 +3,10 @@ import Navbar from "./Navbar";
 import Banner from "./Banner";
 import ImageSlider from "./ImageSlider";
 import OpenSpace from "./OpenSpace";
-import Glimpse from "./Glimpse";
+// import GlimpseNew from "./GlimpseNew";
+import Glimpse from './Glimpse'
 import Identification from "./Identification";
+import Axios from 'axios';
 
 import Footer from "./Footer";
 
@@ -12,19 +14,51 @@ import Background from "../../img/banner-shape.png";
 import bannerShape from "../../img/banner-shape.png";
 
  class Home extends Component {
+   constructor(props) {
+     super(props)
    
+     this.state = {
+      counts: ''
+     }
+   }
+   
+   
+  fetchCounts = () => {
+    Axios.get(`https://iomapi.naxa.com.np/api/v1/glimpse_of_open_space`)
+    .then(res => {
+    
+        
+       console.log("res", res.data);
+       
+        const counts = res.data;
+        this.setState({counts: counts})
+        
+
+       
+        
+    })
+}
+
+componentDidMount() {
+  this.fetchCounts();
+}
     render() {
+      console.log("p", this.state.counts);
+      
         return (
         
-        < body >
+        <  >
          <section className="banner" style={{ backgroundImage: `url(${Background})` }}>
           <Navbar />
           <Banner />
         </section> 
         <main className="main-content">
         <ImageSlider />
-        <OpenSpace />
-        <Glimpse />
+        {/* <OpenSpace /> */}
+        <Glimpse
+        className= 'toggleModal'
+        counts = {this.state.counts}
+        />
         
         <Identification />
         
@@ -35,7 +69,7 @@ import bannerShape from "../../img/banner-shape.png";
         >
           <Footer />
         </footer>
-        </ body>       
+        </ >       
             
         )
     }

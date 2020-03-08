@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
 
  class IdentificationCard extends Component {
     render() {
@@ -11,9 +12,17 @@ import React, { Component } from 'react'
             
                 {/* <img src={this.props.image} alt="post" /> */}
             </figure>
-    <h5><span>{this.props.no+1}</span>{this.props.title}</h5>
+    <h5><span>{this.props.no+1}</span>{this.props.language =='0' ?
+    this.props.title : this.props.title_nep}</h5>
        </div>
         )
     }
 }
-export default IdentificationCard;
+
+const mapStateToProps = state => {
+    return {
+      language: state.language
+    };
+  };
+  
+export default connect(mapStateToProps)(IdentificationCard);

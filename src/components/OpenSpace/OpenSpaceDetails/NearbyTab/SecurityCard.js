@@ -16,8 +16,8 @@ class SecurityCard extends Component {
       fetchInfo = () => {
         Axios.get(
           `https://iomapi.naxa.com.np/api/v1/near_by_me?type=security%20force&count=10&distance=1&id=${localStorage.getItem("OpenspaceID")}`
-        ).then(response => {
-          console.log("ë...............................................................................",response)
+        ).then(response => { 
+        
           
           this.setState({
             data: response.data
@@ -34,7 +34,7 @@ class SecurityCard extends Component {
 
     render() {
       this.props.id && localStorage.setItem("OpenspaceID", this.props.id);
-      console.log("t" ,this.state.data.facility);
+    
       
         return (
           <div class="space-list nearby-list">
@@ -45,6 +45,7 @@ class SecurityCard extends Component {
           this.state.data.facility.map((e,i) => {
          
               return <SingleEcard
+              reff={this.props.reff}
               setActivefalse={this.setActivefalse}
               ActiveRoute={this.state.ActiveRouteindex}
               index={i}

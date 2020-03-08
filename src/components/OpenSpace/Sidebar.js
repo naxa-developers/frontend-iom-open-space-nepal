@@ -5,6 +5,11 @@ import Loader from '../Report/LoadingSpinner';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LoaderBig from '../Report/LoadingSpinnerBig';
+import PerfectScrollbar from 'react-perfect-scrollbar'
+import 'react-perfect-scrollbar/dist/css/styles.css';
+import 'perfect-scrollbar/css/perfect-scrollbar.css'
+import PerfectScrollbarPS from 'perfect-scrollbar';
+
 
 
 import "./OpenSpaceCSS.css";
@@ -32,6 +37,7 @@ class Sidebar extends Component {
 
     this.sidebarToggle = this.sidebarToggle.bind(this);
     this.state = {
+      distances:[],
       Openspaces: null,
       showContent: true,
       province: null,
@@ -52,7 +58,7 @@ class Sidebar extends Component {
       nearbyGroup: L.featureGroup(),
       legend: L.control({ position: 'bottomleft' }),
       div: L.DomUtil.create('div', 'routeWrapper'),
-      OSmarkers: L.markerClusterGroup({ disableClusteringAtZoom: 14 }),
+      OSmarkers: L.markerClusterGroup({ disableClusteringAtZoom: 14,pane:"cluster" }),
       markersLegend: L.control({ position: 'bottomright' }),
       ActiveRouteindex: null
 
@@ -355,6 +361,7 @@ class Sidebar extends Component {
   };
 
   nearbymeOS = () => {
+    console.log(`https://iomapi.naxa.com.np/api/v1/near_by_openspace?count=100&distance=2&latitude=${this.props.currentLocation[0]}&longitude=${this.props.currentLocation[1]}`)
     Axios.get(`https://iomapi.naxa.com.np/api/v1/near_by_openspace?count=100&distance=2&latitude=${this.props.currentLocation[0]}&longitude=${this.props.currentLocation[1]}`)
       .then(response => {
         this.setState({ nearbyOS: response.data.open_space })
@@ -475,7 +482,12 @@ class Sidebar extends Component {
   displayOS = () => {
     this.state.OSmarkers.eachLayer((e) => this.state.OSmarkers.removeLayer(e))
 
-
+  //   var nexrad = L.tileLayer.wms(this.state.displayOS, {
+  //     layers: 'nexrad-n0r-900913',
+  //     format: 'image/png',
+  //     transparent: true,
+  //     attribution: "Weather data © 2012 IEM Nexrad"
+  // });
     this.state.Allos.map(e => {
       // console.log(e, 'data')
       if (e.centroid != null) {
@@ -485,7 +497,8 @@ class Sidebar extends Component {
           className: 'OSmarkers',
           html: "<i class='OSmarker'></i>",
           // iconSize: [4, 4],
-          // iconAnchor: [12, 6]
+          iconAnchor: [12, 14],
+          popupAnchor: [-5, 5],
         });
 
 
@@ -547,7 +560,7 @@ class Sidebar extends Component {
       }
 
     });
-    this.props.mapRefs.current.leafletElement.fitBounds(this.state.OSmarkers.getBounds())
+    // this.props.mapRefs.current.leafletElement.fitBounds(this.state.OSmarkers.getBounds())
 
   };
 
@@ -574,6 +587,8 @@ class Sidebar extends Component {
     var colors = ["red", 'green', 'black']
 
 // console.log(url)
+// debugger
+
     Axios.get(url)
       .then(Response => {
         // console.log(this.state.Routespaths)
@@ -586,7 +601,7 @@ class Sidebar extends Component {
             path.push(Response.data.paths[j].points.coordinates[i].reverse())
           }
           // console.log(Response.data.paths[j].description)
-          var polyline = L.polyline(path, { color: j == 0 ? '#095c05' : 'grey' })
+          var polyline = L.polyline(path, { color: j == 0 ? 'blue' : 'grey', })
           this.state.Routespaths.push({ id: j, path: polyline, description: Response.data.paths[j].description == undefined ? "No Descrption" : Response.data.paths[j].description[0], distance: Response.data.paths[j].distance })
 
           this.state.Routes.addLayer(polyline)
@@ -600,7 +615,7 @@ class Sidebar extends Component {
             this.state.Routespaths.map((i) => {
               i.path.setStyle({ color: 'grey' })
             })
-            this.state.Routespaths[e.id].path.setStyle({ color: '#095c05' })
+            this.state.Routespaths[e.id].path.setStyle({ color: 'blue' })
             this.state.Routespaths[e.id].path.bringToFront();
             var doac = document.getElementsByClassName('desccard')
             // console.log(doac,doc.length)
@@ -643,11 +658,12 @@ class Sidebar extends Component {
         // var legend = L.control({ position: 'bottomright' })
         this.state.legend.onAdd = (map) => {
 
-          var div = L.DomUtil.create('div', `routeWrapper`)
+          var div = L.DomUtil.create('div', `routeWrapper `)
           div.innerHTML = ''
+          // div.classList.add("scrollbar-container ps ps--active-y")
           // div.innerHTML += "<img src='../../src/img/close.png' id='close-bt-route'></img>"
 
-          div.innerHTML += "<h6 id='legendtitle'>Routes</h6>"
+          div.innerHTML += "<h6 id='legendtitle'>Routes<span> <i id ='close-route' class='material-icons'>close</i></span></h6>"
           // console.log(this.state.Routespaths)
           var distances = []
           this.state.Routespaths.forEach((a) => {
@@ -684,14 +700,26 @@ class Sidebar extends Component {
             div.innerHTML += descCard
             activeroute++
 
+
           })
+          
+          // ps.update();
           // innterhtml
+          setTimeout(()=>{
+            const ps = new PerfectScrollbarPS('.routeWrapper', {
+              wheelSpeed: 2,
+              wheelPropagation: true,
+              minScrollbarLength: 20
+            });
+
+          },1000)
 
 
 
 
           return div;
         }
+      
 
 
 
@@ -713,7 +741,11 @@ class Sidebar extends Component {
         let dom=document.getElementsByClassName('routeWrapper')
         L.DomEvent.on(dom[0], 'mousewheel', L.DomEvent.stopPropagation);
 
-        var divss = document.getElementsByClassName('routeWrapper');
+        var divss = document.getElementById('close-route');
+        divss.addEventListener("click",()=>{
+          this.removeRoutes();
+          this.setActivefalse(null)
+        })
 
 
 
@@ -741,7 +773,7 @@ class Sidebar extends Component {
                   })
                 }
 
-                selected[0].path.setStyle({ color: '#095c05' })
+                selected[0].path.setStyle({ color: 'blue' })
 
                 selected[0].path.bringToFront()
 
@@ -770,11 +802,13 @@ class Sidebar extends Component {
 
 
   componentDidMount() {
+   
 
+ 
 
     var nearby = this.props.mapRefs.current.leafletElement.createPane('nearby');
     var Oslanding = this.props.mapRefs.current.leafletElement.createPane('Oslanding');
-    this.props.mapRefs.current.leafletElement.createPane("cluster").style.zIndex = 100;
+    this.props.mapRefs.current.leafletElement.createPane("cluster").style.zIndex = 200;
 
 
 
@@ -807,7 +841,7 @@ class Sidebar extends Component {
       this.state.Openspaces=JSON.parse(sessionStorage.getItem('Openspaces'));
       this.state.Allos=JSON.parse(sessionStorage.getItem('Openspaces'));
       this.setState({loading: !this.state.loading})
-      console.log(this.state.Allos,"al",JSON.parse(sessionStorage.getItem('Openspaces')),sessionStorage.getItem('stored'),sessionStorage)
+      // console.log(this.state.Allos,"al",JSON.parse(sessionStorage.getItem('Openspaces')),sessionStorage.getItem('stored'),sessionStorage)
      
       this.displayOS();
       
@@ -819,7 +853,9 @@ class Sidebar extends Component {
     // this.props.mapRefs.current.leafletElement1=this.props.mapRefs.current.leafletElement
   }
   notify = () => toast.info("NO Openspace Found", { containerId: 'A', autoClose: false, });
-
+componentDidUpdate(){
+  // this.props.currentLocation!=null&&this.oscard.setdistance()
+}
 
   render() {
 
@@ -830,6 +866,7 @@ class Sidebar extends Component {
     const { showContent } = this.state;
     return (
       <>
+      <PerfectScrollbar>
         <div>
 
           <ToastContainer enableMultiContainer containerId={'A'} position={toast.POSITION.BOTTOM_RIGHT} />
@@ -907,8 +944,8 @@ class Sidebar extends Component {
                   </div>
                 </div>
 
-                <div onClick={this.tooglenearby} className="nearme-btn">
-                  <a className="openspace-button">
+                <div  className="nearme-btn">
+                  <a className="openspace-button" onClick={this.tooglenearby}>
                     <i
                       className="material-icons"
                       style={{ textDecoration: "none" }}
@@ -968,12 +1005,15 @@ class Sidebar extends Component {
 
                     {this.state.Allos &&
                       this.state.Allos.map((e, i) => {
-                        // console.log(this.props.currentLocation,"cur",[e.latitude, e.longitude]);
+                        console.log(this.state.Allos.length,"a");
 
 
 
                         return (
                           <OpenSpaceCard
+                          // wrappedComponentRef={(ref=>this.oscard=ref)}
+                            Arraylength={this.state.Allos.length}
+                            distances={this.state.distances}
                             currentLocation={this.props.currentLocation}
                             latlng={[e.centroid[1], e.centroid[0]]}
                             routing={this.fetchroute}
@@ -999,6 +1039,7 @@ class Sidebar extends Component {
             </div>
           </div>
         </div>
+        </PerfectScrollbar>
       </>
     );
   }

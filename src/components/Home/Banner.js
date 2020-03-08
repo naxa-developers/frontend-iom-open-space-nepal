@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect } from 'react-redux';
 
-import nepalLogo from '../../img/nepallogo.svg';
+
 import iom from '../../img/iom.png';
 import ccm from '../../img/ccm.png';
 import Axios from 'axios';
@@ -48,14 +48,14 @@ import Axios from 'axios';
                 <div className="row">
                     <div className="col-lg-2 col-md-3">
                         <div className="logos">
-                            <figure>
+                            {/* <figure>
                                 <img src={nepalLogo} alt="government" />
+                            </figure> */}
+                            <figure>
+                                {/* <img src={iom} alt="IOM" /> */}
                             </figure>
                             <figure>
-                                <img src={iom} alt="IOM" />
-                            </figure>
-                            <figure>
-                                <img src={ccm} alt="CCM" />
+                                {/* <img src={ccm} alt="CCM" /> */}
                             </figure>
                         </div>
                         
@@ -75,12 +75,7 @@ import Axios from 'axios';
                         </div>
                         
                     </div>
-                    {/* <div className="bot" style={{position:'absolute', bottom:0, right:0, zIndex:'99'}}>
-                    <iframe 
-                   width= "350"
-                   height ="430"
-                   src="https://bot.dialogflow.com/f89fc983-a574-45a5-aaad-6029ba4ad33a " > </iframe>
-                    </div> */}
+                   
                  
                 </div>
             </div>

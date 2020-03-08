@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 
-import logo from "../../img/logo.png";
+import logo from "../../img/New-Logo1.svg";
 import nepal from "../../img/nepal.png";
 import uk from "../../img/uk.png";
 
@@ -47,7 +47,7 @@ handleClick = (v) => {
               <div className="headLeft">
                 <div className="logo">
                   <NavLink to="/">
-                    <img src={logo} alt="logo" />
+                    <img src={logo} alt="logo" style={{zIndex: 99}} />
                   </NavLink>
                 </div>
               </div>
@@ -55,18 +55,19 @@ handleClick = (v) => {
               <div className="headRight">
                 <div className="country-logos flex-end">
                   <a className={this.props.language=="0"?"active":''}>
-                    <img
-                      src={uk}
-                      alt="uk"
-                      onClick={() => this.props.dispatch({ type: "english" })}
-                    />
+                    <p
+                      // src={uk}
+                      // alt="uk"
+                    
+                      onClick={() => this.props.dispatch({ type: "english" })} >EN</p>
+                 
                   </a>
                   <a className={ this.props.language=="1"?"active":''}>
-                    <img
-                      src={nepal}
-                      alt="Nepal"
-                      onClick={() => this.props.dispatch({ type: "nepali" })}
-                    />
+                    <p
+                      // src={nepal}
+                      // alt="Nepal"
+                      onClick={() => this.props.dispatch({ type: "nepali" })}>NE</p>
+                  
                   </a>
                 </div>
                 <nav
@@ -127,6 +128,14 @@ handleClick = (v) => {
                           {this.props.language == "0"
                             ? "Find Open Space "
                             : "खुल्ला क्षेत्र पत्ता लगाउनुहोस"}
+                        </NavLink>
+                      </li>
+                      <li className="menu-item ">
+                        <NavLink to="about" className="menu-item" activeClassName = " menu-item active ">
+                          {" "}
+                          {this.props.language == "0"
+                            ? "About"
+                            : "खुल्ला क्षेत्र बारे"}
                         </NavLink>
                       </li>
                     </ul>

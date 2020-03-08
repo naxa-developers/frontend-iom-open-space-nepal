@@ -6,6 +6,9 @@ import LoadingSpinnerBig from "./LoadingSpinnerBig";
 import { connect } from "react-redux";
 import 'leaflet.markercluster/dist/MarkerCluster.css'
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css'
+import PerfectScrollbar from 'react-perfect-scrollbar'
+import 'react-perfect-scrollbar/dist/css/styles.css';
+
 require('leaflet.markercluster')
 
 class ReportSidebar extends Component {
@@ -73,6 +76,7 @@ this.props.dispatch({
   };
 
   loadReports = () => {
+    this.state.reportsMarkers.eachLayer((l) => this.state.reportsMarkers.removeLayer(l) )
     this.props.reportData &&
       this.props.reportData.map(p => {
         
@@ -105,9 +109,20 @@ this.props.dispatch({
           p.title +
           "</h5>  <p> " +
           p.name +
-          " </p> </div> </div>";
+          " </p><a  class='report_btn' href='/#/reportDetails'>View Details</a> </div> </div>";
 
         htmlmrk.bindPopup(popOne);
+        htmlmrk.on('click', () => {
+          var classes = document.getElementsByClassName('report_btn')
+          for (var i = 0; i < classes.length; i++) {
+            classes[i].addEventListener('click', () => {
+              this.props.dispatch({ type: "reportClicked", id: p.id, open: p.openS })
+              this.props.history.push('/reportDetails');
+  
+            })
+          }
+      
+      });
       
       });
      
@@ -143,13 +158,19 @@ this.props.dispatch({
     this.state.reportsMarkers.addTo(this.props.mapR.current.leafletElement);
     
   }
+  componentDidUpdate() {
+
+    this.loadReports();
+
+  }
 
   render() {
-    // console.log("load", this.state.loading, this.props.reportData);
+ 
     
     
     return (
       <div>
+        <PerfectScrollbar>
         <div className="map-sidebar">
           <div className="sidebar-wrapper">
             <div className="card">
@@ -232,6 +253,7 @@ this.props.dispatch({
             </div>
           </div>
         </div>
+        </PerfectScrollbar>
       </div>
     );
   }

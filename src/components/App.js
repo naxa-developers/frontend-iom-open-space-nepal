@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { Switch, Route, HashRouter as Router } from "react-router-dom";
 import { connect } from "react-redux";
-// import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.css';
 import '../css/slick.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/humanitarian-fonts.css';
 import "../scss/style.scss";
+
 
 
 import Home from "./Home/Home";
@@ -15,6 +16,7 @@ import OpenSpace from "../components/OpenSpace/Openspace"
 import AboutApp from "./AboutApp/AboutApp";
 import OpenSpaceDetails from "./OpenSpace/OpenSpaceDetails/OpenSpaceDetails";
 import ReportDetails from './Report/ReportDetails/ReportDetails';
+import About from './About/About';
 
 
 
@@ -49,6 +51,11 @@ class App extends Component {
               exact
               path="/report"
               render={props => <Report {...props}/>}
+            ></Route>
+              <Route
+              exact
+              path="/about"
+              render={props => <About {...props}/>}
             ></Route>
             <Route
               exact

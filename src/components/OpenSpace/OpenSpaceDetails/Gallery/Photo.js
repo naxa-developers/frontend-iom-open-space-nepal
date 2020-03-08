@@ -1,21 +1,24 @@
 import React, { useState } from 'react'
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+import ReactPanZoom from 'react-image-pan-zoom-rotate';
+
+import './Photo.css'
 
 
 const Photo = (props) => {
 
     const {
-    largeImage, photo, className
+    largeImage, photo, className, name
     } = props;
 
-
+   
    
   
     const [modal, setModal] = useState(false);
     // const [modalOne, setModalOne] = useState(false);
 
     const toggle = () => setModal(!modal);
-    // const toggle1 = () =>  setModalOne(!modalOne); 
+ 
     
 
 
@@ -29,22 +32,27 @@ const Photo = (props) => {
           </figure>
         </div>
             
-                    {/* <li data-toggle="modal" data-target="#assessment-popup" onClick={toggle}>
-                        General Information Assessment
-                        <i className="material-icons">chevron_right</i>
-                    </li>
-                   */}
+        
            
       
             <Modal isOpen={modal} toggle={toggle} className={className}  centered ="true" size = "lg" zIndex="99999">
-        <ModalHeader toggle={toggle}>  Gallery
+        <ModalHeader toggle={toggle}> {name}
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </ModalHeader>
                 <ModalBody>
                     <div class="modal-body">
-                        <img src ={largeImage} />
+                      {/* <div class="image-icon-options">
+                        <i className="material-icons" >zoom_out</i>
+                        <i className="material-icons" >zoom_in</i>
+                        <i className="material-icons" >cached</i>
+                      </div> */}
+                      <figure style={{overflow:'hidden'}} className="photo_viewer">
+                          <ReactPanZoom image={largeImage} />
+                   
+                      </figure>
+                     
                     </div>
                 </ModalBody>
 
