@@ -109,3 +109,14 @@
         }
     }
 }
+.breadcrumb{
+    background-color: $color-blue;
+    color:$color-white;
+    text-align: center;
+    padding:2rem 0;
+    h1{
+        color:$color-white;
+        font-size: 2rem;
+        font-weight: 700;
+    }
+}
