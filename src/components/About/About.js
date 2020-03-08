@@ -7,7 +7,7 @@ export default class About extends Component {
         return (
             <>
             <Navbar />
-            <h1>Waiting for prem dai</h1>
+          
             <Footer />
             </>
         )

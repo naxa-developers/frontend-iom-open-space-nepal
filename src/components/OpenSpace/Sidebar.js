@@ -1001,14 +1001,9 @@ componentDidUpdate(){
 
 
                   <ul>
-
-
                     {this.state.Allos &&
+                   this.state.Allos.length== 0 ?   <h6>No openspace found</h6> :
                       this.state.Allos.map((e, i) => {
-                        console.log(this.state.Allos.length,"a");
-
-
-
                         return (
                           <OpenSpaceCard
                           // wrappedComponentRef={(ref=>this.oscard=ref)}
@@ -1029,8 +1024,9 @@ componentDidUpdate(){
                             index={e.id}
 
                           />
-                        );
-                      })}
+                        )
+                      }
+                      )}
 
 
                   </ul>

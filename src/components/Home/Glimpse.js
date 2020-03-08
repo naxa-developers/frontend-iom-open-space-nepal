@@ -51,6 +51,24 @@ class Glimpse extends Component {
 
         return (
             <>
+                        <Modal show={this.state.open} centered="false" size="lg" zIndex="99999">
+                <Modal.Header>Modal title
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </Modal.Header>
+                <Modal.Body>
+                    <div class="modal-body">
+                        <h1>hdjahgdhjasgd</h1>
+
+
+                        <ul class="assessment-modal-list">
+
+                        </ul>
+                    </div>
+                </Modal.Body>
+
+            </Modal>
             <section className="glimps-counter" style={{backgroundImage: `url(${countershape})` , zIndex:'190000'}} >
             <div className="overlay" ></div>
             <div className="glimps-wrapper">
@@ -59,6 +77,7 @@ class Glimpse extends Component {
                     
                     <div className="row">
                         <div className="col-md-4 " >
+            
                             <div className="glimps-count" onClick={() => this.toggle()}>
                                 <h4>
                                 {this.state.counts&&this.state.counts.data.open_space}
@@ -128,36 +147,19 @@ class Glimpse extends Component {
                         </div>
                        
                         <p>{this.props.language =="0" ? `The above numbers is the summary of all identified open spaces that has been surveyed by IOM till date. It includes open spaces of Kathmandu, Bhaktapur and Lalitpur.` : `माथिका नम्बरहरू सबै पहिचान गरिएका खुला ठाउँहरूको सारांश हो जुन आईओएमले हालसम्म सर्वेक्षण गरेको छ। यसमा काठमाण्डौं, भक्तपुर र ललितपुरको खुला ठाउँहरू छन्।` } 
-
 </p>
 
 
-<Modal show={this.state.open} centered="true" size="lg" zIndex="99999">
-                <Modal.Header>Modal title
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </Modal.Header>
-                <Modal.Body>
-                    <div class="modal-body">
-                        <h1>hdjahgdhjasgd</h1>
 
-
-                        <ul class="assessment-modal-list">
-
-                        </ul>
-                    </div>
-                </Modal.Body>
-
-            </Modal>
                     </div>
 
                 
 
 
                 </div>
+          
              </div>
-           
+          
         </section> 
 
        

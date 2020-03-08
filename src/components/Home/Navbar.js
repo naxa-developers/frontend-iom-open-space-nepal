@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 
-import logo from "../../img/New-Logo1.svg";
+import logo from "../../img/New-Logo1.png";
 import nepal from "../../img/nepal.png";
 import uk from "../../img/uk.png";
 
