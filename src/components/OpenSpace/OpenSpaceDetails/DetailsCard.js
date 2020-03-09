@@ -132,25 +132,24 @@ import Gallery from "./Gallery/Gallery";
 
           var wmsLayer = L.tileLayer.wms(this.state.spaceInfo.geoserver_url, {
             layers: this.state.spaceInfo.workspace+':'+this.state.spaceInfo.layername
-        }).addTo(this.props.reff.current.leafletElement)
+        })
     
-        var nexrad = L.tileLayer.wms(this.state.spaceInfo.geoserver_url, {
-        layers: this.state.spaceInfo.workspace+':'+this.state.spaceInfo.layername,
-        format: 'image/png',
-        transparent: true,
-        attribution: "Weather data © 2012 IEM Nexrad"
-    });
+    //     var nexrad = L.tileLayer.wms(this.state.spaceInfo.geoserver_url, {
+    //     layers: this.state.spaceInfo.workspace+':'+this.state.spaceInfo.layername,
+    //     format: 'image/png',
+    //     transparent: true,
+    //     attribution: "Weather data © 2012 IEM Nexrad"
+    // });
     
     
     
    if( this.state.wms==true ) {
     console.log("show wms", wmsLayer);
-     nexrad.addTo(this.props.reff.current.leafletElement);
-       nexrad.bringToFront();
+     wmsLayer.addTo(this.props.reff.current.leafletElement);
+       wmsLayer.bringToFront();
    } else {
      console.log("remove wms");
-     
-    this.props.reff.current.leafletElement.removeLayer(nexrad)
+     this.props.reff.current.leafletElement.removeLayer(wmsLayer)
      
    }
           

@@ -257,7 +257,7 @@ class OS extends Component {
            <Spinner />
             <br />
             <span style={{ color: 'black' }}>
-              <strong>Please wait, map is loading</strong>
+              <strong>Data is loading</strong>
             </span>
           </div>
 
