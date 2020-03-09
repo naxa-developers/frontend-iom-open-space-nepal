@@ -1005,7 +1005,7 @@ componentDidUpdate(){
 
                   <ul>
                     {this.state.Allos &&
-                   this.state.Allos.length== 0 ?   <h6>No open space identification survey has been  carried  in this location</h6> :
+                   this.state.Allos.length!= 0 ?    
                       this.state.Allos.map((e, i) => {
                         return (
                           <OpenSpaceCard
@@ -1028,8 +1028,9 @@ componentDidUpdate(){
 
                           />
                         )
+                      } 
+                      ): <h6>No open space identification survey has been  carried  in this location</h6>
                       }
-                      )}
 
 
                   </ul>

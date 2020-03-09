@@ -17,7 +17,8 @@ class Glimpse extends Component {
             className: this.props.className,
             open: false,
             openOne: false,
-            munArray: ['Kathamandu Metropolitan City',
+            munArray: [
+              'Kathamandu Metropolitan City',
               '  Gokarneshwor Municipality',
             '    Kirtipur Municipality',
                ' Bhaktapur Metropolitan City',
@@ -190,11 +191,10 @@ class Glimpse extends Component {
     this.state.munArray.map((i,m) => {
               return(
             <tr>
-                  <td>{m}</td>
-            <td scope="row">{i+1}</td>
+              <td scope="row">{m+1}</td>
+              <td>{i}</td>
             
-          
-               
+             
               </tr>
           )
           })
