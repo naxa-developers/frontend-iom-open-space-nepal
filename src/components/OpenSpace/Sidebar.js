@@ -96,7 +96,7 @@ class Sidebar extends Component {
 
     Axios.get(url).then(response => {
       var array = [];
-      // console.log(response.data.data[0][prvnc_dist.toString()],"..a.a.a.")
+     
       response.data.data.map(e => {
         let object = {
           value: e.id,
@@ -363,7 +363,7 @@ class Sidebar extends Component {
   };
 
   nearbymeOS = () => {
-    console.log(`https://iomapi.naxa.com.np/api/v1/near_by_openspace?count=100&distance=2&latitude=${this.props.currentLocation[0]}&longitude=${this.props.currentLocation[1]}`)
+   
     Axios.get(`https://iomapi.naxa.com.np/api/v1/near_by_openspace?count=100&distance=2&latitude=${this.props.currentLocation[0]}&longitude=${this.props.currentLocation[1]}`)
       .then(response => {
         this.setState({ nearbyOS: response.data.open_space })
@@ -427,7 +427,7 @@ class Sidebar extends Component {
 
             }
             else{
-              console.log(i,dir)
+           
                 
                 this.fetchroute([e.centroid[1], e.centroid[0]], this.props.currentLocation)
                 this.setActivefalse(e.id)
@@ -760,7 +760,7 @@ class Sidebar extends Component {
 
         for (var i = 0; i < doc.length; i++) {
           doc[i].addEventListener('click', (e) => {
-            console.log(e.target.parentElement.getAttribute('name'));
+          
             var value = e.target.closest(".desccard").getAttribute('name')
         
             var selected = this.state.Routespaths.filter((a) => {
@@ -832,7 +832,7 @@ class Sidebar extends Component {
     this.fetchingForDropdown("province");
     this.fetchingForDropdown("district");
     this.fetchingForDropdown("municipality")
-    console.log(sessionStorage.Openspaces,"session",JSON.parse(sessionStorage.getItem('stored')));
+  
     if(JSON.parse(sessionStorage.getItem('stored'))!=true){
       
       this.fetchOS();
@@ -863,7 +863,6 @@ componentDidUpdate(){
   render() {
 
 
-console.log("show", this.state.SelectedMunicipality);
 
 
     // var toggleClass = this.props.isClick ? 'rotated' : 'sidebar-toggle';
