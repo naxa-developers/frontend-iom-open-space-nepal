@@ -60,7 +60,8 @@ class Sidebar extends Component {
       div: L.DomUtil.create('div', 'routeWrapper'),
       OSmarkers: L.markerClusterGroup({ disableClusteringAtZoom: 14,pane:"cluster" }),
       markersLegend: L.control({ position: 'bottomright' }),
-      ActiveRouteindex: null
+      ActiveRouteindex: null,
+      showText: false
 
     };
   }
@@ -240,7 +241,8 @@ class Sidebar extends Component {
   }
 
   onApply = () => {
-    this.setState({ loading: true })
+    this.setState({ loading: true, showText: true })
+
     this.props.mapRefs.current.leafletElement = this.props.mapRefs.current.leafletElement;
     this.state.district_muni.eachLayer(e =>
       this.state.district_muni.removeLayer(e)
@@ -1001,7 +1003,15 @@ componentDidUpdate(){
                   <div className="loader" style={{ textAlign: "center" }}>
                     {this.state.loading && <LoaderBig />}
                   </div>
+<div>
+{/* { this.state.showText=== true&& 
+<span>
+  {this.state.SelectedProvince}
+  </span>
 
+
+} */}
+</div>
 
                   <ul>
                     {this.state.Allos &&

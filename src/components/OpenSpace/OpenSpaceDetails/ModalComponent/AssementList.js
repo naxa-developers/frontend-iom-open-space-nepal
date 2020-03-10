@@ -38,7 +38,7 @@ const AssementList = (props) => {
                         <i className="material-icons">chevron_right</i>
                     </li>
                     <li data-toggle="modal" data-target="#assessment-popup" onClick={toggle1}>
-                    Environment Assessment Table
+                    Environmental Checklist
                         <i className="material-icons">chevron_right</i>
                     </li>
                 </ul>
