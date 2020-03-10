@@ -863,6 +863,7 @@ componentDidUpdate(){
   render() {
 
 
+console.log("show", this.state.SelectedMunicipality);
 
 
     // var toggleClass = this.props.isClick ? 'rotated' : 'sidebar-toggle';
@@ -917,7 +918,8 @@ componentDidUpdate(){
                             district: null,
                             municipality: null,
                             handlingindex: 0,
-                            Allos: this.state.Openspaces
+                            Allos: this.state.Openspaces,
+                            showText: false
                           },()=>this.displayOS())
                           var bounds = [[25.710836919640595, 79.79365377708339],
                           [30.798474179567847, 88.54975729270839]];
@@ -966,6 +968,7 @@ componentDidUpdate(){
                   </h5>
                   {/* <span>Below is the result of Gandaki Province..</span> */}
                 </div>
+                {this.state.showText==true && <span style={{color: '#6D6E71', fontSize: '0.8rem', fontStyle:'italic'}}>Openspaces from  {this.state.SelectedProvince&&this.state.SelectedProvince.label}, {this.state.SelectedDistrict&&this.state.SelectedDistrict.label}, {this.state.SelectedMunicipality&&this.state.SelectedMunicipality.label}  </span>}
                 <div className="space-list" >
                   <div className="input-group">
                     <div className="input-group-prepend">
@@ -1003,15 +1006,12 @@ componentDidUpdate(){
                   <div className="loader" style={{ textAlign: "center" }}>
                     {this.state.loading && <LoaderBig />}
                   </div>
-<div>
-{/* { this.state.showText=== true&& 
-<span>
-  {this.state.SelectedProvince}
-  </span>
 
 
-} */}
-</div>
+
+  
+
+
 
                   <ul>
                     {this.state.Allos &&

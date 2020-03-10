@@ -189,7 +189,7 @@ class OS extends Component {
         this.loadprovince()
         this.currentLocation();
         this.zoomTomylocation();
-        console.log(sessionStorage.Openspaces,"OS")
+     
      
         sessionStorage.Openspaces==undefined&&toast.info("If current location is not in correct position, disconnect and reconnect your wifi network", { autoClose: false, position: "bottom-right" })
 
