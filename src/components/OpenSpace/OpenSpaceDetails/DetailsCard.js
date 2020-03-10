@@ -113,7 +113,7 @@ import Gallery from "./Gallery/Gallery";
   }
 
   addWms = () => {
-    console.log("wms");
+   
     
     this.state.wmsToggle.onAdd = (w) => {
 
@@ -126,13 +126,14 @@ import Gallery from "./Gallery/Gallery";
 
     }
     this.state.wmsToggle.addTo(this.props.reff.current.leafletElement)
-    var wmsClicked = document.getElementsByClassName('wms')[0].addEventListener('click', () => {
+ 
+    let wmsLayer= null;
+  document.getElementsByClassName('wms')[0].addEventListener('click', () => {
+ 
       this.setState({ wms: !this.state.wms}, () => {
         {
 
-          var wmsLayer = L.tileLayer.wms(this.state.spaceInfo.geoserver_url, {
-            layers: this.state.spaceInfo.workspace+':'+this.state.spaceInfo.layername
-        })
+      
     
     //     var nexrad = L.tileLayer.wms(this.state.spaceInfo.geoserver_url, {
     //     layers: this.state.spaceInfo.workspace+':'+this.state.spaceInfo.layername,
@@ -140,16 +141,21 @@ import Gallery from "./Gallery/Gallery";
     //     transparent: true,
     //     attribution: "Weather data © 2012 IEM Nexrad"
     // });
-    
-    
-    
+
+      
    if( this.state.wms==true ) {
-    console.log("show wms", wmsLayer);
+    wmsLayer = L.tileLayer.wms(this.state.spaceInfo.geoserver_url, {
+      layers: this.state.spaceInfo.workspace+':'+this.state.spaceInfo.layername
+  } )
+   
      wmsLayer.addTo(this.props.reff.current.leafletElement);
        wmsLayer.bringToFront();
    } else {
-     console.log("remove wms");
+   
+ 
      this.props.reff.current.leafletElement.removeLayer(wmsLayer)
+   
+     
      
    }
           
@@ -188,6 +194,9 @@ import Gallery from "./Gallery/Gallery";
     this.fetchDetails();
     this.props.reff.current.leafletElement.addLayer(this.state.Routes)
     this.addWms();
+
+
+
   }
   changetabid = e => {
     this.setState({ tabid: e });
