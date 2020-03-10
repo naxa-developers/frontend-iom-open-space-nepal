@@ -91,15 +91,19 @@ class GeneralInfo extends Component {
           <div className="suggested-list ">
             {this.props.services &&
               this.props.services.map(service => {
-                return (
-                  <ul>
-                    <Service
-                      icon={service.service.icon}
-                      name={service.service.name}
-                      desc={service.description}
-                    />
-                  </ul>
-                );
+                 return (
+                 
+                    <ul>
+                  
+                       <Service
+                        icon={service.service.icon}
+                        name={service.service.name}
+                        desc={service.description}
+                      />   
+            
+                    </ul>
+                  );
+                  
               })}
           </div>
           <p>

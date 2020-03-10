@@ -12,7 +12,7 @@ import React, { Component } from 'react'
                                         </li>
                                         <li className="nav-item" onClick={()=>this.props.changetabid(2)}>
                                             <a className={this.props.tabid==2?"nav-link active":"nav-link"} id="images_tab" data-toggle="tab" 
-                                                role="tab" aria-controls="images" aria-selected="false">gallery/map</a>
+                                                role="tab" aria-controls="images" aria-selected="false">photos/map</a>
                                         </li>
                                         <li className="nav-item" onClick={()=>this.props.changetabid(3)}>
                                             <a className={this.props.tabid==3?"nav-link active":"nav-link"} id="report_tab" data-toggle="tab" 
