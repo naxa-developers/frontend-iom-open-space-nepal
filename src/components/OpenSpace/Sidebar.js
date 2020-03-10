@@ -968,7 +968,7 @@ console.log("show", this.state.SelectedMunicipality);
                   </h5>
                   {/* <span>Below is the result of Gandaki Province..</span> */}
                 </div>
-                {this.state.showText==true && <span style={{color: '#6D6E71', fontSize: '0.8rem', fontStyle:'italic'}}>Openspaces from  {this.state.SelectedProvince&&this.state.SelectedProvince.label}, {this.state.SelectedDistrict&&this.state.SelectedDistrict.label}, {this.state.SelectedMunicipality&&this.state.SelectedMunicipality.label}  </span>}
+                {this.state.showText==true && <span style={{color: '#6D6E71', fontSize: '0.8rem', fontStyle:'italic'}}>Openspaces from  {this.state.SelectedProvince&&this.state.SelectedProvince.label} {this.state.SelectedDistrict&&<span>,{this.state.SelectedDistrict.label}</span>} {this.state.SelectedMunicipality&&<span>,{this.state.SelectedMunicipality.label} </span>}  </span>}
                 <div className="space-list" >
                   <div className="input-group">
                     <div className="input-group-prepend">
