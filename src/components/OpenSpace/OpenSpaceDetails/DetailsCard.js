@@ -31,7 +31,8 @@ class DetailsCard extends Component {
       legend: L.control({ position: 'bottomleft' }),
       wmsToggle: L.control({ position: 'topright' }),
       isActive: false,
-      wms: false
+      wms: false,
+      wmsClicked: false
 
 
 
@@ -55,12 +56,11 @@ class DetailsCard extends Component {
       `https://iomapi.naxa.com.np/api/v1/open_space/${localStorage.getItem("OpenspaceID")}`
     ).then(response => {
 
-console.log("for geojson", response.data);
-
 
 
 
       this.setState({ spaceInfo: response.data })
+      response.data.layername!==null && this.addWms()
       this.currentloc()
       var mrk = new L.circleMarker([response.data.centroid[1], response.data.centroid[0]], { radius: 6, fillColor: '#095c05', fillOpacity: 1, weight: 15, opacity: 0.3 })
       let address = response.data.address == null ? "Nepal" : response.data.address
@@ -121,7 +121,7 @@ console.log("for geojson", response.data);
       var div = L.DomUtil.create('div', `wms`)
       div.innerHTML = ''
 
-      div.innerHTML += `<h6> <span class='wms-div'> </span ><img class='droneimage' src=${droneIcon} > </img></h6>`
+      div.innerHTML += `<h6> <span class='wms-div'> </span ><img class=${this.state.wmsClicked==false ? 'droneimage' : 'droneimage_active'} src=${droneIcon}></img></h6>`
 
       return div
 
@@ -133,16 +133,19 @@ console.log("for geojson", response.data);
    
       document.getElementsByClassName('wms')[0].addEventListener('click', () => {
   
-        this.setState({ wms: !this.state.wms }, () => {
+        this.setState({ wms: !this.state.wms, wmsClicked: !this.state.wmsClicked }, () => {
           {
             if (this.state.wms == true) {
   
               wmsLayer = L.tileLayer.wms(this.state.spaceInfo.geoserver_url, {
-                layers: this.state.spaceInfo.workspace + ':' + this.state.spaceInfo.layername
+                layers: this.state.spaceInfo.workspace + ':' + this.state.spaceInfo.layername,
+                format: 'image/png',
+
+            
+                transparent: true
               })
   
   
-  console.log("add");
   
               wmsLayer.addTo(this.props.reff.current.leafletElement);
               wmsLayer.bringToFront();
@@ -190,7 +193,7 @@ console.log("for geojson", response.data);
     this.onload();
     this.fetchDetails();
     this.props.reff.current.leafletElement.addLayer(this.state.Routes)
-    this.addWms();
+   
 
 
 
@@ -481,6 +484,7 @@ console.log("for geojson", response.data);
   // }
 
   render() {
+
 
     this.props.id && localStorage.setItem("OpenspaceID", this.props.id);
     return (
