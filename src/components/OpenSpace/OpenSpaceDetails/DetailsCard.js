@@ -11,8 +11,8 @@ import L from 'leaflet'
 import PerfectScrollbar from 'react-perfect-scrollbar'
 import PerfectScrollbarPS from 'perfect-scrollbar';
 import 'react-perfect-scrollbar/dist/css/styles.css';
-
-
+import droneIcon from '../../../img/drone-icon1.png'
+import '../OpenSpaceCSS.css'
 import { connect } from "react-redux";
 import Gallery from "./Gallery/Gallery";
 
@@ -121,7 +121,7 @@ console.log("for geojson", response.data);
       var div = L.DomUtil.create('div', `wms`)
       div.innerHTML = ''
 
-      div.innerHTML += "<h6> <span class='wms-div'> </span ><font style='style: bold'>WMS</font></h6>"
+      div.innerHTML += `<h6> <span class='wms-div'> </span ><img class='droneimage' src=${droneIcon} > </img></h6>`
 
       return div
 

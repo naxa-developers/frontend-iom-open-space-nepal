@@ -13,7 +13,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { connect } from 'react-redux';
 const { BaseLayer } = LayersControl;
-import Spinner from '../Report/LoadingSpinnerBig'
+import Spinner from './OpenSpaceDetails/MapLoader'
 
 
 
@@ -245,20 +245,17 @@ class OS extends Component {
             style={{
               display: `${this.state.provinceLoading}`,
               background: 'white',
-              opacity: '0.8',
+              opacity: '0.6',
               position: 'absolute',
               zIndex: '500',
               textAlign: 'center',
               height: '100%',
               width: '100%',
-              padding: '30vh 40% 43vh'
+            //   padding: '30vh 40% 43vh'
             }}
           >
            <Spinner />
-            <br />
-            <span style={{ color: 'black' }}>
-              <strong>Data is loading</strong>
-            </span>
+           
           </div>
 
                     <LayersControl position="topright">

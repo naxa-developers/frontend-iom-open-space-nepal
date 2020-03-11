@@ -175,8 +175,7 @@ class OSDetails extends Component {
       className: "nearby-div-icon",
       html: "<div class='marker-pin'></div><i class='humanitarian-icon-National-army'></i>",
       iconSize: [30, 42],
-
-      iconAnchor: [12, 6]
+      iconAnchor: [15, 42]
     });
   //   const NearbyIcon = new L.Icon({
   //     // iconUrl: require('../img/marker-pin-person.svg'),
