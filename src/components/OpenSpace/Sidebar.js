@@ -393,6 +393,10 @@ class Sidebar extends Component {
         // iconSize: [4, 4],
         // iconAnchor: [12, 6]
       });
+      e.centroid===null && console.log("null", e);
+      
+    if(e.centroid!== null) {
+
       var htmlmrk = L.marker([e.centroid[1], e.centroid[0]], { icon: icon });
       var mrk = new L.circleMarker([e.centroid[1], e.centroid[0]], { radius: 6, fillColor: 'green', fillOpacity: 1, weight: 15, opacity: 0.3, color: 'green', pane: 'nearby' })
       var popup = "<h5>" + e.title + "</h5>" +
@@ -445,6 +449,7 @@ class Sidebar extends Component {
 
 
       htmlmrk.addTo(this.state.nearbyGroup)
+    }
 
     })
     document.getElementById('mrk-lg').innerHTML+="<li id='nearbylegend' ><span class='legend green'></span><p>Nearby OS</p></li>"
@@ -485,15 +490,10 @@ class Sidebar extends Component {
   displayOS = () => {
     this.state.OSmarkers.eachLayer((e) => this.state.OSmarkers.removeLayer(e))
 
-  //   var nexrad = L.tileLayer.wms(this.state.displayOS, {
-  //     layers: 'nexrad-n0r-900913',
-  //     format: 'image/png',
-  //     transparent: true,
-  //     attribution: "Weather data © 2012 IEM Nexrad"
-  // });
+ 
     this.state.Allos.map(e => {
       // console.log(e, 'data')
-      if (e.centroid != null) {
+      if (e.centroid !== null) {
         var map = this.props.mapRefs.current.leafletElement;
         // new L.circleMarker([e.latitude, e.longitude]).addTo(map)
         var icon = L.divIcon({
@@ -1022,7 +1022,7 @@ componentDidUpdate(){
                             Arraylength={this.state.Allos.length}
                             distances={this.state.distances}
                             currentLocation={this.props.currentLocation}
-                            latlng={[e.centroid[1], e.centroid[0]]}
+                            latlng={e.centroid!==null &&[e.centroid[1], e.centroid[0]]}
                             routing={this.fetchroute}
                             key={e.id}
                             name={e.title}

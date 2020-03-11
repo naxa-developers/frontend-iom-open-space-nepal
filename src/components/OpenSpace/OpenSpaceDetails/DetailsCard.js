@@ -55,6 +55,7 @@ class DetailsCard extends Component {
       `https://iomapi.naxa.com.np/api/v1/open_space/${localStorage.getItem("OpenspaceID")}`
     ).then(response => {
 
+console.log("for geojson", response.data);
 
 
 

@@ -3,17 +3,11 @@ import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import Question from './Question';
 
 const AssementList = (props) => {
-    const {
-        className
-
-    } = props;
-    const {
-        question_data 
-    } = props;
-
+   
     const {
       
-        title,  total_area, usable_area, capacity, municipality, ownership, special_feature,province, ward, 
+      className, question_data ,
+      title,  total_area, usable_area, capacity, municipality, ownership, special_feature,province, ward, 
         access, elevation
     } = props;
 
@@ -28,8 +22,7 @@ const AssementList = (props) => {
 
 
     return (
-        
-        
+             
         <>
             <div className="assessment-list">
                 <ul>
