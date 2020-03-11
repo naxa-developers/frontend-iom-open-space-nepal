@@ -216,11 +216,28 @@ class OS extends Component {
 
 
             <>
-
+      <div
+            // id='Spinner'
+            style={{
+              display: `${this.state.provinceLoading}`,
+              background: 'white',
+              opacity: '0.6',
+              position: 'absolute',
+              zIndex: '500',
+              textAlign: 'center',
+              left: '50%',
+              padding: '8px',
+              top: '4px',
+          
+            }}
+          >
+           <Spinner />
+           
+          </div>
 
                 <ToastContainer newestOnTop={true} enableMultiContainer />
        
-           
+          
 
                 <LeafletMap
 
@@ -240,23 +257,7 @@ class OS extends Component {
                 >
                   
 
-                        <div
-            id='Spinner'
-            style={{
-              display: `${this.state.provinceLoading}`,
-              background: 'white',
-              opacity: '0.6',
-              position: 'absolute',
-              zIndex: '500',
-              textAlign: 'center',
-              height: '100%',
-              width: '100%',
-            //   padding: '30vh 40% 43vh'
-            }}
-          >
-           <Spinner />
-           
-          </div>
+                    
 
                     <LayersControl position="topright">
                         <BaseLayer checked={this.state.baselayer ? true : false} ref={this.baseLayer} name="OpenStreetMap">

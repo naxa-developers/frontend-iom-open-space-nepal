@@ -25,13 +25,11 @@ class OpenSpaceCard extends Component {
     getshortestdistance = (first, second) => {
         this.setState({ calculatedistance: false })
 
-        console.log('====================================');
-        console.log(first,second);
-        console.log('====================================');
-        console.log(first, second, this.props.currentLocation);
+     
         var baseUrl = "https://route.naxa.com.np/route";
         var distances = []
-        // console.log(first,second)
+     
+        
         var url =
             `${baseUrl}?point= ${first[0]},${first[1]},` +
             `&point=${second!=null?second[0]:''},${second!=null?second[1]:''}` +
@@ -149,7 +147,7 @@ class OpenSpaceCard extends Component {
     setdistance=()=>{
         var dis = JSON.parse(sessionStorage.getItem('Distances')).filter(w => w.id == this.props.id)
         // debugger
-        console.log(dis)
+      
 
         dis.length == 0 ?this.getshortestdistance(this.props.latlng, this.props.currentLocation) : this.setState({ shortest: (dis[0].sdist/1000).toFixed(2),calculatedistance: false })
         this.state.distancecall=false
