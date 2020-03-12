@@ -15,6 +15,7 @@ import droneIcon from '../../../img/drone-icon1.png'
 import '../OpenSpaceCSS.css'
 import { connect } from "react-redux";
 import Gallery from "./Gallery/Gallery";
+import { element } from "prop-types";
 
 
 class DetailsCard extends Component {
@@ -120,8 +121,8 @@ class DetailsCard extends Component {
 
       var div = L.DomUtil.create('div', `wms`)
       div.innerHTML = ''
-
-      div.innerHTML += `<h6> <span class='wms-div'> </span ><img class=${this.state.wmsClicked==false ? 'droneimage' : 'droneimage_active'} src=${droneIcon}></img></h6>`
+      // var imgClass = this.state.wmsClicked=== true ? 'dromeimage_active' : 'droneimage'
+      div.innerHTML += `<h6> <span class='wms-div'> </span > <div id='imgDiv'><img id="dImg" src=${droneIcon}></img></div></h6>`
 
       return div
 
@@ -131,8 +132,10 @@ class DetailsCard extends Component {
     let wmsLayer = null;
     if (this.state.spaceInfo.geoserver_url!==null) {
    
-      document.getElementsByClassName('wms')[0].addEventListener('click', () => {
-  
+      
+    document.getElementsByClassName('wms')[0].addEventListener('click', () => {
+      var element = document.getElementById("imgDiv");
+        element.classList.toggle("imgActive");
         this.setState({ wms: !this.state.wms, wmsClicked: !this.state.wmsClicked }, () => {
           {
             if (this.state.wms == true) {
