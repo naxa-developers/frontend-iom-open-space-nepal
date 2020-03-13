@@ -3,12 +3,15 @@ const initState = {
     reportID: null,
     spaceID: null,
     reportData: null,
-    currentloccalculated:false
+    currentloccalculated:false,
+    wmsIsOpen: null,
+    deleteAll: null
 
 
 
 
 }
+
 const rootReducer = (state = initState, action) => {
     switch (action.type) {
         case "nepali":
@@ -49,7 +52,17 @@ const rootReducer = (state = initState, action) => {
                 ...state,
                 currentloccalculated:true
             }
-
+        case "wmsClicked":
+                return{
+                    ...state,
+                    wmsIsOpen:action.wms
+                }
+        case "singlePlotted":
+                    return{
+                        ...state,
+                        deleteAll:action.status
+                    }
+        
 
         default:
             return state;

@@ -61,7 +61,8 @@ class Sidebar extends Component {
       OSmarkers: L.markerClusterGroup({ disableClusteringAtZoom: 14,pane:"cluster" }),
       markersLegend: L.control({ position: 'bottomright' }),
       ActiveRouteindex: null,
-      showText: false
+      showText: false,
+      layerStatus: false
 
     };
   }
@@ -247,6 +248,7 @@ class Sidebar extends Component {
     this.state.district_muni.eachLayer(e =>
       this.state.district_muni.removeLayer(e)
     );
+   
     // console.log("apply",this.state.SelectedProvince,this.state.SelectedDistrict,this.state.SelectedMunicipality)
     if (this.state.SelectedProvince && this.state.SelectedDistrict && this.state.SelectedMunicipality) {
       Axios.get(
@@ -293,7 +295,11 @@ class Sidebar extends Component {
         let FilteredOS = this.state.Openspaces.filter((e) => e.district == this.state.SelectedDistrict.value)
         // console.log(FilteredOS)
         this.setState({ Allos: FilteredOS, loading: false })
-        this.displayOS()
+      
+        
+        FilteredOS.length === 0 && this.props.openPop();
+        // this.displayOS()
+       
 
         municipality.addTo(this.state.district_muni);
         this.props.mapRefs.current.leafletElement.fitBounds(
@@ -339,7 +345,14 @@ class Sidebar extends Component {
 
     }
 
-
+this.setState({
+  layerStatus: !this.state.layerStatus
+}, () => {
+  this.props.dispatch({
+    type: 'singlePlotted',
+    status: this.state.layerStatus
+  })
+})
 
 
   }
@@ -918,7 +931,8 @@ componentDidUpdate(){
                             municipality: null,
                             handlingindex: 0,
                             Allos: this.state.Openspaces,
-                            showText: false
+                            showText: false,
+                            layerStatus: false
                           },()=>this.displayOS())
                           var bounds = [[25.710836919640595, 79.79365377708339],
                           [30.798474179567847, 88.54975729270839]];
@@ -1039,6 +1053,7 @@ componentDidUpdate(){
                         )
                       } 
                       ): <h6>No open space identification survey has been  carried  in this location</h6>
+                      
                       }
 
 
