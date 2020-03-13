@@ -21,8 +21,8 @@ import 'leaflet-ajax'
 
 
 let MAP;
-let munLayer;
-var province;
+let munLayer = null;
+var province=null;
 class OS extends Component {
     constructor(props) {
         super(props)
@@ -137,7 +137,7 @@ class OS extends Component {
         })
     }
 
-    loadVectortile = () => {
+     loadVectortile = () => {
     //    let munCounts =  this.state.munCounts;
        var vectorTileOptions = {
         tms: true,
@@ -258,33 +258,35 @@ class OS extends Component {
     }
 
 
+fetchGlimpse = () => {
+    MAP = this.props.mapRefss.current.leafletElement;
+    Axios.get(`https://iomapi.naxa.com.np/api/v1/glimpse_of_open_space`)
+    .then(res => {
+    
+        const counts =  res.data.data.municipality_list
+        
+        
+        let hlcitArr = [];
+        counts.map((m) => {
+            let str = Object.values(m).toString().replace(/\s/g, '')
+            hlcitArr.push(str)
+            
+        }) 
+        this.setState({munCounts: hlcitArr}, () => {
+            this.loadVectortile()
+        })
+        
 
+       
+        
+    })
+
+}
     componentDidMount() {
    
-        MAP = this.props.mapRefss.current.leafletElement;
-            Axios.get(`https://iomapi.naxa.com.np/api/v1/glimpse_of_open_space`)
-            .then(res => {
-            
-                const counts =  res.data.data.municipality_list
-                
-                
-                let hlcitArr = [];
-                counts.map((m) => {
-                    let str = Object.values(m).toString().replace(/\s/g, '')
-                    hlcitArr.push(str)
-                    
-                }) 
-                this.setState({munCounts: hlcitArr}, () => {
-                    this.loadVectortile()
-                })
-                
-    
-               
-                
-            })
+          
 
-
-
+        this.fetchGlimpse();
         this.onload();
         // this.loadprovince()
         this.currentLocation();
@@ -303,15 +305,27 @@ class OS extends Component {
         
 
     }
+    componentDidUpdate(prevProps) {
+        console.log("p", this.props.deleteAll);
+        
+        if(prevProps.deleteAll!== this.props.deleteAll){
+            if(this.props.deleteAll) {
+                MAP.removeLayer(province)
+              
+             MAP.removeLayer(munLayer)
+            } else{
+            console.log("after del", province);
+            this.fetchGlimpse();
+    }
+            }
+        }
+      
     notify = () => toast.info("Turn your location service ON for better experience", {
         autoClose: 3000, position: "bottom-right"
     });
     render() {
-
-        if(this.props.deleteAll===true) {
-            MAP.removeLayer(province)
-         MAP.removeLayer(munLayer)
-        }
+        console.log("ppp", this.state.deleteAll)
+      
     //  MAP &&  MAP.on('zoomend', function() {
 
     
@@ -323,6 +337,7 @@ class OS extends Component {
         lng: 85.00671386718751
 
         return (
+
 
 
             <>

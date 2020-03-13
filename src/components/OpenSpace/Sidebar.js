@@ -65,6 +65,7 @@ class Sidebar extends Component {
       layerStatus: false
 
     };
+ 
   }
 
   setActivefalse = (e) => {
@@ -933,7 +934,17 @@ componentDidUpdate(){
                             Allos: this.state.Openspaces,
                             showText: false,
                             layerStatus: false
-                          },()=>this.displayOS())
+                          },()=>this.displayOS(), 
+                          this.setState({
+                            layerStatus: !this.state.layerStatus
+                          }, () => {
+                            this.props.dispatch({
+                              type: 'singlePlotted',
+                              status: this.state.layerStatus
+                            })
+                          }) 
+                        
+                          )
                           var bounds = [[25.710836919640595, 79.79365377708339],
                           [30.798474179567847, 88.54975729270839]];
                           this.props.mapRefs.current.leafletElement.fitBounds(bounds)
