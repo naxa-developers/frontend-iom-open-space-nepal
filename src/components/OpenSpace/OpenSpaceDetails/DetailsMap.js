@@ -4,12 +4,13 @@ import "leaflet/dist/leaflet.css";
 import Axios from "axios";
 import L from "leaflet";
 const { BaseLayer } = LayersControl;
-
+import {connect} from 'react-redux'
 import healthIcon from '../../../img/icons_Medical.png'
 
 
 import './Details.css'
 
+var geo = null;
 class OSDetails extends Component {
   constructor(props) {
     super(props);
@@ -472,13 +473,16 @@ class OSDetails extends Component {
     ).then(response => {
       // console.log("oop", response.data);
 
-      var geo = L.geoJSON(response.data, {
+       geo = L.geoJSON(response.data, {
         fillColor: "blue",
         fillOpacity: 0.3,
         color: "green",
         weight: 2
       })
       geo.addTo(this.props.reff.current.leafletElement);
+  
+    
+
       this.geo = geo
       // this.props.reff.current.leafletElement.fitBounds(geo.getBounds(), {
       //   // padding: [200, 200]
@@ -490,7 +494,22 @@ class OSDetails extends Component {
   }
   render() {
  
+    while(geo!==null) {
+      this.props.wmsIsOpen && geo && this.props.wmsIsOpen === true ? geo.setStyle({
+        fillOpacity: 0
+      }) :
+      geo.setStyle({
+        fillOpacity: 0.3
+      }) 
+  if(geo!==null) break;
+    }
 
+    
+
+    // let zoomL = this.props.wmsIsOpen === true ? '30' : '20';
+    // console.log("zzom", zoomL);
+let zoomL = 22;
+    
     return (
       <>
         {/* <div onClick={()=>this.props.fetchroute([ 27.70419959812,85.315
@@ -498,8 +517,8 @@ class OSDetails extends Component {
          ])}>Clickme</div> */}
         <LeafletMap
           center={[27, 85]}
-          zoom={4}
-          // maxZoom={18}
+          zoom={7}
+          maxZoom={22}
           attributionControl={true}
           zoomControl={true}
           doubleClickZoom={true}
@@ -526,7 +545,7 @@ class OSDetails extends Component {
               <TileLayer
                 attribution='&amp;copy <a href="http://maps.google.com">Google Maps</a> contributors'
                 url="http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"
-                maxZoom={20}
+                maxZoom={zoomL}
                 subdomains={["mt0", "mt1", "mt2", "mt3"]}
               />
             </BaseLayer>
@@ -534,7 +553,7 @@ class OSDetails extends Component {
               <TileLayer
                 attribution='&amp;copy <a href="http://maps.google.com">Google Maps</a> contributors'
                 url=".facilityhttp://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}"
-                maxZoom={20}
+                maxZoom={zoomL}
                 subdomains={["mt0", "mt1", "mt2", "mt3"]}
               />
             </BaseLayer>
@@ -542,7 +561,7 @@ class OSDetails extends Component {
               <TileLayer
                 attribution='&amp;copy <a href="http://maps.google.com">Google Maps</a> contributors'
                 url="http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"
-                maxZoom={20}
+                maxZoom={zoomL}
                 subdomains={["mt0", "mt1", "mt2", "mt3"]}
               />
             </BaseLayer>
@@ -550,7 +569,7 @@ class OSDetails extends Component {
               <TileLayer
                 attribution='&amp;copy <a href="http://maps.google.com">Google Maps</a> contributors'
                 url="http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}"
-                maxZoom={20}
+                maxZoom={zoomL}
                 subdomains={["mt0", "mt1", "mt2", "mt3"]}
               />
             </BaseLayer>
@@ -560,7 +579,7 @@ class OSDetails extends Component {
                 attribution='&amp;copy Developer:<a href=" http://naxa.com.np">NAXA</a>'
                 // https://api.mapbox.com/styles/v1/upendraoli/cjuvfcfns1q8r1focd0rdlgqn/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidXBlbmRyYW9saSIsImEiOiJjaWYwcnFnNmYwMGY4dGZseWNwOTVtdW1tIn0.uhY72SyqmMJNTKa0bY-Oyw'
                 url="https://api.mapbox.com/styles/v1/upendraoli/cjuvfcfns1q8r1focd0rdlgqn/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidXBlbmRyYW9saSIsImEiOiJjaWYwcnFnNmYwMGY4dGZseWNwOTVtdW1tIn0.uhY72SyqmMJNTKa0bY-Oyw"
-                maxZoom={20}
+                maxZoom={zoomL}
               // subdomains={["mt0", "mt1", "mt2", "mt3"]}
               />
             </BaseLayer>
@@ -571,4 +590,10 @@ class OSDetails extends Component {
   }
 }
 
-export default OSDetails;
+const mapStateToProps = state => {
+  return {
+    wmsIsOpen: state.wmsIsOpen
+  };
+};
+
+export default connect(mapStateToProps)(OSDetails);

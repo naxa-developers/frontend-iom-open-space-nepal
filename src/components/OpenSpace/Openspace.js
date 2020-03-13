@@ -1,4 +1,5 @@
 import React, { Component,createRef } from "react";
+import { Button, Modal } from 'react-bootstrap'
 import Navbar from "../Home/Navbar";
 import OpenspaceMap from './OpenspaceMap';
 import Sidebar from './Sidebar';
@@ -10,17 +11,22 @@ class OpenSpace extends Component {
     this.mapRefs=createRef();
     this.state = {
       currentLocation: null,
-      nepalProvince:null
+      nepalProvince:null,
+      openModal: false,
+      // nullOpenspace: false
        
     };
   };
   setcurrentlocation=(loc)=>{
-    console.log(loc,"sert")
     this.setState({currentLocation:loc})
     
   }
   setProvince=(a)=>{
     // this.setState({nepalProvince:a})
+  }
+
+  openPop = () => {
+    this.setState({ openModal: true})
   }
   componentDidMount(){
 
@@ -37,6 +43,23 @@ class OpenSpace extends Component {
     return (
     <>
         <Navbar />
+       
+      <Modal show={this.state.openModal} centered="false" size="lg">
+                <Modal.Header><strong>OPEN SPACES MAPPING FOR
+HUMANITARIAN
+ASSISTANCE</strong>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick={()=> this.setState({openModal: !this.state.openModal})}>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </Modal.Header>
+                <Modal.Body>
+                    <div class="modal-body">
+   <h6>No open space identification survey has been carried in this location</h6>
+                    </div>
+                </Modal.Body>
+                {/* <Button style={{width:'200px', align: 'center'}}>Okay</Button> */}
+
+            </Modal>
         <main className="main-content">
           <section className="openSpace-map">
             <div className="container-fluid">
@@ -46,7 +69,7 @@ class OpenSpace extends Component {
                   <OpenspaceMap setProvince={this.setProvince} setcurrentLocation={this.setcurrentlocation} currentLocation={this.state.currentLocation} mapRefss={this.mapRefs} />
                   </div>
                   <div className="col-md-5 col-lg-4">
-                  <Sidebar mapRefs={this.mapRefs}  currentLocation={this.state.currentLocation} />
+                  <Sidebar mapRefs={this.mapRefs}  currentLocation={this.state.currentLocation} openPop = {this.openPop} />
                   </div>
                 </div>
                 

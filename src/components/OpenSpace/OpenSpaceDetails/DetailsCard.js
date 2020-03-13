@@ -134,15 +134,23 @@ class DetailsCard extends Component {
    
       
     document.getElementsByClassName('wms')[0].addEventListener('click', () => {
+    
       var element = document.getElementById("imgDiv");
         element.classList.toggle("imgActive");
         this.setState({ wms: !this.state.wms, wmsClicked: !this.state.wmsClicked }, () => {
+      
+          this.props.dispatch({
+            type: "wmsClicked",
+            wms: this.state.wmsClicked
+    
+          })
           {
             if (this.state.wms == true) {
   
               wmsLayer = L.tileLayer.wms(this.state.spaceInfo.geoserver_url, {
                 layers: this.state.spaceInfo.workspace + ':' + this.state.spaceInfo.layername,
                 format: 'image/png',
+                maxZoom: 22,
 
             
                 transparent: true
@@ -151,7 +159,10 @@ class DetailsCard extends Component {
   
   
               wmsLayer.addTo(this.props.reff.current.leafletElement);
+              
+              this.props.reff.current.leafletElement.options.maxZoom = 22;
               wmsLayer.bringToFront();
+
             } else {
   
   
@@ -166,6 +177,8 @@ class DetailsCard extends Component {
   
   
         })
+    
+
       }
       )
     }
@@ -604,7 +617,8 @@ class DetailsCard extends Component {
 
 const mapStateToProps = state => {
   return {
-    spaceID: state.spaceID
+    spaceID: state.spaceID,
+    wmsIsOpen: state.wmsIsOpen
   };
 };
 

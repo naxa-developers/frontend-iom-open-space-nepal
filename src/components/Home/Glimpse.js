@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Odometer from 'react-odometerjs';
 import 'odometer/themes/odometer-theme-default.css';
 import  {connect} from 'react-redux';
-import { Button, Modal } from 'react-bootstrap'
+import {  Modal } from 'react-bootstrap'
 import countershape from '../../img/counter-shape.png'
 import Axios from 'axios';
 import '../OpenSpace/OpenSpaceDetails/Details.css'
@@ -41,7 +41,7 @@ class Glimpse extends Component {
         Axios.get(`https://iomapi.naxa.com.np/api/v1/glimpse_of_open_space`)
         .then(res => {
         
-            
+    
            
             const counts = res.data;
             this.setState({counts: counts})
@@ -206,7 +206,7 @@ class Glimpse extends Component {
                 </Modal.Body>
 
             </Modal>
-            <section className="glimps-counter" style={{backgroundImage: `url(${countershape})` , zIndex:'190000'}} >
+            <section className="glimps-counter" style={{backgroundImage: `url(${countershape})`}} >
             <div className="overlay" ></div>
             <div className="glimps-wrapper">
                 <div className="container">
@@ -217,41 +217,42 @@ class Glimpse extends Component {
             
                             <div className="glimps-count" >
                                 <h4>
-                                {this.state.counts&&this.state.counts.data.open_space}
-                                    {/* <Odometer
+                                {/* {this.state.counts&&this.state.counts.data.open_space} */}
+                                    <Odometer
                                     format= "d"
                                     duration= {500}
-                                // value = "120"
+                                    glimps-count            
                                     value = {this.state.counts&&this.state.counts.data.open_space}
-                                /> */}
+                                />
                                 </h4>
                                 <h6>{this.props.language =="0" ? `Open spaces` : `खुल्ला क्षेत्र` }</h6>
                             </div>
                         </div>
                         <div className="col-md-4 col-space-5">
-                            <div className="glimps-count" onClick={() => this.toggle()}>
+                            <div className="glimps-count glimpse-hover" onClick={() => this.toggle()}>
                                 <h4>
-                                {this.state.counts&&this.state.counts.data.district}
-                                {/* <Odometer
+                                
+                                {/* {this.state.counts&&this.state.counts.data.district} */}
+                                <Odometer
                                     format= "d"
                                     duration= {500}
                                     // value="10"
                                     value = {this.state.counts&&this.state.counts.data.district}
-                                /> */}
+                                />
                                     </h4>
                                 <h6>{this.props.language =="0" ? `Districts` : ` जिल्ला` }</h6>
                             </div>
                         </div>
                         <div className="col-md-4">
-                            <div className="glimps-count" onClick={() => this.toggleOne()}>
+                            <div className="glimps-count glimpse-hover" onClick={() => this.toggleOne()}>
                                 <h4>
-                                {this.state.counts&&this.state.counts.data.municipality}
-                                {/* <Odometer
+                                {/* {this.state.counts&&this.state.counts.data.municipality} */}
+                                <Odometer
                                     format= "d"
                                     duration= {500}
                                     // value="10"
                                     value =  {this.state.counts&&this.state.counts.data.municipality}
-                                /> */}
+                                />
                                    </h4>
                                 <h6>{this.props.language =="0" ? `Municipalities` : ` नगरपालिका` }</h6>
                             </div>
@@ -259,12 +260,12 @@ class Glimpse extends Component {
                         <div className="col-md-4">
                             <div className="glimps-count" >
                                 <h4>
-                           {     this.state.counts&&this.state.counts.data.total_area}
-                                {/* <Odometer
+                           {/* {     this.state.counts&&this.state.counts.data.total_area} */}
+                                <Odometer
                                     format= "d"
                                     duration= {500}
-                                    value = {}
-                                /> */}
+                                    value = { this.state.counts&&this.state.counts.data.total_area}
+                                />
                                     </h4>
                                 <h6>{this.props.language =="0" ? `Total area(sq.m)` : `जम्मा क्षेत्रफल  ` }</h6>
                             </div>
@@ -272,12 +273,12 @@ class Glimpse extends Component {
                         <div className="col-md-4 ">
                             <div className="glimps-count">
         <h4>
-        {this.state.counts&&this.state.counts.data.total_capacity}
-        {/* <Odometer
+        {/* {this.state.counts&&this.state.counts.data.total_capacity} */}
+        <Odometer
                                     format= "d"
                                     duration= {500}
                                     value =  {this.state.counts&&this.state.counts.data.total_capacity}
-                                /> */}
+                                />
            </h4>
                                 <h6>{this.props.language =="0" ? `Total Capacity` : `जम्मा क्षमता ` }</h6>
                             </div>

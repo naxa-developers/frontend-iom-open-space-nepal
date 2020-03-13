@@ -21,3 +21,12 @@ div.fade.modal.show{
     z-index: 999999999;
 
 }
+
+.glimpse-hover:hover {
+    cursor: pointer;
+    background: lighten(#2562d0, 5%);
+    max-width: 50%;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    transition:  all .4s ease-in-out;
+}
