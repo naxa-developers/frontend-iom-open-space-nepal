@@ -230,20 +230,10 @@ class OS extends Component {
        
     
        munLayer.addTo(MAP);
-       console.log("munn", munLayer);
-       munLayer.setStyle(this.Ethnic2Style)
+    
    
 
-     function Ethnic2Style(feature) {
-        return {
-          fillColor: 'red',
-          weight: 2,
-          opacity: 1,
-          color: 'red',
-          dashArray: '3',
-          fillOpacity: 0.7
-        };
-      }
+    
       
           munLayer.bringToFront();
         //   munLayer.bindTooltip("feature.properties.LU_Name", {closeButton: false, offset: L.point(0, -20)});
