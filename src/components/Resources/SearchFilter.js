@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import MaterialIcon from "material-icons-react";
 import Select from "react-select";
+import { connect } from "react-redux";
 // React.Bootstrap = require("react-bootstrap");
 // import Select from "react-bootstrap-select";
 
@@ -66,7 +67,7 @@ class SearchFilter extends Component {
                   class="humanitarian-icon-Search search-icon"></i></span>
               </div>
               <input type="text" class="form-control" aria-label="Search"
-                placeholder="Search reports" onInput={(e) => this.props.setKeywords(e.target.value)}
+                placeholder={this.props.language=='0' ? "Search resources" : "स्रोतहरू खोज्नुहोस्"} onInput={(e) => this.props.setKeywords(e.target.value)}
                 onFocus={() => this.setState({ focused: true })}
                 // onBlur={() => {
                 //   setTimeout(() => this.setState({ focused: false }), 100)
@@ -91,13 +92,13 @@ class SearchFilter extends Component {
         <div className="dropdown-select">
           <div className="categories-dropdown">
 
-            <Select options={options} onChange={(e) => this.setState({ value1: e })} value={this.state.value1} placeholder='Category' />
+            <Select options={options} onChange={(e) => this.setState({ value1: e })} value={this.state.value1} placeholder={this.props.language=='0' ? "Category" : "वर्ग"} />
           </div>
         </div>
         <br />
         <div className="document-types-dropdown">
 
-          <Select styles={customStyles} options={options1} onChange={(e) => this.setState({ value2: e })} value={this.state.value2} placeholder="Document Type" />
+          <Select styles={customStyles} options={options1} onChange={(e) => this.setState({ value2: e })} value={this.state.value2} placeholder={this.props.language=='0' ? "Document Type" : "कागजात प्रकार"} />
         </div>
         <br />
         <div className="map-filter">
@@ -105,15 +106,14 @@ class SearchFilter extends Component {
             <div className="reset flex-start">
               <MaterialIcon icon="refresh" />
 
-              <span onClick={() => this.onClear()} className="btn" style={{ cursor: "pointer" }}>Clear all </span>
+              <span onClick={() => this.onClear()} className="btn" style={{ cursor: "pointer" }}>{this.props.language=='0' ? "Clear all" : "सबै हटाउनुहोस्"}</span>
 
             </div> 
             <button className="btn openspace-button" onClick={() => {
-              this.applyFilter(), 
-            console.log("filter now")
+              this.applyFilter()
             }
             }>
-              Apply
+            {this.props.language=='0' ? "Apply" : "निवेदन गर्नु"}
           </button>
           </div>
         </div>
@@ -122,4 +122,12 @@ class SearchFilter extends Component {
     );
   }
 }
-export default SearchFilter;
+
+const mapStateToProps = state => {
+  return {
+    reportData: state.reportData,
+    language: state.language
+  };
+};
+
+export default connect(mapStateToProps)(SearchFilter);
