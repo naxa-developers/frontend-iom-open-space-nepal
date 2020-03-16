@@ -181,7 +181,7 @@ this.props.dispatch({
                 />
                 <div className="report-count">
                   <h5>
-                    Reports:{" "}
+                  {this.props.language=='0' ? "Reports" : "रिपोर्टहरू" }:{" "}
                     <span>
                       {this.props.reportData && this.props.reportData.length}
                     </span>
@@ -199,7 +199,7 @@ this.props.dispatch({
                       type="text"
                       className="form-control"
                       aria-label=""
-                      placeholder="Search reports"
+                      placeholder= { this.props.language=='0' ? "Search reports" : "रिपोर्टहरू खोज्नुहोस्"}
                       onInput={e => this.setKeywords(e.target.value)}
                       onFocus={() => this.setState({ isFocused: true })}
                       // onBlur = {() => {
@@ -261,7 +261,8 @@ this.props.dispatch({
 
 const mapStateToProps = state => {
   return {
-    reportData: state.reportData
+    reportData: state.reportData,
+    language: state.language
   };
 };
 

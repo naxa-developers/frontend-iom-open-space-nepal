@@ -99,11 +99,11 @@ onOpenChange = e => {
 
 
 
-console.log(url);
+
 
     Axios.get(url)
       .then(response => {
-        console.log("f", response.data);
+     
         
         this.props.dispatch({
           type: "ReportFilter",
@@ -168,7 +168,7 @@ console.log("d");
           {this.state.openspaceList&&
           <>
               <Select
-              placeholder="Openspace"
+              placeholder={this.props.language=='0' ? "Openspace" : "खुल्ला ठाउँ" }
               options={this.state.openspaceList}
               value={this.state.oID}
               onChange={this.onOpenChange}
@@ -190,14 +190,14 @@ console.log("d");
           >
             <button className="btn btn-outline-primary dropdown-toggle" >
               {
-                this.state.startDate && this.state.endDate ? `${this.state.startDate} - ${this.state.endDate}` : 'Select Range'
+                this.state.startDate && this.state.endDate ? `${this.state.startDate} - ${this.state.endDate}` : this.props.language=='0' ? 'Select Date' : "दायरा चयन गर्नुहोस्" 
               }
             </button>
 
           </DateRangePicker>
 
           <Select
-            placeholder="Status"
+            placeholder={this.props.language=='0' ? "Status" : "स्थिति" }
             options={status}
             value={this.state.valueStatus}
             onChange={this.onStatusChange}
@@ -211,11 +211,11 @@ console.log("d");
           <div className="reset">
             <i icon="refresh" />
 
-            <span onClick={() => this.onClear()}>clear all</span>
+            <span onClick={() => this.onClear()}>{this.props.language=='0' ? "Clear all" : "सबै हटाउनुहोस्" }</span>
           </div>
 
           <button className="openspace-button" onClick={() => this.applyFilter()}>
-            Apply
+          {this.props.language=='0' ? "Apply" : "निवेदन गर्नु" }
           </button>
         </div>
 
@@ -225,7 +225,8 @@ console.log("d");
 }
 const mapStateToProps = state => {
   return {
-    ...state
+    ...state,
+    language: state.language
   };
 };
 export default connect(mapStateToProps)(ReportFilter);

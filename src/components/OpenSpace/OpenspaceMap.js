@@ -213,18 +213,35 @@ class OS extends Component {
        this.setState({provinceLoading: 'none'})
       
            province.bringToFront();
-          munLayer = new L.geoJSON.ajax('src/json/openspace_gp_np.geojson', {
-              color: '#5ACE52',
-              fillColor: '#fff',
-              weight: '1.5'
+         munLayer = new L.geoJson.ajax('src/json/openspace_gp_np.geojson', 
+      { 
+        style: function(feature) {
+          return {
+            color: '#5ACE52', fillColor:'#fff', weight:'1.5'  
           }
-            )
-         
-            munLayer.addTo(MAP);
+        },
+        onEachFeature: function(feature, layer){     
+            {  layer.bindTooltip(feature.properties.LU_Name, {closeButton: false, offset: L.point(0, -20)});   }
+        } 
        
+      }
+      )
    
-        //   munLayer.addTo(this.props.mapRefss.current.leafletElement);
+       
+    
+       munLayer.addTo(MAP);
+    
+   
+
+    
+      
           munLayer.bringToFront();
+        //   munLayer.bindTooltip("feature.properties.LU_Name", {closeButton: false, offset: L.point(0, -20)});
+        //   munLayer.on('mouseover', function(){
+        //       munLayer.openPopup();
+        //       console.log("hover");
+              
+        //   })
     //    setTimeout(() => {
     //        munCounts.map((m) => {
 
@@ -306,7 +323,7 @@ fetchGlimpse = () => {
 
     }
     componentDidUpdate(prevProps) {
-        console.log("p", this.props.deleteAll);
+     
         
         if(prevProps.deleteAll!== this.props.deleteAll){
             if(this.props.deleteAll) {
@@ -324,7 +341,7 @@ fetchGlimpse = () => {
         autoClose: 3000, position: "bottom-right"
     });
     render() {
-        console.log("ppp", this.state.deleteAll)
+
       
     //  MAP &&  MAP.on('zoomend', function() {
 

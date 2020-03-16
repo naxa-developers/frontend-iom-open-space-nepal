@@ -5,6 +5,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 // import ShowMore from "react-show-more";
 import { HashLink as Link } from 'react-router-hash-link';
+import { connect } from "react-redux";
 
 class Resourcecard extends Component {
   constructor(props) {
@@ -20,8 +21,7 @@ class Resourcecard extends Component {
   }
 
   downloadClicked = () => {
-    console.log("check download");
-
+  
     !this.props.audio && !this.props.publication && !this.props.video && confirmAlert({
       title: 'No download resource available!',
       buttons: []
@@ -101,7 +101,7 @@ class Resourcecard extends Component {
                   </div>
                   <div className="para-wrap-section">
                     <p className="para-details-block">
-                      <span className="title">Type</span>
+                      <span className="title">{this.props.language=='0' ? 'Type' : 'प्रकार'}</span>
                       <span className="subtitle">
                         {this.props.document_type == 0
                           ? "Publication"
@@ -113,7 +113,7 @@ class Resourcecard extends Component {
                       </span>
                     </p>
                     <p className="para-details-block">
-                      <span className="title">Category</span>
+                      <span className="title">{this.props.language=='0' ? 'Category' : 'वर्ग'}</span>
                       <span className="subtitle">
                         {this.props.categories == 0
                           ? "Plans & Policies"
@@ -136,4 +136,11 @@ class Resourcecard extends Component {
   }
 }
 
-export default Resourcecard;
+const mapStateToProps = state => {
+  return {
+    language: state.language
+  };
+};
+
+
+export default connect(mapStateToProps)(Resourcecard);

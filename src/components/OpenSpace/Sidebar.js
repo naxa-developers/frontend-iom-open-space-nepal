@@ -899,20 +899,20 @@ componentDidUpdate(){
                   <div className="filter-option">
                     <Select
                       options={this.state.province}
-                      placeholder="Province"
+                      placeholder=  { this.props.language == '0' ? "Province" : 'प्रान्त' }
                       onChange={e => this.handleprovince(e)}
                       value={this.state.SelectedProvince}
                     />
                     <Select
                       options={this.state.district}
-                      placeholder="District"
+                      placeholder=   { this.props.language == '0' ? "District" : 'जिल्ला' }
                       onChange={e => this.handledistrict(e)}
                       isDisabled={this.state.handlingindex < 1 ? true : false}
                       value={this.state.SelectedDistrict}
                     />
                     <Select
                       options={this.state.municipality}
-                      placeholder="Municipality"
+                      placeholder=   { this.props.language == '0' ? "Municipality" : 'नगरपालिका' }
                       onChange={e => this.handlemunicipality(e)}
                       isDisabled={this.state.handlingindex < 2 ? true : false}
                       value={this.state.SelectedMunicipality}
@@ -965,11 +965,11 @@ componentDidUpdate(){
 
                         }
                       >
-                        clear all
+                         { this.props.language == '0' ?  'clear all' : 'सबै खाली गर्नुहोस्' }
                       </span>
                     </div>
                     <button onClick={() => this.onApply()} className="openspace-button">
-                      Apply
+                    { this.props.language == '0' ?  ' Apply ' : 'निवेदन गर्नु' }
                     </button>
                   </div>
                 </div>
@@ -982,13 +982,13 @@ componentDidUpdate(){
                     >
                       near_me
                     </i>
-                    Nearby me
+                    { this.props.language == '0' ? 'Nearby me' : 'नजिकका स्थानहरु ' }
                   </a>
                 </div>
                 <div className="report-count">
                   <h5>
                     {/* Open spaces: <span> 83 </span> */}
-                    Open spaces: <span> {this.state.Allos.length} </span>
+                    { this.props.language == '0' ? 'Open spaces:' : 'खुला स्थानहरू:'} <span> {this.state.Allos.length} </span>
 
                   </h5>
                   {/* <span>Below is the result of Gandaki Province..</span> */}
@@ -1005,7 +1005,7 @@ componentDidUpdate(){
                       type="text"
                       className="form-control"
                       aria-label=""
-                      placeholder="Search Open Space"
+                      placeholder={ this.props.language == '0' ? "Search Open Space" : 'खुला स्थानहरू खोज्नुहोस्' }
                       onInput={e =>
                         this.setState({ search_keyword: e.target.value })
                       }
@@ -1083,7 +1083,8 @@ componentDidUpdate(){
 const mapStateToProps = (state) => {
   return {
     ...state,
-    id: state.id
+    id: state.id,
+    language: state.language
   }
 }
 
