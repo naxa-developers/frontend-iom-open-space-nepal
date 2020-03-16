@@ -22,6 +22,7 @@ class Glimpse extends Component {
               '  Gokarneshwor Municipality',
             '    Kirtipur Municipality',
                ' Bhaktapur Metropolitan City',
+               'Lalitpur Metropolitan City',
               '  Gorkha Municipality Office',
               '  Bhimeshwor Municipality',
               '  Chautara Sangachowkgadhi Municipality',
@@ -32,6 +33,21 @@ class Glimpse extends Component {
                ' Tansen Municipality',
               '  Putali Bazar Municipality',
                ' Resunga Municipality'
+            ],
+            districtArray : [
+             ' Kathmandu ',
+            '  Bhaktapur ',
+'              Lalitpur',
+            '  Gorkha',
+          '    Dolakha',
+            '  Sindupalchowk',
+              'Rasuwa',
+            '  Dhading',
+           '   Kaski',
+           '   Baglung',
+            '  Palpa',
+           '   Syangja',
+             ' Gulmi'
             ]
            
         };
@@ -95,67 +111,20 @@ class Glimpse extends Component {
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Kathmandu </td>
- 
+    {
+      this.state.districtArray.map((d, i) => {
+        return (
+          <tr>
+          <th scope="row">{i+1}</th>
+        <td>{d}</td>
      
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Bhaktapur </td>
-  
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Lalitpur </td>
-  
-    </tr>
-    <tr>
-      <th scope="row">4</th>
-      <td>Gorkha </td>
-  
-    </tr>
-    <tr>
-      <th scope="row">5</th>
-      <td>Dolakha </td>
-  
-    </tr>
-    <tr>
-      <th scope="row">6</th>
-      <td>Rasuwa </td>
-  
-    </tr>
-    <tr>
-      <th scope="row">7</th>
-      <td>Dhading </td>
-  
-    </tr>
-    <tr>
-      <th scope="row">8</th>
-      <td>Kaski </td>
-  
-    </tr>
-    <tr>
-      <th scope="row">9</th>
-      <td>Baglung </td>
-  
-    </tr>
-    <tr>
-      <th scope="row">10</th>
-      <td>Palpa </td>
-  
-    </tr>
-    <tr>
-      <th scope="row">11</th>
-      <td>Syangja </td>
-  
-    </tr>
-    <tr>
-      <th scope="row">12</th>
-      <td>Gulmi </td>
-  
-    </tr>
+         
+        </tr>
+     
+      )
+      })
+    }
+    
   
      
    
