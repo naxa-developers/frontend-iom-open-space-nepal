@@ -254,7 +254,12 @@ ul .scrollbar-container{
 }
 
 
-
+div.legendMuni {
+    border: 2px solid #5ace52 !important;
+    height: 18px ;
+    width: 24px;
+    margin-right: 10px;
+}
 
 
   

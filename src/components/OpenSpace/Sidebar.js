@@ -223,7 +223,8 @@ class Sidebar extends Component {
       var class1 = 'desccard';
       // var activeclass=class1
 
-      var descCard = "<ul id='mrk-lg'><h6>Legend</h6><li><span class='legend blue'></span><p>Openspace</p></li></ul>";
+      var descCard = "<ul id='mrk-lg'><h6>Legend</h6><li><span class='legend blue'></span><p>Openspace</p></li>" +
+     " <li><div class='legendMuni'></div><p>Mapped Municipality</p></li></ul>";
 
 
 
