@@ -28,7 +28,7 @@ import bannerShape from "../../img/banner-shape.png";
     .then(res => {
     
         
-       console.log("res", res.data);
+
        
         const counts = res.data;
         this.setState({counts: counts})
@@ -43,7 +43,7 @@ componentDidMount() {
   this.fetchCounts();
 }
     render() {
-      console.log("p", this.state.counts);
+    
       
         return (
         
