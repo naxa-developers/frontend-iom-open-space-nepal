@@ -1,19 +1,47 @@
-import React, { Component } from 'react'
+import React, {useState, useEffect} from 'react'
 import {Card} from 'react-bootstrap'
+import '../Gallery/Photo.css'
+import Axios from 'axios'
+function Emergency() {
 
-class Emergency extends Component {
-    render() {
+
+    const[erData, seterData] = useState();
+useEffect(() => {
+    Axios.get(`http://139.59.67.104:8011/api/v1/message/`).then(
+        res => {
+            
+seterData(res.data)
+        }
+    )
+    
+}) 
+
         return (
             <div>
                 <Card>
-                    <Card.Header>Heading 1
-                    <Card.Body>This is some text within a card body.</Card.Body>
+                    <Card.Header>
+                        <div style={{display:'flex'}}>
+                        <div>
+                        <h4 className="emerge-header">Agency Name:</h4>
+                        </div>
+                        <div> <span className="agency-name">Red Cross</span>
+                        </div> 
+                        </div>
+                        <div className="message">
+                 <h6 style={{color:'#174BDD'}}>Message:</h6> <span>A message to ADARSHA AZAD HIGHER SECONDARY SCHOOL. </span>
+                 </div>
                     </Card.Header>
   
 </Card>
+{/* <Card>
+                    <Card.Header> <h4>Agency Name:</h4> <span>Other agency</span>
+                    <Card.Body><h6>Message:</h6> <span>This is a long message</span></Card.Body>
+                    </Card.Header>
+  
+</Card> */}
             </div>
         )
     }
-}
+
 
 export default  Emergency;

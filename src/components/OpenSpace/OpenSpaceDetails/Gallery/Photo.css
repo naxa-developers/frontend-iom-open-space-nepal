@@ -6,3 +6,30 @@
   margin-top: 6px;
    
 }
+
+.emerge-header {
+  font-size: 1rem;
+  color: #174BDD;
+  font-weight: 700;
+  margin: 0;
+}
+
+.agency-name {
+  justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+    color: rgb(42, 42, 44);
+    font-size: 0.85rem;
+    margin-bottom: .6125rem;
+    margin-left: 5px;
+}
+.message {
+  margin-top: 5px;
+    display: flex;
+}
+
+.message span{
+  margin-left: 5px;
+  color: #6D6E71;
+  
+}
