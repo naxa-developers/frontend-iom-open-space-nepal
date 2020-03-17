@@ -167,9 +167,7 @@ class DetailsCard extends Component {
                   type: 'wmsLoaded',
                   loaded: true
                 })
-                // this.setState({
-                //   isLoaded: true
-                // })
+              
             
               });
               

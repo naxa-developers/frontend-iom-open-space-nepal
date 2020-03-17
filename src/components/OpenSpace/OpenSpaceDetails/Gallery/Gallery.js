@@ -70,7 +70,7 @@ class Gallary extends Component {
             </div>
           </div>
           <div className="gallery-grid">
-            <h4>Images</h4>
+            <h4>Photos</h4>
             <div class="row">
             {this.state.loading ? (
                 <LoadingSpinner />
