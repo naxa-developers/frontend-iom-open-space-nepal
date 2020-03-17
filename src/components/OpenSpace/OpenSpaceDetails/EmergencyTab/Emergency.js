@@ -11,19 +11,6 @@ class Emergency extends Component {
                     </Card.Header>
   
 </Card>
-<Card>
-<Card.Header>Heading 1
-<Card.Body>This is some text within a card body.</Card.Body>
-</Card.Header>
-  
-</Card>
-<Card>
-<Card.Header>Heading 1
-<Card.Body>This is some text within a card body.</Card.Body>
-
-</Card.Header>
- 
-</Card>
             </div>
         )
     }

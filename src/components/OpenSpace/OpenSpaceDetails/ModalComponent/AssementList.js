@@ -27,7 +27,7 @@ const AssementList = (props) => {
             <div className="assessment-list">
                 <ul>
                     <li data-toggle="modal" data-target="#assessment-popup" onClick={toggle}>
-                    General Information Table
+                    VIEW ALL ATTRIBUTES DATA
                         <i className="material-icons">chevron_right</i>
                     </li>
                     <li data-toggle="modal" data-target="#assessment-popup" onClick={toggle1}>
