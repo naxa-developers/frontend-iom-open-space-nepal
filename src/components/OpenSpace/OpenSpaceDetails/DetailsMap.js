@@ -9,6 +9,7 @@ import healthIcon from '../../../img/icons_Medical.png'
 
 
 import './Details.css'
+import Spinner from '../OpenSpaceDetails/MapLoader'
 
 var geo = null;
 class OSDetails extends Component {
@@ -25,7 +26,8 @@ class OSDetails extends Component {
       dummyNo: 'Not Available',
       myloc: L.control({ position: 'topleft' }),
       legend: L.control({ position: 'bottomright' }),
-      allNearby: L.featureGroup()
+      allNearby: L.featureGroup(),
+      wmsLoading: 'none'
     };
   }
 
@@ -453,7 +455,33 @@ class OSDetails extends Component {
 
   }
 
-
+  componentDidUpdate(prevProps) {
+         if(prevProps.wmsIsOpen!== this.props.wmsIsOpen) {
+           if(this.props.wmsIsOpen) {
+             console.log("show load");
+             
+             this.setState({
+               wmsLoading: 'block'
+             })
+           }
+         }
+    if(prevProps.loaded!== this.props.loaded){
+      if(this.props.loaded) {
+        console.log("hide load");
+        
+        this.setState({
+          wmsLoading: 'none'
+        })
+      }
+       
+  //  else{
+  //         this.setState({
+  //           wmsLoading: 'none'
+  //         })
+  //       }
+      }
+    }
+  
   componentDidMount() {
 
   
@@ -494,6 +522,8 @@ class OSDetails extends Component {
   }
   render() {
  
+    // console.log("wms is loaded", this.props.loaded);
+    
     while(geo!==null) {
       this.props.wmsIsOpen && geo && this.props.wmsIsOpen === true ? geo.setStyle({
         fillOpacity: 0
@@ -515,6 +545,27 @@ let zoomL = 22;
         {/* <div onClick={()=>this.props.fetchroute([ 27.70419959812,85.315
          ],[ 27.704199598618246,85.31621932983398
          ])}>Clickme</div> */}
+
+<div
+            // id='Spinner'
+            style={{
+              display: `${this.state.wmsLoading}`,
+              // display: 'block',
+              background: 'white',
+              opacity: '0.6',
+              position: 'absolute',
+              zIndex: '500',
+              textAlign: 'center',
+              left: '50%',
+              padding: '8px',
+              top: '4px',
+              // height: '200px'
+          
+            }}
+          >
+           <Spinner />
+           
+          </div>
         <LeafletMap
           center={[27, 85]}
           zoom={7}
@@ -533,6 +584,7 @@ let zoomL = 22;
             overflow: "hidden"
           }}
         >
+         
           <LayersControl position="topright">
             <BaseLayer ref={this.baseLayer} name="OpenStreetMap">
               <TileLayer
@@ -592,7 +644,8 @@ let zoomL = 22;
 
 const mapStateToProps = state => {
   return {
-    wmsIsOpen: state.wmsIsOpen
+    wmsIsOpen: state.wmsIsOpen,
+    loaded: state.loaded
   };
 };
 

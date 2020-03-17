@@ -5,7 +5,8 @@ const initState = {
     reportData: null,
     currentloccalculated:false,
     wmsIsOpen: null,
-    deleteAll: null
+    deleteAll: null,
+    loaded: false
 
 
 
@@ -62,6 +63,13 @@ const rootReducer = (state = initState, action) => {
                         ...state,
                         deleteAll:action.status
                     }
+
+        case "wmsLoaded":
+                        return{
+                            ...state,
+                            loaded:action.loaded
+                        }
+            
         
 
         default:
