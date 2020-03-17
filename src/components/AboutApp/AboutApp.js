@@ -6,6 +6,7 @@ import Footer from '../Home/Footer';
 import bannerShape from '../../img/banner-shape.png';
 import MapLocation from '../../img/map-pin-locations.svg'
 import Steps from './Steps';
+import { connect } from 'react-redux';
 
  class AboutApp extends Component {
 
@@ -21,6 +22,8 @@ import Steps from './Steps';
         Axios.get(
           `https://iomapi.naxa.com.np/api/v1/open_space_app/`
         ).then(response => {
+            console.log("app", response.data);
+            
           this.setState({
             data: response.data
           });
@@ -48,12 +51,12 @@ import Steps from './Steps';
                             </div>
                             <div className="col-md-6">
                                 <figure className="app-content">
-                                    <span className="sub-title">Get started with</span>
-                                    <h3 className="openspace-title">OPEN SPACES App</h3>
+                                    <span className="sub-title">{ this.props.language=='0' ? 'Get started with' : 'सुरु गर्नुहोस्'}</span>
+                                    <h3 className="openspace-title">{ this.props.language=='0' ? 'OPEN SPACES App' : 'खुला ठाउँ अनुप्रयोग'}</h3>
                                     
                                     <div className="app-icons-content">
                                         
-                                        <h4>Download now</h4>
+                                        <h4>{ this.props.language=='0' ? 'Download now' : 'डाउनलोड गर्नुहोस्' }</h4>
                                         <div className="app-icon flex-start">
                                             <figure>
                                                 <img src={require('../../img/appstore.png')} alt="ios" />
@@ -79,8 +82,8 @@ import Steps from './Steps';
                                         <img src={this.state.data&&this.state.data[0].icon} alt="location" />
                                     </figure>
                                     <div class="content-title">
-        <h3 class="openspace-title">{this.state.data&&this.state.data[0].title}</h3>
-                                        <p class="content-para">{this.state.data&&this.state.data[0].description}</p>
+        <h3 class="openspace-title">{this.props.language=='0' ? this.state.data && this.state.data[0].title : this.state.data && this.state.data[0].title_nep }</h3>
+                                        <p class="content-para">{this.props.language=='0' ? this.state.data && this.state.data[0].description : this.state.data && this.state.data[0].description_nep } </p>
                                     </div>
                                 </div>
                             </div>
@@ -112,8 +115,8 @@ import Steps from './Steps';
                                         <img src={this.state.data&&this.state.data[1].icon} alt="" />
                                     </figure>
                                     <div class="content-title">
-                                        <h3 class="openspace-title">{this.state.data&&this.state.data[1].title}</h3>
-                                        <p class="content-para">{this.state.data&&this.state.data[1].description}</p>
+                                        <h3 class="openspace-title">{this.props.language=='0' ? this.state.data && this.state.data[1].title : this.state.data && this.state.data[1].title_nep }</h3>
+                                        <p class="content-para">{this.props.language=='0' ? this.state.data && this.state.data[1].description : this.state.data && this.state.data[1].description_nep }</p>
                                     </div>
                                 </div>
                             </div>
@@ -131,8 +134,8 @@ import Steps from './Steps';
                                         <img src={this.state.data&&this.state.data[2].icon} alt="" />
                                     </figure>
                                     <div class="content-title">
-                                        <h3 class="openspace-title">{this.state.data&&this.state.data[2].title}</h3>
-                                        <p class="content-para">{this.state.data&&this.state.data[2].description}</p>
+                                        <h3 class="openspace-title">{this.props.language=='0' ? this.state.data && this.state.data[2].title : this.state.data && this.state.data[2].title_nep }</h3>
+                                        <p class="content-para">{this.props.language=='0' ? this.state.data && this.state.data[2].description : this.state.data && this.state.data[2].description_nep }</p>
                                     </div>
                                 </div>
                             </div>
@@ -179,4 +182,11 @@ import Steps from './Steps';
         )
     }
 }
-export default AboutApp;
+const mapStateToProps = state => {
+    return {
+     language: state.language
+    };
+  };
+
+  
+export default connect(mapStateToProps)(AboutApp);

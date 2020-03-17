@@ -22,6 +22,10 @@ import React, { Component } from 'react'
                                             <a className={this.props.tabid==4?"nav-link active":"nav-link"} id="nearby_tab" data-toggle="tab" 
                                                 role="tab" aria-controls="nearby" aria-selected="false">nearby Amenities</a>
                                         </li>
+                                        <li className="nav-item" onClick={()=>this.props.changetabid(5)}>
+                                            <a className={this.props.tabid==5?"nav-link active":"nav-link"} id="nearby_tab" data-toggle="tab" 
+                                                role="tab" aria-controls="emergency" aria-selected="false">Emergency Activities</a>
+                                        </li>
 
                                     </ul>
           

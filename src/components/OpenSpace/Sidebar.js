@@ -223,8 +223,7 @@ class Sidebar extends Component {
       var class1 = 'desccard';
       // var activeclass=class1
 
-      var descCard = "<ul id='mrk-lg'><h6>Legend</h6><li><span class='legend blue'></span><p>Openspace</p></li>" +
-     " <li><div class='legendMuni'></div><p>Mapped Municipality</p></li></ul>";
+      var descCard = "<ul id='mrk-lg'><h6>Legend</h6><li><span class='legend blue'></span><p>Openspace</p></li> <li><div class='legendMuni'></div><p>Mapped Municipality</p></li></ul>";
 
 
 
@@ -468,7 +467,7 @@ this.setState({
 
     })
     document.getElementById('mrk-lg').innerHTML+="<li id='nearbylegend' ><span class='legend green'></span><p>Nearby OS</p></li>"
-    document.getElementById('mrk-lg').innerHTML+="<li id='nearbylegend' ><span class='current-location'><i class='material-icons' style='color: #5ACE52'>gps_fixed</i> </span></span><p>  </p><p>Your Location</p></li>"
+    document.getElementById('mrk-lg').innerHTML+="<li id='nearbylegendOne' ><span class='current-location'><i class='material-icons' style='color: #5ACE52'>gps_fixed</i> </span></span><p>  </p><p>Your Location</p></li>"
     this.state.nearbyGroup.bringToFront()
     this.props.mapRefs.current.leafletElement.fitBounds(this.state.nearbyGroup.getBounds())
 
@@ -480,6 +479,7 @@ this.setState({
     if (this.state.nearbytoogle) {
       this.state.nearbyGroup.eachLayer(e => this.state.nearbyGroup.removeLayer(e))
       document.getElementById('mrk-lg').removeChild(document.getElementById('nearbylegend'))
+      document.getElementById('mrk-lg').removeChild(document.getElementById('nearbylegendOne'))
       this.setState({ Allos: this.state.Openspaces })
       this.props.mapRefs.current.leafletElement.addLayer(this.state.OSmarkers)
 
