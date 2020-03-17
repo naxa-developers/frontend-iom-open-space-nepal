@@ -22,8 +22,7 @@ class Gallary extends Component {
   
   fetchMaps = () => {
     Axios.get(`https://iomapi.naxa.com.np/api/v1/gallery/?id=${localStorage.getItem("OpenspaceID")}&type=map`).then(response => {
-    console.log("from c" , response.data);
-     
+    
     this.setState({
         maps: response.data,
         loading: false
@@ -48,8 +47,6 @@ class Gallary extends Component {
  
   render() {
   
-// console.log("mapsss", this.state.maps);
-
 
     return (
       <>

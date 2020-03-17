@@ -474,18 +474,14 @@ class OSDetails extends Component {
         })
       }
        
-  //  else{
-  //         this.setState({
-  //           wmsLoading: 'none'
-  //         })
-  //       }
+   else{
+          this.setState({
+            wmsLoading: 'block'
+          })
+        }
       }
     }
-  
   componentDidMount() {
-
-  
-
     this.onload();
     this.plotNearby();
     this.currentloc();
@@ -521,6 +517,7 @@ class OSDetails extends Component {
     });
   }
   render() {
+
  
     // console.log("wms is loaded", this.props.loaded);
     

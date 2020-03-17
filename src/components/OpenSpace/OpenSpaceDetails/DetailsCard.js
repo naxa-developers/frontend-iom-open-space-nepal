@@ -162,10 +162,9 @@ class DetailsCard extends Component {
   
   
               wmsLayer.addTo(this.props.reff.current.leafletElement).on("load",() => {
-
                 this.props.dispatch({
                   type: 'wmsLoaded',
-                  loaded: this.state.wmsClicked
+                  loaded: true
                 })
               
             
@@ -516,7 +515,7 @@ class DetailsCard extends Component {
   // }
 
   render() {
-console.log("loadddd", this.state.isLoaded);
+
 
 
     this.props.id && localStorage.setItem("OpenspaceID", this.props.id);
