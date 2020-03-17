@@ -165,7 +165,7 @@ class DetailsCard extends Component {
 
                 this.props.dispatch({
                   type: 'wmsLoaded',
-                  loaded: true
+                  loaded: this.state.wmsClicked
                 })
               
             

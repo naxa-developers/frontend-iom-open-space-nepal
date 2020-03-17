@@ -458,17 +458,17 @@ class OSDetails extends Component {
   componentDidUpdate(prevProps) {
          if(prevProps.wmsIsOpen!== this.props.wmsIsOpen) {
            if(this.props.wmsIsOpen) {
-             console.log("show load");
-             
              this.setState({
                wmsLoading: 'block'
              })
+           }else {
+            this.setState({
+              wmsLoading: 'none'
+            })
            }
          }
     if(prevProps.loaded!== this.props.loaded){
       if(this.props.loaded) {
-        console.log("hide load");
-        
         this.setState({
           wmsLoading: 'none'
         })
