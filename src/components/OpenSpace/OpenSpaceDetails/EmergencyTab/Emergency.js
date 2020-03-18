@@ -16,8 +16,9 @@ class Emergency extends Component {
 componentDidMount() {
     let OID = localStorage.getItem("OpenspaceID")
     
-    Axios.get(`http://139.59.67.104:8011/api/v1/message/?id=${OID}`).then(
+    Axios.get(`https://iomapi.naxa.com.np/api/v1/message/?id=${OID}`).then(
         res => {
+           console.log("emergency", res.data);
            
         this.setState({
             erData: res.data
