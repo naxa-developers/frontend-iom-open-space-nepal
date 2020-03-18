@@ -162,7 +162,7 @@ class DetailsCard extends Component {
   
   
               wmsLayer.addTo(this.props.reff.current.leafletElement).on("load",() => {
-                this.props.dispatch({
+                  this.props.dispatch({
                   type: 'wmsLoaded',
                   loaded: true
                 })

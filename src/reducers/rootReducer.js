@@ -4,7 +4,7 @@ const initState = {
     spaceID: null,
     reportData: null,
     currentloccalculated:false,
-    wmsIsOpen: null,
+    wmsIsOpen: false,
     deleteAll: null,
     loaded: false
 

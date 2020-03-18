@@ -92,13 +92,7 @@ import { connect } from 'react-redux';
                             <Tab.Container id="left-tabs-example" defaultActiveKey="first" >
                                 <div class="title">
                                     <h3 class="openspace-title">Open Spaces Selection Criteria</h3>
-                                    <p>Open spaces for humanitarian purposes are selected in consultation with a multitude of
-                                        stakeholders including local communities, humanitarian agencies, local disaster risk
-                                        management committees, ward presidents, security forces among others. Open spaces failing to
-                                        meet the below criteria may cause further distress to the disaster affected and displaced
-                                        population. Identification of flat and large open spaces in the hilly terrain of Nepal is
-                                        itself a challenge however, the following criteria are considered for identifying open
-                                        spaces for humanitarian purposes and providing refuge to displaced population.
+                                    <p>Open spaces for humanitarian purposes are selected in consultation with a multitude of stakeholders including local communities, humanitarian agencies, local disaster risk management committees, ward presidents and security forces, among others.Open spaces failing to meet the below criteria may cause further distress to the disaster affected and displaced populations. Identification of flat and large open spaces in the hilly terrain of Nepal is in itself a challenge. However, the following criteria are considered for identifying open spaces for humanitarian purposes and providing refuge to displaced populations.
                         </p>
                                 </div>
                                 <div class="about-tab">
@@ -145,31 +139,38 @@ import { connect } from 'react-redux';
                                                 <Tab.Pane eventKey="first">
                                                     <ul>
                                                         <li>
-                                                            Accessibility is a critical factor for open space identification. Many open areas have restricted road access which impacts on the establishment of the camps, movement of IDP to the camps, food supply and other camp necessities.</li>
-                                                        <li> Open spaces should be easily accessible in all seasons.  </li>
+                                                        Accessibility is a critical factor for open space identification. Some open spaces have restricted road access which impacts the establishment of camps, movement of IDPs to the camps, ensuring food supplies and other camp necessities. Therefore, it is critical in the selection phase that the accessibility of the open spaces in all seasons is considered.
+                                                         </li>  
+                                                        <li> The mobility of displaced populations, supply of goods and services, access to critical services (such as hospitals, markets, schools) in the surroundings are ensured while selecting an open space.</li>
                                                         <li>
                                                             The mobility of the displaced population, supply of goods/ services, access to critical services in the surroundings –hospital, market, school among others are ensured while selecting an open space. </li>
-                                                        <li>Access to livelihoods is considered for open spaces identification. </li>
+                                                        <li>Access to livelihoods is also considered for open spaces identification. </li>
                                                     </ul>
                                                 </Tab.Pane>
                                                 <Tab.Pane eventKey="second">
 
                                                     <ul>
                                                         <li>
-                                                            Security is likely to be a key issue in high density camp.  Existing security features are explained as these will assist with open space identification and camp management.</li>
-                                                        <li> Natural and man-made hazards. Example: Existence of industrial areas in the proximities of the open spaces are avoided.  </li>
+                                                        Security is likely to be a key issue in high density camp. Existing security features areexplained as these will assist with open space identification and camp management.
+                                                         </li> 
                                                         <li>
-                                                            Extreme climatic conditions. Example: Open spaces at risk of flooding, high winds or landslides are avoided. Similarly, open spaces with high intensity electric wires are also avoided.   </li>
-                                                        <li>Environmental and health conditions. Example: Health risk typical for the open spaces are assessed example- malaria zones and cholera risk areas are avoided. </li>
-                                                        <li> There should be evacuation routes.</li>
+                                                        Natural  and  human  induced  hazards.  Example:   Existence  of   industrial  areas  in  theproximities of the open spaces are avoided.
+                                                              </li>
+                                                        <li>
+                                                        Extreme climatic conditions. Example: Open spaces at risk of flooding, strong winds orlandslides are avoided. Similarly, open spaces with high intensity electric wires are also avoided.</li>
+                                                        <li>
+                                                        Environmental and health conditions. Example: Health risks typical for the open spaces areassessed. Malaria zones and cholera high risk areas are avoided. </li>
+                                                        <li>Evacuation routes are considered while identifying open spaces</li>
                                                     </ul>
                                                 </Tab.Pane>
                                                 <Tab.Pane eventKey="third">
 
                                                     <ul>
                                                         <li>
-                                                            Availability of water is an important aspect that needs to be considered for selecting open spaces. </li>
-                                                        <li> Water needs to be available in sufficient quantity in all seasons, taking into consideration the level of water during the dry season, as well as the basic needs of the displaced population (calculated as 7.5-15 litres per person per day).   </li>
+                                                        Availability of and accessibility to water is considered. </li>
+                                                        <li>
+                                                        Water needs to be available in sufficient quantity in all seasons, taking into consideration the level of water during the dry season, as well as the basic needs of the displaced population (calculated as 7.5-15 liters per person per day).
+                                                        </li>
 
 
                                                     </ul>
@@ -178,11 +179,12 @@ import { connect } from 'react-redux';
 
                                                     <ul>
                                                         <li>
-                                                            According to the Sphere standard, the minimum surface area is 30- 45 sq. meters per person.  </li>
-                                                      <li>The possibility of expansion is also considered.</li>  
-                                                      <li>    A gentle terrain slope of 1-5 degrees is considered.</li>  
-                                                      <li>   Open spaces that could become marshy and water logged during rainy reason should be avoided.</li>  
-                                                      <li>  Open spaces that are excessively rocky should be avoided as they hamper toilet or camp construction.</li>  
+                                                        Selection of open spaces considers the Sphere standard, which defines the minimum surface area is 35-45 sq. meters per person.
+                                                         </li>
+                                                      <li>The possibility of site expansion is considered.</li>  
+                                                      <li>A gentle terrain slope of 1-5 degrees is considered.</li>  
+                                                      <li>Open spaces that could become marshy and water logged during rainy reason should be avoided.</li>  
+                                                      <li> Open spaces that are excessively rocky should be avoided as they hamper toilet or camp construction.</li>  
                                          
                                          
 </ul>
