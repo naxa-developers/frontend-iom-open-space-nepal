@@ -456,30 +456,58 @@ class OSDetails extends Component {
   }
 
   componentDidUpdate(prevProps) {
-         if(prevProps.wmsIsOpen!== this.props.wmsIsOpen) {
-           if(this.props.wmsIsOpen) {
-             this.setState({
-               wmsLoading: 'block'
-             })
-           }else {
-            this.setState({
-              wmsLoading: 'none'
-            })
-           }
-         }
-    if(prevProps.loaded!== this.props.loaded){
-      if(this.props.loaded) {
+      
+    if(prevProps.wmsIsOpen!== this.props.wmsIsOpen ) {
+ 
+      if(this.props.wmsIsOpen==true) {
+        this.setState({
+          wmsLoading: 'block'
+        })
+      }else {
+       this.setState({
+         wmsLoading: 'none'
+       }  , () => {
+         
+        this.props.dispatch({
+          type: 'wmsLoaded',
+          loaded: true
+        })
+      })
+      }
+          
+      if(this.props.loaded==true) {
         this.setState({
           wmsLoading: 'none'
-        })
+        }
+       
+        )
+      }
+    }
+
+  
+    if(prevProps.loaded!== this.props.loaded){
+    
+      if(this.props.loaded==true) {
+        this.setState({
+          wmsLoading: 'none'
+        }
+       
+        )
       }
        
    else{
           this.setState({
             wmsLoading: 'block'
-          })
+          }
+        
+          )
         }
-      }
+      } 
+       
+      
+        
+    
+   
     }
   componentDidMount() {
     this.onload();
@@ -517,10 +545,7 @@ class OSDetails extends Component {
     });
   }
   render() {
-
- 
-    // console.log("wms is loaded", this.props.loaded);
-    
+  
     while(geo!==null) {
       this.props.wmsIsOpen && geo && this.props.wmsIsOpen === true ? geo.setStyle({
         fillOpacity: 0
