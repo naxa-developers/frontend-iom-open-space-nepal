@@ -68,7 +68,7 @@ class OS extends Component {
 
         navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition((location) => {
             latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
-            console.log([location.coords.latitude, location.coords.longitude], "aa")
+         
             this.props.setcurrentLocation([location.coords.latitude, location.coords.longitude])
             this.setState({ currentLocation: [location.coords.latitude, location.coords.longitude] })
             // L.circleMarker(latlng, { radius: 6, fillColor: 'red', fillOpacity: 1, weight: 15, opacity: 0.3, color: 'red', }).addTo(this.props.mapRefss.current.leafletElement);
@@ -331,7 +331,7 @@ fetchGlimpse = () => {
               
              MAP.removeLayer(munLayer)
             } else{
-            console.log("after del", province);
+           
             this.fetchGlimpse();
     }
             }
