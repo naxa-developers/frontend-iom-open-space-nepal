@@ -1064,7 +1064,7 @@ componentDidUpdate(){
                           />
                         )
                       } 
-                      ): <h6>No open space identification survey has been  carried  in this location</h6>
+                      ): <h6 style={{fontSize:'0.9rem', color:'#6D6E71'}}>No open space identification survey has been  carried  in this location</h6>
                       
                       }
 

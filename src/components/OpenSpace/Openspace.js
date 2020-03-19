@@ -54,7 +54,7 @@ ASSISTANCE</strong>
                 </Modal.Header>
                 <Modal.Body>
                     <div class="modal-body">
-   <h6>No open space identification survey has been carried in this location</h6>
+   <span style={{fontSize:'0.9rem', color:'gray'}}>No open space identification survey has been carried in this location</span>
                     </div>
                 </Modal.Body>
                 {/* <Button style={{width:'200px', align: 'center'}}>Okay</Button> */}

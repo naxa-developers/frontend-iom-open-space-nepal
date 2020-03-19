@@ -93,7 +93,7 @@ class Glimpse extends Component {
 
         return (
             <>
-             <Modal show={this.state.open} centered="false" size="lg">
+             <Modal show={this.state.open} centered="false" size="md">
                 <Modal.Header><strong>Districts</strong>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick={()=> this.setState({open: !this.state.open})}>
                         <span aria-hidden="true">&times;</span>
@@ -138,7 +138,7 @@ class Glimpse extends Component {
                 </Modal.Body>
 
             </Modal>
-            <Modal show={this.state.openOne} centered="false" size="lg">
+            <Modal show={this.state.openOne} centered="false" size="md">
                 <Modal.Header><strong>Municipalities</strong>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick={()=> this.setState({openOne: !this.state.openOne})}>
                         <span aria-hidden="true">&times;</span>

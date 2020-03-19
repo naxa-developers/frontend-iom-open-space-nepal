@@ -51,7 +51,7 @@ render() {
                         
                         </Card>
                     )
-                }) : <h6 style={{color: '#6D6E71', marginTop:'10px', fontSize:'1rem'}}>No messages available for this openspace</h6>
+                }) : <h6 style={{color: '#6D6E71', marginTop:'10px', fontSize:'0.9rem'}}>No messages available for this openspace</h6>
             }
         </div>
     )
