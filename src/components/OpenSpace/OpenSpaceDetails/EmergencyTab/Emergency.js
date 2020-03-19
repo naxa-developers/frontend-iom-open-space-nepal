@@ -18,8 +18,7 @@ componentDidMount() {
     
     Axios.get(`https://iomapi.naxa.com.np/api/v1/message/?id=${OID}`).then(
         res => {
-           console.log("emergency", res.data);
-           
+
         this.setState({
             erData: res.data
         })
@@ -30,7 +29,6 @@ componentDidMount() {
 }
  
 render() {
-    this.state.erData&& console.log("l", Object.keys(this.state.erData).length);
 
     return (
         <div>
