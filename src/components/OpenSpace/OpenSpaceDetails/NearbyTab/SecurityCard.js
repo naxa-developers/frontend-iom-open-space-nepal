@@ -62,7 +62,7 @@ class SecurityCard extends Component {
                     />;
 
           })
-          : <h7>There is no data available at the moment.</h7>
+          : <h6 style={{fontSize:'0.9rem', color:'#6D6E71'}}>There is no data available at the moment.</h6>
           }
 
             </ul>

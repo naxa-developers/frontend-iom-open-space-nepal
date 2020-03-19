@@ -228,7 +228,7 @@ this.props.dispatch({
 
                   <ul>
                     {this.state.loading ? (
-                    <LoadingSpinnerBig /> )  :this.props.reportData&& this.props.reportData.length==0 ? <h5>No reports available</h5> 
+                    <LoadingSpinnerBig /> )  :this.props.reportData&& this.props.reportData.length==0 ? <h6 style={{fontSize:'0.9rem', color:'#6D6E71'}}>No reports available</h6> 
                    
                    : (
                       this.props.reportData.map(e => {
