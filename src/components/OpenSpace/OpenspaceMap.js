@@ -23,6 +23,8 @@ import 'leaflet-ajax'
 let MAP;
 let munLayer = null;
 var province=null;
+var district = null;
+var municipality = null;
 class OS extends Component {
     constructor(props) {
         super(props)
@@ -142,41 +144,41 @@ class OS extends Component {
        var vectorTileOptions = {
         tms: true,
         vectorTileLayerStyles: {
-            // 'District': function () {
-            //     return {
-            //         fillColor: "blue",
-            //         fillOpacity: 0,
-            //         weight: 1,
-            //         opacity: 1,
-            //         color: '#a3b7e3',
-            //         fill: true,
-            //     }
-            // },
+            'District': function () {
+                return {
+                    fillColor: "blue",
+                    fillOpacity: 0,
+                    weight: 1,
+                    opacity: 0.7,
+                    color: '#a3b7e3',
+                    fill: true,
+                }
+            },
             'Province': function () {
                 return {
                     fillColor: "blue",
                     fillOpacity: 0,
                     weight: 1,
                     opacity: 1,
-                    color: '#4f76c9',
+                    // color: '#4f76c9',
+                    color: 'black',
                     fill: true,
                 }
             },
         
-            // 'Municipality':  function (properties, zoom) {
-       
-            //   return {
-            //        fillColor: "yellow",
-            //        fillOpacity: 0,
-            //        weight: 2,
-            //        opacity: 1,
-            //        color: 'red',
-            //        fill: true,
-            //    }
+            'Municipality':  function (properties, zoom) {
+              return {
+                   fillColor: "yellow",
+                   fillOpacity: 0,
+                   weight: 0.3,
+                   opacity: 0.3,
+                   color: '#174BDD',
+                   fill: true,
+               }
         
          
             
-            // },
+            },
         },
         interactive: true, // Make sure that this VectorGrid fires mouse/pointer events
         // pane: "wmsPane",
@@ -202,41 +204,54 @@ class OS extends Component {
         }
     }
     var provinceUrl = 'https://geoserver.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Bipad:Province@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
-    // var districtUrl = 'https://geoserver.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Bipad:District@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
+    var districtUrl = 'https://geoserver.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Bipad:District@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
     //    var municipalityUrl = 'https://apps.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Naxa:Municipality@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
-    // var municipalityUrl = 'https://geoserver.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Bipad:Municipality@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
+    var municipalityUrl = 'https://geoserver.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Bipad:Municipality@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
        province = L.vectorGrid.protobuf(provinceUrl, vectorTileOptions);
-        // municipality = L.vectorGrid.protobuf(municipalityUrl, vectorTileOptions)
+       district = L.vectorGrid.protobuf(districtUrl, vectorTileOptions )
+        municipality = L.vectorGrid.protobuf(municipalityUrl, vectorTileOptions)
 
+       district.addTo(this.props.mapRefss.current.leafletElement);
        province.addTo(this.props.mapRefss.current.leafletElement);
-    //    municipality.addTo(this.props.mapRefss.current.leafletElement);
+       municipality.addTo(this.props.mapRefss.current.leafletElement);
        this.setState({provinceLoading: 'none'})
-      
-           province.bringToFront();
-         munLayer = new L.geoJson.ajax('src/json/openspace_gp_np.geojson', 
+    //   district.bringToFront();
+        //    province.bringToFront();
+        province.setZIndex(300);
+        district.setZIndex(20);
+        municipality.setZIndex(10)
+
+        munLayer = new L.geoJson.ajax('src/json/openspace_gp_np.geojson', 
       { 
         style: function(feature) {
           return {
             color: '#5ACE52', fillColor:'#fff', weight:'1.5'  
           }
         },
-        onEachFeature: function(feature, layer){     
-            {  layer.bindTooltip(feature.properties.LU_Name, {closeButton: false, offset: L.point(0, -20)});   }
+     
+        onEachFeature: function(feature, layer){ 
+    
+                
+        //   var numericMarker = L.ExtraMarkers.icon({
+        //              icon: 'fa-number',
+        //              // number: feature.properties['Number_of_households'],
+        //                     number: '26',
+        //                     markerColor: 'blue'
+        //                   });
+  
+         layer.bindTooltip(feature.properties.LU_Name, {closeButton: false, offset: L.point(0, -20)});   
         } 
        
       }
       )
-   
-       
-    
+
        munLayer.addTo(MAP);
     
-   
 
     
       
-          munLayer.bringToFront();
-        //   munLayer.bindTooltip("feature.properties.LU_Name", {closeButton: false, offset: L.point(0, -20)});
+        //   munLayer.bringToFront();
+        //   munLayer.bindTooltip(feature.properties.LU_Name, {closeButton: false, offset: L.point(0, -20)});
         //   munLayer.on('mouseover', function(){
         //       munLayer.openPopup();
         //       console.log("hover");
@@ -301,7 +316,7 @@ fetchGlimpse = () => {
 }
     componentDidMount() {
    
-          
+        // this.props.mapRefss.current.leafletElement.setView(28.541100228636036, 85.00671386718751, 14)
 
         this.fetchGlimpse();
         this.onload();
@@ -347,9 +362,7 @@ fetchGlimpse = () => {
 
     
     //     })  
-        
-        var bounds = [[25.710836919640595, 79.79365377708339],
-        [30.798474179567847, 88.54975729270839]];
+
         lat: 28.541100228636036
         lng: 85.00671386718751
 
@@ -393,7 +406,8 @@ fetchGlimpse = () => {
                     dragging={true}
                     animate={true}
                     easeLinearity={0.35}
-                    bounds={bounds}
+                    bounds={ [[26.209781975840405, 80.15739792926259],
+                    [31.05876857077987, 88.39714402301262]] }
                     ref={this.props.mapRefss}
                     style={{ height: this.state.height == null ? '80vh' : this.state.height, overflow: 'hidden', }}
                 >
