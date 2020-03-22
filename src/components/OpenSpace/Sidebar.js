@@ -265,14 +265,15 @@ class Sidebar extends Component {
             }
           }
         });
-        let FilteredOS = this.state.Openspaces.filter((e) => e.municipality == this.state.SelectedMunicipality.value)
-        // console.log(FilteredOS)
-        this.setState({ Allos: FilteredOS, loading: false })
-        this.displayOS()
         municipality.addTo(this.state.district_muni);
         this.props.mapRefs.current.leafletElement.fitBounds(
           this.state.district_muni.getBounds()
         );
+        let FilteredOS = this.state.Openspaces.filter((e) => e.municipality == this.state.SelectedMunicipality.value)
+        // console.log(FilteredOS)
+        this.setState({ Allos: FilteredOS, loading: false })
+        this.displayOS()
+      
       })
     }
     else if (this.state.SelectedProvince && this.state.SelectedDistrict) {

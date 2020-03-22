@@ -38,8 +38,8 @@ handleClick = (v) => {
       <>
         <header
         className=  {this.state.toggle
-         ? "site-header Is-toggle sticky"
-         : "site-header " 
+         ? "site-header homepage-header Is-toggle sticky"
+         : "site-header homepage-header " 
         } >
         {/* //  id="navHeader"> */}
           <div className="container">

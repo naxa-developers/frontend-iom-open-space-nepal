@@ -40,9 +40,11 @@ class OpenSpace extends Component {
 
     render() {
          const videoUrl = this.state.loader && this.state.Opendata[0].video ? this.state.Opendata[0].video : '';
-        console.log("vide", this.state.Opendata);
+        
         
         const opts = {
+            height: '500px',
+            height: '700px',
             playersVars : {
                 
                 autoplay: 1
@@ -53,29 +55,29 @@ class OpenSpace extends Component {
             <section className="video-section ptb-150">
             <div className="container">
                 <div className="row">
-               
-                    <div className="col-lg-8 col-md-8">
-                   
-                         <div className="video">
+                <div className="col-lg-12 col-md-12">
+                     <div className="video">
+                     
                          <YouTube
                                 videoId= {videoUrl}
                                 opts = {opts}
                                 onReady = {this.videoOnReady}
+                                
                                
-                                />
+                                /> 
 
                                 
-                            {/* <div className="overlay"></div> */}
+                             {/* <div className="overlay"></div> */}
                           
                         </div> 
                     </div>
-                    <div className="col-lg-4 col-md-4">
+                    {/* <div className="col-lg-4 col-md-4">
                         <div className="video-content flexvr">
                           
                             <h3 className="openspace-title"> {this.props.language == '0' ? this.state.loader && this.state.Opendata[0].title : this.state.loader && this.state.Opendata[0].title_nep  }</h3>
                             <p>{this.props.language == '0' ? this.state.loader && this.state.Opendata[0].description : this.state.loader && this.state.Opendata[0].description_nep  }</p>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </section>
