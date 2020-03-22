@@ -1,0 +1,113 @@
+.accordion{
+    .card{
+        .card-header{
+            border:0;
+            button{
+                color:$color-bg-text;
+                padding:0;
+                margin:0;
+                width:100%;
+            }
+        }
+    }
+    &.map-accordion{
+        padding-top:1.5rem;
+        .card{
+            .card-header{
+                margin:0;
+                border-bottom: 1px solid $color-border;
+                a,button{
+                    &.card-link,&.btn-link{
+                        color:$color-primary;
+                        font-size:1rem;
+                        font-weight: 700;
+                        text-decoration: none;
+                        display: block;
+                        position: relative;
+                        text-align: left;
+                        i{
+                            margin-right: .6125rem;
+                            &::before{
+                                color:$color-green;
+                            }
+                        }
+                        &:after {
+                            content: "add"; /* fa-chevron-down */
+                            font-family: 'Material Icons';
+                            @include translatey;
+                            right: 0;
+                            color:$color-dim;
+                            font-size:1.2rem;
+                          }
+                    }
+                }
+                a[aria-expanded="true"] {
+                    &.card-link,.btn-link{
+                        color:$color-green;
+                        
+                        &::after{
+                            content: "remove";
+                            color:$color-green;
+                        }
+                        i{
+                            &::before{
+                                color:$color-green;
+                            }
+                        }
+                    }
+                    
+                  }
+            }
+            
+        }
+        
+    }
+}
+
+@media screen and (max-width: $lg-tab){
+    .accordion{
+        &.map-accordion{
+            .card {
+                .card-header{
+                    button{
+                        &.btn-link{
+                            font-size: .875rem;
+                        }
+                    }
+                } 
+            }
+        }
+    } 
+}
+
+@media screen and (max-width: $mb-xl){
+    .accordion{
+        &.map-accordion{
+            .card {
+                .card-header{
+                    button{
+                        &.btn-link{
+                            font-size: .938rem;
+                        }
+                    }
+                } 
+            }
+        }
+    } 
+}
+
+@media screen and (max-width: $mb-md){
+    .accordion{
+        &.map-accordion{
+            .card {
+                .card-header{
+                    button{
+                        &.btn-link{
+                            font-size: .875rem;
+                        }
+                    }
+                } 
+            }
+        }
+    } 
+}
