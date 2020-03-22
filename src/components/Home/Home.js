@@ -10,7 +10,7 @@ import Axios from 'axios';
 
 import Footer from "./Footer";
 
-import Background from "../../img/banner-shape.png";
+import Background from "../../img/banner.jpg";
 import bannerShape from "../../img/banner-shape.png";
 
  class Home extends Component {
@@ -53,14 +53,15 @@ componentDidMount() {
           <Banner />
         </section> 
         <main className="main-content">
-        <ImageSlider />
-        {/* <OpenSpace /> */}
+        {/* <ImageSlider /> */}
+        <OpenSpace />
+        <Identification />
         <Glimpse
         className= 'toggleModal'
         counts = {this.state.counts}
         />
         
-        <Identification />
+       
         
       </main>
       <footer

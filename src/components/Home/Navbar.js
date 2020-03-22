@@ -40,8 +40,8 @@ handleClick = (v) => {
         className=  {this.state.toggle
          ? "site-header Is-toggle sticky"
          : "site-header " 
-        }
-         id="navHeader">
+        } >
+        {/* //  id="navHeader"> */}
           <div className="container">
             <div className="headerWrap">
               <div className="headLeft">
@@ -55,18 +55,19 @@ handleClick = (v) => {
               <div className="headRight">
                 <div className="country-logos flex-end">
                   <a className={this.props.language=="0"?"active":''}>
-                    <p
+                    <img
                       // src={uk}
                       // alt="uk"
-                    
-                      onClick={() => this.props.dispatch({ type: "english" })} >EN</p>
+                      src={uk} alt="uk"
+                      onClick={() => this.props.dispatch({ type: "english" })} ></img>
                  
                   </a>
                   <a className={ this.props.language=="1"?"active":''}>
-                    <p
+                    <img
                       // src={nepal}
                       // alt="Nepal"
-                      onClick={() => this.props.dispatch({ type: "nepali" })}>NE</p>
+                      src={nepal} alt="nepal"
+                      onClick={() => this.props.dispatch({ type: "nepali" })}></img>
                   
                   </a>
                 </div>
@@ -90,7 +91,7 @@ handleClick = (v) => {
                   </div>
                   <div className="menu-primary-container">
                     <ul id="primary-menu" className="menu nav-menu">
-                      <li className="menu-item  ">
+                      {/* <li className="menu-item  ">
                       <NavLink to="/" className="menu-item"  activeClassName = "menu-item " >
                           {this.props.language == "0"
                             ? "Home"
@@ -99,7 +100,7 @@ handleClick = (v) => {
                            
                         </NavLink>
                         </li>
-                        
+                         */}
                       <li className="menu-item  ">
                         <NavLink to="resources" className="menu-item" activeClassName = "menu-item active" >
                           {this.props.language == "0"
@@ -111,7 +112,7 @@ handleClick = (v) => {
                       </li>
                       <li className="menu-item  ">
                         <NavLink to="report" className= {this.props.nav? "menu-item active" : "menu-item" }activeClassName = " menu-item active">
-                          {this.props.language == "0" ? "Reports" : "रिपोर्ट"}
+                          {this.props.language == "0" ? "Encroachment Reports" : "रिपोर्ट"}
                         </NavLink>
                       </li>
                  
