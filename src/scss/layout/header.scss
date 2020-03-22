@@ -1,13 +1,5 @@
 .site-header {
     @include easein_out($easein_out:all 0.5s ease-in-out);
-    
-    z-index: 99999;
-    position: relative;
-    // @include boxshadow(0 0 4px 0 rgba(0, 0, 0, 0.16));
-    &.sticky{
-        
-        top:0;
-    }
 
     .headerWrap {
         @include flexjust;
@@ -21,7 +13,7 @@
 
             .logo {
                 margin-right: 15px;
-                max-width: 160px;
+                max-width: 190px;
             }
 
             p {
@@ -36,35 +28,24 @@
                 margin-bottom: .5rem;
 
                 a {
+                    width: 26px;
+                    height: 26px;
                     @include radius(50%);
                     border: 2px solid $green-light;
-                    flex:0 0 25px;
-                    max-width: 25px;
-                    @include flexvr;
-                    @include animate_all(all .3s linear);
-                    p{
-                        margin-bottom: 0;
-                    }
+
+
                     img {
+                        width: 24px;
+                        height: 24px;
                         @include radius(50%);
-                        opacity: 0.5;
-                        cursor: pointer;
                     }
 
                     &:last-child {
-                        margin-left: .6125rem;
+                        margin-left: 1rem;
                     }
 
-                    &.active,
-                    &:hover {
-                        cursor: pointer;
+                    &.active {
                         border-color: $color-green;
-                        img{
-                            opacity: 1;
-                        }
-                    }
-                    &:hover{
-                        background: lighten($color-green, 40%);
                     }
                 }
             }
@@ -75,15 +56,16 @@
 
                     a {
                         display: block;
-                        padding: .6125rem 1.5rem;
-                        font-size: .75rem;
+                        padding: 1rem 1.5rem;
+                        font-size: .875rem;
                         text-transform: uppercase;
                         position: relative;
                         font-weight: 700;
-                        @include easein_out($easein_out:all 0.3s ease-in-out);
+                        @include easein_out($easein_out:all 0.5s ease-in-out);
                         text-decoration: none;
+                        color:$color-white;
 
-                        &:hover,&.active {
+                        &:hover {
                             color: $color-blue;
                         }
 
@@ -233,16 +215,13 @@
                         text-align: right;
                     }
 
-                    &.menu-item-has-current{
+                    &.menu-item-has-current,
+                    &:hover {
 
                         a {
                             color: $color-white;
                             background-color: $color-blue;
-                            &:hover{
-                                @include boxshadow($boxshadow:0 10px 25px rgba($color-blue, 0.40));
-                            }
                         }
-                        
                     }
                 }
             }
@@ -264,7 +243,7 @@
                 height: 4px;
                 border-radius: 4px;
                 width: 100%;
-                background-color: $color-blue;
+                background-color: $color-white;
                 top: 0;
                 transition: transform .2s ease-in-out, opacity .2s ease-in-out;
                 z-index: 1101;
@@ -510,31 +489,15 @@
 
     }
 
-
-.site-header {
-    &.Is-toggle{
-        .headerWrap {
-            .menu-primary-container {
-                right: 0;
-            }
-        }
-    }
-}
-}
-
-@media screen and (max-width: $lg-tab)
-{
-    .site-header {
-        .headerWrap {
-            .headRight{
-                ul{
-                    li{
-                       a {
-                            padding: .525rem 1rem;
-                        }
-                    } 
+    .Is-toggle {
+        .site-header {
+            .headerWrap {
+                .menu-primary-container {
+                    right: 0;
                 }
             }
+
+
         }
-    } 
+    }
 }

@@ -15,6 +15,7 @@ import { connect } from 'react-redux';
 const { BaseLayer } = LayersControl;
 import Spinner from './OpenSpaceDetails/MapLoader'
 import 'leaflet-ajax'
+import 'leaflet-extra-markers'
 // import './openspace_gp_np.geojson';
 
 
@@ -176,7 +177,6 @@ class OS extends Component {
                    fill: true,
                }
         
-         
             
             },
         },
@@ -203,10 +203,12 @@ class OS extends Component {
            
         }
     }
-    var provinceUrl = 'https://geoserver.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Bipad:Province@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
-    var districtUrl = 'https://geoserver.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Bipad:District@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
+    var provinceUrl = 'http://202.45.146.3:8080/geoserver/gwc/service/tms/1.0.0/Bipad:Province@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
+    var districtUrl = 'http://202.45.146.3:8080/geoserver/gwc/service/tms/1.0.0/Bipad:District@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
     //    var municipalityUrl = 'https://apps.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Naxa:Municipality@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
-    var municipalityUrl = 'https://geoserver.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Bipad:Municipality@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
+    // var municipalityUrl = 'https://geoserver.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Bipad:Municipality@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
+    var municipalityUrl = 'http://202.45.146.3:8080/geoserver/gwc/service/tms/1.0.0/Bipad:Municipality@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
+
        province = L.vectorGrid.protobuf(provinceUrl, vectorTileOptions);
        district = L.vectorGrid.protobuf(districtUrl, vectorTileOptions )
         municipality = L.vectorGrid.protobuf(municipalityUrl, vectorTileOptions)
@@ -214,38 +216,76 @@ class OS extends Component {
        district.addTo(this.props.mapRefss.current.leafletElement);
        province.addTo(this.props.mapRefss.current.leafletElement);
        municipality.addTo(this.props.mapRefss.current.leafletElement);
+    
        this.setState({provinceLoading: 'none'})
     //   district.bringToFront();
         //    province.bringToFront();
         province.setZIndex(300);
         district.setZIndex(20);
         municipality.setZIndex(10)
+     
+        // var numericMarker = L.ExtraMarkers.icon({
+        //     icon: 'fa-leaf',
+        //     markerColor: 'green',
+        //     shape: 'square',
+        //     prefix: 'fa'
+        //                   });
 
-        munLayer = new L.geoJson.ajax('src/json/openspace_gp_np.geojson', 
-      { 
-        style: function(feature) {
+    //     munLayer = new L.geoJson.ajax('src/json/openspace_gp_np.geojson', 
+    //   { 
+    //     // style: function(feature) {
+    //     //   return {
+    //     //     color: '#5ACE52', fillColor:'#fff', weight:'1.5'  
+    //     //   }
+    //     // },
+  
+    //     onEachFeature: function(feature, layer){ 
+    // //   (function(layer, properties) { 
+    //  console.log("ff", layer);
+    //  layer.bindPopup('arbol_nombre')
+    //   {   layer.setIcon(numericMarker) }
+    //     //  } )
+
+    //     { layer.bindTooltip(feature.properties.LU_Name, {closeButton: false, offset: L.point(0, -20)});   }
+     
+    //  }
+       
+    //   }
+    //   )
+
+
+    function onEachFeature(feature, layer) {
+        console.log("feat", feature);
+        console.log("layy", layer);
+        
+        
+        var popupContent = `<h6 style='color: #fff', 'font-size: 1rem'>${feature.properties.LU_Name}` + ' ' + '<p>Type: </p>' + `${feature.properties.LU_Type }</h6> <p>No. of Openspaces:10 </p>`
+
+		layer.bindPopup(popupContent);
+	}
+    L.geoJSON.ajax('src/json/openspace_gp_np.geojson', {
+
+             style: function(feature) {
           return {
             color: '#5ACE52', fillColor:'#fff', weight:'1.5'  
           }
         },
-     
-        onEachFeature: function(feature, layer){ 
-    
-                
-        //   var numericMarker = L.ExtraMarkers.icon({
-        //              icon: 'fa-number',
-        //              // number: feature.properties['Number_of_households'],
-        //                     number: '26',
-        //                     markerColor: 'blue'
-        //                   });
-  
-         layer.bindTooltip(feature.properties.LU_Name, {closeButton: false, offset: L.point(0, -20)});   
-        } 
-       
-      }
-      )
+	
+		onEachFeature: onEachFeature,
 
-       munLayer.addTo(MAP);
+		pointToLayer: function (feature, latlng) {
+			return L.circleMarker(latlng, {
+				radius: 8,
+				fillColor: "#ff7800",
+				color: "#000",
+				weight: 1,
+				opacity: 1,
+				fillOpacity: 0.8
+			});
+		}
+	}).addTo(MAP);
+
+    //    munLayer.addTo(MAP);
     
 
     
