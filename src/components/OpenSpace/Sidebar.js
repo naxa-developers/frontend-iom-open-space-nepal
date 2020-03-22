@@ -223,7 +223,7 @@ class Sidebar extends Component {
       var class1 = 'desccard';
       // var activeclass=class1
 
-      var descCard = "<ul id='mrk-lg'><h6>Legend</h6><li><span class='legend blue'></span><p>Openspace</p></li> <li><div class='legendMuni'></div><p>Project Area</p></li></ul>";
+      var descCard = "<ul id='mrk-lg'><h6>Legend</h6><li><span class='legend blue'></span><p>Openspace</p></li> <li><div class='legendMuni'></div><p>Mapped Area</p></li></ul>";
 
 
 
@@ -993,7 +993,7 @@ componentDidUpdate(){
                   </h5>
                   {/* <span>Below is the result of Gandaki Province..</span> */}
                 </div>
-                {this.state.showText==true && <span style={{color: '#6D6E71', fontSize: '0.8rem', fontStyle:'italic'}}>Openspaces from  {this.state.SelectedProvince&&this.state.SelectedProvince.label} {this.state.SelectedDistrict&&<span>,{this.state.SelectedDistrict.label}</span>} {this.state.SelectedMunicipality&&<span>,{this.state.SelectedMunicipality.label} </span>}  </span>}
+                {this.state.showText==true && <span style={{color: '#6D6E71', fontSize: '0.9rem', fontStyle:'bold'}}>Openspaces from  {this.state.SelectedProvince&&this.state.SelectedProvince.label} {this.state.SelectedDistrict&&<span>,{this.state.SelectedDistrict.label}</span>} {this.state.SelectedMunicipality&&<span>,{this.state.SelectedMunicipality.label} </span>}  </span>}
                 <div className="space-list" >
                   <div className="input-group">
                     <div className="input-group-prepend">
@@ -1064,7 +1064,7 @@ componentDidUpdate(){
                           />
                         )
                       } 
-                      ): <h6 style={{fontSize:'0.9rem', color:'#6D6E71'}}>No open space identification survey has been  carried  in this location</h6>
+                      ): <h6 style={{fontSize:'0.9rem', color:'#6D6E71'}}>No open space identification survey has been  carried  in this location.</h6>
                       
                       }
 

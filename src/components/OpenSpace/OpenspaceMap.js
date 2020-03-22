@@ -15,7 +15,6 @@ import { connect } from 'react-redux';
 const { BaseLayer } = LayersControl;
 import Spinner from './OpenSpaceDetails/MapLoader'
 import 'leaflet-ajax'
-import 'leaflet-extra-markers'
 // import './openspace_gp_np.geojson';
 
 
@@ -255,15 +254,13 @@ class OS extends Component {
 
 
     function onEachFeature(feature, layer) {
-        console.log("feat", feature);
-        console.log("layy", layer);
-        
+      
         
         var popupContent = `<h6 style='color: #fff', 'font-size: 1rem'>${feature.properties.LU_Name}` + ' ' + '<p>Type: </p>' + `${feature.properties.LU_Type }</h6> <p>No. of Openspaces:10 </p>`
 
 		layer.bindPopup(popupContent);
 	}
-    L.geoJSON.ajax('src/json/openspace_gp_np.geojson', {
+  munLayer =  L.geoJSON.ajax('src/json/openspace_gp_np.geojson', {
 
              style: function(feature) {
           return {
@@ -283,9 +280,9 @@ class OS extends Component {
 				fillOpacity: 0.8
 			});
 		}
-	}).addTo(MAP);
+	})
 
-    //    munLayer.addTo(MAP);
+       munLayer.addTo(MAP);
     
 
     
@@ -383,8 +380,8 @@ fetchGlimpse = () => {
         if(prevProps.deleteAll!== this.props.deleteAll){
             if(this.props.deleteAll) {
                 MAP.removeLayer(province)
-              
-             MAP.removeLayer(munLayer)
+                MAP.removeLayer(district)
+                MAP.removeLayer(munLayer)
             } else{
            
             this.fetchGlimpse();

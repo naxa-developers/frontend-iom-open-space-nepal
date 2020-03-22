@@ -6,6 +6,8 @@ import Resourcecard from "./Resourcecard";
 import LoadingSpinnerBig from '../Report/LoadingSpinnerBig';
 
 import Axios from "axios";
+import Footer from "../Home/Footer";
+import bannerShape from '../../img/banner-shape.png'
 
 class Resources extends Component {
   constructor(props) {
@@ -93,6 +95,7 @@ class Resources extends Component {
 
 
     return (
+      <>
       <div>
         <Navbar />
         <div className="page-wrap">
@@ -205,6 +208,13 @@ class Resources extends Component {
           </div>
         </div>
       </div>
+         <footer
+         className="site-footer pt-150"
+         style={{ backgroundImage: `url(${bannerShape})` }}
+       >
+           <Footer />
+           </footer>
+           </>
     );
   }
 }

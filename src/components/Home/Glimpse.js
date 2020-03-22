@@ -179,7 +179,7 @@ class Glimpse extends Component {
             {/* <div className="overlay" ></div> */}
             <div className="glimps-wrapper">
                 <div className="container">
-                    <h3 className="openspace-title">{this.props.language =='0' ? `Glimpse of Open Spaces in Nepal` : `नेपालको खुल्ला क्षेत्रहरूको झलक` }</h3>
+                    {/* <h3 className="openspace-title">{this.props.language =='0' ? `Glimpse of Open Spaces in Nepal` : `नेपालको खुल्ला क्षेत्रहरूको झलक` }</h3> */}
                     
                     <div className="row">
                         <div className="col-md-3 " >
