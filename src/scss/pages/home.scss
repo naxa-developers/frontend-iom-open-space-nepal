@@ -148,10 +148,12 @@
         position: relative;
         background-size: cover;
         background-position: center center;
+        text-align: center;
 
         iframe {
             max-width: 640px;
             width: 100%;
+            height: 400px;
         }
 
         .overlay {
