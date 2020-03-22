@@ -54,7 +54,7 @@ class OpenSpace extends Component {
             <div className="container">
                 <div className="row">
                
-                    <div className="col-lg-8 col-md-8">
+                    <div className="col-lg-12 col-md-12">
                    
                          <div className="video">
                          <YouTube
@@ -69,13 +69,13 @@ class OpenSpace extends Component {
                           
                         </div> 
                     </div>
-                    <div className="col-lg-4 col-md-4">
+                    {/* <div className="col-lg-4 col-md-4">
                         <div className="video-content flexvr">
                           
                             <h3 className="openspace-title"> {this.props.language == '0' ? this.state.loader && this.state.Opendata[0].title : this.state.loader && this.state.Opendata[0].title_nep  }</h3>
                             <p>{this.props.language == '0' ? this.state.loader && this.state.Opendata[0].description : this.state.loader && this.state.Opendata[0].description_nep  }</p>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </section>

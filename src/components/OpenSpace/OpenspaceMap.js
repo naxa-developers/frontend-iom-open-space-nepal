@@ -256,8 +256,9 @@ class OS extends Component {
     function onEachFeature(feature, layer) {
       
         
-        var popupContent = `<h6 style='color: #fff', 'font-size: 1rem'>${feature.properties.LU_Name}` + ' ' + '<p>Type: </p>' + `${feature.properties.LU_Type }</h6> <p>No. of Openspaces:10 </p>`
-
+        // var popupContent = `<h6 style='color: #fff', 'font-size: 1rem'>${feature.properties.LU_Name}` + ' ' + '<p>Type: </p>' + `${feature.properties.LU_Type }</h6> <p>No. of Openspaces:10 </p>`
+        
+        var popupContent = "<div class='bind-popup'> <div class='bind-header'><h5>" + feature.properties.LU_Name + "</h5><p><Type :" + feature.properties.LU_Type + "</p>  <p>No. of Openspaces:  </p></div></div>"
 		layer.bindPopup(popupContent);
 	}
   munLayer =  L.geoJSON.ajax('src/json/openspace_gp_np.geojson', {
