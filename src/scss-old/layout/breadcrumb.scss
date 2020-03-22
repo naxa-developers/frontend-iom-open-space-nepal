@@ -1,0 +1,123 @@
+.openspace-breadcrumb {
+    background-color: lighten($color-blue, 45%);
+    padding: .6125rem 0;
+
+    ul {
+        align-items: center;
+        @include flexStart;
+
+        li {
+            text-transform: capitalize;
+            font-weight: 500;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            color: $color-secondary;
+
+            a {
+                @include flexStart;
+                align-items: center;
+
+                i {
+                    color: $color-secondary;
+                    margin-right: 1rem;
+                }
+
+                &::after {
+                    @include animate_all(all .5s);
+                    content: 'chevron_right';
+                    font-size: 1.4rem;
+                    font-family: 'Material Icons';
+                    margin: 0 .6125rem;
+                    text-transform: initial;
+                }
+
+                &.sm-button {
+                    padding: 0.15rem .5rem;
+                    text-align: center;
+                    min-width: auto;
+
+                    i {
+                        margin-right: .25rem;
+                    }
+
+                    &::after {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    &.filter-form {
+        padding:1rem 0;
+        form {
+            .form-group {
+                .form-control {
+                    border: 0;
+                    height: 44px;
+                    line-height: 44px;
+                    border-radius: 0;
+                    @include radius(4px);
+                    background-color: $color-white;
+                    @include input-placeholder {
+                        color: $color-bg-text;
+                        font-size: .875rem;
+                        text-transform: capitalize;
+                    }
+                }
+                button.ysewa-button{
+                    height: 44px;
+                    @include flexCenter;
+                    flex-direction: column;
+                }
+
+                .input-group-append,
+                .input-group-prepend {
+                    .input-group-text {
+                        border: 0;
+                        background-color: $color-white;
+                        position: relative;
+                        &::after{
+                            content:'';
+                            width:1px;
+                            background-color: $color-border;
+                            height:30px;
+                            @include translatey;
+                            z-index: 99;
+                        }
+                    }
+
+                    i {
+                        font-family: 'Material Icons'
+                    }
+                }
+                .input-group-append{
+                    .input-group-text {
+                        &::after{
+                            left:0;
+                        }
+                    }
+                }
+                .input-group-prepend{
+                    .input-group-text {
+                        &::after{
+                            right:0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.breadcrumb{
+    background-color: $color-blue;
+    color:$color-white;
+    text-align: center;
+    padding:2rem 0;
+    h1{
+        color:$color-white;
+        font-size: 2rem;
+        font-weight: 700;
+    }
+}
