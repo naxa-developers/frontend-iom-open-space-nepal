@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Navbar from '../Home/Navbar';
+import Navbar from '../Home/NavbarLayout';
 import Footer from '../Home/Footer';
 import Openspace from '../Home/OpenSpace'
 import { Row, Col, Tab, Nav } from 'react-bootstrap'

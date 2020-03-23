@@ -1,6 +1,6 @@
 import React, { Component,createRef } from "react";
 import { Button, Modal } from 'react-bootstrap'
-import Navbar from "../Home/Navbar";
+import NavbarLayout from "../Home/NavbarLayout";
 import OpenspaceMap from './OpenspaceMap';
 import Sidebar from './Sidebar';
 import './OpenSpaceCSS.css';
@@ -42,7 +42,7 @@ class OpenSpace extends Component {
     // console.log("render",this.state.currentLocation)
     return (
     <>
-        <Navbar />
+        <NavbarLayout />
        
       <Modal show={this.state.openModal} centered="false" size="lg">
                 <Modal.Header><strong>OPEN SPACES MAPPING FOR

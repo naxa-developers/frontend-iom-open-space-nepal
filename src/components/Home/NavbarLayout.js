@@ -1,45 +1,40 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 
-import logo from "../../img/header-logo.png";
+import logo from "../../img/New-Logo1.png";
 import nepal from "../../img/nepal.png";
 import uk from "../../img/uk.png";
 
-
-
-class Navbar extends Component {
-  constructor(props) {
-    super(props)
-  
-    this.state = {
-       toggle: false
+export class NavbarLayout extends Component {
+    constructor(props) {
+        super(props)
+      
+        this.state = {
+           toggle: false
+        }
+      }
+    
+     toggleButton = (event) => {
+       event.preventDefault();
+    
+     
+       this.setState({
+          toggle: !this.state.toggle
+    
+          });
+         }
+    handleClick = (v) => {
+    
+    
     }
-  }
-
- toggleButton = (event) => {
-   event.preventDefault();
-
- 
-   this.setState({
-      toggle: !this.state.toggle
-
-      });
-     }
-handleClick = (v) => {
-
-
-}
-
-  render() {
-    const { contents } = this.props;
-
-    return (
-      <>
+    render() {
+        return (
+            <>
         <header
         className=  {this.state.toggle
-         ? "site-header homepage-header Is-toggle sticky"
-         : "site-header homepage-header " 
+         ? "site-header Is-toggle sticky"
+         : "site-header " 
         } >
         {/* //  id="navHeader"> */}
           <div className="container">
@@ -60,7 +55,8 @@ handleClick = (v) => {
                       // alt="uk"
                       src={uk} alt="uk"
                       onClick={() => this.props.dispatch({ type: "english" })}
-                      style={{ cursor:'pointer'}} ></img>
+                      style={{ cursor:'pointer'}}
+                       ></img>
                  
                   </a>
                   <a className={ this.props.language=="1"?"active":''}>
@@ -69,8 +65,7 @@ handleClick = (v) => {
                       // alt="Nepal"
                       src={nepal} alt="nepal"
                       onClick={() => this.props.dispatch({ type: "nepali" })}
-                      style={{ cursor:'pointer'}}
-                      ></img>
+                      style={{ cursor:'pointer'}}></img>
                   
                   </a>
                 </div>
@@ -151,14 +146,13 @@ handleClick = (v) => {
           </div>
         </header>
       </>
-    );
-  }
+        )
+    }
 }
-
 const mapStateToProps = state => {
-  return {
-    language: state.language
+    return {
+      language: state.language
+    };
   };
-};
-
-export default connect(mapStateToProps)(Navbar);
+  
+export default connect(mapStateToProps)(NavbarLayout);

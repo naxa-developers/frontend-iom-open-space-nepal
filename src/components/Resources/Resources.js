@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import Navbar from "../Home/Navbar";
+import NavbarLayout from "../Home/NavbarLayout";
 import SearchFilter from "./SearchFilter";
 import Resourcecard from "./Resourcecard";
 import LoadingSpinnerBig from '../Report/LoadingSpinnerBig';
@@ -97,7 +97,7 @@ class Resources extends Component {
     return (
       <>
       <div>
-        <Navbar />
+        <NavbarLayout />
         <div className="page-wrap">
           <main className="main-content">
 

@@ -1,5 +1,5 @@
 import React, { Component,createRef } from "react";
-import Navbar from "../../Home/Navbar";
+import Navbar from "../../Home/NavbarLayout";
 import DetailsMap from './DetailsMap';
 import DetailsCard from './DetailsCard';
 import { connect } from 'react-redux';
