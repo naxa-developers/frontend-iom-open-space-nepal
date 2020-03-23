@@ -95,7 +95,7 @@ class OSDetails extends Component {
           // count amenties to set the zoom level, if count> 20, zoom level will be increased by 2
           var totalamenities = this.state.HealthData && this.state.Edudata && this.state.HeliData &&  this.state.HealthData.facility.length+ this.state.Edudata.facility.length
            + this.state.HeliData.facility.length + this.state.SecurityData.facility.length
-           console.log("total", totalamenities);
+          
             totalamenities > 20 &&  mapRf.setView(new L.LatLng(this.state.OSlatlng[0],this.state.OSlatlng[1] ), mapRf.getZoom()+2)
           
         });

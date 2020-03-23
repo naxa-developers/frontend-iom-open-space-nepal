@@ -17,38 +17,11 @@ class Glimpse extends Component {
             className: this.props.className,
             open: false,
             openOne: false,
-            munArray: [
-              'Kathamandu Metropolitan City',
-              '  Gokarneshwor Municipality',
-            '    Kirtipur Municipality',
-               ' Bhaktapur Metropolitan City',
-               'Lalitpur Metropolitan City',
-              '  Gorkha Municipality Office',
-              '  Bhimeshwor Municipality',
-              '  Chautara Sangachowkgadhi Municipality',
-              '  Gosainkunda Rural Municipality',
-              '  Neelakantha Municipality',
-             '   Pokhara Metropolitan City',
-              '  Baglung Bazar Municipality',
-               ' Tansen Municipality',
-              '  Putali Bazar Municipality',
-               ' Resunga Municipality'
-            ],
-            districtArray : [
-             ' Kathmandu ',
-            '  Bhaktapur ',
-'              Lalitpur',
-            '  Gorkha',
-          '    Dolakha',
-            '  Sindupalchowk',
-              'Rasuwa',
-            '  Dhading',
-           '   Kaski',
-           '   Baglung',
-            '  Palpa',
-           '   Syangja',
-             ' Gulmi'
-            ]
+            openTwo: false,
+            munArray: null,
+            districtArray : null,
+            munCount: null,
+            oArray: null
            
         };
     }
@@ -56,16 +29,43 @@ class Glimpse extends Component {
     fetchCounts = () => {
         Axios.get(`https://iomapi.naxa.com.np/api/v1/glimpse_of_open_space`)
         .then(res => {
-        
-    
-           
-            const counts = res.data;
-            this.setState({counts: counts})
+  
+            const counts = res.data.data;
+            let mun = Object.values(counts.municipality_list);
+        let munArray = [];
+        mun.map((m) => {
+         
+          
+          munArray.push(Object.keys(m)[0]);
+          
+        })
+         
+            this.setState({
+                counts: counts,
+                munArray: munArray,
+                munCount: munArray.length,
+                districtArray: counts.district_list
+            
+
+            })
             
 
            
             
         })
+       Axios.get('https://iomapi.naxa.com.np/api/v1/open_space_landing').then(
+           res => {
+            const data = res.data;
+           let oArray = [];
+            data.data.map(m => {
+                oArray.push(m.title)
+                
+            })
+            this.setState({
+                oArray: oArray
+            })
+           }
+       )
     }
 
     toggle = () =>{
@@ -93,8 +93,57 @@ class Glimpse extends Component {
 
         return (
             <>
+                <Modal show={this.state.openTwo} centered="false" size="md">
+                <Modal.Header>
+                <h4 style={{color:'#174BDD', fontWeight:'600', textTransform:'capitalize'}}>Openspaces</h4>
+                  
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick={()=> this.setState({openTwo: !this.state.openTwo})}>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </Modal.Header>
+                <Modal.Body>
+                    <div class="modal-body">
+                    <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">S.N</th>
+      <th scope="col">Name of Openspace</th>
+      {/* <th scope="col">Value</th> */}
+      
+    </tr>
+  </thead>
+  <tbody>
+    {
+      this.state.oArray&&this.state.oArray.map((d, i) => {
+        return (
+          <tr>
+          <th scope="row">{i+1}</th>
+        <td>{d}</td>
+     
+         
+        </tr>
+     
+      )
+      })
+    }
+    
+  
+     
+   
+   
+
+
+
+  </tbody>
+</table>
+                    </div>
+                </Modal.Body>
+
+            </Modal>
              <Modal show={this.state.open} centered="false" size="md">
-                <Modal.Header><strong>Districts</strong>
+                <Modal.Header>
+                <h4 style={{color:'#174BDD', fontWeight:'600', textTransform:'capitalize'}}>Districts</h4>
+                  
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick={()=> this.setState({open: !this.state.open})}>
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -112,7 +161,7 @@ class Glimpse extends Component {
   </thead>
   <tbody>
     {
-      this.state.districtArray.map((d, i) => {
+      this.state.districtArray&&this.state.districtArray.map((d, i) => {
         return (
           <tr>
           <th scope="row">{i+1}</th>
@@ -139,7 +188,8 @@ class Glimpse extends Component {
 
             </Modal>
             <Modal show={this.state.openOne} centered="false" size="md">
-                <Modal.Header><strong>Municipalities</strong>
+                <Modal.Header>  <h4 style={{color:'#174BDD', fontWeight:'600', textTransform:'capitalize'}}>Municipalities</h4>
+                  
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick={()=> this.setState({openOne: !this.state.openOne})}>
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -157,7 +207,7 @@ class Glimpse extends Component {
   </thead>
   <tbody>
   {
-    this.state.munArray.map((i,m) => {
+    this.state.munArray&& this.state.munArray.map((i,m) => {
               return(
             <tr>
               <td scope="row">{m+1}</td>
@@ -184,14 +234,14 @@ class Glimpse extends Component {
                     <div className="row">
                         <div className="col-md-3 " >
             
-                            <div className="glimps-count" >
+                            <div className="glimps-count glimpse-hover"  onClick={() => this.setState({openTwo: !this.state.openTwo})}>
                                 <h4>
                             
                                     <Odometer
                                     format= "d"
                                     duration= {500}
                                     glimps-count            
-                                    value = {this.state.counts&&this.state.counts.data.open_space}
+                                    value = {this.state.counts&&this.state.counts.open_space}
                                 />
                                 </h4>
                                 <h6>{this.props.language =="0" ? `Open spaces` : `खुल्ला क्षेत्र` }</h6>
@@ -206,7 +256,7 @@ class Glimpse extends Component {
                                     format= "d"
                                     duration= {500}
                                  
-                                    value = {this.state.counts&&this.state.counts.data.district}
+                                    value = {this.state.counts&&this.state.counts.district}
                                 />
                                     </h4>
                                 <h6>{this.props.language =="0" ? `Districts` : ` जिल्ला` }</h6>
@@ -220,7 +270,7 @@ class Glimpse extends Component {
                                     format= "d"
                                     duration= {500}
                                    
-                                    value =  {this.state.counts&&this.state.counts.data.municipality}
+                                    value =  {this.state.counts&&this.state.munCount}
                                 />
                                    </h4>
                                 <h6>{this.props.language =="0" ? `Municipalities` : ` नगरपालिका` }</h6>
@@ -233,7 +283,7 @@ class Glimpse extends Component {
                                 <Odometer
                                     format= "d"
                                     duration= {500}
-                                    value = { this.state.counts&&this.state.counts.data.total_area}
+                                    value = { this.state.counts&&this.state.counts.total_area}
                                 />
                                     </h4>
                                 <h6>{this.props.language =="0" ? `Total area(sq.m)` : `जम्मा क्षेत्रफल  ` }</h6>

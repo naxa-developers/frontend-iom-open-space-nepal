@@ -15,7 +15,7 @@ import { connect } from 'react-redux';
 const { BaseLayer } = LayersControl;
 import Spinner from './OpenSpaceDetails/MapLoader'
 import 'leaflet-ajax'
-// import './openspace_gp_np.geojson';
+// import './OpenSpaceCSS.css'
 
 
 
@@ -215,7 +215,7 @@ class OS extends Component {
         district.addTo(this.props.mapRefss.current.leafletElement);
         province.addTo(this.props.mapRefss.current.leafletElement);
         municipality.addTo(this.props.mapRefss.current.leafletElement);
-        L.marker([80, 27]).addTo(this.props.mapRefss.current.leafletElement);
+        // L.marker([80, 27]).addTo(this.props.mapRefss.current.leafletElement);
         this.setState({ provinceLoading: 'none' })
         //   district.bringToFront();
         //    province.bringToFront();
@@ -253,14 +253,22 @@ class OS extends Component {
         //   )
 
 
-        function onEachFeature(feature, layer) {
+       const onEachFeature = (feature, layer) => {
             let centrePoint = layer.getBounds().getCenter();
-            console.log(
-            "latllng", centrePoint.lat, centrePoint.lng
-            );
-            //  return L.circleMarker(centrePoint.lat, centrePoint.lng)
-            var popupContent = "<div class='bind-popup'> <div class='bind-header'><h5>" + feature.properties.LU_Name + "</h5><p><Type :" + feature.properties.LU_Type + "</p>  <p>No. of Openspaces:  </p></div></div>"
+            let hl = layer.feature.properties.HLCIT_CODE.toString().replace(/\s/g, '');
+            // this.state.munCounts.map((m) => {
+            //     if(m===hl) {
+                    
+            //     }
+            // })
+            
+          
+             let cMarker = L.circleMarker([centrePoint.lat, centrePoint.lng])
+        
+            var popupContent = "<div class='bind-popup'> <div class='bind-header'><h5 style:'color:red'>" + feature.properties.LU_Name + "</h5><p><Type :" + feature.properties.LU_Type + "</p>  <p>No. of Openspaces:  </p></div></div>"
+
             layer.bindPopup(popupContent);
+            // cMarker.addTo(this.props.mapRefss.current.leafletElement)
         }
         let geojsonMarkerOptions = {
             radius: 25,
@@ -279,9 +287,7 @@ class OS extends Component {
                 }
             },
             onEachFeature: onEachFeature,
-            pointToLayer: function(feature, latlng) {
-                return new L.circleMarker([latlng.lat, latlng.lng], geojsonMarkerOptions)
-              },
+        
         })
         munLayer.addTo(MAP);
 
@@ -325,6 +331,8 @@ class OS extends Component {
 
         // municipality.resetFeatureStyle();
 
+
+
     }
 
 
@@ -335,14 +343,15 @@ class OS extends Component {
                 // console.log("muniii", res.data);
                 
                 const counts = res.data.data.municipality_list
-
-
                 let hlcitArr = [];
                 counts.map((m) => {
                     let str = Object.values(m).toString().replace(/\s/g, '')
+               
                     hlcitArr.push(str)
 
                 })
+             
+                
                 this.setState({ munCounts: hlcitArr }, () => {
                     this.loadVectortile()
                 })
@@ -354,7 +363,10 @@ class OS extends Component {
 
     }
     componentDidMount() {
-
+        // setTimeout(() => {
+        //     let cMarker = L.circleMarker([27, 87]).addTo(this.props.mapRefss.current.leafletElement)
+        // }, 1000)
+       
         // this.props.mapRefss.current.leafletElement.setView(28.541100228636036, 85.00671386718751, 14)
 
         this.fetchGlimpse();

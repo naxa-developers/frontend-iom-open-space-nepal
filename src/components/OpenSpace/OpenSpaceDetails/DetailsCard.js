@@ -16,7 +16,7 @@ import '../OpenSpaceCSS.css'
 import { connect } from "react-redux";
 import Gallery from "./Gallery/Gallery";
 import { element } from "prop-types";
-import Emergency from "./EmergencyTab/Emergency";
+
 
 
 class DetailsCard extends Component {
@@ -619,18 +619,7 @@ class DetailsCard extends Component {
                           this.nearbyref =
                           comp} fetchroute={this.fetchroute} reff={this.props.reff} OSlatlng={this.state.spaceInfo.centroid} id={this.props.id} />
                       </div>
-                      <div
-                        className={
-                          this.state.tabid == 5
-                            ? "tab-pane fade show active"
-                            : "tab-pane fade"
-                        }
-                        id="emergency"
-                        role="tabpanel"
-                        aria-labelledby="emergency_tab"
-                      >
-                        <Emergency />
-                      </div>
+                   
                     </div>
                   </div>
                 </div>

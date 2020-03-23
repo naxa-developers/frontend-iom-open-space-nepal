@@ -15,7 +15,8 @@ class DetailsHeader extends Component {
       isActive: false,
       notifications: false,
       showNotifications: false,
-      erData: null
+      erData: null,
+      nullNoti: null
     }
   }
 
@@ -24,7 +25,7 @@ class DetailsHeader extends Component {
     
     Axios.get(`https://iomapi.naxa.com.np/api/v1/message/?id=${OID}`).then(
         res => {
-
+          res.data.length === 0 && this.setState({nullNoti: true})
         this.setState({
             erData: res.data
         })
@@ -79,7 +80,7 @@ class DetailsHeader extends Component {
           <div className="space-content">
             <h5>{this.props.title ? this.props.title : <LoaderSmall />} </h5>   
             <span>
-            <i class="material-icons" id="bell"  
+            <i class="material-icons" id= { this.state.nullNoti === true ? "bell" : "bellActive"  }
             onClick={() => this.setState({showNotifications: true})}
             >notifications_active</i>
            
