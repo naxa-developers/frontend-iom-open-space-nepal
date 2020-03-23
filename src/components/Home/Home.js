@@ -30,7 +30,18 @@ import bannerShape from "../../img/banner-shape.png";
         
 
        
-        const counts = res.data;
+        const counts = res.data.data;
+        
+        let mun = Object.values(counts.municipality_list);
+        let munArray = [];
+        mun.map((m) => {
+         
+          
+          munArray.push(Object.keys(m)[0]);
+          
+        })
+       
+
         this.setState({counts: counts})
         
 
@@ -40,7 +51,7 @@ import bannerShape from "../../img/banner-shape.png";
 }
 
 componentDidMount() {
-  this.fetchCounts();
+  // this.fetchCounts();
 }
     render() {
     

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 
-import Navbar from '../Home/Navbar';
+import Navbar from '../Home/NavbarLayout';
 import Footer from '../Home/Footer';
 import bannerShape from '../../img/banner-shape.png';
 import MapLocation from '../../img/map-pin-locations.svg'

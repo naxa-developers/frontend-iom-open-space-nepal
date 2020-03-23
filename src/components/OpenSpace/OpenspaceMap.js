@@ -15,14 +15,14 @@ import { connect } from 'react-redux';
 const { BaseLayer } = LayersControl;
 import Spinner from './OpenSpaceDetails/MapLoader'
 import 'leaflet-ajax'
-// import './openspace_gp_np.geojson';
+// import './OpenSpaceCSS.css'
 
 
 
 
 let MAP;
 let munLayer = null;
-var province=null;
+var province = null;
 var district = null;
 var municipality = null;
 class OS extends Component {
@@ -70,7 +70,7 @@ class OS extends Component {
 
         navigator && navigator.geolocation && navigator.geolocation.getCurrentPosition((location) => {
             latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
-         
+
             this.props.setcurrentLocation([location.coords.latitude, location.coords.longitude])
             this.setState({ currentLocation: [location.coords.latitude, location.coords.longitude] })
             // L.circleMarker(latlng, { radius: 6, fillColor: 'red', fillOpacity: 1, weight: 15, opacity: 0.3, color: 'red', }).addTo(this.props.mapRefss.current.leafletElement);
@@ -86,7 +86,7 @@ class OS extends Component {
 
 
         })
-        sessionStorage.Openspaces==undefined&&this.notify()
+        sessionStorage.Openspaces == undefined && this.notify()
         navigator.permissions.query({ name: 'geolocation' }).then((PermissionStatus) => {
             if (PermissionStatus.state == 'granted') {
                 // this.notify()
@@ -102,10 +102,10 @@ class OS extends Component {
     }
     loadprovince = () => {
         var colors = ["#0489B1", "#045FB4", "purple", "#0404B4", "#3104B4", "#5F04B4", "#1B0A2A"]
-        
+
         Axios.get('https://iomapi.naxa.com.np/api/v1/province_geo_json')
             .then(response => {
-             
+
                 var province = L.geoJSON(response.data, {
                     style: (feature) => {
                         return {
@@ -120,7 +120,7 @@ class OS extends Component {
                 // .addTo(this.props.mapRefss.current.leafletElement)
                 this.props.setProvince(province)
             })
-           
+
     }
     zoomTomylocation = () => {
         this.state.myloc.onAdd = (map) => {
@@ -134,95 +134,95 @@ class OS extends Component {
 
         this.state.myloc.addTo(this.props.mapRefss.current.leafletElement)
         var locs = document.getElementsByClassName('loc')[0].addEventListener('click', () => {
-         
+
             this.props.mapRefss.current.leafletElement.setView(this.state.currentLocation, 14);
         })
     }
 
-     loadVectortile = () => {
-    //    let munCounts =  this.state.munCounts;
-       var vectorTileOptions = {
-        tms: true,
-        vectorTileLayerStyles: {
-            'District': function () {
-                return {
-                    fillColor: "blue",
-                    fillOpacity: 0,
-                    weight: 1,
-                    opacity: 0.7,
-                    color: '#a3b7e3',
-                    fill: true,
-                }
-            },
-            'Province': function () {
-                return {
-                    fillColor: "blue",
-                    fillOpacity: 0,
-                    weight: 1,
-                    opacity: 1,
-                    // color: '#4f76c9',
-                    color: 'black',
-                    fill: true,
-                }
-            },
-        
-            'Municipality':  function (properties, zoom) {
-              return {
-                   fillColor: "yellow",
-                   fillOpacity: 0,
-                   weight: 0.3,
-                   opacity: 0.3,
-                   color: '#174BDD',
-                   fill: true,
-               }
-        
-            
-            },
-        },
-        interactive: true, // Make sure that this VectorGrid fires mouse/pointer events
-        // pane: "wmsPane",
-        getFeatureId: function (feature, layer) {
-      
-            
-            // label_Vector_Tiles(feature);
-            let hlcit = feature.properties.HLCIT_CODE &&  parseInt(feature.properties.HLCIT_CODE.toString().replace(/\s/g, ''))  
-         
-            // setTimeout(() => {
-            
-            // municipality.setFeatureStyle(hlcit, {
-            //     fillColor: "yellow",
-            //     fillOpacity: 0,
-            //     weight: 1,
-            //     opacity: 0,
-            //     color: 'green',
-            //     fill: true,
-            //     })
-            // })
-            return hlcit;
-           
-        }
-    }
-    var provinceUrl = 'http://202.45.146.3:8080/geoserver/gwc/service/tms/1.0.0/Bipad:Province@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
-    var districtUrl = 'http://202.45.146.3:8080/geoserver/gwc/service/tms/1.0.0/Bipad:District@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
-    //    var municipalityUrl = 'https://apps.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Naxa:Municipality@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
-    // var municipalityUrl = 'https://geoserver.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Bipad:Municipality@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
-    var municipalityUrl = 'http://202.45.146.3:8080/geoserver/gwc/service/tms/1.0.0/Bipad:Municipality@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
+    loadVectortile = () => {
+        //    let munCounts =  this.state.munCounts;
+        var vectorTileOptions = {
+            tms: true,
+            vectorTileLayerStyles: {
+                'District': function () {
+                    return {
+                        fillColor: "blue",
+                        fillOpacity: 0,
+                        weight: 1,
+                        opacity: 0.7,
+                        color: '#a3b7e3',
+                        fill: true,
+                    }
+                },
+                'Province': function () {
+                    return {
+                        fillColor: "blue",
+                        fillOpacity: 0,
+                        weight: 1,
+                        opacity: 1,
+                        // color: '#4f76c9',
+                        color: 'black',
+                        fill: true,
+                    }
+                },
 
-       province = L.vectorGrid.protobuf(provinceUrl, vectorTileOptions);
-       district = L.vectorGrid.protobuf(districtUrl, vectorTileOptions )
+                'Municipality': function (properties, zoom) {
+                    return {
+                        fillColor: "yellow",
+                        fillOpacity: 0,
+                        weight: 0.3,
+                        opacity: 0.3,
+                        color: '#174BDD',
+                        fill: true,
+                    }
+
+
+                },
+            },
+            interactive: true, // Make sure that this VectorGrid fires mouse/pointer events
+            // pane: "wmsPane",
+            getFeatureId: function (feature, layer) {
+
+
+                // label_Vector_Tiles(feature);
+                let hlcit = feature.properties.HLCIT_CODE && parseInt(feature.properties.HLCIT_CODE.toString().replace(/\s/g, ''))
+
+                // setTimeout(() => {
+
+                // municipality.setFeatureStyle(hlcit, {
+                //     fillColor: "yellow",
+                //     fillOpacity: 0,
+                //     weight: 1,
+                //     opacity: 0,
+                //     color: 'green',
+                //     fill: true,
+                //     })
+                // })
+                return hlcit;
+
+            }
+        }
+        var provinceUrl = 'http://202.45.146.3:8080/geoserver/gwc/service/tms/1.0.0/Bipad:Province@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
+        var districtUrl = 'http://202.45.146.3:8080/geoserver/gwc/service/tms/1.0.0/Bipad:District@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
+        //    var municipalityUrl = 'https://apps.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Naxa:Municipality@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
+        // var municipalityUrl = 'https://geoserver.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Bipad:Municipality@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
+        var municipalityUrl = 'http://202.45.146.3:8080/geoserver/gwc/service/tms/1.0.0/Bipad:Municipality@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
+
+        province = L.vectorGrid.protobuf(provinceUrl, vectorTileOptions);
+        district = L.vectorGrid.protobuf(districtUrl, vectorTileOptions)
         municipality = L.vectorGrid.protobuf(municipalityUrl, vectorTileOptions)
 
-       district.addTo(this.props.mapRefss.current.leafletElement);
-       province.addTo(this.props.mapRefss.current.leafletElement);
-       municipality.addTo(this.props.mapRefss.current.leafletElement);
-    
-       this.setState({provinceLoading: 'none'})
-    //   district.bringToFront();
+        district.addTo(this.props.mapRefss.current.leafletElement);
+        province.addTo(this.props.mapRefss.current.leafletElement);
+        municipality.addTo(this.props.mapRefss.current.leafletElement);
+        // L.marker([80, 27]).addTo(this.props.mapRefss.current.leafletElement);
+        this.setState({ provinceLoading: 'none' })
+        //   district.bringToFront();
         //    province.bringToFront();
         province.setZIndex(300);
         district.setZIndex(20);
         municipality.setZIndex(10)
-     
+
         // var numericMarker = L.ExtraMarkers.icon({
         //     icon: 'fa-leaf',
         //     markerColor: 'green',
@@ -230,130 +230,143 @@ class OS extends Component {
         //     prefix: 'fa'
         //                   });
 
-    //     munLayer = new L.geoJson.ajax('src/json/openspace_gp_np.geojson', 
-    //   { 
-    //     // style: function(feature) {
-    //     //   return {
-    //     //     color: '#5ACE52', fillColor:'#fff', weight:'1.5'  
-    //     //   }
-    //     // },
-  
-    //     onEachFeature: function(feature, layer){ 
-    // //   (function(layer, properties) { 
-    //  console.log("ff", layer);
-    //  layer.bindPopup('arbol_nombre')
-    //   {   layer.setIcon(numericMarker) }
-    //     //  } )
+        //     munLayer = new L.geoJson.ajax('src/json/openspace_gp_np.geojson', 
+        //   { 
+        //     // style: function(feature) {
+        //     //   return {
+        //     //     color: '#5ACE52', fillColor:'#fff', weight:'1.5'  
+        //     //   }
+        //     // },
 
-    //     { layer.bindTooltip(feature.properties.LU_Name, {closeButton: false, offset: L.point(0, -20)});   }
-     
-    //  }
-       
-    //   }
-    //   )
+        //     onEachFeature: function(feature, layer){ 
+        // //   (function(layer, properties) { 
+        //  console.log("ff", layer);
+        //  layer.bindPopup('arbol_nombre')
+        //   {   layer.setIcon(numericMarker) }
+        //     //  } )
+
+        //     { layer.bindTooltip(feature.properties.LU_Name, {closeButton: false, offset: L.point(0, -20)});   }
+
+        //  }
+
+        //   }
+        //   )
 
 
-    function onEachFeature(feature, layer) {
-      
+       const onEachFeature = (feature, layer) => {
+            let centrePoint = layer.getBounds().getCenter();
+            let hl = layer.feature.properties.HLCIT_CODE.toString().replace(/\s/g, '');
+            // this.state.munCounts.map((m) => {
+            //     if(m===hl) {
+                    
+            //     }
+            // })
+            
+          
+             let cMarker = L.circleMarker([centrePoint.lat, centrePoint.lng])
         
-        // var popupContent = `<h6 style='color: #fff', 'font-size: 1rem'>${feature.properties.LU_Name}` + ' ' + '<p>Type: </p>' + `${feature.properties.LU_Type }</h6> <p>No. of Openspaces:10 </p>`
+            var popupContent = "<div class='bind-popup'> <div class='bind-header'><h5 style:'color:red'>" + feature.properties.LU_Name + "</h5><p><Type :" + feature.properties.LU_Type + "</p>  <p>No. of Openspaces:  </p></div></div>"
+
+            layer.bindPopup(popupContent);
+            // cMarker.addTo(this.props.mapRefss.current.leafletElement)
+        }
+        let geojsonMarkerOptions = {
+            radius: 25,
+            fillColor: "#24D238",// "#28ea3f",//"#0163FF",
+            color: "#A9F6B2", //"#0163FF",
+            weight: 2,
+            opacity: 1,
+            fillOpacity: 1,
+            // className: 'marker-cluster'
+    
+          };
+        munLayer = L.geoJSON.ajax('src/json/openspace_gp_np.geojson', {
+            style: function (feature) {
+                return {
+                    color: '#5ACE52', fillColor: '#fff', weight: '1.5'
+                }
+            },
+            onEachFeature: onEachFeature,
         
-        var popupContent = "<div class='bind-popup'> <div class='bind-header'><h5>" + feature.properties.LU_Name + "</h5><p><Type :" + feature.properties.LU_Type + "</p>  <p>No. of Openspaces:  </p></div></div>"
-		layer.bindPopup(popupContent);
-	}
-  munLayer =  L.geoJSON.ajax('src/json/openspace_gp_np.geojson', {
+        })
+        munLayer.addTo(MAP);
 
-             style: function(feature) {
-          return {
-            color: '#5ACE52', fillColor:'#fff', weight:'1.5'  
-          }
-        },
-	
-		onEachFeature: onEachFeature,
 
-		pointToLayer: function (feature, latlng) {
-			return L.circleMarker(latlng, {
-				radius: 8,
-				fillColor: "#ff7800",
-				color: "#000",
-				weight: 1,
-				opacity: 1,
-				fillOpacity: 0.8
-			});
-		}
-	})
 
-       munLayer.addTo(MAP);
-    
 
-    
-      
         //   munLayer.bringToFront();
         //   munLayer.bindTooltip(feature.properties.LU_Name, {closeButton: false, offset: L.point(0, -20)});
         //   munLayer.on('mouseover', function(){
         //       munLayer.openPopup();
         //       console.log("hover");
-              
+
         //   })
-    //    setTimeout(() => {
-    //        munCounts.map((m) => {
+        //    setTimeout(() => {
+        //        munCounts.map((m) => {
 
-    //            municipality.setFeatureStyle(m, {fillColor:'red', color:'green', opacity: '1',weight: '2'})
-    //        })
-          
-    //        municipality.bringToFront();
-    //     }, 1500) 
+        //            municipality.setFeatureStyle(m, {fillColor:'red', color:'green', opacity: '1',weight: '2'})
+        //        })
 
-      
-    //     MAP.on('zoomend moveend', function() {
-    //         setTimeout(() => {
-    //             munCounts.map((m) => {
-    //                 municipality.setFeatureStyle(m, {fillColor:'red', color:'green', opacity: '1',weight: '2'})
-    //             })
-    //         }, 1500)
-           
-    //     })
-     
-       
-   
-    //   municipality.setFeatureStyle({
-    //       color: 'yellow'
-    //   });
-    //  var  district = L.vectorGrid.protobuf(districtUrl, vectorTileOptions);
+        //        municipality.bringToFront();
+        //     }, 1500) 
 
-   
-      
-    // municipality.resetFeatureStyle();
+
+        //     MAP.on('zoomend moveend', function() {
+        //         setTimeout(() => {
+        //             munCounts.map((m) => {
+        //                 municipality.setFeatureStyle(m, {fillColor:'red', color:'green', opacity: '1',weight: '2'})
+        //             })
+        //         }, 1500)
+
+        //     })
+
+
+
+        //   municipality.setFeatureStyle({
+        //       color: 'yellow'
+        //   });
+        //  var  district = L.vectorGrid.protobuf(districtUrl, vectorTileOptions);
+
+
+
+        // municipality.resetFeatureStyle();
+
+
 
     }
 
 
-fetchGlimpse = () => {
-    MAP = this.props.mapRefss.current.leafletElement;
-    Axios.get(`https://iomapi.naxa.com.np/api/v1/glimpse_of_open_space`)
-    .then(res => {
-    
-        const counts =  res.data.data.municipality_list
-        
-        
-        let hlcitArr = [];
-        counts.map((m) => {
-            let str = Object.values(m).toString().replace(/\s/g, '')
-            hlcitArr.push(str)
-            
-        }) 
-        this.setState({munCounts: hlcitArr}, () => {
-            this.loadVectortile()
-        })
-        
+    fetchGlimpse = () => {
+        MAP = this.props.mapRefss.current.leafletElement;
+        Axios.get(`https://iomapi.naxa.com.np/api/v1/glimpse_of_open_space`)
+            .then(res => {
+                // console.log("muniii", res.data);
+                
+                const counts = res.data.data.municipality_list
+                let hlcitArr = [];
+                counts.map((m) => {
+                    let str = Object.values(m).toString().replace(/\s/g, '')
+               
+                    hlcitArr.push(str)
 
-       
-        
-    })
+                })
+             
+                
+                this.setState({ munCounts: hlcitArr }, () => {
+                    this.loadVectortile()
+                })
 
-}
+
+
+
+            })
+
+    }
     componentDidMount() {
-   
+        // setTimeout(() => {
+        //     let cMarker = L.circleMarker([27, 87]).addTo(this.props.mapRefss.current.leafletElement)
+        // }, 1000)
+       
         // this.props.mapRefss.current.leafletElement.setView(28.541100228636036, 85.00671386718751, 14)
 
         this.fetchGlimpse();
@@ -361,9 +374,9 @@ fetchGlimpse = () => {
         // this.loadprovince()
         this.currentLocation();
         this.zoomTomylocation();
-     
-     
-        sessionStorage.Openspaces==undefined&&toast.info("If current location is not in correct position, disconnect and reconnect your wifi network", { autoClose: false, position: "bottom-right" })
+
+
+        sessionStorage.Openspaces == undefined && toast.info("If current location is not in correct position, disconnect and reconnect your wifi network", { autoClose: false, position: "bottom-right" })
 
 
         this.props.mapRefss.current.leafletElement.createPane("userloc").style.zIndex = 800;
@@ -371,35 +384,37 @@ fetchGlimpse = () => {
         // this.addnortharrow()
 
         this.props.mapRefss.current.leafletElement.createPane('vectortile').style.zIndex = 200;
-       
-        
+
+
 
     }
     componentDidUpdate(prevProps) {
-     
-        
-        if(prevProps.deleteAll!== this.props.deleteAll){
-            if(this.props.deleteAll) {
+
+
+        if (prevProps.deleteAll !== this.props.deleteAll) {
+            console.log("del", this.props.deleteAll);
+            
+            if (this.props.deleteAll===true) {
                 MAP.removeLayer(province)
                 MAP.removeLayer(district)
+                MAP.removeLayer(municipality)
                 MAP.removeLayer(munLayer)
-            } else{
-           
-            this.fetchGlimpse();
-    }
+            } else {
+
+                this.fetchGlimpse();
             }
         }
-      
+    }
+
     notify = () => toast.info("Turn your location service ON for better experience", {
         autoClose: 3000, position: "bottom-right"
     });
     render() {
 
-      
-    //  MAP &&  MAP.on('zoomend', function() {
+        //  MAP &&  MAP.on('zoomend', function() {
 
-    
-    //     })  
+
+        //     })  
 
         lat: 28.541100228636036
         lng: 85.00671386718751
@@ -409,28 +424,28 @@ fetchGlimpse = () => {
 
 
             <>
-      <div
-            // id='Spinner'
-            style={{
-              display: `${this.state.provinceLoading}`,
-              background: 'white',
-              opacity: '0.6',
-              position: 'absolute',
-              zIndex: '500',
-              textAlign: 'center',
-              left: '50%',
-              padding: '8px',
-              top: '4px',
-          
-            }}
-          >
-           <Spinner />
-           
-          </div>
+                <div
+                    // id='Spinner'
+                    style={{
+                        display: `${this.state.provinceLoading}`,
+                        background: 'white',
+                        opacity: '0.6',
+                        position: 'absolute',
+                        zIndex: '500',
+                        textAlign: 'center',
+                        left: '50%',
+                        padding: '8px',
+                        top: '4px',
+
+                    }}
+                >
+                    <Spinner />
+
+                </div>
 
                 <ToastContainer newestOnTop={true} enableMultiContainer />
-       
-          
+
+
 
                 <LeafletMap
 
@@ -444,14 +459,14 @@ fetchGlimpse = () => {
                     dragging={true}
                     animate={true}
                     easeLinearity={0.35}
-                    bounds={ [[26.209781975840405, 80.15739792926259],
-                    [31.05876857077987, 88.39714402301262]] }
+                    bounds={[[26.209781975840405, 80.15739792926259],
+                    [31.05876857077987, 88.39714402301262]]}
                     ref={this.props.mapRefss}
                     style={{ height: this.state.height == null ? '80vh' : this.state.height, overflow: 'hidden', }}
                 >
-                  
 
-                    
+
+
 
                     <LayersControl position="topright">
                         <BaseLayer checked={this.state.baselayer ? true : false} ref={this.baseLayer} name="OpenStreetMap">
@@ -519,10 +534,10 @@ fetchGlimpse = () => {
 
 const mapStateToProps = (state) => {
     return {
-      ...state,
-      deleteLayers: state.deleteAll
+        ...state,
+        deleteLayers: state.deleteAll
     }
-  }
+}
 
 
 export default connect(mapStateToProps)(OS);

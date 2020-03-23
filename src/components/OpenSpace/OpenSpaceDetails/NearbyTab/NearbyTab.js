@@ -263,7 +263,7 @@ class NearbyTab extends Component {
         <Card>
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="0">
-            <i className="humanitarian-icon-Medical-supply"></i>Health Facilities
+            <i className="humanitarian-icon-Medical-supply"></i> <span>Health Facilities</span>
              
             </Accordion.Toggle>
           </Card.Header>
@@ -287,8 +287,9 @@ class NearbyTab extends Component {
         <Card>
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="1">
-            <i className="humanitarian-icon-Fire"></i>
-              Fire Brigade
+            <i className="humanitarian-icon-Fire"> </i>
+            <span>   Fire Brigade</span>
+             
             </Accordion.Toggle>
           </Card.Header>
           <Accordion.Collapse eventKey="1">
@@ -310,7 +311,8 @@ class NearbyTab extends Component {
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="2">
             <i className="humanitarian-icon-Helipad"></i>
-              Helipad, Airport
+            <span>   Helipad, Airport</span>
+            
             </Accordion.Toggle>
             
           </Card.Header>
@@ -333,7 +335,8 @@ class NearbyTab extends Component {
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="3">
             <i className="humanitarian-icon-National-army"></i>
-              Security Forces
+            <span>   Security Forces</span>
+            
             </Accordion.Toggle>
             
           </Card.Header>
@@ -357,7 +360,8 @@ class NearbyTab extends Component {
           <Card.Header>
             <Accordion.Toggle as={Button} variant="link" eventKey="4">
               <i className="humanitarian-icon-Education"></i>
-              Educational Facilities
+              <span>   Educational Facilities</span>
+              
             </Accordion.Toggle>
             
           </Card.Header>

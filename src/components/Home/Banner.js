@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-
-import iom from '../../img/iom.png';
-import ccm from '../../img/ccm.png';
 import Axios from 'axios';
 
 

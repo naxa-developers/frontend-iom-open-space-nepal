@@ -43,9 +43,17 @@ class Identification extends Component {
                 <div className="row">
                     <div className="col-md-6" >
                         {/* <div className="process-left sticky"> */}
-                      <div className="process-left">
+                      {/* <div className="process-left">
                             <h3 className="openspace-title">{this.props.language=='0'? 'Open space indentification process': 'खुल्ला क्षेत्र पहिचान प्रक्रिया'}</h3>
         <p>{this.props.language=='0'? this.state.data&&this.state.data[0].description: this.state.data&&this.state.data[0].description_nep }</p>
+                        </div> */}
+                         <div className="process-left">
+                            <h3 className="openspace-title">WHY MAP OPEN SPACES ? </h3>
+        <p>One of the lessons learned from past disasters is the vital role of pre- 
+identified open spaces that can be utilized for safe and secure refuge and 
+relief distribution during and after disasters. Other core services that can 
+be provided and utilized in open spaces include: 
+</p>
                         </div>
                      
                     </div>
