@@ -42,7 +42,7 @@ class DetailsHeader extends Component {
     return (
       <React.Fragment>
           <Modal show={this.state.showNotifications} centered="false" size="md">
-                <Modal.Header><h4 style={{color:'#174BDD', fontWeight:'600', textTransform:'capitalize'}}>Notifications</h4>
+                <Modal.Header><h4 style={{color:'#174BDD', fontWeight:'600', textTransform:'capitalize'}}>humanitarian assistance</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick={()=> this.setState({showNotifications: !this.state.showNotifications})}>
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -79,15 +79,17 @@ class DetailsHeader extends Component {
         <div className="space">
           <div className="space-content">
             <h5>{this.props.title ? this.props.title : <LoaderSmall />} </h5>   
-            <span>
-            <i class="material-icons" id= { this.state.nullNoti === true ? "bell" : "bellActive"  }
-            onClick={() => this.setState({showNotifications: true})}
-            >notifications_active</i>
-           
+          
             {/* //  className= {this.state.notifications == true ? 'bell-active' : 'bell'} */}
-           </span>
-        
-        
+
+            
+             <p>
+              <span  onClick={() => this.setState({showNotifications: true})}>
+                <i id= "bellActive" className="material-icons">notifications_active</i>
+                Humanitarian Assistance
+              </span>
+              
+            </p>        
             <p>
               <span>
                 <i className="material-icons">room</i>
