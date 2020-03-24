@@ -25,7 +25,7 @@ class DetailsHeader extends Component {
     
     Axios.get(`https://iomapi.naxa.com.np/api/v1/message/?id=${OID}`).then(
         res => {
-          res.data.length === 0 && this.setState({nullNoti: true})
+          res.data.length!== 0 && this.setState({nullNoti: true})
         this.setState({
             erData: res.data
         })
@@ -84,10 +84,14 @@ class DetailsHeader extends Component {
 
             
              <p>
-              <span  onClick={() => this.setState({showNotifications: true})}>
-                <i id= "bellActive" className="material-icons">notifications_active</i>
-                Humanitarian Assistance
-              </span>
+               {
+                 this.state.nullNoti===true &&
+                 <span  onClick={() => this.setState({showNotifications: true})}>
+                 <i id= "bellActive" className="material-icons">notifications_active</i>
+                 Humanitarian Assistance
+               </span>
+               }
+             
               
             </p>        
             <p>
