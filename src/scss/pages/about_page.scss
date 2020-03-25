@@ -1,0 +1,360 @@
+section.about-content{
+    background: rgba($color-green, .08);
+   
+    .content-top{
+        margin-bottom: 3.5rem;
+        h3{
+            max-width: 280px;
+            text-align: left;
+            text-transform: uppercase;
+        }
+        .para{
+            p{
+                max-width: 660px;
+                line-height: 1.6;
+                color: $color-primary;
+                &:first-child{
+                    margin-bottom: 18px;
+                }
+                &:last-child{
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+    .content-bottom{
+        .list-wrapper{
+            ul{
+                li{
+                    @include flex;
+                    align-items: flex-end;
+                    color: $grey-light;
+                    margin-bottom: 1.75rem;
+                    a{
+                        color: $grey-light;
+                        @include animate;
+                    }
+                    span{
+                        padding-bottom: 2px;
+                        @include animate;
+                        padding-right: .938rem;
+                        color: $grey-light;
+                    }
+                    &:hover{
+                        cursor: pointer;
+                        color: $color-primary;
+                        a{
+                            color: $color-primary;
+                        }
+                        span{
+                            color: $color-green;
+                        }
+                    }
+                    &:last-child{
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+        .list-wrapper-info{
+            @include boxshadow(0px 5px 15px $shadow-color);
+            background: $color-blue;
+            padding: 42px;
+            margin-left: 41px;
+            position: relative;
+            &:before{
+                content: " ";
+                    position: absolute;
+                    top: 0; 
+                    left: -40px;
+                    border-width: 20px;
+                    border-style: solid;
+                    border-color:  transparent $dark-blue $dark-blue transparent;
+            }
+            ul{
+                li{
+                    line-height: 1.6;
+                    &:last-child{
+                        margin-bottom: 0;
+                    }
+                    @include flex;
+                    margin-bottom: 1.25rem;
+                    color: $color-white;
+                    i{
+                        font-size: 14px;
+                        line-height: 1.5;
+                        padding-right: 22px;
+                    }
+                }   
+            }
+        }
+    }
+}
+
+section.about-procedure{
+    .about-left{
+        h3{
+            max-width: 280px;
+            text-align: left;
+            text-transform: uppercase;
+        }
+        p{
+            margin-top: 1.875rem;
+            color: $color-primary;
+            max-width: 345px;
+            line-height: 1.8; 
+        }
+    }
+   
+    .about-right{
+        .blocks{
+            margin-bottom: 50px;
+            display: flex;
+            .block-icons{
+                position: relative;
+                flex: 0 0 50px;
+                max-width: 50px;
+                background-repeat: no-repeat !important;
+                background-size: contain !important;
+                margin-right: 2.5rem;
+                img{
+                    position: absolute;
+                    top: 55px;
+                    left: 24px;
+                    height: 135px;
+                    width: 1.425px;
+                }
+            }
+            &:last-child{
+                margin-bottom: 0;
+            }
+            .block-steps{
+                span.about-span{
+                    text-transform: uppercase;
+                    color: $color-green;
+                }
+                h4{
+                    text-transform: capitalize;
+                    margin-top: 6px;
+                    color: $color-primary;
+                }
+                ul{
+                    margin-top: 22px;
+                    li{
+                        @include flex;
+                        margin-bottom: 10px;
+                        color: $color-primary;
+                        i{
+                            padding-right: 22px;
+                            font-size: 14px;
+                            position: relative;
+                            top: 4px;
+                        }
+                        &:last-child{
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:$ls-tab){
+    section.about-content {
+       .content-bottom{
+          .list-wrapper-info  {
+            padding: 30px;
+          }
+       } 
+    }
+    section.about-procedure{
+        .about-left{
+             p {
+                 max-width: 305px;
+            } 
+        } 
+        .about-right{
+            .blocks {
+                margin-bottom: 40px;
+                .block-icons{
+                        flex: 0 0 40px;
+                        max-width: 40px;
+                        margin-right: 2.5rem;
+                    img{
+                        left: 16px;
+                    }
+                } 
+                .block-steps {
+                    ul {
+                        margin-top: 16px;
+                    }
+                }
+            }
+        }  
+    } 
+}
+
+@media screen and (max-width:$lg-tab){
+    section.about-content {
+        .content-bottom{
+            .list-wrapper-info{
+                padding: 20px;
+                &:before{
+                    left: -32px;
+                    border-width: 16px;
+                }
+            }
+        }
+    } 
+}
+
+@media screen and (max-width:$mb-xl){
+   
+    section.about-content{
+        .content-top {
+            h3 {
+                text-align: center;
+                max-width: 100%;
+                margin: 0 auto;
+                margin-bottom: 25px;
+            }
+            .para{
+                text-align: center;
+            }
+        }
+        .content-bottom{
+            .list-wrapper{
+                margin-bottom: 30px;
+                ul{
+                    text-align: center;
+                    max-width: 300px;
+                    margin: 0 auto;
+                    li{
+                        @include flex_center;
+                        margin-bottom: 1rem;
+                    }
+                }
+            }
+        }
+    }
+
+    section.about-procedure {
+        .about-left {
+            h3{
+                max-width: 100%;
+                margin: 0 auto;
+                text-align: center;
+            }
+            p{
+                margin: 20px auto 40px;
+                max-width: 450px;
+                text-align: center;
+            }
+        }
+        .about-right{
+            .blocks{
+                max-width: 350px;
+                margin: 0 auto 40px;
+                .block-icons{
+                    flex: 0 0 30px;
+                    max-width: 30px;
+                    margin-right: 3rem;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:$mb-lg){
+    section.about-content{
+        .content-top{
+            margin-bottom: 2rem;
+            .para p {
+                max-width: 350px;
+                margin: 0 auto 20px;
+            }
+        }
+        .content-bottom {
+            .list-wrapper-info{
+                max-width: 400px;
+                margin: 0 auto;
+                position: relative;
+                left: 20px;
+            }
+        }
+    } 
+}
+
+@media screen and (max-width:$mb-md){
+    section.about-content{
+        .content-bottom {
+            .list-wrapper-info{
+                max-width: 300px;
+                margin: 0 auto;
+                position: relative;
+                left: 20px;
+                ul{
+                    li{
+                        margin-bottom: 1rem;
+                        i{
+                            padding-right: 12px
+                        }
+                    }
+                }
+            }
+        }
+    } 
+    section.about-procedure{
+        .about-left{
+            p{
+                max-width: 350px;
+                margin: 15px auto 35px;
+            }
+        } 
+        .about-right{
+           .blocks {
+                max-width: 280px;
+                .block-icons{
+                    margin-right: 2.5rem;
+                }
+            } 
+        }    
+    } 
+}
+
+@media screen and (max-width: $mb-sm){
+    section.about-banner {
+        .banner-wrap {
+            .banner-para {
+                p{
+                    &:first-child {
+                        max-width: 250px;
+                    }
+                    &:last-child{
+                        max-width: 220px;
+                    }
+                }
+            }
+        }
+    }
+    section.about-content {
+        .content-bottom{
+            .list-wrapper-info{
+                left: 10px;
+                max-width: 250px;
+                &:before{
+                    left: -26px;
+                    border-width: 13px;
+                }
+            }
+            .list-wrapper {
+                ul{
+                    li{
+                        margin-bottom: .625rem;
+                    }
+                } 
+            }
+        }
+    } 
+}

@@ -4,207 +4,172 @@ import Footer from '../Home/Footer';
 import Openspace from '../Home/OpenSpace'
 import { Row, Col, Tab, Nav } from 'react-bootstrap'
 
-import one from '../../img/1.png'
-import two from '../../img/2.png'
-import three from '../../img/3.png'
-import four from '../../img/4.png'
-import five from '../../img/5.png'
+import Icon5 from '../../img/Icons5.png'
+import Icon1 from '../../img/Icons1.png'
+import Icon3 from '../../img/Icons3.png'
+import Icon2 from '../../img/Icons2.png'
+import Line from '../../img/Line.png'
 import bannerShape from '../../img/banner-shape.png'
 import { connect } from 'react-redux';
+import aboutBg from '../../img/About-bg.png'
+import logo from '../../img/header-logo.png'
 
  class About extends Component {
     render() {
         return (
             <>
                 <Navbar />
-                <div class="breadcrumb">
-                    <div class="container">
-                        <h1>{this.props.language=='0' ? 'About' : 'बारेमा'}</h1>
-                        <p>{this.props.language=='0' ? 'Open Spaces Mapping for Humanitarian Purposes' : 'मानवीय उद्देश्यका लागि ओपन स्पेस म्यापिङ।'}</p>
-
-                    </div>
+          <section className="banner about-banner" style={{backgroundImage:`url(${aboutBg})`}}>
+            <div className="banner-wrap">
+                <div className="banner-image">
+                    <img src={logo} alt="" />
                 </div>
-                <main class="main-content">
-                    <Openspace />
-                    {/* <section class="video-section ptb-150">
-                <div class="container">
-                    <div class="video" style="background:url(images/video.jpg)">
-                        <div class="overlay"></div>
-                        <a class="material-icons" href="">play_circle_filled</a>
-                    </div>
+                <div className="banner-para">
+                    <p className="banner-title">
+                        Open spaces are identified and mapped with the aim to strengthen emergency preparedness and to provide the initial response planning framework for the local governments and partner agencies to be able to have a starting point from which to provide life-saving assistance to those in immediate need including the displaced population. 
+                    </p>
+                    <p className="about-body">
+                        The importance of identification and mapping of open spaces for preparedness and risk reduction is also reflected in the National Policy for Disaster Risk Reduction 2018 for Nepal.
+                    </p>
                 </div>
-            </section> */}
-                    <section class="about-section about-video">
-                        <div class="container">
-                            <div class="title">
-                                <h3 class="openspace-title">{this.props.language=='0' ? 'Why map open spaces ?' : 'किन खुला ठाउँहरू?' }</h3>
-                                <p> {this.props.language=='0' ? 'There is vital importance of open space areas that can be utilized as safe and secure housing' +
-                                   +' and for relief distribution during and after disastrous events. The identified open spaces' +
-                         +   'can be used not only during disaster but for other humanitarian purposes as well.' : 'त्यहाँ खुला स्थान क्षेत्रहरूको महत्त्वपूर्ण महत्त्व छ जुन विनाशकारी घटनाहरूको समयमा र पछिको सुरक्षित र सुरक्षित आवासको रूपमा र राहत वितरणको लागि प्रयोग गर्न सकिन्छ। पहिचान गरिएको खुला ठाउँहरू प्रकोपको बेलामा मात्र अन्य मानवीय उद्देश्यहरूको लागि पनि प्रयोग गर्न सकिन्छ।' }</p>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="about-item">
-                                        <figure>
-                                            <img src={one} alt="" />
-                                        </figure>
-                                        <h4>{this.props.language=='0' ? 'Safe and secure place that can be used during disaster' : 'सुरक्षित र सुरक्षित ठाउँ जुन प्रकोपको समयमा प्रयोग गर्न सकिन्छ' }</h4>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="about-item">
-                                        <figure>
-                                            <img src={two} alt="" />
-                                        </figure>
-                                        <h4>{this.props.language=='0' ? 'Temporary shelter for people affected by disaster' : 'प्रकोपबाट प्रभावित व्यक्तिहरूको लागि अस्थायी आश्रय' }</h4>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="about-item">
-                                        <figure>
-                                            <img src={three} alt="" />
-                                        </figure>
-                                        <h4>{this.props.language=='0' ? 'Logistic Hub for retaliation against disaster' : 'प्रकोपको प्रतिकारको लागि लजिस्टिक हब' }</h4>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="about-item">
-                                        <figure>
-                                            <img src={four} alt="" />
-                                        </figure>
-                                        <h4>{this.props.language=='0' ?' Relief distribution and necessary coordination' : 'राहत वितरण र आवश्यक समन्वय' }</h4>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="about-item">
-                                        <figure>
-                                            <img src={five} alt="" />
-                                        </figure>
-                                        <h4>{this.props.language=='0' ? 'Cultural and entertainment programs' : 'सांस्कृतिक र मनोरन्जन कार्यक्रम' }</h4>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section class="tab-section">
-                        <div className="container">
-                            <Tab.Container id="left-tabs-example" defaultActiveKey="first" >
-                                <div class="title">
-                                    <h3 class="openspace-title">Open Spaces Selection Criteria</h3>
-                                    <p>Open spaces for humanitarian purposes are selected in consultation with a multitude of stakeholders including local communities, humanitarian agencies, local disaster risk management committees, ward presidents and security forces, among others.Open spaces failing to meet the below criteria may cause further distress to the disaster affected and displaced populations. Identification of flat and large open spaces in the hilly terrain of Nepal is in itself a challenge. However, the following criteria are considered for identifying open spaces for humanitarian purposes and providing refuge to displaced populations.
-                        </p>
-                                </div>
-                                <div class="about-tab">
-                                <div class="row">
-                                    <Row>
-                            <div class="col-md-4">
-                                <ul class="tab-list">
-                                        {/* <Col sm={3}> */}
-                                            <Nav variant="pills" className="flex-column">
-                                                <li>
-                                                <Nav.Item>
-                                                <Nav.Link eventKey="first"><small>1</small><span>Accessibility </span></Nav.Link>
-                                                </Nav.Item>
-                                                </li>
-                                                <li>
-                                                <Nav.Item>
-                                                    <Nav.Link eventKey="second"><small>2</small><span>Security </span></Nav.Link>
-                                                </Nav.Item>
-                                                </li>
-                                                <li>
-                                                <Nav.Item>
-                                                    <Nav.Link eventKey="third"><small>3</small><span>Access to resources and water </span></Nav.Link>
-                                                </Nav.Item></li>
-                                                <li>
-                                                <Nav.Item>
-                                                    <Nav.Link eventKey="fourth"><small>4</small><span>Land availability and topography </span></Nav.Link>
-                                                </Nav.Item>
-                                                </li>
-                                                {/* <Nav.Item>
-                                                    <Nav.Link eventKey="second"><small>5</small><span>Environmental Concerns </span></Nav.Link>
-                                                </Nav.Item>
-                                                <Nav.Item>
-                                                    <Nav.Link eventKey="second"><small>6</small><span>Size </span></Nav.Link>
-                                                </Nav.Item> */}
-                                            </Nav>
-                                          
-                                        {/* </Col> */}
-                                        </ul>
-                                        </div>
-                                        <div class="col-md-8">
-                                        {/* <Col sm={9}> */}
-                                        <div class="about-tab-content">
-                                            <Tab.Content>
-                                                <Tab.Pane eventKey="first">
-                                                    <ul>
-                                                        <li>
-                                                        Accessibility is a critical factor for open space identification. Some open spaces have restricted road access which impacts the establishment of camps, movement of IDPs to the camps, ensuring food supplies and other camp necessities. Therefore, it is critical in the selection phase that the accessibility of the open spaces in all seasons is considered.
-                                                         </li>  
-                                                        <li> The mobility of displaced populations, supply of goods and services, access to critical services (such as hospitals, markets, schools) in the surroundings are ensured while selecting an open space.</li>
-                                                        <li>
-                                                            The mobility of the displaced population, supply of goods/ services, access to critical services in the surroundings –hospital, market, school among others are ensured while selecting an open space. </li>
-                                                        <li>Access to livelihoods is also considered for open spaces identification. </li>
-                                                    </ul>
-                                                </Tab.Pane>
-                                                <Tab.Pane eventKey="second">
-
-                                                    <ul>
-                                                        <li>
-                                                        Security is likely to be a key issue in high density camp. Existing security features areexplained as these will assist with open space identification and camp management.
-                                                         </li> 
-                                                        <li>
-                                                        Natural  and  human  induced  hazards.  Example:   Existence  of   industrial  areas  in  theproximities of the open spaces are avoided.
-                                                              </li>
-                                                        <li>
-                                                        Extreme climatic conditions. Example: Open spaces at risk of flooding, strong winds orlandslides are avoided. Similarly, open spaces with high intensity electric wires are also avoided.</li>
-                                                        <li>
-                                                        Environmental and health conditions. Example: Health risks typical for the open spaces areassessed. Malaria zones and cholera high risk areas are avoided. </li>
-                                                        <li>Evacuation routes are considered while identifying open spaces</li>
-                                                    </ul>
-                                                </Tab.Pane>
-                                                <Tab.Pane eventKey="third">
-
-                                                    <ul>
-                                                        <li>
-                                                        Availability of and accessibility to water is considered. </li>
-                                                        <li>
-                                                        Water needs to be available in sufficient quantity in all seasons, taking into consideration the level of water during the dry season, as well as the basic needs of the displaced population (calculated as 7.5-15 liters per person per day).
-                                                        </li>
-
-
-                                                    </ul>
-                                                </Tab.Pane>
-                                                <Tab.Pane eventKey="fourth">
-
-                                                    <ul>
-                                                        <li>
-                                                        Selection of open spaces considers the Sphere standard, which defines the minimum surface area is 35-45 sq. meters per person.
-                                                         </li>
-                                                      <li>The possibility of site expansion is considered.</li>  
-                                                      <li>A gentle terrain slope of 1-5 degrees is considered.</li>  
-                                                      <li>Open spaces that could become marshy and water logged during rainy reason should be avoided.</li>  
-                                                      <li> Open spaces that are excessively rocky should be avoided as they hamper toilet or camp construction.</li>  
-                                         
-                                         
-</ul>
-                                                </Tab.Pane>
-     
-                                            </Tab.Content>
-                                            </div>
-                                        {/* </Col> */}
-                                        </div>
-                                    </Row>
-                                    </div>
-                                </div>
-                            </Tab.Container>
-                        </div>
-                    </section>
-
+            </div>
+        </section>
               
-                </main>
+        <section className="about-content pdt-130 pdb-130">
+            <div className="container">
+                <div className="content-top">
+                    <div className="row">
+                        <div className="col-md-4">
+                            <h3 className="openspace-title">OPEN SPACES SELECTION CRITERIA</h3>
+                        </div>
+                        <div className="col-md-8">
+                            <div className="para about-body">
+                                <p>Open spaces for humanitarian purposes are selected in consultation with a multitude of stakeholders including local communities, humanitarian agencies, local disaster risk management committees, ward presidents and security forces, among others.</p>
+                                <p> Open spaces failing to meet the below criteria may cause further distress to the disaster affected and displaced populations. Identification of flat and large open spaces in the hilly terrain of Nepal is in itself a challenge. However, the following criteria are considered for identifying open spaces for humanitarian purposes and providing refuge to displaced populations.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="content-bottom">
+                    <div className="row">
+                        <div className="col-md-4">
+                           <div className="list-wrapper">
+                               <ul className="about-h4">
+                                   <li><span className="about-span">01</span><a href="#">Accessibility</a></li>
+                                   <li><span className="about-span">02</span><a href="#">Security</a></li>
+                                   <li><span className="about-span">03</span><a href="#">Access to resources and water</a></li>
+                                   <li><span className="about-span">04</span><a href="#">Land availability and topography</a></li>
+                                   <li><span className="about-span">05</span><a href="#">Environmental concerns</a></li>
+                                   <li><span className="about-span">06</span><a href="#">Size</a></li>
+                               </ul>
+                           </div>
+                        </div>
+                        <div className="col-md-8">
+                            <div className="list-wrapper-info">
+                                <ul className="about-body">
+                                    <li><i className="material-icons success">check_circle</i>Accessibility is a critical factor for open space identification. Some open spaces have restricted road access which impacts the establishment of camps, movement of IDPs to the camps, ensuring food supplies and other camp necessities. Therefore, it is critical in the selection phase that the accessibility of the open spaces in all seasons is considered.</li>
+                                    <li><i className="material-icons success">check_circle</i>The mobility of displaced populations, supply of goods and services, access to critical services (such as hospitals, markets, schools) in the surroundings are ensured while selecting an open space.</li>
+                                    <li><i className="material-icons success">check_circle</i>Access to livelihoods is also considered for open spaces identification.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section className="about-procedure pdt-130 pdb-130">
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-6">
+                        <div className="about-left">
+                            <h3 className="openspace-title">Open Space Identification Process</h3>
+                            <p className="about-body">The open spaces were identified and selected through a 5-step methodology that is built upon the inputs from local governments, humanitarian agencies as well as community members. This methodology ensures the actual usability of the open spaces.</p>
+                        </div>
+                    </div>
+                    <div className="col-md-6">
+                        <div className="about-right">
+                            <div className="blocks">
+                                <div className="block-icons"style={{backgroundImage:`url(${Icon2})`}}>
+                                    {/* <!-- <div className="icon-image"><img className="icons" src="./images/Icons1.png" alt=""></div> --> */}
+                                    <img src={Line} alt="" />
+                                </div>
+                                <div className="block-steps">
+                                    <span className="about-span">Step 1</span>
+                                    <h4 className="about-h4">Preparatory Phase</h4>
+                                    <ul className="steps-list about-body">
+                                        <li><i className="material-icons success">check_circle</i><span>Conduct desk study and literature review</span></li>
+                                        <li><i className="material-icons success">check_circle</i><span>Collect relevant datasets</span></li>
+                                        <li><i className="material-icons success">check_circle</i><span>Finalize criteria for open space identification</span></li>
+                                        <li><i className="material-icons success">check_circle</i><span>Prepare detailed work plan</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div className="blocks">
+                                <div className="block-icons"style={{backgroundImage:`url(${Icon5})`}}>
+                                    <img src={Line} alt="" />
+                                </div>
+                                <div className="block-steps">
+                                    <span className="about-span">Step 2</span>
+                                    <h4 className="about-h4">Identification of Open Spaces</h4>
+                                    <ul className="steps-list about-body">
+                                        <li><i className="material-icons success">check_circle</i><span>Preliminary listing by local representatives</span></li>
+                                        <li><i className="material-icons success">check_circle</i><span>Sensitization workshop on open spaces mapping </span></li>
+                                        <li><i className="material-icons success">check_circle</i><span>Open spaces finalization as per standards</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div className="blocks">
+                                <div className="block-icons" style={{backgroundImage:`url(${Icon1})`}}>
+                                    <img src={Line} alt="" />
+                                </div>
+                                <div className="block-steps">
+                                    <span className="about-span">Step 3</span>
+                                    <h4 className="about-h4">Field Survey and Data Collection</h4>
+                                    <ul className="steps-list about-body">
+                                        <li><i className="material-icons success">check_circle</i><span>Secure drone flight permissions</span></li>
+                                        <li><i className="material-icons success">check_circle</i> <span>Field observations and aerial survey</span></li>
+                                        <li><i className="material-icons success">check_circle</i><span>Critical facilities mapping</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div className="blocks">
+                                <div className="block-icons" style={{backgroundImage:`url(${Icon3})`}}>
+                                    <img src={Line} alt="" />
+                                </div>
+                                <div className="block-steps">
+                                    <span className="about-span">Step 4</span>
+                                    <h4 className="about-h4">Data processing and GIS Mapping</h4>
+                                    <ul className="steps-list about-body">
+                                        <li><i className="material-icons success">check_circle</i><span>Data processing and Geodatabase preparation</span></li>
+                                        <li><i className="material-icons success">check_circle</i><span>Detailed topographical mapping </span></li>
+                                        <li><i className="material-icons success">check_circle</i><span>GIS maps and open space map atlas</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div className="blocks">
+                                <div className="block-icons" style={{ backgroundImage: `url(${Icon2})` }}>
+                                </div>
+                                <div className="block-steps">
+                                    <span className="about-span">Step 5</span>
+                                    <h4 className="about-h4">Output Validation, Finalization and Dissemination</h4>
+                                    <ul className="steps-list about-body">
+                                        <li><i className="material-icons success">check_circle</i><span>Incorporate feedback from local government and stakeholders</span></li>
+                                        <li><i className="material-icons success">check_circle</i><span>Finalize maps and outputs </span></li>
+                                        <li><i className="material-icons success">check_circle</i><span>Organize dissemination workshop </span></li>
+                                        <li><i className="material-icons success">check_circle</i><span>Integrate data into digital portals</span></li>
+                                        <li><i className="material-icons success">check_circle</i><span>Submit final deliverables</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+                
                 <footer
-                    className="site-footer pt-150"
+                    classNameName="site-footer pt-150"
                     style={{ backgroundImage: `url(${bannerShape})` }}
                 >
                     <Footer />
