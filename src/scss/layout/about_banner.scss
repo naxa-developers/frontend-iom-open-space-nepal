@@ -1,0 +1,214 @@
+section.about-banner{
+   /*  &::after{
+        position: absolute;
+        background-image: url(../images/About-bg.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: top;
+        content: "";
+        width: 100%;
+        height: 100vh;
+        opacity: .9;
+        top: 0;
+        left: -5px;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+    } */
+    padding-top: 115px;
+    @include flexvr;
+    // background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: 50% 34% !important;
+    .banner-wrap{
+        max-width: 900px;
+        width: 100%;
+        z-index: 11;
+        .banner-image{
+            text-align: center;
+            margin-bottom: 3.125rem;
+            img{
+                max-width: 260px;
+                width: 100%;
+            }
+        }
+        .banner-para{
+            p{ 
+                text-align: center;
+                margin: 0 auto;
+                color: $color-white;
+                &:first-child{
+                    max-width: 735px;
+                }
+                &:last-child{
+                    max-width: 710px;
+                    margin-bottom: 0;
+                    margin-top: 2rem;
+                }
+            }
+        }
+    }
+}
+
+.about-body{
+    //18px
+    font-size: .844rem;
+    font-weight: 400;
+    line-height: 1.625;
+}
+.about-h4{
+    //24px
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+.banner-title{
+    //20px
+    font-size: .975rem;
+    font-weight: 700;
+    line-height: 1.6;
+}
+.about-span{
+    //16px
+    font-size: .75rem;
+    font-weight: 800;
+    font-style: italic;
+}
+.pdb-130{
+    padding-bottom: 7.5rem;
+}
+.pdt-130{
+    padding-top:  7.5rem;
+}
+
+@media screen and (max-width:$ls-tab){
+    .about-body{
+        //18px
+        font-size: .75rem;
+    }
+    .about-h4{
+        //24px
+        font-size: 1rem;
+    }
+    .about-span{
+        //16px
+        font-size: .688rem;
+    }
+    .banner-title{
+        //20px
+        font-size: .875rem;
+    }
+    section.about-banner{
+        .banner-wrap{
+            .banner-para {
+                p{
+                    &:first-child {
+                        max-width: 673px;
+                    }
+                    &:last-child {
+                        max-width: 610px;
+                    }
+                }
+            }
+        } 
+    } 
+}
+
+@media screen and (max-width:$lg-tab){
+    .pdb-130{
+        padding-bottom: 6rem;
+    }
+    .pdt-130{
+        padding-top:  6rem;
+    }
+    .about-h4{
+        //24px
+        font-size: .938rem;
+    }
+    .banner-title{
+        //20px
+        font-size: .75rem;
+    }
+    section.about-banner{
+        .banner-wrap{
+            .banner-para {
+                p{
+                    &:first-child {
+                        max-width: 573px;
+                    }
+                    &:last-child {
+                        max-width: 510px;
+                    }
+                }
+            }
+        } 
+    } 
+}
+
+@media screen and (max-width:$mb-xl){
+    .pdb-130{
+        padding-bottom: 5rem;
+    }
+    .pdt-130{
+        padding-top:  5rem;
+    }
+    section.about-banner {
+        .banner-wrap {
+            .banner-image{
+                img{
+                    max-width: 180px;
+                }
+            }
+            .banner-para {
+                p:first-child {
+                    max-width: 500px;
+                }
+                p:last-child {
+                    max-width: 400px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width:$mb-lg){
+    .pdb-130{
+        padding-bottom: 3.5rem;
+    }
+    .pdt-130{
+        padding-top:  3.5rem;
+    }
+    .about-h4{
+        //24px
+        font-size: .798rem;
+    }
+    .banner-title{
+        //20px
+        font-size: .75rem;
+    }
+    .about-body{
+        //18px
+        font-size: .688rem;
+    }
+    .about-span{
+        //16px
+        font-size: .625rem;
+    }
+    section.about-banner{
+        .banner-wrap {
+            .banner-image img {
+                max-width: 150px;
+            }
+            .banner-para {
+                p{
+                    &:first-child {
+                        max-width: 400px;
+                    }
+                    &:last-child{
+                        max-width: 350px;
+                    }
+                }
+            }
+        }
+    } 
+    
+}

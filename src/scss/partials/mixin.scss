@@ -239,6 +239,15 @@ $breakpoints: (
   justify-content: space-between;
   flex-wrap: wrap;
 }
+@mixin flex_center {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  justify-content:center;
+  flex-wrap: wrap;
+}
 @mixin flex_start {
   display: -webkit-box;
   display: -moz-box;

@@ -1,6 +1,6 @@
 .site-header {
     @include easein_out($easein_out:all 0.5s ease-in-out);
-
+   
     .headerWrap {
         @include flexjust;
         flex-wrap: nowrap;
@@ -328,6 +328,15 @@
         }
     }
 
+}
+
+.about-header{
+    background-color: $color-white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 111;
 }
 
 
