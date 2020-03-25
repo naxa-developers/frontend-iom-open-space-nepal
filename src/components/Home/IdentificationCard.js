@@ -3,16 +3,13 @@ import {connect} from 'react-redux'
 
  class IdentificationCard extends Component {
     render() {
-        
-        
+    
         return (
             <div className="post-meta">
-            <figure style={{ height: 300, width:500,backgroundImage: `url('${this.props.image}')`}}
-            >
-            
-                {/* <img src={this.props.image} alt="post" /> */}
-            </figure>
-    <h5><span>{this.props.no+1}</span>{this.props.language =='0' ?
+           <i class={this.props.image}></i>
+           
+     {/* <img src={this.props.image} style={{height:'40px', width:'auto'}}></img> */}
+    <h5>{this.props.language =='0' ?
     this.props.title : this.props.title_nep}</h5>
        </div>
         )

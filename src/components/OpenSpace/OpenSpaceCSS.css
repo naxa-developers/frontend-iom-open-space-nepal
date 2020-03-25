@@ -288,7 +288,23 @@ div.legendMuni {
     }  */
 }
 
-#munic-header{
-    font-size: 1.2rem;
-    color: brown;
+
+
+h5.muni-title{
+    font-size: 0.9rem !important;
+    color: #fff !important;
+    font-weight: 600 !important;
+}
+
+.count {
+    display: flex;
+
+}
+
+.count span{
+    color:#fff;
+    margin-left: 4px;
+    margin-top: 5px;
+    font-size: 0.9rem;
+    
 }

@@ -22,11 +22,21 @@ div.fade.modal.show{
 
 }
 
-.glimpse-hover:hover {
-    cursor: pointer;
+
+.glimpse-count {
+    border: 1px solid gray;
+}
+
+.glimps-count:hover {
+    cursor: pointer !important;
     background: lighten(#2562d0, 5%);
-    max-width: 50%;
+    /* max-width: 50%;
     margin: 0 auto;
-    margin-bottom: 2rem;
+    margin-bottom: 2rem; */
     transition:  all .4s ease-in-out;
+}
+
+.glimps-count {
+    border: 1px solid gray;
+
 }

@@ -41,7 +41,7 @@ class Banner extends Component {
         return (
 
             <div className="banner-content">
-                 <div class="intro">
+                 {/* <div class="intro">
                     <h1>Open space mapping <span>for</span><br />humanitarian assistance</h1>
                     <p>
                         <span>Identification and Mapping of Open Spaces to strengthen emergency </span><br/>
@@ -49,14 +49,14 @@ class Banner extends Component {
                         <span>for the local governments.</span>
                     </p>
 
-                </div>
+                </div> */}
 
-                {/* <div class="intro">
+                <div class="intro">
 
 
                     <h1>{this.props.language == '0' ? this.state.loader && this.state.texts[0].title1 : this.state.loader && this.state.texts[0].title_nep1}
-                        <br />
-                        {this.props.language == '0' ? this.state.loader && this.state.texts[0].title2 : this.state.loader && this.state.texts[0].title_nep2}
+                     
+                        <span>{this.props.language == '0' ? this.state.loader && this.state.texts[0].title2 : this.state.loader && this.state.texts[0].title_nep2}</span> 
                         <br />
                         {this.props.language == '0' ? this.state.loader && this.state.texts[0].title3 : this.state.loader && this.state.texts[0].title_nep3}
                     </h1>
@@ -65,7 +65,7 @@ class Banner extends Component {
 
 
 
-                </div> */}
+                </div>
             </div>
 
         )
