@@ -18,13 +18,13 @@ class Identification extends Component {
     //     steps: []
     // }
     componentDidMount() {
-        axios.get(`https://iomapi.naxa.com.np/api/v1/identify_open_space/`)
+        axios.get(`https://iomapi.naxa.com.np/api/v1/about_why_map_open_icon/`)
         .then( res => {
             const steps = res.data;
             this.setState({ steps: steps });
             
         })
-        axios.get(`https://iomapi.naxa.com.np/api/v1/open_space_ide/`)
+        axios.get(`https://iomapi.naxa.com.np/api/v1/about_why_map_open_space/`)
         .then( res => {
             const data = res.data;
             this.setState({ data: data });
@@ -33,8 +33,7 @@ class Identification extends Component {
 
     }
     render() {
-        // console.log("ide",this.state.data);
-        
+ 
         return (
 
        
@@ -43,53 +42,38 @@ class Identification extends Component {
                 <div className="row">
                     <div className="col-md-6" >
                         {/* <div className="process-left sticky"> */}
-                      {/* <div className="process-left">
-                            <h3 className="openspace-title">{this.props.language=='0'? 'Open space indentification process': 'खुल्ला क्षेत्र पहिचान प्रक्रिया'}</h3>
+                      <div className="process-left">
+                            <h3 className="openspace-title">{this.props.language=='0'? this.state.data&&this.state.data[0].title: this.state.data[0].title_nep}</h3>
         <p>{this.props.language=='0'? this.state.data&&this.state.data[0].description: this.state.data&&this.state.data[0].description_nep }</p>
-                        </div> */}
-                         <div className="process-left">
+                        </div>
+                         {/* <div className="process-left">
                             <h3 className="openspace-title">WHY MAP OPEN SPACES ? </h3>
         <p>One of the lessons learned from past disasters is the vital role of pre- 
 identified open spaces that can be utilized for safe and secure refuge and 
 relief distribution during and after disasters. Other core services that can 
 be provided and utilized in open spaces include: 
 </p>
-                        </div>
+                        </div> */}
                      
                     </div>
                     <div className="col-md-6">
                   
 
                         <div className="process-content">
-                         {/* { this.state.steps&&this.state.steps.map( (step,i) => 
-                       
-                            <IdentificationCard key= {step.id} no ={i} image = {step.image} title = {step.title} title_nep = {step.title_nep}/>
+                         { this.state.steps&&this.state.steps.map( (step,i) => 
+                    
+                            <IdentificationCard key= {step.id} no ={i} image = {step.icon_class} title = {step.description} title_nep = {step.description_nep}/>
                             )} 
-                            */}
-                                  <div class="post-meta">
+                            
+                                  {/* {/* <div class="post-meta">
                                 <i class="humanitarian-icon-Location"></i>
                                 <h5>Safe refuge for the most vulnerable displaced populations </h5>
                             </div>
                             <div class="post-meta">
                                 <i class="humanitarian-icon-Health"></i>
                                 <h5>Medical and health care facilities</h5>
-                            </div>
-                            <div class="post-meta">
-                                <i class="humanitarian-icon-Water-Sanitation-and-Hygiene"></i>
-                                <h5>Logistical hub for disaster response and relief item distribution</h5>
-                            </div>
-                            <div class="post-meta">
-                                <i class="humanitarian-icon-Kitchen-set"></i>
-                                <h5>WASH facilities</h5>
-                            </div>
-                            <div class="post-meta">
-                                <i class="humanitarian-icon-People-with-physical-impairments"></i>
-                                <h5>Gender and disability inclusion </h5>
-                            </div>
-                            <div class="post-meta">
-                                <i class="humanitarian-icon-Group"></i>
-                                <h5>Community meeting and recreational space during normal (pre-disaster) conditions  </h5>
-                            </div>
+                            </div> */}
+                          
                         </div>
                     </div>
                 </div>

@@ -42,7 +42,7 @@ class DetailsHeader extends Component {
     return (
       <React.Fragment>
           <Modal show={this.state.showNotifications} centered="false" size="md">
-                <Modal.Header><h4 style={{color:'#174BDD', fontWeight:'600', textTransform:'capitalize'}}>humanitarian assistance</h4>
+                <Modal.Header><h4 style={{color:'#174BDD', fontWeight:'600', textTransform:'capitalize'}}>humanitarian assessment</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick={()=> this.setState({showNotifications: !this.state.showNotifications})}>
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -88,7 +88,7 @@ class DetailsHeader extends Component {
                  this.state.nullNoti===true &&
                  <span  onClick={() => this.setState({showNotifications: true})}>
                  <i id= "bellActive" className="material-icons">notifications_active</i>
-                 Humanitarian Assistance
+                 Humanitarian Assessment
                </span>
                }
              

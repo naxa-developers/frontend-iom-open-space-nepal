@@ -15,7 +15,7 @@ import { connect } from 'react-redux';
 const { BaseLayer } = LayersControl;
 import Spinner from './OpenSpaceDetails/MapLoader'
 import 'leaflet-ajax'
-// import './OpenSpaceCSS.css'
+import './OpenSpaceCSS.css'
 
 
 
@@ -256,17 +256,27 @@ class OS extends Component {
 
        const onEachFeature = (feature, layer) => {
             let centrePoint = layer.getBounds().getCenter();
-            let hl = layer.feature.properties.HLCIT_CODE.toString().replace(/\s/g, '');
-            // this.state.munCounts.map((m) => {
-            //     if(m===hl) {
-                    
-            //     }
-            // })
+            let luName = layer.feature.properties.LU_Name
+           let oCount = null
+            this.state.munCounts.map((m) => {
+               let ar = Object.keys(m)
+                if(luName=== ar[0]) {
+                  
+                    oCount = Object.values(m)
+                }
+            })
             
-          
+         
              let cMarker = L.circleMarker([centrePoint.lat, centrePoint.lng])
+            //  marker.on('mouseover', function(e) {
+            //     //open popup;
+            //     var popup = L.popup()
+            //      .setLatLng(e.latlng) 
+            //      .setContent('Popup')
+            //      .openOn(map);
+            //   });
         
-            var popupContent = "<div class='bind-popup'> <div class='bind-header'><h5 style:'color:red'>" + feature.properties.LU_Name + "</h5><p><Type :" + feature.properties.LU_Type + "</p>  <p>No. of Openspaces:  </p></div></div>"
+            var popupContent = "<div class='bind-popup'> <div class='bind-header'><h5 class='muni-title'>" + feature.properties.LU_Name + "</h5><p><Type :" + feature.properties.LU_Type + "</p> <div  class='count'>  <p>No. of Openspaces: </p> <span>"+oCount +"</span></div></div></div>"
 
             layer.bindPopup(popupContent);
             // cMarker.addTo(this.props.mapRefss.current.leafletElement)
@@ -341,19 +351,18 @@ class OS extends Component {
         MAP = this.props.mapRefss.current.leafletElement;
         Axios.get(`https://iomapi.naxa.com.np/api/v1/glimpse_of_open_space`)
             .then(res => {
-                // console.log("muniii", res.data);
-                
-                const counts = res.data.data.municipality_list
-                let hlcitArr = [];
-                counts.map((m) => {
-                    let str = Object.values(m).toString().replace(/\s/g, '')
+              
+                const counts = res.data.data.open_count
+                // let hlcitArr = [];
+                // counts.map((m) => {
+                //     let str = Object.values(m).toString().replace(/\s/g, '')
                
-                    hlcitArr.push(str)
+                //     hlcitArr.push(str)
 
-                })
+                // })
              
-                
-                this.setState({ munCounts: hlcitArr }, () => {
+              
+                this.setState({ munCounts: counts }, () => {
                     this.loadVectortile()
                 })
 
