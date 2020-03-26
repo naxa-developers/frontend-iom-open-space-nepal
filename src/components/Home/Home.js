@@ -58,7 +58,7 @@ componentDidMount() {
       
         return (
         
-        <  >
+        <>
          <section className="banner" style={{ backgroundImage: `url(${Background})` }}>
           <Navbar />
           <Banner />
