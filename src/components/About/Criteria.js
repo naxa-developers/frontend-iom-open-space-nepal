@@ -87,7 +87,9 @@ export class Criteria extends Component {
                                    this.props.language=== '0' ? this.state.titleArr&& this.state.titleArr.map((c, i) => {
 
                                    return <li onClick={()=> {
-                                       this.setState({currentPoint: c})
+                   
+                   
+                                    this.setState({currentPoint: c})
             //                             ,() => {
                                           
             // this.state.criteria.map(t => {
