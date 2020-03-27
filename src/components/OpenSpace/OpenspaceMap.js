@@ -25,6 +25,8 @@ let munLayer = null;
 var province = null;
 var district = null;
 var municipality = null;
+let pmarker= null;
+
 class OS extends Component {
     constructor(props) {
         super(props)
@@ -36,11 +38,43 @@ class OS extends Component {
             currentLocation: null,
             myloc: L.control({ position: 'topleft' }),
             provinceLoading: 'block',
-            munCounts: ''
-
+            munCounts: '',
+            pmarker: L.featureGroup(),
+        provinceCenters : [
+            {
+                provinceOne:  [ 28.38459071650007,  84.03768480450006],
+                text: '60'
+            },
+            {
+                provinceTwo: [ 29.29914650300006 , 82.33074330700006],
+                text: '0'
+            },
+            {
+                provinceThree: [27.23044917600004, 87.17879609400006 ],
+                text: '93'
+            },
+            {
+               provinceFour: [26.942781309000054, 85.74924195100004],
+               text: '0'
+            },
+            {
+                provinceFive: [27.65271387450005,85.24576775600005 ],
+                text: '24'
+            },
+            {
+                provinceSix:[28.099726835500064, 82.54387074700006],
+                text: '24'
+            },
+            {
+                provinceSeven: [29.32061687600006, 80.93340320850007],
+                text: '0'
+            }
+        ],
 
         };
     };
+
+  
     addnortharrow = () => {
         var north = L.control({ position: "topleft" });
         north.onAdd = (map) => {
@@ -101,25 +135,44 @@ class OS extends Component {
 
     }
     loadprovince = () => {
-        var colors = ["#0489B1", "#045FB4", "purple", "#0404B4", "#3104B4", "#5F04B4", "#1B0A2A"]
 
-        Axios.get('https://iomapi.naxa.com.np/api/v1/province_geo_json')
-            .then(response => {
+       
+        this.state.provinceCenters.map((p) => {
+            var provinceCircle = L.divIcon({
+                className: 'province-circle',
+                html:`<p class="p-text">${p.text}</p>`,
+                // html: "<div class='marker-pin'></div><i class='humanitarian-icon-Education'></i>",
+                iconSize: [22, 22],
+                iconAnchor: [15, 15]
+            });
+             pmarker = L.marker(Object.values(p)[0] , {
+                icon: provinceCircle
+              })
+            //   pmarker.addTo(this.props.mapRefss.current.leafletElement);
+            pmarker.addTo(this.state.pmarker);
+        
+        })
+        
+       
+        // var colors = ["#0489B1", "#045FB4", "purple", "#0404B4", "#3104B4", "#5F04B4", "#1B0A2A"]
 
-                var province = L.geoJSON(response.data, {
-                    style: (feature) => {
-                        return {
-                            color: 'green',
-                            weight: 0.8,
-                            fillColor: colors[feature.properties.code - 1],
-                            fillOpacity: 0.0
-                        }
+        // Axios.get('https://iomapi.naxa.com.np/api/v1/province_geo_json')
+        //     .then(response => {
 
-                    }
-                })
-                // .addTo(this.props.mapRefss.current.leafletElement)
-                this.props.setProvince(province)
-            })
+        //         var province = L.geoJSON(response.data, {
+        //             style: (feature) => {
+        //                 return {
+        //                     color: 'green',
+        //                     weight: 0.8,
+        //                     fillColor: colors[feature.properties.code - 1],
+        //                     fillOpacity: 0.0
+        //                 }
+
+        //             }
+        //         })
+        //         // .addTo(this.props.mapRefss.current.leafletElement)
+        //         this.props.setProvince(province)
+        //     })
 
     }
     zoomTomylocation = () => {
@@ -148,32 +201,32 @@ class OS extends Component {
                     return {
                         fillColor: "blue",
                         fillOpacity: 0,
-                        weight: 1,
+                        weight: 0.7,
                         opacity: 0.7,
-                        color: '#a3b7e3',
-                        fill: true,
+                        color: "#a3b7e3",
+                        fill: true
                     }
                 },
                 'Province': function () {
                     return {
-                        fillColor: "blue",
-                        fillOpacity: 0,
-                        weight: 1,
-                        opacity: 1,
-                        // color: '#4f76c9',
-                        color: 'black',
-                        fill: true,
+                        fillColor: "white",
+      fillOpacity: 0,
+      weight: 1.5,
+      opacity: 1,
+      color: "#a3b7e3",
+      fill: true
                     }
                 },
 
                 'Municipality': function (properties, zoom) {
                     return {
-                        fillColor: "yellow",
+                        fillColor: "blue",
                         fillOpacity: 0,
                         weight: 0.3,
-                        opacity: 0.3,
-                        color: '#174BDD',
-                        fill: true,
+                        opacity: 0.2,
+                        color: "#696969",
+                        fill: true
+                  
                     }
 
 
@@ -182,8 +235,7 @@ class OS extends Component {
             interactive: true, // Make sure that this VectorGrid fires mouse/pointer events
             // pane: "wmsPane",
             getFeatureId: function (feature, layer) {
-
-
+               
                 // label_Vector_Tiles(feature);
                 let hlcit = feature.properties.HLCIT_CODE && parseInt(feature.properties.HLCIT_CODE.toString().replace(/\s/g, ''))
 
@@ -209,20 +261,21 @@ class OS extends Component {
         // var municipalityUrl = 'http://202.45.146.3:8080/geoserver/gwc/service/tms/1.0.0/Bipad:Municipality@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
       
 
-        province = L.vectorGrid.protobuf(provinceUrl, vectorTileOptions);
+        province = L.vectorGrid.protobuf(provinceUrl, vectorTileOptions );
+ 
         district = L.vectorGrid.protobuf(districtUrl, vectorTileOptions)
         municipality = L.vectorGrid.protobuf(municipalityUrl, vectorTileOptions)
 
-        district.addTo(this.props.mapRefss.current.leafletElement);
+        // district.addTo(this.props.mapRefss.current.leafletElement);
         province.addTo(this.props.mapRefss.current.leafletElement);
-        municipality.addTo(this.props.mapRefss.current.leafletElement);
+        // municipality.addTo(this.props.mapRefss.current.leafletElement);
         // L.marker([80, 27]).addTo(this.props.mapRefss.current.leafletElement);
         this.setState({ provinceLoading: 'none' })
         //   district.bringToFront();
         //    province.bringToFront();
         province.setZIndex(300);
-        district.setZIndex(20);
-        municipality.setZIndex(10)
+        
+        // municipality.setZIndex(10)
 
         // var numericMarker = L.ExtraMarkers.icon({
         //     icon: 'fa-leaf',
@@ -252,7 +305,16 @@ class OS extends Component {
 
         //   }
         //   )
-
+        let geojsonMarkerOptions = {
+            radius: 25,
+            fillColor: "#24D238",// "#28ea3f",//"#0163FF",
+            color: "#A9F6B2", //"#0163FF",
+            weight: 2,
+            opacity: 1,
+            fillOpacity: 1,
+            // className: 'marker-cluster'
+    
+          };
 
        const onEachFeature = (feature, layer) => {
             let centrePoint = layer.getBounds().getCenter();
@@ -266,7 +328,9 @@ class OS extends Component {
                 }
             })
             
-         
+         setTimeout(() => {
+             
+         })
              let cMarker = L.circleMarker([centrePoint.lat, centrePoint.lng])
             //  marker.on('mouseover', function(e) {
             //     //open popup;
@@ -281,16 +345,7 @@ class OS extends Component {
             layer.bindPopup(popupContent);
             // cMarker.addTo(this.props.mapRefss.current.leafletElement)
         }
-        let geojsonMarkerOptions = {
-            radius: 25,
-            fillColor: "#24D238",// "#28ea3f",//"#0163FF",
-            color: "#A9F6B2", //"#0163FF",
-            weight: 2,
-            opacity: 1,
-            fillOpacity: 1,
-            // className: 'marker-cluster'
-    
-          };
+       
         munLayer = L.geoJSON.ajax('src/json/openspace_gp_np.geojson', {
             style: function (feature) {
                 return {
@@ -372,16 +427,40 @@ class OS extends Component {
             })
 
     }
+   
+
     componentDidMount() {
-        // setTimeout(() => {
-        //     let cMarker = L.circleMarker([27, 87]).addTo(this.props.mapRefss.current.leafletElement)
-        // }, 1000)
+        // const onEachFeatureOne = (feature, layer) => {
+        //     console.log("layer", layer );
+            
+        //     let centrePoint = layer.getBounds().getCenter();
+        // console.log("center", centrePoint);
+        
+        // }
        
-        // this.props.mapRefss.current.leafletElement.setView(28.541100228636036, 85.00671386718751, 14)
+        
+        // Axios.get(` https://iomapi.naxa.com.np/api/v1/province_geo_json`)
+        // .then(res => {
+        //   console.log("api", res.data);
+          
+        //     munLayer = L.geoJSON(res.data, {
+        //         style: function (feature) {
+        //             return {
+        //                 color: '#5ACE52', fillColor: '#fff', weight: '1.5'
+        //             }
+        //         },
+        //         onEachFeature: onEachFeatureOne,
+            
+        //     })
+    
+     
+
+
+        // })
 
         this.fetchGlimpse();
         this.onload();
-        // this.loadprovince()
+        this.loadprovince()
         this.currentLocation();
         this.zoomTomylocation();
 
@@ -394,16 +473,27 @@ class OS extends Component {
         // this.addnortharrow()
 
         this.props.mapRefss.current.leafletElement.createPane('vectortile').style.zIndex = 200;
+        this.props.mapRefss.current.leafletElement.addLayer(this.state.pmarker);
 
 
 
     }
     componentDidUpdate(prevProps) {
 
+    
+if(prevProps.hide!==this.props.hide) {
+    if(this.props.hide === true) {
+       
+        this.state.pmarker.eachLayer(e =>
+            this.state.pmarker.removeLayer(e)
+          );
+    } else {
+        this.loadprovince();
+    }
+}
 
         if (prevProps.deleteAll !== this.props.deleteAll) {
-            console.log("del", this.props.deleteAll);
-            
+          
             if (this.props.deleteAll===true) {
                 MAP.removeLayer(province)
                 MAP.removeLayer(district)
@@ -414,17 +504,89 @@ class OS extends Component {
                 this.fetchGlimpse();
             }
         }
+        const r = () => {
+            this.state.pmarker.eachLayer(e =>
+                this.state.pmarker.removeLayer(e)
+              );
+            this.props.dispatch({
+                type: "removeOS",
+                remove: true
+            })
+        }
+        const r1 = () => {
+            this.loadprovince();
+            this.props.dispatch({
+                type: "removeOS",
+                remove: false
+            })
+        }
+        MAP &&  MAP.on('zoomend', function() {
+           
+            let z =  MAP.getZoom();
+          
+            if(z>7) {
+              
+                 r();
+                 district.addTo(MAP)
+                 municipality.addTo(MAP);
+                 district.setZIndex(20);
+                 municipality.setZIndex(10);
+                
+                 
+            }
+            else {
+             
+                r1();
+                MAP.removeLayer(municipality)
+                MAP.removeLayer(district)
+            
+            }
+            
+            
+                        }) 
     }
 
+    
     notify = () => toast.info("Turn your location service ON for better experience", {
         autoClose: 3000, position: "bottom-right"
     });
+
+  
+
     render() {
 
-        //  MAP &&  MAP.on('zoomend', function() {
+      console.log("hide", this.props.hide);
+      
+//          MAP &&  MAP.on('zoomend', function() {
+
+// let z =  MAP.getZoom();
+// console.log(z);
+// function test() {
+//     console.log("ghghgh");
+    
+//     // this.props.dispatch({
+//     //     type: "removeOS",
+//     //     remove: true
+//     // })
+// }
+// if(z>7) {
+  
+//     MAP.removeLayer(htmlmrk)
+//     district.addTo(MAP)
+//      municipality.addTo(MAP);
+//      district.setZIndex(20);
+//      municipality.setZIndex(10);
+    
+     
+// }
+// else {
+//     MAP.removeLayer(municipality)
+//     MAP.removeLayer(district)
+
+// }
 
 
-        //     })  
+//             })  
 
         lat: 28.541100228636036
         lng: 85.00671386718751
@@ -545,7 +707,9 @@ class OS extends Component {
 const mapStateToProps = (state) => {
     return {
         ...state,
-        deleteLayers: state.deleteAll
+        deleteLayers: state.deleteAll,
+        remove: state.remove,
+        hide: state.hide
     }
 }
 

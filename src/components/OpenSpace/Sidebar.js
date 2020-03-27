@@ -246,6 +246,10 @@ class Sidebar extends Component {
     this.setState({ loading: true, showText: true })
 
     this.props.mapRefs.current.leafletElement = this.props.mapRefs.current.leafletElement;
+   this.props.dispatch({
+     type: "toggleProviceCount",
+     hide: true
+   })
     this.state.district_muni.eachLayer(e =>
       this.state.district_muni.removeLayer(e)
     );
@@ -817,7 +821,14 @@ this.setState({
       )
 
   }
+removeOsOnZoom = () => {
+ 
+  this.state.OSmarkers.eachLayer(e => {
 
+    this.state.OSmarkers.removeLayer(e)
+  }
+  );
+}
 
 
   componentDidMount() {
@@ -862,7 +873,7 @@ this.setState({
       this.setState({loading: !this.state.loading})
       // console.log(this.state.Allos,"al",JSON.parse(sessionStorage.getItem('Openspaces')),sessionStorage.getItem('stored'),sessionStorage)
      
-      this.displayOS();
+      // this.displayOS();
       
     }
     this.addlegend()
@@ -872,13 +883,21 @@ this.setState({
     // this.props.mapRefs.current.leafletElement1=this.props.mapRefs.current.leafletElement
   }
   notify = () => toast.info("NO Openspace Found", { containerId: 'A', autoClose: false, });
-componentDidUpdate(){
-  // this.props.currentLocation!=null&&this.oscard.setdistance()
-}
+
+  componentDidUpdate(prevProps){
+    if (prevProps.remove !== this.props.remove) {
+      if(this.props.remove=== true) {
+        this.displayOS();
+      }
+      else{
+        this.removeOsOnZoom();
+        
+      }
+    }
+  }
+
 
   render() {
-
-
 
 
     // var toggleClass = this.props.isClick ? 'rotated' : 'sidebar-toggle';
@@ -943,6 +962,10 @@ componentDidUpdate(){
                             this.props.dispatch({
                               type: 'singlePlotted',
                               status: this.state.layerStatus
+                            })
+                            this.props.dispatch({
+                              type: "toggleProviceCount",
+                              hide: false
                             })
                           }) 
                         
@@ -1085,7 +1108,9 @@ const mapStateToProps = (state) => {
   return {
     ...state,
     id: state.id,
-    language: state.language
+    language: state.language,
+    remove: state.remove,
+    hide:state.hide
   }
 }
 
