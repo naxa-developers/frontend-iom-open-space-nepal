@@ -349,13 +349,13 @@ class OS extends Component {
         munLayer = L.geoJSON.ajax('src/json/openspace_gp_np.geojson', {
             style: function (feature) {
                 return {
-                    color: '#5ACE52', fillColor: '#fff', weight: '1.5'
+                    color: '#696969', fillColor: 'yellow', weight: '1.5'
                 }
             },
             onEachFeature: onEachFeature,
         
         })
-        munLayer.addTo(MAP);
+        // munLayer.addTo(MAP);
 
 
 
@@ -531,6 +531,7 @@ if(prevProps.hide!==this.props.hide) {
                  municipality.addTo(MAP);
                  district.setZIndex(20);
                  municipality.setZIndex(10);
+                 munLayer.addTo(MAP);
                 
                  
             }
@@ -539,6 +540,7 @@ if(prevProps.hide!==this.props.hide) {
                 r1();
                 MAP.removeLayer(municipality)
                 MAP.removeLayer(district)
+                MAP.removeLayer(munLayer)
             
             }
             
