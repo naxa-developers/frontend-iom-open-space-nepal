@@ -308,3 +308,19 @@ h5.muni-title{
     font-size: 0.9rem;
     
 }
+
+/* province circle markers */
+.province-circle {
+    background: #456BD9;
+    border: 0.10em solid #0F1C3F;
+    border-radius: 50%;
+    /* box-shadow: 0.375em 0.375em 0 0 rgba(15, 28, 63, 0.125); */
+    height: 20px;
+    width: 20px;
+  }
+
+  .p-text{
+      color: white;
+      margin-left: 3px;
+      font-weight: 800;
+  }

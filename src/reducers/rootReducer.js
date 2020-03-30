@@ -6,7 +6,9 @@ const initState = {
     currentloccalculated:false,
     wmsIsOpen: false,
     deleteAll: null,
-    loaded: false
+    loaded: false,
+    remove: false,
+    hide: false
 
 
 
@@ -69,7 +71,16 @@ const rootReducer = (state = initState, action) => {
                             ...state,
                             loaded:action.loaded
                         }
-            
+        case "removeOS":
+                        return{
+                            ...state,
+                            remove:action.remove
+                                }
+                                case "toggleProviceCount":
+                                    return{
+                                        ...state,
+                                        hide:action.hide
+                                    }
         
 
         default:

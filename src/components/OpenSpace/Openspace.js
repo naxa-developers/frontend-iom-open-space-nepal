@@ -13,6 +13,7 @@ class OpenSpace extends Component {
       currentLocation: null,
       nepalProvince:null,
       openModal: false,
+      test: "tyre"
       // nullOpenspace: false
        
     };
@@ -37,6 +38,10 @@ class OpenSpace extends Component {
 
   }
   
+  test = () => {
+    console.log("remeee");
+    
+  }
 
   render() {
     // console.log("render",this.state.currentLocation)
@@ -66,7 +71,9 @@ ASSISTANCE</strong>
               <div className ="map-wrapper">
                 <div className="row no-gutters">
                   <div className="col-md-7 col-lg-8">
-                  <OpenspaceMap setProvince={this.setProvince} setcurrentLocation={this.setcurrentlocation} currentLocation={this.state.currentLocation} mapRefss={this.mapRefs} />
+                  <OpenspaceMap setProvince={this.setProvince} setcurrentLocation={this.setcurrentlocation} currentLocation={this.state.currentLocation} mapRefss={this.mapRefs} 
+                  test = {this.state.test}
+                  />
                   </div>
                   <div className="col-md-5 col-lg-4">
                   <Sidebar mapRefs={this.mapRefs}  currentLocation={this.state.currentLocation} openPop = {this.openPop} />
