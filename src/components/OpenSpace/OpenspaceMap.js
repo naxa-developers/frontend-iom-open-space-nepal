@@ -51,7 +51,7 @@ class OS extends Component {
             },
             {
                 provinceThree: [27.23044917600004, 87.17879609400006 ],
-                text: '93'
+                text: '0'
             },
             {
                provinceFour: [26.942781309000054, 85.74924195100004],
@@ -59,7 +59,7 @@ class OS extends Component {
             },
             {
                 provinceFive: [27.65271387450005,85.24576775600005 ],
-                text: '24'
+                text: '93'
             },
             {
                 provinceSix:[28.099726835500064, 82.54387074700006],
