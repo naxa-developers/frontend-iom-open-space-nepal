@@ -349,7 +349,7 @@ class OS extends Component {
         munLayer = L.geoJSON.ajax('src/json/openspace_gp_np.geojson', {
             style: function (feature) {
                 return {
-                    color: '#696969', fillColor: 'yellow', weight: '1.5'
+                    color: '#696969', fillColor: 'yellow', weight: '1.5', transparency: '1' 
                 }
             },
             onEachFeature: onEachFeature,
