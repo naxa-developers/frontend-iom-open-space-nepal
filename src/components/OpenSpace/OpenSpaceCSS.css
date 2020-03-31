@@ -255,7 +255,7 @@ ul .scrollbar-container{
 
 
 div.legendMuni {
-    border: 2px solid #5ACE52 !important;
+    border: 2px solid rgb(105, 105, 105) !important;
     height: 18px ;
     width: 20px;
     margin-right: 10px;
@@ -311,16 +311,17 @@ h5.muni-title{
 
 /* province circle markers */
 .province-circle {
-    background: #456BD9;
-    border: 0.10em solid #0F1C3F;
+    background: #174BDD;
+    /* border: 0.05em solid #0F1C3F; */
     border-radius: 50%;
     /* box-shadow: 0.375em 0.375em 0 0 rgba(15, 28, 63, 0.125); */
-    height: 20px;
-    width: 20px;
+    height: 26px;
+    width: 26px;
+    text-align: center;
   }
 
   .p-text{
       color: white;
-      margin-left: 3px;
+      margin-top: 2px;
       font-weight: 800;
   }

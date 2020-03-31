@@ -59,6 +59,7 @@ export class Criteria extends Component {
     }
     
     render() {
+  console.log("pa", this.state.currentPoint);
   
         return (
            <>             
@@ -109,7 +110,7 @@ export class Criteria extends Component {
                                    })
                                    :
                                    this.state.titleArrNep&& this.state.titleArrNep.map((c, i) => {
-                                   
+                                 
                                     return <li onClick={()=> this.setState({currentPoint: c}) }><span className="about-span">{i+1}</span>{c}</li>
                                     })
                                }

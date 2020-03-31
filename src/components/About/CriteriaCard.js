@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
+import { connect } from 'react-redux';
 let dArray = [];
 export class CriteriaCard extends Component {
     constructor(props) {
@@ -18,8 +19,7 @@ export class CriteriaCard extends Component {
                     () => {
                  
                        this.state.access.map(t => {
-                        console.log(t.title);
-                 
+                      
                             if(t.title==="Accessibility"){
                           
                                 dArray.push(t.description)
@@ -38,26 +38,73 @@ export class CriteriaCard extends Component {
     componentDidUpdate(prevProps, prevState){
         // console.log('update');
         dArray = [];
+       if(this.props.language=="0") {
+    if (prevProps.title !== this.props.title) {
+        
+         this.props.total.map(t => {
+         
+             if(t.title===this.props.title){
+              
+               
+                 dArray.push(t.description)
+                
+             }
+         }) 
+        
+         
+         this.setState({dArray:dArray})
+     
+     }
+    } else{
         if (prevProps.title !== this.props.title) {
-           
+        
             this.props.total.map(t => {
-            
-                if(t.title===this.props.title){
+         
+                if(t.title_nep===this.props.title){
                  
                   
-                    dArray.push(t.description)
+                    dArray.push(t.description_nep)
                    
                 }
             }) 
            
-            
+  
             this.setState({dArray:dArray})
         
+        } 
+    }    
+    if(prevProps.language!==this.props.language) {
+
+        if(this.props.language==='0') {
+            this.state.access.map(t => {
+                      
+                if(t.title==="Accessibility"){
+              
+                    dArray.push(t.description)
+                   
+                }
+            }) 
+         
+        } else{
+            this.state.access.map(t => {
+                      
+                if(t.title==="Accessibility"){
+              
+                    dArray.push(t.description_nep)
+                   
+                }
+            })  
         }
+
+        this.setState({dArray:dArray})
+
+    }  
+        
       }
 
     
     render() {
+  console.log(this.props.title);
   
         return (
             <div className="col-md-8">
@@ -77,4 +124,11 @@ export class CriteriaCard extends Component {
     }
 }
 
-export default CriteriaCard
+const mapStateToProps = (state) => {
+    return {
+        language: state.language
+    }
+}
+
+
+export default connect(mapStateToProps)(CriteriaCard)
