@@ -483,7 +483,9 @@ class OS extends Component {
     
 if(prevProps.hide!==this.props.hide) {
     if(this.props.hide === true) {
-       
+  
+        MAP.removeLayer(district)
+        MAP.removeLayer(municipality)
         this.state.pmarker.eachLayer(e =>
             this.state.pmarker.removeLayer(e)
           );
@@ -520,32 +522,36 @@ if(prevProps.hide!==this.props.hide) {
                 remove: false
             })
         }
-        MAP &&  MAP.on('zoomend', function() {
+        if(this.props.hide===false) {
            
-            let z =  MAP.getZoom();
-          
-            if(z>7) {
+            MAP &&  MAP.on('zoomend', function() {
+           
+               
+                let z =  MAP.getZoom();
               
-                 r();
-                 district.addTo(MAP)
-                 municipality.addTo(MAP);
-                 district.setZIndex(20);
-                 municipality.setZIndex(10);
-                 munLayer.addTo(MAP);
-                
+                if(z>7) {
+                  
+                     r();
+                     district.addTo(MAP)
+                     municipality.addTo(MAP);
+                     district.setZIndex(20);
+                     municipality.setZIndex(10);
+                     munLayer.addTo(MAP);
+                    
+                     
+                }
+                else {
                  
-            }
-            else {
-             
-                r1();
-                MAP.removeLayer(municipality)
-                MAP.removeLayer(district)
-                MAP.removeLayer(munLayer)
-            
-            }
-            
-            
-                        }) 
+                    r1();
+                    MAP.removeLayer(municipality)
+                    MAP.removeLayer(district)
+                    MAP.removeLayer(munLayer)
+                
+                }
+                
+                
+                            }) 
+        }
     }
 
     
@@ -557,8 +563,7 @@ if(prevProps.hide!==this.props.hide) {
 
     render() {
 
-      console.log("hide", this.props.hide);
-      
+  
 //          MAP &&  MAP.on('zoomend', function() {
 
 // let z =  MAP.getZoom();
