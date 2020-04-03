@@ -1,13 +1,8 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
-import Icon5 from '../../img/Icons5.png'
-import Icon1 from '../../img/Icons1.png'
-import Icon3 from '../../img/Icons3.png'
-import Icon2 from '../../img/Icons2.png'
-import Line from '../../img/Line.png'
 import { connect } from 'react-redux'
-import { map, tileLayer } from 'leaflet'
 import CriteriaCard from './CriteriaCard'
+import Identification from './Identification'
 
 let dArray = [];
 export class Criteria extends Component {
@@ -20,7 +15,8 @@ export class Criteria extends Component {
              criteria: null,
              cHeader: null,
              currentPoint: '',
-             dArray: null
+             dArray: null,
+             steps: null
         }
     }
 
@@ -52,6 +48,12 @@ export class Criteria extends Component {
                 this.setState({criteria: res.data})
             }
         )
+        Axios.get(`https://iomapi.naxa.com.np/api/v1/identify_open_space_new`).then(
+            res => {
+            
+                this.setState({steps: res.data.data})
+            }
+        )
       
     }
     componentDidMount() {
@@ -59,8 +61,6 @@ export class Criteria extends Component {
     }
     
     render() {
-  console.log("pa", this.state.currentPoint);
-  
         return (
            <>             
         <section className="about-content pdt-130 pdb-130">
@@ -136,23 +136,23 @@ export class Criteria extends Component {
         </div>
         <div className="col-md-6">
             <div className="about-right">
-                <div className="blocks">
-                    <div className="block-icons"style={{backgroundImage:`url(${Icon2})`}}>
-                     
-                        <img src={Line} alt="" />
-                    </div>
-                    <div className="block-steps">
-                        <span className="about-span">Step 1</span>
-                        <h4 className="about-h4">Preparatory Phase</h4>
-                        <ul className="steps-list about-body">
-                            <li><i className="material-icons success">check_circle</i><span>Conduct desk study and literature review</span></li>
-                            <li><i className="material-icons success">check_circle</i><span>Collect relevant datasets</span></li>
-                            <li><i className="material-icons success">check_circle</i><span>Finalize criteria for open space identification</span></li>
-                            <li><i className="material-icons success">check_circle</i><span>Prepare detailed work plan</span></li>
-                        </ul>
-                    </div>
-                </div>
-                <div className="blocks">
+                {
+                    this.state.steps&&this.state.steps.map((step, i) => {
+                        return(
+                           <Identification
+                           sn = {i} 
+                           key = {step.id}
+                           image = {step.image}
+                           title = {step.title}
+                           title_nep ={step.title_nep}
+                           points = {step.points}
+
+                           />
+                        )
+                    })
+                }
+               
+                {/* <div className="blocks">
                     <div className="block-icons"style={{backgroundImage:`url(${Icon5})`}}>
                         <img src={Line} alt="" />
                     </div>
@@ -208,7 +208,7 @@ export class Criteria extends Component {
                             <li><i className="material-icons success">check_circle</i><span>Submit final deliverables</span></li>
                         </ul>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     </div>
