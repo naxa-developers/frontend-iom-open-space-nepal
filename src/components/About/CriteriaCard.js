@@ -12,20 +12,23 @@ export class CriteriaCard extends Component {
     }
 
     componentDidMount(){
-        Axios.get(`https://iomapi.naxa.com.np/api/v1/about_open_space_criteria/`).then(
+        Axios.get(`http://139.59.67.104:8011/api/v1/about_criteria_type_description`).then(
             res => {
-            
-                this.setState({access: res.data},
+        
+                this.setState({access: res.data.data},
                     () => {
                  
                        this.state.access.map(t => {
                       
                             if(t.title==="Accessibility"){
-                          
-                                dArray.push(t.description)
+                                t.criteria_description.map((p) => {
+                                    dArray.push(p.title)
+                                })
+                                // dArray.push(t.criteria_description)
                                
                             }
                         }) 
+    
                         this.setState({dArray:dArray})
 
                     }
@@ -44,9 +47,11 @@ export class CriteriaCard extends Component {
          this.props.total.map(t => {
          
              if(t.title===this.props.title){
-              
+              t.criteria_description.map((e) => {
+                dArray.push(e.title)
+              })
                
-                 dArray.push(t.description)
+                
                 
              }
          }) 
@@ -62,8 +67,9 @@ export class CriteriaCard extends Component {
          
                 if(t.title_nep===this.props.title){
                  
-                  
-                    dArray.push(t.description_nep)
+                    t.criteria_description.map((e) => {
+                        dArray.push(e.title_nep)
+                      })
                    
                 }
             }) 
@@ -80,7 +86,9 @@ export class CriteriaCard extends Component {
                       
                 if(t.title==="Accessibility"){
               
-                    dArray.push(t.description)
+                    t.criteria_description.map((e) => {
+                        dArray.push(e.title)
+                      })
                    
                 }
             }) 
@@ -90,7 +98,9 @@ export class CriteriaCard extends Component {
                       
                 if(t.title==="Accessibility"){
               
-                    dArray.push(t.description_nep)
+                    t.criteria_description.map((e) => {
+                        dArray.push(e.title_nep)
+                      })
                    
                 }
             })  
@@ -104,7 +114,6 @@ export class CriteriaCard extends Component {
 
     
     render() {
-  console.log(this.props.title);
   
         return (
             <div className="col-md-8">

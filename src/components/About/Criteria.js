@@ -4,12 +4,13 @@ import { connect } from 'react-redux'
 import CriteriaCard from './CriteriaCard'
 import Identification from './Identification'
 
-let dArray = [];
+
 export class Criteria extends Component {
     constructor(props) {
         super(props)
     
         this.state = {
+            descPoints: null,
              description: null,
              header: null,
              criteria: null,
@@ -21,19 +22,20 @@ export class Criteria extends Component {
     }
 
     fetchData = () => {
-        Axios.get(`https://iomapi.naxa.com.np/api/v1/about_criteria_description/`).then(
+        
+        Axios.get(`https://iomapi.naxa.com.np/api/v1/about_criteria_type_description`).then(
             res => {
             
-                this.setState({description: res.data[0]})
+                this.setState({descPoints: res.data.data})
             }
         )
-        Axios.get(`https://iomapi.naxa.com.np/api/v1/about_criteria_type/`).then(
+        Axios.get(`https://iomapi.naxa.com.np/api/v1/about_open_space_criteria/`).then(
             res => {
             
                 this.setState({header: res.data[0]})
             }
         )
-        Axios.get(`https://iomapi.naxa.com.np/api/v1/about_open_space_criteria/`).then(
+        Axios.get(`https://iomapi.naxa.com.np/api/v1/about_criteria_type/`).then(
             res => {
          
             let titleArr = [];
@@ -61,6 +63,7 @@ export class Criteria extends Component {
     }
     
     render() {
+  
         return (
            <>             
         <section className="about-content pdt-130 pdb-130">
@@ -72,9 +75,8 @@ export class Criteria extends Component {
                     </div>
                     <div className="col-md-8">
                         <div className="para about-body">
-        <p>{this.state.description&& this.props.language == '0' ? this.state.description.description : this.state.description&&this.state.description.description_nep}</p>
-                            {/* <p>Open spaces for humanitarian purposes are selected in consultation with a multitude of stakeholders including local communities, humanitarian agencies, local disaster risk management committees, ward presidents and security forces, among others.</p>
-                            <p> Open spaces failing to meet the below criteria may cause further distress to the disaster affected and displaced populations. Identification of flat and large open spaces in the hilly terrain of Nepal is in itself a challenge. However, the following criteria are considered for identifying open spaces for humanitarian purposes and providing refuge to displaced populations.</p> */}
+        <p>{this.state.header&& this.props.language == '0' ? this.state.header.description : this.state.header&&this.state.header.description_nep}</p>
+                          
                         </div>
                     </div>
                 </div>
@@ -84,9 +86,9 @@ export class Criteria extends Component {
                     <div className="col-md-4">
                        <div className="list-wrapper">
                            <ul className="about-h4">
-                               {
+                                {
                                    this.props.language=== '0' ? this.state.titleArr&& this.state.titleArr.map((c, i) => {
-
+             
                                    return <li onClick={()=> {
                    
                    
@@ -116,10 +118,10 @@ export class Criteria extends Component {
                                }
                              
                                
-                           </ul>
+                           </ul> 
                        </div>
                     </div>
-                   <CriteriaCard title = {this.state.currentPoint} total = {this.state.criteria}/>
+                   <CriteriaCard title = {this.state.currentPoint} total = {this.state.descPoints}/>
                 </div>
             </div>
         </div>
