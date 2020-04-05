@@ -21,7 +21,7 @@ import Axios from 'axios';
          }
      }
      componentDidMount() {
-         Axios.get(`http://139.59.67.104:8011/api/v1/about_header/`).then(
+         Axios.get(`https://iomapi.naxa.com.np/api/v1/about_header/`).then(
              res => {
                  this.setState({header: res.data[0]})
              }
