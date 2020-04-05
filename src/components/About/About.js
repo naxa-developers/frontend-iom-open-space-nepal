@@ -10,9 +10,26 @@ import { connect } from 'react-redux';
 import aboutBg from '../../img/About-bg.png'
 import logo from '../../img/header-logo.png'
 import Criteria from './Criteria';
+import Axios from 'axios';
 
  class About extends Component {
+     constructor(props) {
+         super(props)
+     
+         this.state = {
+              header:''
+         }
+     }
+     componentDidMount() {
+         Axios.get(`http://139.59.67.104:8011/api/v1/about_header/`).then(
+             res => {
+                 this.setState({header: res.data[0]})
+             }
+         )
+     }
+     
     render() {
+
         return (
             <>
              <div class="page-wrap">
@@ -24,10 +41,10 @@ import Criteria from './Criteria';
                 </div>
                 <div className="banner-para">
                     <p className="banner-title">
-                        Open spaces are identified and mapped with the aim to strengthen emergency preparedness and to provide the initial response planning framework for the local governments and partner agencies to be able to have a starting point from which to provide life-saving assistance to those in immediate need including the displaced population. 
+                    {this.state.header&& this.props.language == '0' ? this.state.header.title : this.state.header&&this.state.header.title_nep}
                     </p>
                     <p className="about-body">
-                        The importance of identification and mapping of open spaces for preparedness and risk reduction is also reflected in the National Policy for Disaster Risk Reduction 2018 for Nepal.
+                    {this.state.header&& this.props.language == '0' ? this.state.header.description : this.state.header&&this.state.header.description_nep}
                     </p>
                 </div>
             </div>
