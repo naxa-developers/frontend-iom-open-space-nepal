@@ -263,7 +263,7 @@ ul .scrollbar-container{
 
 
 div.legendMuni {
-    border: 2px solid rgb(105, 105, 105) !important;
+    border: 2px solid rgba(105, 105, 105,0.2) !important;
     height: 18px ;
     width: 20px;
     margin-right: 10px;

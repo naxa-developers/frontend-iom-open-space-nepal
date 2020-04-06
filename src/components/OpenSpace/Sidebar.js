@@ -130,7 +130,7 @@ class Sidebar extends Component {
         // this.state.Allos.map(e => {
         //   console.log(this.props.mapRefs);
         // });
-        this.displayOS();
+        // this.displayOS();
       }
     );
   };
@@ -1015,7 +1015,7 @@ removeOsOnZoom = () => {
                     { this.props.language == '0' ? 'Open spaces:' : 'खुला स्थानहरू:'} <span> {this.state.Allos.length} </span>
 
                   </h5>
-                  <p id='allostext'>List of all open spaces identified till date</p>
+                  {this.state.Openspaces!=null&&this.state.Allos!=null&&<p id='allostext'>{this.state.Allos.length==this.state.Openspaces.length?"List of all open spaces identified till date":"List of filtered open spaces"} </p>}
                   {/* <span>Below is the result of Gandaki Province..</span> */}
                 </div>
                 {this.state.showText==true && <span style={{color: '#6D6E71', fontSize: '0.9rem', fontStyle:'bold'}}>Openspaces from  {this.state.SelectedProvince&&this.state.SelectedProvince.label} {this.state.SelectedDistrict&&<span>,{this.state.SelectedDistrict.label}</span>} {this.state.SelectedMunicipality&&<span>,{this.state.SelectedMunicipality.label} </span>}  </span>}

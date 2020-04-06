@@ -351,7 +351,7 @@ class OS extends Component {
         munLayer = L.geoJSON.ajax('src/json/openspace_gp_np.geojson', {
             style: function (feature) {
                 return {
-                    color: '#696969', fillColor: 'yellow', weight: '1.5', transparency: '1' 
+                    color: '#696969', fillColor: 'yellow', weight: '1', opacity: '0.2',
                 }
             },
             onEachFeature: onEachFeature,
@@ -531,7 +531,7 @@ if(prevProps.hide!==this.props.hide) {
                
                 let z =  MAP.getZoom();
               
-                if(z>7) {
+                if(z>8) {
                   
                      r();
                      district.addTo(MAP)
@@ -542,7 +542,7 @@ if(prevProps.hide!==this.props.hide) {
                     
                      
                 }
-                else {
+                else{
                  
                     r1();
                     MAP.removeLayer(municipality)
