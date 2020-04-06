@@ -148,6 +148,7 @@ class OS extends Component {
              pmarker = L.marker(Object.values(p)[0] , {
                 icon: provinceCircle
               })
+              p.text=='0'&&pmarker.bindPopup('<p class="pmarker">'+ "No open space survey has been carried out by IOM in this location" +'</p>')
             //   pmarker.addTo(this.props.mapRefss.current.leafletElement);
             pmarker.addTo(this.state.pmarker);
         
@@ -340,7 +341,8 @@ class OS extends Component {
             //      .openOn(map);
             //   });
         
-            var popupContent = "<div class='bind-popup'> <div class='bind-header'><h5 class='muni-title'>" + feature.properties.LU_Name + "</h5><p><Type :" + feature.properties.LU_Type + "</p> <div  class='count'>  <p>No. of Openspaces: </p> <span>"+oCount +"</span></div></div></div>"
+            // var popupContent = "<div class='bind-popup'> <div class='bind-header'><h5 class='muni-title'>" + feature.properties.LU_Name + "</h5><p><Type :" + feature.properties.LU_Type + "</p> <div  class='count'>  <p>No. of Openspaces: </p> <span>"+oCount +"</span></div></div></div>"
+            var popupContent = "<div class='bind-popup'> <div class='bind-header'><h5 class='muni-title'>" + feature.properties.LU_Name + "</h5><div  class='count'>  <p>No. of Openspaces: </p> <span>"+oCount +"</span></div></div></div>"
 
             layer.bindPopup(popupContent);
             // cMarker.addTo(this.props.mapRefss.current.leafletElement)
