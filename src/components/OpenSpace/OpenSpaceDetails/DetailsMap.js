@@ -97,6 +97,7 @@ class OSDetails extends Component {
            + this.state.HeliData.facility.length + this.state.SecurityData.facility.length
           
             totalamenities > 20 &&  mapRf.setView(new L.LatLng(this.state.OSlatlng[0],this.state.OSlatlng[1] ), mapRf.getZoom()+2)
+            totalamenities<2&& mapRf.setView(new L.LatLng(this.state.OSlatlng[0],this.state.OSlatlng[1] ), mapRf.getZoom()-1)
           
         });
       });
