@@ -33,11 +33,11 @@ require('leaflet.markercluster')
 class Sidebar extends Component {
   constructor(props) {
     super(props);
-    this.fetched=false
+    this.fetched = false
 
     this.sidebarToggle = this.sidebarToggle.bind(this);
     this.state = {
-      distances:[],
+      distances: [],
       Openspaces: null,
       showContent: true,
       province: null,
@@ -58,14 +58,14 @@ class Sidebar extends Component {
       nearbyGroup: L.featureGroup(),
       legend: L.control({ position: 'bottomleft' }),
       div: L.DomUtil.create('div', 'routeWrapper'),
-      OSmarkers: L.markerClusterGroup({ disableClusteringAtZoom: 14,pane:"cluster" }),
+      OSmarkers: L.markerClusterGroup({ disableClusteringAtZoom: 14, pane: "cluster" }),
       markersLegend: L.control({ position: 'bottomright' }),
       ActiveRouteindex: null,
       showText: false,
       layerStatus: false
 
     };
- 
+
   }
 
   setActivefalse = (e) => {
@@ -98,7 +98,7 @@ class Sidebar extends Component {
 
     Axios.get(url).then(response => {
       var array = [];
-     
+
       response.data.data.map(e => {
         let object = {
           value: e.id,
@@ -116,8 +116,8 @@ class Sidebar extends Component {
         // console.log("all", response.data.data),
         this.setState({
 
-         
-          
+
+
           Allos: response.data.data,
           Openspaces: response.data.data,
           loading: !this.state.loading
@@ -246,16 +246,19 @@ class Sidebar extends Component {
     this.setState({ loading: true, showText: true })
 
     this.props.mapRefs.current.leafletElement = this.props.mapRefs.current.leafletElement;
-   this.props.dispatch({
-     type: "toggleProviceCount",
-     hide: true
-   })
+    this.props.dispatch({
+      type: "toggleProviceCount",
+      hide: true
+    })
     this.state.district_muni.eachLayer(e =>
       this.state.district_muni.removeLayer(e)
     );
-   
+
     // console.log("apply",this.state.SelectedProvince,this.state.SelectedDistrict,this.state.SelectedMunicipality)
-    if (this.state.SelectedProvince && this.state.SelectedDistrict && this.state.SelectedMunicipality) {
+    if (this.state.SelectedProvince && this.state.SelectedDistrict && this.state.SelectedMunicipality)
+    {
+      console.log("munid", this.state.SelectedMunicipality.value);
+
       Axios.get(
         `https://iomapi.naxa.com.np/api/v1/municipality_geo_json?id=${this.state.SelectedMunicipality.value}`
       ).then(response => {
@@ -277,10 +280,11 @@ class Sidebar extends Component {
         // console.log(FilteredOS)
         this.setState({ Allos: FilteredOS, loading: false })
         this.displayOS()
-      
+
       })
     }
-    else if (this.state.SelectedProvince && this.state.SelectedDistrict) {
+    else if (this.state.SelectedProvince && this.state.SelectedDistrict)
+    {
       this.props.mapRefs.current.leafletElement = this.props.mapRefs.current.leafletElement;
       this.state.district_muni.eachLayer(e =>
         this.state.district_muni.removeLayer(e)
@@ -301,11 +305,11 @@ class Sidebar extends Component {
         let FilteredOS = this.state.Openspaces.filter((e) => e.district == this.state.SelectedDistrict.value)
         // console.log(FilteredOS)
         this.setState({ Allos: FilteredOS, loading: false })
-      
-        
+
+
         FilteredOS.length === 0 && this.props.openPop();
         // this.displayOS()
-       
+
 
         municipality.addTo(this.state.district_muni);
         this.props.mapRefs.current.leafletElement.fitBounds(
@@ -313,9 +317,10 @@ class Sidebar extends Component {
         );
       })
     }
-    else if (this.state.SelectedProvince) {
+    else if (this.state.SelectedProvince)
+    {
       // let FilteredOS = this.state.Openspaces.filter((e) => e.province == this.state.SelectedProvince.value)
-    
+
       // this.setState({ Allos: FilteredOS, loading: false })
       // this.displayOS()
 
@@ -337,6 +342,8 @@ class Sidebar extends Component {
         // console.log(FilteredOS)
         this.setState({ Allos: FilteredOS, loading: false })
         this.displayOS()
+        console.log("prooooo", Province.getBounds());
+
         Province.addTo(this.state.district_muni);
         this.props.mapRefs.current.leafletElement.fitBounds(
           this.state.district_muni.getBounds()
@@ -351,14 +358,14 @@ class Sidebar extends Component {
 
     }
 
-this.setState({
-  layerStatus: !this.state.layerStatus
-}, () => {
-  this.props.dispatch({
-    type: 'singlePlotted',
-    status: this.state.layerStatus
-  })
-})
+    this.setState({
+      layerStatus: !this.state.layerStatus
+    }, () => {
+      this.props.dispatch({
+        type: 'singlePlotted',
+        status: this.state.layerStatus
+      })
+    })
 
 
   }
@@ -382,16 +389,18 @@ this.setState({
   };
 
   nearbymeOS = () => {
-   
+
     Axios.get(`https://iomapi.naxa.com.np/api/v1/near_by_openspace?count=100&distance=2&latitude=${this.props.currentLocation[0]}&longitude=${this.props.currentLocation[1]}`)
       .then(response => {
         this.setState({ nearbyOS: response.data.open_space })
-        if (response.data.open_space.length != 0) {
+        if (response.data.open_space.length != 0)
+        {
           this.props.mapRefs.current.leafletElement.removeLayer(this.state.OSmarkers)
           this.setState({ Allos: response.data.open_space })
           this.displaynearbyOs()
         }
-        else {
+        else
+        {
           this.notify()
         }
         // console.log(response.data.open_space ,this.state.Openspaces)
@@ -412,67 +421,72 @@ this.setState({
         // iconSize: [4, 4],
         // iconAnchor: [12, 6]
       });
-      e.centroid===null && console.log("null", e);
-      
-    if(e.centroid!== null) {
+      e.centroid === null && console.log("null", e);
 
-      var htmlmrk = L.marker([e.centroid[1], e.centroid[0]], { icon: icon });
-      var mrk = new L.circleMarker([e.centroid[1], e.centroid[0]], { radius: 6, fillColor: 'green', fillOpacity: 1, weight: 15, opacity: 0.3, color: 'green', pane: 'nearby' })
-      var popup = "<h5>" + e.title + "</h5>" +
-        "<h6>" + e.municipality + "</h6>"
-      var pop = "<div class='bind-popup'> <div class='bind-header'><h5>" + e.title + "</h5><p><i class='material-icons' style='font-size:16px'>room</i>" + e.address + "<i class='material-icons pop-dir'>directions</i></p><a  class='openSpace_btn' href='/#/OpenSpaceDetails'>View Details</a></div></div>"
+      if (e.centroid !== null)
+      {
 
-      htmlmrk.bindPopup(pop)
-      htmlmrk.on('click', () => {
-        var classes = document.getElementsByClassName('openSpace_btn')
-        for (var i = 0; i < classes.length; i++) {
-          classes[i].addEventListener('click', () => {
-            this.props.dispatch({ type: "spaceClicked", id: e.id })
-            this.props.history.push('/OpenSpaceDetails');
+        var htmlmrk = L.marker([e.centroid[1], e.centroid[0]], { icon: icon });
+        var mrk = new L.circleMarker([e.centroid[1], e.centroid[0]], { radius: 6, fillColor: 'green', fillOpacity: 1, weight: 15, opacity: 0.3, color: 'green', pane: 'nearby' })
+        var popup = "<h5>" + e.title + "</h5>" +
+          "<h6>" + e.municipality + "</h6>"
+        var pop = "<div class='bind-popup'> <div class='bind-header'><h5>" + e.title + "</h5><p><i class='material-icons' style='font-size:16px'>room</i>" + e.address + "<i class='material-icons pop-dir'>directions</i></p><a  class='openSpace_btn' href='/#/OpenSpaceDetails'>View Details</a></div></div>"
 
-          })
-        }
-        let dir=document.getElementsByClassName('pop-dir')
-          
-          for(var i=0;i<dir.length; i++){
-            dir[i].addEventListener('click',()=>{
-             
+        htmlmrk.bindPopup(pop)
+        htmlmrk.on('click', () => {
+          var classes = document.getElementsByClassName('openSpace_btn')
+          for (var i = 0; i < classes.length; i++)
+          {
+            classes[i].addEventListener('click', () => {
+              this.props.dispatch({ type: "spaceClicked", id: e.id })
+              this.props.history.push('/OpenSpaceDetails');
+
+            })
+          }
+          let dir = document.getElementsByClassName('pop-dir')
+
+          for (var i = 0; i < dir.length; i++)
+          {
+            dir[i].addEventListener('click', () => {
+
               const newData = [
                 this.state.Allos.find(item => item.id === e.id),
                 ...this.state.Allos.filter(item => item.id != e.id),
               ]
-              this.setState({Allos:newData})
-              if(this.state.ActiveRouteindex==e.id){
+              this.setState({ Allos: newData })
+              if (this.state.ActiveRouteindex == e.id)
+              {
                 // console.log(dir)
                 dir[0].classList.remove('active')
                 this.removeRoutes();
                 this.setActivefalse(null)
 
-            }
-            else{
-           
-                
+              }
+              else
+              {
+
+
                 this.fetchroute([e.centroid[1], e.centroid[0]], this.props.currentLocation)
                 this.setActivefalse(e.id)
                 dir[0].classList.add('active')
 
-                
-
-            }
 
 
-          })
+              }
+
+
+            })
           }
 
-      })
+        })
 
 
-      htmlmrk.addTo(this.state.nearbyGroup)
-    }
+        htmlmrk.addTo(this.state.nearbyGroup)
+      }
 
     })
-    document.getElementById('mrk-lg').innerHTML+="<li id='nearbylegend' ><span class='legend green'></span><p>Nearby OS</p></li>"
-    document.getElementById('mrk-lg').innerHTML+="<li id='nearbylegendOne' ><span class='current-location'><i class='material-icons' style='color: #5ACE52'>gps_fixed</i> </span></span><p>  </p><p>Your Location</p></li>"
+    document.getElementById('mrk-lg').innerHTML += "<li id='nearbylegend' ><span class='legend green'></span><p>Nearby OS</p></li>"
+    document.getElementById('mrk-lg').innerHTML += "<li id='nearbylegendOne' ><span class='current-location'><i class='material-icons' style='color: #5ACE52'>gps_fixed</i> </span></span><p>  </p><p>Your Location</p></li>"
     this.state.nearbyGroup.bringToFront()
     this.props.mapRefs.current.leafletElement.fitBounds(this.state.nearbyGroup.getBounds())
 
@@ -481,7 +495,8 @@ this.setState({
   }
 
   tooglenearby = () => {
-    if (this.state.nearbytoogle) {
+    if (this.state.nearbytoogle)
+    {
       this.state.nearbyGroup.eachLayer(e => this.state.nearbyGroup.removeLayer(e))
       document.getElementById('mrk-lg').removeChild(document.getElementById('nearbylegend'))
       document.getElementById('mrk-lg').removeChild(document.getElementById('nearbylegendOne'))
@@ -495,7 +510,8 @@ this.setState({
 
 
     }
-    else {
+    else
+    {
       this.nearbymeOS()
       document.getElementsByClassName("openspace-button")[1].classList.add("active");
       // console.log( document.getElementsByClassName("openspace-button"))
@@ -510,10 +526,11 @@ this.setState({
   displayOS = () => {
     this.state.OSmarkers.eachLayer((e) => this.state.OSmarkers.removeLayer(e))
 
- 
+
     this.state.Allos.map(e => {
       // console.log(e, 'data')
-      if (e.centroid !== null) {
+      if (e.centroid !== null)
+      {
         var map = this.props.mapRefs.current.leafletElement;
         // new L.circleMarker([e.latitude, e.longitude]).addTo(map)
         var icon = L.divIcon({
@@ -531,51 +548,55 @@ this.setState({
         let address = e.address == null ? 'Nepal' : e.address
         var popup = "<h5>" + e.title + "</h5>" +
           "<h6>" + e.municipality + "</h6>"
-         
+
         var pop = "<div class='bind-popup'> <div class='bind-header'><h5>" + e.title + "</h5> <p><i class='material-icons ' style='font-size:16px'>room</i>" + address + "<i class='material-icons pop-dir'>directions</i></p><a  class='openSpace_btn' href='/#/OpenSpaceDetails'>View Details</a></div></div>"
 
         htmlmrk.bindPopup(pop)
         htmlmrk.on('click', () => {
           var classes = document.getElementsByClassName('openSpace_btn')
-          for (var i = 0; i < classes.length; i++) {
+          for (var i = 0; i < classes.length; i++)
+          {
             classes[i].addEventListener('click', () => {
               this.props.dispatch({ type: "spaceClicked", id: e.id })
               this.props.history.push('/OpenSpaceDetails');
 
             })
           }
-          let dir=document.getElementsByClassName('pop-dir')
-          
-          for(var i=0;i<dir.length; i++){
-            dir[i].addEventListener('click',()=>{
-             
+          let dir = document.getElementsByClassName('pop-dir')
+
+          for (var i = 0; i < dir.length; i++)
+          {
+            dir[i].addEventListener('click', () => {
+
               const newData = [
                 this.state.Allos.find(item => item.id === e.id),
                 ...this.state.Allos.filter(item => item.id != e.id),
               ]
-              this.setState({Allos:newData})
-              if(this.state.ActiveRouteindex==e.id){
+              this.setState({ Allos: newData })
+              if (this.state.ActiveRouteindex == e.id)
+              {
                 // console.log(dir)
                 dir[0].classList.remove('active')
                 this.removeRoutes();
                 this.setActivefalse(null)
 
-            }
-            else{
-              // console.log(i,dir)
-                
+              }
+              else
+              {
+                // console.log(i,dir)
+
                 this.fetchroute([e.centroid[1], e.centroid[0]], this.props.currentLocation)
                 this.setActivefalse(e.id)
                 dir[0].classList.add('active')
 
-                
-
-            }
 
 
-          })
+              }
+
+
+            })
           }
-          
+
         })
 
 
@@ -609,17 +630,19 @@ this.setState({
       "&algorithm=alternative_route";
     var colors = ["red", 'green', 'black']
 
-// console.log(url)
-// debugger
+    // console.log(url)
+    // debugger
 
     Axios.get(url)
       .then(Response => {
         // console.log(this.state.Routespaths)
 
 
-        for (var j = 0; j < Response.data.paths.length; j++) {
+        for (var j = 0; j < Response.data.paths.length; j++)
+        {
           var path = []
-          for (var i = 0; i < Response.data.paths[j].points.coordinates.length; i++) {
+          for (var i = 0; i < Response.data.paths[j].points.coordinates.length; i++)
+          {
 
             path.push(Response.data.paths[j].points.coordinates[i].reverse())
           }
@@ -645,7 +668,8 @@ this.setState({
             // doac.map((a)=>{
             //   console.log(a)
             // })
-            for (var i = 0; i < doac.length; i++) {
+            for (var i = 0; i < doac.length; i++)
+            {
               // console.log(doac[i],doac[i].getAttribute('name'))
               // var selectindex=doac[i].getAttribute('name')
               // var filtered=this.state.Routespaths.filter((d)=>d.id==selectindex)
@@ -701,8 +725,8 @@ this.setState({
             this.state.Routespaths.find(item => item.distance === min),
             ...this.state.Routespaths.filter(item => item.distance != min),
           ]
-          this.state.Routespaths=newData
-          
+          this.state.Routespaths = newData
+
 
 
           this.state.Routespaths.map((e) => {
@@ -725,24 +749,24 @@ this.setState({
 
 
           })
-          
+
           // ps.update();
           // innterhtml
-          setTimeout(()=>{
+          setTimeout(() => {
             const ps = new PerfectScrollbarPS('.routeWrapper', {
               wheelSpeed: 2,
               wheelPropagation: true,
               minScrollbarLength: 20
             });
 
-          },1000)
+          }, 1000)
 
 
 
 
           return div;
         }
-      
+
 
 
 
@@ -761,11 +785,11 @@ this.setState({
 
         this.state.legend.addTo(this.props.mapRefs.current.leafletElement)
         // console.log(this.state.Routespaths)
-        let dom=document.getElementsByClassName('routeWrapper')
+        let dom = document.getElementsByClassName('routeWrapper')
         L.DomEvent.on(dom[0], 'mousewheel', L.DomEvent.stopPropagation);
 
         var divss = document.getElementById('close-route');
-        divss.addEventListener("click",()=>{
+        divss.addEventListener("click", () => {
           this.removeRoutes();
           this.setActivefalse(null)
         })
@@ -778,19 +802,23 @@ this.setState({
         var doc = document.getElementsByClassName('desccard')
         doc[0].classList.add('pathactive')
 
-        for (var i = 0; i < doc.length; i++) {
+        for (var i = 0; i < doc.length; i++)
+        {
           doc[i].addEventListener('click', (e) => {
-          
+
             var value = e.target.closest(".desccard").getAttribute('name')
-        
+
             var selected = this.state.Routespaths.filter((a) => {
               return a.id == value
             })
 
-            for (var a = 0; a < doc.length; a++) {
-              if (doc[a].getAttribute('name') == value) {
+            for (var a = 0; a < doc.length; a++)
+            {
+              if (doc[a].getAttribute('name') == value)
+              {
                 doc[a].classList.add('pathactive')
-                for (var k = 0; k < this.state.Routespaths.length; k++) {
+                for (var k = 0; k < this.state.Routespaths.length; k++)
+                {
                   this.state.Routespaths[k].path.setStyle({
                     color: 'grey'
                   })
@@ -801,7 +829,8 @@ this.setState({
                 selected[0].path.bringToFront()
 
               }
-              else {
+              else
+              {
                 doc[a].classList.remove('pathactive')
 
 
@@ -821,20 +850,20 @@ this.setState({
       )
 
   }
-removeOsOnZoom = () => {
- 
-  this.state.OSmarkers.eachLayer(e => {
+  removeOsOnZoom = () => {
 
-    this.state.OSmarkers.removeLayer(e)
+    this.state.OSmarkers.eachLayer(e => {
+
+      this.state.OSmarkers.removeLayer(e)
+    }
+    );
   }
-  );
-}
 
 
   componentDidMount() {
-   
 
- 
+
+
 
     var nearby = this.props.mapRefs.current.leafletElement.createPane('nearby');
     var Oslanding = this.props.mapRefs.current.leafletElement.createPane('Oslanding');
@@ -859,22 +888,24 @@ removeOsOnZoom = () => {
     this.fetchingForDropdown("province");
     this.fetchingForDropdown("district");
     this.fetchingForDropdown("municipality")
-  
-    if(JSON.parse(sessionStorage.getItem('stored'))!=true){
-      
+
+    if (JSON.parse(sessionStorage.getItem('stored')) != true)
+    {
+
       this.fetchOS();
 
     }
-    else{ 
-     
+    else
+    {
 
-      this.state.Openspaces=JSON.parse(sessionStorage.getItem('Openspaces'));
-      this.state.Allos=JSON.parse(sessionStorage.getItem('Openspaces'));
-      this.setState({loading: !this.state.loading})
+
+      this.state.Openspaces = JSON.parse(sessionStorage.getItem('Openspaces'));
+      this.state.Allos = JSON.parse(sessionStorage.getItem('Openspaces'));
+      this.setState({ loading: !this.state.loading })
       // console.log(this.state.Allos,"al",JSON.parse(sessionStorage.getItem('Openspaces')),sessionStorage.getItem('stored'),sessionStorage)
-     
+
       // this.displayOS();
-      
+
     }
     this.addlegend()
     this.onload();
@@ -884,14 +915,17 @@ removeOsOnZoom = () => {
   }
   notify = () => toast.info("NO Openspace Found", { containerId: 'A', autoClose: false, });
 
-  componentDidUpdate(prevProps){
-    if (prevProps.remove !== this.props.remove) {
-      if(this.props.remove=== true) {
+  componentDidUpdate(prevProps) {
+    if (prevProps.remove !== this.props.remove)
+    {
+      if (this.props.remove === true)
+      {
         this.displayOS();
       }
-      else{
+      else
+      {
         this.removeOsOnZoom();
-        
+
       }
     }
   }
@@ -904,201 +938,201 @@ removeOsOnZoom = () => {
     const { showContent } = this.state;
     return (
       <>
-      <PerfectScrollbar>
-        <div>
+        <PerfectScrollbar>
+          <div>
 
-          <ToastContainer enableMultiContainer containerId={'A'} position={toast.POSITION.BOTTOM_RIGHT} />
-        </div>
-        <div className="map-sidebar">
+            <ToastContainer enableMultiContainer containerId={'A'} position={toast.POSITION.BOTTOM_RIGHT} />
+          </div>
+          <div className="map-sidebar">
 
 
-          <div className="sidebar-wrapper">
-            <div className="card">
-              <div className="card-body">
-                <div className="map-filter">
-                  <div className="filter-option">
-                    <Select
-                      options={this.state.province}
-                      placeholder=  { this.props.language == '0' ? "Province" : 'प्रान्त' }
-                      onChange={e => this.handleprovince(e)}
-                      value={this.state.SelectedProvince}
-                    />
-                    <Select
-                      options={this.state.district}
-                      placeholder=   { this.props.language == '0' ? "District" : 'जिल्ला' }
-                      onChange={e => this.handledistrict(e)}
-                      isDisabled={this.state.handlingindex < 1 ? true : false}
-                      value={this.state.SelectedDistrict}
-                    />
-                    <Select
-                      options={this.state.municipality}
-                      placeholder=   { this.props.language == '0' ? "Municipality" : 'नगरपालिका' }
-                      onChange={e => this.handlemunicipality(e)}
-                      isDisabled={this.state.handlingindex < 2 ? true : false}
-                      value={this.state.SelectedMunicipality}
-                    />
+            <div className="sidebar-wrapper">
+              <div className="card">
+                <div className="card-body">
+                  <div className="map-filter">
+                    <div className="filter-option">
+                      <Select
+                        options={this.state.province}
+                        placeholder={this.props.language == '0' ? "Province" : 'प्रान्त'}
+                        onChange={e => this.handleprovince(e)}
+                        value={this.state.SelectedProvince}
+                      />
+                      <Select
+                        options={this.state.district}
+                        placeholder={this.props.language == '0' ? "District" : 'जिल्ला'}
+                        onChange={e => this.handledistrict(e)}
+                        isDisabled={this.state.handlingindex < 1 ? true : false}
+                        value={this.state.SelectedDistrict}
+                      />
+                      <Select
+                        options={this.state.municipality}
+                        placeholder={this.props.language == '0' ? "Municipality" : 'नगरपालिका'}
+                        onChange={e => this.handlemunicipality(e)}
+                        isDisabled={this.state.handlingindex < 2 ? true : false}
+                        value={this.state.SelectedMunicipality}
+                      />
 
+                    </div>
+                    <div className="reset-btns">
+
+                      <div className="reset">
+                        {/* <MaterialIcon icon="refresh"></MaterialIcon> */}
+                        <span
+                          onClick={() => {
+                            this.setState({
+                              SelectedProvince: null,
+                              SelectedDistrict: null,
+                              SelectedMunicipality: null,
+                              district: null,
+                              municipality: null,
+                              handlingindex: 0,
+                              Allos: this.state.Openspaces,
+                              showText: false,
+                              layerStatus: false
+                            }, () => this.displayOS(),
+                              this.setState({
+                                layerStatus: !this.state.layerStatus
+                              }, () => {
+                                this.props.dispatch({
+                                  type: 'singlePlotted',
+                                  status: this.state.layerStatus
+                                })
+                                this.props.dispatch({
+                                  type: "toggleProviceCount",
+                                  hide: false
+                                })
+                              })
+
+                            )
+                            var bounds = [[25.710836919640595, 79.79365377708339],
+                            [30.798474179567847, 88.54975729270839]];
+                            this.props.mapRefs.current.leafletElement.fitBounds(bounds)
+                            this.state.Routes.eachLayer((e) => this.state.Routes.removeLayer(e))
+
+
+
+                            this.state.district_muni.eachLayer(e =>
+                              this.state.district_muni.removeLayer(e)
+                            );
+
+
+                            this.props.mapRefs.current.leafletElement.removeControl(this.state.legend);
+
+
+                          }
+
+                          }
+                        >
+                          {this.props.language == '0' ? 'clear all' : 'सबै खाली गर्नुहोस्'}
+                        </span>
+                      </div>
+                      <button onClick={() => this.onApply()} className="openspace-button">
+                        {this.props.language == '0' ? ' Apply ' : 'निवेदन गर्नु'}
+                      </button>
+                    </div>
                   </div>
-                  <div className="reset-btns">
 
-                    <div className="reset">
-                      {/* <MaterialIcon icon="refresh"></MaterialIcon> */}
-                      <span
-                        onClick={() => {
-                          this.setState({
-                            SelectedProvince: null,
-                            SelectedDistrict: null,
-                            SelectedMunicipality: null,
-                            district: null,
-                            municipality: null,
-                            handlingindex: 0,
-                            Allos: this.state.Openspaces,
-                            showText: false,
-                            layerStatus: false
-                          },()=>this.displayOS(), 
-                          this.setState({
-                            layerStatus: !this.state.layerStatus
-                          }, () => {
-                            this.props.dispatch({
-                              type: 'singlePlotted',
-                              status: this.state.layerStatus
-                            })
-                            this.props.dispatch({
-                              type: "toggleProviceCount",
-                              hide: false
-                            })
-                          }) 
-                        
-                          )
-                          var bounds = [[25.710836919640595, 79.79365377708339],
-                          [30.798474179567847, 88.54975729270839]];
-                          this.props.mapRefs.current.leafletElement.fitBounds(bounds)
-                          this.state.Routes.eachLayer((e) => this.state.Routes.removeLayer(e))
-                          
-
-
-                          this.state.district_muni.eachLayer(e =>
-                            this.state.district_muni.removeLayer(e)
-                          );
-
-
-                          this.props.mapRefs.current.leafletElement.removeControl(this.state.legend);
-                          
-
-                        }
-
-                        }
+                  <div className="nearme-btn">
+                    <a className="openspace-button" onClick={this.tooglenearby}>
+                      <i
+                        className="material-icons"
+                        style={{ textDecoration: "none" }}
                       >
-                         { this.props.language == '0' ?  'clear all' : 'सबै खाली गर्नुहोस्' }
-                      </span>
-                    </div>
-                    <button onClick={() => this.onApply()} className="openspace-button">
-                    { this.props.language == '0' ?  ' Apply ' : 'निवेदन गर्नु' }
-                    </button>
-                  </div>
-                </div>
-
-                <div  className="nearme-btn">
-                  <a className="openspace-button" onClick={this.tooglenearby}>
-                    <i
-                      className="material-icons"
-                      style={{ textDecoration: "none" }}
-                    >
-                      near_me
+                        near_me
                     </i>
-                    { this.props.language == '0' ? 'Nearby me' : 'नजिकका स्थानहरु ' }
-                  </a>
-                </div>
-                <div className="report-count">
-                  <h5>
-                    {/* Open spaces: <span> 83 </span> */}
-                    { this.props.language == '0' ? 'Open spaces:' : 'खुला स्थानहरू:'} <span> {this.state.Allos.length} </span>
-
-                  </h5>
-                  {/* <span>Below is the result of Gandaki Province..</span> */}
-                </div>
-                {this.state.showText==true && <span style={{color: '#6D6E71', fontSize: '0.9rem', fontStyle:'bold'}}>Openspaces from  {this.state.SelectedProvince&&this.state.SelectedProvince.label} {this.state.SelectedDistrict&&<span>,{this.state.SelectedDistrict.label}</span>} {this.state.SelectedMunicipality&&<span>,{this.state.SelectedMunicipality.label} </span>}  </span>}
-                <div className="space-list" >
-                  <div className="input-group">
-                    <div className="input-group-prepend">
-                      <span className="input-group-text">
-                        <i className="humanitarian-icon-Search"></i>
-                      </span>
-                    </div>
-                    <input
-                      type="text"
-                      className="form-control"
-                      aria-label=""
-                      placeholder={ this.props.language == '0' ? "Search Open Space" : 'खुला स्थानहरू खोज्नुहोस्' }
-                      onInput={e =>
-                        this.setState({ search_keyword: e.target.value })
-                      }
-                      onFocus={() => this.setState({ focused: true })}
-                      onKeyDown={e => {
-                        if (e.key == "Enter") this.searchOs();
-                      }}
-
-                    />
-                    <div className="input-group-append">
-                      <span className="input-group-text">
-                        {this.state.focused && (
-                          <i
-                            className="material-icons"
-                            onClick={() => this.searchOs()}
-                          >
-                            keyboard_backspace
-                          </i>
-                        )}
-                      </span>
-                    </div>
+                      {this.props.language == '0' ? 'Nearby me' : 'नजिकका स्थानहरु '}
+                    </a>
                   </div>
-                  <div className="loader" style={{ textAlign: "center" }}>
-                    {this.state.loading && <LoaderBig />}
+                  <div className="report-count">
+                    <h5>
+                      {/* Open spaces: <span> 83 </span> */}
+                      {this.props.language == '0' ? 'Open spaces:' : 'खुला स्थानहरू:'} <span> {this.state.Allos.length} </span>
+
+                    </h5>
+                    {/* <span>Below is the result of Gandaki Province..</span> */}
                   </div>
+                  {this.state.showText == true && <span style={{ color: '#6D6E71', fontSize: '0.9rem', fontStyle: 'bold' }}>Openspaces from  {this.state.SelectedProvince && this.state.SelectedProvince.label} {this.state.SelectedDistrict && <span>,{this.state.SelectedDistrict.label}</span>} {this.state.SelectedMunicipality && <span>,{this.state.SelectedMunicipality.label} </span>}  </span>}
+                  <div className="space-list" >
+                    <div className="input-group">
+                      <div className="input-group-prepend">
+                        <span className="input-group-text">
+                          <i className="humanitarian-icon-Search"></i>
+                        </span>
+                      </div>
+                      <input
+                        type="text"
+                        className="form-control"
+                        aria-label=""
+                        placeholder={this.props.language == '0' ? "Search Open Space" : 'खुला स्थानहरू खोज्नुहोस्'}
+                        onInput={e =>
+                          this.setState({ search_keyword: e.target.value })
+                        }
+                        onFocus={() => this.setState({ focused: true })}
+                        onKeyDown={e => {
+                          if (e.key == "Enter") this.searchOs();
+                        }}
+
+                      />
+                      <div className="input-group-append">
+                        <span className="input-group-text">
+                          {this.state.focused && (
+                            <i
+                              className="material-icons"
+                              onClick={() => this.searchOs()}
+                            >
+                              keyboard_backspace
+                            </i>
+                          )}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="loader" style={{ textAlign: "center" }}>
+                      {this.state.loading && <LoaderBig />}
+                    </div>
 
 
 
-  
 
 
 
-                  <ul>
-                    {this.state.Allos &&
-                   this.state.Allos.length!= 0 ?    
-                      this.state.Allos.map((e, i) => {
-                        return (
-                          <OpenSpaceCard
-                          // wrappedComponentRef={(ref=>this.oscard=ref)}
-                            Arraylength={this.state.Allos.length}
-                            distances={this.state.distances}
-                            currentLocation={this.props.currentLocation}
-                            latlng={e.centroid!==null &&[e.centroid[1], e.centroid[0]]}
-                            routing={this.fetchroute}
-                            key={e.id}
-                            name={e.title}
-                            address={e.address}
-                            image={e.image}
-                            thumbnail = {e.thumbnail}
-                            id={e.id}
-                            removeRoutes={this.removeRoutes}
-                            setActivefalse={this.setActivefalse}
-                            ActiveRoute={this.state.ActiveRouteindex}
-                            index={e.id}
 
-                          />
-                        )
-                      } 
-                      ): <h6 style={{fontSize:'0.9rem', color:'#6D6E71'}}>No open space identification survey has been  carried  in this location.</h6>
-                      
+                    <ul>
+                      {this.state.Allos &&
+                        this.state.Allos.length != 0 ?
+                        this.state.Allos.map((e, i) => {
+                          return (
+                            <OpenSpaceCard
+                              // wrappedComponentRef={(ref=>this.oscard=ref)}
+                              Arraylength={this.state.Allos.length}
+                              distances={this.state.distances}
+                              currentLocation={this.props.currentLocation}
+                              latlng={e.centroid !== null && [e.centroid[1], e.centroid[0]]}
+                              routing={this.fetchroute}
+                              key={e.id}
+                              name={e.title}
+                              address={e.address}
+                              image={e.image}
+                              thumbnail={e.thumbnail}
+                              id={e.id}
+                              removeRoutes={this.removeRoutes}
+                              setActivefalse={this.setActivefalse}
+                              ActiveRoute={this.state.ActiveRouteindex}
+                              index={e.id}
+
+                            />
+                          )
+                        }
+                        ) : <h6 style={{ fontSize: '0.9rem', color: '#6D6E71' }}>No open space identification survey has been  carried  in this location.</h6>
+
                       }
 
 
-                  </ul>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
         </PerfectScrollbar>
       </>
     );
@@ -1110,7 +1144,7 @@ const mapStateToProps = (state) => {
     id: state.id,
     language: state.language,
     remove: state.remove,
-    hide:state.hide
+    hide: state.hide
   }
 }
 

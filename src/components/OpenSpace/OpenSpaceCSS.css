@@ -267,6 +267,7 @@ div.legendMuni {
 }
 
 #bellActive {
+    float: right;
     color:#5ACE52;
    
 

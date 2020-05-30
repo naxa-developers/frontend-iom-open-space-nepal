@@ -25,7 +25,7 @@ let munLayer = null;
 var province = null;
 var district = null;
 var municipality = null;
-let pmarker= null;
+let pmarker = null;
 
 class OS extends Component {
     constructor(props) {
@@ -40,41 +40,41 @@ class OS extends Component {
             provinceLoading: 'block',
             munCounts: '',
             pmarker: L.featureGroup(),
-        provinceCenters : [
-            {
-                provinceOne:  [ 28.38459071650007,  84.03768480450006],
-                text: '60'
-            },
-            {
-                provinceTwo: [ 29.29914650300006 , 82.33074330700006],
-                text: '0'
-            },
-            {
-                provinceThree: [27.23044917600004, 87.17879609400006 ],
-                text: '0'
-            },
-            {
-               provinceFour: [26.942781309000054, 85.74924195100004],
-               text: '0'
-            },
-            {
-                provinceFive: [27.65271387450005,85.24576775600005 ],
-                text: '93'
-            },
-            {
-                provinceSix:[28.099726835500064, 82.54387074700006],
-                text: '24'
-            },
-            {
-                provinceSeven: [29.32061687600006, 80.93340320850007],
-                text: '0'
-            }
-        ],
+            provinceCenters: [
+                {
+                    provinceOne: [28.38459071650007, 84.03768480450006],
+                    text: '39'
+                },
+                {
+                    provinceTwo: [29.29914650300006, 82.33074330700006],
+                    text: '0'
+                },
+                {
+                    provinceThree: [27.23044917600004, 87.17879609400006],
+                    text: '0'
+                },
+                {
+                    provinceFour: [26.942781309000054, 85.74924195100004],
+                    text: '0'
+                },
+                {
+                    provinceFive: [27.65271387450005, 85.24576775600005],
+                    text: '103'
+                },
+                {
+                    provinceSix: [28.099726835500064, 82.54387074700006],
+                    text: '12'
+                },
+                {
+                    provinceSeven: [29.32061687600006, 80.93340320850007],
+                    text: '0'
+                }
+            ],
 
         };
     };
 
-  
+
     addnortharrow = () => {
         var north = L.control({ position: "topleft" });
         north.onAdd = (map) => {
@@ -122,11 +122,13 @@ class OS extends Component {
         })
         sessionStorage.Openspaces == undefined && this.notify()
         navigator.permissions.query({ name: 'geolocation' }).then((PermissionStatus) => {
-            if (PermissionStatus.state == 'granted') {
+            if (PermissionStatus.state == 'granted')
+            {
                 // this.notify()
 
 
-            } else {
+            } else
+            {
                 // this.notify()
 
 
@@ -136,24 +138,24 @@ class OS extends Component {
     }
     loadprovince = () => {
 
-       
+
         this.state.provinceCenters.map((p) => {
             var provinceCircle = L.divIcon({
                 className: 'province-circle',
-                html:`<p class="p-text">${p.text}</p>`,
+                html: `<p class="p-text">${p.text}</p>`,
                 // html: "<div class='marker-pin'></div><i class='humanitarian-icon-Education'></i>",
                 iconSize: [22, 22],
                 iconAnchor: [15, 15]
             });
-             pmarker = L.marker(Object.values(p)[0] , {
+            pmarker = L.marker(Object.values(p)[0], {
                 icon: provinceCircle
-              })
+            })
             //   pmarker.addTo(this.props.mapRefss.current.leafletElement);
             pmarker.addTo(this.state.pmarker);
-        
+
         })
-        
-       
+
+
         // var colors = ["#0489B1", "#045FB4", "purple", "#0404B4", "#3104B4", "#5F04B4", "#1B0A2A"]
 
         // Axios.get('https://iomapi.naxa.com.np/api/v1/province_geo_json')
@@ -210,11 +212,11 @@ class OS extends Component {
                 'Province': function () {
                     return {
                         fillColor: "white",
-      fillOpacity: 0,
-      weight: 1.5,
-      opacity: 1,
-      color: "#a3b7e3",
-      fill: true
+                        fillOpacity: 0,
+                        weight: 1.5,
+                        opacity: 1,
+                        color: "#a3b7e3",
+                        fill: true
                     }
                 },
 
@@ -226,7 +228,7 @@ class OS extends Component {
                         opacity: 0.2,
                         color: "#696969",
                         fill: true
-                  
+
                     }
 
 
@@ -235,7 +237,7 @@ class OS extends Component {
             interactive: true, // Make sure that this VectorGrid fires mouse/pointer events
             // pane: "wmsPane",
             getFeatureId: function (feature, layer) {
-               
+
                 // label_Vector_Tiles(feature);
                 let hlcit = feature.properties.HLCIT_CODE && parseInt(feature.properties.HLCIT_CODE.toString().replace(/\s/g, ''))
 
@@ -259,10 +261,10 @@ class OS extends Component {
         // var municipalityUrl = 'https://geoserver.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Naxa:Municipality@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
         var municipalityUrl = 'https://geoserver.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Bipad:Municipality@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
         // var municipalityUrl = 'http://202.45.146.3:8080/geoserver/gwc/service/tms/1.0.0/Bipad:Municipality@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
-      
 
-        province = L.vectorGrid.protobuf(provinceUrl, vectorTileOptions );
- 
+
+        province = L.vectorGrid.protobuf(provinceUrl, vectorTileOptions);
+
         district = L.vectorGrid.protobuf(districtUrl, vectorTileOptions)
         municipality = L.vectorGrid.protobuf(municipalityUrl, vectorTileOptions)
 
@@ -274,7 +276,7 @@ class OS extends Component {
         //   district.bringToFront();
         //    province.bringToFront();
         province.setZIndex(300);
-        
+
         // municipality.setZIndex(10)
 
         // var numericMarker = L.ExtraMarkers.icon({
@@ -313,25 +315,26 @@ class OS extends Component {
             opacity: 1,
             fillOpacity: 1,
             // className: 'marker-cluster'
-    
-          };
 
-       const onEachFeature = (feature, layer) => {
+        };
+
+        const onEachFeature = (feature, layer) => {
             let centrePoint = layer.getBounds().getCenter();
             let luName = layer.feature.properties.LU_Name
-           let oCount = null
+            let oCount = null
             this.state.munCounts.map((m) => {
-               let ar = Object.keys(m)
-                if(luName=== ar[0]) {
-                  
+                let ar = Object.keys(m)
+                if (luName === ar[0])
+                {
+
                     oCount = Object.values(m)
                 }
             })
-            
-         setTimeout(() => {
-             
-         })
-             let cMarker = L.circleMarker([centrePoint.lat, centrePoint.lng])
+
+            setTimeout(() => {
+
+            })
+            let cMarker = L.circleMarker([centrePoint.lat, centrePoint.lng])
             //  marker.on('mouseover', function(e) {
             //     //open popup;
             //     var popup = L.popup()
@@ -339,21 +342,21 @@ class OS extends Component {
             //      .setContent('Popup')
             //      .openOn(map);
             //   });
-        
-            var popupContent = "<div class='bind-popup'> <div class='bind-header'><h5 class='muni-title'>" + feature.properties.LU_Name + "</h5><p><Type :" + feature.properties.LU_Type + "</p> <div  class='count'>  <p>No. of Openspaces: </p> <span>"+oCount +"</span></div></div></div>"
+
+            var popupContent = "<div class='bind-popup'> <div class='bind-header'><h5 class='muni-title'>" + feature.properties.LU_Name + "</h5><p><Type :" + feature.properties.LU_Type + "</p> <div  class='count'>  <p>No. of Openspaces: </p> <span>" + oCount + "</span></div></div></div>"
 
             layer.bindPopup(popupContent);
             // cMarker.addTo(this.props.mapRefss.current.leafletElement)
         }
-       
+
         munLayer = L.geoJSON.ajax('src/json/openspace_gp_np.geojson', {
             style: function (feature) {
                 return {
-                    color: '#696969', fillColor: 'yellow', weight: '1.5', transparency: '1' 
+                    color: '#696969', fillColor: 'yellow', weight: '1.5', transparency: '1'
                 }
             },
             onEachFeature: onEachFeature,
-        
+
         })
         // munLayer.addTo(MAP);
 
@@ -406,17 +409,17 @@ class OS extends Component {
         MAP = this.props.mapRefss.current.leafletElement;
         Axios.get(`https://iomapi.naxa.com.np/api/v1/glimpse_of_open_space`)
             .then(res => {
-              
+
                 const counts = res.data.data.open_count
                 // let hlcitArr = [];
                 // counts.map((m) => {
                 //     let str = Object.values(m).toString().replace(/\s/g, '')
-               
+
                 //     hlcitArr.push(str)
 
                 // })
-             
-              
+
+
                 this.setState({ munCounts: counts }, () => {
                     this.loadVectortile()
                 })
@@ -427,22 +430,22 @@ class OS extends Component {
             })
 
     }
-   
+
 
     componentDidMount() {
         // const onEachFeatureOne = (feature, layer) => {
         //     console.log("layer", layer );
-            
+
         //     let centrePoint = layer.getBounds().getCenter();
         // console.log("center", centrePoint);
-        
+
         // }
-       
-        
+
+
         // Axios.get(` https://iomapi.naxa.com.np/api/v1/province_geo_json`)
         // .then(res => {
         //   console.log("api", res.data);
-          
+
         //     munLayer = L.geoJSON(res.data, {
         //         style: function (feature) {
         //             return {
@@ -450,10 +453,10 @@ class OS extends Component {
         //             }
         //         },
         //         onEachFeature: onEachFeatureOne,
-            
+
         //     })
-    
-     
+
+
 
 
         // })
@@ -480,28 +483,34 @@ class OS extends Component {
     }
     componentDidUpdate(prevProps) {
 
-    
-if(prevProps.hide!==this.props.hide) {
-    if(this.props.hide === true) {
-  
-        MAP.removeLayer(district)
-        MAP.removeLayer(municipality)
-        this.state.pmarker.eachLayer(e =>
-            this.state.pmarker.removeLayer(e)
-          );
-    } else {
-        this.loadprovince();
-    }
-}
 
-        if (prevProps.deleteAll !== this.props.deleteAll) {
-          
-            if (this.props.deleteAll===true) {
+        if (prevProps.hide !== this.props.hide)
+        {
+            if (this.props.hide === true)
+            {
+
+                MAP.removeLayer(district)
+                MAP.removeLayer(municipality)
+                this.state.pmarker.eachLayer(e =>
+                    this.state.pmarker.removeLayer(e)
+                );
+            } else
+            {
+                this.loadprovince();
+            }
+        }
+
+        if (prevProps.deleteAll !== this.props.deleteAll)
+        {
+
+            if (this.props.deleteAll === true)
+            {
                 MAP.removeLayer(province)
                 MAP.removeLayer(district)
                 MAP.removeLayer(municipality)
                 MAP.removeLayer(munLayer)
-            } else {
+            } else
+            {
 
                 this.fetchGlimpse();
             }
@@ -509,7 +518,7 @@ if(prevProps.hide!==this.props.hide) {
         const r = () => {
             this.state.pmarker.eachLayer(e =>
                 this.state.pmarker.removeLayer(e)
-              );
+            );
             this.props.dispatch({
                 type: "removeOS",
                 remove: true
@@ -522,78 +531,82 @@ if(prevProps.hide!==this.props.hide) {
                 remove: false
             })
         }
-        if(this.props.hide===false) {
-           
-            MAP &&  MAP.on('zoomend', function() {
-           
-               
-                let z =  MAP.getZoom();
-              
-                if(z>7) {
-                  
-                     r();
-                     district.addTo(MAP)
-                     municipality.addTo(MAP);
-                     district.setZIndex(20);
-                     municipality.setZIndex(10);
-                     munLayer.addTo(MAP);
-                    
-                     
+        if (this.props.hide === false)
+        {
+
+            MAP && MAP.on('zoomend', function () {
+
+
+                let z = MAP.getZoom();
+
+                if (z > 7)
+                {
+
+                    r();
+                    district.addTo(MAP)
+                    municipality.addTo(MAP);
+                    district.setZIndex(20);
+                    municipality.setZIndex(10);
+                    munLayer.addTo(MAP);
+
+
                 }
-                else {
-                 
+                else
+                {
+
                     r1();
                     MAP.removeLayer(municipality)
                     MAP.removeLayer(district)
                     MAP.removeLayer(munLayer)
-                
+
                 }
-                
-                
-                            }) 
+
+
+            })
         }
     }
 
-    
+
     notify = () => toast.info("Turn your location service ON for better experience", {
         autoClose: 3000, position: "bottom-right"
     });
 
-  
+
 
     render() {
 
-  
-//          MAP &&  MAP.on('zoomend', function() {
-
-// let z =  MAP.getZoom();
-// console.log(z);
-// function test() {
-//     console.log("ghghgh");
-    
-//     // this.props.dispatch({
-//     //     type: "removeOS",
-//     //     remove: true
-//     // })
-// }
-// if(z>7) {
-  
-//     MAP.removeLayer(htmlmrk)
-//     district.addTo(MAP)
-//      municipality.addTo(MAP);
-//      district.setZIndex(20);
-//      municipality.setZIndex(10);
-    
-     
-// }
-// else {
-//     MAP.removeLayer(municipality)
-//     MAP.removeLayer(district)
-
-// }
 
 
-//             })  
+        //          MAP &&  MAP.on('zoomend', function() {
+
+        // let z =  MAP.getZoom();
+        // console.log(z);
+        // function test() {
+        //     console.log("ghghgh");
+
+        //     // this.props.dispatch({
+        //     //     type: "removeOS",
+        //     //     remove: true
+        //     // })
+        // }
+        // if(z>7) {
+
+        //     MAP.removeLayer(htmlmrk)
+        //     district.addTo(MAP)
+        //      municipality.addTo(MAP);
+        //      district.setZIndex(20);
+        //      municipality.setZIndex(10);
+
+
+        // }
+        // else {
+        //     MAP.removeLayer(municipality)
+        //     MAP.removeLayer(district)
+
+        // }
+
+
+        //             })  
 
         lat: 28.541100228636036
         lng: 85.00671386718751

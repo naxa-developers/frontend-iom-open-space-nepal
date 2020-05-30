@@ -54,6 +54,42 @@ section.about-content{
                         margin-bottom: 0;
                     }
                 }
+
+// active code
+.list-active{
+
+    cursor: pointer;
+    color: $color-primary !important;
+    a{
+        color: $color-primary;
+    }
+    span{
+        color: $color-green;
+    }
+
+    @include flex;
+    align-items: flex-end;
+    color: $grey-light;
+    margin-bottom: 1.75rem;
+    a{
+        color: $grey-light;
+        @include animate;
+    }
+    span{
+        padding-bottom: 2px;
+        @include animate;
+        padding-right: .938rem;
+        color: $grey-light;
+    }
+ 
+       
+    &:last-child{
+        margin-bottom: 0;
+    }
+}
+
+
+
             }
         }
         .list-wrapper-info{
