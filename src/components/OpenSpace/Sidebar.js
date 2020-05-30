@@ -130,7 +130,7 @@ class Sidebar extends Component {
         // this.state.Allos.map(e => {
         //   console.log(this.props.mapRefs);
         // });
-        this.displayOS();
+        // this.displayOS();
       }
     );
   };
@@ -257,7 +257,7 @@ class Sidebar extends Component {
     // console.log("apply",this.state.SelectedProvince,this.state.SelectedDistrict,this.state.SelectedMunicipality)
     if (this.state.SelectedProvince && this.state.SelectedDistrict && this.state.SelectedMunicipality)
     {
-      console.log("munid", this.state.SelectedMunicipality.value);
+      // console.log("munid", this.state.SelectedMunicipality.value);
 
       Axios.get(
         `https://iomapi.naxa.com.np/api/v1/municipality_geo_json?id=${this.state.SelectedMunicipality.value}`
@@ -1051,6 +1051,7 @@ class Sidebar extends Component {
                     </h5>
                     {/* <span>Below is the result of Gandaki Province..</span> */}
                   </div>
+
                   {this.state.showText == true && <span style={{ color: '#6D6E71', fontSize: '0.9rem', fontStyle: 'bold' }}>Openspaces from  {this.state.SelectedProvince && this.state.SelectedProvince.label} {this.state.SelectedDistrict && <span>,{this.state.SelectedDistrict.label}</span>} {this.state.SelectedMunicipality && <span>,{this.state.SelectedMunicipality.label} </span>}  </span>}
                   <div className="space-list" >
                     <div className="input-group">
@@ -1089,12 +1090,6 @@ class Sidebar extends Component {
                     <div className="loader" style={{ textAlign: "center" }}>
                       {this.state.loading && <LoaderBig />}
                     </div>
-
-
-
-
-
-
 
                     <ul>
                       {this.state.Allos &&
