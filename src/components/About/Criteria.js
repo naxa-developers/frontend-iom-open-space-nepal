@@ -8,153 +8,157 @@ import Identification from './Identification'
 export class Criteria extends Component {
     constructor(props) {
         super(props)
-    
+
         this.state = {
             descPoints: null,
-             description: null,
-             header: null,
-             criteria: null,
-             cHeader: null,
-             currentPoint: '',
-             dArray: null,
-             steps: null
+            description: null,
+            header: null,
+            criteria: null,
+            cHeader: null,
+            currentPoint: 'Accessibility',
+            dArray: null,
+            steps: null
         }
     }
 
     fetchData = () => {
-        
+
         Axios.get(`https://iomapi.naxa.com.np/api/v1/about_criteria_type_description`).then(
             res => {
-            
-                this.setState({descPoints: res.data.data})
+
+                this.setState({ descPoints: res.data.data })
             }
         )
         Axios.get(`https://iomapi.naxa.com.np/api/v1/about_open_space_criteria/`).then(
             res => {
-            
-                this.setState({header: res.data[0]})
+
+                this.setState({ header: res.data[0] })
             }
         )
         Axios.get(`https://iomapi.naxa.com.np/api/v1/about_criteria_type/`).then(
             res => {
-         
-            let titleArr = [];
-            let titleArrNep = [];
 
-            res.data.map((r) => {
-                titleArr.push(r.title)
-                titleArrNep.push(r.title_nep)
+                let titleArr = [];
+                let titleArrNep = [];
 
-            })
-            this.setState({titleArr: [... new Set(titleArr)], titleArrNep:[... new Set(titleArrNep)] })
-                this.setState({criteria: res.data})
+                res.data.map((r) => {
+                    titleArr.push(r.title)
+                    titleArrNep.push(r.title_nep)
+
+                })
+                this.setState({ titleArr: [... new Set(titleArr)], titleArrNep: [... new Set(titleArrNep)] })
+                this.setState({ criteria: res.data })
             }
         )
         Axios.get(`https://iomapi.naxa.com.np/api/v1/identify_open_space_new`).then(
             res => {
-            
-                this.setState({steps: res.data.data})
+
+                this.setState({ steps: res.data.data })
             }
         )
-      
+
     }
     componentDidMount() {
         this.fetchData()
     }
-    
+
     render() {
-  
+
         return (
-           <>             
-        <section className="about-content pdt-130 pdb-130">
-        <div className="container">
-            <div className="content-top">
-                <div className="row">
-                    <div className="col-md-4">
-                        <h3 className="openspace-title">{this.state.header&& this.props.language == '0' ? this.state.header.title : this.state.header&&this.state.header.title_nep}</h3>
-                    </div>
-                    <div className="col-md-8">
-                        <div className="para about-body">
-        <p>{this.state.header&& this.props.language == '0' ? this.state.header.description : this.state.header&&this.state.header.description_nep}</p>
-                          
+            <>
+                <section className="about-content pdt-130 pdb-130">
+                    <div className="container">
+                        <div className="content-top">
+                            <div className="row">
+                                <div className="col-md-4">
+                                    <h3 className="openspace-title">{this.state.header && this.props.language == '0' ? this.state.header.title : this.state.header && this.state.header.title_nep}</h3>
+                                </div>
+                                <div className="col-md-8">
+                                    <div className="para about-body">
+                                        <p>{this.state.header && this.props.language == '0' ? this.state.header.description : this.state.header && this.state.header.description_nep}</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="content-bottom">
+                            <div className="row">
+                                <div className="col-md-4">
+                                    <div className="list-wrapper">
+                                        <ul className="about-h4">
+                                            {
+                                                this.props.language === '0' ? this.state.titleArr && this.state.titleArr.map((c, i) => {
+
+                                                    return <li
+                                                        className={this.state.currentPoint === c ? "list-active" : ""}
+                                                        onClick={() => {
+
+
+                                                            this.setState({ currentPoint: c })
+                                                            //                             ,() => {
+
+                                                            // this.state.criteria.map(t => {
+                                                            //     if(t.title===this.state.currentPoint){
+                                                            //      console.log(t.description);
+
+                                                            //     dArray.push(t.description)
+
+                                                            //     }
+                                                            // }) 
+                                                            // console.log("ll", dArray);
+
+                                                            // this.setState({dArray: dArray})
+
+                                                            //                             })
+                                                        }}><span className="about-span">{i + 1}</span>{c}</li>
+                                                })
+                                                    :
+                                                    this.state.titleArrNep && this.state.titleArrNep.map((c, i) => {
+
+                                                        return <li
+                                                            className={this.state.currentPoint === c ? "list-active" : ""}
+                                                            onClick={() => this.setState({ currentPoint: c })}><span className="about-span">{i + 1}</span>{c}</li>
+                                                    })
+                                            }
+
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <CriteriaCard title={this.state.currentPoint} total={this.state.descPoints} />
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div className="content-bottom">
-                <div className="row">
-                    <div className="col-md-4">
-                       <div className="list-wrapper">
-                           <ul className="about-h4">
-                                {
-                                   this.props.language=== '0' ? this.state.titleArr&& this.state.titleArr.map((c, i) => {
-             
-                                   return <li onClick={()=> {
-                   
-                   
-                                    this.setState({currentPoint: c})
-            //                             ,() => {
-                                          
-            // this.state.criteria.map(t => {
-            //     if(t.title===this.state.currentPoint){
-            //      console.log(t.description);
-                 
-            //     dArray.push(t.description)
-                   
-            //     }
-            // }) 
-            // console.log("ll", dArray);
-            
-            // this.setState({dArray: dArray})
-           
-            //                             })
-                                    } }><span className="about-span">{i+1}</span>{c}</li>
-                                   })
-                                   :
-                                   this.state.titleArrNep&& this.state.titleArrNep.map((c, i) => {
-                                 
-                                    return <li onClick={()=> this.setState({currentPoint: c}) }><span className="about-span">{i+1}</span>{c}</li>
-                                    })
-                               }
-                             
-                               
-                           </ul> 
-                       </div>
-                    </div>
-                   <CriteriaCard title = {this.state.currentPoint} total = {this.state.descPoints}/>
-                </div>
-            </div>
-        </div>
-    </section>
+                </section>
 
-<section className="about-procedure pdt-130 pdb-130">
-<div className="container">
-    <div className="row">
-        <div className="col-md-6">
-            <div className="about-left">
-                <h3 className="openspace-title">Open Space Identification Process</h3>
-                <p className="about-body">The open spaces were identified and selected through a 5-step methodology that is built upon the inputs from local governments, humanitarian agencies as well as community members. This methodology ensures the actual usability of the open spaces.</p>
-            </div>
-        </div>
-        <div className="col-md-6">
-            <div className="about-right">
-                {
-                    this.state.steps&&this.state.steps.map((step, i) => {
-                        return(
-                           <Identification
-                           sn = {i} 
-                           key = {step.id}
-                           image = {step.image}
-                           title = {step.title}
-                           title_nep ={step.title_nep}
-                           points = {step.points}
+                <section className="about-procedure pdt-130 pdb-130">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-6">
+                                <div className="about-left">
+                                    <h3 className="openspace-title">Open Space Identification Process</h3>
+                                    <p className="about-body">The open spaces were identified and selected through a 5-step methodology that is built upon the inputs from local governments, humanitarian agencies as well as community members. This methodology ensures the actual usability of the open spaces.</p>
+                                </div>
+                            </div>
+                            <div className="col-md-6">
+                                <div className="about-right">
+                                    {
+                                        this.state.steps && this.state.steps.map((step, i) => {
+                                            return (
+                                                <Identification
+                                                    sn={i}
+                                                    key={step.id}
+                                                    image={step.image}
+                                                    title={step.title}
+                                                    title_nep={step.title_nep}
+                                                    points={step.points}
 
-                           />
-                        )
-                    })
-                }
-               
-                {/* <div className="blocks">
+                                                />
+                                            )
+                                        })
+                                    }
+
+                                    {/* <div className="blocks">
                     <div className="block-icons"style={{backgroundImage:`url(${Icon5})`}}>
                         <img src={Line} alt="" />
                     </div>
@@ -211,12 +215,12 @@ export class Criteria extends Component {
                         </ul>
                     </div>
                 </div> */}
-            </div>
-        </div>
-    </div>
-</div>
-</section>
-</>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </>
         )
     }
 }
