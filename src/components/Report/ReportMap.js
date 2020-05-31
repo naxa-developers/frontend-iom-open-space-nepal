@@ -13,8 +13,8 @@ class ReportMap extends Component {
 
     this.state = {
       height: null,
-      
-     
+
+
     };
   }
 
@@ -29,7 +29,7 @@ class ReportMap extends Component {
     });
   };
 
- 
+
 
 
   componentDidMount() {
@@ -38,10 +38,10 @@ class ReportMap extends Component {
     // this.displayLegends();
   }
   render() {
-   
-    
-    var bounds =[ [ 25.710836919640595, 79.79365377708339],
-        [ 30.798474179567847 , 88.54975729270839]];
+
+
+    var bounds = [[25.710836919640595, 79.79365377708339],
+    [30.798474179567847, 88.54975729270839]];
 
     return (
       <>
@@ -64,61 +64,61 @@ class ReportMap extends Component {
           }}
         >
           <LayersControl position="topright">
-                        <BaseLayer checked={this.state.baselayer ? true : false} ref={this.baseLayer} name="OpenStreetMap">
-                            <TileLayer
-                                attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                                noWrap={true}
+            <BaseLayer checked={this.state.baselayer ? true : false} ref={this.baseLayer} name="OpenStreetMap">
+              <TileLayer
+                attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                noWrap={true}
 
 
 
-                            />
-                        </BaseLayer>
-                        <BaseLayer name="Google Streets">
-                            <TileLayer
-                                attribution='&amp;copy <a href="http://maps.google.com">Google Maps</a> contributors'
-                                url="http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"
-                                maxZoom={20}
-                                subdomains={["mt0", "mt1", "mt2", "mt3"]}
-                            />
-                        </BaseLayer>
-                        <BaseLayer name="Google Hybrid">
-                            <TileLayer
-                                attribution='&amp;copy <a href="http://maps.google.com">Google Maps</a> contributors'
-                                url="http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}"
-                                maxZoom={20}
-                                subdomains={["mt0", "mt1", "mt2", "mt3"]}
-                            />
-                        </BaseLayer>
-                        <BaseLayer name="Google Satellite">
-                            <TileLayer
-                                attribution='&amp;copy <a href="http://maps.google.com">Google Maps</a> contributors'
-                                url="http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"
-                                maxZoom={20}
-                                subdomains={["mt0", "mt1", "mt2", "mt3"]}
-                            />
-                        </BaseLayer>
-                        <BaseLayer name="Google Terrain">
-                            <TileLayer
-                                attribution='&amp;copy <a href="http://maps.google.com">Google Maps</a> contributors'
-                                url="http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}"
-                                maxZoom={20}
-                                subdomains={["mt0", "mt1", "mt2", "mt3"]}
-                            />
-                        </BaseLayer>
-                      
-                        <BaseLayer name="Mapbox Streets" checked={true}  >
-                            <TileLayer
-                                attribution='&amp;copy Developer:<a href="http://maps.google.com">NAXA</a>'
+              />
+            </BaseLayer>
+            <BaseLayer name="Google Streets">
+              <TileLayer
+                attribution='&amp;copy <a href="http://maps.google.com">Google Maps</a> contributors'
+                url="http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"
+                maxZoom={20}
+                subdomains={["mt0", "mt1", "mt2", "mt3"]}
+              />
+            </BaseLayer>
+            <BaseLayer name="Google Hybrid">
+              <TileLayer
+                attribution='&amp;copy <a href="http://maps.google.com">Google Maps</a> contributors'
+                url="http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}"
+                maxZoom={20}
+                subdomains={["mt0", "mt1", "mt2", "mt3"]}
+              />
+            </BaseLayer>
+            <BaseLayer name="Google Satellite">
+              <TileLayer
+                attribution='&amp;copy <a href="http://maps.google.com">Google Maps</a> contributors'
+                url="http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}"
+                maxZoom={20}
+                subdomains={["mt0", "mt1", "mt2", "mt3"]}
+              />
+            </BaseLayer>
+            <BaseLayer name="Google Terrain">
+              <TileLayer
+                attribution='&amp;copy <a href="http://maps.google.com">Google Maps</a> contributors'
+                url="http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}"
+                maxZoom={20}
+                subdomains={["mt0", "mt1", "mt2", "mt3"]}
+              />
+            </BaseLayer>
 
-                                attribution='&amp;copy Developer:<a href=" http://naxa.com.np">NAXA</a>'
-                                // https://api.mapbox.com/styles/v1/upendraoli/cjuvfcfns1q8r1focd0rdlgqn/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidXBlbmRyYW9saSIsImEiOiJjaWYwcnFnNmYwMGY4dGZseWNwOTVtdW1tIn0.uhY72SyqmMJNTKa0bY-Oyw'
-                                url="https://api.mapbox.com/styles/v1/upendraoli/cjuvfcfns1q8r1focd0rdlgqn/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidXBlbmRyYW9saSIsImEiOiJjaWYwcnFnNmYwMGY4dGZseWNwOTVtdW1tIn0.uhY72SyqmMJNTKa0bY-Oyw"
-                                maxZoom={20}
-                            // subdomains={["mt0", "mt1", "mt2", "mt3"]}
-                            />
-                        </BaseLayer>
-                        </LayersControl>
+            <BaseLayer name="Mapbox Streets" checked={true}  >
+              <TileLayer
+                attribution='&amp;copy Developer:<a href="http://maps.google.com">NAXA</a>'
+
+                attribution='&amp;copy Developer:<a href=" http://naxa.com.np">NAXA</a>'
+                // https://api.mapbox.com/styles/v1/upendraoli/cjuvfcfns1q8r1focd0rdlgqn/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidXBlbmRyYW9saSIsImEiOiJjaWYwcnFnNmYwMGY4dGZseWNwOTVtdW1tIn0.uhY72SyqmMJNTKa0bY-Oyw'
+                url="https://api.mapbox.com/styles/v1/naxa-np/cka9lr90s0tgp1is4gep38xi3/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibmF4YS1ucCIsImEiOiJja2E5bGp0ZDQwdHE4MnJxdnhmcGxsdGpuIn0.kB42E50iZFlFPcQiqQMClw"
+                maxZoom={20}
+              // subdomains={["mt0", "mt1", "mt2", "mt3"]}
+              />
+            </BaseLayer>
+          </LayersControl>
         </LeafletMap>
       </>
     );
