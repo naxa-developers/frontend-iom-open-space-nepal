@@ -25,23 +25,24 @@ class OpenSpaceCard extends Component {
     getshortestdistance = (first, second) => {
         this.setState({ calculatedistance: false })
 
-     
-        var baseUrl = "https://route.naxa.com.np/route";
+
+        var baseUrl = "http://35.188.73.141:8989/route";
         var distances = []
-     
-        
+
+
         var url =
             `${baseUrl}?point= ${first[0]},${first[1]},` +
-            `&point=${second!=null?second[0]:''},${second!=null?second[1]:''}` +
+            `&point=${second != null ? second[0] : ''},${second != null ? second[1] : ''}` +
             "&points_encoded=false" +
             "&ch.disable=true" +
             "&alternative_route.max_paths=4" +
             "&algorithm=alternative_route";
-       
-            second!=null&&Axios.get(url)
+
+        second != null && Axios.get(url)
             .then(Response => {
                 //   console.log(Response.data.paths)
-                for (var i = 0; i < Response.data.paths.length; i++) {
+                for (var i = 0; i < Response.data.paths.length; i++)
+                {
                     //   console.log(Response.data.paths[i])
                     distances.push(Response.data.paths[i].distance)
                 }
@@ -144,19 +145,19 @@ class OpenSpaceCard extends Component {
         // }
     }
 
-    setdistance=()=>{
+    setdistance = () => {
         var dis = JSON.parse(sessionStorage.getItem('Distances')).filter(w => w.id == this.props.id)
         // debugger
-      
 
-        dis.length == 0 ?this.getshortestdistance(this.props.latlng, this.props.currentLocation) : this.setState({ shortest: (dis[0].sdist/1000).toFixed(2),calculatedistance: false })
-        this.state.distancecall=false
+
+        dis.length == 0 ? this.getshortestdistance(this.props.latlng, this.props.currentLocation) : this.setState({ shortest: (dis[0].sdist / 1000).toFixed(2), calculatedistance: false })
+        this.state.distancecall = false
     }
 
     render() {
-        this.props.currcalculated&&this.state.distancecall&&this.setdistance();
+        this.props.currcalculated && this.state.distancecall && this.setdistance();
 
-       
+
 
 
 
@@ -197,12 +198,14 @@ class OpenSpaceCard extends Component {
                     </div>
                     <div className={this.props.ActiveRoute == this.props.index ? "space-direction active" : "space-direction"} onClick={() => {
                         // console.log(this.props.ActiveRoute==this.props.index,this.props.ActiveRoute,this.props.index)
-                        if (this.props.ActiveRoute == this.props.index) {
+                        if (this.props.ActiveRoute == this.props.index)
+                        {
                             this.props.removeRoutes();
                             this.props.setActivefalse(null)
 
                         }
-                        else {
+                        else
+                        {
 
                             this.props.routing(this.props.latlng, this.props.currentLocation)
                             this.props.setActivefalse(this.props.index)
@@ -223,8 +226,8 @@ class OpenSpaceCard extends Component {
 const mapStateToProps = (state) => {
     return {
         ...state,
-        currcalculated:state.currentloccalculated
+        currcalculated: state.currentloccalculated
     }
 }
 
-export default withRouter(connect(mapStateToProps,null, null, {forwardRef: true})(OpenSpaceCard));
+export default withRouter(connect(mapStateToProps, null, null, { forwardRef: true })(OpenSpaceCard));

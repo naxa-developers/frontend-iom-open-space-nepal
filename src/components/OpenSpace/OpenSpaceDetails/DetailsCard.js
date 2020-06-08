@@ -64,7 +64,7 @@ class DetailsCard extends Component {
 
 
       this.setState({ spaceInfo: response.data })
-      response.data.layername!==null && this.addWms()
+      response.data.layername !== null && this.addWms()
       this.currentloc()
       var mrk = new L.circleMarker([response.data.centroid[1], response.data.centroid[0]], { radius: 6, fillColor: '#095c05', fillOpacity: 1, weight: 15, opacity: 0.3 })
       let address = response.data.address == null ? "Nepal" : response.data.address
@@ -77,14 +77,17 @@ class DetailsCard extends Component {
       mrk.on('click', () => {
         let dir = document.getElementsByClassName('pop-dir')
 
-        for (var i = 0; i < dir.length; i++) {
+        for (var i = 0; i < dir.length; i++)
+        {
           dir[i].addEventListener('click', () => {
-            if (this.state.isActive) {
+            if (this.state.isActive)
+            {
               this.removeRoute()
               dir[0].classList.remove('active')
 
             }
-            else {
+            else
+            {
               this.Routing()
               dir[0].classList.add('active')
             }
@@ -133,63 +136,66 @@ class DetailsCard extends Component {
     this.state.wmsToggle.addTo(this.props.reff.current.leafletElement)
 
     let wmsLayer = null;
-    if (this.state.spaceInfo.geoserver_url!==null) {
-   
-      
-    document.getElementsByClassName('wms')[0].addEventListener('click', () => {
-    
-      var element = document.getElementById("imgDiv");
+    if (this.state.spaceInfo.geoserver_url !== null)
+    {
+
+
+      document.getElementsByClassName('wms')[0].addEventListener('click', () => {
+
+        var element = document.getElementById("imgDiv");
         element.classList.toggle("imgActive");
         this.setState({ wms: !this.state.wms, wmsClicked: !this.state.wmsClicked, wmsLoading: true }, () => {
-      
+
           this.props.dispatch({
             type: "wmsClicked",
             wms: this.state.wmsClicked
-    
+
           })
           {
-            if (this.state.wms == true) {
-  
+            if (this.state.wms == true)
+            {
+
               wmsLayer = L.tileLayer.wms(this.state.spaceInfo.geoserver_url, {
                 layers: this.state.spaceInfo.workspace + ':' + this.state.spaceInfo.layername,
                 format: 'image/png',
                 maxZoom: 22,
 
-            
+
                 transparent: true
               })
-  
-  
-  
-              wmsLayer.addTo(this.props.reff.current.leafletElement).on("load",() => {
-                  this.props.dispatch({
+
+
+
+              wmsLayer.addTo(this.props.reff.current.leafletElement).on("load", () => {
+                this.props.dispatch({
                   type: 'wmsLoaded',
                   loaded: true
                 })
-              
-            
-              });
-              
-              this.props.reff.current.leafletElement.options.maxZoom = 22;
-              
-              wmsLayer.bringToFront();
-           
 
-            } else {
-  
-  
+
+              });
+
+              this.props.reff.current.leafletElement.options.maxZoom = 22;
+
+              wmsLayer.bringToFront();
+
+
+            } else
+            {
+
+
               this.props.reff.current.leafletElement.removeLayer(wmsLayer)
-  
-  
-  
+
+
+
             }
-  
-  
+
+
           }
-  
-  
+
+
         })
-    
+
 
       }
       )
@@ -197,7 +203,7 @@ class DetailsCard extends Component {
 
   }
 
- 
+
 
   componentDidMount() {
 
@@ -224,7 +230,7 @@ class DetailsCard extends Component {
     this.onload();
     this.fetchDetails();
     this.props.reff.current.leafletElement.addLayer(this.state.Routes)
-   
+
 
 
 
@@ -258,7 +264,7 @@ class DetailsCard extends Component {
 
     this.state.Routespaths = []
     this.state.Routes.eachLayer((r) => this.state.Routes.removeLayer(r))
-    var baseUrl = "https://route.naxa.com.np/route";
+    var baseUrl = "http://35.188.73.141:8989/route";
     var url =
       `${baseUrl}?point= ${first[0]},${first[1]},` +
       `&point=${second[0]},${second[1]}` +
@@ -274,9 +280,11 @@ class DetailsCard extends Component {
         // console.log(Response.data)
 
 
-        for (var j = 0; j < Response.data.paths.length; j++) {
+        for (var j = 0; j < Response.data.paths.length; j++)
+        {
           var path = []
-          for (var i = 0; i < Response.data.paths[j].points.coordinates.length; i++) {
+          for (var i = 0; i < Response.data.paths[j].points.coordinates.length; i++)
+          {
 
             path.push(Response.data.paths[j].points.coordinates[i].reverse())
           }
@@ -302,7 +310,8 @@ class DetailsCard extends Component {
             // doac.map((a)=>{
             //   console.log(a)
             // })
-            for (var i = 0; i < doac.length; i++) {
+            for (var i = 0; i < doac.length; i++)
+            {
               // console.log(doac[i],doac[i].getAttribute('name'))
               // var selectindex=doac[i].getAttribute('name')
               // var filtered=this.state.Routespaths.filter((d)=>d.id==selectindex)
@@ -432,7 +441,8 @@ class DetailsCard extends Component {
         var doc = document.getElementsByClassName('desccard')
         doc[0].classList.add('pathactive')
 
-        for (var i = 0; i < doc.length; i++) {
+        for (var i = 0; i < doc.length; i++)
+        {
           doc[i].addEventListener('click', (e) => {
             // console.log(e.target.getAttribute('name'));
             var value = e.target.closest(".desccard").getAttribute('name')
@@ -440,10 +450,13 @@ class DetailsCard extends Component {
               return a.id == value
             })
 
-            for (var a = 0; a < doc.length; a++) {
-              if (doc[a].getAttribute('name') == value) {
+            for (var a = 0; a < doc.length; a++)
+            {
+              if (doc[a].getAttribute('name') == value)
+              {
                 doc[a].classList.add('pathactive')
-                for (var k = 0; k < this.state.Routespaths.length; k++) {
+                for (var k = 0; k < this.state.Routespaths.length; k++)
+                {
                   this.state.Routespaths[k].path.setStyle({
                     color: 'grey'
                   })
@@ -454,7 +467,8 @@ class DetailsCard extends Component {
                 selected[0].path.bringToFront()
 
               }
-              else {
+              else
+              {
                 doc[a].classList.remove('pathactive')
 
 
@@ -478,7 +492,7 @@ class DetailsCard extends Component {
 
   getshortestdistance = (first, second) => {
     // console.log(first,second,this.props.currentLocation);
-    var baseUrl = "https://route.naxa.com.np/route";
+    var baseUrl = "http://35.188.73.141:8989/route";
     var distances = [];
     // console.log(first,second)
     var url =
@@ -490,7 +504,8 @@ class DetailsCard extends Component {
       "&algorithm=alternative_route";
     Axios.get(url).then(Response => {
       //   console.log(Response.data.paths)
-      for (var i = 0; i < Response.data.paths.length; i++) {
+      for (var i = 0; i < Response.data.paths.length; i++)
+      {
         //   console.log(Response.data.paths[i])
         distances.push(Response.data.paths[i].distance);
       }
@@ -619,7 +634,7 @@ class DetailsCard extends Component {
                           this.nearbyref =
                           comp} fetchroute={this.fetchroute} reff={this.props.reff} OSlatlng={this.state.spaceInfo.centroid} id={this.props.id} />
                       </div>
-                   
+
                     </div>
                   </div>
                 </div>

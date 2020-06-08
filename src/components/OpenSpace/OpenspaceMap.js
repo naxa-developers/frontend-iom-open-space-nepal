@@ -711,7 +711,7 @@ class OS extends Component {
 
                                 attribution='&amp;copy Developer:<a href=" http://naxa.com.np">NAXA</a>'
                                 // https://api.mapbox.com/styles/v1/upendraoli/cjuvfcfns1q8r1focd0rdlgqn/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidXBlbmRyYW9saSIsImEiOiJjaWYwcnFnNmYwMGY4dGZseWNwOTVtdW1tIn0.uhY72SyqmMJNTKa0bY-Oyw'
-                                url="https://api.mapbox.com/styles/v1/upendraoli/cjuvfcfns1q8r1focd0rdlgqn/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidXBlbmRyYW9saSIsImEiOiJjaWYwcnFnNmYwMGY4dGZseWNwOTVtdW1tIn0.uhY72SyqmMJNTKa0bY-Oyw"
+                                url="https://api.mapbox.com/styles/v1/naxa-np/cka9lr90s0tgp1is4gep38xi3/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibmF4YS1ucCIsImEiOiJja2E5bGp0ZDQwdHE4MnJxdnhmcGxsdGpuIn0.kB42E50iZFlFPcQiqQMClw"
                                 maxZoom={20}
                             // subdomains={["mt0", "mt1", "mt2", "mt3"]}
                             />
