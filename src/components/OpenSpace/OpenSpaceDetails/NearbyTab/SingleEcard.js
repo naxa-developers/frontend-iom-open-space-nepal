@@ -16,17 +16,17 @@ export default class SingleEcard extends Component {
       isActive: false,
       Routespaths: [],
       Routes: L.featureGroup(),
-      
+
     }
   }
 
 
 
-  
+
 
   getshortestdistance = (first, second) => {
     // console.log(first,second,this.props.currentLocation);
-    var baseUrl = "https://route.naxa.com.np/route";
+    var baseUrl = "http://35.188.73.141:8989/route";
     var distances = []
     // console.log(first,seond)
     var url =
@@ -39,7 +39,8 @@ export default class SingleEcard extends Component {
     Axios.get(url)
       .then(Response => {
         //   console.log(Response.data.paths)
-        for (var i = 0; i < Response.data.paths.length; i++) {
+        for (var i = 0; i < Response.data.paths.length; i++)
+        {
           //   console.log(Response.data.paths[i])
           distances.push(Response.data.paths[i].distance)
         }
@@ -52,25 +53,26 @@ export default class SingleEcard extends Component {
 
   componentDidMount() {
 
-    setTimeout(() => {this.getshortestdistance(this.props.OSlatlng, this.props.latlng)
-     
+    setTimeout(() => {
+      this.getshortestdistance(this.props.OSlatlng, this.props.latlng)
 
-    
+
+
     }, 1000)
 
   }
 
   render() {
-    
-    return (
-      <li onClick={()=>{
 
-        console.log(this.props.reff.current.leafletElement,this.props.latlng)
+    return (
+      <li onClick={() => {
+
+        console.log(this.props.reff.current.leafletElement, this.props.latlng)
         // this.props.reff.current.leafletElement.fitBounds(new L.featureGroup([L.marker(this.props.latlng)]).getBounds())
-        this.props.reff.current.leafletElement.setView(this.props.latlng,20)
+        this.props.reff.current.leafletElement.setView(this.props.latlng, 20)
       }}>
         <div class="space" >
-        
+
 
           <div class="space-content">
             <h5>{this.props.name}</h5>
@@ -80,14 +82,16 @@ export default class SingleEcard extends Component {
             </span>
               <span>
                 <i class="material-icons">near_me</i>{this.state.calculatedistance ? '' : this.state.shortest + " km"}  </span>
-              <div className={this.props.ActiveRoute==this.props.index?"space-direction active":"space-direction"}onClick={() => {
-                if (this.props.ActiveRoute==this.props.index) {
-                 
+              <div className={this.props.ActiveRoute == this.props.index ? "space-direction active" : "space-direction"} onClick={() => {
+                if (this.props.ActiveRoute == this.props.index)
+                {
+
                   this.props.remove()
                   this.props.setActivefalse(null)
-                  
+
                 }
-                else {
+                else
+                {
                   this.props.fetchroute(this.props.OSlatlng, this.props.latlng)
                   this.props.setActivefalse(this.props.index)
                 }
