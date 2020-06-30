@@ -214,7 +214,7 @@ class OS extends Component {
                     return {
                         fillColor: "white",
                         fillOpacity: 0,
-                        weight: 1.5,
+                        weight: 1.3,
                         opacity: 1,
                         color: "#a3b7e3",
                         fill: true
@@ -257,14 +257,19 @@ class OS extends Component {
 
             }
         }
-        var provinceUrl = 'https://geoserver.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Bipad:Province@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
-        var districtUrl = 'https://geoserver.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Bipad:District@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
-        // var municipalityUrl = 'https://geoserver.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Naxa:Municipality@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
-        var municipalityUrl = 'https://geoserver.naxa.com.np/geoserver/gwc/service/tms/1.0.0/Bipad:Municipality@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
-        // var municipalityUrl = 'http://202.45.146.3:8080/geoserver/gwc/service/tms/1.0.0/Bipad:Municipality@EPSG%3A900913@pbf/{z}/{x}/{-y}.pbf';
+
+        var provinceUrl = "https://vectortile.naxa.com.np/federal/province.mvt/?tile={z}/{x}/{y}"
+        var districtUrl = "https://vectortile.naxa.com.np/federal/district.mvt/?tile={z}/{x}/{y}"
+        var municipalityUrl = "https://vectortile.naxa.com.np/federal/municipality.mvt/?tile={z}/{x}/{y}"
 
 
-        province = L.vectorGrid.protobuf(provinceUrl, vectorTileOptions);
+        province = L.vectorGrid.protobuf(provinceUrl, {
+            vectorTileOptions,
+            subdomains: "0123",
+            key: 'abcdefghi01234567890',
+            maxNativeZoom: 14
+        })
+        // province = L.vectorGrid.protobuf(provinceUrl, vectorTileOptions);
 
         district = L.vectorGrid.protobuf(districtUrl, vectorTileOptions)
         municipality = L.vectorGrid.protobuf(municipalityUrl, vectorTileOptions)
