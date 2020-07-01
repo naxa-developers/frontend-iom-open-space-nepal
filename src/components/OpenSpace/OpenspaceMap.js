@@ -763,14 +763,14 @@ class OS extends Component {
 
                 let z = MAP.getZoom();
 
-                if (z > 8)
+                if (z > 7)
                 {
 
                     r();
-                    district.addTo(MAP)
-                    municipality.addTo(MAP);
-                    district.setZIndex(20);
-                    municipality.setZIndex(10);
+                    // district.addTo(MAP)
+                    // municipality.addTo(MAP);
+                    // district.setZIndex(20);
+                    // municipality.setZIndex(10);
                     munLayer.addTo(MAP);
 
 
@@ -779,8 +779,8 @@ class OS extends Component {
                 {
 
                     r1();
-                    MAP.removeLayer(municipality)
-                    MAP.removeLayer(district)
+                    // MAP.removeLayer(municipality)
+                    // MAP.removeLayer(district)
                     MAP.removeLayer(munLayer)
 
                 }

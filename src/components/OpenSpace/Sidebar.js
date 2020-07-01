@@ -1004,8 +1004,9 @@ class Sidebar extends Component {
                               })
 
                             )
-                            var bounds = [[25.710836919640595, 79.79365377708339],
-                            [30.798474179567847, 88.54975729270839]];
+
+                            var bounds = [[26.209781975840405, 80.15739792926259],
+                            [31.05876857077987, 88.39714402301262]];
                             this.props.mapRefs.current.leafletElement.fitBounds(bounds)
                             this.state.Routes.eachLayer((e) => this.state.Routes.removeLayer(e))
 
