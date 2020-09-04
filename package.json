@@ -70,7 +70,7 @@
     "file-loader": "^4.2.0",
     "image-webpack-loader": "^6.0.0",
     "mini-css-extract-plugin": "^0.8.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "react-inlinesvg": "^1.1.7",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
