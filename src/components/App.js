@@ -17,6 +17,7 @@ import AboutApp from "./AboutApp/AboutApp";
 import OpenSpaceDetails from "./OpenSpace/OpenSpaceDetails/OpenSpaceDetails";
 import ReportDetails from './Report/ReportDetails/ReportDetails';
 import About from './About/About';
+import PrivacyPolicies from "./PrivacyPolicy/PrivacyPolicies";
 
 
 
@@ -27,69 +28,75 @@ import About from './About/About';
 
 
 class App extends Component {
-  render() {
+    render() {
 
-    return (
-     
-      <Router >
-          <Switch>
-    
-            <Route
-              exact
-              path="/"
-              render={props => <Home {...props}/>
-              }
-            ></Route>
+        return (
 
-            <Route
-              exact
-              path="/resources"
-              render={props => <Resources {...props}/>
-              }
-            ></Route>
-            <Route
-              exact
-              path="/report"
-              render={props => <Report {...props}/>}
-            ></Route>
-              <Route
-              exact
-              path="/about"
-              render={props => <About {...props}/>}
-            ></Route>
-            <Route
-              exact
-              path="/openspace"
-              render={props => 
-                <OpenSpace {...props}/>}
-            ></Route>
-            <Route
-              exact
-              path="/aboutapp"
-              render={props => 
-                <AboutApp {...props}/>
-              }
-            ></Route>
-            <Route
-              exact
-              path="/OpenSpaceDetails"
-              render={props => 
-                <OpenSpaceDetails {...props}/>
-              }
-            ></Route>
-            <Route
-              exact
-              path="/reportdetails"
-              render={props => 
-                <ReportDetails {...props}/>
-              }
-            ></Route>
+            <Router >
+                <Switch>
 
-          </Switch>
-      
-      </Router>
-    );
-  }
+                    <Route
+                        exact
+                        path="/"
+                        render={props => <Home {...props} />
+                        }
+                    ></Route>
+
+                    <Route
+                        exact
+                        path="/resources"
+                        render={props => <Resources {...props} />
+                        }
+                    ></Route>
+                    <Route
+                        exact
+                        path="/report"
+                        render={props => <Report {...props} />}
+                    ></Route>
+                    <Route
+                        exact
+                        path="/about"
+                        render={props => <About {...props} />}
+                    ></Route>
+                    <Route
+                        exact
+                        path="/openspace"
+                        render={props =>
+                            <OpenSpace {...props} />}
+                    ></Route>
+                    <Route
+                        exact
+                        path="/aboutapp"
+                        render={props =>
+                            <AboutApp {...props} />
+                        }
+                    ></Route>
+                    <Route
+                        exact
+                        path="/OpenSpaceDetails"
+                        render={props =>
+                            <OpenSpaceDetails {...props} />
+                        }
+                    ></Route>
+                    <Route
+                        exact
+                        path="/reportdetails"
+                        render={props =>
+                            <ReportDetails {...props} />
+                        }
+                    ></Route>
+                    <Route
+                        exact
+                        path="/privacy-policy"
+                        render={props =>
+                            <PrivacyPolicies />
+                        }
+                    ></Route>
+                </Switch>
+
+            </Router>
+        );
+    }
 }
 
 export default connect()(App);
