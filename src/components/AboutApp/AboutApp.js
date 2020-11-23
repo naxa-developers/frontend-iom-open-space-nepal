@@ -7,6 +7,7 @@ import bannerShape from '../../img/banner-shape.png';
 import MapLocation from '../../img/map-pin-locations.svg'
 import Steps from './Steps';
 import { connect } from 'react-redux';
+import DownloadApp from './DownloadApp';
 
  class AboutApp extends Component {
 
@@ -16,6 +17,10 @@ import { connect } from 'react-redux';
         this.state = {
           data: ""
         };
+      }
+
+      componentDidMount() {
+        window.scrollTo(0, 0)
       }
     
       fetchInfo = () => {
@@ -35,42 +40,10 @@ import { connect } from 'react-redux';
 
 
     render() {
-     console.log(this.state.data);
-     
-        
         return (
             <div className="app-page">
                 <Navbar />
-                <div className="app-section mb-150 pt-150">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-md-6">
-                                <figure className="app-figure flex-end">
-                                    <img src={require('../../img/app-banner.png')} alt="app" />
-                                </figure>
-                            </div>
-                            <div className="col-md-6">
-                                <figure className="app-content">
-                                    <span className="sub-title">{ this.props.language=='0' ? 'Get started with' : 'सुरु गर्नुहोस्'}</span>
-                                    <h3 className="openspace-title">{ this.props.language=='0' ? 'OPEN SPACES App' : 'खुला ठाउँ अनुप्रयोग'}</h3>
-                                    
-                                    <div className="app-icons-content">
-                                        
-                                        <h4>{ this.props.language=='0' ? 'Download now' : 'डाउनलोड गर्नुहोस्' }</h4>
-                                        <div className="app-icon flex-start">
-                                            <figure>
-                                                <img src={require('../../img/appstore.png')} alt="ios" />
-                                            </figure>
-                                            <figure>
-                                                <img src={require('../../img/googleplay.png')} alt="android" />
-                                            </figure>
-                                        </div>
-                                    </div>
-                                </figure>
-                            </div>
-                        </div>
-                    </div>
-            </div>
+              <DownloadApp showViewMore={false} />
             <main className="main-content">
             <div className="container">
             <div class="row-wrap">

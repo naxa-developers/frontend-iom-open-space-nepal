@@ -498,3 +498,61 @@ $breakpoints: (
   border-color: $color;
 }
 
+
+@-webkit-keyframes opacity {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes slowRevealation {
+  0%{
+    opacity: 0;
+    background: rgba(#E8F8E7, .7)
+  }
+  100%{
+    opacity: 1;
+    background: rgba(#174Bdd, 1)
+  }
+} 
+
+@keyframes slowRevealation {
+  0%{
+    opacity: 0;
+    background: rgba(#E8F8E7, .7)
+  }
+  100%{
+    opacity: 1;
+    background: rgba(#174Bdd, 1)
+  }
+} 
+
+@-webkit-keyframes slowScaling {
+  0%{
+    opacity: 0;
+   transform: scale(0.9);;
+  }
+  100%{
+    opacity: 1;
+    transform: scale(1);;
+  }
+} 
+
+@keyframes slowScaling{
+  0%{
+    opacity: 0;
+   transform: scale(0.9);;
+  }
+  100%{
+    opacity: 1;
+    transform: scale(1);
+  }
+} 
+
+@mixin animation($value) {
+  -webkit-animation: $value;
+  animation: $value;
+}

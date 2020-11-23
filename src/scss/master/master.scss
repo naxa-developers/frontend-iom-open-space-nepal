@@ -1,0 +1,11 @@
+
+.page-content{
+    @include animation(opacity 5s ease-in-out);
+   
+}
+.video-popup{
+    @include animation(slowRevealation 2s ease-in-out);
+    .popup-container{
+        @include animation(slowScaling 3s ease-in-out);
+    }
+}

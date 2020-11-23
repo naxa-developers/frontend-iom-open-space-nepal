@@ -12,6 +12,8 @@ import Footer from "./Footer";
 
 import Background from "../../img/banner.jpg";
 import bannerShape from "../../img/banner-shape.png";
+import OverlayVideo from './OverlayVideo';
+import DownloadApp from '../AboutApp/DownloadApp';
 
  class Home extends Component {
    constructor(props) {
@@ -26,26 +28,16 @@ import bannerShape from "../../img/banner-shape.png";
   fetchCounts = () => {
     Axios.get(`https://iomapi.naxa.com.np/api/v1/glimpse_of_open_space`)
     .then(res => {
-    
-        
-
-       
         const counts = res.data.data;
         
         let mun = Object.values(counts.municipality_list);
         let munArray = [];
-        mun.map((m) => {
-         
-          
+        mun.map((m) => {   
           munArray.push(Object.keys(m)[0]);
           
         })
        
-
-        this.setState({counts: counts})
-        
-
-       
+        this.setState({counts: counts})  
         
     })
 }
@@ -58,7 +50,8 @@ componentDidMount() {
       
         return (
         
-        <>
+        <div className='page-content'>
+         <OverlayVideo />
          <section className="banner" style={{ backgroundImage: `url(${Background})` }}>
           <Navbar />
           <Banner />
@@ -66,14 +59,13 @@ componentDidMount() {
         <main className="main-content">
         {/* <ImageSlider /> */}
         <OpenSpace />
+        <DownloadApp showViewMore={true} />
         <Identification />
         <Glimpse
         className= 'toggleModal'
         counts = {this.state.counts}
         />
-        
-       
-        
+          
       </main>
       <footer
           className="site-footer pt-150"
@@ -81,7 +73,8 @@ componentDidMount() {
         >
           <Footer />
         </footer>
-        </ >       
+    
+        </div>       
             
         )
     }
