@@ -9,11 +9,11 @@ class PrivacyPolicies extends React.PureComponent {
         this.myRef = React.createRef()
     }
     componentDidMount() {
-        window.scrollTo(0, 0);
+  this.myRef.current.scrollIntoView();
     }
     render() {
         return (
-            <div className="app-page" ref={this.props.myRef}>
+            <div className="app-page" ref={this.myRef}>
                 <Navbar />
                 <main className="main-content">
                     <div className="container">

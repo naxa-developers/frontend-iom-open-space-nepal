@@ -18,6 +18,7 @@ import OpenSpaceDetails from "./OpenSpace/OpenSpaceDetails/OpenSpaceDetails";
 import ReportDetails from './Report/ReportDetails/ReportDetails';
 import About from './About/About';
 import PrivacyPolicies from "./PrivacyPolicy/PrivacyPolicies";
+import OverlayVideo from "./Home/OverlayVideo";
 
 
 
@@ -31,7 +32,7 @@ class App extends Component {
     render() {
 
         return (
-
+<>
             <Router >
                 <Switch>
 
@@ -95,6 +96,7 @@ class App extends Component {
                 </Switch>
 
             </Router>
+            </>
         );
     }
 }
