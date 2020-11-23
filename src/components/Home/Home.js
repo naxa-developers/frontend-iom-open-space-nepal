@@ -58,9 +58,8 @@ componentDidMount() {
         </section> 
         <main className="main-content">
         {/* <ImageSlider /> */}
-        <DownloadApp showViewMore={true} />
         <OpenSpace />
-        
+        {/* <DownloadApp showViewMore={true} /> */}
         <Identification />
         <Glimpse
         className= 'toggleModal'

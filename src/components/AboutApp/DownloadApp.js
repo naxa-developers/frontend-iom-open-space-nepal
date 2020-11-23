@@ -22,10 +22,14 @@ function DownloadApp({language, showViewMore}) {
                             <h4>{ language=='0' ? 'Download now' : 'डाउनलोड गर्नुहोस्' }</h4>
                             <div className="app-icon flex-start">
                                 <figure>
-                                    <img src={require('../../img/appstore.png')} alt="ios" />
+                                   <a href='https://apps.apple.com/sk/app/open-space-nepal/id1534918535' target='_blank'>
+                                       <img src={require('../../img/appstore.png')} alt="ios" />
+                                       </a> 
                                 </figure>
                                 <figure>
+                                    <a href='https://play.google.com/store/apps/details?id=com.iom.openspaces&hl=en&gl=US' target='_blank'>
                                     <img src={require('../../img/googleplay.png')} alt="android" />
+                                    </a>
                                 </figure>
                             </div>
                         </div>
