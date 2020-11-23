@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
+import { connect } from 'react-redux';
 
-const OverlayVideo = () => {
+const OverlayVideo = ({language}) => {
 const[overlay, setOverlay] = useState(true)
 
     return (
@@ -14,13 +15,20 @@ const[overlay, setOverlay] = useState(true)
             <div class="popup-body">
                     <div class="popup-content">
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/659CESxEb5U" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/DpETG__a964" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                         </div>
                     </div>
+                  
                 </div>
         </div>
     </div>
     )
 }
 
-export default OverlayVideo;
+const mapStateToProps = state => {
+    return {
+     language: state.language
+    };
+  };
+
+export default connect(mapStateToProps)(OverlayVideo);
