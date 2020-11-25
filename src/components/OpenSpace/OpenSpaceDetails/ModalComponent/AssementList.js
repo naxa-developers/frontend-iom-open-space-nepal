@@ -39,16 +39,14 @@ const AssementList = (props) => {
             </div>
       
             <Modal isOpen={modalOne} toggle={toggle1} className={className}  centered ="true" size = "lg" zIndex="99999">
-        <ModalHeader toggle={toggle1}>Environment Assessment
+        <ModalHeader toggle={toggle1}>Environmental Checklist
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </ModalHeader>
                 <ModalBody>
                     <div class="modal-body">
-                      
-                        
-                        
+       
                         <ul class="assessment-modal-list">
                             
                                <Question question_data= {question_data}/>
@@ -71,7 +69,7 @@ const AssementList = (props) => {
                     <table class="table table-striped">
   <thead>
     <tr>
-      <th scope="col">S.N</th>
+      <th scope="col">SN</th>
       <th scope="col">Title</th>
       <th scope="col">Value</th>
       
@@ -80,7 +78,7 @@ const AssementList = (props) => {
   <tbody>
     <tr>
       <th scope="row">1</th>
-      <td>Name of OpenSpace</td>
+      <td>Name of Open Space</td>
     <td>{title}</td>
      
     </tr>
@@ -118,14 +116,14 @@ const AssementList = (props) => {
     <tr>
       <th scope="row">5</th>
       <td>Total Area</td>
-    <td>{total_area} sq.m.</td>
+    <td>{total_area} <span>m<sup>2</sup></span></td>
       
     </tr>
 
     <tr>
       <th scope="row">6</th>
       <td>Usable Area</td>
-    <td>{usable_area} sq.m.</td>
+    <td>{usable_area} <span>m<sup>2</sup></span></td>
       
     </tr>
    
@@ -139,7 +137,9 @@ const AssementList = (props) => {
     <tr>
       <th scope="row">8</th>
       <td>Special Features</td>
-    <td>{special_feature}</td>
+    <td>{special_feature ? ( 
+     <span>{special_feature}.</span>
+      ) : 'N/A'}</td>
       
     </tr>
     <tr>

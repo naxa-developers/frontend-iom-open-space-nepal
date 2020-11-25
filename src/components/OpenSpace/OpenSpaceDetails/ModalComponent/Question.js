@@ -2,14 +2,8 @@ import React, { Component } from 'react'
 import QuestionOne from './QuestionOne'
 
 export default class Question extends Component {
-  
     render() {
-     
-     
-        
-        
-        return (
-          
+        return ( 
         <>
                {this.props.question_data&&this.props.question_data.map((que) => {
                   

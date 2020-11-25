@@ -14,6 +14,7 @@ import Background from "../../img/banner.jpg";
 import bannerShape from "../../img/banner-shape.png";
 import OverlayVideo from './OverlayVideo';
 import DownloadApp from '../AboutApp/DownloadApp';
+import YoutubePlaylist from './YoutubePlaylist';
 
  class Home extends Component {
    constructor(props) {
@@ -57,10 +58,9 @@ componentDidMount() {
           <Banner />
         </section> 
         <main className="main-content">
-        {/* <ImageSlider /> */}
-        <OpenSpace />
-        {/* <DownloadApp showViewMore={true} /> */}
+          <YoutubePlaylist />
         <Identification />
+        <OpenSpace />
         <Glimpse
         className= 'toggleModal'
         counts = {this.state.counts}

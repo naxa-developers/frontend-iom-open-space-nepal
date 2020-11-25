@@ -223,18 +223,8 @@ class Sidebar extends Component {
       var class1 = 'desccard';
       // var activeclass=class1
 
-      var descCard = "<ul id='mrk-lg'><h6>Legend</h6><li><span class='legend blue'></span><p>Openspace</p></li> <li><div class='legendMuni'></div><p>Mapped Area</p></li></ul>";
-
-
-
+      var descCard = "<ul id='mrk-lg'><h6>Legend</h6><li><span class='legend blue'></span><p>Open Space</p></li> <li><div class='legendMuni'></div><p>Mapped Area</p></li></ul>";
       div.innerHTML += descCard
-
-
-
-
-
-
-
       return div;
     }
     this.state.markersLegend.addTo(this.props.mapRefs.current.leafletElement)
@@ -255,8 +245,7 @@ class Sidebar extends Component {
     );
 
     // console.log("apply",this.state.SelectedProvince,this.state.SelectedDistrict,this.state.SelectedMunicipality)
-    if (this.state.SelectedProvince && this.state.SelectedDistrict && this.state.SelectedMunicipality)
-    {
+    if (this.state.SelectedProvince && this.state.SelectedDistrict && this.state.SelectedMunicipality) {
       // console.log("munid", this.state.SelectedMunicipality.value);
 
       Axios.get(
@@ -283,8 +272,7 @@ class Sidebar extends Component {
 
       })
     }
-    else if (this.state.SelectedProvince && this.state.SelectedDistrict)
-    {
+    else if (this.state.SelectedProvince && this.state.SelectedDistrict) {
       this.props.mapRefs.current.leafletElement = this.props.mapRefs.current.leafletElement;
       this.state.district_muni.eachLayer(e =>
         this.state.district_muni.removeLayer(e)
@@ -317,8 +305,7 @@ class Sidebar extends Component {
         );
       })
     }
-    else if (this.state.SelectedProvince)
-    {
+    else if (this.state.SelectedProvince) {
       // let FilteredOS = this.state.Openspaces.filter((e) => e.province == this.state.SelectedProvince.value)
 
       // this.setState({ Allos: FilteredOS, loading: false })
@@ -393,14 +380,12 @@ class Sidebar extends Component {
     Axios.get(`https://iomapi.naxa.com.np/api/v1/near_by_openspace?count=100&distance=2&latitude=${this.props.currentLocation[0]}&longitude=${this.props.currentLocation[1]}`)
       .then(response => {
         this.setState({ nearbyOS: response.data.open_space })
-        if (response.data.open_space.length != 0)
-        {
+        if (response.data.open_space.length != 0) {
           this.props.mapRefs.current.leafletElement.removeLayer(this.state.OSmarkers)
           this.setState({ Allos: response.data.open_space })
           this.displaynearbyOs()
         }
-        else
-        {
+        else {
           this.notify()
         }
         // console.log(response.data.open_space ,this.state.Openspaces)
@@ -423,8 +408,7 @@ class Sidebar extends Component {
       });
       e.centroid === null && console.log("null", e);
 
-      if (e.centroid !== null)
-      {
+      if (e.centroid !== null) {
 
         var htmlmrk = L.marker([e.centroid[1], e.centroid[0]], { icon: icon });
         var mrk = new L.circleMarker([e.centroid[1], e.centroid[0]], { radius: 6, fillColor: 'green', fillOpacity: 1, weight: 15, opacity: 0.3, color: 'green', pane: 'nearby' })
@@ -435,8 +419,7 @@ class Sidebar extends Component {
         htmlmrk.bindPopup(pop)
         htmlmrk.on('click', () => {
           var classes = document.getElementsByClassName('openSpace_btn')
-          for (var i = 0; i < classes.length; i++)
-          {
+          for (var i = 0; i < classes.length; i++) {
             classes[i].addEventListener('click', () => {
               this.props.dispatch({ type: "spaceClicked", id: e.id })
               this.props.history.push('/OpenSpaceDetails');
@@ -445,8 +428,7 @@ class Sidebar extends Component {
           }
           let dir = document.getElementsByClassName('pop-dir')
 
-          for (var i = 0; i < dir.length; i++)
-          {
+          for (var i = 0; i < dir.length; i++) {
             dir[i].addEventListener('click', () => {
 
               const newData = [
@@ -454,16 +436,14 @@ class Sidebar extends Component {
                 ...this.state.Allos.filter(item => item.id != e.id),
               ]
               this.setState({ Allos: newData })
-              if (this.state.ActiveRouteindex == e.id)
-              {
+              if (this.state.ActiveRouteindex == e.id) {
                 // console.log(dir)
                 dir[0].classList.remove('active')
                 this.removeRoutes();
                 this.setActivefalse(null)
 
               }
-              else
-              {
+              else {
 
 
                 this.fetchroute([e.centroid[1], e.centroid[0]], this.props.currentLocation)
@@ -495,8 +475,7 @@ class Sidebar extends Component {
   }
 
   tooglenearby = () => {
-    if (this.state.nearbytoogle)
-    {
+    if (this.state.nearbytoogle) {
       this.state.nearbyGroup.eachLayer(e => this.state.nearbyGroup.removeLayer(e))
       document.getElementById('mrk-lg').removeChild(document.getElementById('nearbylegend'))
       document.getElementById('mrk-lg').removeChild(document.getElementById('nearbylegendOne'))
@@ -510,8 +489,7 @@ class Sidebar extends Component {
 
 
     }
-    else
-    {
+    else {
       this.nearbymeOS()
       document.getElementsByClassName("openspace-button")[1].classList.add("active");
       // console.log( document.getElementsByClassName("openspace-button"))
@@ -529,8 +507,7 @@ class Sidebar extends Component {
 
     this.state.Allos.map(e => {
       // console.log(e, 'data')
-      if (e.centroid !== null)
-      {
+      if (e.centroid !== null) {
         var map = this.props.mapRefs.current.leafletElement;
         // new L.circleMarker([e.latitude, e.longitude]).addTo(map)
         var icon = L.divIcon({
@@ -554,8 +531,7 @@ class Sidebar extends Component {
         htmlmrk.bindPopup(pop)
         htmlmrk.on('click', () => {
           var classes = document.getElementsByClassName('openSpace_btn')
-          for (var i = 0; i < classes.length; i++)
-          {
+          for (var i = 0; i < classes.length; i++) {
             classes[i].addEventListener('click', () => {
               this.props.dispatch({ type: "spaceClicked", id: e.id })
               this.props.history.push('/OpenSpaceDetails');
@@ -564,8 +540,7 @@ class Sidebar extends Component {
           }
           let dir = document.getElementsByClassName('pop-dir')
 
-          for (var i = 0; i < dir.length; i++)
-          {
+          for (var i = 0; i < dir.length; i++) {
             dir[i].addEventListener('click', () => {
 
               const newData = [
@@ -573,16 +548,14 @@ class Sidebar extends Component {
                 ...this.state.Allos.filter(item => item.id != e.id),
               ]
               this.setState({ Allos: newData })
-              if (this.state.ActiveRouteindex == e.id)
-              {
+              if (this.state.ActiveRouteindex == e.id) {
                 // console.log(dir)
                 dir[0].classList.remove('active')
                 this.removeRoutes();
                 this.setActivefalse(null)
 
               }
-              else
-              {
+              else {
                 // console.log(i,dir)
 
                 this.fetchroute([e.centroid[1], e.centroid[0]], this.props.currentLocation)
@@ -638,11 +611,9 @@ class Sidebar extends Component {
         // console.log(this.state.Routespaths)
 
 
-        for (var j = 0; j < Response.data.paths.length; j++)
-        {
+        for (var j = 0; j < Response.data.paths.length; j++) {
           var path = []
-          for (var i = 0; i < Response.data.paths[j].points.coordinates.length; i++)
-          {
+          for (var i = 0; i < Response.data.paths[j].points.coordinates.length; i++) {
 
             path.push(Response.data.paths[j].points.coordinates[i].reverse())
           }
@@ -668,8 +639,7 @@ class Sidebar extends Component {
             // doac.map((a)=>{
             //   console.log(a)
             // })
-            for (var i = 0; i < doac.length; i++)
-            {
+            for (var i = 0; i < doac.length; i++) {
               // console.log(doac[i],doac[i].getAttribute('name'))
               // var selectindex=doac[i].getAttribute('name')
               // var filtered=this.state.Routespaths.filter((d)=>d.id==selectindex)
@@ -802,8 +772,7 @@ class Sidebar extends Component {
         var doc = document.getElementsByClassName('desccard')
         doc[0].classList.add('pathactive')
 
-        for (var i = 0; i < doc.length; i++)
-        {
+        for (var i = 0; i < doc.length; i++) {
           doc[i].addEventListener('click', (e) => {
 
             var value = e.target.closest(".desccard").getAttribute('name')
@@ -812,13 +781,10 @@ class Sidebar extends Component {
               return a.id == value
             })
 
-            for (var a = 0; a < doc.length; a++)
-            {
-              if (doc[a].getAttribute('name') == value)
-              {
+            for (var a = 0; a < doc.length; a++) {
+              if (doc[a].getAttribute('name') == value) {
                 doc[a].classList.add('pathactive')
-                for (var k = 0; k < this.state.Routespaths.length; k++)
-                {
+                for (var k = 0; k < this.state.Routespaths.length; k++) {
                   this.state.Routespaths[k].path.setStyle({
                     color: 'grey'
                   })
@@ -829,8 +795,7 @@ class Sidebar extends Component {
                 selected[0].path.bringToFront()
 
               }
-              else
-              {
+              else {
                 doc[a].classList.remove('pathactive')
 
 
@@ -889,14 +854,12 @@ class Sidebar extends Component {
     this.fetchingForDropdown("district");
     this.fetchingForDropdown("municipality")
 
-    if (JSON.parse(sessionStorage.getItem('stored')) != true)
-    {
+    if (JSON.parse(sessionStorage.getItem('stored')) != true) {
 
       this.fetchOS();
 
     }
-    else
-    {
+    else {
 
 
       this.state.Openspaces = JSON.parse(sessionStorage.getItem('Openspaces'));
@@ -916,14 +879,11 @@ class Sidebar extends Component {
   notify = () => toast.info("NO Openspace Found", { containerId: 'A', autoClose: false, });
 
   componentDidUpdate(prevProps) {
-    if (prevProps.remove !== this.props.remove)
-    {
-      if (this.props.remove === true)
-      {
+    if (prevProps.remove !== this.props.remove) {
+      if (this.props.remove === true) {
         this.displayOS();
       }
-      else
-      {
+      else {
         this.removeOsOnZoom();
 
       }
@@ -1047,13 +1007,18 @@ class Sidebar extends Component {
                   <div className="report-count">
                     <h5>
                       {/* Open spaces: <span> 83 </span> */}
-                      {this.props.language == '0' ? 'Open spaces:' : 'खुला स्थानहरू:'} <span> {this.state.Allos.length} </span>
+                      {this.props.language == '0' ? 'Humanitarian Open Spaces:' : 'खुला स्थानहरू:'} <span> {this.state.Allos.length} </span>
 
                     </h5>
                     {/* <span>Below is the result of Gandaki Province..</span> */}
                   </div>
 
-                  {this.state.showText == true && <span style={{ color: '#6D6E71', fontSize: '0.9rem', fontStyle: 'bold' }}>Openspaces from  {this.state.SelectedProvince && this.state.SelectedProvince.label} {this.state.SelectedDistrict && <span>,{this.state.SelectedDistrict.label}</span>} {this.state.SelectedMunicipality && <span>,{this.state.SelectedMunicipality.label} </span>}  </span>}
+                  {this.state.showText == true && <span style={{ color: '#6D6E71', fontSize: '0.9rem', fontStyle: 'bold' }}>
+                    Openspaces from  
+                    {this.state.SelectedMunicipality ? <span> {this.state.SelectedMunicipality.label}, </span> : ''}  
+                    {this.state.SelectedDistrict ? <span> {this.state.SelectedDistrict.label}, </span> : ''} 
+                    {this.state.SelectedProvince ? <span> {this.state.SelectedProvince.label} </span> : ''}  
+                        </span>}
                   <div className="space-list" >
                     <div className="input-group">
                       <div className="input-group-prepend">
