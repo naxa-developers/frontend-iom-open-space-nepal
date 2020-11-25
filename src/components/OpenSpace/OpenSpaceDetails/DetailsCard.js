@@ -36,8 +36,8 @@ class DetailsCard extends Component {
       wms: false,
       wmsClicked: false,
       wmsLoading: false,
-      isLoaded: false
-
+      isLoaded: false,
+      question_data: []
 
 
     };
@@ -59,11 +59,13 @@ class DetailsCard extends Component {
     Axios.get(
       `https://iomapi.naxa.com.np/api/v1/open_space/${localStorage.getItem("OpenspaceID")}`
     ).then(response => {
-
-
-
-
       this.setState({ spaceInfo: response.data })
+      const reversedQuestionData = response.data &&
+      response.data.question_data &&
+      response.data.question_data.reverse();
+      this.setState({
+        question_data: reversedQuestionData
+      })
       response.data.layername !== null && this.addWms()
       this.currentloc()
       var mrk = new L.circleMarker([response.data.centroid[1], response.data.centroid[0]], { radius: 6, fillColor: '#095c05', fillOpacity: 1, weight: 15, opacity: 0.3 })
@@ -585,7 +587,7 @@ class DetailsCard extends Component {
                           suggested_use={this.state.spaceInfo.suggested_use}
                           services={this.state.spaceInfo.services}
                           title={this.state.spaceInfo.title}
-                          question_data={this.state.spaceInfo.question_data}
+                          question_data={this.state.question_data}
                           description={this.state.spaceInfo.description}
                           province={this.state.spaceInfo.province_name}
                           municipality={this.state.spaceInfo.municipality_name}

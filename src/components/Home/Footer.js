@@ -69,7 +69,12 @@ class Footer extends Component {
                     </p>
 
                                         }
-                                        <p>Read <Link to='/privacy-policy'>Privacy and Policies.</Link></p>
+                                     {/* {  this.props.language == "0" ? ( */}
+                                     <p>Read <Link to='/privacy-policy'>Privacy and Policies.</Link></p>
+                                     {/* )
+                                     :
+                                    // <p><Link to='/privacy-policy'>गोपनीयता र नीति</Link></p>   */}
+                                    {/* } */}
                                     </div>
                                 </div>
                             </div>

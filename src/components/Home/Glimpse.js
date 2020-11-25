@@ -244,7 +244,7 @@ class Glimpse extends Component {
                                     value = {this.state.counts&&this.state.counts.open_space}
                                 />
                                 </h4>
-                                <h6>{this.props.language =="0" ? `Open spaces` : `खुल्ला क्षेत्र` }</h6>
+                                <h6>{this.props.language =="0" ? `Open Spaces` : `खुल्ला क्षेत्र` }</h6>
                             </div>
                         </div>
                         <div className="col-md-3">
@@ -303,7 +303,8 @@ class Glimpse extends Component {
                             </div>
                         </div> */}
                        
-                        <p>{this.props.language =="0" ? `The above numbers is the summary of all identified open spaces that has been surveyed by IOM till date. It includes open spaces of Kathmandu, Bhaktapur and Lalitpur.` : `माथिका नम्बरहरू सबै पहिचान गरिएका खुला ठाउँहरूको सारांश हो जुन आईओएमले हालसम्म सर्वेक्षण गरेको छ। यसमा काठमाण्डौं, भक्तपुर र ललितपुरको खुला ठाउँहरू छन्।` } 
+                        <p>{this.props.language =="0" ? `The above figures represent the summary of all identified humanitarian open spaces that have been surveyed by IOM.` 
+                        : `माथिका नम्बरहरू सबै पहिचान गरिएका खुला ठाउँहरूको सारांश हो जुन आईओएमले हालसम्म सर्वेक्षण गरेको छ। यसमा काठमाण्डौं, भक्तपुर र ललितपुरको खुला ठाउँहरू छन्।` } 
 </p>
 
 
