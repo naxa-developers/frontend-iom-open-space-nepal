@@ -39,7 +39,7 @@ class ReportSidebar extends Component {
     )[0].style.height = `${windowHeight - navHeight}px`;
   };
   fetchReports = () => {
-    Axios.get(`${process.env.BASE_URL}/api/v1/report/`).then(response => {
+    Axios.get(`${process.env.BASE_URL_API}/report/`).then(response => {
       this.props.dispatch({ type: "ReportFilter", data: response.data });
    
       this.setState({

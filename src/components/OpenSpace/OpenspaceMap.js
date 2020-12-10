@@ -631,7 +631,7 @@ class OS extends Component {
 
     fetchGlimpse = () => {
         MAP = this.props.mapRefss.current.leafletElement;
-        Axios.get(`${process.env.BASE_URL}/glimpse_of_open_space`)
+        Axios.get(`${process.env.BASE_URL_API}/glimpse_of_open_space`)
             .then(res => {
 
                 const counts = res.data.data.open_count

@@ -18,13 +18,13 @@ class Identification extends Component {
     //     steps: []
     // }
     componentDidMount() {
-        axios.get(`${process.env.BASE_URL}/about_why_map_open_icon/`)
+        axios.get(`${process.env.BASE_URL_API}/about_why_map_open_icon/`)
             .then(res => {
                 const steps = res.data;
                 this.setState({ steps: steps });
 
             })
-        axios.get(`${process.env.BASE_URL}/about_why_map_open_space/`)
+        axios.get(`${process.env.BASE_URL_API}/about_why_map_open_space/`)
             .then(res => {
                 const data = res.data;
                 this.setState({ data: data });

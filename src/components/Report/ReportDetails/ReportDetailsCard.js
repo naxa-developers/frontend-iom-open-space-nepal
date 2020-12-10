@@ -14,7 +14,7 @@ class ReportDetailsCard extends Component {
   }
   fetchReport = () => {
     Axios.get(
-      `${process.env.BASE_URL}/report/${localStorage.getItem(
+      `${process.env.BASE_URL_API}/report/${localStorage.getItem(
         "reportId"
       )}`
     ).then(response => {

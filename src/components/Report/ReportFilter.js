@@ -74,25 +74,25 @@ onOpenChange = e => {
 
     let url = ``;
     if(start_date!=null && end_date!=null && this.state.valueStatus==null && oID== null)
-        url = `${process.env.BASE_URL}/report/?start_date=${start_date}&end_date=${end_date}`
+        url = `${process.env.BASE_URL_API}/report/?start_date=${start_date}&end_date=${end_date}`
   
       else if(start_date!=null && end_date!=null &&this.state.valueStatus!=null && oID == null ) 
-      url = `${process.env.BASE_URL}/report/?start_date=${start_date}&end_date=${end_date}&status=${this.state.valueStatus.label.toLowerCase()}`
+      url = `${process.env.BASE_URL_API}/report/?start_date=${start_date}&end_date=${end_date}&status=${this.state.valueStatus.label.toLowerCase()}`
 
       else if((start_date!=null && end_date!=null &&this.state.valueStatus==null && oID!= null ))
-      url=`${process.env.BASE_URL}/report/?start_date=${start_date}&end_date=${end_date}&id=${oID.value}`
+      url=`${process.env.BASE_URL_API}/report/?start_date=${start_date}&end_date=${end_date}&id=${oID.value}`
 
       else if((start_date==null && end_date==null &&this.state.valueStatus!=null && oID== null ))
-      url=`${process.env.BASE_URL}/report/?status=${this.state.valueStatus.label.toLowerCase()}`
+      url=`${process.env.BASE_URL_API}/report/?status=${this.state.valueStatus.label.toLowerCase()}`
 
       else if((start_date==null && end_date==null &&this.state.valueStatus==null && oID!= null ))
-      url=`${process.env.BASE_URL}/report/?id=${oID.value}`
+      url=`${process.env.BASE_URL_API}/report/?id=${oID.value}`
 
       else if((start_date==null && end_date==null &&this.state.valueStatus!=null && oID!= null ))
-      url=`${process.env.BASE_URL}/report/?status=${this.state.valueStatus.label.toLowerCase()}&&id=${oID.value}`
+      url=`${process.env.BASE_URL_API}/report/?status=${this.state.valueStatus.label.toLowerCase()}&&id=${oID.value}`
 
       else 
-      url=`${process.env.BASE_URL}/report/?start_date=${start_date}&end_date=${end_date}&status=${status}&id=${oID.value}`
+      url=`${process.env.BASE_URL_API}/report/?start_date=${start_date}&end_date=${end_date}&status=${status}&id=${oID.value}`
 
 
 
@@ -132,7 +132,7 @@ console.log("d");
 
   }
   componentDidMount() {
-    Axios.get(`${process.env.BASE_URL}/open_space_landing`)
+    Axios.get(`${process.env.BASE_URL_API}/open_space_landing`)
       .then(res => {
         var arr =[];
         res.data.data.map(o => {

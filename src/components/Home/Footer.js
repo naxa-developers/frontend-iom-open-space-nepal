@@ -16,7 +16,7 @@ class Footer extends Component {
     }
 
     componentDidMount() {
-        Axios.get(`${process.env.BASE_URL}/contact/`).then(res => {
+        Axios.get(`${process.env.BASE_URL_API}/contact/`).then(res => {
             this.setState({
                 contactInfo: res.data
             });

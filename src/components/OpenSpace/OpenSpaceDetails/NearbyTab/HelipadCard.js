@@ -15,7 +15,7 @@ class HelipadCard extends Component {
 
   fetchInfo = () => {
     Axios.get(
-      `${process.env.BASE_URL}/near_by_me?type=Helipad&count=50&distance=5&id=${localStorage.getItem("OpenspaceID")}`
+      `${process.env.BASE_URL_API}/near_by_me?type=Helipad&count=50&distance=5&id=${localStorage.getItem("OpenspaceID")}`
     ).then(response => {
       // console.log("heli",response.data);
 

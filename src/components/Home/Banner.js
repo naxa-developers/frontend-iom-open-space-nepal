@@ -16,7 +16,7 @@ class Banner extends Component {
         }
     }
     getData() {
-        Axios.get(`${process.env.BASE_URL}/header/`)
+        Axios.get(`${process.env.BASE_URL_API}/header/`)
             .then(res => {
                 const text = res.data;
 

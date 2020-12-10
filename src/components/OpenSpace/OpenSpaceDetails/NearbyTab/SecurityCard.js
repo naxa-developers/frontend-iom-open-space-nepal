@@ -15,7 +15,7 @@ class SecurityCard extends Component {
 
   fetchInfo = () => {
     Axios.get(
-      `${process.env.BASE_URL}/near_by_me?type=Security%20Force&count=10&distance=1&id=${localStorage.getItem("OpenspaceID")}`
+      `${process.env.BASE_URL_API}/near_by_me?type=Security%20Force&count=10&distance=1&id=${localStorage.getItem("OpenspaceID")}`
     ).then(response => {
 
 

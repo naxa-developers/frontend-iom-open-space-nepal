@@ -44,7 +44,7 @@ class OSDetails extends Component {
   };
   plotNearby = () => {
     Axios.get(
-      `${process.env.BASE_URL}/near_by_me?type=Helipad&count=50&distance=5&id=${localStorage.getItem("OpenspaceID")}`)
+      `${process.env.BASE_URL_API}/near_by_me?type=Helipad&count=50&distance=5&id=${localStorage.getItem("OpenspaceID")}`)
       .then(res => {
         console.log("heli map", res.data);
 
@@ -56,7 +56,7 @@ class OSDetails extends Component {
 
 
     Axios.get(
-      `${process.env.BASE_URL}/near_by_me?type=Education%20Facility&count=100&distance=1&id=${localStorage.getItem(
+      `${process.env.BASE_URL_API}/near_by_me?type=Education%20Facility&count=100&distance=1&id=${localStorage.getItem(
         "OpenspaceID"
       )}`
     ).then(response => {
@@ -66,7 +66,7 @@ class OSDetails extends Component {
 
       this.plotEdu();
       Axios.get(
-        `${process.env.BASE_URL}/near_by_me?type=Health%20Facility&count=100&distance=1&id=${localStorage.getItem(
+        `${process.env.BASE_URL_API}/near_by_me?type=Health%20Facility&count=100&distance=1&id=${localStorage.getItem(
           "OpenspaceID"
         )}`
       ).then(response => {
@@ -78,7 +78,7 @@ class OSDetails extends Component {
 
 
         Axios.get(
-          `${process.env.BASE_URL}/near_by_me?type=Security%20Force&count=100&distance=1&id=${localStorage.getItem(
+          `${process.env.BASE_URL_API}/near_by_me?type=Security%20Force&count=100&distance=1&id=${localStorage.getItem(
             "OpenspaceID"
           )}`
         ).then(response => {
@@ -441,7 +441,7 @@ class OSDetails extends Component {
   };
 
   getOSlatlng = () => {
-    Axios.get(`${process.env.BASE_URL}/open_extra?id=${localStorage.getItem(
+    Axios.get(`${process.env.BASE_URL_API}/open_extra?id=${localStorage.getItem(
       "OpenspaceID"
     )}`)
       .then(response => {
@@ -458,12 +458,12 @@ class OSDetails extends Component {
   }
 
   plotfacilities = () => {
-    Axios.get(`http://139.59.67.104:8011/api/v1/alternative_near_by_me?id=${localStorage.getItem(
+    Axios.get(`${process.env.BASE_URL_API}/alternative_near_by_me?id=${localStorage.getItem(
       "OpenspaceID"
     )}&distance=1`)
       .then(res => {
         // console.log("rr", res)
-        debugger
+        // debugger
       })
 
   }
@@ -539,7 +539,7 @@ class OSDetails extends Component {
     this.state.allNearby.addTo(this.props.reff.current.leafletElement);
 
     Axios.get(
-      `${process.env.BASE_URL}/single_open_geo_json?id=${localStorage.getItem(
+      `${process.env.BASE_URL_API}/single_open_geo_json?id=${localStorage.getItem(
         "OpenspaceID"
       )}`
     ).then(response => {

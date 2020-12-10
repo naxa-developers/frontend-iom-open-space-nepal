@@ -15,7 +15,7 @@ class ImageSlider extends Component {
   }
 
   componentDidMount() {
-    Axios.get(`${process.env.BASE_URL}/slider/`).then(res => {
+    Axios.get(`${process.env.BASE_URL_API}/slider/`).then(res => {
       const Sliderdata = res.data;
       this.setState({ sliderData: Sliderdata });
     
