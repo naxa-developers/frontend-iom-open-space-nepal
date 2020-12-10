@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
     
         return (
             <div className="post-meta">
-           <i class={this.props.image}></i>
+           <i className={this.props.image}></i>
            
      {/* <img src={this.props.image} style={{height:'40px', width:'auto'}}></img> */}
     <h5>{this.props.language =='0' ?

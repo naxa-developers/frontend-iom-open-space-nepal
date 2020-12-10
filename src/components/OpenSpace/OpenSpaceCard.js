@@ -171,7 +171,7 @@ class OpenSpaceCard extends Component {
                     <div className="space">
                         <figure>
                             <img
-                                src={this.props.thumbnail != null ? `https://iomapi.naxa.com.np${this.props.thumbnail}` : tent}
+                                src={this.props.thumbnail != null ? `${process.env.BASE_URL}${this.props.thumbnail}` : tent}
                                 alt="space"
                             />
                         </figure>

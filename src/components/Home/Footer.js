@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import MaterialIcon from "material-icons-react";
 import { Link } from 'react-router-dom'
-
-
-
-
 import appstore from "../../img/appstore.png";
 import googleplay from "../../img/googleplay.png";
 import Axios from "axios";
@@ -20,7 +16,7 @@ class Footer extends Component {
     }
 
     componentDidMount() {
-        Axios.get(`https://iomapi.naxa.com.np/api/v1/contact/`).then(res => {
+        Axios.get(`${process.env.BASE_URL}/contact/`).then(res => {
             this.setState({
                 contactInfo: res.data
             });
@@ -135,12 +131,15 @@ class Footer extends Component {
                                     </div>
 
                                     <ul>
-                                        <span class="list-title">{this.props.language == "0" ? "Useful Links" : "उपयोगी लिङ्कहरू"}</span>
+                                        <span className="list-title">{this.props.language == "0" ? "Useful Links" : "उपयोगी लिङ्कहरू"}</span>
                                         <li>
-                                            <a href="http://www.mofaga.gov.np/" target="blank">{this.props.language == "0" ? "mofaga" : "मोफागा"}</a>
+                                            <a href="http://www.mofaga.gov.np/" target="blank">{this.props.language == "0" ? "mofaga" : "सङ्‍घीय मामिला तथा सामान्य प्रशासन मन्त्रालय"}</a>
                                         </li>
                                         <li>
-                                            <a href="http://www.moha.gov.np/" target="blank">{this.props.language == "0" ? "moha" : "मोफागा"}</a>
+                                            <a href="http://www.moha.gov.np/" target="blank">{this.props.language == "0" ? "moha" : "गृह मन्त्रालय"}</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.facebook.com/NDRRMA/" target="blank">{this.props.language == "0" ? "nddrma" : "राष्ट्रिय विपद जोखिम न्यूनिकरण तथा व्यवस्थापन प्राधिकरण"}</a>
                                         </li>
                                         <li>
                                             <a href="http://www.bipad.gov.np/" target="blank">{this.props.language == "0" ? "bipad" : "बिपद"}</a>

@@ -15,7 +15,7 @@ import SingleReport from './SingleReport'
 
 
     getReports = () => {
-        Axios.get(`https://iomapi.naxa.com.np/api/v1/report/?id=${localStorage.getItem("id")}&fbclid=IwAR2--o41VqMZ-5H9HhqgZegN8YXbtI9oHTCmhofE4vWB_BNQSDtkRGD_I-U`)
+        Axios.get(`${process.env.BASE_URL}/report/?id=${localStorage.getItem("id")}&fbclid=IwAR2--o41VqMZ-5H9HhqgZegN8YXbtI9oHTCmhofE4vWB_BNQSDtkRGD_I-U`)
         .then(response => {
          
           

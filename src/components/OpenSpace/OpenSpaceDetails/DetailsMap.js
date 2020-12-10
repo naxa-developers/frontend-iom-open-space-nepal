@@ -44,7 +44,7 @@ class OSDetails extends Component {
   };
   plotNearby = () => {
     Axios.get(
-      `https://iomapi.naxa.com.np/api/v1/near_by_me?type=Helipad&count=50&distance=5&id=${localStorage.getItem("OpenspaceID")}`)
+      `${process.env.BASE_URL}/near_by_me?type=Helipad&count=50&distance=5&id=${localStorage.getItem("OpenspaceID")}`)
       .then(res => {
         console.log("heli map", res.data);
 
@@ -56,7 +56,7 @@ class OSDetails extends Component {
 
 
     Axios.get(
-      `https://iomapi.naxa.com.np/api/v1/near_by_me?type=Education%20Facility&count=100&distance=1&id=${localStorage.getItem(
+      `${process.env.BASE_URL}/near_by_me?type=Education%20Facility&count=100&distance=1&id=${localStorage.getItem(
         "OpenspaceID"
       )}`
     ).then(response => {
@@ -66,7 +66,7 @@ class OSDetails extends Component {
 
       this.plotEdu();
       Axios.get(
-        `https://iomapi.naxa.com.np/api/v1/near_by_me?type=Health%20Facility&count=100&distance=1&id=${localStorage.getItem(
+        `${process.env.BASE_URL}/near_by_me?type=Health%20Facility&count=100&distance=1&id=${localStorage.getItem(
           "OpenspaceID"
         )}`
       ).then(response => {
@@ -78,7 +78,7 @@ class OSDetails extends Component {
 
 
         Axios.get(
-          `https://iomapi.naxa.com.np/api/v1/near_by_me?type=Security%20Force&count=100&distance=1&id=${localStorage.getItem(
+          `${process.env.BASE_URL}/near_by_me?type=Security%20Force&count=100&distance=1&id=${localStorage.getItem(
             "OpenspaceID"
           )}`
         ).then(response => {
@@ -135,7 +135,7 @@ class OSDetails extends Component {
     });
 
 
-    this.state.HealthData.facility.map(e => {
+    this.state.HealthData && this.state.HealthData.facility.map(e => {
       var NearbyMarker = L.marker([e.latitude, e.longitude], { icon: HealthIcon }).addTo(this.state.allNearby);
 
       var popUp =
@@ -441,7 +441,7 @@ class OSDetails extends Component {
   };
 
   getOSlatlng = () => {
-    Axios.get(`https://iomapi.naxa.com.np/api/v1/open_extra?id=${localStorage.getItem(
+    Axios.get(`${process.env.BASE_URL}/open_extra?id=${localStorage.getItem(
       "OpenspaceID"
     )}`)
       .then(response => {
@@ -539,7 +539,7 @@ class OSDetails extends Component {
     this.state.allNearby.addTo(this.props.reff.current.leafletElement);
 
     Axios.get(
-      `https://iomapi.naxa.com.np/api/v1/single_open_geo_json?id=${localStorage.getItem(
+      `${process.env.BASE_URL}/single_open_geo_json?id=${localStorage.getItem(
         "OpenspaceID"
       )}`
     ).then(response => {

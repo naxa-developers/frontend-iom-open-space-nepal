@@ -23,19 +23,19 @@ export class Criteria extends Component {
 
     fetchData = () => {
 
-        Axios.get(`https://iomapi.naxa.com.np/api/v1/about_criteria_type_description`).then(
+        Axios.get(`${process.env.BASE_URL}/about_criteria_type_description`).then(
             res => {
 
                 this.setState({ descPoints: res.data.data })
             }
         )
-        Axios.get(`https://iomapi.naxa.com.np/api/v1/about_open_space_criteria/`).then(
+        Axios.get(`${process.env.BASE_URL}/about_open_space_criteria/`).then(
             res => {
 
                 this.setState({ header: res.data[0] })
             }
         )
-        Axios.get(`https://iomapi.naxa.com.np/api/v1/about_criteria_type/`).then(
+        Axios.get(`${process.env.BASE_URL}/about_criteria_type/`).then(
             res => {
 
                 let titleArr = [];
@@ -50,7 +50,7 @@ export class Criteria extends Component {
                 this.setState({ criteria: res.data })
             }
         )
-        Axios.get(`https://iomapi.naxa.com.np/api/v1/identify_open_space_new`).then(
+        Axios.get(`${process.env.BASE_URL}/identify_open_space_new`).then(
             res => {
 
                 this.setState({ steps: res.data.data })

@@ -25,7 +25,7 @@ import DownloadApp from './DownloadApp';
     
       fetchInfo = () => {
         Axios.get(
-          `https://iomapi.naxa.com.np/api/v1/open_space_app/`
+          `${process.env.BASE_URL}/open_space_app/`
         ).then(response => {
             console.log("app", response.data);
             

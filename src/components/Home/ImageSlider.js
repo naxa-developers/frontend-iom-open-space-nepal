@@ -15,7 +15,7 @@ class ImageSlider extends Component {
   }
 
   componentDidMount() {
-    Axios.get(`https://iomapi.naxa.com.np/api/v1/slider/`).then(res => {
+    Axios.get(`${process.env.BASE_URL}/slider/`).then(res => {
       const Sliderdata = res.data;
       this.setState({ sliderData: Sliderdata });
     

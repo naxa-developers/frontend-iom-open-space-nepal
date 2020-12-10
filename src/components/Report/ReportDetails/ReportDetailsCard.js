@@ -14,7 +14,7 @@ class ReportDetailsCard extends Component {
   }
   fetchReport = () => {
     Axios.get(
-      `https://iomapi.naxa.com.np/api/v1/report/${localStorage.getItem(
+      `${process.env.BASE_URL}/report/${localStorage.getItem(
         "reportId"
       )}`
     ).then(response => {

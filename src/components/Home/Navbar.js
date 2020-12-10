@@ -123,7 +123,7 @@ class Navbar extends Component {
                                                 <NavLink to="aboutapp" className="menu-item" activeClassName=" menu-item active ">
                                                     {" "}
                                                     {this.props.language == "0"
-                                                        ? "mobile app"
+                                                        ? "Open space app"
                                                         : "मोबाईल एप  "}
                                                 </NavLink>
                                             </li>

@@ -88,7 +88,7 @@ class Sidebar extends Component {
           : name == "municipality"
             ? "municipality_api"
             : "";
-    var url = `https://iomapi.naxa.com.np/api/v1/${key}`;
+    var url = `${process.env.BASE_URL}/${key}`;
     var prvnc_dist =
       name == "district"
         ? "province"
@@ -111,7 +111,7 @@ class Sidebar extends Component {
     });
   };
   fetchOS = () => {
-    Axios.get("https://iomapi.naxa.com.np/api/v1/open_space_landing").then(
+    Axios.get(`${process.env.BASE_URL}/open_space_landing`).then(
       response => {
         // console.log("all", response.data.data),
         this.setState({
@@ -249,7 +249,7 @@ class Sidebar extends Component {
       // console.log("munid", this.state.SelectedMunicipality.value);
 
       Axios.get(
-        `https://iomapi.naxa.com.np/api/v1/municipality_geo_json?id=${this.state.SelectedMunicipality.value}`
+        `${process.env.BASE_URL}/municipality_geo_json?id=${this.state.SelectedMunicipality.value}`
       ).then(response => {
         var municipality = L.geoJSON(response.data, {
           style: () => {
@@ -278,7 +278,7 @@ class Sidebar extends Component {
         this.state.district_muni.removeLayer(e)
       );
       Axios.get(
-        `https://iomapi.naxa.com.np/api/v1/district_geo_json?id=${this.state.SelectedDistrict.value}`
+        `${process.env.BASE_URL}/district_geo_json?id=${this.state.SelectedDistrict.value}`
       ).then(response => {
         var municipality = L.geoJSON(response.data, {
           style: () => {
@@ -312,7 +312,7 @@ class Sidebar extends Component {
       // this.displayOS()
 
       Axios.get(
-        `https://iomapi.naxa.com.np/api/v1/province_geo_json?id=${this.state.SelectedProvince.value}`
+        `${process.env.BASE_URL}/province_geo_json?id=${this.state.SelectedProvince.value}`
       ).then(response => {
         // console.log(response,'re')
         var Province = L.geoJSON(response.data, {
@@ -377,7 +377,7 @@ class Sidebar extends Component {
 
   nearbymeOS = () => {
 
-    Axios.get(`https://iomapi.naxa.com.np/api/v1/near_by_openspace?count=100&distance=2&latitude=${this.props.currentLocation[0]}&longitude=${this.props.currentLocation[1]}`)
+    Axios.get(`${process.env.BASE_URL}/near_by_openspace?count=100&distance=2&latitude=${this.props.currentLocation[0]}&longitude=${this.props.currentLocation[1]}`)
       .then(response => {
         this.setState({ nearbyOS: response.data.open_space })
         if (response.data.open_space.length != 0) {

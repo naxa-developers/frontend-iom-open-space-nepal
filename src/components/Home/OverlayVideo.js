@@ -5,17 +5,17 @@ const OverlayVideo = ({language}) => {
 const[overlay, setOverlay] = useState(true)
 
     return (
-        <div class={overlay ? "popup open video-popup" : "popup video-popup"} id="video">
-        <span class="close-icon bg-close-icon" >
-            <i class="material-icons"  
+        <div className={overlay ? "popup open video-popup" : "popup video-popup"} id="video">
+        <span className="close-icon bg-close-icon" >
+            <i className="material-icons"  
             onClick={() => setOverlay(false)}
             >close</i>
         </span>
-        <div class="popup-container">
-            <div class="popup-body">
-                    <div class="popup-content">
-                        <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/DpETG__a964" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div className="popup-container">
+            <div className="popup-body">
+                    <div className="popup-content">
+                        <div className="video-container">
+                            <iframe src="https://www.youtube.com/embed/DpETG__a964" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                         </div>
                     </div>
                   
