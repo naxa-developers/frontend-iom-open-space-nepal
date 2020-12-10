@@ -28,7 +28,7 @@ import YoutubePlaylist from './YoutubePlaylist';
    
    
   fetchCounts = () => {
-    Axios.get(`${process.env.BASE_URL}/glimpse_of_open_space`)
+    Axios.get(`${process.env.BASE_URL_API}/glimpse_of_open_space`)
     .then(res => {
         const counts = res.data.data;
         
@@ -48,7 +48,7 @@ componentDidMount() {
   // this.fetchCounts();
 }
     render() {
-    console.log('urllll', process.env.BASE_URL);
+    console.log('urllll', process.env.BASE_URL_API);
       
         return (
         

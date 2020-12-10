@@ -57,7 +57,7 @@ class DetailsCard extends Component {
 
   fetchDetails = () => {
     Axios.get(
-      `${process.env.BASE_URL}/open_space/${localStorage.getItem("OpenspaceID")}`
+      `${process.env.BASE_URL_API}/open_space/${localStorage.getItem("OpenspaceID")}`
     ).then(response => {
       this.setState({ spaceInfo: response.data })
       const reversedQuestionData = response.data &&

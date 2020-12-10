@@ -27,7 +27,7 @@ class Glimpse extends Component {
     }
 
     fetchCounts = () => {
-        Axios.get(`${process.env.BASE_URL}/glimpse_of_open_space`)
+        Axios.get(`${process.env.BASE_URL_API}/glimpse_of_open_space`)
             .then(res => {
 
                 const counts = res.data.data;
@@ -53,7 +53,7 @@ class Glimpse extends Component {
 
 
             })
-        Axios.get(`${process.env.BASE_URL}/open_space_landing`).then(
+        Axios.get(`${process.env.BASE_URL_API}/open_space_landing`).then(
             res => {
                 const data = res.data;
                 let oArray = [];

@@ -21,7 +21,7 @@ import Axios from 'axios';
          }
      }
      componentDidMount() {
-         Axios.get(`${process.env.BASE_URL}/about_header/`).then(
+         Axios.get(`${process.env.BASE_URL_API}/about_header/`).then(
              res => {
                  this.setState({header: res.data[0]})
              }

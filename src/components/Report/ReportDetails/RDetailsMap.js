@@ -41,7 +41,7 @@ class RDetailsMap extends Component {
     }
 
     fetchLatLng = () => {
-        Axios.get(`${process.env.BASE_URL}/open_space/${localStorage.getItem("id")}`)
+        Axios.get(`${process.env.BASE_URL_API}/open_space/${localStorage.getItem("id")}`)
             .then(r => {
 
                 this.setState({
@@ -78,7 +78,7 @@ class RDetailsMap extends Component {
     componentDidMount() {
         this.onload();
         this.fetchLatLng();
-        Axios.get(`${process.env.BASE_URL}/single_open_geo_json?id=${localStorage.getItem("id")}`)
+        Axios.get(`${process.env.BASE_URL_API}/single_open_geo_json?id=${localStorage.getItem("id")}`)
             .then(response => {
                 var geo = L.geoJSON(response.data, { fillColor: 'blue', fillOpacity: 0.3, color: 'green', weight: 2 }).addTo(this.maps.current.leafletElement)
                 this.maps.current.leafletElement.fitBounds(geo.getBounds())

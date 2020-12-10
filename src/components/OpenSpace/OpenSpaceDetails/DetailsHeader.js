@@ -23,7 +23,7 @@ class DetailsHeader extends Component {
   componentDidMount() {
     let OID = localStorage.getItem("OpenspaceID")
 
-    Axios.get(`${process.env.BASE_URL}/message/?id=${OID}`).then(
+    Axios.get(`${process.env.BASE_URL_API}/message/?id=${OID}`).then(
       res => {
         res.data.length !== 0 && this.setState({ nullNoti: true })
         this.setState({

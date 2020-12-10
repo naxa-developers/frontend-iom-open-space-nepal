@@ -82,7 +82,7 @@ class Resources extends Component {
 
 
   componentDidMount() {
-    Axios.get(`${process.env.BASE_URL}/api/v1/resource/`).then(response => {
+    Axios.get(`${process.env.BASE_URL_API}/resource/`).then(response => {
       this.setState({ resources: response.data });
 
 
