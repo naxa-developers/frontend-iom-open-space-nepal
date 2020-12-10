@@ -99,6 +99,7 @@ class GeneralInfo extends Component {
                         icon={service.service.icon}
                         name={service.service.name}
                         desc={service.description}
+                        isAvailable={service.is_available}
                       />   
             
                     </ul>

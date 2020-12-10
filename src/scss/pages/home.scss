@@ -419,7 +419,7 @@
                 }
 
                 p {
-                    margin: 1.5rem 0 0 0;
+                    margin: 0.4rem 0 0 0;
                 }
             }
         }
@@ -701,5 +701,35 @@
             }
         }
 
+    }
+}
+
+
+.intro-nepali {
+            
+    max-width: 800px;
+    margin:0 auto;
+    text-align: center;
+    padding:0 15px;
+    @include flexvr;
+    color:$color-white;
+    h1 {
+        font-weight: 800;
+        font-size: 3.125rem;
+        text-transform: uppercase;
+        line-height: 1.4;
+        color:$color-white;
+        span{
+            font-size: 2.5rem;
+            text-transform: lowercase;
+            font-style: italic;
+        }
+    }
+
+    p {
+        margin: 0.75rem 0 0 0;
+        font-size: 1.5rem;
+        font-weight: 600;
+        line-height: 1.7;
     }
 }

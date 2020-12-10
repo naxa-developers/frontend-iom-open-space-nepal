@@ -10,11 +10,12 @@ import Axios from 'axios';
 
 import Footer from "./Footer";
 
-import Background from "../../img/banner.jpg";
+import Background from "../../img/hero-img.jpg";
 import bannerShape from "../../img/banner-shape.png";
 import OverlayVideo from './OverlayVideo';
 import DownloadApp from '../AboutApp/DownloadApp';
 import YoutubePlaylist from './YoutubePlaylist';
+
 
  class Home extends Component {
    constructor(props) {
@@ -27,7 +28,7 @@ import YoutubePlaylist from './YoutubePlaylist';
    
    
   fetchCounts = () => {
-    Axios.get(`https://iomapi.naxa.com.np/api/v1/glimpse_of_open_space`)
+    Axios.get(`${process.env.BASE_URL}/glimpse_of_open_space`)
     .then(res => {
         const counts = res.data.data;
         
@@ -47,7 +48,7 @@ componentDidMount() {
   // this.fetchCounts();
 }
     render() {
-    
+    console.log('urllll', process.env.BASE_URL);
       
         return (
         

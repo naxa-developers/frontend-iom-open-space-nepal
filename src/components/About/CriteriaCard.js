@@ -12,7 +12,7 @@ export class CriteriaCard extends Component {
     }
 
     componentDidMount() {
-        Axios.get(`https://iomapi.naxa.com.np/api/v1/about_criteria_type_description`).then(
+        Axios.get(`${process.env.BASE_URL}/about_criteria_type_description`).then(
             res => {
 
                 this.setState({ access: res.data.data },

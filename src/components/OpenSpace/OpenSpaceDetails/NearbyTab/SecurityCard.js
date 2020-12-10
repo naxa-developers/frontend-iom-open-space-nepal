@@ -15,7 +15,7 @@ class SecurityCard extends Component {
 
   fetchInfo = () => {
     Axios.get(
-      `https://iomapi.naxa.com.np/api/v1/near_by_me?type=Security%20Force&count=10&distance=1&id=${localStorage.getItem("OpenspaceID")}`
+      `${process.env.BASE_URL}/near_by_me?type=Security%20Force&count=10&distance=1&id=${localStorage.getItem("OpenspaceID")}`
     ).then(response => {
 
 

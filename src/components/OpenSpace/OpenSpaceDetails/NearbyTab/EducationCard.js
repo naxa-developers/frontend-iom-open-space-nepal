@@ -18,7 +18,7 @@ class EducationCard extends Component {
   fetchInfo = () => {
 
     Axios.get(
-      `https://iomapi.naxa.com.np/api/v1/near_by_me?type=Education%20Facility&count=100&distance=1&id=${localStorage.getItem(
+      `${process.env.BASE_URL}/near_by_me?type=Education%20Facility&count=100&distance=1&id=${localStorage.getItem(
         "OpenspaceID"
       )}`
     ).then(response => {

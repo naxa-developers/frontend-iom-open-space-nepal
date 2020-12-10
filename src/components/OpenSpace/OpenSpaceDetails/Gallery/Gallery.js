@@ -21,7 +21,7 @@ class Gallary extends Component {
   }
   
   fetchMaps = () => {
-    Axios.get(`https://iomapi.naxa.com.np/api/v1/gallery/?id=${localStorage.getItem("OpenspaceID")}&type=map`).then(response => {
+    Axios.get(`${process.env.BASE_URL}/gallery/?id=${localStorage.getItem("OpenspaceID")}&type=map`).then(response => {
     
     this.setState({
         maps: response.data,
@@ -32,7 +32,7 @@ class Gallary extends Component {
   fetchImages = () => {
     // console.log("gal",localStorage.getItem("OpenspaceID"));
     
-    Axios.get(`https://iomapi.naxa.com.np/api/v1/gallery/?id=${localStorage.getItem("OpenspaceID")}&type=image`).then(response => {
+    Axios.get(`${process.env.BASE_URL}/gallery/?id=${localStorage.getItem("OpenspaceID")}&type=image`).then(response => {
       this.setState({
         photos: response.data,
         loading: false
