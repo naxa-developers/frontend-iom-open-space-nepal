@@ -111,7 +111,7 @@ class Sidebar extends Component {
     });
   };
   fetchOS = () => {
-    Axios.get("https://iomapi.naxa.com.np/api/v1/open_space_landing").then(
+    Axios.get(`${process.env.BASE_URL}/open_space_landing`).then(
       response => {
         // console.log("all", response.data.data),
         this.setState({
@@ -173,7 +173,7 @@ class Sidebar extends Component {
     this.setState({ municipality: FilteredMunicipality, handlingindex: 2 });
 
     // Axios.get(
-    //   `${process.env.BASE_URL}/district_geo_json?id=${e.value}`
+    //   `https://iomapi.naxa.com.np/api/v1/district_geo_json?id=${e.value}`
     // ).then(response => {
     //   var district = L.geoJSON(response.data);
     //   district.addTo(this.state.district_muni);
@@ -196,7 +196,7 @@ class Sidebar extends Component {
     // );
 
     // Axios.get(
-    //   `${process.env.BASE_URL}/municipality_geo_json?id=${e.value}`
+    //   `https://iomapi.naxa.com.np/api/v1/municipality_geo_json?id=${e.value}`
     // ).then(response => {
     //   var municipality = L.geoJSON(response.data);
     //   municipality.addTo(this.state.district_muni);
