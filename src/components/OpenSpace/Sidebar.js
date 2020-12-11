@@ -1014,7 +1014,7 @@ class Sidebar extends Component {
                   </div>
 
                   {this.state.showText == true && <span style={{ color: '#6D6E71', fontSize: '0.9rem', fontStyle: 'bold' }}>
-                    Openspaces from  
+                   Humanitarian Openspaces from  
                     {this.state.SelectedMunicipality ? <span> {this.state.SelectedMunicipality.label}, </span> : ''}  
                     {this.state.SelectedDistrict ? <span> {this.state.SelectedDistrict.label}, </span> : ''} 
                     {this.state.SelectedProvince ? <span> {this.state.SelectedProvince.label} </span> : ''}  
