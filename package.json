@@ -13,7 +13,7 @@
   "dependencies": {
     "@ansur/leaflet-pulse-icon": "^0.1.1",
     "@axetroy/react-download": "^1.1.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.2",
     "bootstrap-daterangepicker": "^3.1.0",
     "dotenv-webpack": "^6.0.0",
