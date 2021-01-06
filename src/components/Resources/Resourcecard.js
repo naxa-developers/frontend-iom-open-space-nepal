@@ -1,12 +1,19 @@
 import React, { Component } from "react";
-import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon } from 'react-share'
-import ShowMoreText from 'react-show-more-text';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 // import ShowMore from "react-show-more";
 import { HashLink as Link } from 'react-router-hash-link';
 import { connect } from "react-redux";
 
+const options = [
+  { value: 0, label: "Plans & Policies" },
+  { value: 1, label: "Research" },
+  { value: 2, label: "Multimedia" },
+  { value: 3, label: "Report" },
+  { value: 4, label: "Study Report" },
+  { value: 5, label: "Atlas Mapbook" },
+  { value: 6, label: "Summary Report" }
+];
 class Resourcecard extends Component {
   constructor(props) {
     super(props);
@@ -21,23 +28,40 @@ class Resourcecard extends Component {
   }
 
   downloadClicked = () => {
-  
-    !this.props.audio && !this.props.publication && !this.props.video && confirmAlert({
-      title: 'No download resource available!',
-      buttons: []
-    })
+    const{document_type} = this.props;
+    
+    let downloadUrl = '';
+    if(document_type === 0){
+      downloadUrl= this.props.audio
+    }else if( document_type === 1){
+      downloadUrl = this.props.publication
+    }else if(document_type === 2){
+      downloadUrl = this.props.video
+    }
+
+    if (downloadUrl) {
+      window.open(downloadUrl)
+    } else {
+      confirmAlert({
+        customUI: ({ onClose }) => <div><h4>No download resource available!</h4></div>,
+        title: 'No download resource available!',
+        buttons: []
+      })
+    }
+
+  }
+
+  matchOptionsToCategory = (id) => {
+  const matched =  options.filter(opt => opt.value===id)
+  if(matched.length){
+    return matched[0].label
+  }else {
+    return 'None'
+  }
   }
 
 
-
   render() {
-
-
-    var desc = this.props.description;
-    // console.log(desc.length)
-    // var d= "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum consectetur tellus mi, ac euismod nisi suscipit vitae. Duis vehicula nibh quis felis tempor vulputate. Nunc non fringilla nisl, et malesuada elit. Etiam vel purus justo. Suspendisse imperdiet ultricies odio, porttitor iaculis ante iaculis ut. Aenean in sapien metus. Integer et arcu sodales, rhoncus neque eget, imperdiet mauris. Duis rhoncus ex ex, vitae fringilla sem tempor ut. In sed ante varius mauris auctor congue id at orci. Sed nibh diam, bibendum non pretium a, ornare ut velit. Phasellus egestas ac elit sed dictum. Proin pulvinar, dui ut tincidunt ultricies, erat lectus feugiat tellus, at sagittis ex tortor id felis. Donec in neque vitae arcu hendrerit dignissim vel et turpis.Nunc rhoncus, ex in maximus commodo, dui quam aliquet elit, non egestas quam tortor sit amet quam. Duis scelerisque tellus vitae sollicitudin scelerisque. Morbi enim magna, fringilla vitae pellentesque quis, semper sit amet risus. Aliquam erat volutpat. Quisque aliquam tincidunt ipsum, eu vestibulum urna porta at. Quisque et ipsum elementum, gravida metus a, elementum tellus. Cras porttitor nec tellus vitae aliquet. Aliquam at mi ut tortor ultricies maximus. Pellentesque ut enim vitae neque molestie lacinia ac eget mauris. Aliquam lacinia, dui id efficitur consequat, dolor ante fringilla massa, vitae aliquam nisi neque non ante. Mauris arcu dui, bibendum id egestas nec, vulputate nec diam. Cras nec laoreet lacus."
-
-
     return (
       <>
         <div className="row-section-wrap">
@@ -46,7 +70,6 @@ class Resourcecard extends Component {
               <figure className="image-section"
                 style={{ backgroundImage: `url(${this.props.image})` }}
               >
-                {/* <img src={this.props.image} alt="" /> */}
               </figure>
             </div>
 
@@ -56,40 +79,27 @@ class Resourcecard extends Component {
                   <h3 className="h3-title">{this.props.title}</h3>
 
                   <span className="datetime">{this.props.date}</span>
-                  {/* <p> 
-                    <ShowMoreText
-                      lines={3}
-                      more='Show more'
-                      less ='Show less'
-                      anchorClass= ''
-                      expanded ={false}
-                      keepNewLines ={true}
-                      width = {320}
-                      >
-                  { this.props.description}
-                      </ShowMoreText>  
-
-                    </p> */}
                   <p className="para-collapse collapse" id="collapseExample">{this.props.description}</p>
                   <Link class="btn collapsed" data-toggle="collapse" to="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample"
 
-    >
+                  >
                   </Link>
                 </div>
                 <div className="download-section">
                   <div className="icon-wrap-section">
+                    <a
+                      onClick={() => this.downloadClicked()}
+                      // href={this.props.document_type == 0
+                      //   ? this.props.publication
+                      //   : this.props.document_type == 1
+                      //     ? this.props.publication
+                      //       ? this.props.document_type == 2
+                      //       : this.props.video
+                      //     : ''
+                      // }
+                      // download target="_blank"
 
-                    {/* <button className="btn btn-share"><MaterialIcon icon="share" color="#418fde"></MaterialIcon></button>  */}
-
-                    <a onClick={() => this.downloadClicked()}
-                      href={this.props.document_type == 0
-                        ? this.props.publication
-                        : this.props.document_type == 1
-                          ? this.props.audio
-                            ? this.props.document_type == 2
-                            : this.props.video
-                          : ''
-                      } download target="_blank" >
+                    >
 
                       <button className="btn btn-download">
 
@@ -101,27 +111,21 @@ class Resourcecard extends Component {
                   </div>
                   <div className="para-wrap-section">
                     <p className="para-details-block">
-                      <span className="title">{this.props.language=='0' ? 'Type' : 'प्रकार'}</span>
+                      <span className="title">{this.props.language == '0' ? 'Type' : 'प्रकार'}</span>
                       <span className="subtitle">
                         {this.props.document_type == 0
-                          ? "Publication"
+                          ? "Audio"
                           : this.props.document_type == 1
-                            ? "Audio"
-                            : this.props.document_type == 2
+                            ? "Publication"
+                            : this.props.document_type == 3
                               ? "Video"
                               : ""}
                       </span>
                     </p>
                     <p className="para-details-block">
-                      <span className="title">{this.props.language=='0' ? 'Category' : 'वर्ग'}</span>
+                      <span className="title">{this.props.language == '0' ? 'Category' : 'वर्ग'}</span>
                       <span className="subtitle">
-                        {this.props.categories == 0
-                          ? "Plans & Policies"
-                          : this.props.categories == 1
-                            ? "Research"
-                            : this.props.categories == 2
-                              ? "Multimedia"
-                              : "None "}
+                     { this.matchOptionsToCategory(this.props.categories) }
                       </span>
                     </p>
                   </div>
