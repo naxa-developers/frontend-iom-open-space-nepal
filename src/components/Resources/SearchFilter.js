@@ -8,12 +8,16 @@ import { connect } from "react-redux";
 const options = [
   { value: 0, label: "Plans & Policies" },
   { value: 1, label: "Research" },
-  { value: 2, label: "Multimedia" }
+  { value: 2, label: "Multimedia" },
+  { value: 3, label: "Report" },
+  { value: 4, label: "Study Report" },
+  { value: 5, label: "Atlas Mapbook" },
+  { value: 6, label: "Summary Report" }
 ];
 
 const options1 = [
-  { value: 0, label: "Publication" },
-  { value: 1, label: "Audio" },
+  { value: 1, label: "Publication" },
+  { value: 0, label: "Audio" },
   { value: 2, label: "Video" }
 
 
