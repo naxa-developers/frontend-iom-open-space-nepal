@@ -49,7 +49,7 @@ class Footer extends Component {
                                     <div className="copyright">
 
                                         {
-                                            this.props.language == "0" ? (<><p>This portal contains location-based information and attribute details of open spaces from different locations in Nepal. All the open spaces datasets were prepared by IOM in a different time in direct coordination and consultation with local governments and relevant line ministries.</p>
+                                            this.props.language == "0" ? (<><p></p>
                                                 <p style={{ marginTop: '0.2rem' }}>
 
 
