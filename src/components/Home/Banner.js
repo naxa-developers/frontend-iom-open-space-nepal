@@ -75,8 +75,20 @@ class Banner extends Component {
                             </a>
                         </figure>
                     </div>
+                    <div className="app-icon flex is-align-center" style={{ marginLeft: "-3rem", gap: "1rem" }}>
+
+                        <a href='https://apps.apple.com/sk/app/open-space-nepal/id1534918535' target='_blank'  >
+                            <img src={require('../../img/logo1.png')} alt="ios" style={{ width: '11rem', backgroundColor: "white" }} />
+                        </a>
+
+
+                        <a href='https://play.google.com/store/apps/details?id=com.iom.openspaces&hl=en&gl=US' target='_blank'>
+                            <img src={require('../../img/logo2.png')} alt="android" style={{ width: '11rem', backgroundColor: "white" }} />
+                        </a>
+
+                    </div>
                 </div>
-            </div>
+            </div >
 
         )
     }
