@@ -50,13 +50,14 @@ export class NavbarLayout extends Component {
                             <div className="headRight">
                                 <div className="country-logos flex-end">
                                     <a className={this.props.language == "0" ? "active" : ''}>
-                                        <img
+                                        {/* <img
                                             // src={uk}
                                             // alt="uk"
                                             src={uk} alt="uk"
                                             onClick={() => this.props.dispatch({ type: "english" })}
                                             style={{ cursor: 'pointer' }}
-                                        ></img>
+                                        ></img> */}
+                                        <p>En</p>
 
                                     </a>
                                     <a className={this.props.language == "1" ? "active" : ''}>

@@ -54,23 +54,24 @@ class Navbar extends Component {
 
                             <div className="headRight">
                                 <div className="country-logos flex-end">
-                                    <a className={this.props.language == "0" ? "active" : ''}>
-                                        <img
+                                    <a className={this.props.language == "0" ? "active" : ''} onClick={() => this.props.dispatch({ type: "english" })}>
+                                        {/* <img
                                             // src={uk}
                                             // alt="uk"
                                             src={uk} alt="uk"
-                                            onClick={() => this.props.dispatch({ type: "english" })}
-                                            style={{ cursor: 'pointer' }} ></img>
+                                            
+                                            style={{ cursor: 'pointer' }} ></img> */}
+                                        <p style={{ color: "white", fontSize: "0.75rem", fonttWeight: "600", padding: "0.1rem 0.2rem", cursor: "pointer" }} >En</p>
 
                                     </a>
-                                    <a className={this.props.language == "1" ? "active" : ''}>
-                                        <img
-                                            // src={nepal}
-                                            // alt="Nepal"
-                                            src={nepal} alt="nepal"
-                                            onClick={() => this.props.dispatch({ type: "nepali" })}
-                                            style={{ cursor: 'pointer' }}
-                                        ></img>
+                                    <a className={this.props.language == "0" ? "active" : ''} onClick={() => this.props.dispatch({ type: "nepali" })}>
+                                        {/* <img
+                                            // src={uk}
+                                            // alt="uk"
+                                            src={uk} alt="uk"
+                                            
+                                            style={{ cursor: 'pointer' }} ></img> */}
+                                        <p style={{ color: "white", fontSize: "0.75rem", fonttWeight: "600", padding: "0.1rem 0.2rem", cursor: "pointer" }} >Np</p>
 
                                     </a>
                                 </div>
