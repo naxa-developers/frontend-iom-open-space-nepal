@@ -50,10 +50,9 @@ class Footer extends Component {
 
                                         {
                                             this.props.language == "0" ? <p>
-                                                Copyright © 2019. <a href="#">Humanitarion Open Space portal.</a> <br />All
-                      rights reserved.<br />
 
-                      Designed by <a href="http://naxa.com.np">NAXA.</a>
+
+                                                Designed by <a href="http://naxa.com.np">NAXA.</a>
 
                                             </p>
                                                 :
@@ -62,15 +61,15 @@ class Footer extends Component {
                                                     <a href="http://naxa.com.np">NAXA</a> द्वारा डिजाइन गरिएको।
 
 
-                    </p>
+                                                </p>
 
                                         }
-                                     {/* {  this.props.language == "0" ? ( */}
-                                     <p>Read <Link to='/privacy-policy'>Privacy and Policies.</Link></p>
-                                     {/* )
+                                        {/* {  this.props.language == "0" ? ( */}
+
+                                        {/* )
                                      :
                                     // <p><Link to='/privacy-policy'>गोपनीयता र नीति</Link></p>   */}
-                                    {/* } */}
+                                        {/* } */}
                                     </div>
                                 </div>
                             </div>
@@ -139,7 +138,7 @@ class Footer extends Component {
                                             <a href="http://www.moha.gov.np/" target="blank">{this.props.language == "0" ? "moha" : "गृह मन्त्रालय"}</a>
                                         </li>
                                         <li>
-                                            <a href="https://www.facebook.com/NDRRMA/" target="blank">{this.props.language == "0" ? "nddrma" : "राष्ट्रिय विपद जोखिम न्यूनिकरण तथा व्यवस्थापन प्राधिकरण"}</a>
+                                            <a href=" https://bipad.gov.np/en/about-us" target="blank">{this.props.language == "0" ? "NDRRMA" : "राष्ट्रिय विपद जोखिम न्यूनिकरण तथा व्यवस्थापन प्राधिकरण"}</a>
                                         </li>
                                         <li>
                                             <a href="http://www.bipad.gov.np/" target="blank">{this.props.language == "0" ? "bipad" : "बिपद"}</a>
