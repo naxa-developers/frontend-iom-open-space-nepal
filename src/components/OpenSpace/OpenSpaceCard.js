@@ -26,7 +26,7 @@ class OpenSpaceCard extends Component {
         this.setState({ calculatedistance: false })
 
 
-        var baseUrl = "http://35.188.73.141:8989/route";
+        var baseUrl = "https://route.naxa.com.np/route";
         var distances = []
 
 

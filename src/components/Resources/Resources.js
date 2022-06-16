@@ -39,42 +39,29 @@ class Resources extends Component {
   setKeywords = e => {
     this.setState({ keywords: e });
   };
+
   onApply = () => {
     ;
-    
-
     let Filtered = this.state.resources.filter(i =>
       i.title.toUpperCase().includes(this.state.keywords.toUpperCase())
     );
-   
     this.setState({ resouceindex: 0 });
-    
-    
     !Filtered.length ==0 ? this.chunkArray(Filtered, 3) : this.chunkArray([],3);
   };
 
   selectFilterNew = (category, dtype) => {
-
-
     var Filtered1 = this.state.resources.filter(i => {
       if (category != null && dtype != null) {
         return (
           category.value == i.category && dtype.value == i.document_type
-
-
         )
       }
       else if (category != null && dtype == null) {
-
-
         return category.value == i.category
       }
       else if (category == null && dtype != null) {
-
-
         return dtype.value == i.document_type
-      }
-     
+      }   
     })
     Filtered1.length != 0 ? this.chunkArray(Filtered1, 3) : this.chunkArray([],3);
 
@@ -84,8 +71,6 @@ class Resources extends Component {
   componentDidMount() {
     Axios.get(`${process.env.BASE_URL_API}/resource/`).then(response => {
       this.setState({ resources: response.data });
-
-
       this.chunkArray(this.state.resources, 3);
 
     });
@@ -127,7 +112,8 @@ class Resources extends Component {
                         {this.state.loaded == false && <LoadingSpinnerBig />}
                       </div>
                      {  this.state.slicedResources.length!=0 ?
-                        this.state.loaded && this.state.slicedResources.length!=0&&
+                        this.state.loaded && this.state.slicedResources.length!=0
+                        &&
                         this.state.slicedResources[
                           this.state.resouceindex
                           
@@ -147,15 +133,10 @@ class Resources extends Component {
                             document_type={e.document_type}
 
                           />
-
                         )
-
-
                         )
-                      : <div style={{textAlign:"center"}}><h6>No resources found</h6></div>
-                      }
-                      
-                     
+                      : <div style={{textAlign:"center"}}><h6>No resources found.</h6></div>
+                      }     
                     </div>
                   </div>
                 </div>

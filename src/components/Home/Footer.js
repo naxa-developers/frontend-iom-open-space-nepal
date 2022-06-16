@@ -49,45 +49,48 @@ class Footer extends Component {
                                     <div className="copyright">
 
                                         {
-                                            this.props.language == "0" ? <p>
-                                                Copyright © 2019. <a href="#">Humanitarion Open Space portal.</a> <br />All
-                      rights reserved.<br />
+                                            this.props.language == "0" ? (<><p>This portal contains location-based information and attribute details of open spaces from different locations in Nepal. All the open spaces datasets were prepared by IOM in a different time in direct coordination and consultation with local governments and relevant line ministries.</p>
+                                                <p style={{ marginTop: '0.2rem' }}>
 
-                      Designed by <a href="http://naxa.com.np">NAXA.</a>
 
-                                            </p>
+                                                    Designed by <a href="http://naxa.com.np">NAXA.</a>
+
+                                                </p></>)
                                                 :
                                                 <p>
-                                                    प्रतिलिपि अधिकार © २०१९  <a href="#"> ह्यूमानिटेरियन खुला स्पेस पोर्टल।</a> <br />सबै अधिकार सुरक्षित। <br />
+                                                    <a href="#"> </a> <br /> <br />
                                                     <a href="http://naxa.com.np">NAXA</a> द्वारा डिजाइन गरिएको।
 
 
-                    </p>
+                                                </p>
 
                                         }
-                                     {/* {  this.props.language == "0" ? ( */}
-                                     <p>Read <Link to='/privacy-policy'>Privacy and Policies.</Link></p>
-                                     {/* )
+                                        {/* {  this.props.language == "0" ? ( */}
+
+                                        {/* )
                                      :
                                     // <p><Link to='/privacy-policy'>गोपनीयता र नीति</Link></p>   */}
-                                    {/* } */}
+                                        {/* } */}
                                     </div>
                                 </div>
                             </div>
                             <div className="col-md-4">
                                 <div className="footer-widget contact-widget">
+
                                     <h5>{this.props.language == "0" ? 'Contact ' : 'सम्पर्क'}</h5>
+                                    <h6 style={{ color: "#757575" }}>International Organization for Migration (IOM) Nepal Country Office, Kathmandu</h6>
                                     <ul>
                                         <li>
                                             <i className="humanitarian-icon-Location"></i>
                                             <span>
-                                                {this.state.contactInfo && this.props.language == '0' ?
+                                                {/* {this.state.contactInfo && this.props.language == '0' ?
                                                     this.state.contactInfo[0].title
                                                     : this.state.contactInfo && this.state.contactInfo[0].title_nep
                                                 } <br />
                                                 {this.state.contactInfo && this.props.language == '0' ?
                                                     this.state.contactInfo[0].location :
-                                                    this.state.contactInfo && this.state.contactInfo[0].location_nep}
+                                                    this.state.contactInfo && this.state.contactInfo[0].location_nep} */}
+                                                768/12 Thirbam Sadak, Baluwatar-5  <br /> P.O. Box: 25503, Kathmandu, Nepal
                                             </span>
                                         </li>
 
@@ -95,23 +98,26 @@ class Footer extends Component {
                                             <i className="humanitarian-icon-Fax"></i>
                                             <span>
 
-                                                {this.state.contactInfo &&
-                                                    this.state.contactInfo[0].num1}
+                                                {/* {this.state.contactInfo &&
+                                                    this.state.contactInfo[0].num1} */}
+                                                +977 1 443 52 23
                                             </span>
                                         </li>
                                         <li>
                                             <i className="material-icons">call</i>
                                             <span>
-
+                                                {/* 
                                                 {this.state.contactInfo &&
-                                                    this.state.contactInfo[0].num2}
+                                                    this.state.contactInfo[0].num2} */}
+                                                +977 1 442 62 50
                                             </span>
                                         </li>
                                         <li>
                                             <i className="humanitarian-icon-E-mail"></i>
                                             <span>
-                                                {this.state.contactInfo &&
-                                                    this.state.contactInfo[0].email}
+                                                {/* {this.state.contactInfo &&
+                                                    this.state.contactInfo[0].email} */}
+                                                iomnepal@iom.int
                                             </span>
                                         </li>
                                         <MaterialIcon />
@@ -139,7 +145,7 @@ class Footer extends Component {
                                             <a href="http://www.moha.gov.np/" target="blank">{this.props.language == "0" ? "moha" : "गृह मन्त्रालय"}</a>
                                         </li>
                                         <li>
-                                            <a href="https://www.facebook.com/NDRRMA/" target="blank">{this.props.language == "0" ? "nddrma" : "राष्ट्रिय विपद जोखिम न्यूनिकरण तथा व्यवस्थापन प्राधिकरण"}</a>
+                                            <a href=" https://bipad.gov.np/en/about-us" target="blank">{this.props.language == "0" ? "NDRRMA" : "राष्ट्रिय विपद जोखिम न्यूनिकरण तथा व्यवस्थापन प्राधिकरण"}</a>
                                         </li>
                                         <li>
                                             <a href="http://www.bipad.gov.np/" target="blank">{this.props.language == "0" ? "bipad" : "बिपद"}</a>

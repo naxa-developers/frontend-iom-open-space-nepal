@@ -26,7 +26,7 @@ export default class SingleEcard extends Component {
 
   getshortestdistance = (first, second) => {
     // console.log(first,second,this.props.currentLocation);
-    var baseUrl = "http://35.188.73.141:8989/route";
+    var baseUrl = "https://route.naxa.com.np/route";
     var distances = []
     // console.log(first,seond)
     var url =

@@ -266,7 +266,7 @@ class DetailsCard extends Component {
 
     this.state.Routespaths = []
     this.state.Routes.eachLayer((r) => this.state.Routes.removeLayer(r))
-    var baseUrl = "http://35.188.73.141:8989/route";
+    var baseUrl = "https://route.naxa.com.np/route";
     var url =
       `${baseUrl}?point= ${first[0]},${first[1]},` +
       `&point=${second[0]},${second[1]}` +
@@ -494,7 +494,7 @@ class DetailsCard extends Component {
 
   getshortestdistance = (first, second) => {
     // console.log(first,second,this.props.currentLocation);
-    var baseUrl = "http://35.188.73.141:8989/route";
+    var baseUrl = "https://route.naxa.com.np/route";
     var distances = [];
     // console.log(first,second)
     var url =
