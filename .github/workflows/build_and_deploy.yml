@@ -84,7 +84,7 @@ jobs:
             refs/heads/staging)
               export SERVER_HOST=159.89.164.123
               export SERVER_USERNAME=devops
-              export PROJECT_PATH=/srv/Projects/frontend-iom-open-space-nepal-prod/dist
+              export PROJECT_PATH=/srv/Projects/iom-open-space-nepal-frontend_staging/dist
               ;;
           esac
           echo "SERVER_HOST=${SERVER_HOST}" >> $GITHUB_OUTPUT
