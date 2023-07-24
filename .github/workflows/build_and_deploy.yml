@@ -1,0 +1,102 @@
+name: IOM Open Space Nepal Frontend
+on:
+  push:
+    branches:
+      - '*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Static Files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
+      - name: Cache node_modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+      - name: Write Environment Variables
+        id: write_env
+        run: |
+          set -e
+          case "${{ github.ref }}" in
+            refs/heads/staging)
+            cat > .env <<EOF
+            #STAGING MODE
+            BASE_URL = https://admin.openspacenepal.info/api/v1
+            BASE_URL_API = https://admin.openspacenepal.info/api/v1
+            #GRASSHOPPER APi
+            GRAPHHOPPER_URL=https://route.naxa.com.np
+          EOF
+              ;;
+            refs/heads/master)
+              echo '
+              # Write Production Environment
+              ' > .env
+              ;;
+          esac
+      - name: Install dependencies
+        run: npm install --force
+
+      - name: Generate build
+        run: |
+          npm run build
+      - name: Upload Dist as Artifacts
+        uses: actions/upload-artifact@v3
+        if: ${{ github.ref == 'refs/heads/master' || github.ref == 'refs/heads/staging'  }}
+        with:
+          name: IOM-${{ github.ref_name }}
+          path: dist
+          retention-days: 1
+
+  deploy:
+    name: Deploy static files
+    needs:
+      - build
+    if: ${{ github.ref == 'refs/heads/staging'  }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+
+      - name: Get Artifacts
+        uses: actions/download-artifact@v1
+        with:
+          path: dist
+          name: IOM-${{ github.ref_name }}
+
+      - name: Get VM SSH host and user
+        id: get_vm_conf
+        run: |
+          case "${{ github.ref }}" in
+            refs/heads/staging)
+              export SERVER_HOST=159.89.164.123
+              export SERVER_USERNAME=devops
+              export PROJECT_PATH=/srv/Projects/frontend-iom-open-space-nepal-prod/dist
+              ;;
+          esac
+          echo "SERVER_HOST=${SERVER_HOST}" >> $GITHUB_OUTPUT
+          echo "SERVER_USERNAME=${SERVER_USERNAME}" >> $GITHUB_OUTPUT
+          echo "PROJECT_PATH=${PROJECT_PATH}" >> $GITHUB_OUTPUT
+      - name: Configure SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 400 ~/.ssh/id_rsa
+          ssh-keyscan ${{ steps.get_vm_conf.outputs.SERVER_HOST }} >> ~/.ssh/known_hosts
+      - name: copy static files
+        run: |
+          scp -r ./dist/* ${{ steps.get_vm_conf.outputs.SERVER_USERNAME }}@${{ steps.get_vm_conf.outputs.SERVER_HOST }}:${{ steps.get_vm_conf.outputs.PROJECT_PATH }}
+          echo "Build Pass"
